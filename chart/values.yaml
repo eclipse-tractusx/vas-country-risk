@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   registry: ghcr.io
-  repository: ghcr.io/catenax-ng/product-value-added-service
+  repository: ghcr.io/catenax-ng/product-vas-country-risk-frontend
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "main"
@@ -102,7 +102,7 @@ applicationSecret:
 
 configmap:
   # Specifies whether a configmap should be created
-  create: true
+  create: false
   data:
     spring_profiles_active: dev
 
