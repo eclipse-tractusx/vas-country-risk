@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React, { useState ,useEffect} from "react";
 import { getAll } from "../services/dashboard-api";
-import { SearchInput, Table as Table2 } from "cx-portal-shared-components";
+import { SearchInput, Table } from "cx-portal-shared-components";
 import myData from "./tableColumns.json";
 import "./styles.scss";
 import { DataGrid } from '@mui/x-data-grid';
@@ -26,14 +26,16 @@ const Dashboard = () => {
           </img>
         </div>
         
-        <Table2 className="table"
+        <Table className="table"
           title="Number of Filtered Business Partners:"
           columns={myData}
           rows={data}
           toolbar={{
+            title:'teste1',
             onSearch: function noRefCheck(){}
           }}
-        ></Table2>
+        ><h1>teste2</h1></Table>
+    
 
         
       </div>
