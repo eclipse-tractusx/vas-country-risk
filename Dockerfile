@@ -8,5 +8,6 @@ ENV PATH="./node_modules/.bin:$PATH"
 copy . .
 
 RUN npm run build
+run sudo apt-get update && sudo apt-get install -y react-scripts git && npm run build
 
 CMD ["npm","start"]
