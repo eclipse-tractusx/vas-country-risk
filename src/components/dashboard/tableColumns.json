@@ -1,0 +1,49 @@
+[
+    {
+        "field": "id",
+        "hide": true
+    },
+    {
+        "description": "Business Partner Number",
+        "field": "bpn",
+        "flex": 2,
+        "headerName": "Business Partner Number"
+    },
+    {
+        "description": "Legal Name",
+        "field": "legalName",
+        "flex": 2,
+        "headerName": "Legal Name"
+    },
+    {
+        "description": "Adress",
+        "field": "adresse",
+        "flex": 2,
+        "headerName": "Adress"
+    },
+    {
+        "description": "City",
+        "field": "stadt",
+        "flex": 2,
+        "headerName": "City" 
+    },
+    {
+        "description": "Country",
+        "field": "country",
+        "flex": 2,
+        "headerName": "Country" 
+    },
+    {
+        "description": "Score",
+        "field": "score",
+        "flex": 2,
+        "headerName": "Score" 
+    },
+    {
+        "description": "Rating",
+        "field": "quelle",
+        "flex": 2,
+        "headerName": "Rating" 
+    }
+
+]
