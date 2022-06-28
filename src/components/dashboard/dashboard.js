@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React, { useState ,useEffect} from "react";
 import { getAll } from "../services/dashboard-api";
-import { SearchInput, Table } from "cx-portal-shared-components";
+import { SearchInput, Table, Button } from "cx-portal-shared-components";
 import myData from "./tableColumns.json";
 import "./styles.scss";
 import { DataGrid } from '@mui/x-data-grid';
@@ -34,7 +34,8 @@ const Dashboard = () => {
             title:'teste1',
             onSearch: function noRefCheck(){}
           }}
-        ><h1>teste2</h1></Table>
+        ><Button
+        title="new button"></Button><h1>teste2</h1></Table>
     
 
         
