@@ -1,10 +1,9 @@
 /* eslint-disable no-console */
 import React, { useState ,useEffect} from "react";
 import { getAll } from "../services/dashboard-api";
-import { SearchInput, Table, Button } from "cx-portal-shared-components";
+import { Table, Button } from "cx-portal-shared-components";
 import myData from "./tableColumns.json";
 import "./styles.scss";
-import { DataGrid } from '@mui/x-data-grid';
 
 
 const Dashboard = () => {
@@ -43,13 +42,6 @@ const Dashboard = () => {
       <div className="right-content">
       <h1>hi table</h1>
   
-      <DataGrid
-        rows={data}
-        columns={myData}
-        pageSize={5}
-        checkboxSelection
-        disableSelectionOnClick
-      />
       </div>
   
     </div>
