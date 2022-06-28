@@ -16,14 +16,14 @@
         "headerName": "Legal Name"
     },
     {
-        "description": "Adress",
-        "field": "adresse",
+        "description": "Address",
+        "field": "address",
         "flex": 2,
-        "headerName": "Adress"
+        "headerName": "Address"
     },
     {
         "description": "City",
-        "field": "stadt",
+        "field": "city",
         "flex": 2,
         "headerName": "City" 
     },
@@ -41,7 +41,7 @@
     },
     {
         "description": "Rating",
-        "field": "quelle",
+        "field": "rating",
         "flex": 2,
         "headerName": "Rating" 
     }
