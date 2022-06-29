@@ -10,7 +10,3 @@ export function getAll(){
     .catch(err => err)
 }
 
-export function searchFilter(){
-  return axios.get(apiUrl).then(res => res.data)
-  .catch(err => err)
-}
