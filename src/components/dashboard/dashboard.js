@@ -12,14 +12,10 @@ const Dashboard = () => {
     const lexpr = expr.toLowerCase();
     getAll().then((response) =>
       setData(
-        response.filter((val) => {
-          if (lexpr === "") {
-            return val;
-          } else if (
-            String(val.city).toLowerCase().includes(lexpr) ||
-            String(val.address).toLowerCase().includes(lexpr)
-          )
-            return val;
+        response.filter((row) => {
+          return Object.keys(row).reduce((acc, value) => {
+            return acc ? acc : String(row[value]).toLowerCase().includes(lexpr);
+          }, false);
         })
       )
     );
@@ -49,7 +45,8 @@ const Dashboard = () => {
           columns={myData}
           rows={data}
           toolbar={{
-            title: "teste1",
+            buttonLabel: "Export to csv",
+            onButtonClick: function noRefCheck() {},
             onSearch: fetchData,
           }}
         >
