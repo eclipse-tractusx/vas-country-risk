@@ -1,38 +1,12 @@
-# => Build container
-FROM node:alpine as builder
-WORKDIR /app
-COPY ./package.json .
-RUN npm
-COPY ./ .
-RUN npm build
+# STAGE 1: Build
+FROM node:alpine
 
-FROM nginx:1.22.0-alpine
+WORKDIR /data
 
-# Nginx config
-RUN rm -rf /etc/nginx/conf.d
-COPY ./conf /etc/nginx
+ENV PATH="./node_modules/.bin:$PATH"
 
-# Static build
-COPY --from=builder /app/build /usr/share/nginx/html/
+copy . .
 
-# Default port exposure
-EXPOSE 80
-EXPOSE 443
-EXPOSE 8080
+RUN apt-get update && sudo apt-get install -y react-scripts && npm run build
 
-ARG UID=7000
-ARG GID=7000
-
-# Copy .env file and shell script to container
-WORKDIR /usr/share/nginx/html
-COPY ./.env .
-
-# Add bash
-RUN apk add --no-cache bash
-
-RUN chown ${UID}:${GID} /usr/share/nginx/html
-
-USER ${UID}:${GID}
-
-# Start Nginx server
-CMD ["/bin/bash", "-c", "nginx -g \"daemon off;\""]
+CMD ["npm","start"]

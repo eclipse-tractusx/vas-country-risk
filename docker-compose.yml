@@ -1,0 +1,7 @@
+version: '2'
+services:
+  postgres:
+    image: node:alpine
+    ports:
+      - 8080:8080
+
