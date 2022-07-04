@@ -1,12 +1,23 @@
-# STAGE 1: Build
-FROM node:alpine
+# => Build container
+FROM node:alpine as builder
+WORKDIR /app
+COPY ./package.json .
+RUN npm
+COPY ./ .
+EXPOSE 80
+EXPOSE 443
+EXPOSE 8080
+RUN npm build
 
-WORKDIR /data
 
-ENV PATH="./node_modules/.bin:$PATH"
+FROM nginx:1.22.0-alpine
 
-copy . .
 
-RUN apt-get update && apt-get install -y react-scripts && npm run build
+# Default port exposure
+EXPOSE 80
+EXPOSE 443
+EXPOSE 8080
 
-CMD ["npm","start"]
+
+RUN npm start
+
