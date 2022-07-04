@@ -35,7 +35,7 @@ securityContext:
 
 service:
   type: ClusterIP
-  port: 8080
+  port: 9000
 
 autoscaling:
   enabled: false
@@ -86,16 +86,16 @@ affinity:
 # @url: https://github.com/helm/charts/blob/master/stable/nginx-ingress/values.yaml#L210
 livenessProbe:
   failureThreshold: 3
-  initialDelaySeconds: 60
-  periodSeconds: 10
+  initialDelaySeconds: 10
+  periodSeconds: 1000
   successThreshold: 1
-  timeoutSeconds: 1
+  timeoutSeconds: 1000
 readinessProbe:
   failureThreshold: 3
-  initialDelaySeconds: 60
-  periodSeconds: 10
+  initialDelaySeconds: 10
+  periodSeconds: 1000
   successThreshold: 1
-  timeoutSeconds: 1
+  timeoutSeconds: 1000
 
 applicationSecret:
   enabled: false
