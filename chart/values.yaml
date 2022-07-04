@@ -35,7 +35,7 @@ securityContext:
 
 service:
   type: ClusterIP
-  port: 9000
+  port: 3000
 
 autoscaling:
   enabled: false
