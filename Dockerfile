@@ -11,7 +11,7 @@ EXPOSE 3000
 EXPOSE 80
 
 RUN npm install -g npm@8.13.2
-RUN npm audit fix --force
+
 
 # Storing node modules on a separate layer will prevent unnecessary npm installs at each build
 RUN npm install && mkdir /ng-app && mv ./node_modules ./ng-app
