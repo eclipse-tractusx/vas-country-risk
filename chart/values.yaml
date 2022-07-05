@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   registry: ghcr.io
-  repository: ghcr.io/catenax-ng/product-vas-country-risk-frontend
+  repository: ghcr.io/catenax-ng/product-value-added-service #ghcr.io/catenax-ng/product-vas-country-risk-frontend
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "main"
@@ -35,7 +35,7 @@ securityContext:
 
 service:
   type: ClusterIP
-  port: 3000
+  port: 8080
 
 autoscaling:
   enabled: false
