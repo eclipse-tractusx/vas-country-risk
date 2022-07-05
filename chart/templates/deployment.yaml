@@ -36,6 +36,9 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+          env:
+            - name: APPLICATION_HOST
+              value: http://project-value-added-service-vas/api/dashboard
           livenessProbe:
             httpGet:
               path: /
