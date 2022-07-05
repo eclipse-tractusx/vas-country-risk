@@ -38,7 +38,7 @@ spec:
               protocol: TCP
           env:
             - name: APPLICATION_HOST
-              value: http://project-value-added-service-vas/api/schedule
+              value: http://http://mstemplate-service-embedded:8080/api/dashboard
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
