@@ -4,7 +4,6 @@ COPY . .
 
 ENV PATH="./node_modules/.bin:$PATH"
 
-USER root
 
 RUN npm install react-scripts
 
@@ -13,10 +12,6 @@ RUN npm run build
 FROM nginx:alpine
 
 WORKDIR /usr/share/nginx/html
-
-USER root
-
-RUN rm -rf ./*
 
 COPY --from=compile-image /build .
 
