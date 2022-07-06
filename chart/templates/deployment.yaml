@@ -37,7 +37,7 @@ spec:
               containerPort: {{ .Values.service.port }}
               protocol: TCP
           env:
-            - name: APPLICATION_HOST
+            - name: REACT_APP_DASHBOARD_URL
               value: http://project-value-added-service-vas-service:8080/api/dashboard
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
