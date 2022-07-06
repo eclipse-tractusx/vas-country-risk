@@ -1,26 +1,28 @@
-# STAGE 1: Build
-FROM node:alpine as builder
+FROM node:16.15.1 AS compile-image
 
-# Copy dependencies info
-COPY /package.json ./
-COPY /public ./public
-COPY /src ./src
+COPY . .
 
-EXPOSE 8080
-EXPOSE 3000
-EXPOSE 80
+ENV PATH="./node_modules/.bin:$PATH"
 
-RUN npm install -g npm@8.13.2
-
-
-# Storing node modules on a separate layer will prevent unnecessary npm installs at each build
-RUN npm install && mkdir /ng-app && mv ./node_modules ./ng-app
+USER root
 
 RUN npm install react-scripts
 
+RUN npm run build
 
-# set the startup command to run your binary
-CMD ["npm", "start"]
+FROM nginx:alpine
+
+WORKDIR /usr/share/nginx/html
+
+USER root
+
+RUN rm -rf ./*
+
+COPY --from=compile-image /build .
+
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
+
+EXPOSE 80
 
 
 

@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   registry: ghcr.io
-  repository: ghcr.io/catenax-ng/product-value-added-service #ghcr.io/catenax-ng/product-vas-country-risk-frontend
+  repository: ghcr.io/catenax-ng/product-vas-country-risk-frontend
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "main"
@@ -35,25 +35,20 @@ securityContext:
 
 service:
   type: ClusterIP
-  port: 8080
+  port: 80
 
 autoscaling:
   enabled: false
 
+appName: vas-country-risk-frontend
+environment: "dev"
+
 ingress:
   enabled: true
-  className: nginx
   annotations:
-    nginx.ingress.kubernetes.io/backend-protocol: HTTP
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    nginx.ingress.kubernetes.io/affinity: "cookie"
-    nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
-  host: catenax-vas-country-risk-frontend-dev.demo.catena-x.net
-  hosts:
-    - host: "catenax-vas-country-risk-frontend-dev.demo.catena-x.net"
-      paths:
-        - path: /
-          pathType: Prefix
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+
 
 # Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
 # @url: https://cloud.google.com/blog/products/containers-kubernetes/kubernetes-best-practices-resource-requests-and-limits
@@ -62,8 +57,8 @@ resources:
     cpu: 1.5
     memory: 1.5Gi
   requests:
-    cpu: 500m
-    memory: 512Mi
+    cpu: 1.5
+    memory: 1.5Gi
 
 nodeSelector: { }
 
@@ -87,15 +82,15 @@ affinity:
 livenessProbe:
   failureThreshold: 3
   initialDelaySeconds: 10
-  periodSeconds: 1000
+  periodSeconds: 100
   successThreshold: 1
-  timeoutSeconds: 1000
+  timeoutSeconds: 100
 readinessProbe:
   failureThreshold: 3
   initialDelaySeconds: 10
-  periodSeconds: 1000
+  periodSeconds: 100
   successThreshold: 1
-  timeoutSeconds: 1000
+  timeoutSeconds: 100
 
 applicationSecret:
   enabled: false
@@ -105,8 +100,7 @@ applicationSecret:
 configmap:
   # Specifies whether a configmap should be created
   create: false
-  data:
-    spring_profiles_active: dev
+
 
 elastic:
   enabled: false
