@@ -41,6 +41,26 @@ spec:
               value: http://project-value-added-service-vas-service:8080/api/dashboard
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: config-frontend-volume
+              mountPath: "/usr/share/nginx/html/config.json"
+              subPath: "config.json"
+            - mountPath: /etc/nginx/conf.d/
+              name: nginx-dir
+            - mountPath: /var/cache/nginx/client_temp
+              name: nginx-empty
+            - mountPath: /var/run/
+              name: nginx-run
+      volumes:
+        - name: config-frontend-volume
+          configMap:
+            name: config-frontend
+        - name: nginx-dir
+          emptyDir: { }
+        - name: nginx-empty
+          emptyDir: { }
+        - name: nginx-run
+          emptyDir: { }
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

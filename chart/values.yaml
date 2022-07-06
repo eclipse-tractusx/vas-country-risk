@@ -82,15 +82,15 @@ affinity:
 livenessProbe:
   failureThreshold: 3
   initialDelaySeconds: 10
-  periodSeconds: 100
+  periodSeconds: 1000
   successThreshold: 1
-  timeoutSeconds: 100
+  timeoutSeconds: 1000
 readinessProbe:
   failureThreshold: 3
   initialDelaySeconds: 10
-  periodSeconds: 100
+  periodSeconds: 1000
   successThreshold: 1
-  timeoutSeconds: 100
+  timeoutSeconds: 1000
 
 applicationSecret:
   enabled: false
@@ -99,7 +99,7 @@ applicationSecret:
 
 configmap:
   # Specifies whether a configmap should be created
-  create: false
+  create: true
 
 
 elastic:
