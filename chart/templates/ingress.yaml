@@ -32,4 +32,4 @@ spec:
       # Default secret for certificate creation already provided to your namespace
       secretName: tls-secret
 
-{{- end }}
+  {{- end }}
