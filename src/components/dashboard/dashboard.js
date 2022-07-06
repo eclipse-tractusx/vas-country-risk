@@ -7,7 +7,7 @@ import "./styles.scss";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
-
+  const [selectedRows, setSelectedRows] = useState([]);
   const fetchData = (expr) => {
     const lexpr = expr.toLowerCase();
     getAll().then((response) =>
@@ -19,6 +19,22 @@ const Dashboard = () => {
         })
       )
     );
+  };
+
+  const exportCsv = () => {
+    const newArray = [];
+    let csvContent = "data:text/csv;charset=utf-8,";
+    console.log("selectedRows");
+    console.log(selectedRows);
+    newArray.push(Object.keys(selectedRows[0]));
+    const values = selectedRows.map((row) => Object.values(row));
+    [...newArray, ...values].forEach(function (rowArray) {
+      let row = rowArray.join(",");
+      csvContent += row + "\r\n";
+    });
+
+    var encodedUri = encodeURI(csvContent);
+    window.open(encodedUri);
   };
 
   useEffect(() => {
@@ -44,9 +60,15 @@ const Dashboard = () => {
           title="Number of Filtered Business Partners:"
           columns={myData}
           rows={data}
+          checkboxSelection
+          onSelectionModelChange={(ids) => {
+            const selectedIds = new Set(ids);
+            const selectedRows = data.filter((row) => selectedIds.has(row.id));
+            setSelectedRows(selectedRows);
+          }}
           toolbar={{
             buttonLabel: "Export to csv",
-            onButtonClick: function noRefCheck() {},
+            onButtonClick: exportCsv,
             onSearch: fetchData,
           }}
         >
