@@ -5,29 +5,20 @@ import { Table, Button, Dropzone } from "cx-portal-shared-components";
 import myData from "./tableColumns.json";
 import "./styles.scss";
 
-import { makeStyles } from '@material-ui/core/styles';
-import Slider from '@material-ui/core/Slider';
-import Input from '@material-ui/core/Input';
-import Grid from '@material-ui/core/Grid';
+import Slider from '@mui/material/Slider'; 
+import Input from '@mui/material/Input';
+import Grid from '@mui/material/Grid';
 import ratingcol from "./ratingColumns.json";
 
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select'
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select'
 
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
-
-
-
-const useStyles = makeStyles({
-  root: {
-    width: 300,
-  },
-});
 
 function valuetext(valueGreen) {
   return `${valueGreen}`;
@@ -41,7 +32,6 @@ const Dashboard = () => {
     setDate(event.target.value);
   };
 
-  const classes = useStyles();
   const minDistance = 5; //Yellow Slider Spacing
 
   //Slide Initialization
@@ -256,7 +246,6 @@ const Dashboard = () => {
             <Grid container spacing={2} alignItems="center">
               <Grid item xs={2} >
                 <Input
-                  className={classes.input}
                   value={valueGreen[0]}
                   margin="dense"
                   //onChange={handleInputChange}
@@ -282,7 +271,6 @@ const Dashboard = () => {
               </Grid>
               <Grid item xs={2}>
                 <Input
-                  className={classes.input}
                   value={100}
                   margin="dense"
                   inputProps={{
@@ -301,7 +289,6 @@ const Dashboard = () => {
             <Grid container spacing={2} alignItems="center">
               <Grid item xs={2} >
                 <Input
-                  className={classes.input}
                   value={valueYellow[0]}
                   margin="dense"
                   //onChange={handleInputChange}
@@ -327,7 +314,6 @@ const Dashboard = () => {
               </Grid>
               <Grid item xs={2}>
                 <Input
-                  className={classes.input}
                   value={valueYellow[1]}
                   margin="dense"
                   inputProps={{
@@ -346,7 +332,6 @@ const Dashboard = () => {
             <Grid container spacing={2} alignItems="center">
               <Grid item xs={2} >
                 <Input
-                  className={classes.input}
                   value={0}
                   margin="dense"
                   //onChange={handleInputChange}
@@ -372,7 +357,6 @@ const Dashboard = () => {
               </Grid>
               <Grid item xs={2}>
                 <Input
-                  className={classes.input}
                   value={valueRed[1]}
                   margin="dense"
                   inputProps={{
