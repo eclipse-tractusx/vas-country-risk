@@ -28,4 +28,93 @@
     .right-content {
         width: 20%;
     }
+
+    .right-bottom-content {
+        width: 90%;
+    }
+
+}
+
+//CSS for Refresh and Date Selection
+.right-upper-content{
+    display:flex; 
+    flex-direction:row;
+    text-align: center;
+    padding: 5%;
+    margin-bottom: 2%;
+    
+    .DateForm{
+        min-width: 140px;
+    }
+
+    .right-upper-left-content{
+
+    }
+
+    .right-upper-right-content{
+        float: right;
+    }
+
+    .divider{
+        width:60px;
+        height:auto;
+        display:inline-block;
+    }
+}
+
+//CSS for Ratings Table
+.right-middle-content{
+    margin-bottom: 7%;
+    margin-right: 2%;
+}
+
+//CSS for Upload and Download Buttons
+.right-middle-bottom-content{
+    text-align: center;
+    margin-bottom: 7%;
+
+    .divider{
+        width:60px;
+        height:auto;
+        display:inline-block;
+    }
+}
+
+//CSS for the Range Slider and Buttons inside
+.right-bottom-content {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #000;
+    width: 60%;
+    text-align: center;
+    font-family: LibreFranklin-Medium, sans-serif;
+
+    .sliderone{
+        .MuiSlider-colorPrimary{
+            color: green;
+        }
+    }
+
+    .slidertwo{
+        .MuiSlider-colorPrimary{
+            color: rgb(221, 221, 69);
+        }
+    }
+
+    .sliderthree{
+        .MuiSlider-colorPrimary{
+            color: red;
+        }
+    }
+}
+
+//CSS for slider Header
+.slider-header {
+    display:flex; 
+    flex-direction:row;
+    align-items: center;
+    float: right;
+}
+
+.SaveRange {
 }
