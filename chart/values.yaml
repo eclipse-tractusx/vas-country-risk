@@ -102,6 +102,7 @@ configmap:
   create: true
   data:
     REACT_APP_DASHBOARD_URL: http://localhost:8080/api/dashboard
+    DASHBOARD_URL: http://localhost:8080/api/dashboard
 
 
 elastic:
