@@ -4,29 +4,28 @@ import { getAll } from "../services/dashboard-api";
 import { Table, Button, Dropzone } from "cx-portal-shared-components";
 import myData from "./tableColumns.json";
 import "./styles.scss";
-
-import Slider from '@mui/material/Slider'; 
-import Input from '@mui/material/Input';
-import Grid from '@mui/material/Grid';
+import DashboardTable from "./DashboardTable";
+import Slider from "@mui/material/Slider";
+import Input from "@mui/material/Input";
+import Grid from "@mui/material/Grid";
 import ratingcol from "./ratingColumns.json";
 
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Box from '@mui/material/Box';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select'
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Box from "@mui/material/Box";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
-import Dialog from '@mui/material/Dialog';
-import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
 
 function valuetext(valueGreen) {
   return `${valueGreen}`;
 }
 
 const Dashboard = () => {
-
-  const [date, setDate] = React.useState('');
+  const [date, setDate] = React.useState("");
 
   const handleChange = (event) => {
     setDate(event.target.value);
@@ -45,7 +44,7 @@ const Dashboard = () => {
     console.log(newValue);
   };
 
-  //Yellow Slider Handler 
+  //Yellow Slider Handler
   const handleChangeYellow = (event, newValue, activeThumb) => {
     if (!Array.isArray(newValue)) {
       return;
@@ -129,38 +128,21 @@ const Dashboard = () => {
           <img alt="mapping" className="left-map" src="left_map.PNG" />
           <img alt="mapping" className="right-map" src="right_map.PNG"></img>
         </div>
-
-        <Table
-          className="table"
-          title="Number of Filtered Business Partners:"
-          columns={myData}
-          rows={data}
-          checkboxSelection
-          onSelectionModelChange={(ids) => {
-            const selectedIds = new Set(ids);
-            const selectedRows = data.filter((row) => selectedIds.has(row.id));
-            setSelectedRows(selectedRows);
-          }}
-          toolbar={{
-            buttonLabel: "Export to csv",
-            onButtonClick: exportCsv,
-            onSearch: fetchData,
-          }}
-        >
-          <Button title="new button"></Button>
-          <h1>teste2</h1>
-        </Table>
+        <DashboardTable></DashboardTable>
       </div>
       <div className="right-content">
         <div className="right-upper-content">
           <div className="right-upper-left-content">
-            <FormControl className="DateForm"  variant="filled" >
-              <InputLabel id="demo-simple-select-filled-label">Select a Date</InputLabel>
+            <FormControl className="DateForm" variant="filled">
+              <InputLabel id="demo-simple-select-filled-label">
+                Select a Date
+              </InputLabel>
               <Select
                 labelId="demo-simple-select-filled-label"
                 id="demo-simple-select-filled"
                 value={date}
-                onChange={handleChange}>
+                onChange={handleChange}
+              >
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
@@ -191,60 +173,75 @@ const Dashboard = () => {
           </Table>
         </div>
         <div className="right-middle-bottom-content">
-          <Button className="UploadButton" size="small" onClick={handleClickOpen}>Upload Rating</Button>
+          <Button
+            className="UploadButton"
+            size="small"
+            onClick={handleClickOpen}
+          >
+            Upload Rating
+          </Button>
           <Dialog
             onClose={handleClose}
             aria-labelledby="customized-dialog-title"
-            open={open}>
+            open={open}
+          >
             <DialogContent dividers>
               <Dropzone
                 accept="image/*,audio/*,video/*"
                 errorStatus={[
-                  'error_upload_params',
-                  'exception_upload',
-                  'error_upload',
-                  'aborted',
-                  'ready'
+                  "error_upload_params",
+                  "exception_upload",
+                  "error_upload",
+                  "aborted",
+                  "ready",
                 ]}
-                getUploadParams={function noRefCheck() { }}
-                onChangeStatus={function noRefCheck() { }}
-                onClick={function noRefCheck() { }}
+                getUploadParams={function noRefCheck() {}}
+                onChangeStatus={function noRefCheck() {}}
+                onClick={function noRefCheck() {}}
                 statusText={{
-                  aborted: 'Aborted',
-                  done: 'Done',
-                  error_file_size: 'Error file size',
-                  error_upload: 'Error_upload',
-                  error_upload_params: 'Error_upload_params',
-                  error_validation: 'Error validation',
-                  exception_upload: 'Exception_upload',
-                  getting_upload_params: 'Getting upload_params',
-                  headers_received: 'Headers_received',
-                  preparing: 'Preparing',
-                  ready: 'Ready',
-                  rejected_file_type: 'Rejected file type',
-                  rejected_max_files: 'Rejected max files',
-                  removed: 'Removed',
-                  restarted: 'Restarted',
-                  started: 'Started',
-                  uploading: 'Uploading'
+                  aborted: "Aborted",
+                  done: "Done",
+                  error_file_size: "Error file size",
+                  error_upload: "Error_upload",
+                  error_upload_params: "Error_upload_params",
+                  error_validation: "Error validation",
+                  exception_upload: "Exception_upload",
+                  getting_upload_params: "Getting upload_params",
+                  headers_received: "Headers_received",
+                  preparing: "Preparing",
+                  ready: "Ready",
+                  rejected_file_type: "Rejected file type",
+                  rejected_max_files: "Rejected max files",
+                  removed: "Removed",
+                  restarted: "Restarted",
+                  started: "Started",
+                  uploading: "Uploading",
                 }}
               />
             </DialogContent>
             <DialogActions>
-              <Button autoFocus onClick={handleClose}>Close</Button>
-              <Button autoFocus onClick={handleClose}>Save</Button>
+              <Button autoFocus onClick={handleClose}>
+                Close
+              </Button>
+              <Button autoFocus onClick={handleClose}>
+                Save
+              </Button>
             </DialogActions>
           </Dialog>
           <div class="divider" />
-          <Button className="DownloadButton" size="small">Download Template</Button>
+          <Button className="DownloadButton" size="small">
+            Download Template
+          </Button>
         </div>
         <div className="right-bottom-content">
           <div className="slider-header">
-            <Button className="SaveRange" size="small">Save Ranges</Button>
+            <Button className="SaveRange" size="small">
+              Save Ranges
+            </Button>
           </div>
           <div className="sliderone">
             <Grid container spacing={2} alignItems="center">
-              <Grid item xs={2} >
+              <Grid item xs={2}>
                 <Input
                   value={valueGreen[0]}
                   margin="dense"
@@ -255,13 +252,14 @@ const Dashboard = () => {
                     step: 1,
                     min: 0,
                     max: 100,
-                    type: 'number',
-                    'aria-labelledby': 'input-slider',
+                    type: "number",
+                    "aria-labelledby": "input-slider",
                   }}
                 />
               </Grid>
               <Grid item xs>
-                <Slider className="sliderGreen"
+                <Slider
+                  className="sliderGreen"
                   value={valueGreen}
                   onChange={handleChangeGreen}
                   valueLabelDisplay="auto"
@@ -278,8 +276,8 @@ const Dashboard = () => {
                     step: 1,
                     min: 0,
                     max: 100,
-                    type: 'number',
-                    'aria-labelledby': 'input-slider',
+                    type: "number",
+                    "aria-labelledby": "input-slider",
                   }}
                 />
               </Grid>
@@ -287,7 +285,7 @@ const Dashboard = () => {
           </div>
           <div className="slidertwo">
             <Grid container spacing={2} alignItems="center">
-              <Grid item xs={2} >
+              <Grid item xs={2}>
                 <Input
                   value={valueYellow[0]}
                   margin="dense"
@@ -298,8 +296,8 @@ const Dashboard = () => {
                     step: 1,
                     min: 0,
                     max: 100,
-                    type: 'number',
-                    'aria-labelledby': 'input-slider',
+                    type: "number",
+                    "aria-labelledby": "input-slider",
                   }}
                 />
               </Grid>
@@ -321,8 +319,8 @@ const Dashboard = () => {
                     step: 1,
                     min: 0,
                     max: 100,
-                    type: 'number',
-                    'aria-labelledby': 'input-slider',
+                    type: "number",
+                    "aria-labelledby": "input-slider",
                   }}
                 />
               </Grid>
@@ -330,7 +328,7 @@ const Dashboard = () => {
           </div>
           <div className="sliderthree">
             <Grid container spacing={2} alignItems="center">
-              <Grid item xs={2} >
+              <Grid item xs={2}>
                 <Input
                   value={0}
                   margin="dense"
@@ -341,13 +339,14 @@ const Dashboard = () => {
                     step: 1,
                     min: 0,
                     max: 100,
-                    type: 'number',
-                    'aria-labelledby': 'input-slider',
+                    type: "number",
+                    "aria-labelledby": "input-slider",
                   }}
                 />
               </Grid>
               <Grid item xs>
-                <Slider className="sliderthree"
+                <Slider
+                  className="sliderthree"
                   value={valueRed}
                   onChange={handleChangeRed}
                   valueLabelDisplay="auto"
@@ -364,8 +363,8 @@ const Dashboard = () => {
                     step: 1,
                     min: 0,
                     max: 100,
-                    type: 'number',
-                    'aria-labelledby': 'input-slider',
+                    type: "number",
+                    "aria-labelledby": "input-slider",
                   }}
                 />
               </Grid>
