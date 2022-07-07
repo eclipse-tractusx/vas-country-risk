@@ -100,7 +100,8 @@ applicationSecret:
 configmap:
   # Specifies whether a configmap should be created
   create: true
-TRY CON  REACT_APP_DASHBOARD_URL: http://localhost:8080/api/dashboard
+  data:
+    REACT_APP_DASHBOARD_URL: http://localhost:8080/api/dashboard
 
 
 elastic:
