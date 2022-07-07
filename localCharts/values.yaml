@@ -1,0 +1,120 @@
+# Default values for vas.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  registry: ghcr.io
+  repository: ff #ghcr.io/catenax-ng/product-vas-country-risk-frontend
+  pullPolicy: Never
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "latest"
+
+imagePullSecrets: [ ]
+
+podAnnotations: { }
+
+podSecurityContext:
+  fsGroup: 2000
+
+#Spring profiles under which the application should run
+springProfiles:
+  - dev
+
+# Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
+# @url: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
+securityContext:
+  allowPrivilegeEscalation: false
+  runAsNonRoot: true
+  runAsUser: 10001
+  runAsGroup: 3000
+  capabilities:
+    drop:
+      - ALL
+
+service:
+  type: ClusterIP
+  port: 8080
+
+autoscaling:
+  enabled: false
+
+appName: vas-country-risk-frontend
+environment: "dev"
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+
+
+# Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
+# @url: https://cloud.google.com/blog/products/containers-kubernetes/kubernetes-best-practices-resource-requests-and-limits
+resources:
+  limits:
+    cpu: 1.5
+    memory: 1.5Gi
+  requests:
+    cpu: 1.5
+    memory: 1.5Gi
+
+nodeSelector: { }
+
+tolerations: [ ]
+
+# Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
+# @url: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: DoesNotExist
+          topologyKey: kubernetes.io/hostname
+
+# Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
+# @url: https://github.com/helm/charts/blob/master/stable/nginx-ingress/values.yaml#L210
+livenessProbe:
+  failureThreshold: 3
+  initialDelaySeconds: 10
+  periodSeconds: 1000
+  successThreshold: 1
+  timeoutSeconds: 1000
+readinessProbe:
+  failureThreshold: 3
+  initialDelaySeconds: 10
+  periodSeconds: 1000
+  successThreshold: 1
+  timeoutSeconds: 1000
+
+applicationSecret:
+  enabled: false
+  keycloak: <path:vas/data/dev/keycloak#credentials-secret>
+  cdq: <path:vas/data/dev/cdq#api-key>
+
+configmap:
+  # Specifies whether a configmap should be created
+  create: true
+  data:
+    REACT_APP_DASHBOARD_URL: http://project-value-added-service-vas-service:8080/api/dashboard
+    DASHBOARD_URL: http://project-value-added-service-vas-service:8080/api/dashboard
+
+
+elastic:
+  enabled: false
+  security:
+    tls:
+      restEncryption: false
+
+postgres:
+  enabled: false
+  auth:
+    database: vas
+    postgresPassword: <path:vas/data/dev/postgresql#postgres-password>
+    username: vas
+    password: <path:vas/data/dev/postgresql#password>
