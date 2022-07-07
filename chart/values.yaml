@@ -44,10 +44,8 @@ appName: vas-country-risk-frontend
 environment: "dev"
 
 ingress:
+  className: nginx
   enabled: true
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 
 
 # Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
@@ -101,8 +99,8 @@ configmap:
   # Specifies whether a configmap should be created
   create: true
   data:
-    REACT_APP_DASHBOARD_URL: http://localhost:8080/api/dashboard
-    DASHBOARD_URL: http://localhost:8080/api/dashboard
+    REACT_APP_DASHBOARD_URL: https://vas-country-risk-backend.dev.demo.catena-x.net/api/dashboard
+    DASHBOARD_URL: https://vas-country-risk-backend.dev.demo.catena-x.net/api/dashboard
 
 
 elastic:
