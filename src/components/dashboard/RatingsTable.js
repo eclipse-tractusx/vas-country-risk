@@ -4,9 +4,8 @@ import { Table, Button, Dropzone } from "cx-portal-shared-components";
 import ratingcol from "./ratingColumns.json";
 
 const RatingsTable = () => {
-
-    const [data, setData] = useState([]);
-    /*const [selectedRows, setSelectedRows] = useState([]);
+  const [data, setData] = useState([]);
+  /*const [selectedRows, setSelectedRows] = useState([]);
     const fetchData = (expr) => {
       const lexpr = expr.toLowerCase();
       getAll().then((response) =>
@@ -20,20 +19,21 @@ const RatingsTable = () => {
       );
     };*/
 
-    return (
-        <Table
-            className="Ratingtable"
-            title=""
-            columns={ratingcol}
-            rows={data}
-            checkboxSelection
-            toolbar={{
-                title: "Ratings",
-            }}
-            hideFooter>
-        </Table>
-    );
-
+  return (
+    <Table
+      className="Ratingtable"
+      title=""
+      columns={ratingcol}
+      rows={data}
+      checkboxSelection
+      pageSize={5}
+      getRowId={(row) => row.bpn}
+      toolbar={{
+        title: "Ratings",
+      }}
+      hideFooter
+    ></Table>
+  );
 };
 
 export default RatingsTable;

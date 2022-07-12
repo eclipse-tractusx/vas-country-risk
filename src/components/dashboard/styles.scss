@@ -1,119 +1,116 @@
 .wrapper {
-    display: flex;
-    height: 100vh;
-    width: 100%;
-    .main-content {
-        width: 80%;
-        padding: 10px;
-        .maps {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 50%;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  .main-content {
+    width: 80%;
+    padding: 10px;
+    .maps {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 50%;
 
-            .left-map{
-                width: 50%;
-                height: 100%;
-            }
-            .right-map{
-                width: 50%;
-                height: 100%;
-            }
-        }
-        .table {
-            border: 1px solid #000;
-            
-        }
+      .left-map {
+        width: 50%;
+        height: 100%;
+      }
+      .right-map {
+        width: 50%;
+        height: 100%;
+      }
     }
-    .right-content {
-        width: 20%;
+    .table {
+      border: 1px solid #000;
     }
+  }
+  .right-content {
+    width: 20%;
+  }
 
-    .right-bottom-content {
-        width: 90%;
-    }
-
+  .right-bottom-content {
+    width: 90%;
+  }
 }
 
 //CSS for Refresh and Date Selection
-.right-upper-content{
-    display:flex; 
-    flex-direction:row;
-    text-align: center;
-    padding: 5%;
-    margin-bottom: 2%;
-    
-    .DateForm{
-        min-width: 140px;
-    }
+.right-upper-content {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  padding: 5%;
+  margin-bottom: 2%;
 
-    .right-upper-left-content{
+  .DateForm {
+    min-width: 140px;
+  }
 
-    }
+  .right-upper-left-content {
+  }
 
-    .right-upper-right-content{
-        float: right;
-    }
+  .right-upper-right-content {
+    float: right;
+  }
 
-    .divider{
-        width:60px;
-        height:auto;
-        display:inline-block;
-    }
+  .divider {
+    width: 60px;
+    height: auto;
+    display: inline-block;
+  }
 }
 
 //CSS for Ratings Table
-.right-middle-content{
-    margin-bottom: 7%;
-    margin-right: 2%;
+.right-middle-content {
+  margin-bottom: 7%;
+  margin-right: 2%;
 }
 
 //CSS for Upload and Download Buttons
-.right-middle-bottom-content{
-    text-align: center;
-    margin-bottom: 7%;
+.right-middle-bottom-content {
+  text-align: center;
+  margin-bottom: 7%;
 
-    .divider{
-        width:60px;
-        height:auto;
-        display:inline-block;
-    }
+  .divider {
+    width: 60px;
+    height: auto;
+    display: inline-block;
+  }
 }
 
 //CSS for the Range Slider and Buttons inside
 .right-bottom-content {
-    padding: 8px 12px;
-    border-radius: 8px;
-    border: 1px solid #000;
-    width: 60%;
-    text-align: center;
-    font-family: LibreFranklin-Medium, sans-serif;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #000;
+  width: 60%;
+  text-align: center;
+  font-family: LibreFranklin-Medium, sans-serif;
 
-    .sliderone{
-        .MuiSlider-colorPrimary{
-            color: green;
-        }
+  .sliderone {
+    .MuiSlider-colorPrimary {
+      color: green;
     }
+  }
 
-    .slidertwo{
-        .MuiSlider-colorPrimary{
-            color: rgb(221, 221, 69);
-        }
+  .slidertwo {
+    .MuiSlider-colorPrimary {
+      color: rgb(221, 221, 69);
     }
+  }
 
-    .sliderthree{
-        .MuiSlider-colorPrimary{
-            color: red;
-        }
+  .sliderthree {
+    .MuiSlider-colorPrimary {
+      color: red;
     }
+  }
 }
 
 //CSS for slider Header
 .slider-header {
-    display:flex; 
-    flex-direction:row;
-    align-items: center;
-    float: right;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  float: right;
 }
 
 .SaveRange {
