@@ -10,6 +10,7 @@ const DatePicker = () => {
 
     const handleChange = (event) => {
         setDate(event.target.value);
+        //console.log(event.target.value);
     };
 
     return (
@@ -22,9 +23,6 @@ const DatePicker = () => {
                 id="demo-simple-select-filled"
                 value={date}
                 onChange={handleChange}>
-                <MenuItem value="">
-                    <em>None</em>
-                </MenuItem>
                 <MenuItem value={2020}>2020</MenuItem>
                 <MenuItem value={2021}>2021</MenuItem>
                 <MenuItem value={2022}>2022</MenuItem>

@@ -26,6 +26,7 @@ const RatingsTable = () => {
             title=""
             columns={ratingcol}
             rows={data}
+            checkboxSelection
             toolbar={{
                 title: "Ratings",
             }}

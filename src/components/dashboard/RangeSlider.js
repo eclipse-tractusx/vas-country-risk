@@ -4,23 +4,44 @@ import Slider from "@mui/material/Slider";
 import Input from "@mui/material/Input";
 import Grid from "@mui/material/Grid";
 
+import Alert from '@mui/material/Alert';
+import Fade from '@mui/material/Fade';
+
 function valuetext(valueGreen) {
     return `${valueGreen}`;
   }
 
 const RangeSlider = () => {
 
+    //Default slider values
+    const GreenDefaultMin = 60;
+    const GreenDefaultMax = 100;
+    const YellowDefaultMin = 37;
+    const YellowDefaultMax = 60;
+    const RedDefaultMin = 0;
+    const RedDefaultMax = 37;
+
+    //Error message value initialization
+    const [checked, setChecked] = React.useState(false);
+
     const minDistance = 5; //Yellow Slider Spacing
 
     //Slide Initialization
-    const [valueGreen, setValue] = React.useState([60, 100]); //Green Slider (Fixed MAX-100 value)
-    const [valueYellow, setValueYellow] = React.useState([20, 37]); //Yellow Slider
-    const [valueRed, setValueRed] = React.useState([0, 37]); //Red Slider (Fixed MIN-0 value)
+    const [valueGreen, setValue] = React.useState([GreenDefaultMin, GreenDefaultMax]); //Green Slider (Fixed MAX-100 value)
+    const [valueYellow, setValueYellow] = React.useState([YellowDefaultMin, YellowDefaultMax]); //Yellow Slider
+    const [valueRed, setValueRed] = React.useState([RedDefaultMin, RedDefaultMax]); //Red Slider (Fixed MIN-0 value)
 
     //Green Slider Handler
     const handleChangeGreen = (event, newValue) => {
         setValue(newValue);
-        console.log(newValue);
+
+        if(valueGreen[0] <= valueYellow[1]){
+            setChecked(true);
+        }
+        else{
+            setChecked(false);
+        }
+    
     };
 
     //Yellow Slider Handler
@@ -40,11 +61,26 @@ const RangeSlider = () => {
         } else {
             setValueYellow(newValue);
         }
+
+        if(valueYellow[1] >= valueGreen[0] || valueYellow[0] <= valueRed[1]){
+            setChecked(true);
+        }
+        else{
+            setChecked(false);
+        }
+
     };
 
     //Red Slider Handler
     const handleChangeRed = (event, newValueThird) => {
         setValueRed(newValueThird);
+
+        if(valueRed[1] >= valueYellow[0]){
+            setChecked(true);
+        }
+        else{
+            setChecked(false);
+        }
     };
 
     return (
@@ -55,7 +91,7 @@ const RangeSlider = () => {
                 <Input
                   value={valueGreen[0]}
                   margin="dense"
-                  //onChange={handleInputChange}
+                  //onChange={handleChangeGreenInput}
                   //onBlur={handleBlur}
                   inputProps={{
                     readOnly: true,
@@ -180,7 +216,12 @@ const RangeSlider = () => {
               </Grid>
             </Grid>
           </div>
-          </div>
+        <div>
+            <Fade in={checked}>
+                <Alert severity="warning">You have overlaping ranges! Please select another ranges</Alert>
+            </Fade>
+        </div>
+        </div>
     );
 };
 

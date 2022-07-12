@@ -10,12 +10,6 @@
         "headerName": "Rating"
     },
     {
-        "description": "Selection",
-        "field": "selection",
-        "flex": 2,
-        "headerName": "Selection"
-    },
-    {
         "description": "Weigthing",
         "field": "weigth",
         "flex": 2,
