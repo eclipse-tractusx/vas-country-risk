@@ -10,9 +10,9 @@
         "headerName": "Rating"
     },
     {
-        "description": "Weigthing",
+        "description": "Weigthing (%)",
         "field": "weigth",
         "flex": 2,
-        "headerName": "Weigthing"
+        "headerName": "Weigthing (%)"
     }
 ]
