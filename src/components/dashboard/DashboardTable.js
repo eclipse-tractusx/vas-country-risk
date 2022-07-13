@@ -2,8 +2,17 @@
 import React, { useState, useEffect, Component } from "react";
 import { getAll } from "../services/dashboard-api";
 import { Table, Button, Dropzone } from "cx-portal-shared-components";
-import myData from "./tableColumns.json";
+import myData from "./tableColumns";
 import "./styles.scss";
+import { columns } from "./tableColumns";
+
+import {
+  TableContainer,
+  TableBody,
+  TableCell,
+  GridColumns,
+  GridCellParams,
+} from "@mui/material";
 
 const DashboardTable = () => {
   //Data Fetch
@@ -53,10 +62,14 @@ const DashboardTable = () => {
     <Table
       className="table"
       title="Number of Filtered Business Partners:"
-      columns={myData}
+      columns={columns}
       rows={data}
       pageSize={15}
+      rowHeight={50}
+      headerHeight={40}
+      autoHeight={false}
       checkboxSelection
+      getRowClassName={(params) => `${params.row.status}`}
       onSelectionModelChange={(ids) => {
         const selectedIds = new Set(ids);
         const selectedRows = data.filter((row) => selectedIds.has(row.id));
