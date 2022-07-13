@@ -10,6 +10,9 @@ const UploadButton = () => {
     //Upload Button Handlers
     const [open, setOpen] = React.useState(false);
 
+    const handleUpload = () => {
+    };
+
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -41,7 +44,7 @@ const UploadButton = () => {
                             "aborted",
                             "ready",
                         ]}
-                        getUploadParams={function noRefCheck() { }}
+                        getUploadParams={handleUpload}
                         onChangeStatus={function noRefCheck() { }}
                         onClick={function noRefCheck() { }}
                         statusText={{
@@ -74,7 +77,7 @@ const UploadButton = () => {
                     </Button>
                 </DialogActions>
             </Dialog>
-            <div class="divider" />
+            <div className="divider" />
             <Button className="DownloadButton" size="small">
                 Download Template
             </Button>
