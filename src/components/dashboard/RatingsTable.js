@@ -1,17 +1,33 @@
 import React, { useState, useEffect, Component } from "react";
 import "./styles.scss";
-import { Table, Button, Dropzone } from "cx-portal-shared-components";
+import { Table, Button } from "cx-portal-shared-components";
 import ratingcol from "./ratingColumns.json";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
 
 const RatingsTable = () => {
 
     //TEST
-    const rows = [
-        { id: 1, rating: 'CPI Rating', weigth:'0' },
-        { id: 2, rating: 'Basel', weigth:'0' },
-        { id: 3, rating: 'Test', weigth:'0' },
-        { id: 4, rating: 'Test2', weigth:'0' },
+    let allrows = [
+        { id: 1, rating: 'CPI Rating', weigth: '0' },
+        { id: 2, rating: 'Basel', weigth: '0' },
+        { id: 3, rating: 'Test', weigth: '0' },
+        { id: 4, rating: 'Test2', weigth:  '0'},
     ];
+
+    const setSelectedRows = [];
+
+    //Upload Button Handlers
+    const [open, setOpen] = React.useState(false);
+
+    const ExpandTable = () => {
+        setOpen(true);
+    };
+
+    const CloseTable = () => {
+        setOpen(false);
+    };
 
     //const [selectedRows, setSelectedRows] = useState([]);
 
@@ -31,38 +47,85 @@ const RatingsTable = () => {
     };*/
 
     return (
-        <Table
-            className="Ratingtable"
-            title=""
-            columns={ratingcol}
-            rows={rows}
-            pageSize={5}
-            checkboxSelection
-            onSelectionModelChange={(ids) => {
+        <div>
+            <Table
+                className="Ratingtable"
+                title=""
+                columns={ratingcol}
+                rows={allrows}
+                pageSize={5}
+                checkboxSelection
+                onSelectionModelChange={(ids) => {
 
-                let i;
-                const selectedIds = ids;
+                    const selectedIds = new Set(ids);
+                    let i;
 
-                for (i = 0; i < rows.length; i++) {
-                    rows[i].weigth = 0;
-                }
+                    const selectedRows = allrows.filter((row) => selectedIds.has(row.id));
+                    
+                    const weightcalculation = 100 / selectedRows.length;
 
-                const weightcalc = 100 / selectedIds.length;
+                    const weightcalc = weightcalculation.toFixed(2);
 
-                for (i = 0; i < selectedIds.length; i++) {
+                    for(i = 0; i < allrows.length; i ++){
+                        allrows[i].weigth = 0;
+                    }
 
-                    rows[selectedIds[i] - 1].weigth = weightcalc;
+                    for(i = 0; i < selectedRows.length; i ++){
+                        allrows[selectedRows[i].id-1].weigth = weightcalc;
+                        console.log(selectedRows[i].id-1 + "    " + allrows[selectedRows[i].id-1].weigth + "         " + weightcalc );
+                    }
 
-                }
+                    //setSelectedRows = selectedIds;
+                }}
+                toolbar={{
+                    buttonLabel: "Expand Table",
+                    onButtonClick: ExpandTable,
+                    title: "Ratings"
+                }}
+                rowsCount={allrows.length}
+                hideFooter>
+            </Table>
+            <Dialog
+                aria-labelledby="customized-dialog-title"
+                open={open}>
 
-               // setSelectedRows(selectedRows);
-            }}
-            toolbar={{
-                title: "Ratings",
-            }}
-            rowsCount={rows.length}
-            hideFooter>
-        </Table>
+                <Table
+                    className="Ratingtable"
+                    title=""
+                    columns={ratingcol}
+                    rows={allrows}
+                    pageSize={5}
+                    checkboxSelection
+                    onSelectionModelChange={(ids) => {
+
+                        //let i;
+                        //const selectedIds = ids;
+
+                        //for (i = 0; i < rows.length; i++) {
+                        // rows[i].weigth = 0;
+                        //}
+
+                        //const weightcalc = 100 / selectedIds.length;
+
+                        //for (i = 0; i < selectedIds.length; i++) {
+
+                         //   rows[selectedIds[i] - 1].weigth = weightcalc;
+
+                        //}
+
+                        // setSelectedRows(selectedRows);
+                    }}
+                    toolbar={{
+                        buttonLabel: "Close",
+                        onButtonClick: CloseTable,
+                        title: "Ratings"
+                    }}
+                    rowsCount={allrows.length}
+                    hideFooter>
+                </Table>
+
+            </Dialog>
+        </div>
     );
 
 };
