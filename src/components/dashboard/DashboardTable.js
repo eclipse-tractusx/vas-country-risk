@@ -1,18 +1,9 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect, Component } from "react";
 import { getAll } from "../services/dashboard-api";
-import { Table, Button, Dropzone } from "cx-portal-shared-components";
-import myData from "./tableColumns";
+import { Table } from "cx-portal-shared-components";
 import "./styles.scss";
 import { columns } from "./tableColumns";
-
-import {
-  TableContainer,
-  TableBody,
-  TableCell,
-  GridColumns,
-  GridCellParams,
-} from "@mui/material";
 
 const DashboardTable = () => {
   //Data Fetch
@@ -63,6 +54,7 @@ const DashboardTable = () => {
       className="table"
       title="Number of Filtered Business Partners:"
       columns={columns}
+      rowsCount={data.length}
       rows={data}
       pageSize={15}
       rowHeight={50}
