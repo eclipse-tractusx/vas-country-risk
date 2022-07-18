@@ -7,6 +7,7 @@ import DatePicker from "./DatePicker";
 import RangeSlider from "./RangeSlider";
 import RatingsTable from "./RatingsTable";
 import UploadButton from "./UploadButton";
+import { getAll } from "../services/dashboard-api";
 
 const Dashboard = () => {
   const [ratings, setRatings] = useState("");
@@ -31,7 +32,9 @@ const Dashboard = () => {
           </div>
           <div className="divider"></div>
           <div className="right-upper-right-content">
-            <Button title="RefreshButton">Refresh</Button>
+            <Button title="RefreshButton" onClick={() => getAll(ratings)}>
+              Refresh
+            </Button>
           </div>
         </div>
         <div className="right-middle-content">

@@ -12,9 +12,8 @@ const DashboardTable = (ratings) => {
 
   const fetchData = (expr) => {
     const lexpr = expr.toLowerCase();
-    console.log("atings");
-    console.log(ratings);
-    getAll(ratings).then((response) =>
+
+    getAll(ratings.getRatings).then((response) =>
       setData(
         response.filter((row) => {
           return Object.keys(row).reduce((acc, value) => {
@@ -41,10 +40,10 @@ const DashboardTable = (ratings) => {
   };
 
   useEffect(() => {
-    getAll(ratings).then((response) => {
+    getAll(ratings.getRatings).then((response) => {
       setData(response);
     });
-  }, []);
+  }, [ratings.getRatings.length]);
 
   useEffect(() => {
     fetchData("");
