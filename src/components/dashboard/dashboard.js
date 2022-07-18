@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import React, { useState, useEffect, Component } from "react";
-import { Button, Dropzone } from "cx-portal-shared-components";
+import React, { useState } from "react";
+import { Button } from "cx-portal-shared-components";
 import "./styles.scss";
 import DashboardTable from "./DashboardTable";
 import DatePicker from "./DatePicker";
@@ -9,6 +9,12 @@ import RatingsTable from "./RatingsTable";
 import UploadButton from "./UploadButton";
 
 const Dashboard = () => {
+  const [ratings, setRatings] = useState("");
+
+  const passValuesFromComponent = (rates) => {
+    setRatings(rates);
+  };
+
   return (
     <div className="wrapper">
       <div className="main-content">
@@ -16,7 +22,7 @@ const Dashboard = () => {
           <img alt="mapping" className="left-map" src="left_map.PNG" />
           <img alt="mapping" className="right-map" src="right_map.PNG"></img>
         </div>
-        <DashboardTable></DashboardTable>
+        <DashboardTable getRatings={ratings}></DashboardTable>
       </div>
       <div className="right-content">
         <div className="right-upper-content">
@@ -29,7 +35,10 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="right-middle-content">
-          <RatingsTable className="ratingtable"></RatingsTable>
+          <RatingsTable
+            className="ratingtable"
+            passValuesFromComponent={passValuesFromComponent}
+          ></RatingsTable>
         </div>
         <div className="right-middle-bottom-content">
           <UploadButton></UploadButton>

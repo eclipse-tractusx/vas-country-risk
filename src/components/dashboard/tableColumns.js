@@ -47,6 +47,7 @@ export const columns = [
         minColor: params.value > 30,
         between: params.value < 20,
         maxColor: params.value > 10,
+        nullColor: params.value === 0,
       }),
   },
   {
@@ -55,5 +56,9 @@ export const columns = [
     flex: 1,
     minWidth: 100,
     headerName: "Rating",
+    cellClassName: (params) =>
+      clsx("super-app", {
+        nullColor: params.value === "",
+      }),
   },
 ];

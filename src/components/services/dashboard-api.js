@@ -3,11 +3,13 @@ import axios from "axios";
 
 // Actions
 
-export function getAll() {
+export function getAll(ratings) {
   return axios
     .get(
       process.env.REACT_APP_DASHBOARD_URL +
-        "ratings=CPI Rating,PERC Asia Risk Guide&name=fdmota&company=test&year=2021"
+        "ratings=" +
+        ratings.getRatings +
+        "&name=fdmota&company=test&year=2021"
     )
     .then((res) => res.data)
     .catch((err) => err);

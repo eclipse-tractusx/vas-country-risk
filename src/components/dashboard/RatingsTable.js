@@ -3,36 +3,35 @@ import "./styles.scss";
 import { Table, Button } from "cx-portal-shared-components";
 import ratingcol from "./ratingColumns.json";
 import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import DialogActions from "@mui/material/DialogActions";
 
-const RatingsTable = () => {
+const RatingsTable = ({ passValuesFromComponent }) => {
+  //TEST
+  let allrows = [
+    { id: 1, rating: "CPI Rating", weigth: "0" },
+    { id: 2, rating: "PERC Asia Risk Guide", weigth: "0" },
+    { id: 3, rating: "Test", weigth: "0" },
+    { id: 4, rating: "Test2", weigth: "0" },
+  ];
 
-    //TEST
-    let allrows = [
-        { id: 1, rating: 'CPI Rating', weigth: '0' },
-        { id: 2, rating: 'Basel', weigth: '0' },
-        { id: 3, rating: 'Test', weigth: '0' },
-        { id: 4, rating: 'Test2', weigth:  '0'},
-    ];
+  const setSelectedRows = [];
 
-    const setSelectedRows = [];
+  //Upload Button Handlers
+  const [open, setOpen] = React.useState(false);
 
-    //Upload Button Handlers
-    const [open, setOpen] = React.useState(false);
+  const [rates, setRatings] = useState([]);
 
-    const ExpandTable = () => {
-        setOpen(true);
-    };
+  const ExpandTable = () => {
+    setOpen(true);
+  };
 
-    const CloseTable = () => {
-        setOpen(false);
-    };
+  const CloseTable = () => {
+    setOpen(false);
+  };
 
-    //const [selectedRows, setSelectedRows] = useState([]);
+  //const [selectedRows, setSelectedRows] = useState([]);
 
-    const [data, setData] = useState([]);
-    /*const [selectedRows, setSelectedRows] = useState([]);
+  const [data, setData] = useState([]);
+  /*const [selectedRows, setSelectedRows] = useState([]);
     const fetchData = (expr) => {
       const lexpr = expr.toLowerCase();
       getAll().then((response) =>
@@ -46,88 +45,84 @@ const RatingsTable = () => {
       );
     };*/
 
-    return (
-        <div>
-            <Table
-                className="Ratingtable"
-                title=""
-                columns={ratingcol}
-                rows={allrows}
-                pageSize={5}
-                checkboxSelection
-                onSelectionModelChange={(ids) => {
+  return (
+    <div>
+      <Table
+        className="Ratingtable"
+        title=""
+        setRatingsToParent={passValuesFromComponent(rates)} // call function from parent component with new rates
+        columns={ratingcol}
+        rows={allrows}
+        pageSize={5}
+        checkboxSelection
+        onSelectionModelChange={(ids) => {
+          const selectedIds = new Set(ids);
+          let i;
 
-                    const selectedIds = new Set(ids);
-                    let i;
+          const selectedRows = allrows.filter((row) => selectedIds.has(row.id));
 
-                    const selectedRows = allrows.filter((row) => selectedIds.has(row.id));
-                    
-                    const weightcalculation = 100 / selectedRows.length;
+          const weightcalculation = 100 / selectedRows.length;
 
-                    const weightcalc = weightcalculation.toFixed(2);
+          const weightcalc = weightcalculation.toFixed(2);
 
-                    for(i = 0; i < allrows.length; i ++){
-                        allrows[i].weigth = 0;
-                    }
+          for (i = 0; i < allrows.length; i++) {
+            allrows[i].weigth = 0;
+          }
 
-                    for(i = 0; i < selectedRows.length; i ++){
-                        allrows[selectedRows[i].id-1].weigth = weightcalc;
-                        console.log(selectedRows[i].id-1 + "    " + allrows[selectedRows[i].id-1].weigth + "         " + weightcalc );
-                    }
+          for (i = 0; i < selectedRows.length; i++) {
+            allrows[selectedRows[i].id - 1].weigth = weightcalc;
+            console.log(
+              selectedRows[i].id -
+                1 +
+                "    " +
+                allrows[selectedRows[i].id - 1].weigth +
+                "         " +
+                weightcalc
+            );
+          }
 
-                    //setSelectedRows = selectedIds;
-                }}
-                toolbar={{
-                    buttonLabel: "Expand Table",
-                    onButtonClick: ExpandTable,
-                    title: "Ratings"
-                }}
-                rowsCount={allrows.length}
-                hideFooter>
-            </Table>
-            <Dialog
-                aria-labelledby="customized-dialog-title"
-                open={open}>
-
-                <Table
-                    className="Ratingtable"
-                    title=""
-                    columns={ratingcol}
-                    rows={allrows}
-                    pageSize={5}
-                    checkboxSelection
-                    onSelectionModelChange={(ids) => {
-
-                        //let i;
-                        //const selectedIds = ids;
-
-                        //for (i = 0; i < rows.length; i++) {
-                        // rows[i].weigth = 0;
-                        //}
-
-                        //const weightcalc = 100 / selectedIds.length;
-
-                        //for (i = 0; i < selectedIds.length; i++) {
-
-                         //   rows[selectedIds[i] - 1].weigth = weightcalc;
-
-                        //}
-
-                        // setSelectedRows(selectedRows);
-                    }}
-                    toolbar={{
-                        buttonLabel: "Close",
-                        onButtonClick: CloseTable,
-                        title: "Ratings"
-                    }}
-                    rowsCount={allrows.length}
-                    hideFooter>
-                </Table>
-
-            </Dialog>
-        </div>
-    );
-
+          //pass ratings selected to top component
+          setRatings(selectedRows.map((each) => each.rating));
+        }}
+        toolbar={{
+          buttonLabel: "Expand Table",
+          onButtonClick: ExpandTable,
+          title: "Ratings",
+        }}
+        rowsCount={allrows.length}
+        hideFooter
+      ></Table>
+      <Dialog aria-labelledby="customized-dialog-title" open={open}>
+        <Table
+          className="Ratingtable"
+          title=""
+          columns={ratingcol}
+          rows={allrows}
+          pageSize={5}
+          checkboxSelection
+          onSelectionModelChange={(ids) => {
+            //let i;
+            //const selectedIds = ids;
+            //for (i = 0; i < rows.length; i++) {
+            // rows[i].weigth = 0;
+            //}
+            //const weightcalc = 100 / selectedIds.length;
+            //for (i = 0; i < selectedIds.length; i++) {
+            //   rows[selectedIds[i] - 1].weigth = weightcalc;
+            //}
+            // setSelectedRows(selectedRows);
+          }}
+          toolbar={{
+            buttonLabel: "Close",
+            onButtonClick: CloseTable,
+            title: "Ratings",
+          }}
+          rowsCount={allrows.length}
+          hideFooter
+        ></Table>
+      </Dialog>
+    </div>
+  );
 };
 
 export default RatingsTable;
