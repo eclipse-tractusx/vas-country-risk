@@ -3,15 +3,19 @@ import axios from "axios";
 
 // Actions
 
-export function getAll(ratings) {
-  const rateFilter = String(ratings).toString();
+export function getAll(ratingsArray) {
+  const ratings = new Map();
+  const year = 2021;
+  ratings.set("ratings", JSON.stringify(ratingsArray));
   return axios
-    .get(
-      process.env.REACT_APP_DASHBOARD_URL +
-        "ratings=" +
-        rateFilter +
-        "&name=fdmota&company=test&year=2021"
-    )
+    .get(process.env.REACT_APP_DASHBOARD_URL, {
+      params: {
+        ratings: ratings.get("ratings"),
+        year: year,
+        name: "fabio",
+        company: "test",
+      },
+    })
     .then((res) => res.data)
     .catch((err) => err);
 }

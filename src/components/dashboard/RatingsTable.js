@@ -82,7 +82,7 @@ const RatingsTable = ({ passValuesFromComponent }) => {
           }
 
           //pass ratings selected to top component
-          setRatings(selectedRows.map((each) => each.rating));
+          setRatings(selectedRows);
         }}
         toolbar={{
           buttonLabel: "Expand Table",
