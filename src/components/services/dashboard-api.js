@@ -2,11 +2,12 @@
 import axios from "axios";
 
 // Actions
-
 export function getAll(ratingsArray) {
   const ratings = new Map();
   const year = 2021;
-  ratings.set("ratings", JSON.stringify(ratingsArray));
+  if (ratingsArray) {
+    ratings.set("ratings", JSON.stringify(ratingsArray));
+  }
   return axios
     .get(process.env.REACT_APP_DASHBOARD_URL, {
       params: {

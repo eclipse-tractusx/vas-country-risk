@@ -7,10 +7,10 @@ import Dialog from "@mui/material/Dialog";
 const RatingsTable = ({ passValuesFromComponent }) => {
   //TEST
   let allrows = [
-    { id: 1, rating: "CPI Rating", weigth: "0" },
-    { id: 2, rating: "PERC Asia Risk Guide", weigth: "0" },
-    { id: 3, rating: "Test", weigth: "0" },
-    { id: 4, rating: "Test2", weigth: "0" },
+    { id: 1, rating: "CPI Rating", weight: 0 },
+    { id: 2, rating: "PERC Asia Risk Guide", weight: 0 },
+    { id: 3, rating: "Test", weight: 0 },
+    { id: 4, rating: "Test2", weight: 0 },
   ];
 
   const setSelectedRows = [];
@@ -66,16 +66,16 @@ const RatingsTable = ({ passValuesFromComponent }) => {
           const weightcalc = weightcalculation.toFixed(2);
 
           for (i = 0; i < allrows.length; i++) {
-            allrows[i].weigth = 0;
+            allrows[i].weight = 0;
           }
 
           for (i = 0; i < selectedRows.length; i++) {
-            allrows[selectedRows[i].id - 1].weigth = weightcalc;
+            allrows[selectedRows[i].id - 1].weight = weightcalc;
             console.log(
               selectedRows[i].id -
                 1 +
                 "    " +
-                allrows[selectedRows[i].id - 1].weigth +
+                allrows[selectedRows[i].id - 1].weight +
                 "         " +
                 weightcalc
             );
