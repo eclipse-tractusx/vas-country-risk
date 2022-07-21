@@ -28,11 +28,12 @@ const RatingsTable = ({ passValuesFromComponent }) => {
         setOpen(false);
     };
 
-  const [ratings, SetRatings] = useState([]);
+  //Store Upcoming Ratings
+  const [Tableratings, SetTableRatings] = useState([]);
 
     const fetchData = () => {
       getRatingsByYear().then((response) =>
-      SetRatings(response));
+      SetTableRatings(response));
     };
 
     useEffect(() => {
@@ -47,30 +48,30 @@ const RatingsTable = ({ passValuesFromComponent }) => {
         title=""
         setRatingsToParent={passValuesFromComponent(rates)} // call function from parent component with new rates
         columns={ratingcol}
-        rows={ratings}
+        rows={Tableratings}
         pageSize={5}
         checkboxSelection
         onSelectionModelChange={(ids) => {
           const selectedIds = new Set(ids);
           let i;
 
-          const selectedRows = allrows.filter((row) => selectedIds.has(row.id));
+          const selectedRows = Tableratings.filter((row) => selectedIds.has(row.id));
 
           const weightcalculation = 100 / selectedRows.length;
 
           const weightcalc = weightcalculation.toFixed(2);
 
-          for (i = 0; i < allrows.length; i++) {
-            allrows[i].weight = 0;
+          for (i = 0; i < Tableratings.length; i++) {
+            Tableratings[i].weight = 0;
           }
 
           for (i = 0; i < selectedRows.length; i++) {
-            allrows[selectedRows[i].id - 1].weight = weightcalc;
+            Tableratings[selectedRows[i].id - 1].weight = weightcalc;
             console.log(
               selectedRows[i].id -
                 1 +
                 "    " +
-                allrows[selectedRows[i].id - 1].weight +
+                Tableratings[selectedRows[i].id - 1].weight +
                 "         " +
                 weightcalc
             );
@@ -84,7 +85,7 @@ const RatingsTable = ({ passValuesFromComponent }) => {
           onButtonClick: ExpandTable,
           title: "Ratings",
         }}
-        rowsCount={ratings.length}
+        rowsCount={Tableratings.length}
         hideFooter>
             
         </Table>
@@ -94,12 +95,12 @@ const RatingsTable = ({ passValuesFromComponent }) => {
           title=""
           setRatingsToParent={passValuesFromComponent(rates)}
           columns={ratingcol}
-          rows={ratings}
+          rows={Tableratings}
           checkboxSelection
           onSelectionModelChange={(ids) => {
 
             const selectedIds = new Set(ids);
-            const selectedRows = allrows.filter((row) => selectedIds.has(row.id));
+            const selectedRows = Tableratings.filter((row) => selectedIds.has(row.id));
             setRatings(selectedRows);
             //let i;
             //const selectedIds = ids;
@@ -117,7 +118,7 @@ const RatingsTable = ({ passValuesFromComponent }) => {
             onButtonClick: CloseTable,
             title: "Ratings",
           }}
-          rowsCount={ratings.length}
+          rowsCount={Tableratings.length}
           hideFooter
         ></Table>
       </Dialog>
