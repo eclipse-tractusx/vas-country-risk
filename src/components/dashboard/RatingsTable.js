@@ -3,47 +3,42 @@ import "./styles.scss";
 import { Table, Button } from "cx-portal-shared-components";
 import ratingcol from "./ratingColumns.json";
 import Dialog from "@mui/material/Dialog";
+import { getRatingsByYear } from "../services/ratingstable-api";
 
 const RatingsTable = ({ passValuesFromComponent }) => {
-  //TEST
-  let allrows = [
-    { id: 1, rating: "CPI Rating", weight: 0 },
-    { id: 2, rating: "PERC Asia Risk Guide", weight: 0 },
-    { id: 3, rating: "Test", weight: 0 },
-    { id: 4, rating: "Test2", weight: 0 },
-  ];
 
-  const setSelectedRows = [];
+  //Test Data
+  let allrows = [
+    { id: 1, rating: "CPI Rating", weigth: "0" },
+    { id: 2, rating: "PERC Asia Risk Guide", weigth: "0" },
+    { id: 3, rating: "Test", weigth: "0" },
+    { id: 4, rating: "Test2", weigth: "0" },
+  ];
 
   //Upload Button Handlers
   const [open, setOpen] = React.useState(false);
 
   const [rates, setRatings] = useState([]);
 
-  const ExpandTable = () => {
-    setOpen(true);
-  };
+    const ExpandTable = () => {
+        setOpen(true);
+    };
 
-  const CloseTable = () => {
-    setOpen(false);
-  };
+    const CloseTable = () => {
+        setOpen(false);
+    };
 
-  //const [selectedRows, setSelectedRows] = useState([]);
+  const [ratings, SetRatings] = useState([]);
 
-  const [data, setData] = useState([]);
-  /*const [selectedRows, setSelectedRows] = useState([]);
-    const fetchData = (expr) => {
-      const lexpr = expr.toLowerCase();
-      getAll().then((response) =>
-        setData(
-          response.filter((row) => {
-            return Object.keys(row).reduce((acc, value) => {
-              return acc ? acc : String(row[value]).toLowerCase().includes(lexpr);
-            }, false);
-          })
-        )
-      );
-    };*/
+    const fetchData = () => {
+      getRatingsByYear().then((response) =>
+      SetRatings(response));
+    };
+
+    useEffect(() => {
+        fetchData("");
+    }, []);
+    
 
   return (
     <div>
@@ -52,7 +47,7 @@ const RatingsTable = ({ passValuesFromComponent }) => {
         title=""
         setRatingsToParent={passValuesFromComponent(rates)} // call function from parent component with new rates
         columns={ratingcol}
-        rows={allrows}
+        rows={ratings}
         pageSize={5}
         checkboxSelection
         onSelectionModelChange={(ids) => {
@@ -89,18 +84,23 @@ const RatingsTable = ({ passValuesFromComponent }) => {
           onButtonClick: ExpandTable,
           title: "Ratings",
         }}
-        rowsCount={allrows.length}
-        hideFooter
-      ></Table>
+        rowsCount={ratings.length}
+        hideFooter>
+            
+        </Table>
       <Dialog aria-labelledby="customized-dialog-title" open={open}>
         <Table
           className="Ratingtable"
           title=""
+          setRatingsToParent={passValuesFromComponent(rates)}
           columns={ratingcol}
-          rows={allrows}
-          pageSize={5}
+          rows={ratings}
           checkboxSelection
           onSelectionModelChange={(ids) => {
+
+            const selectedIds = new Set(ids);
+            const selectedRows = allrows.filter((row) => selectedIds.has(row.id));
+            setRatings(selectedRows);
             //let i;
             //const selectedIds = ids;
             //for (i = 0; i < rows.length; i++) {
@@ -117,7 +117,7 @@ const RatingsTable = ({ passValuesFromComponent }) => {
             onButtonClick: CloseTable,
             title: "Ratings",
           }}
-          rowsCount={allrows.length}
+          rowsCount={ratings.length}
           hideFooter
         ></Table>
       </Dialog>
