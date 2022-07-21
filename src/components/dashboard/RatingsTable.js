@@ -6,7 +6,6 @@ import Dialog from "@mui/material/Dialog";
 import { getRatingsByYear } from "../services/ratingstable-api";
 
 const RatingsTable = ({ passValuesFromComponent }) => {
-
   //Test Data
   let allrows = [
     { id: 1, rating: "CPI Rating", weigth: "0" },
@@ -20,26 +19,24 @@ const RatingsTable = ({ passValuesFromComponent }) => {
 
   const [rates, setRatings] = useState([]);
 
-    const ExpandTable = () => {
-        setOpen(true);
-    };
+  const ExpandTable = () => {
+    setOpen(true);
+  };
 
-    const CloseTable = () => {
-        setOpen(false);
-    };
+  const CloseTable = () => {
+    setOpen(false);
+  };
 
   //Store Upcoming Ratings
   const [Tableratings, SetTableRatings] = useState([]);
 
-    const fetchData = () => {
-      getRatingsByYear().then((response) =>
-      SetTableRatings(response));
-    };
+  const fetchData = () => {
+    getRatingsByYear().then((response) => SetTableRatings(response));
+  };
 
-    useEffect(() => {
-        fetchData("");
-    }, []);
-    
+  useEffect(() => {
+    fetchData("");
+  }, []);
 
   return (
     <div>
@@ -55,7 +52,9 @@ const RatingsTable = ({ passValuesFromComponent }) => {
           const selectedIds = new Set(ids);
           let i;
 
-          const selectedRows = Tableratings.filter((row) => selectedIds.has(row.id));
+          const selectedRows = Tableratings.filter((row) =>
+            selectedIds.has(row.id)
+          );
 
           const weightcalculation = 100 / selectedRows.length;
 
@@ -86,9 +85,8 @@ const RatingsTable = ({ passValuesFromComponent }) => {
           title: "Ratings",
         }}
         rowsCount={Tableratings.length}
-        hideFooter>
-            
-        </Table>
+        hideFooter
+      ></Table>
       <Dialog aria-labelledby="customized-dialog-title" open={open}>
         <Table
           className="Ratingtable"
@@ -98,9 +96,10 @@ const RatingsTable = ({ passValuesFromComponent }) => {
           rows={Tableratings}
           checkboxSelection
           onSelectionModelChange={(ids) => {
-
             const selectedIds = new Set(ids);
-            const selectedRows = Tableratings.filter((row) => selectedIds.has(row.id));
+            const selectedRows = Tableratings.filter((row) =>
+              selectedIds.has(row.id)
+            );
             setRatings(selectedRows);
             //let i;
             //const selectedIds = ids;

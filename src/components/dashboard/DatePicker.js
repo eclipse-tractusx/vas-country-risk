@@ -7,57 +7,47 @@ import MenuItem from "@mui/material/MenuItem";
 import { getAllDates } from "../services/dateform-api";
 
 const DatePicker = () => {
+  //Temporary Array
+  let arraytemp = [];
 
-    //Temporary Array
-    let arraytemp = [];
+  //Store Dates coming from API
+  const [AllDate, setAllDate] = useState();
 
-    //Store Dates coming from API
-    const [AllDate, setAllDate] = useState();
+  if (AllDate === undefined) {
+    arraytemp = [];
+  } else {
+    arraytemp = AllDate;
+  }
 
-    if(AllDate == undefined){
-        arraytemp = [];
-    }
-    else {
-        arraytemp = AllDate;
-    }
+  useEffect(() => {
+    getAllDates().then((response) => setAllDate(response));
+  }, []);
 
-    useEffect(() => {
-        getAllDates().then((response) =>
-        setAllDate(response));
-    }, []);
-    
-    //Date Currently Selected
-    const [date, setDate] = React.useState("");
+  //Date Currently Selected
+  const [date, setDate] = React.useState("");
 
-    console.log("Current select date is:" + arraytemp[date]);
+  //Get Current Year
+  var currentTime = new Date();
+  var year = currentTime.getFullYear();
 
-    //Get Current Year
-    var currentTime = new Date();
-    var year = currentTime.getFullYear()
+  const handleChange = (event) => {
+    setDate(event.target.value);
+  };
 
-    const handleChange = (event) => {
-        setDate(event.target.value);
-        //console.log(event.target.value);
-    };
-
-    return (
-        <FormControl className="DateForm" variant="filled">
-            <InputLabel id="demo-simple-select-filled-label">
-                Select a Date
-            </InputLabel>
-            <Select
-                labelId="demo-simple-select-filled-label"
-                id="demo-simple-select-filled"
-                value={date}
-                onChange={handleChange}>
-                {arraytemp.map((arraytemp, index) => { 
-                return (
-                <MenuItem value={index}>{arraytemp}</MenuItem>
-                )})}
-            </Select>
-        </FormControl>
-    );
-
+  return (
+    <FormControl className="DateForm" fullWidth>
+      <InputLabel>Select a Date</InputLabel>
+      <Select defaultValue={year} value={date || ""} onChange={handleChange}>
+        {arraytemp.map((item) => {
+          return (
+            <MenuItem key={item} value={item}>
+              {item}
+            </MenuItem>
+          );
+        })}
+      </Select>
+    </FormControl>
+  );
 };
 
 export default DatePicker;

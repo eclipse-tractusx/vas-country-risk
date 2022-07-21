@@ -49,8 +49,6 @@ const DashboardTable = (ratings) => {
     fetchData("");
   }, []);
 
-  console.log(ratings);
-
   return (
     <Table
       className="table"

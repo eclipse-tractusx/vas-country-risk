@@ -45,8 +45,8 @@ export const columns = [
     cellClassName: (params) =>
       clsx("super-app", {
         minColor: params.value < 25,
-        between: params.value > 25 && params.value < 40,
-        maxColor: params.value > 40,
+        between: params.value >= 25 && params.value < 40,
+        maxColor: params.value >= 40,
         nullColor: params.value === 0,
       }),
   },

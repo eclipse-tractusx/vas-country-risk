@@ -8,6 +8,7 @@ import RangeSlider from "./RangeSlider";
 import RatingsTable from "./RatingsTable";
 import UploadButton from "./UploadButton";
 import { getAll } from "../services/dashboard-api";
+import CustomWorldMap from "./CustomWorldMap";
 
 const Dashboard = () => {
   const [ratings, setRatings] = useState("");
