@@ -8,7 +8,7 @@ import RangeSlider from "./RangeSlider";
 import RatingsTable from "./RatingsTable";
 import UploadButton from "./UploadButton";
 import { getAll } from "../services/dashboard-api";
-
+import CustomWorldMap from "./CustomWorldMap";
 
 const Dashboard = () => {
   const [ratings, setRatings] = useState("");
@@ -21,7 +21,7 @@ const Dashboard = () => {
     <div className="wrapper">
       <div className="main-content">
         <div className="maps">
-          <img alt="mapping" className="left-map" src="left_map.PNG" />
+          <CustomWorldMap getRatings={ratings}></CustomWorldMap>
           <img alt="mapping" className="right-map" src="right_map.PNG"></img>
         </div>
         <DashboardTable getRatings={ratings}></DashboardTable>
