@@ -8,14 +8,22 @@ import RangeSlider from "./RangeSlider";
 import RatingsTable from "./RatingsTable";
 import UploadButton from "./UploadButton";
 import { getAll } from "../services/dashboard-api";
+import { getRatingsByYear } from "../services/ratingstable-api";
 
 
 const Dashboard = () => {
   const [ratings, setRatings] = useState("");
+  const [date, setDate] = useState("");
 
   const passValuesFromComponent = (rates) => {
     setRatings(rates);
   };
+
+  //Gets Year Currently selected in date picker
+  const getValueFromDatePicker = (dt) => {
+    setDate(dt);
+  };
+
 
   return (
     <div className="wrapper">
@@ -24,23 +32,26 @@ const Dashboard = () => {
           <img alt="mapping" className="left-map" src="left_map.PNG" />
           <img alt="mapping" className="right-map" src="right_map.PNG"></img>
         </div>
-        <DashboardTable getRatings={ratings}></DashboardTable>
+        <DashboardTable getRatings={ratings} ></DashboardTable>
       </div>
       <div className="right-content">
         <div className="right-upper-content">
           <div className="right-upper-left-content">
-            <DatePicker className="DateForm"></DatePicker>
+            <DatePicker
+              className="DateForm"
+              getValueFromDatePicker={getValueFromDatePicker}
+            ></DatePicker>
           </div>
           <div className="divider"></div>
           <div className="right-upper-right-content">
-            <Button title="RefreshButton" onClick={() => getAll(ratings)}>
+            <Button title="RefreshButton" onClick={() => /*getRatingsByYear(date)*/ getAll(ratings) }> 
               Refresh
             </Button>
           </div>
         </div>
         <div className="right-middle-content">
-          <RatingsTable
-            className="ratingtable"
+          <RatingsTable getYear={date}
+            className="ratingtable" 
             passValuesFromComponent={passValuesFromComponent}
           ></RatingsTable>
         </div>

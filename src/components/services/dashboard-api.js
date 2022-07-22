@@ -8,6 +8,7 @@ export function getAll(ratingsArray) {
   if (ratingsArray) {
     ratings.set("ratings", JSON.stringify(ratingsArray));
   }
+
   return axios
     .get(process.env.REACT_APP_DASHBOARD_URL, {
       params: {
@@ -19,4 +20,5 @@ export function getAll(ratingsArray) {
     })
     .then((res) => res.data)
     .catch((err) => err);
+    
 }

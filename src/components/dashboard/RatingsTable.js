@@ -5,7 +5,8 @@ import ratingcol from "./ratingColumns.json";
 import Dialog from "@mui/material/Dialog";
 import { getRatingsByYear } from "../services/ratingstable-api";
 
-const RatingsTable = ({ passValuesFromComponent }) => {
+const RatingsTable = ({ passValuesFromComponent }, date) => {
+
   //Test Data
   let allrows = [
     { id: 1, rating: "CPI Rating", weigth: "0" },
@@ -35,12 +36,16 @@ const RatingsTable = ({ passValuesFromComponent }) => {
   };
 
   useEffect(() => {
+    getRatingsByYear(date.getYear).then((response) => SetTableRatings(response));
+  }, [date.getYear]);
+
+  useEffect(() => {
     fetchData("");
   }, []);
 
   return (
     <div>
-      <Table
+      <Table 
         className="Ratingtable"
         title=""
         setRatingsToParent={passValuesFromComponent(rates)} // call function from parent component with new rates
