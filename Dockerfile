@@ -6,7 +6,7 @@ ENV PATH="./node_modules/.bin:$PATH"
 
 RUN npm install --legacy-peer-deps
 
-RUN npm install react-scripts
+RUN npm install react-scripts --legacy-peer-deps
 
 RUN npm run build
 
