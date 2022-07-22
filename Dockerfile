@@ -4,7 +4,7 @@ COPY . .
 
 ENV PATH="./node_modules/.bin:$PATH"
 
-npm install @mui/icons-material --legacy-peer-deps
+RUN npm install @mui/icons-material --legacy-peer-deps
 
 RUN npm install @mui/material --legacy-peer-deps
 
