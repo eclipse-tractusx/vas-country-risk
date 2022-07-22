@@ -4,7 +4,7 @@ COPY . .
 
 ENV PATH="./node_modules/.bin:$PATH"
 
-RUN npm i react-simple-maps --force
+RUN npm install react-simple-maps --force
 
 RUN npm install react-scripts
 
