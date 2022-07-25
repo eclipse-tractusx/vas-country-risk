@@ -6,9 +6,15 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { getAllDates } from "../services/dateform-api";
 
-const DatePicker = () => {
+const DatePicker = ({ getValueFromDatePicker }) => {
+
+  //Get Current Year
+  var currentTime = new Date();
+  var year = currentTime.getFullYear();
+
   //Temporary Array
   let arraytemp = [];
+  arraytemp.push(year); //Inserts current year in array
 
   //Store Dates coming from API
   const [AllDate, setAllDate] = useState();
@@ -16,19 +22,17 @@ const DatePicker = () => {
   if (AllDate === undefined) {
     arraytemp = [];
   } else {
-    arraytemp = AllDate;
+    AllDate.forEach(function (item) {
+      arraytemp.push(item);
+    });
   }
 
   useEffect(() => {
-    getAllDates().then((response) => setAllDate(response));
+    getAllDates(date).then((response) => setAllDate(response));
   }, []);
 
   //Date Currently Selected
   const [date, setDate] = React.useState("");
-
-  //Get Current Year
-  var currentTime = new Date();
-  var year = currentTime.getFullYear();
 
   const handleChange = (event) => {
     setDate(event.target.value);
@@ -37,7 +41,7 @@ const DatePicker = () => {
   return (
     <FormControl className="DateForm" fullWidth>
       <InputLabel>Select a Date</InputLabel>
-      <Select defaultValue={year} value={date || ""} onChange={handleChange}>
+      <Select defaultValue={year} value={date || ""} onChange={handleChange} setRatingsToParent={getValueFromDatePicker(date)}>
         {arraytemp.map((item) => {
           return (
             <MenuItem key={item} value={item}>
