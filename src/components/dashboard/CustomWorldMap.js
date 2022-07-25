@@ -16,7 +16,6 @@ const CustomWorldMap = (ratings) => {
     "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
 
   useEffect(() => {
-    console.log(ratings.getRatings);
     getAll(ratings.getRatings).then((response) => {
       setData(response);
     });

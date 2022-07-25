@@ -45,8 +45,6 @@ const DashboardTable = (ratings) => {
     });
   }, [ratings.getRatings.length]);
 
-  
-
   useEffect(() => {
     fetchData("");
   }, []);

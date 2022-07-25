@@ -1,18 +1,18 @@
 [
-    {
-        "field": "id",
-        "hide": true
-    },
-    {
-        "description": "Rating",
-        "field": "dataSourceName",
-        "flex": 2,
-        "headerName": "Rating"
-    },
-    {
-        "description": "Weigthing (%)",
-        "field": "weigth",
-        "flex": 2,
-        "headerName": "Weigthing (%)"
-    }
+  {
+    "field": "id",
+    "hide": true
+  },
+  {
+    "description": "Rating",
+    "field": "dataSourceName",
+    "flex": 2,
+    "headerName": "Rating"
+  },
+  {
+    "description": "Weigthing (%)",
+    "field": "weight",
+    "flex": 2,
+    "headerName": "Weigthing (%)"
+  }
 ]
