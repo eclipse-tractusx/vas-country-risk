@@ -24,6 +24,7 @@ const Dashboard = () => {
           <CustomWorldMap getRatings={ratings}></CustomWorldMap>
           <img alt="mapping" className="right-map" src="right_map.PNG"></img>
         </div>
+
         <DashboardTable getRatings={ratings}></DashboardTable>
       </div>
       <div className="right-content">

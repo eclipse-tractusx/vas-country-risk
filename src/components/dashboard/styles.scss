@@ -19,12 +19,14 @@
         height: 100%;
         padding: 10px;
       }
+
       .right-map {
         width: 50%;
         height: 100%;
         padding: 10px;
       }
     }
+
     .table {
       width: 80%;
       border: 1px solid #000;
@@ -40,115 +42,122 @@
       .minColor {
         background-color: red;
       }
+
       .between {
         background-color: yellow;
       }
+
       .nullColor {
+        background-color: #f5f4f6;
+        color: #f5f4f6;
+      }
+    }
+  }
+
+  //Right-Side of the Dashboard
+  .right-content {
+    width: 25%;
+    padding-left: 1%;
+    padding-right: 1%;
+
+    //CSS for Refresh and Date Selection
+    .right-upper-content {
+      display: inline-flex;
+      padding: 10%;
+      margin-bottom: 2%;
+      margin-left: auto;
+      margin-right: auto;
+
+      .DateForm {
+        min-width: 140px;
+      }
+
+      .right-upper-left-content {
+      }
+
+      .right-upper-right-content {
+        float: right;
+        margin-top: 2%;
+      }
+
+      .divider {
+        width: 60px;
+        height: auto;
+        display: inline-block;
+      }
+    }
+
+    .right-bottom-content {
+      width: 90%;
+    }
+  }
+
+  //CSS for Ratings Table
+  .right-middle-content {
+    width: 90%;
+    margin-bottom: 7%;
+    border: 1px solid #000;
+    border-radius: 0px;
+    font-size: 12px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  //CSS for Upload and Download Buttons
+  .right-middle-bottom-content {
+    text-align: center;
+    margin-bottom: 7%;
+    margin-left: auto;
+    margin-right: auto;
+
+    .divider {
+      width: 5%;
+      height: 20%;
+      display: inline-block;
+    }
+  }
+
+  //CSS for the Range Slider and Buttons inside
+  .right-bottom-content {
+    padding: 8px;
+    width: 90%;
+    margin-bottom: 7%;
+    border: 1px solid #000;
+    border-radius: 0px;
+    font-size: 12px;
+    margin-left: auto;
+    margin-right: auto;
+
+    .sliderone {
+      .MuiSlider-colorPrimary {
+        color: green;
+      }
+    }
+
+    .slidertwo {
+      .MuiSlider-colorPrimary {
+        color: rgb(221, 221, 69);
+      }
+    }
+
+    .sliderthree {
+      .MuiSlider-colorPrimary {
+        color: red;
+      }
+
+      .null-Color {
         background-color: white;
+        overflow: hidden;
         color: white;
       }
     }
   }
-  .right-content {
-    width: 20%;
-  }
 
-  .right-bottom-content {
-    width: 90%;
-  }
-}
-
-//CSS for Refresh and Date Selection
-.right-upper-content {
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-  padding: 5%;
-  margin-bottom: 2%;
-
-  .DateForm {
-    min-width: 140px;
-  }
-
-  .right-upper-left-content {
-  }
-
-  .right-upper-right-content {
+  //CSS for slider Header
+  .slider-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     float: right;
-    margin-top: 20px;
   }
-
-  .divider {
-    width: 60px;
-    height: auto;
-    display: inline-block;
-  }
-}
-
-//CSS for Ratings Table
-.right-middle-content {
-  margin-bottom: 7%;
-  margin-right: 2%;
-  border: 1px solid #000;
-  border-radius: 0;
-  font-size: 12px;
-}
-
-//CSS for Upload and Download Buttons
-.right-middle-bottom-content {
-  text-align: center;
-  margin-bottom: 7%;
-
-  .divider {
-    width: 60px;
-    height: auto;
-    display: inline-block;
-  }
-}
-
-//CSS for the Range Slider and Buttons inside
-.right-bottom-content {
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid #000;
-  width: 60%;
-  text-align: center;
-  font-family: LibreFranklin-Medium, sans-serif;
-  border: 1px solid #000;
-  border-radius: 0;
-  font-size: 12px;
-
-  .sliderone {
-    .MuiSlider-colorPrimary {
-      color: green;
-    }
-  }
-
-  .slidertwo {
-    .MuiSlider-colorPrimary {
-      color: rgb(221, 221, 69);
-    }
-  }
-
-  .sliderthree {
-    .MuiSlider-colorPrimary {
-      color: red;
-    }
-    .nullColor {
-      background-color: white;
-      overflow: hidden;
-      color: white;
-    }
-  }
-}
-
-//CSS for slider Header
-.slider-header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  float: right;
-}
-
-.SaveRange {
 }
