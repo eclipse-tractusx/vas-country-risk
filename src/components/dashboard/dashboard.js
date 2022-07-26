@@ -5,7 +5,7 @@ import "./styles.scss";
 import DashboardTable from "./DashboardTable";
 import DatePicker from "./DatePicker";
 import RangeSlider from "./RangeSlider";
-import RatingsTable from "./RatingsTable";
+import Ratings from "./Ratings";
 import UploadButton from "./UploadButton";
 import { getAll } from "../services/dashboard-api";
 import CustomWorldMap from "./CustomWorldMap";
@@ -49,10 +49,10 @@ const Dashboard = () => {
           </div>
         </div>
         <div>
-          <RatingsTable
+          <Ratings
             passValuesFromComponent={passValuesFromComponent}
             years={years}
-          ></RatingsTable>
+          ></Ratings>
         </div>
         <div className="right-middle-bottom-content">
           <UploadButton></UploadButton>

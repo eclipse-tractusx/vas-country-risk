@@ -31,12 +31,7 @@ const CustomWorldMap = (ratings) => {
 
               if (Array.isArray(data)) {
                 data.forEach((s) => {
-                  if (
-                    s.country === geo.properties.name ||
-                    geo.properties.name === "Sweden"
-                  ) {
-                    console.log(geo.properties.name);
-                    console.log(s);
+                  if (s.country === geo.properties.name) {
                     if (s.score >= 40) {
                       geoMap.set("color", "green");
                       geoMap.set(geo, geo);
