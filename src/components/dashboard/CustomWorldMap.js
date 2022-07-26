@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
-import WorldMap from "react-svg-worldmap";
+
 import React, { useState, useEffect } from "react";
-import { getAll } from "../services/dashboard-api";
+import { getWorldMapInfo } from "../services/dashboard-api";
 import {
   ComposableMap,
   Geographies,
@@ -16,10 +16,10 @@ const CustomWorldMap = (ratings) => {
     "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
 
   useEffect(() => {
-    getAll(ratings.getRatings).then((response) => {
+    getWorldMapInfo(ratings.getRatings, ratings.years).then((response) => {
       setData(response);
     });
-  }, [ratings.getRatings.length]);
+  }, [ratings.getRatings, ratings.getRatings.length, ratings.years]);
 
   return (
     <ComposableMap className="left-map" projection="geoMercator">
@@ -31,7 +31,12 @@ const CustomWorldMap = (ratings) => {
 
               if (Array.isArray(data)) {
                 data.forEach((s) => {
-                  if (s.country === geo.properties.name) {
+                  if (
+                    s.country === geo.properties.name ||
+                    geo.properties.name === "Sweden"
+                  ) {
+                    console.log(geo.properties.name);
+                    console.log(s);
                     if (s.score >= 40) {
                       geoMap.set("color", "green");
                       geoMap.set(geo, geo);

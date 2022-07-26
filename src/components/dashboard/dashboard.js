@@ -27,14 +27,15 @@ const Dashboard = () => {
     <div className="wrapper">
       <div className="main-content">
         <div className="maps">
-          <CustomWorldMap getRatings={ratings}></CustomWorldMap>
+          <CustomWorldMap getRatings={ratings} years={years}></CustomWorldMap>
           <img alt="mapping" className="right-map" src="right_map.PNG"></img>
         </div>
-        <DashboardTable getRatings={ratings}></DashboardTable>
+
+        <DashboardTable getRatings={ratings} years={years}></DashboardTable>
       </div>
       <div className="right-content">
         <div className="right-upper-content">
-          <div className="right-upper-left-content">
+          <div className="right-data-picker-content">
             <DatePicker
               className="DateForm"
               passYearSelected={passYearSelected}
@@ -47,9 +48,8 @@ const Dashboard = () => {
             </Button>
           </div>
         </div>
-        <div className="right-middle-content">
+        <div>
           <RatingsTable
-            className="ratingtable"
             passValuesFromComponent={passValuesFromComponent}
             years={years}
           ></RatingsTable>

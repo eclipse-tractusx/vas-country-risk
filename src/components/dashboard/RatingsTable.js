@@ -46,7 +46,7 @@ const RatingsTable = ({ passValuesFromComponent, years }) => {
   return (
     <div>
       <Table
-        className="Ratingtable"
+        className="table"
         title=""
         setRatingsToParent={passValuesFromComponent(rates)} // call function from parent component with new rates
         columns={ratingcol}

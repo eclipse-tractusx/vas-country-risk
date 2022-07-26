@@ -22,7 +22,7 @@ const DatePicker = ({ passYearSelected }) => {
   };
 
   return (
-    <FormControl className="DateForm" fullWidth>
+    <FormControl>
       <InputLabel>Select a Date</InputLabel>
       <Select
         value={date}

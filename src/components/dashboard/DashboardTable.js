@@ -5,15 +5,14 @@ import { Table } from "cx-portal-shared-components";
 import "./styles.scss";
 import { columns } from "./tableColumns";
 
-const DashboardTable = (ratings) => {
+const DashboardTable = (ratings, years) => {
   //Data Fetch
   const [data, setData] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
 
   const fetchData = (expr) => {
     const lexpr = expr.toLowerCase();
-
-    getAll(ratings.getRatings).then((response) =>
+    getAll(ratings.getRatings, ratings.years).then((response) =>
       setData(
         response.filter((row) => {
           return Object.keys(row).reduce((acc, value) => {
@@ -40,7 +39,7 @@ const DashboardTable = (ratings) => {
   };
 
   useEffect(() => {
-    getAll(ratings.getRatings).then((response) => {
+    getAll(ratings.getRatings, ratings.years).then((response) => {
       setData(response);
     });
   }, [ratings.getRatings.length]);
