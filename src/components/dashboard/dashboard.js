@@ -6,7 +6,7 @@ import DashboardTable from "./DashboardTable";
 import DatePicker from "./DatePicker";
 import RangeSlider from "./RangeSlider";
 import Ratings from "./Ratings";
-import UploadButton from "./UploadButton";
+import UploadDownloadZone from "./UploadDownloadZone";
 import { getAll } from "../services/dashboard-api";
 import CustomWorldMap from "./CustomWorldMap";
 
@@ -55,7 +55,7 @@ const Dashboard = () => {
           ></Ratings>
         </div>
         <div className="right-middle-bottom-content">
-          <UploadButton></UploadButton>
+          <UploadDownloadZone></UploadDownloadZone>
         </div>
         <div className="right-bottom-content">
           <div className="slider-header">

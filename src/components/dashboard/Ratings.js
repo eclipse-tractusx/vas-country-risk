@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext, Component } from "react";
 import "./styles.scss";
 import Dialog from "@mui/material/Dialog";
 import RatingTable from "./RatingTable";
+import { RatesContext } from "../../contexts/rates";
 
-const RatingsTable = ({ passValuesFromComponent, years }) => {
+const Rating = ({ passValuesFromComponent, years }) => {
   //Upload Button Handlers
   const [open, setOpen] = React.useState(false);
 
@@ -31,4 +32,4 @@ const RatingsTable = ({ passValuesFromComponent, years }) => {
   );
 };
 
-export default RatingsTable;
+export default Rating;

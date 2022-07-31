@@ -1,9 +1,12 @@
-import Dashboard from './components/dashboard/dashboard';
-import './App.scss';
+import Dashboard from "./components/dashboard/dashboard";
+import "./App.scss";
+import { RatesProvider } from "./contexts/rates";
 
 function App() {
   return (
-    <Dashboard/>
+    <RatesProvider>
+      <Dashboard />
+    </RatesProvider>
   );
 }
 
