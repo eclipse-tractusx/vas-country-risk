@@ -5,7 +5,6 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import { downloadSampleCsvFile } from "../services/files-api";
-import { saveAs } from "file-saver";
 
 const UploadDownloadZone = () => {
   //Upload Button Handlers
