@@ -9,6 +9,7 @@ import Ratings from "./Ratings";
 import UploadDownloadZone from "./UploadDownloadZone";
 import { getAll } from "../services/dashboard-api";
 import CustomWorldMap from "./CustomWorldMap";
+import { Footer } from "./Footer";
 
 const Dashboard = () => {
   const [ratings, setRatings] = useState("");

@@ -26,7 +26,6 @@ const UploadDownloadZone = () => {
     const newArray = [];
 
     downloadSampleCsvFile().then((data) => {
-      console.log(data);
       var blob = new Blob([data.data], { type: "text/csv" });
       const link = document.createElement("a");
       const url = URL.createObjectURL(blob);
