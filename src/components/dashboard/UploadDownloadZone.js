@@ -26,9 +26,16 @@ const UploadDownloadZone = () => {
     const newArray = [];
 
     downloadSampleCsvFile().then((data) => {
-      var blob = new Blob([data], { type: "text/csv" });
-      var url = URL.createObjectURL(blob);
-      window.open(url);
+      console.log(data);
+      var blob = new Blob([data.data], { type: "text/csv" });
+      const link = document.createElement("a");
+      const url = URL.createObjectURL(blob);
+      link.setAttribute("href", url);
+      link.setAttribute("download", data.headers.filename);
+      link.style.visibility = "hidden";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
       setDisable(false);
     });
   };
