@@ -8,6 +8,8 @@ RUN npm install @mui/icons-material --legacy-peer-deps
 
 RUN npm install @mui/material --legacy-peer-deps
 
+RUN npm install --save html-to-image --legacy-peer-deps
+
 RUN npm install cx-portal-shared-components --legacy-peer-deps
 
 RUN npm install --legacy-peer-deps

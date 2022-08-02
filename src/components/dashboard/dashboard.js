@@ -8,13 +8,18 @@ import RangeSlider from "./RangeSlider";
 import Ratings from "./Ratings";
 import UploadDownloadZone from "./UploadDownloadZone";
 import { getAll } from "../services/dashboard-api";
-import CustomWorldMap from "./CustomWorldMap";
-import { Footer } from "./Footer";
+import LeftMap from "./LeftMap";
 
 const Dashboard = () => {
   const [ratings, setRatings] = useState("");
 
+  const [expandMap, setExpandMap] = useState(false);
+
   const [years, setYears] = useState("");
+
+  const openDialog = () => {
+    setExpandMap(!expandMap);
+  };
 
   const passValuesFromComponent = (rates) => {
     setRatings(rates);
@@ -27,11 +32,7 @@ const Dashboard = () => {
   return (
     <div className="wrapper">
       <div className="main-content">
-        <div className="maps">
-          <CustomWorldMap getRatings={ratings} years={years}></CustomWorldMap>
-          <img alt="mapping" className="right-map" src="right_map.PNG"></img>
-        </div>
-
+        <LeftMap getRatings={ratings} years={years}></LeftMap>
         <DashboardTable getRatings={ratings} years={years}></DashboardTable>
       </div>
       <div className="right-content">

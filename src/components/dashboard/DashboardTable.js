@@ -5,7 +5,7 @@ import { Table } from "cx-portal-shared-components";
 import "./styles.scss";
 import { columns } from "./tableColumns";
 
-const DashboardTable = (ratings, years) => {
+const DashboardTable = (ratings) => {
   //Data Fetch
   const [data, setData] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
