@@ -7,7 +7,7 @@ import OpenWithIcon from "@mui/icons-material/OpenWith";
 import { Box, Container } from "@mui/material";
 import FolderIcon from "@mui/icons-material/Folder";
 import { toPng } from "html-to-image";
-
+import ProgressBar from "./ProgressBar";
 
 const LeftMap = (ratings) => {
   const [expandMap, setExpandMap] = useState(false);
@@ -31,43 +31,45 @@ const LeftMap = (ratings) => {
   };
 
   return (
-    <div className="maps">
+    <>
       <Dialog open={expandMap}>
-        <Box id="idCustomWorldMap" style={{ background: "white" }}>
-          World Map
-          <IconButton
-            className="close-button"
-            color="primary"
-            onClick={openDialog}
-            onFocusVisible={function noRefCheck() {}}
-            size="medium"
-            variant="outlined"
-          >
-            <OpenWithIcon></OpenWithIcon>
-          </IconButton>
-          <IconButton
-            className="close-button"
-            onClick={printMap}
-            onFocusVisible={function noRefCheck() {}}
-            size="medium"
-          >
-            <FolderIcon></FolderIcon>
-            Export image
-          </IconButton>
-          <Container>
-            <CustomWorldMap
-              getRatings={ratings.getRatings}
-              years={ratings.years}
-            ></CustomWorldMap>
-          </Container>
-        </Box>
+        <Container>
+          <Box id="idCustomWorldMap" style={{ background: "white" }}>
+            World Map
+            <IconButton
+              className="close-button"
+              color="primary"
+              onClick={openDialog}
+              size="medium"
+              variant="outlined"
+            >
+              <OpenWithIcon></OpenWithIcon>
+            </IconButton>
+            <IconButton
+              className="close-button"
+              onClick={printMap}
+              size="medium"
+            >
+              <FolderIcon></FolderIcon>
+              Export image
+            </IconButton>
+            <Container>
+              <CustomWorldMap
+                getRatings={ratings.getRatings}
+                years={ratings.years}
+              ></CustomWorldMap>
+            </Container>
+            <div style={{ width: "250px" }}>
+              <ProgressBar valuePercentage={100} />
+            </div>
+          </Box>
+        </Container>
         <></>
       </Dialog>
       <IconButton
         className="expand-button"
         color="primary"
         onClick={openDialog}
-        onFocusVisible={function noRefCheck() {}}
         size="medium"
         variant="outlined"
       >
@@ -77,8 +79,7 @@ const LeftMap = (ratings) => {
         getRatings={ratings.getRatings}
         years={ratings.years}
       ></CustomWorldMap>
-      <img alt="mapping" className="right-map" src="right_map.PNG"></img>
-    </div>
+    </>
   );
 };
 

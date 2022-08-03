@@ -158,3 +158,46 @@
     float: right;
   }
 }
+
+.progress-bar {
+  display: flex;
+  align-items: center;
+}
+
+.barContainer {
+  flex: 1;
+  height: 8px;
+  background: #dfdfe7;
+  border-radius: 12px;
+  overflow: hidden; /* Crucial part */
+}
+
+.textValue {
+  width: 45px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.textValueScore {
+  width: 55%;
+  text-align: center;
+  font-size: 15px;
+}
+
+.fillerBackground {
+  height: inherit;
+  transition: "width 2s ease-i-out";
+  background: linear-gradient(
+    90deg,
+    rgb(247, 5, 5),
+    rgb(238, 238, 5),
+    rgb(0, 255, 55)
+  );
+}
+
+.filler {
+  transition: "width 2s ease-i-out";
+  height: inherit;
+  border-radius: inherit;
+  overflow: hidden;
+}

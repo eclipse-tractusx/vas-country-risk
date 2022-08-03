@@ -32,7 +32,11 @@ const Dashboard = () => {
   return (
     <div className="wrapper">
       <div className="main-content">
-        <LeftMap getRatings={ratings} years={years}></LeftMap>
+        <div className="maps">
+          <LeftMap getRatings={ratings} years={years}></LeftMap>
+          <img alt="mapping" className="right-map" src="right_map.PNG"></img>
+        </div>
+
         <DashboardTable getRatings={ratings} years={years}></DashboardTable>
       </div>
       <div className="right-content">
