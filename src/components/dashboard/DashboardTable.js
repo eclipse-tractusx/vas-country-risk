@@ -51,7 +51,6 @@ const DashboardTable = (ratings) => {
   return (
     <Table
       className="table"
-      title="Number of Filtered Business Partners:"
       columns={columns}
       rowsCount={data.length}
       rows={data}
@@ -70,6 +69,7 @@ const DashboardTable = (ratings) => {
         buttonLabel: "Export to csv",
         onButtonClick: exportCsv,
         onSearch: fetchData,
+        title: "Number of Filtered Business Partners:",
       }}
     ></Table>
   );

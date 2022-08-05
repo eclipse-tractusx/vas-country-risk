@@ -4,6 +4,8 @@ COPY . .
 
 ENV PATH="./node_modules/.bin:$PATH"
 
+RUN npm install keycloak-js --legacy-peer-deps
+
 RUN npm install @mui/icons-material --legacy-peer-deps
 
 RUN npm install @mui/material --legacy-peer-deps
