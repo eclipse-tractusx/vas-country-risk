@@ -22,8 +22,18 @@ const CustomWorldMap = (ratings) => {
   }, [ratings.getRatings, ratings.getRatings.length, ratings.years]);
 
   return (
-    <ComposableMap className="left-map" projection="geoMercator">
-      <ZoomableGroup center={[10, 50]} zoom={1}>
+    <ComposableMap
+      className="left-map"
+      width={ratings.mapWidth}
+      height={ratings.mapHeight}
+    >
+      <ZoomableGroup
+        zoom={1}
+        translateExtent={[
+          [0, 0],
+          [ratings.mapWidth, ratings.mapHeight],
+        ]}
+      >
         <Geographies geography={geoUrl}>
           {({ geographies }) =>
             geographies.map((geo) => {
@@ -53,6 +63,23 @@ const CustomWorldMap = (ratings) => {
                   key={geoMap.size > 0 ? geoMap.get(geo).rsmKey : geo.rsmKey}
                   geography={geoMap.size > 0 ? geoMap.get(geo) : geo}
                   fill={geoMap.size > 0 ? geoMap.get("color") : "#F5F4F6"}
+                  style={{
+                    default: {
+                      stroke: "#607D8B",
+                      strokeWidth: 0.75,
+                      outline: "none",
+                    },
+                    hover: {
+                      stroke: "#607D8B",
+                      strokeWidth: 1,
+                      outline: "none",
+                    },
+                    pressed: {
+                      stroke: "#607D8B",
+                      strokeWidth: 1,
+                      outline: "none",
+                    },
+                  }}
                 />
               );
             })

@@ -33,37 +33,32 @@ const LeftMap = (ratings) => {
   return (
     <>
       <Dialog open={expandMap}>
-        <Container>
-          <Box id="idCustomWorldMap" style={{ background: "white" }}>
-            World Map
-            <IconButton
-              className="close-button"
-              color="primary"
-              onClick={openDialog}
-              size="medium"
-              variant="outlined"
-            >
-              <OpenWithIcon></OpenWithIcon>
-            </IconButton>
-            <IconButton
-              className="close-button"
-              onClick={printMap}
-              size="medium"
-            >
-              <FolderIcon></FolderIcon>
-              Export image
-            </IconButton>
-            <Container>
-              <CustomWorldMap
-                getRatings={ratings.getRatings}
-                years={ratings.years}
-              ></CustomWorldMap>
-            </Container>
-            <div style={{ width: "250px" }}>
-              <ProgressBar valuePercentage={100} />
-            </div>
-          </Box>
-        </Container>
+        <Box id="idCustomWorldMap" style={{ background: "white" }}>
+          World Map
+          <IconButton
+            className="close-button"
+            color="primary"
+            onClick={openDialog}
+            size="medium"
+            variant="outlined"
+          >
+            <OpenWithIcon></OpenWithIcon>
+          </IconButton>
+          <IconButton className="close-button" onClick={printMap} size="medium">
+            <FolderIcon></FolderIcon>
+            Export image
+          </IconButton>
+          <CustomWorldMap
+            getRatings={ratings.getRatings}
+            years={ratings.years}
+            mapWidth={1000}
+            mapHeight={1000}
+          ></CustomWorldMap>
+          <div style={{ width: "250px" }}>
+            <ProgressBar valuePercentage={100} />
+          </div>
+        </Box>
+
         <></>
       </Dialog>
       <IconButton
@@ -78,6 +73,8 @@ const LeftMap = (ratings) => {
       <CustomWorldMap
         getRatings={ratings.getRatings}
         years={ratings.years}
+        mapWidth={600}
+        mapHeight={600}
       ></CustomWorldMap>
     </>
   );
