@@ -4,6 +4,8 @@ image:
 springProfiles:
   - dev
 
+environment: "dev"
+
 ingress:
   host: catenax-vas-dev.demo.catena-x.net
 
