@@ -4,33 +4,71 @@ import { Button, Dropzone } from "cx-portal-shared-components";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
-import { downloadSampleCsvFile } from "../services/files-api";
+import Input from "@mui/material/Input";
+import { uploadCsvFile } from "../services/upload-api";
+
+import axios from "axios";
 
 const UploadDownloadZone = () => {
+
   //Upload Button Handlers
   const [open, setOpen] = React.useState(false);
 
-  const [disabled, setDisable] = React.useState(false);
+  //Rating Button Handlers
+  const [openRatingName, setOpenRatingName] = React.useState(false);
 
-  const handleUpload = () => {};
+  //Saves CSV File
+  var formData = new FormData();
+
+  //Const for Rating name from Input
+  var ratingName = "";
+
+  const handleUpload = (files) => {
+    formData.append('file', files.file);
+    formData.append('name', files.file.name);
+
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ', ' + pair[1]);
+    }
+
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
   };
+
   const handleClose = () => {
     setOpen(false);
   };
 
-  const downloadTemplate = () => {
-    setDisable(true);
-    const newArray = [];
+  //Save button
+  const handleCloseAndSend = () => {
 
-    downloadSampleCsvFile().then((data) => {
-      var blob = new Blob([data], { type: "text/csv" });
-      var url = URL.createObjectURL(blob);
-      window.open(url);
-      setDisable(false);
-    });
+    uploadCsvFile(formData);
+    setOpen(false);
+
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ', ' + pair[1]);
+    }
+
+  };
+
+  //Next Button from upload dialog
+  const goToNextDialog = () => {
+    setOpen(false);
+    setOpenRatingName(true);
+  };
+
+  //Close button from ratings name dialog
+  const CloseRatingNameDialog = () => {
+    setOpenRatingName(false);
+  };
+
+  //Gets value from Ratings name input
+  const getName = (event) => {
+    const tempVal = event.target.value;
+    ratingName = tempVal;
+    console.log(ratingName);
   };
 
   return (
@@ -45,7 +83,7 @@ const UploadDownloadZone = () => {
       >
         <DialogContent dividers>
           <Dropzone
-            accept="image/*,audio/*,video/*"
+            accept=""
             errorStatus={[
               "error_upload_params",
               "exception_upload",
@@ -54,8 +92,8 @@ const UploadDownloadZone = () => {
               "ready",
             ]}
             getUploadParams={handleUpload}
-            onChangeStatus={function noRefCheck() {}}
-            onClick={function noRefCheck() {}}
+            onChangeStatus={function noRefCheck() { }}
+            onClick={function noRefCheck() { }}
             statusText={{
               aborted: "Aborted",
               done: "Done",
@@ -81,20 +119,38 @@ const UploadDownloadZone = () => {
           <Button autoFocus onClick={handleClose}>
             Close
           </Button>
-          <Button autoFocus onClick={handleClose}>
+          <Button autoFocus onClick={goToNextDialog}>
+            Next
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
+        open={openRatingName}>
+
+        <h2>Please input the name of the rating</h2>
+
+        <Input
+          margin="dense"
+          onChange={getName}
+          inputProps={{
+            type: "text",
+            "aria-labelledby": "input-slider",
+          }}
+        />
+
+        <DialogActions>
+          <Button autoFocus onClick={CloseRatingNameDialog}>
+            Close
+          </Button>
+          <Button autoFocus onClick={handleCloseAndSend}>
             Save
           </Button>
         </DialogActions>
       </Dialog>
       <div className="divider" />
-      <Button
-        className="DownloadButton"
-        size="small"
-        disabled={disabled}
-        onClick={downloadTemplate}
-      >
-        Download Template
-      </Button>
+
     </div>
   );
 };
