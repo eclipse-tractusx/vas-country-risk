@@ -1,16 +1,16 @@
-import React, { useContext, Component } from "react";
+import React, { useState } from "react";
 import "./styles.scss";
 import Dialog from "@mui/material/Dialog";
 import RatingTable from "./RatingTable";
-import { RatesContext } from "../../contexts/rates";
 
 const Rating = ({ passValuesFromComponent, years }) => {
   //Upload Button Handlers
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const openDialog = () => {
     setOpen(!open);
   };
+  //const handleClose = () => setOpen(false);
 
   return (
     <div>
@@ -20,7 +20,11 @@ const Rating = ({ passValuesFromComponent, years }) => {
         openDialog={openDialog}
         expandLabel={open ? "Close" : "Expand Table"}
       ></RatingTable>
-      <Dialog aria-labelledby="customized-dialog-title" open={open}>
+      <Dialog
+        aria-labelledby="customized-dialog-title"
+        open={open}
+        // onClose={handleClose}
+      >
         <RatingTable
           passValuesFromComponent={passValuesFromComponent}
           years={years}

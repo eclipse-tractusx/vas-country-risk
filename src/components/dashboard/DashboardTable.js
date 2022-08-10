@@ -50,6 +50,7 @@ const DashboardTable = (ratings) => {
 
   return (
     <Table
+      disableColumnFilter
       className="table"
       columns={columns}
       rowsCount={data.length}

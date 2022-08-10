@@ -13,13 +13,7 @@ import LeftMap from "./LeftMap";
 const Dashboard = () => {
   const [ratings, setRatings] = useState("");
 
-  const [expandMap, setExpandMap] = useState(false);
-
   const [years, setYears] = useState("");
-
-  const openDialog = () => {
-    setExpandMap(!expandMap);
-  };
 
   const passValuesFromComponent = (rates) => {
     setRatings(rates);

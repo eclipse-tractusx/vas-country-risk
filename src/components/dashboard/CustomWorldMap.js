@@ -28,6 +28,7 @@ const CustomWorldMap = (ratings) => {
       height={ratings.mapHeight}
     >
       <ZoomableGroup
+        //<ZoomableGroup center={[10, 50]} zoom={1}>
         zoom={1}
         translateExtent={[
           [0, 0],

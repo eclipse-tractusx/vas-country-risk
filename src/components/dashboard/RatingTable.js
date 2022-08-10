@@ -57,6 +57,8 @@ const RatingTable = ({
       rows={tableRatings}
       rowsCount={tableRatings.length}
       pageSize={5}
+      rowHeight={50}
+      headerHeight={40}
       autoHeight={true}
       checkboxSelection
       //selectionModel={prefixIds.map((r) => r.id)}
