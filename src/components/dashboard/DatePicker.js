@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { getAllDates } from "../services/dateform-api";
@@ -23,7 +22,7 @@ const DatePicker = ({ passYearSelected }) => {
 
   return (
     <FormControl>
-      <InputLabel>Select a Date</InputLabel>
+      <h3 className="headerDate">Select a Date</h3>
       <Select
         value={date}
         onChange={handleChange}

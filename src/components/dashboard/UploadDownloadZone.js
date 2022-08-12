@@ -24,13 +24,15 @@ const UploadDownloadZone = () => {
   var ratingName = "";
 
   const handleUpload = (files) => {
-    formData.append('file', files.file);
-    formData.append('name', files.file.name);
+    //formData.append('file', files.file);
+    //formData.append('name', files.file.name);
 
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ', ' + pair[1]);
-    }
+    console.log(files);
 
+    localStorage.setItem("fileStore", JSON.stringify(files));
+    localStorage.setItem("nameStore", files.file.name);
+
+    console.log(JSON.parse(localStorage.getItem("fileStore")));
   };
 
   const handleClickOpen = () => {
@@ -43,6 +45,12 @@ const UploadDownloadZone = () => {
 
   //Save button
   const handleCloseAndSend = () => {
+
+    formData.append('file', localStorage.getItem("fileStore"));
+    formData.append('name', localStorage.getItem("nameStore"));
+    formData.append('ratingname', ratingName);
+
+    console.log(formData);
 
     uploadCsvFile(formData);
     setOpen(false);
@@ -140,7 +148,7 @@ const UploadDownloadZone = () => {
           }}
         />
 
-        <DialogActions>
+        <DialogActions className="ButtonsSaveRatingsName">
           <Button autoFocus onClick={CloseRatingNameDialog}>
             Close
           </Button>

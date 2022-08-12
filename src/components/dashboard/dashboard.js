@@ -43,23 +43,14 @@ const Dashboard = () => {
           <CustomWorldMap getRatings={ratings} years={years}></CustomWorldMap>
           <img alt="mapping" className="right-map" src="right_map.PNG"></img>
         </div>
-
         <DashboardTable getRatings={ratings} years={years}></DashboardTable>
       </div>
       <div className="right-content">
         <div className="right-upper-content">
-          <div className="right-data-picker-content">
             <DatePicker
               className="DateForm"
               passYearSelected={passYearSelected}
             ></DatePicker>
-          </div>
-          <div className="divider"></div>
-          <div className="right-upper-right-content">
-            <Button title="RefreshButton" onClick={() => getAll(ratings)}>
-              Refresh
-            </Button>
-          </div>
         </div>
         <div>
           <Ratings

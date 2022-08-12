@@ -15,24 +15,24 @@ const RangeSlider = ({ passRangeValues }) => {
 
     const [values, setValues] = useState();
 
+    //Default slider values
+    const GreenDefaultMin = 60;
+    const GreenDefaultMax = 100;
+    const YellowDefaultMin = 38;
+    const YellowDefaultMax = 59;
+    const RedDefaultMin = 0;
+    var RedDefaultMax = 37;
+
     useEffect(() => {
       getAllRanges().then((response) => setValues(response));
     }, []);
 
     console.log(values);
 
-    //Default slider values
-    const GreenDefaultMin = 60;
-    const GreenDefaultMax = 100;
-    const YellowDefaultMin = 37;
-    const YellowDefaultMax = 60;
-    const RedDefaultMin = 0;
-    const RedDefaultMax = 37;
 
-    
     //const tempValGreen = [values[2], GreenDefaultMax];
     //const tempValYellow = [values[1], values[2]-1];
-    //const tempValRed = [RedDefaultMin, values[2]];
+    //const tempValRed = [RedDefaultMin, values[0]];
 
     //Error message value initialization
     const [checked, setChecked] = React.useState(false);
@@ -96,22 +96,25 @@ const RangeSlider = ({ passRangeValues }) => {
         }
     };
 
+    //Changes Values Using User Input
     const handleChangeGreenInput = (event) => {
       const tempVal = [event.target.value, GreenDefaultMax];
       setValue(tempVal);
-      console.log(valueGreen);
     };
 
     const handleChangeYellowUpperInput = (event) => {
       const tempVal = [valueYellow[0], event.target.value];
       setValueYellow(tempVal);
-      console.log(valueYellow);
     };
 
     const handleChangeYellowLowerInput = (event) => {
       const tempVal = [event.target.value, valueYellow[1]];
       setValueYellow(tempVal);
-      console.log(valueYellow);
+    };
+
+    const handleChangeRedInput = (event) => {
+      const tempVal = [RedDefaultMin, event.target.value];
+      setValueRed(tempVal);
     };
 
     return (
@@ -166,10 +169,9 @@ const RangeSlider = ({ passRangeValues }) => {
                 <Input
                   value={valueYellow[0]}
                   margin="dense"
-                  //onChange={handleChangeYellowUpperInput}
+                  onChange={handleChangeYellowUpperInput}
                   //onBlur={handleBlur}
                   inputProps={{
-                    readOnly: true,
                     step: 1,
                     min: 0,
                     max: 100,
@@ -191,7 +193,7 @@ const RangeSlider = ({ passRangeValues }) => {
                 <Input
                   value={valueYellow[1]}
                   margin="dense"
-                  onChange={handleChangeYellowUpperInput}
+                  onChange={handleChangeYellowLowerInput}
                   inputProps={{
                     //readOnly: true,
                     step: 1,
@@ -210,8 +212,6 @@ const RangeSlider = ({ passRangeValues }) => {
                 <Input
                   value={0}
                   margin="dense"
-                  //onChange={handleInputChange}
-                  //onBlur={handleBlur}
                   inputProps={{
                     readOnly: true,
                     step: 1,
@@ -235,9 +235,9 @@ const RangeSlider = ({ passRangeValues }) => {
               <Grid item xs={2}>
                 <Input
                   value={valueRed[1]}
+                  onChange={handleChangeRedInput}
                   margin="dense"
                   inputProps={{
-                    readOnly: true,
                     step: 1,
                     min: 0,
                     max: 100,

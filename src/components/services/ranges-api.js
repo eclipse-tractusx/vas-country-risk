@@ -17,13 +17,6 @@ export function sendValues(valuesHigh, valuesMid, valuesLow) {
     formData.append('rangeMid', valuesMid);
     formData.append('rangeLow', valuesLow);
 
-    /*return axios
-    .post("http://localhost:8080/api/dashboard/sendRanges", {
-        data: formData,
-    })
-    .then((res) => res.data)
-    .catch((err) => err);*/
-
     return axios({
         method: 'post',
         url: 'http://localhost:8080/api/dashboard/sendRanges',
