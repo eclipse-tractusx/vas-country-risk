@@ -14,6 +14,7 @@ const keycloakConfig = {
   url: getCentralIdp(),
   realm: "CX-Central",
   clientId: getClientId(),
+  redirectUri: "http://local:3000",
 };
 
 const keycloakConfigSemantic = {
@@ -39,6 +40,7 @@ const init = (onAuthenticatedCallback) => {
     silentCheckSsoRedirectUri:
       window.location.origin + "/silent-check-sso.html",
     pkceMethod: "S256",
+    redirectUri: "http://localhost:3000",
   }).then((authenticated) => {
     if (authenticated) {
       info(`${getUsername()} authenticated`);
