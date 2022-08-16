@@ -26,16 +26,24 @@ const DashboardTable = (ratings) => {
   //Export to CSV
   const exportCsv = () => {
     const newArray = [];
-    let csvContent = "data:text/csv;charset=utf-8,";
+    let csvContent = "data:text/csv;charset=utf-8,\uFEFF";
+    console.log(selectedRows);
+
     newArray.push(Object.keys(selectedRows[0]));
     const values = selectedRows.map((row) => Object.values(row));
     [...newArray, ...values].forEach(function (rowArray) {
-      let row = rowArray.join(",");
+      let row = rowArray.join(";");
       csvContent += row + "\r\n";
     });
 
     var encodedUri = encodeURI(csvContent);
-    window.open(encodedUri);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "table-content.csv");
+    link.style.visibility = "hidden";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   useEffect(() => {

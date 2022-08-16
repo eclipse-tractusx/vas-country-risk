@@ -32,7 +32,7 @@ const LeftMap = (ratings) => {
 
   return (
     <>
-      <Dialog open={expandMap}>
+      <Dialog open={expandMap} onClose={openDialog}>
         <Box id="idCustomWorldMap" style={{ background: "white" }}>
           World Map
           <IconButton
@@ -73,8 +73,8 @@ const LeftMap = (ratings) => {
       <CustomWorldMap
         getRatings={ratings.getRatings}
         years={ratings.years}
-        mapWidth={600}
-        mapHeight={600}
+        mapWidth={1000}
+        mapHeight={1000}
       ></CustomWorldMap>
     </>
   );

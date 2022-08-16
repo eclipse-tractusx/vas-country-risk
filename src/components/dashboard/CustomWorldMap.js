@@ -22,17 +22,13 @@ const CustomWorldMap = (ratings) => {
   }, [ratings.getRatings, ratings.getRatings.length, ratings.years]);
 
   return (
-    <ComposableMap
-      className="left-map"
-      width={ratings.mapWidth}
-      height={ratings.mapHeight}
-    >
+    <ComposableMap className="left-map">
       <ZoomableGroup
         //<ZoomableGroup center={[10, 50]} zoom={1}>
         zoom={1}
         translateExtent={[
-          [0, 0],
-          [ratings.mapWidth, ratings.mapHeight],
+          [-(ratings.mapWidth / 2), -(ratings.mapHeight / 2)],
+          [ratings.mapWidth + 100, ratings.mapHeight],
         ]}
       >
         <Geographies geography={geoUrl}>
