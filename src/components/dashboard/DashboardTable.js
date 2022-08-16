@@ -27,7 +27,6 @@ const DashboardTable = (ratings) => {
   const exportCsv = () => {
     const newArray = [];
     let csvContent = "data:text/csv;charset=utf-8,\uFEFF";
-    console.log(selectedRows);
 
     newArray.push(Object.keys(selectedRows[0]));
     const values = selectedRows.map((row) => Object.values(row));
@@ -50,7 +49,7 @@ const DashboardTable = (ratings) => {
     getAll(ratings.getRatings, ratings.years).then((response) => {
       setData(response);
     });
-  }, [ratings.getRatings.length]);
+  }, [ratings.getRatings, ratings.getRatings.length, ratings.years]);
 
   useEffect(() => {
     fetchData("");

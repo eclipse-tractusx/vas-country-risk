@@ -10,7 +10,6 @@ const Rating = ({ passValuesFromComponent, years }) => {
   const openDialog = () => {
     setOpen(!open);
   };
-  //const handleClose = () => setOpen(false);
 
   return (
     <div>
