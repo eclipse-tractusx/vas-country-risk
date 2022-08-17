@@ -1,228 +1,281 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { useState, useEffect, Component, useContext } from "react";
 import "./styles.scss";
 import Slider from "@mui/material/Slider";
 import Input from "@mui/material/Input";
 import Grid from "@mui/material/Grid";
-
-import Alert from '@mui/material/Alert';
-import Fade from '@mui/material/Fade';
+import Alert from "@mui/material/Alert";
+import Fade from "@mui/material/Fade";
+import { getAllRanges } from "../services/ranges-api";
+import { RangesContext } from "../../contexts/ranges";
 
 function valuetext(valueGreen) {
-    return `${valueGreen}`;
-  }
+  return `${valueGreen}`;
+}
 
-const RangeSlider = () => {
+const RangeSlider = ({ passRangeValues }) => {
+  const { ranges, updateRanges } = useContext(RangesContext);
 
-    //Default slider values
-    const GreenDefaultMin = 60;
-    const GreenDefaultMax = 100;
-    const YellowDefaultMin = 37;
-    const YellowDefaultMax = 60;
-    const RedDefaultMin = 0;
-    const RedDefaultMax = 37;
+  const [minValue, setMin] = useState(37);
+  const [betweenValue, setMid] = useState(60);
+  const [maxValue, setMax] = useState(100);
 
-    //Error message value initialization
-    const [checked, setChecked] = React.useState(false);
+  useEffect(() => {
+    getAllRanges().then((response) => {
+      if (Array.isArray(response)) {
+        response.forEach((eachArray) => {
+          if (eachArray.range === "Min") {
+            setRedValues([0, eachArray.value]);
+            setMin(eachArray.value);
+          } else if (eachArray.range === "Between") {
+            setYellowValues([minValue + 1, eachArray.value]);
+            setMid(eachArray.value);
+          } else if (eachArray.range === "Max") {
+            setGreenValues([betweenValue + 1, eachArray.value]);
+            setMax(eachArray.value);
+          }
+        });
+      }
+    });
+  }, [betweenValue, maxValue, minValue]);
 
-    const minDistance = 5; //Yellow Slider Spacing
+  //Slide Initialization
+  const [valueGreen, setGreenValues] = useState([betweenValue + 1, maxValue]);
 
-    //Slide Initialization
-    const [valueGreen, setValue] = React.useState([GreenDefaultMin, GreenDefaultMax]); //Green Slider (Fixed MAX-100 value)
-    const [valueYellow, setValueYellow] = React.useState([YellowDefaultMin, YellowDefaultMax]); //Yellow Slider
-    const [valueRed, setValueRed] = React.useState([RedDefaultMin, RedDefaultMax]); //Red Slider (Fixed MIN-0 value)
+  const [valueYellow, setYellowValues] = useState([minValue + 1, betweenValue]);
+  const [valueRed, setRedValues] = useState([0, minValue]);
 
-    //Green Slider Handler
-    const handleChangeGreen = (event, newValue) => {
-        setValue(newValue);
+  //Green Slider Handler
+  const handleChangeGreen = (event, newValue) => {
+    newValue[1] = 100;
+    newValue[0] =
+      newValue[1] === newValue[0]
+        ? (newValue[0] = newValue[0] - 1)
+        : newValue[0];
+    const tempVal = [valueYellow[0], newValue[0] - 1];
+    if (!(newValue[0] <= parseFloat(valueRed[1]) + 2)) {
+      setGreenValues(newValue);
+      setYellowValues(tempVal);
+    }
+  };
 
-        if(valueGreen[0] <= valueYellow[1]){
-            setChecked(true);
-        }
-        else{
-            setChecked(false);
-        }
-    
-    };
+  const handleChangeYellow = (event, newValue) => {
+    if (!(newValue[0] === newValue[1])) {
+      const tempValG = [newValue[1] + 1, valueGreen[1]];
+      const tempValR = [valueRed[0], newValue[0] - 1];
+      setYellowValues(newValue);
+      setGreenValues(tempValG);
+      setRedValues(tempValR);
+    }
+  };
 
-    //Yellow Slider Handler
-    const handleChangeYellow = (event, newValue, activeThumb) => {
-        if (!Array.isArray(newValue)) {
-            return;
-        }
+  const handleChangeRed = (event, newValue) => {
+    newValue[0] = 0;
+    newValue[1] =
+      newValue[1] === newValue[0]
+        ? (newValue[1] = newValue[1] - 1)
+        : newValue[1];
 
-        if (newValue[1] - newValue[0] < minDistance) {
-            if (activeThumb === 0) {
-                const clamped = Math.min(newValue[0], 100 - minDistance);
-                setValueYellow([clamped, clamped + minDistance]);
-            } else {
-                const clamped = Math.max(newValue[1], minDistance);
-                setValueYellow([clamped - minDistance, clamped]);
-            }
-        } else {
-            setValueYellow(newValue);
-        }
+    const tempValY = [newValue[1] + 1, valueYellow[1]];
 
-        if(valueYellow[1] >= valueGreen[0] || valueYellow[0] <= valueRed[1]){
-            setChecked(true);
-        }
-        else{
-            setChecked(false);
-        }
+    if (!(newValue[1] >= valueGreen[0] - 2)) {
+      setYellowValues(tempValY);
+      setRedValues(newValue);
+    }
+  };
 
-    };
+  //Changes Values Using User Input
+  const handleChangeGreenInput = (event) => {
+    const tempVal = [event.target.value, 100];
+    const yelloTempVal = [valueYellow[0], event.target.value - 1];
 
-    //Red Slider Handler
-    const handleChangeRed = (event, newValueThird) => {
-        setValueRed(newValueThird);
+    if (!(event.target.value <= parseFloat(valueRed[1]) + 2)) {
+      setGreenValues(tempVal);
+      setYellowValues(yelloTempVal);
+    }
+  };
 
-        if(valueRed[1] >= valueYellow[0]){
-            setChecked(true);
-        }
-        else{
-            setChecked(false);
-        }
-    };
+  //Changes Values Using User Input
+  const handleChangeYellowInput = (event) => {
+    if (event.target.value > valueYellow[1]) {
+      const tempValY = [valueYellow[0], event.target.value];
+      setYellowValues(tempValY);
+      const tempValG = [parseFloat(event.target.value) + 1, valueGreen[1]];
+      setGreenValues(tempValG);
+    } else if (
+      event.target.value < valueYellow[1] &&
+      event.target.value > valueYellow[0] &&
+      event.target.step === "1"
+    ) {
+      const tempValY = [valueYellow[0], event.target.value];
+      setYellowValues(tempValY);
+      const tempValG = [parseFloat(event.target.value) + 1, valueGreen[1]];
+      setGreenValues(tempValG);
+    } else if (
+      event.target.value < valueYellow[1] &&
+      event.target.value > valueYellow[0] &&
+      event.target.step === "0"
+    ) {
+      const tempValY = [event.target.value, valueYellow[1]];
+      const tempValR = [valueRed[0], event.target.value - 1];
+      setYellowValues(tempValY);
+      setRedValues(tempValR);
+    } else if (event.target.value < valueYellow[0]) {
+      const tempValY = [event.target.value, valueYellow[1]];
+      const tempValR = [valueRed[0], event.target.value - 1];
+      setYellowValues(tempValY);
+      setRedValues(tempValR);
+    }
+  };
 
-    return (
-        <div>
-        <div className="sliderone">
-            <Grid container spacing={2} alignItems="center">
-              <Grid item xs={2}>
-                <Input
-                  value={valueGreen[0]}
-                  margin="dense"
-                  //onChange={handleChangeGreenInput}
-                  //onBlur={handleBlur}
-                  inputProps={{
-                    readOnly: true,
-                    step: 1,
-                    min: 0,
-                    max: 100,
-                    type: "number",
-                    "aria-labelledby": "input-slider",
-                  }}
-                />
-              </Grid>
-              <Grid item xs>
-                <Slider
-                  className="sliderGreen"
-                  value={valueGreen}
-                  onChange={handleChangeGreen}
-                  valueLabelDisplay="auto"
-                  aria-labelledby="range-slider"
-                  getAriaValueText={valuetext}
-                />
-              </Grid>
-              <Grid item xs={2}>
-                <Input
-                  value={100}
-                  margin="dense"
-                  inputProps={{
-                    readOnly: true,
-                    step: 1,
-                    min: 0,
-                    max: 100,
-                    type: "number",
-                    "aria-labelledby": "input-slider",
-                  }}
-                />
-              </Grid>
-            </Grid>
-          </div>
-          <div className="slidertwo">
-            <Grid container spacing={2} alignItems="center">
-              <Grid item xs={2}>
-                <Input
-                  value={valueYellow[0]}
-                  margin="dense"
-                  //onChange={handleInputChange}
-                  //onBlur={handleBlur}
-                  inputProps={{
-                    readOnly: true,
-                    step: 1,
-                    min: 0,
-                    max: 100,
-                    type: "number",
-                    "aria-labelledby": "input-slider",
-                  }}
-                />
-              </Grid>
-              <Grid item xs>
-                <Slider
-                  value={valueYellow}
-                  onChange={handleChangeYellow}
-                  valueLabelDisplay="auto"
-                  aria-labelledby="range-slider"
-                  getAriaValueText={valuetext}
-                />
-              </Grid>
-              <Grid item xs={2}>
-                <Input
-                  value={valueYellow[1]}
-                  margin="dense"
-                  inputProps={{
-                    readOnly: true,
-                    step: 1,
-                    min: 0,
-                    max: 100,
-                    type: "number",
-                    "aria-labelledby": "input-slider",
-                  }}
-                />
-              </Grid>
-            </Grid>
-          </div>
-          <div className="sliderthree">
-            <Grid container spacing={2} alignItems="center">
-              <Grid item xs={2}>
-                <Input
-                  value={0}
-                  margin="dense"
-                  //onChange={handleInputChange}
-                  //onBlur={handleBlur}
-                  inputProps={{
-                    readOnly: true,
-                    step: 1,
-                    min: 0,
-                    max: 100,
-                    type: "number",
-                    "aria-labelledby": "input-slider",
-                  }}
-                />
-              </Grid>
-              <Grid item xs>
-                <Slider
-                  className="sliderthree"
-                  value={valueRed}
-                  onChange={handleChangeRed}
-                  valueLabelDisplay="auto"
-                  aria-labelledby="range-slider"
-                  getAriaValueText={valuetext}
-                />
-              </Grid>
-              <Grid item xs={2}>
-                <Input
-                  value={valueRed[1]}
-                  margin="dense"
-                  inputProps={{
-                    readOnly: true,
-                    step: 1,
-                    min: 0,
-                    max: 100,
-                    type: "number",
-                    "aria-labelledby": "input-slider",
-                  }}
-                />
-              </Grid>
-            </Grid>
-          </div>
-        <div>
-            <Fade in={checked}>
-                <Alert severity="warning">You have overlaping ranges! Please select another ranges</Alert>
-            </Fade>
-        </div>
-        </div>
-    );
+  //Changes Values Using User Input
+  const handleChangeRedInput = (event) => {
+    const tempVal = [valueRed[0], event.target.value];
+    const yelloTempVal = [parseFloat(event.target.value) + 1, valueYellow[1]];
+
+    if (!(event.target.value >= valueGreen[0] - 2)) {
+      setRedValues(tempVal);
+      setYellowValues(yelloTempVal);
+    }
+  };
+
+  useEffect(() => {
+    updateRanges([valueRed, valueYellow, valueGreen]);
+  }, [valueGreen, valueRed, valueYellow]);
+
+  return (
+    <div>
+      <div className="sliderone">
+        <Grid container spacing={2} alignItems="center">
+          <Grid item xs={2}>
+            <Input
+              value={valueGreen[0]}
+              onChange={handleChangeGreenInput}
+              margin="dense"
+              //onBlur={handleBlur}
+              inputProps={{
+                //readOnly: true,
+                step: 1,
+                min: 0,
+                max: 100,
+                type: "number",
+                "aria-labelledby": "input-slider",
+              }}
+            />
+          </Grid>
+          <Grid item xs>
+            <Slider
+              className="sliderGreen"
+              value={valueGreen}
+              onChange={handleChangeGreen}
+              valueLabelDisplay="auto"
+              aria-labelledby="range-slider"
+              getAriaValueText={valuetext}
+              disableSwap
+            />
+          </Grid>
+          <Grid item xs={2}>
+            <Input
+              value={100}
+              margin="dense"
+              inputProps={{
+                readOnly: true,
+                step: 1,
+                min: 0,
+                max: 100,
+                type: "number",
+                "aria-labelledby": "input-slider",
+              }}
+            />
+          </Grid>
+        </Grid>
+      </div>
+      <div className="slidertwo">
+        <Grid container spacing={2} alignItems="center">
+          <Grid item xs={2}>
+            <Input
+              value={valueYellow[0]}
+              margin="dense"
+              onChange={handleChangeYellowInput}
+              //onBlur={handleBlur}
+              inputProps={{
+                step: 0,
+                min: 0,
+                max: 100,
+                type: "number",
+                "aria-labelledby": "input-slider",
+              }}
+            />
+          </Grid>
+          <Grid item xs>
+            <Slider
+              value={valueYellow}
+              onChange={handleChangeYellow}
+              valueLabelDisplay="auto"
+              aria-labelledby="range-slider"
+              getAriaValueText={valuetext}
+            />
+          </Grid>
+          <Grid item xs={2}>
+            <Input
+              value={valueYellow[1]}
+              margin="dense"
+              onChange={handleChangeYellowInput}
+              inputProps={{
+                //readOnly: true,
+                step: 1,
+                min: 0,
+                max: 100,
+                type: "number",
+                "aria-labelledby": "input-slider",
+              }}
+            />
+          </Grid>
+        </Grid>
+      </div>
+      <div className="sliderthree">
+        <Grid container spacing={2} alignItems="center">
+          <Grid item xs={2}>
+            <Input
+              value={valueRed[0]}
+              margin="dense"
+              inputProps={{
+                readOnly: true,
+                step: 0,
+                min: 0,
+                max: 100,
+                type: "number",
+                "aria-labelledby": "input-slider",
+              }}
+            />
+          </Grid>
+          <Grid item xs>
+            <Slider
+              className="sliderthree"
+              value={valueRed}
+              onChange={handleChangeRed}
+              valueLabelDisplay="auto"
+              aria-labelledby="range-slider"
+              getAriaValueText={valuetext}
+            />
+          </Grid>
+          <Grid item xs={2}>
+            <Input
+              value={valueRed[1]}
+              onChange={handleChangeRedInput}
+              margin="dense"
+              inputProps={{
+                step: 1,
+                min: 0,
+                max: 100,
+                type: "number",
+                "aria-labelledby": "input-slider",
+              }}
+            />
+          </Grid>
+        </Grid>
+      </div>
+    </div>
+  );
 };
 
 export default RangeSlider;

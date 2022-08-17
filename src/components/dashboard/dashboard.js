@@ -8,12 +8,16 @@ import RangeSlider from "./RangeSlider";
 import Ratings from "./Ratings";
 import UploadDownloadZone from "./UploadDownloadZone";
 import { getAll } from "../services/dashboard-api";
-import LeftMap from "./LeftMap";
+import CustomWorldMap from "./CustomWorldMap";
 
 const Dashboard = () => {
   const [ratings, setRatings] = useState("");
 
   const [years, setYears] = useState("");
+
+  const [rangeValues, setRangeValues] = useState("");
+
+  var HighVal, MidVal, LowVal;
 
   const passValuesFromComponent = (rates) => {
     setRatings(rates);
@@ -21,6 +25,12 @@ const Dashboard = () => {
 
   const passYearSelected = (yearSelected) => {
     setYears(yearSelected);
+  };
+
+  const passRangeValues = (High, Mid, Low) => {
+    HighVal = High;
+    MidVal = Mid;
+    LowVal = Low;
   };
 
   return (
@@ -42,11 +52,7 @@ const Dashboard = () => {
             ></DatePicker>
           </div>
           <div className="divider"></div>
-          <div className="right-upper-right-content">
-            <Button title="RefreshButton" onClick={() => getAll(ratings)}>
-              Refresh
-            </Button>
-          </div>
+          <div className="right-upper-right-content"></div>
         </div>
         <div>
           <Ratings
@@ -59,11 +65,15 @@ const Dashboard = () => {
         </div>
         <div className="right-bottom-content">
           <div className="slider-header">
-            <Button className="SaveRange" size="small">
+            <Button
+              className="SaveRange"
+              size="small"
+              onClick={() => sendValues(HighVal, MidVal, LowVal)}
+            >
               Save Ranges
             </Button>
           </div>
-          <RangeSlider></RangeSlider>
+          <RangeSlider passRangeValues={passRangeValues}></RangeSlider>
         </div>
       </div>
     </div>

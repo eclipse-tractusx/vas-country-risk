@@ -55,33 +55,26 @@
     }
   }
   .right-content {
-    width: 25%;
-    padding-left: 1%;
-    padding-right: 1%;
+    width: 30%;
 
     //CSS for Refresh and Date Selection
     .right-upper-content {
-      display: inline-flex;
-      padding: 10%;
-      margin-bottom: 2%;
+      display: flex;
+      justify-content: center;
+      padding: 7%;
+      margin-bottom: 1%;
       margin-left: auto;
       margin-right: auto;
 
-      .DateForm {
-        min-width: 140px;
+      .MuiFormControl-root{
+        width: 100%;
+        align-items: center;
       }
 
-      .right-data-picker-content {
-        float: right;
-        margin-top: 2%;
-        min-width: 140px;
+      .headerDate{
+        font-size:15px;
       }
 
-      .divider {
-        width: 60px;
-        height: auto;
-        display: inline-block;
-      }
     }
 
     .right-bottom-content {
@@ -102,16 +95,11 @@
 
   //CSS for Upload and Download Buttons
   .right-middle-bottom-content {
-    text-align: center;
-    margin-bottom: 7%;
-    margin-left: auto;
-    margin-right: auto;
-
-    .divider {
-      width: 5%;
-      height: 20%;
-      display: inline-block;
-    }
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 7%;
+    margin-bottom: 1%;
   }
 
   //CSS for the Range Slider and Buttons inside

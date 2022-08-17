@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-export const columns = [
+export const columns = (ranges) => [
   {
     description: "Business Partner Number",
     field: "bpn",
@@ -44,9 +44,9 @@ export const columns = [
 
     cellClassName: (params) =>
       clsx("super-app", {
-        minColor: params.value < 25,
-        between: params.value >= 25 && params.value < 40,
-        maxColor: params.value >= 40,
+        minColor: params.value < ranges[1][0],
+        between: params.value >= ranges[1][0] && params.value < ranges[2][0],
+        maxColor: params.value >= ranges[2][0],
         nullColor: params.value === 0,
       }),
   },
