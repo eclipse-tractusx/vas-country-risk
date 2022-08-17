@@ -12,7 +12,7 @@ function valuetext(valueGreen) {
   return `${valueGreen}`;
 }
 
-const RangeSlider = ({ passRangeValues }) => {
+const RangeSlider = () => {
   const { ranges, updateRanges } = useContext(RangesContext);
 
   const [minValue, setMin] = useState(37);

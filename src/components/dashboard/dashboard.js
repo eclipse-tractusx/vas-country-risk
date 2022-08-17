@@ -9,6 +9,7 @@ import Ratings from "./Ratings";
 import UploadDownloadZone from "./UploadDownloadZone";
 import { getAll } from "../services/dashboard-api";
 import CustomWorldMap from "./CustomWorldMap";
+import LeftMap from "./LeftMap";
 
 const Dashboard = () => {
   const [ratings, setRatings] = useState("");
@@ -17,20 +18,12 @@ const Dashboard = () => {
 
   const [rangeValues, setRangeValues] = useState("");
 
-  var HighVal, MidVal, LowVal;
-
   const passValuesFromComponent = (rates) => {
     setRatings(rates);
   };
 
   const passYearSelected = (yearSelected) => {
     setYears(yearSelected);
-  };
-
-  const passRangeValues = (High, Mid, Low) => {
-    HighVal = High;
-    MidVal = Mid;
-    LowVal = Low;
   };
 
   return (
@@ -65,15 +58,11 @@ const Dashboard = () => {
         </div>
         <div className="right-bottom-content">
           <div className="slider-header">
-            <Button
-              className="SaveRange"
-              size="small"
-              onClick={() => sendValues(HighVal, MidVal, LowVal)}
-            >
+            <Button className="SaveRange" size="small">
               Save Ranges
             </Button>
           </div>
-          <RangeSlider passRangeValues={passRangeValues}></RangeSlider>
+          <RangeSlider></RangeSlider>
         </div>
       </div>
     </div>
