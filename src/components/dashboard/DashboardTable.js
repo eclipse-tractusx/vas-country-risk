@@ -1,14 +1,15 @@
 /* eslint-disable no-console */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { getAll } from "../services/dashboard-api";
 import { Table } from "cx-portal-shared-components";
 import "./styles.scss";
 import { columns } from "./tableColumns";
-
+import { RangesContext } from "../../contexts/ranges";
 const DashboardTable = (ratings, years) => {
   //Data Fetch
   const [data, setData] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
+  const { ranges, updateRanges } = useContext(RangesContext);
 
   const fetchData = (expr) => {
     const lexpr = expr.toLowerCase();
@@ -26,23 +27,30 @@ const DashboardTable = (ratings, years) => {
   //Export to CSV
   const exportCsv = () => {
     const newArray = [];
-    let csvContent = "data:text/csv;charset=utf-8,";
+    let csvContent = "data:text/csv;charset=utf-8,\uFEFF";
+
     newArray.push(Object.keys(selectedRows[0]));
     const values = selectedRows.map((row) => Object.values(row));
     [...newArray, ...values].forEach(function (rowArray) {
-      let row = rowArray.join(",");
+      let row = rowArray.join(";");
       csvContent += row + "\r\n";
     });
 
     var encodedUri = encodeURI(csvContent);
-    window.open(encodedUri);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "table-content.csv");
+    link.style.visibility = "hidden";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   useEffect(() => {
     getAll(ratings.getRatings, ratings.years).then((response) => {
       setData(response);
     });
-  }, [ratings.getRatings.length]);
+  }, [ratings.getRatings, ratings.getRatings.length, ratings.years]);
 
   useEffect(() => {
     fetchData("");
@@ -50,9 +58,9 @@ const DashboardTable = (ratings, years) => {
 
   return (
     <Table
+      disableColumnFilter
       className="table"
-      title="Number of Filtered Business Partners:"
-      columns={columns}
+      columns={columns(ranges)}
       rowsCount={data.length}
       rows={data}
       pageSize={15}
@@ -70,6 +78,7 @@ const DashboardTable = (ratings, years) => {
         buttonLabel: "Export to csv",
         onButtonClick: exportCsv,
         onSearch: fetchData,
+        title: "Number of Filtered Business Partners:",
       }}
     ></Table>
   );

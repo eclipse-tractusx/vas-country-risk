@@ -6,13 +6,13 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import Input from "@mui/material/Input";
 import { uploadCsvFile } from "../services/upload-api";
-
+import { downloadSampleCsvFile } from "../services/files-api";
 import axios from "axios";
 
 const UploadDownloadZone = () => {
-
   //Upload Button Handlers
   const [open, setOpen] = React.useState(false);
+  const [disabled, setDisable] = React.useState(false);
 
   //Rating Button Handlers
   const [openRatingName, setOpenRatingName] = React.useState(false);
@@ -27,12 +27,8 @@ const UploadDownloadZone = () => {
     //formData.append('file', files.file);
     //formData.append('name', files.file.name);
 
-    console.log(files);
-
     localStorage.setItem("fileStore", JSON.stringify(files));
     localStorage.setItem("nameStore", files.file.name);
-
-    console.log(JSON.parse(localStorage.getItem("fileStore")));
   };
 
   const handleClickOpen = () => {
@@ -45,20 +41,12 @@ const UploadDownloadZone = () => {
 
   //Save button
   const handleCloseAndSend = () => {
-
-    formData.append('file', localStorage.getItem("fileStore"));
-    formData.append('name', localStorage.getItem("nameStore"));
-    formData.append('ratingname', ratingName);
-
-    console.log(formData);
+    formData.append("file", localStorage.getItem("fileStore"));
+    formData.append("name", localStorage.getItem("nameStore"));
+    formData.append("ratingname", ratingName);
 
     uploadCsvFile(formData);
     setOpen(false);
-
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ', ' + pair[1]);
-    }
-
   };
 
   //Next Button from upload dialog
@@ -76,7 +64,24 @@ const UploadDownloadZone = () => {
   const getName = (event) => {
     const tempVal = event.target.value;
     ratingName = tempVal;
-    console.log(ratingName);
+  };
+
+  const downloadTemplate = () => {
+    setDisable(true);
+
+    downloadSampleCsvFile().then((data) => {
+      let csvContent = "data:text/csv;charset=utf-8,\uFEFF";
+      csvContent += data.data + "\r\n";
+      var encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "table-content.csv");
+      link.style.visibility = "hidden";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setDisable(false);
+    });
   };
 
   return (
@@ -100,8 +105,8 @@ const UploadDownloadZone = () => {
               "ready",
             ]}
             getUploadParams={handleUpload}
-            onChangeStatus={function noRefCheck() { }}
-            onClick={function noRefCheck() { }}
+            onChangeStatus={function noRefCheck() {}}
+            onClick={function noRefCheck() {}}
             statusText={{
               aborted: "Aborted",
               done: "Done",
@@ -135,8 +140,8 @@ const UploadDownloadZone = () => {
       <Dialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
-        open={openRatingName}>
-
+        open={openRatingName}
+      >
         <h2>Please input the name of the rating</h2>
 
         <Input
@@ -158,7 +163,14 @@ const UploadDownloadZone = () => {
         </DialogActions>
       </Dialog>
       <div className="divider" />
-
+      <Button
+        className="DownloadButton"
+        size="small"
+        disabled={disabled}
+        onClick={downloadTemplate}
+      >
+        Download Template
+      </Button>
     </div>
   );
 };

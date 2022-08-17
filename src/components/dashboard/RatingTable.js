@@ -19,8 +19,6 @@ const RatingTable = ({
 
   const dateChange = years;
 
-  const [open, openState] = useState(false);
-
   const ExpandTable = () => {
     openDialog(false);
     prefixIds.open = !prefixIds.open;
@@ -54,12 +52,14 @@ const RatingTable = ({
   return (
     <Table
       className="table"
-      title=""
       setRatingsToParent={passValuesFromComponent(rates)} // call function from parent component with new rates
       columns={ratingcol}
       rows={tableRatings}
       rowsCount={tableRatings.length}
       pageSize={5}
+      rowHeight={50}
+      headerHeight={40}
+      autoHeight={true}
       checkboxSelection
       //selectionModel={prefixIds.map((r) => r.id)}
       onSelectionModelChange={(ids) => {
@@ -69,28 +69,15 @@ const RatingTable = ({
         );
         //pass ratings selected to top component
         setRatings(selectedRows);
-
-        // console.log(prefixIds.open);
-        // console.log(prefixIds.length);
-
-        // if (prefixIds.open && !selectedRows.length) {
-        //   console.log("test");
-        //   updatePrefixIds(prefixIds);
-        // }else if (prefixIds.open && ){
-
-        // }
-        // else {
-        //   console.log("test3");
-        //   selectedRows.open = prefixIds.open;
-        //   updatePrefixIds(selectedRows);
-        // }
+        // selectedRows.open = prefixIds.open;
+        // updatePrefixIds(selectedRows);
       }}
       toolbar={{
         buttonLabel: expandLabel,
         onButtonClick: ExpandTable,
         title: "Ratings",
       }}
-      hideFooter
+      hideFooter={!prefixIds.open}
     ></Table>
   );
 };

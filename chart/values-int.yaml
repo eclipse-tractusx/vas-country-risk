@@ -11,7 +11,3 @@ applicationSecret:
   keycloak: <path:vas/int/keycloak#credentials-secret>
   cdq: <path:vas/int/cdq#api-key>
 
-postgres:
-  auth:
-    postgresPassword: <path:vas/int/postgresql#postgres-password>
-    password: <path:vas/int/postgresql#password>

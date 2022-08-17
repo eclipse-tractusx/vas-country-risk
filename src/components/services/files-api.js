@@ -5,6 +5,6 @@ import axios from "axios";
 export function downloadSampleCsvFile() {
   return axios
     .get(process.env.REACT_APP_DASHBOARD_FILE_TEMPLATE_DOWNLOAD)
-    .then((res) => res.data)
+    .then((res) => res)
     .catch((err) => err);
 }

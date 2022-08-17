@@ -20,7 +20,11 @@ const Rating = ({ passValuesFromComponent, years }) => {
         openDialog={openDialog}
         expandLabel={open ? "Close" : "Expand Table"}
       ></RatingTable>
-      <Dialog aria-labelledby="customized-dialog-title" open={open}>
+      <Dialog
+        aria-labelledby="customized-dialog-title"
+        open={open}
+        onClose={openDialog}
+      >
         <RatingTable
           passValuesFromComponent={passValuesFromComponent}
           years={years}
