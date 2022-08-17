@@ -10,9 +10,9 @@ import {
 import UserService from "./components/services/UserService";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-UserService.init((user) => {
-  console.log(user);
-  console.log(user.token);
+//UserService.init((user) => {
+//  console.log(user);
+//  console.log(user.token);
   root.render(
     <React.StrictMode>
       <SharedCssBaseline />
@@ -21,4 +21,4 @@ UserService.init((user) => {
       </SharedThemeProvider>
     </React.StrictMode>
   );
-});
+//});
