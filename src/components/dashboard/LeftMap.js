@@ -8,6 +8,7 @@ import { Box, Container } from "@mui/material";
 import FolderIcon from "@mui/icons-material/Folder";
 import { toPng } from "html-to-image";
 import ProgressBar from "./ProgressBar";
+import CloseIcon from "@mui/icons-material/Close";
 
 const LeftMap = (ratings) => {
   const [expandMap, setExpandMap] = useState(false);
@@ -33,21 +34,39 @@ const LeftMap = (ratings) => {
   return (
     <>
       <Dialog open={expandMap} onClose={openDialog}>
-        <Box id="idCustomWorldMap" style={{ background: "white" }}>
-          World Map
-          <IconButton
-            className="close-button"
-            color="primary"
-            onClick={openDialog}
-            size="medium"
-            variant="outlined"
+        <Box
+          id="idCustomWorldMap"
+          style={{
+            background: "white",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <div
+            className="buttons"
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              width: "100%",
+              padding: "2%",
+            }}
           >
-            <OpenWithIcon></OpenWithIcon>
-          </IconButton>
-          <IconButton className="close-button" onClick={printMap} size="medium">
-            <FolderIcon></FolderIcon>
-            Export image
-          </IconButton>
+            <h2>World Map</h2>
+            <IconButton onClick={printMap} size="medium">
+              <FolderIcon></FolderIcon>
+              <h2>Export image</h2>
+            </IconButton>
+            <IconButton
+              className="close-button"
+              color="primary"
+              onClick={openDialog}
+              size="medium"
+              variant="outlined"
+            >
+              <CloseIcon></CloseIcon>
+            </IconButton>
+          </div>
           <CustomWorldMap
             getRatings={ratings.getRatings}
             years={ratings.years}

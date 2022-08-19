@@ -66,15 +66,14 @@
       margin-left: auto;
       margin-right: auto;
 
-      .MuiFormControl-root{
+      .MuiFormControl-root {
         width: 100%;
         align-items: center;
       }
 
-      .headerDate{
-        font-size:15px;
+      .headerDate {
+        font-size: 15px;
       }
-
     }
 
     .right-bottom-content {
@@ -188,4 +187,10 @@
   height: inherit;
   border-radius: inherit;
   overflow: hidden;
+}
+
+.saveRanges {
+  border-radius: inherit;
+  display: "flex";
+  align-items: center;
 }

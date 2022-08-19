@@ -24,7 +24,6 @@ const CustomWorldMap = (ratings) => {
     });
   }, [ratings.getRatings, ratings.getRatings.length, ratings.years]);
 
-  console.log(ranges);
   return (
     <ComposableMap className="left-map">
       <ZoomableGroup

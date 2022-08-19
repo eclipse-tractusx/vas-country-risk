@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Button } from "cx-portal-shared-components";
 import "./styles.scss";
 import DashboardTable from "./DashboardTable";
@@ -7,16 +7,16 @@ import DatePicker from "./DatePicker";
 import RangeSlider from "./RangeSlider";
 import Ratings from "./Ratings";
 import UploadDownloadZone from "./UploadDownloadZone";
-import { getAll } from "../services/dashboard-api";
-import CustomWorldMap from "./CustomWorldMap";
 import LeftMap from "./LeftMap";
+import { sendValues } from "../services/ranges-api";
+import { RangesContext } from "../../contexts/ranges";
 
 const Dashboard = () => {
+  const { ranges, updateRanges } = useContext(RangesContext);
+
   const [ratings, setRatings] = useState("");
 
   const [years, setYears] = useState("");
-
-  const [rangeValues, setRangeValues] = useState("");
 
   const passValuesFromComponent = (rates) => {
     setRatings(rates);
@@ -24,6 +24,10 @@ const Dashboard = () => {
 
   const passYearSelected = (yearSelected) => {
     setYears(yearSelected);
+  };
+
+  const saveRanges = () => {
+    sendValues(ranges);
   };
 
   return (
@@ -58,7 +62,7 @@ const Dashboard = () => {
         </div>
         <div className="right-bottom-content">
           <div className="slider-header">
-            <Button className="SaveRange" size="small">
+            <Button className="saveRanges" size="small" onClick={saveRanges}>
               Save Ranges
             </Button>
           </div>

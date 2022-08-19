@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import axios from "axios";
+import { Range } from "../model/Range";
 
 // Actions
 export function getAllRanges() {
@@ -9,16 +10,27 @@ export function getAllRanges() {
     .catch((err) => err);
 }
 
-export function sendValues(valuesHigh, valuesMid, valuesLow) {
-  var formData = new FormData();
-
-  formData.append("rangeHigh", valuesHigh);
-  formData.append("rangeMid", valuesMid);
-  formData.append("rangeLow", valuesLow);
+export function sendValues(rangesList) {
+  const rangeDTOS = [];
+  rangesList.forEach((element) => {
+    let range = "";
+    if (element[0] === 0) {
+      range = new Range("Min", element[1], "Min Range");
+    } else if (element[1] === 100) {
+      range = new Range("Max", element[1], "Max Range");
+    } else {
+      range = new Range("Between", element[1], "BetWeen Range");
+    }
+    rangeDTOS.push(range);
+  });
 
   return axios({
     method: "post",
-    url: "http://localhost:8080/api/dashboard/sendRanges",
-    data: formData,
+    url: process.env.REACT_APP_SAVE_RANGES,
+    data: rangeDTOS,
+    params: {
+      name: "fabio",
+      company: "test",
+    },
   });
 }
