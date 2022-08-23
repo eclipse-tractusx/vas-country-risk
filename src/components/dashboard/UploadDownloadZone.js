@@ -1,18 +1,21 @@
 import React, { useState, useEffect, Component } from "react";
 import "./styles.scss";
-import { Button, Dropzone, Input } from "cx-portal-shared-components";
+import { Button, Dropzone, Input, Alert } from "cx-portal-shared-components";
 import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import DialogActions from "@mui/material/DialogActions";
+
 import Box from "@mui/material/Box";
-import { uploadCsvFile } from "../services/upload-api";
+
 import { downloadSampleCsvFile } from "../services/files-api";
+import { Snackbar } from "@mui/material";
 
 const UploadDownloadZone = () => {
   //Upload Button Handlers
   const [open, setOpen] = React.useState(false);
   const [disabled, setDisable] = useState(false);
   const [autoUp, setAutoUp] = useState(false);
+  const [alertOpen, setAlertOpen] = useState(false);
+  const [severity, setSeverity] = useState("");
+  const [severityMessage, setSeverityMessage] = useState("");
 
   //Rating Button Handlers
   const [openRatingName, setOpenRatingName] = useState("");
@@ -39,15 +42,21 @@ const UploadDownloadZone = () => {
     subtitle: "userUpload.subtitle",
     accept: "text/csv",
     getUploadParams: () => ({
-      url: "http://localhost:8080/api/dashboard/uploadCsv",
-      headers: { name: "teste", ratingName: openRatingName || "defaultName" },
+      url: process.env.REACT_APP_UPLOAD_FILE,
+      headers: { ratingName: openRatingName || "defaultName" },
     }),
     onChangeStatus: ({ meta }, status) => {
       if (status === "headers_received") {
         console.log(`${meta.name} uploaded`);
-        console.log(meta);
+        setSeverity("info");
+        setSeverityMessage("Your file has been validated");
       } else if (status === "aborted") {
         console.log(`${meta.name}, upload failed...`);
+      } else if (status === "error_upload") {
+        console.log(meta);
+        console.log(status);
+        setSeverity("error");
+        setSeverityMessage("Your file cannot be processed");
       }
     },
     errorStatus: [
@@ -115,6 +124,10 @@ const UploadDownloadZone = () => {
         onClose={closeDialogs}
         style={{ width: "100%", height: "70%" }}
       >
+        <Alert severity={severity}>
+          <span>{severityMessage}</span>
+        </Alert>
+
         <Dropzone
           accept={dropzoneProps.accept}
           statusText={dropzoneProps.statusText}
