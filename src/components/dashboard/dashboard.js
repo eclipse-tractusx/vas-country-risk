@@ -25,10 +25,6 @@ const Dashboard = () => {
     setYears(yearSelected);
   };
 
-  const saveRanges = () => {
-    sendValues(ranges);
-  };
-
   return (
     <div className="wrapper">
       <div className="main-content">
