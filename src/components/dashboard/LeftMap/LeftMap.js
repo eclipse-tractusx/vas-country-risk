@@ -2,12 +2,12 @@
 import React, { useState } from "react";
 import { Dialog, IconButton } from "cx-portal-shared-components";
 import "./styles.scss";
-import CustomWorldMap from "./CustomWorldMap";
+import CustomWorldMap from "../CustomWorld/CustomWorldMap";
 import OpenWithIcon from "@mui/icons-material/OpenWith";
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import FolderIcon from "@mui/icons-material/Folder";
 import { toPng } from "html-to-image";
-import ProgressBar from "./ProgressBar";
+import ProgressBar from "../ProgressBar/ProgressBar";
 import CloseIcon from "@mui/icons-material/Close";
 
 const LeftMap = (ratings) => {
@@ -32,26 +32,10 @@ const LeftMap = (ratings) => {
   };
 
   return (
-    <>
+    <div className="left-map">
       <Dialog open={expandMap} onClose={openDialog}>
-        <Box
-          id="idCustomWorldMap"
-          style={{
-            background: "white",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <div
-            className="buttons"
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              width: "100%",
-              padding: "2%",
-            }}
-          >
+        <Box id="idCustomWorldMap">
+          <div className="buttons">
             <h2>World Map</h2>
             <IconButton onClick={printMap} size="medium">
               <FolderIcon></FolderIcon>
@@ -74,7 +58,7 @@ const LeftMap = (ratings) => {
             mapHeight={1000}
           ></CustomWorldMap>
           <div style={{ width: "250px" }}>
-            <ProgressBar valuePercentage={100} />
+            <ProgressBar className="bar" valuePercentage={100} />
           </div>
         </Box>
 
@@ -95,7 +79,7 @@ const LeftMap = (ratings) => {
         mapWidth={1000}
         mapHeight={1000}
       ></CustomWorldMap>
-    </>
+    </div>
   );
 };
 

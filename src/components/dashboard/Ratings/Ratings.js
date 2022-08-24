@@ -2,10 +2,11 @@ import React, { useState, useContext, useEffect } from "react";
 import "./styles.scss";
 import Dialog from "@mui/material/Dialog";
 import { Table } from "cx-portal-shared-components";
-import ratingcol from "./ratingColumns.json";
-import { RatesContext } from "../../contexts/rates";
-import { getRatingsByYear } from "../services/ratingstable-api";
-const Rating = ({ passValuesFromComponent, years }) => {
+import { RatesContext } from "../../../contexts/rates";
+import { getRatingsByYear } from "../../services/ratingstable-api";
+import { columns } from "./ratingColumns";
+
+const Ratings = ({ passValuesFromComponent, years }) => {
   const dateChange = years;
 
   //Upload Button Handlers
@@ -16,6 +17,8 @@ const Rating = ({ passValuesFromComponent, years }) => {
   const [rates, setRatings] = useState([]);
 
   const { prefixIds, updatePrefixIds } = useContext(RatesContext);
+
+  const [columnsTotal, setColumnsTotal] = useState(0);
 
   const openDialog = () => {
     setOpen(!open);
@@ -48,12 +51,28 @@ const Rating = ({ passValuesFromComponent, years }) => {
     }
   }, [rates, rates.length, tableRatings]);
 
+  const handleRowEditCommit = React.useCallback(
+    (params) => {
+      const id = params.id;
+      const key = params.field;
+      const value = params.value;
+      prefixIds.forEach((element) => {
+        console.log(element);
+        if (element.id === id) {
+          element.weight = value;
+        }
+      });
+    },
+    [prefixIds]
+  );
+
   return (
-    <div>
+    <div className="rating-table">
       <Table
-        className="table"
+        className="rating-table-content"
+        // style={{ border: "1px solid #000", borderRadius: "0" }}
         setRatingsToParent={passValuesFromComponent(rates)} // call function from parent component with new rates
-        columns={ratingcol}
+        columns={columns(rates)}
         rows={tableRatings}
         rowsCount={tableRatings.length}
         pageSize={5}
@@ -62,6 +81,8 @@ const Rating = ({ passValuesFromComponent, years }) => {
         autoHeight={true}
         checkboxSelection
         selectionModel={prefixIds.map((r) => r.id)}
+        experimentalFeatures={{ newEditingApi: true }}
+        onCellEditCommit={handleRowEditCommit}
         onSelectionModelChange={(ids) => {
           const selectedIds = new Set(ids);
           const selectedRows = tableRatings.filter((row) =>
@@ -71,6 +92,7 @@ const Rating = ({ passValuesFromComponent, years }) => {
           selectedRows.open = prefixIds.open;
           setRatings(selectedRows);
           updatePrefixIds(selectedRows);
+          console.log(prefixIds);
         }}
         toolbar={{
           buttonLabel: open ? "Close" : "Expand Label",
@@ -85,9 +107,9 @@ const Rating = ({ passValuesFromComponent, years }) => {
         onClose={openDialog}
       >
         <Table
-          className="table"
+          style={{ border: "1px solid #000", borderRadius: "0" }}
           setRatingsToParent={passValuesFromComponent(rates)} // call function from parent component with new rates
-          columns={ratingcol}
+          columns={columns(rates)}
           rows={tableRatings}
           rowsCount={tableRatings.length}
           pageSize={5}
@@ -118,4 +140,4 @@ const Rating = ({ passValuesFromComponent, years }) => {
   );
 };
 
-export default Rating;
+export default Ratings;

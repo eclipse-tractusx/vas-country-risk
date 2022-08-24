@@ -1,9 +1,11 @@
+import "./styles.scss";
+
 const ProgressBar = (props) => {
   const { valuePercentage: value } = props;
   const fillerRelativePercentage = (100 / value) * 100;
 
   return (
-    <>
+    <div className="bar">
       <div className="textValueScore">Score</div>
       <div
         className="progress-bar"
@@ -23,7 +25,7 @@ const ProgressBar = (props) => {
         </div>
         <div className="textValue">No risk</div>
       </div>
-    </>
+    </div>
   );
 };
 

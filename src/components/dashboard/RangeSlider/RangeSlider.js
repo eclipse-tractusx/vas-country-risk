@@ -5,15 +5,20 @@ import Input from "@mui/material/Input";
 import Grid from "@mui/material/Grid";
 import Alert from "@mui/material/Alert";
 import Fade from "@mui/material/Fade";
-import { getAllRanges } from "../services/ranges-api";
-import { RangesContext } from "../../contexts/ranges";
-
+import { getAllRanges } from "../../services/ranges-api";
+import { RangesContext } from "../../../contexts/ranges";
+import { Button } from "cx-portal-shared-components";
+import { sendValues } from "../../services/ranges-api";
 function valuetext(valueGreen) {
   return `${valueGreen}`;
 }
 
 const RangeSlider = () => {
   const { ranges, updateRanges } = useContext(RangesContext);
+
+  const saveRanges = () => {
+    sendValues(ranges);
+  };
 
   const [minValue, setMin] = useState(37);
   const [betweenValue, setMid] = useState(60);
@@ -143,7 +148,12 @@ const RangeSlider = () => {
   }, [valueGreen, valueRed, valueYellow]);
 
   return (
-    <div>
+    <>
+      <div className="slider-header">
+        <Button className="saveRanges" size="small" onClick={saveRanges}>
+          Save Ranges
+        </Button>
+      </div>
       <div className="sliderone">
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={2}>
@@ -164,7 +174,6 @@ const RangeSlider = () => {
           </Grid>
           <Grid item xs>
             <Slider
-              className="sliderGreen"
               value={valueGreen}
               onChange={handleChangeGreen}
               valueLabelDisplay="auto"
@@ -250,7 +259,6 @@ const RangeSlider = () => {
           </Grid>
           <Grid item xs>
             <Slider
-              className="sliderthree"
               value={valueRed}
               onChange={handleChangeRed}
               valueLabelDisplay="auto"
@@ -274,7 +282,7 @@ const RangeSlider = () => {
           </Grid>
         </Grid>
       </div>
-    </div>
+    </>
   );
 };
 

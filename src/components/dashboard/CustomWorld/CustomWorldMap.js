@@ -1,14 +1,14 @@
 /* eslint-disable no-console */
 
 import React, { useState, useEffect, useContext } from "react";
-import { getWorldMapInfo } from "../services/dashboard-api";
+import { getWorldMapInfo } from "../../services/dashboard-api";
 import {
   ComposableMap,
   Geographies,
   Geography,
   ZoomableGroup,
 } from "react-simple-maps";
-import { RangesContext } from "../../contexts/ranges";
+import { RangesContext } from "../../../contexts/ranges";
 
 const CustomWorldMap = (ratings) => {
   const [data, setData] = useState([]);
@@ -22,12 +22,11 @@ const CustomWorldMap = (ratings) => {
     getWorldMapInfo(ratings.getRatings, ratings.years).then((response) => {
       setData(response);
     });
-  }, [ratings.getRatings, ratings.getRatings.length, ratings.years]);
+  }, [ratings.getRatings, ratings.years]);
 
   return (
-    <ComposableMap className="left-map">
+    <ComposableMap>
       <ZoomableGroup
-        //<ZoomableGroup center={[10, 50]} zoom={1}>
         zoom={1}
         translateExtent={[
           [-(ratings.mapWidth / 2), -(ratings.mapHeight / 2)],

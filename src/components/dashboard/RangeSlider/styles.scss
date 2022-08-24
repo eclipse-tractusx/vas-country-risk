@@ -1,0 +1,31 @@
+.right-bottom-content {
+  padding: 8px;
+  width: 100%;
+  border: 1px solid #000;
+  border-radius: 0px;
+
+  .slider-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    float: right;
+  }
+
+  .sliderone {
+    .MuiSlider-colorPrimary {
+      color: green;
+    }
+  }
+
+  .slidertwo {
+    .MuiSlider-colorPrimary {
+      color: rgb(221, 221, 69);
+    }
+  }
+
+  .sliderthree {
+    .MuiSlider-colorPrimary {
+      color: red;
+    }
+  }
+}

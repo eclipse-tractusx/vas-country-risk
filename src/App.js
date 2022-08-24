@@ -1,4 +1,4 @@
-import Dashboard from "./components/dashboard/dashboard";
+import Dashboard from "./components/dashboard/Dashboard";
 import "./App.scss";
 import { RatesProvider } from "./contexts/rates";
 import { PageHeader } from "cx-portal-shared-components";

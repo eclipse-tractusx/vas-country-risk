@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect, useContext } from "react";
-import { getAll } from "../services/dashboard-api";
-import { Table } from "cx-portal-shared-components";
+import { getAll } from "../../services/dashboard-api";
+import { Table, Button, Typography } from "cx-portal-shared-components";
 import "./styles.scss";
 import { columns } from "./tableColumns";
-import { RangesContext } from "../../contexts/ranges";
+import { RangesContext } from "../../../contexts/ranges";
 const DashboardTable = (ratings, years) => {
   //Data Fetch
   const [data, setData] = useState([]);
@@ -50,37 +50,39 @@ const DashboardTable = (ratings, years) => {
     getAll(ratings.getRatings, ratings.years).then((response) => {
       setData(response);
     });
-  }, [ratings.getRatings, ratings.getRatings.length, ratings.years]);
+  }, [ratings.getRatings, ratings.years]);
 
   useEffect(() => {
     fetchData("");
   }, []);
 
   return (
-    <Table
-      disableColumnFilter
-      className="table"
-      columns={columns(ranges)}
-      rowsCount={data.length}
-      rows={data}
-      pageSize={15}
-      rowHeight={50}
-      headerHeight={40}
-      autoHeight={false}
-      checkboxSelection
-      getRowClassName={(params) => `${params.row.status}`}
-      onSelectionModelChange={(ids) => {
-        const selectedIds = new Set(ids);
-        const selectedRows = data.filter((row) => selectedIds.has(row.id));
-        setSelectedRows(selectedRows);
-      }}
-      toolbar={{
-        buttonLabel: "Export to csv",
-        onButtonClick: exportCsv,
-        onSearch: fetchData,
-        title: "Number of Filtered Business Partners:",
-      }}
-    ></Table>
+    <>
+      <Table
+        disableColumnFilter
+        className="table"
+        columns={columns(ranges)}
+        rowsCount={data.length}
+        rows={data}
+        pageSize={15}
+        rowHeight={50}
+        headerHeight={40}
+        autoHeight={false}
+        checkboxSelection
+        getRowClassName={(params) => `${params.row.status}`}
+        onSelectionModelChange={(ids) => {
+          const selectedIds = new Set(ids);
+          const selectedRows = data.filter((row) => selectedIds.has(row.id));
+          setSelectedRows(selectedRows);
+        }}
+        toolbar={{
+          buttonLabel: "Export to csv",
+          onButtonClick: exportCsv,
+          onSearch: fetchData,
+          title: "Number of Filtered Business Partners:",
+        }}
+      ></Table>
+    </>
   );
 };
 

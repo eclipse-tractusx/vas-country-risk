@@ -1,0 +1,179 @@
+.wrapper {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+
+  .main-content {
+    width: 80%;
+    padding: 10px;
+
+    .maps {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 50%;
+      padding: 10px;
+      .expand-button {
+        align-self: flex-start;
+      }
+      .close-button {
+      }
+
+      .left-map {
+        width: 50%;
+        height: 100%;
+        padding: 10px;
+      }
+      .right-map {
+        width: 50%;
+        height: 100%;
+        padding: 10px;
+      }
+    }
+    .table {
+      width: 80%;
+      border: 1px solid #000;
+      border-radius: 0;
+      font-size: 12px;
+      height: 70%;
+      margin: 0 auto;
+
+      .maxColor {
+        background-color: green;
+      }
+
+      .minColor {
+        background-color: red;
+      }
+      .between {
+        background-color: yellow;
+      }
+      .nullColor {
+        background-color: #f5f4f6;
+        color: #f5f4f6;
+      }
+    }
+  }
+  .right-content {
+    width: 30%;
+
+    //CSS for Refresh and Date Selection
+
+    .right-bottom-content {
+      width: 90%;
+    }
+  }
+
+  //CSS for Ratings Table
+  .right-middle-content {
+    width: 90%;
+    margin-bottom: 7%;
+    border: 1px solid #000;
+    border-radius: 0px;
+    font-size: 12px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  //CSS for Upload and Download Buttons
+  .right-middle-bottom-content {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 7%;
+    margin-bottom: 1%;
+  }
+
+  //CSS for the Range Slider and Buttons inside
+  .right-bottom-content {
+    padding: 8px;
+    width: 90%;
+    margin-bottom: 7%;
+    border: 1px solid #000;
+    border-radius: 0px;
+    font-size: 12px;
+    margin-left: auto;
+    margin-right: auto;
+
+    .sliderone {
+      .MuiSlider-colorPrimary {
+        color: green;
+      }
+    }
+
+    .slidertwo {
+      .MuiSlider-colorPrimary {
+        color: rgb(221, 221, 69);
+      }
+    }
+
+    .sliderthree {
+      .MuiSlider-colorPrimary {
+        color: red;
+      }
+
+      .null-Color {
+        background-color: white;
+        overflow: hidden;
+        color: white;
+      }
+    }
+  }
+
+  //CSS for slider Header
+  .slider-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    float: right;
+  }
+}
+
+.progress-bar {
+  display: flex;
+  align-items: center;
+}
+
+.barContainer {
+  flex: 1;
+  height: 8px;
+  background: #dfdfe7;
+  border-radius: 12px;
+  overflow: hidden; /* Crucial part */
+}
+
+.textValue {
+  width: 45px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.textValueScore {
+  width: 55%;
+  text-align: center;
+  font-size: 15px;
+}
+
+.fillerBackground {
+  height: inherit;
+  transition: "width 2s ease-i-out";
+  background: linear-gradient(
+    90deg,
+    rgb(247, 5, 5),
+    rgb(238, 238, 5),
+    rgb(0, 255, 55)
+  );
+}
+
+.filler {
+  transition: "width 2s ease-i-out";
+  height: inherit;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.saveRanges {
+  border-radius: inherit;
+  display: "flex";
+  align-items: center;
+}

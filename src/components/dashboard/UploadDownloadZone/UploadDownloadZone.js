@@ -5,7 +5,7 @@ import Dialog from "@mui/material/Dialog";
 
 import Box from "@mui/material/Box";
 
-import { downloadSampleCsvFile } from "../services/files-api";
+import { downloadSampleCsvFile } from "../../services/files-api";
 import { Snackbar } from "@mui/material";
 
 const UploadDownloadZone = () => {
@@ -87,8 +87,8 @@ const UploadDownloadZone = () => {
   };
 
   return (
-    <div style={{ display: "flex", padding: "2%" }}>
-      <Button className="UploadButton" size="small" onClick={openDialog}>
+    <div className="upload-content">
+      <Button size="small" onClick={openDialog}>
         Upload Rating
       </Button>
       <Dialog open={open} onClose={closeDialogs}>

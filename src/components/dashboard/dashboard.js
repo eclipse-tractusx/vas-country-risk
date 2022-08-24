@@ -1,15 +1,14 @@
 /* eslint-disable no-console */
 import React, { useState, useContext } from "react";
-import { Button } from "cx-portal-shared-components";
 import "./styles.scss";
-import DashboardTable from "./DashboardTable";
-import DatePicker from "./DatePicker";
-import RangeSlider from "./RangeSlider";
-import Ratings from "./Ratings";
-import UploadDownloadZone from "./UploadDownloadZone";
-import LeftMap from "./LeftMap";
 import { sendValues } from "../services/ranges-api";
 import { RangesContext } from "../../contexts/ranges";
+import LeftMap from "./LeftMap/LeftMap";
+import DashboardTable from "./DashBoardTable/DashboardTable";
+import DatePicker from "./DatePicker/DatePicker";
+import Ratings from "./Ratings/Ratings";
+import UploadDownloadZone from "./UploadDownloadZone/UploadDownloadZone";
+import RangeSlider from "./RangeSlider/RangeSlider";
 
 const Dashboard = () => {
   const { ranges, updateRanges } = useContext(RangesContext);
@@ -33,39 +32,26 @@ const Dashboard = () => {
   return (
     <div className="wrapper">
       <div className="main-content">
-        <div className="maps">
+        <div className="maps-content ">
           <LeftMap getRatings={ratings} years={years}></LeftMap>
-          <img alt="mapping" className="right-map" src="right_map.PNG"></img>
+          <LeftMap getRatings={ratings} years={years}></LeftMap>
         </div>
-
-        <DashboardTable getRatings={ratings} years={years}></DashboardTable>
+        <div className="table-content">
+          <DashboardTable getRatings={ratings} years={years}></DashboardTable>
+        </div>
       </div>
       <div className="right-content">
-        <div className="right-upper-content">
-          <div className="right-data-picker-content">
-            <DatePicker
-              className="DateForm"
-              passYearSelected={passYearSelected}
-            ></DatePicker>
-          </div>
-          <div className="divider"></div>
-          <div className="right-upper-right-content"></div>
-        </div>
-        <div>
+        <div className="right-top-content">
+          <DatePicker passYearSelected={passYearSelected}></DatePicker>
           <Ratings
             passValuesFromComponent={passValuesFromComponent}
             years={years}
           ></Ratings>
         </div>
-        <div className="right-middle-bottom-content">
+        <div className="right-middle-content">
           <UploadDownloadZone></UploadDownloadZone>
         </div>
         <div className="right-bottom-content">
-          <div className="slider-header">
-            <Button className="saveRanges" size="small" onClick={saveRanges}>
-              Save Ranges
-            </Button>
-          </div>
           <RangeSlider></RangeSlider>
         </div>
       </div>
