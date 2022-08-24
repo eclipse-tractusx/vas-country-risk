@@ -145,7 +145,7 @@ const RangeSlider = () => {
 
   useEffect(() => {
     updateRanges([valueRed, valueYellow, valueGreen]);
-  }, [valueGreen, valueRed, valueYellow]);
+  }, [updateRanges, valueGreen, valueRed, valueYellow]);
 
   return (
     <>
