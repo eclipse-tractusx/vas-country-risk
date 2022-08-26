@@ -12,7 +12,9 @@ const DatePicker = ({ passYearSelected }) => {
   const [AllDate, setAllDate] = useState();
 
   useEffect(() => {
-    getAllDates().then((response) => setAllDate(response));
+    getAllDates().then((response) => {
+      setAllDate(response.sort().reverse());
+    });
   }, []);
 
   //Date Currently Selected

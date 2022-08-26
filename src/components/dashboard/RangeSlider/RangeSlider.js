@@ -67,9 +67,11 @@ const RangeSlider = () => {
     if (!(newValue[0] === newValue[1])) {
       const tempValG = [newValue[1] + 1, valueGreen[1]];
       const tempValR = [valueRed[0], newValue[0] - 1];
-      setYellowValues(newValue);
-      setGreenValues(tempValG);
-      setRedValues(tempValR);
+      if (newValue[1] < 99 && newValue[0] > 1) {
+        setYellowValues(newValue);
+        setGreenValues(tempValG);
+        setRedValues(tempValR);
+      }
     }
   };
 
@@ -93,7 +95,10 @@ const RangeSlider = () => {
     const tempVal = [event.target.value, 100];
     const yelloTempVal = [valueYellow[0], event.target.value - 1];
 
-    if (!(event.target.value <= parseFloat(valueRed[1]) + 2)) {
+    if (
+      !(event.target.value <= parseFloat(valueRed[1]) + 2) &&
+      event.target.value < 100
+    ) {
       setGreenValues(tempVal);
       setYellowValues(yelloTempVal);
     }
@@ -101,7 +106,7 @@ const RangeSlider = () => {
 
   //Changes Values Using User Input
   const handleChangeYellowInput = (event) => {
-    if (event.target.value > valueYellow[1]) {
+    if (event.target.value > valueYellow[1] && event.target.value < 99) {
       const tempValY = [valueYellow[0], event.target.value];
       setYellowValues(tempValY);
       const tempValG = [parseFloat(event.target.value) + 1, valueGreen[1]];
@@ -124,7 +129,7 @@ const RangeSlider = () => {
       const tempValR = [valueRed[0], event.target.value - 1];
       setYellowValues(tempValY);
       setRedValues(tempValR);
-    } else if (event.target.value < valueYellow[0]) {
+    } else if (event.target.value < valueYellow[0] && event.target.value > 1) {
       const tempValY = [event.target.value, valueYellow[1]];
       const tempValR = [valueRed[0], event.target.value - 1];
       setYellowValues(tempValY);
@@ -137,7 +142,7 @@ const RangeSlider = () => {
     const tempVal = [valueRed[0], event.target.value];
     const yelloTempVal = [parseFloat(event.target.value) + 1, valueYellow[1]];
 
-    if (!(event.target.value >= valueGreen[0] - 2)) {
+    if (!(event.target.value >= valueGreen[0] - 2) && event.target.value > 0) {
       setRedValues(tempVal);
       setYellowValues(yelloTempVal);
     }
@@ -145,7 +150,7 @@ const RangeSlider = () => {
 
   useEffect(() => {
     updateRanges([valueRed, valueYellow, valueGreen]);
-  }, [updateRanges, valueGreen, valueRed, valueYellow]);
+  }, [valueGreen, valueRed, valueYellow]);
 
   return (
     <>

@@ -1,10 +1,12 @@
 let edit = false;
 
 function setEdit(params) {
+  console.log("columns");
+  console.log(params);
   params.length > 1 ? (edit = true) : (edit = false);
 }
 
-export const columns = (rates) => [
+export const columns = [
   {
     field: "id",
     hide: true,
@@ -20,7 +22,6 @@ export const columns = (rates) => [
     field: "weight",
     flex: 2,
     headerName: "Weigthing (%)",
-    valueGetter: setEdit(rates),
-    editable: edit,
+    editable: true,
   },
 ];

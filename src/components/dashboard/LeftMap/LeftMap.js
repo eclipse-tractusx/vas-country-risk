@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { useState } from "react";
-import { Dialog, IconButton } from "cx-portal-shared-components";
+import { Dialog, IconButton, Button } from "cx-portal-shared-components";
 import "./styles.scss";
 import CustomWorldMap from "../CustomWorld/CustomWorldMap";
 import OpenWithIcon from "@mui/icons-material/OpenWith";
@@ -37,10 +37,10 @@ const LeftMap = (ratings) => {
         <Box id="idCustomWorldMap">
           <div className="buttons">
             <h2>World Map</h2>
-            <IconButton onClick={printMap} size="medium">
-              <FolderIcon></FolderIcon>
-              <h2>Export image</h2>
-            </IconButton>
+            <Button size="small" onClick={printMap}>
+              Export Image
+            </Button>
+
             <IconButton
               className="close-button"
               color="primary"
@@ -54,8 +54,10 @@ const LeftMap = (ratings) => {
           <CustomWorldMap
             getRatings={ratings.getRatings}
             years={ratings.years}
-            mapWidth={1000}
-            mapHeight={1000}
+            minMapWidth={500}
+            maxMapWidth={1100}
+            minMapHeight={500}
+            maxMapHeight={1000}
           ></CustomWorldMap>
           <div style={{ width: "250px" }}>
             <ProgressBar className="bar" valuePercentage={100} />
@@ -73,11 +75,14 @@ const LeftMap = (ratings) => {
       >
         <OpenWithIcon></OpenWithIcon>
       </IconButton>
+
       <CustomWorldMap
         getRatings={ratings.getRatings}
         years={ratings.years}
-        mapWidth={1000}
-        mapHeight={1000}
+        minMapWidth={0}
+        maxMapWidth={800}
+        minMapHeight={0}
+        maxMapHeight={600}
       ></CustomWorldMap>
     </div>
   );

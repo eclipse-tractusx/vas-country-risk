@@ -29,8 +29,8 @@ const CustomWorldMap = (ratings) => {
       <ZoomableGroup
         zoom={1}
         translateExtent={[
-          [-(ratings.mapWidth / 2), -(ratings.mapHeight / 2)],
-          [ratings.mapWidth + 100, ratings.mapHeight],
+          [parseFloat(-ratings.minMapWidth), parseFloat(-ratings.minMapHeight)],
+          [ratings.maxMapWidth, ratings.maxMapHeight],
         ]}
       >
         <Geographies geography={geoUrl}>

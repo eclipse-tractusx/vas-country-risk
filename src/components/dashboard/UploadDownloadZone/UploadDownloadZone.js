@@ -28,6 +28,8 @@ const UploadDownloadZone = () => {
   const closeDialogs = () => {
     setOpen(false);
     setAutoUp(false);
+    setSeverityMessage("");
+    setSeverity("");
   };
   const openDialog = () => {
     setOpen(!open);

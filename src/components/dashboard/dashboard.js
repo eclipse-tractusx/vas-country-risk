@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./styles.scss";
 import { sendValues } from "../services/ranges-api";
 import { RangesContext } from "../../contexts/ranges";

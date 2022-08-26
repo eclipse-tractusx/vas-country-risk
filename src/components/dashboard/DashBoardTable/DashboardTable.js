@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import { getAll } from "../../services/dashboard-api";
 import { Table, Button, Typography } from "cx-portal-shared-components";
 import "./styles.scss";
@@ -52,14 +52,9 @@ const DashboardTable = (ratings, years) => {
     });
   }, [ratings.getRatings, ratings.years]);
 
-  useEffect(() => {
-    fetchData("");
-  }, []);
-
   return (
     <>
       <Table
-        disableColumnFilter
         className="table"
         columns={columns(ranges)}
         rowsCount={data.length}
