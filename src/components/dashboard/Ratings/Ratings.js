@@ -161,7 +161,7 @@ const Ratings = ({ passValuesFromComponent, years }) => {
           updatePrefixIds(selectedRows);
         }}
         toolbar={{
-          buttonLabel: open ? "Close" : "Expand Label",
+          buttonLabel: open ? "Close Ratings" : "Show Ratings",
           onButtonClick: ExpandTable,
           title: "Ratings",
         }}
@@ -195,7 +195,7 @@ const Ratings = ({ passValuesFromComponent, years }) => {
             updatePrefixIds(selectedRows);
           }}
           toolbar={{
-            buttonLabel: open ? "Close" : "Expand Label",
+            buttonLabel: open ? "Close Ratings" : "Show Ratings",
             onButtonClick: ExpandTable,
             title: "Ratings",
           }}

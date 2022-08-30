@@ -30,7 +30,7 @@ const Dashboard = () => {
       <div className="main-content">
         <div className="maps-content ">
           <LeftMap getRatings={ratings} years={years}></LeftMap>
-          <LeftMap getRatings={ratings} years={years}></LeftMap>
+          {/* <LeftMap getRatings={ratings} years={years}></LeftMap> */}
         </div>
         <div className="table-content">
           <DashboardTable getRatings={ratings} years={years}></DashboardTable>
