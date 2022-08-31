@@ -1,12 +1,15 @@
-let edit = false;
-
-function setEdit(params) {
+function validate(...params) {
   console.log("columns");
   console.log(params);
-  params.length > 1 ? (edit = true) : (edit = false);
+  validateRow();
 }
 
-export const columns = [
+function validateRow(row, tableRatings) {
+  console.log("validateRow");
+  console.log(row);
+}
+
+export const columns = (tableRatings) => [
   {
     field: "id",
     hide: true,

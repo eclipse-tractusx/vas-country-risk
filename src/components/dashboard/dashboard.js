@@ -4,6 +4,7 @@ import "./styles.scss";
 import { sendValues } from "../services/ranges-api";
 import { RangesContext } from "../../contexts/ranges";
 import LeftMap from "./LeftMap/LeftMap";
+import FakeLeftMap from "./LeftMap/FakeLeftMap";
 import DashboardTable from "./DashBoardTable/DashboardTable";
 import DatePicker from "./DatePicker/DatePicker";
 import Ratings from "./Ratings/Ratings";
@@ -30,7 +31,7 @@ const Dashboard = () => {
       <div className="main-content">
         <div className="maps-content ">
           <LeftMap getRatings={ratings} years={years}></LeftMap>
-          {/* <LeftMap getRatings={ratings} years={years}></LeftMap> */}
+          <FakeLeftMap getRatings={ratings} years={years}></FakeLeftMap>
         </div>
         <div className="table-content">
           <DashboardTable getRatings={ratings} years={years}></DashboardTable>

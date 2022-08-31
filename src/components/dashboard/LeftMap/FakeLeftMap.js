@@ -9,13 +9,8 @@ import FolderIcon from "@mui/icons-material/Folder";
 import { toPng } from "html-to-image";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import CloseIcon from "@mui/icons-material/Close";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import { getAllDates } from "../../services/dateform-api";
 
-const LeftMap = (ratings) => {
+const FakeLeftMap = (ratings) => {
   const [expandMap, setExpandMap] = useState(false);
 
   const openDialog = () => {
@@ -38,8 +33,8 @@ const LeftMap = (ratings) => {
 
   return (
     <div className="left-map">
-      <Dialog open={expandMap} onClose={openDialog} className="left-expand-map">
-        <Box className="box" id="idCustomWorldMap">
+      <Dialog open={expandMap} onClose={openDialog}>
+        <Box id="idCustomWorldMap">
           <div className="buttons">
             <h2>World Map</h2>
             <Button size="small" onClick={printMap}>
@@ -57,59 +52,29 @@ const LeftMap = (ratings) => {
             </IconButton>
           </div>
           <CustomWorldMap
-            getRatings={ratings.getRatings}
-            years={ratings.years}
-            // minMapWidth={500}
-            // maxMapWidth={1100}
-            // minMapHeight={500}
-            // maxMapHeight={1000}
-            minMapWidth={0}
-            maxMapWidth={800}
-            minMapHeight={0}
-            maxMapHeight={600}
+            minMapWidth={500}
+            maxMapWidth={1100}
+            minMapHeight={500}
+            maxMapHeight={1000}
           ></CustomWorldMap>
-          <div className="progress-bar" style={{ width: "250px" }}>
+          <div style={{ width: "250px" }}>
             <ProgressBar className="bar" valuePercentage={100} />
           </div>
         </Box>
 
         <></>
       </Dialog>
-      <div className="left-map-container">
-        <h2>World Map</h2>
-        {/* <FormControl fullWidth>
-          <InputLabel>Select a Year</InputLabel>
-          <Select
-            value={200}
-            //onChange={handleChange}
-            //passYearSelected={passYearSelected(date)}
-            label="Year"
-          >
-            {Array.isArray([])
-              ? [].map((item) => {
-                  return (
-                    <MenuItem key={item} value={item}>
-                      {item}
-                    </MenuItem>
-                  );
-                })
-              : []}
-          </Select>
-        </FormControl> */}
-        <IconButton
-          className="expand-button"
-          color="primary"
-          onClick={openDialog}
-          size="medium"
-          variant="outlined"
-        >
-          <OpenWithIcon></OpenWithIcon>
-        </IconButton>
-      </div>
+      <IconButton
+        className="expand-button"
+        color="primary"
+        onClick={openDialog}
+        size="medium"
+        variant="outlined"
+      >
+        <OpenWithIcon></OpenWithIcon>
+      </IconButton>
 
       <CustomWorldMap
-        getRatings={ratings.getRatings}
-        years={ratings.years}
         minMapWidth={0}
         maxMapWidth={800}
         minMapHeight={0}
@@ -119,4 +84,4 @@ const LeftMap = (ratings) => {
   );
 };
 
-export default LeftMap;
+export default FakeLeftMap;

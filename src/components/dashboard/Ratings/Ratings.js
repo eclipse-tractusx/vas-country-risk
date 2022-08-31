@@ -1,4 +1,11 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, {
+  useState,
+  useContext,
+  useEffect,
+  useCallback,
+  useRef,
+  useMemo,
+} from "react";
 import "./styles.scss";
 import Dialog from "@mui/material/Dialog";
 import { Table } from "cx-portal-shared-components";
@@ -14,6 +21,8 @@ const Ratings = ({ passValuesFromComponent, years }) => {
 
   const [rates, setRatings] = useState([]);
 
+  const [cellsModel, setCellsModel] = useState([]);
+
   const { prefixIds, updatePrefixIds } = useContext(RatesContext);
 
   const openDialog = () => {
@@ -22,6 +31,7 @@ const Ratings = ({ passValuesFromComponent, years }) => {
 
   const ExpandTable = () => {
     openDialog(false);
+    //setTableRatings(rates);
     prefixIds.open = !prefixIds.open;
   };
 
@@ -40,102 +50,63 @@ const Ratings = ({ passValuesFromComponent, years }) => {
   useEffect(() => {
     let totalWeight = rates.length > 0 ? 100 / rates.length : 0;
     totalWeight = Number(totalWeight.toFixed(2));
-
+    console.log("calcular weights");
+    console.log(tableRatings);
+    console.log(cellsModel);
     if (Array.isArray(tableRatings)) {
-      tableRatings.map((each) =>
-        rates.includes(each) ? (each.weight = totalWeight) : (each.weight = 0)
-      );
+      tableRatings.forEach((each) => {
+        //console.log(each);
+        rates.includes(each) ? (each.weight = totalWeight) : (each.weight = 0);
+      });
     }
-  }, [rates, rates.length, tableRatings]);
+  }, [cellsModel, rates, rates.length, tableRatings]);
 
-  const handleRowEditCommit = React.useCallback((params) => {
-    console.log("prefixIds");
-    console.log(prefixIds);
-    console.log("rates");
-    console.log(rates);
-    console.log("handleRowEditCommit");
+  const onEditCellPropsChange = (params) => {
+    console.log("onEditCellPropsChange");
     console.log(params);
-
-    const id = params.id;
-    const key = params.field;
-    const value = params.value;
-    // prefixIds.forEach((element) => {
-    //   console.log("element");
-    //   console.log(element);
-    //   if (element.id === id) {
-    //     element.weight = value;
-    //   }
-    // });
-  }, []);
-
-  const handleClick = (params) => {
-    console.log("handleClick");
-    console.log(prefixIds);
-    console.log("rates");
+    console.log("tableRatings");
     console.log(rates);
+    const arrayCells = cellsModel;
+    arrayCells.push(params);
+    setCellsModel(arrayCells);
+
     rates.forEach((each) => {
-      console.log(each.id === params.id);
+      if (each.id === params.id) {
+        params.props.value = each.weight;
+      }
     });
-
-    params.colDef.editable = true;
-    console.log(params);
-
-    const id = params.id;
-    const key = params.field;
-    const value = params.value;
-    // prefixIds.forEach((element) => {
-    //   console.log("element");
-    //   console.log(element);
-    //   if (element.id === id) {
-    //     element.weight = value;
-    //   }
-    // });
   };
 
-  const [cellModesModel, setCellModesModel] = React.useState({});
+  const handleEdit = (params) => {
+    return rates.find((each) => each.id === params.id);
+  };
 
-  const handleCellClick = React.useCallback((params) => {
-    console.log("handleCellClick");
-    console.log(params);
-    setCellModesModel((prevModel) => {
-      return {
-        // Revert the mode of the other cells from other rows
-        ...Object.keys(prevModel).reduce(
-          (acc, id) => ({
-            ...acc,
-            [id]: Object.keys(prevModel[id]).reduce(
-              (acc2, field) => ({
-                ...acc2,
-                [field]: {},
-              }),
-              {}
-            ),
-          }),
-          {}
-        ),
-        [params.id]: {
-          // Revert the mode of other cells in the same row
-          ...Object.keys(prevModel[params.id] || {}).reduce(
-            (acc, field) => ({ ...acc, [field]: {} }),
-            {}
-          ),
-          [params.field]: {},
-        },
-      };
-    });
-  }, []);
+  const [editRowData, setEditRowData] = React.useState({});
+  const [editRowsModel, setEditRowsModel] = React.useState({});
 
-  const handleCellModesModelChange = React.useCallback((newModel) => {
-    console.log("handleCellModesModelChange");
-    console.log(newModel);
-    setCellModesModel(newModel);
-  }, []);
+  const handleEditRowsModelChange = React.useCallback(
+    (model) => {
+      const editedIds = Object.keys(model);
+      console.log(model);
+      // user stops editing when the edit model is empty
+      if (editedIds.length === 0) {
+        alert(JSON.stringify(editRowData, null, 4));
+        // update on firebase
+      } else {
+        setEditRowData(model[editedIds[0]]);
+      }
+
+      setEditRowsModel(model);
+    },
+    [editRowData]
+  );
+
   return (
     <div className="rating-table">
       <Table
         className="rating-table-content"
         setRatingsToParent={passValuesFromComponent(rates)} // call function from parent component with new rates
-        columns={columns}
+        columns={columns(tableRatings)}
         rows={tableRatings}
         rowsCount={tableRatings.length}
         pageSize={5}
@@ -143,13 +114,15 @@ const Ratings = ({ passValuesFromComponent, years }) => {
         headerHeight={40}
         autoHeight={true}
         checkboxSelection
+        disableSelectionOnClick
+        editRowsModel={editRowsModel}
         selectionModel={prefixIds.map((r) => r.id)}
-        // cellModesModel={cellModesModel}
-        // onCellModesModelChange={handleCellModesModelChange}
-        // onCellClick={handleCellClick}
-        // // experimentalFeatures={{ newEditingApi: true }}
-        // // onCellEditCommit={handleRowEditCommit}
-        // // onCellModesModelChange={handleClick}
+        experimentalFeatures={{ newEditingApi: true }}
+        cellModesModel={columns}
+        isCellEditable={handleEdit} // this works
+        onEditRowsModelChange={handleEditRowsModelChange}
+        //onEditCellPropsChange={onEditCellPropsChange} // this works
+        //onCellEditCommit={handleRowEditCommit} // this works
         onSelectionModelChange={(ids) => {
           const selectedIds = new Set(ids);
           const selectedRows = tableRatings.filter((row) =>
@@ -159,6 +132,7 @@ const Ratings = ({ passValuesFromComponent, years }) => {
           selectedRows.open = prefixIds.open;
           setRatings(selectedRows);
           updatePrefixIds(selectedRows);
+          console.log(tableRatings);
         }}
         toolbar={{
           buttonLabel: open ? "Close Ratings" : "Show Ratings",
@@ -167,7 +141,7 @@ const Ratings = ({ passValuesFromComponent, years }) => {
         }}
         hideFooter={!prefixIds.open}
       ></Table>
-      <Dialog
+      {/* <Dialog
         aria-labelledby="customized-dialog-title"
         open={open}
         onClose={openDialog}
@@ -201,7 +175,7 @@ const Ratings = ({ passValuesFromComponent, years }) => {
           }}
           hideFooter={!prefixIds.open}
         ></Table>
-      </Dialog>
+      </Dialog> */}
     </div>
   );
 };

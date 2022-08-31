@@ -4,6 +4,18 @@
   padding: 8px;
   border: 1px solid #000;
   border-radius: 0px;
+
+  .left-map-container {
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2%;
+  }
+}
+
+.left-expand-map {
+  overflow-y: hidden;
 }
 
 .buttons {
@@ -13,4 +25,27 @@
   width: 100%;
   padding: 2%;
   font-size: 12px;
+}
+
+.MuiDialog-container {
+  //height: 90vh !important;
+  overflow-y: hidden !important;
+  text-align: center !important;
+
+  .MuiPaper-root {
+    //max-width: 80% !important;
+    height: 90% !important;
+    width: 60% !important;
+
+    .box {
+      text-align: center !important;
+      height: 100%;
+      background-color: white;
+      .rsm-svg {
+        height: 75% !important;
+        width: 100% !important;
+        text-align: center !important;
+      }
+    }
+  }
 }
