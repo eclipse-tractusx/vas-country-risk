@@ -141,15 +141,20 @@ const Ratings = ({ passValuesFromComponent, years }) => {
         }}
         hideFooter={!prefixIds.open}
       ></Table>
-      {/* <Dialog
+
+      <Dialog
+        className="table-expand-style"
         aria-labelledby="customized-dialog-title"
         open={open}
         onClose={openDialog}
       >
         <Table
-          style={{ border: "1px solid #000", borderRadius: "0" }}
+          style={{
+            border: "1px solid #000",
+            borderRadius: "0",
+          }}
           setRatingsToParent={passValuesFromComponent(rates)} // call function from parent component with new rates
-          columns={columns}
+          columns={columns(tableRatings)}
           rows={tableRatings}
           rowsCount={tableRatings.length}
           pageSize={5}
@@ -175,7 +180,7 @@ const Ratings = ({ passValuesFromComponent, years }) => {
           }}
           hideFooter={!prefixIds.open}
         ></Table>
-      </Dialog> */}
+      </Dialog>
     </div>
   );
 };
