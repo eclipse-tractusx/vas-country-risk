@@ -5,11 +5,13 @@ import { Table, Button, Typography } from "cx-portal-shared-components";
 import "./styles.scss";
 import { columns } from "./tableColumns";
 import { RangesContext } from "../../../contexts/ranges";
+import { RatesContext } from "../../../contexts/rates";
 const DashboardTable = (ratings, years) => {
   //Data Fetch
   const [data, setData] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
   const { ranges, updateRanges } = useContext(RangesContext);
+  const { prefixIds, updatePrefixIds } = useContext(RatesContext);
 
   const fetchData = (expr) => {
     const lexpr = expr.toLowerCase();

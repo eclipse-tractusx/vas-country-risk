@@ -8,20 +8,20 @@ import React, {
 } from "react";
 import "./styles.scss";
 import Dialog from "@mui/material/Dialog";
-import { Table } from "cx-portal-shared-components";
+import { Table, Alert } from "cx-portal-shared-components";
 import { RatesContext } from "../../../contexts/rates";
 import { getRatingsByYear } from "../../services/ratingstable-api";
 import { columns } from "./ratingColumns";
 
 const Ratings = ({ passValuesFromComponent, years }) => {
+  const [automatic, setAutomatic] = useState(true);
+
   //Upload Button Handlers
   const [open, setOpen] = useState(false);
 
   const [tableRatings, setTableRatings] = useState([]);
 
   const [rates, setRatings] = useState([]);
-
-  const [cellsModel, setCellsModel] = useState([]);
 
   const { prefixIds, updatePrefixIds } = useContext(RatesContext);
 
@@ -31,7 +31,6 @@ const Ratings = ({ passValuesFromComponent, years }) => {
 
   const ExpandTable = () => {
     openDialog(false);
-    //setTableRatings(rates);
     prefixIds.open = !prefixIds.open;
   };
 
@@ -48,65 +47,48 @@ const Ratings = ({ passValuesFromComponent, years }) => {
   }, []);
 
   useEffect(() => {
-    let totalWeight = rates.length > 0 ? 100 / rates.length : 0;
-    totalWeight = Number(totalWeight.toFixed(2));
-    console.log("calcular weights");
-    console.log(tableRatings);
-    console.log(cellsModel);
-    if (Array.isArray(tableRatings)) {
-      tableRatings.forEach((each) => {
-        //console.log(each);
-        rates.includes(each) ? (each.weight = totalWeight) : (each.weight = 0);
-      });
+    if (automatic) {
+      let totalWeight = rates.length > 0 ? 100 / rates.length : 0;
+      totalWeight = Number(totalWeight.toFixed(2));
+      if (Array.isArray(rates)) {
+        rates.forEach((each) => {
+          each.weight = totalWeight;
+        });
+      }
+      //console.log(rates);
     }
-  }, [cellsModel, rates, rates.length, tableRatings]);
+  }, [updatePrefixIds]);
 
   const onEditCellPropsChange = (params) => {
-    console.log("onEditCellPropsChange");
-    console.log(params);
-    console.log("tableRatings");
-    console.log(rates);
-    const arrayCells = cellsModel;
-    arrayCells.push(params);
-    setCellsModel(arrayCells);
-
-    rates.forEach((each) => {
-      if (each.id === params.id) {
-        params.props.value = each.weight;
+    rates.forEach((eachRating) => {
+      if (eachRating.id === params.id) {
+        eachRating.weight = params.props.value;
+        params.props.value = 0;
       }
     });
+    setAutomatic(false);
   };
 
   const handleEdit = (params) => {
     return rates.find((each) => each.id === params.id);
   };
 
-  const [editRowData, setEditRowData] = React.useState({});
-  const [editRowsModel, setEditRowsModel] = React.useState({});
+  useEffect(() => {
+    if (rates.length === 0) {
+      setAutomatic(true);
+    }
+  }, [rates]);
 
-  const handleEditRowsModelChange = React.useCallback(
-    (model) => {
-      const editedIds = Object.keys(model);
-      console.log(model);
-      // user stops editing when the edit model is empty
-      if (editedIds.length === 0) {
-        alert(JSON.stringify(editRowData, null, 4));
-        // update on firebase
-      } else {
-        setEditRowData(model[editedIds[0]]);
-      }
-
-      setEditRowsModel(model);
-    },
-    [editRowData]
-  );
+  useEffect(() => {
+    passValuesFromComponent(rates);
+  }, [rates]);
 
   return (
     <div className="rating-table">
       <Table
         className="rating-table-content"
-        setRatingsToParent={passValuesFromComponent(rates)} // call function from parent component with new rates
-        columns={columns(tableRatings)}
+        //setRatingsToParent={passValuesFromComponent(rates)} // call function from parent component with new rates
+        columns={columns(rates)}
         rows={tableRatings}
         rowsCount={tableRatings.length}
         pageSize={5}
@@ -115,14 +97,10 @@ const Ratings = ({ passValuesFromComponent, years }) => {
         autoHeight={true}
         checkboxSelection
         disableSelectionOnClick
-        editRowsModel={editRowsModel}
         selectionModel={prefixIds.map((r) => r.id)}
         experimentalFeatures={{ newEditingApi: true }}
-        cellModesModel={columns}
         isCellEditable={handleEdit} // this works
-        onEditRowsModelChange={handleEditRowsModelChange}
-        //onEditCellPropsChange={onEditCellPropsChange} // this works
-        //onCellEditCommit={handleRowEditCommit} // this works
+        onEditCellPropsChange={onEditCellPropsChange} // this works
         onSelectionModelChange={(ids) => {
           const selectedIds = new Set(ids);
           const selectedRows = tableRatings.filter((row) =>
@@ -132,54 +110,58 @@ const Ratings = ({ passValuesFromComponent, years }) => {
           selectedRows.open = prefixIds.open;
           setRatings(selectedRows);
           updatePrefixIds(selectedRows);
-          console.log(tableRatings);
         }}
         toolbar={{
           buttonLabel: open ? "Close Ratings" : "Show Ratings",
           onButtonClick: ExpandTable,
           title: "Ratings",
         }}
-        hideFooter={!prefixIds.open}
+        hideFooter={tableRatings.length > 5 ? false : true}
       ></Table>
+      {/* <Alert severity={"info"}>
+        <span>asdasd</span>
+      </Alert> */}
 
       <Dialog
-        className="table-expand-style"
+        className="dialog-table-expand-style"
         aria-labelledby="customized-dialog-title"
         open={open}
         onClose={openDialog}
       >
-        <Table
-          style={{
-            border: "1px solid #000",
-            borderRadius: "0",
-          }}
-          setRatingsToParent={passValuesFromComponent(rates)} // call function from parent component with new rates
-          columns={columns(tableRatings)}
-          rows={tableRatings}
-          rowsCount={tableRatings.length}
-          pageSize={5}
-          rowHeight={50}
-          headerHeight={40}
-          autoHeight={true}
-          checkboxSelection
-          selectionModel={prefixIds.map((r) => r.id)}
-          onSelectionModelChange={(ids) => {
-            const selectedIds = new Set(ids);
-            const selectedRows = tableRatings.filter((row) =>
-              selectedIds.has(row.id)
-            );
-            //pass ratings selected to top component
-            selectedRows.open = prefixIds.open;
-            setRatings(selectedRows);
-            updatePrefixIds(selectedRows);
-          }}
-          toolbar={{
-            buttonLabel: open ? "Close Ratings" : "Show Ratings",
-            onButtonClick: ExpandTable,
-            title: "Ratings",
-          }}
-          hideFooter={!prefixIds.open}
-        ></Table>
+        <div className="rating-div-table-expand-style">
+          <Table
+            className="table-expand-style"
+            setRatingsToParent={passValuesFromComponent(rates)} // call function from parent component with new rates
+            columns={columns(tableRatings)}
+            rows={tableRatings}
+            rowsCount={tableRatings.length}
+            pageSize={tableRatings.length >= 10 ? 10 : tableRatings.length}
+            rowHeight={50}
+            headerHeight={40}
+            autoHeight={true}
+            checkboxSelection
+            selectionModel={prefixIds.map((r) => r.id)}
+            experimentalFeatures={{ newEditingApi: true }}
+            isCellEditable={handleEdit} // this works
+            onEditCellPropsChange={onEditCellPropsChange} // this works
+            onSelectionModelChange={(ids) => {
+              const selectedIds = new Set(ids);
+              const selectedRows = tableRatings.filter((row) =>
+                selectedIds.has(row.id)
+              );
+              //pass ratings selected to top component
+              selectedRows.open = prefixIds.open;
+              setRatings(selectedRows);
+              updatePrefixIds(selectedRows);
+            }}
+            toolbar={{
+              buttonLabel: open ? "Close Ratings" : "Show Ratings",
+              onButtonClick: ExpandTable,
+              title: "Ratings",
+            }}
+            hideFooter={tableRatings.length > 5 ? false : true}
+          ></Table>
+        </div>
       </Dialog>
     </div>
   );

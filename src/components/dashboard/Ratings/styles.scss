@@ -10,6 +10,16 @@
   }
 }
 
-.table-expand-style {
-  height: fit-content;
+.dialog-table-expand-style {
+  height: 100% !important;
+  .rating-div-table-expand-style {
+    //height: 1200px;
+    .table-expand-style {
+      display: flex;
+      width: 100%;
+      border: 1px solid #000;
+      border-radius: 0;
+      font-size: 12px;
+    }
+  }
 }

@@ -6,12 +6,20 @@
   .main-content {
     width: 65%;
     padding: 10px;
-
     .maps-content {
-      height: 55%;
+      justify-content: space-evenly;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      .left-map {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #000;
+        width: 48%;
+      }
+      .right-map {
+        border: 1px solid #000;
+        width: 48%;
+      }
     }
 
     .table-content {

@@ -1,19 +1,14 @@
 /* eslint-disable no-console */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Dialog, IconButton, Button } from "cx-portal-shared-components";
 import "./styles.scss";
 import CustomWorldMap from "../CustomWorld/CustomWorldMap";
 import OpenWithIcon from "@mui/icons-material/OpenWith";
 import { Box } from "@mui/material";
-import FolderIcon from "@mui/icons-material/Folder";
+
 import { toPng } from "html-to-image";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import CloseIcon from "@mui/icons-material/Close";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import { getAllDates } from "../../services/dateform-api";
 
 const LeftMap = (ratings) => {
   const [expandMap, setExpandMap] = useState(false);
@@ -37,65 +32,56 @@ const LeftMap = (ratings) => {
   };
 
   return (
-    <div className="left-map">
-      <Dialog open={expandMap} onClose={openDialog} className="left-expand-map">
-        <Box className="box" id="idCustomWorldMap">
-          <div className="buttons">
-            <h2>World Map</h2>
-            <Button size="small" onClick={printMap}>
-              Export Image
-            </Button>
+    <>
+      <div>
+        <Dialog
+          open={expandMap}
+          onClose={openDialog}
+          className="left-dialog-expand-map"
+        >
+          <div className="expand-box-div">
+            <Box className="expand-mui-box">
+              <div className="buttons">
+                <h2>World Map</h2>
+                <Button size="small" onClick={printMap}>
+                  Export Image
+                </Button>
 
-            <IconButton
-              className="close-button"
-              color="primary"
-              onClick={openDialog}
-              size="medium"
-              variant="outlined"
-            >
-              <CloseIcon></CloseIcon>
-            </IconButton>
+                <IconButton
+                  className="close-button"
+                  color="primary"
+                  onClick={openDialog}
+                  size="medium"
+                  variant="outlined"
+                >
+                  <CloseIcon></CloseIcon>
+                </IconButton>
+              </div>
+              <div className="map-and-progressbar" id="idCustomWorldMap">
+                <div className="expand-custom-world-map">
+                  <CustomWorldMap
+                    getRatings={ratings.getRatings}
+                    years={ratings.years}
+                    // minMapWidth={500}
+                    // maxMapWidth={1100}
+                    // minMapHeight={500}
+                    // maxMapHeight={1000}
+                    minMapWidth={0}
+                    maxMapWidth={800}
+                    minMapHeight={0}
+                    maxMapHeight={600}
+                  ></CustomWorldMap>
+                </div>
+                <div className="progress-bar" style={{ width: "250px" }}>
+                  <ProgressBar className="bar" valuePercentage={100} />
+                </div>
+              </div>
+            </Box>
           </div>
-          <CustomWorldMap
-            getRatings={ratings.getRatings}
-            years={ratings.years}
-            // minMapWidth={500}
-            // maxMapWidth={1100}
-            // minMapHeight={500}
-            // maxMapHeight={1000}
-            minMapWidth={0}
-            maxMapWidth={800}
-            minMapHeight={0}
-            maxMapHeight={600}
-          ></CustomWorldMap>
-          <div className="progress-bar" style={{ width: "250px" }}>
-            <ProgressBar className="bar" valuePercentage={100} />
-          </div>
-        </Box>
-
-        <></>
-      </Dialog>
+        </Dialog>
+      </div>
       <div className="left-map-container">
         <h2>World Map</h2>
-        {/* <FormControl fullWidth>
-          <InputLabel>Select a Year</InputLabel>
-          <Select
-            value={200}
-            //onChange={handleChange}
-            //passYearSelected={passYearSelected(date)}
-            label="Year"
-          >
-            {Array.isArray([])
-              ? [].map((item) => {
-                  return (
-                    <MenuItem key={item} value={item}>
-                      {item}
-                    </MenuItem>
-                  );
-                })
-              : []}
-          </Select>
-        </FormControl> */}
         <IconButton
           className="expand-button"
           color="primary"
@@ -106,7 +92,6 @@ const LeftMap = (ratings) => {
           <OpenWithIcon></OpenWithIcon>
         </IconButton>
       </div>
-
       <CustomWorldMap
         getRatings={ratings.getRatings}
         years={ratings.years}
@@ -115,7 +100,7 @@ const LeftMap = (ratings) => {
         minMapHeight={0}
         maxMapHeight={600}
       ></CustomWorldMap>
-    </div>
+    </>
   );
 };
 

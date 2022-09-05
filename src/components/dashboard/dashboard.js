@@ -30,8 +30,12 @@ const Dashboard = () => {
     <div className="wrapper">
       <div className="main-content">
         <div className="maps-content ">
-          <LeftMap getRatings={ratings} years={years}></LeftMap>
-          <FakeLeftMap getRatings={ratings} years={years}></FakeLeftMap>
+          <div className="left-map">
+            <LeftMap getRatings={ratings} years={years}></LeftMap>
+          </div>
+          <div className="right-map">
+            <FakeLeftMap></FakeLeftMap>
+          </div>
         </div>
         <div className="table-content">
           <DashboardTable getRatings={ratings} years={years}></DashboardTable>
