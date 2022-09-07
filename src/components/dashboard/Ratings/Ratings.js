@@ -12,6 +12,7 @@ import { Table, Alert } from "cx-portal-shared-components";
 import { RatesContext } from "../../../contexts/rates";
 import { getRatingsByYear } from "../../services/ratingstable-api";
 import { columns } from "./ratingColumns";
+import UserService from "../../services/UserService";
 
 const Ratings = ({ passValuesFromComponent, years }) => {
   const [automatic, setAutomatic] = useState(true);
@@ -35,11 +36,15 @@ const Ratings = ({ passValuesFromComponent, years }) => {
   };
 
   const fetchData = () => {
-    getRatingsByYear().then((response) => setTableRatings(response));
+    getRatingsByYear("", UserService.getToken()).then((response) =>
+      setTableRatings(response)
+    );
   };
 
   useEffect(() => {
-    getRatingsByYear(years).then((response) => setTableRatings(response));
+    getRatingsByYear(years, UserService.getToken()).then((response) =>
+      setTableRatings(response)
+    );
   }, [years]);
 
   useEffect(() => {
@@ -131,8 +136,8 @@ const Ratings = ({ passValuesFromComponent, years }) => {
         <div className="rating-div-table-expand-style">
           <Table
             className="table-expand-style"
-            setRatingsToParent={passValuesFromComponent(rates)} // call function from parent component with new rates
-            columns={columns(tableRatings)}
+            //setRatingsToParent={passValuesFromComponent(rates)} // call function from parent component with new rates
+            columns={columns(rates)}
             rows={tableRatings}
             rowsCount={tableRatings.length}
             pageSize={tableRatings.length >= 10 ? 10 : tableRatings.length}

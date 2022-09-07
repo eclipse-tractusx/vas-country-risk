@@ -2,11 +2,9 @@ import React, { useState, useEffect, Component } from "react";
 import "./styles.scss";
 import { Button, Dropzone, Input, Alert } from "cx-portal-shared-components";
 import Dialog from "@mui/material/Dialog";
-
 import Box from "@mui/material/Box";
-
+import UserService from "../../services/UserService";
 import { downloadSampleCsvFile } from "../../services/files-api";
-import { Snackbar } from "@mui/material";
 
 const UploadDownloadZone = () => {
   //Upload Button Handlers
@@ -73,7 +71,7 @@ const UploadDownloadZone = () => {
   const downloadTemplate = () => {
     setDisable(true);
 
-    downloadSampleCsvFile().then((data) => {
+    downloadSampleCsvFile(UserService.getToken()).then((data) => {
       let csvContent = "data:text/csv;charset=utf-8,\uFEFF";
       csvContent += data.data + "\r\n";
       var encodedUri = encodeURI(csvContent);

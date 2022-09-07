@@ -9,6 +9,7 @@ import {
   ZoomableGroup,
 } from "react-simple-maps";
 import { RangesContext } from "../../../contexts/ranges";
+import UserService from "../../services/UserService";
 
 const CustomWorldMap = (ratings) => {
   const [data, setData] = useState([]);
@@ -19,7 +20,11 @@ const CustomWorldMap = (ratings) => {
     "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
 
   useEffect(() => {
-    getWorldMapInfo(ratings.getRatings, ratings.years).then((response) => {
+    getWorldMapInfo(
+      ratings.getRatings,
+      ratings.years,
+      UserService.getToken()
+    ).then((response) => {
       setData(response);
     });
   }, [ratings.getRatings, ratings.years]);

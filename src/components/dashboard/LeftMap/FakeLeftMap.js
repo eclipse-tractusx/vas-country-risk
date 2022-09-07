@@ -5,7 +5,6 @@ import "./styles.scss";
 import CustomWorldMap from "../CustomWorld/CustomWorldMap";
 import OpenWithIcon from "@mui/icons-material/OpenWith";
 import { Box } from "@mui/material";
-import FolderIcon from "@mui/icons-material/Folder";
 import { toPng } from "html-to-image";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import CloseIcon from "@mui/icons-material/Close";

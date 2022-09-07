@@ -6,13 +6,14 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Box from "@mui/material/Box";
 import { getAllDates } from "../../services/dateform-api";
+import UserService from "../../services/UserService";
 
 const DatePicker = ({ passYearSelected }) => {
   //Store Dates coming from API
   const [AllDate, setAllDate] = useState();
 
   useEffect(() => {
-    getAllDates().then((response) => {
+    getAllDates(UserService.getToken()).then((response) => {
       setAllDate(response.sort().reverse());
     });
   }, []);

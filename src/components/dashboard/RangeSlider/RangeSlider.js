@@ -3,8 +3,7 @@ import "./styles.scss";
 import Slider from "@mui/material/Slider";
 import Input from "@mui/material/Input";
 import Grid from "@mui/material/Grid";
-import Alert from "@mui/material/Alert";
-import Fade from "@mui/material/Fade";
+import UserService from "../../services/UserService";
 import { getAllRanges } from "../../services/ranges-api";
 import { RangesContext } from "../../../contexts/ranges";
 import { Button } from "cx-portal-shared-components";
@@ -25,7 +24,7 @@ const RangeSlider = () => {
   const [maxValue, setMax] = useState(100);
 
   useEffect(() => {
-    getAllRanges().then((response) => {
+    getAllRanges(UserService.getToken()).then((response) => {
       if (Array.isArray(response)) {
         response.forEach((eachArray) => {
           if (eachArray.range === "Min") {
@@ -148,9 +147,13 @@ const RangeSlider = () => {
     }
   };
 
-  useEffect(() => {
-    updateRanges([valueRed, valueYellow, valueGreen]);
-  }, [valueGreen, valueRed, valueYellow]);
+  useEffect(
+    () => {
+      updateRanges([valueRed, valueYellow, valueGreen]);
+    },
+    [valueGreen, valueRed, valueYellow],
+    UserService.getToken()
+  );
 
   return (
     <>
