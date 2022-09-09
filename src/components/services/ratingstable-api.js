@@ -6,7 +6,7 @@ export function getRatingsByYear(Year, token) {
   var yearAPI;
 
   if (Year === "") {
-    yearAPI = 2022;
+    yearAPI = new Date().getFullYear();
   } else {
     yearAPI = Year;
   }

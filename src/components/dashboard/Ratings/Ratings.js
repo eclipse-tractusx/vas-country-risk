@@ -14,7 +14,11 @@ import { getRatingsByYear } from "../../services/ratingstable-api";
 import { columns } from "./ratingColumns";
 import UserService from "../../services/UserService";
 
-const Ratings = ({ passValuesFromComponent, years }) => {
+const Ratings = ({
+  passAutomaticWeightChange,
+  passValuesFromComponent,
+  years,
+}) => {
   const [automatic, setAutomatic] = useState(true);
 
   //Upload Button Handlers
@@ -23,6 +27,13 @@ const Ratings = ({ passValuesFromComponent, years }) => {
   const [tableRatings, setTableRatings] = useState([]);
 
   const [rates, setRatings] = useState([]);
+
+  const [sumTotalEffect, setSumTotalEffect] = useState(-1);
+
+  const [severity, setSeverity] = useState("");
+  const [severityMessage, setSeverityMessage] = useState("");
+
+  let sumTotal = 0;
 
   const { prefixIds, updatePrefixIds } = useContext(RatesContext);
 
@@ -60,18 +71,37 @@ const Ratings = ({ passValuesFromComponent, years }) => {
           each.weight = totalWeight;
         });
       }
-      //console.log(rates);
     }
   }, [updatePrefixIds]);
 
   const onEditCellPropsChange = (params) => {
+    setSeverity("");
+    setSeverityMessage("");
+    setSumTotalEffect(0);
     rates.forEach((eachRating) => {
       if (eachRating.id === params.id) {
         eachRating.weight = params.props.value;
-        params.props.value = 0;
       }
     });
     setAutomatic(false);
+  };
+
+  const validateInput = (params) => {
+    sumTotal = 0;
+    if (params.value <= 100 && params.value >= 0 && !isNaN(params.value)) {
+      rates.forEach((eachRating) => {
+        sumTotal = Number(sumTotal) + Number(eachRating.weight);
+      });
+      if (sumTotal === 100) {
+        setSumTotalEffect(sumTotal);
+      } else {
+        setSeverity("error");
+        setSeverityMessage("Total weight must be 100");
+      }
+    } else {
+      setSeverity("error");
+      setSeverityMessage("Value must be between 0-100");
+    }
   };
 
   const handleEdit = (params) => {
@@ -81,6 +111,7 @@ const Ratings = ({ passValuesFromComponent, years }) => {
   useEffect(() => {
     if (rates.length === 0) {
       setAutomatic(true);
+      setSumTotalEffect(-1);
     }
   }, [rates]);
 
@@ -88,11 +119,14 @@ const Ratings = ({ passValuesFromComponent, years }) => {
     passValuesFromComponent(rates);
   }, [rates]);
 
+  useEffect(() => {
+    passAutomaticWeightChange(sumTotalEffect);
+  }, [sumTotalEffect]);
+
   return (
     <div className="rating-table">
       <Table
         className="rating-table-content"
-        //setRatingsToParent={passValuesFromComponent(rates)} // call function from parent component with new rates
         columns={columns(rates)}
         rows={tableRatings}
         rowsCount={tableRatings.length}
@@ -106,6 +140,7 @@ const Ratings = ({ passValuesFromComponent, years }) => {
         experimentalFeatures={{ newEditingApi: true }}
         isCellEditable={handleEdit} // this works
         onEditCellPropsChange={onEditCellPropsChange} // this works
+        onCellEditCommit={validateInput}
         onSelectionModelChange={(ids) => {
           const selectedIds = new Set(ids);
           const selectedRows = tableRatings.filter((row) =>
@@ -123,9 +158,9 @@ const Ratings = ({ passValuesFromComponent, years }) => {
         }}
         hideFooter={tableRatings.length > 5 ? false : true}
       ></Table>
-      {/* <Alert severity={"info"}>
-        <span>asdasd</span>
-      </Alert> */}
+      <Alert severity={severity}>
+        <span>{severityMessage}</span>
+      </Alert>
 
       <Dialog
         className="dialog-table-expand-style"
@@ -136,7 +171,6 @@ const Ratings = ({ passValuesFromComponent, years }) => {
         <div className="rating-div-table-expand-style">
           <Table
             className="table-expand-style"
-            //setRatingsToParent={passValuesFromComponent(rates)} // call function from parent component with new rates
             columns={columns(rates)}
             rows={tableRatings}
             rowsCount={tableRatings.length}

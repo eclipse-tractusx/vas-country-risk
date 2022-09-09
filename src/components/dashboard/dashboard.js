@@ -16,10 +16,16 @@ const Dashboard = () => {
 
   const [ratings, setRatings] = useState("");
 
+  const [weight, setTotalWeight] = useState("");
+
   const [years, setYears] = useState("");
 
   const passValuesFromComponent = (rates) => {
     setRatings(rates);
+  };
+
+  const passAutomaticWeightChange = (weight) => {
+    setTotalWeight(weight);
   };
 
   const passYearSelected = (yearSelected) => {
@@ -31,14 +37,22 @@ const Dashboard = () => {
       <div className="main-content">
         <div className="maps-content ">
           <div className="left-map">
-            <LeftMap getRatings={ratings} years={years}></LeftMap>
+            <LeftMap
+              getRatings={ratings}
+              years={years}
+              weight={weight}
+            ></LeftMap>
           </div>
           <div className="right-map">
             <FakeLeftMap></FakeLeftMap>
           </div>
         </div>
         <div className="table-content">
-          <DashboardTable getRatings={ratings} years={years}></DashboardTable>
+          <DashboardTable
+            getRatings={ratings}
+            years={years}
+            weight={weight}
+          ></DashboardTable>
         </div>
       </div>
       <div className="right-content">
@@ -46,6 +60,7 @@ const Dashboard = () => {
           <DatePicker passYearSelected={passYearSelected}></DatePicker>
           <Ratings
             passValuesFromComponent={passValuesFromComponent}
+            passAutomaticWeightChange={passAutomaticWeightChange}
             years={years}
           ></Ratings>
         </div>

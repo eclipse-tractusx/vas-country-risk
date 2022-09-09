@@ -53,12 +53,14 @@ const DashboardTable = (ratings, years) => {
   };
 
   useEffect(() => {
-    getAll(ratings.getRatings, ratings.years, UserService.getToken()).then(
-      (response) => {
-        setData(response);
-      }
-    );
-  }, [ratings.getRatings, ratings.years]);
+    if (ratings.weight !== 0) {
+      getAll(ratings.getRatings, ratings.years, UserService.getToken()).then(
+        (response) => {
+          setData(response);
+        }
+      );
+    }
+  }, [ratings.getRatings, ratings.years, ratings.weight]);
 
   return (
     <>

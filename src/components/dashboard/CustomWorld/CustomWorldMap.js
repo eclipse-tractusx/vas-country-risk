@@ -1,12 +1,14 @@
 /* eslint-disable no-console */
 
 import React, { useState, useEffect, useContext } from "react";
+
 import { getWorldMapInfo } from "../../services/dashboard-api";
 import {
   ComposableMap,
   Geographies,
   Geography,
   ZoomableGroup,
+  Marker,
 } from "react-simple-maps";
 import { RangesContext } from "../../../contexts/ranges";
 import UserService from "../../services/UserService";
@@ -14,20 +16,24 @@ import UserService from "../../services/UserService";
 const CustomWorldMap = (ratings) => {
   const [data, setData] = useState([]);
 
+  const [kZoom, setKZoom] = useState(1);
+
   const { ranges, updateRanges } = useContext(RangesContext);
 
   const geoUrl =
     "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
 
   useEffect(() => {
-    getWorldMapInfo(
-      ratings.getRatings,
-      ratings.years,
-      UserService.getToken()
-    ).then((response) => {
-      setData(response);
-    });
-  }, [ratings.getRatings, ratings.years]);
+    if (ratings.weight !== 0) {
+      getWorldMapInfo(
+        ratings.getRatings,
+        ratings.years,
+        UserService.getToken()
+      ).then((response) => {
+        setData(response);
+      });
+    }
+  }, [ratings.getRatings, ratings.years, ratings.weight]);
 
   return (
     <ComposableMap>

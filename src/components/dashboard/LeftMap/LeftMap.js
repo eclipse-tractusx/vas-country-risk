@@ -61,10 +61,7 @@ const LeftMap = (ratings) => {
                   <CustomWorldMap
                     getRatings={ratings.getRatings}
                     years={ratings.years}
-                    // minMapWidth={500}
-                    // maxMapWidth={1100}
-                    // minMapHeight={500}
-                    // maxMapHeight={1000}
+                    weight={ratings.weight}
                     minMapWidth={0}
                     maxMapWidth={800}
                     minMapHeight={0}
@@ -94,6 +91,7 @@ const LeftMap = (ratings) => {
       <CustomWorldMap
         getRatings={ratings.getRatings}
         years={ratings.years}
+        weight={ratings.weight}
         minMapWidth={0}
         maxMapWidth={800}
         minMapHeight={0}
