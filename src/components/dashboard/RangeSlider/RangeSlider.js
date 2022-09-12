@@ -6,14 +6,17 @@ import Grid from "@mui/material/Grid";
 import UserService from "../../services/UserService";
 import { getAllRanges } from "../../services/ranges-api";
 import { RangesContext } from "../../../contexts/ranges";
-import { Button } from "cx-portal-shared-components";
+import { Alert, Button } from "cx-portal-shared-components";
 import { sendValues } from "../../services/ranges-api";
+
 function valuetext(valueGreen) {
   return `${valueGreen}`;
 }
 
 const RangeSlider = () => {
   const { ranges, updateRanges } = useContext(RangesContext);
+  const [severityRange, setSeverityRange] = useState("");
+  const [severityMessageRange, setSeverityMessageRange] = useState("");
 
   const saveRanges = () => {
     sendValues(ranges);
@@ -50,6 +53,8 @@ const RangeSlider = () => {
 
   //Green Slider Handler
   const handleChangeGreen = (event, newValue) => {
+    setSeverityRange("");
+    setSeverityMessageRange("");
     newValue[1] = 100;
     newValue[0] =
       newValue[1] === newValue[0]
@@ -63,6 +68,9 @@ const RangeSlider = () => {
   };
 
   const handleChangeYellow = (event, newValue) => {
+    setSeverityRange("");
+    setSeverityMessageRange("");
+
     if (!(newValue[0] === newValue[1])) {
       const tempValG = [newValue[1] + 1, valueGreen[1]];
       const tempValR = [valueRed[0], newValue[0] - 1];
@@ -75,6 +83,8 @@ const RangeSlider = () => {
   };
 
   const handleChangeRed = (event, newValue) => {
+    setSeverityRange("");
+    setSeverityMessageRange("");
     newValue[0] = 0;
     newValue[1] =
       newValue[1] === newValue[0]
@@ -91,69 +101,103 @@ const RangeSlider = () => {
 
   //Changes Values Using User Input
   const handleChangeGreenInput = (event) => {
-    const tempVal = [event.target.value, 100];
-    const yelloTempVal = [valueYellow[0], event.target.value - 1];
+    setGreenValues([event.target.value, 100]);
+  };
 
+  //Changes Values Using User Input
+  const validateGreenInput = (event) => {
     if (
-      !(event.target.value <= parseFloat(valueRed[1]) + 2) &&
+      event.target.value > parseFloat(valueYellow[0]) + 1 &&
       event.target.value < 100
     ) {
-      setGreenValues(tempVal);
+      const yelloTempVal = [valueYellow[0], parseFloat(event.target.value) - 1];
       setYellowValues(yelloTempVal);
+      setSeverityRange("");
+      setSeverityMessageRange("");
+    } else {
+      setGreenValues([parseFloat(valueYellow[1] + 1), 100]);
+      setSeverityRange("error");
+      setSeverityMessageRange("Overlap Value");
     }
   };
 
   //Changes Values Using User Input
   const handleChangeYellowInput = (event) => {
-    if (event.target.value > valueYellow[1] && event.target.value < 99) {
+    if (event.target.step === "0") {
+      const tempValY = [event.target.value, valueYellow[1]];
+      setYellowValues(tempValY);
+    } else {
       const tempValY = [valueYellow[0], event.target.value];
       setYellowValues(tempValY);
-      const tempValG = [parseFloat(event.target.value) + 1, valueGreen[1]];
-      setGreenValues(tempValG);
-    } else if (
-      event.target.value < valueYellow[1] &&
-      event.target.value > valueYellow[0] &&
-      event.target.step === "1"
+    }
+  };
+
+  //Changes Values Using User Input
+  const validateYellowLeftInput = (event) => {
+    if (
+      event.target.value < parseFloat(valueYellow[1]) &&
+      event.target.value > parseFloat(valueRed[0] + 1)
     ) {
-      const tempValY = [valueYellow[0], event.target.value];
-      setYellowValues(tempValY);
-      const tempValG = [parseFloat(event.target.value) + 1, valueGreen[1]];
-      setGreenValues(tempValG);
-    } else if (
-      event.target.value < valueYellow[1] &&
-      event.target.value > valueYellow[0] &&
-      event.target.step === "0"
+      const redTempVal = [0, parseFloat(event.target.value) - 1];
+      setRedValues(redTempVal);
+      setSeverityRange("");
+      setSeverityMessageRange("");
+    } else {
+      setYellowValues([
+        parseFloat(valueRed[1] + 1),
+        parseFloat(valueGreen[0] - 1),
+      ]);
+      setSeverityRange("error");
+      setSeverityMessageRange("Overlap Value");
+    }
+  };
+
+  //Changes Values Using User Input
+  const validateYellowRightInput = (event) => {
+    if (
+      event.target.value > parseFloat(valueYellow[0]) &&
+      event.target.value < parseFloat(valueGreen[1] - 1)
     ) {
-      const tempValY = [event.target.value, valueYellow[1]];
-      const tempValR = [valueRed[0], event.target.value - 1];
-      setYellowValues(tempValY);
-      setRedValues(tempValR);
-    } else if (event.target.value < valueYellow[0] && event.target.value > 1) {
-      const tempValY = [event.target.value, valueYellow[1]];
-      const tempValR = [valueRed[0], event.target.value - 1];
-      setYellowValues(tempValY);
-      setRedValues(tempValR);
+      const greenTempVal = [parseFloat(event.target.value) + 1, 100];
+      setGreenValues(greenTempVal);
+      setSeverityRange("");
+      setSeverityMessageRange("");
+    } else {
+      setYellowValues([
+        parseFloat(valueRed[1] + 1),
+        parseFloat(valueGreen[0] - 1),
+      ]);
+      setSeverityRange("error");
+      setSeverityMessageRange("Overlap Value");
     }
   };
 
   //Changes Values Using User Input
   const handleChangeRedInput = (event) => {
-    const tempVal = [valueRed[0], event.target.value];
-    const yelloTempVal = [parseFloat(event.target.value) + 1, valueYellow[1]];
+    const tempVal = [0, event.target.value];
+    setRedValues(tempVal);
+  };
 
-    if (!(event.target.value >= valueGreen[0] - 2) && event.target.value > 0) {
-      setRedValues(tempVal);
+  //Changes Values Using User Input
+  const validateRedInput = (event) => {
+    if (
+      event.target.value > 0 &&
+      event.target.value < parseFloat(valueYellow[1] - 1)
+    ) {
+      const yelloTempVal = [parseFloat(event.target.value) + 1, valueYellow[1]];
       setYellowValues(yelloTempVal);
+      setSeverityRange("");
+      setSeverityMessageRange("");
+    } else {
+      setRedValues([0, parseFloat(valueYellow[0] - 1)]);
+      setSeverityRange("error");
+      setSeverityMessageRange("Overlap Value");
     }
   };
 
-  useEffect(
-    () => {
-      updateRanges([valueRed, valueYellow, valueGreen]);
-    },
-    [valueGreen, valueRed, valueYellow],
-    UserService.getToken()
-  );
+  useEffect(() => {
+    updateRanges([valueRed, valueYellow, valueGreen]);
+  }, [valueGreen, valueRed, valueYellow]);
 
   return (
     <>
@@ -162,21 +206,21 @@ const RangeSlider = () => {
           Save Ranges
         </Button>
       </div>
+      <Alert severity={severityRange}>
+        <span>{severityMessageRange}</span>
+      </Alert>
       <div className="sliderone">
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={2}>
             <Input
               value={valueGreen[0]}
               onChange={handleChangeGreenInput}
-              margin="dense"
-              //onBlur={handleBlur}
+              onBlur={validateGreenInput}
               inputProps={{
-                //readOnly: true,
-                step: 1,
+                step: 0,
                 min: 0,
                 max: 100,
                 type: "number",
-                "aria-labelledby": "input-slider",
               }}
             />
           </Grid>
@@ -184,23 +228,18 @@ const RangeSlider = () => {
             <Slider
               value={valueGreen}
               onChange={handleChangeGreen}
-              valueLabelDisplay="auto"
               aria-labelledby="range-slider"
-              getAriaValueText={valuetext}
-              disableSwap
             />
           </Grid>
           <Grid item xs={2}>
             <Input
               value={100}
-              margin="dense"
+              readOnly={true}
               inputProps={{
-                readOnly: true,
                 step: 1,
                 min: 0,
                 max: 100,
                 type: "number",
-                "aria-labelledby": "input-slider",
               }}
             />
           </Grid>
@@ -213,7 +252,7 @@ const RangeSlider = () => {
               value={valueYellow[0]}
               margin="dense"
               onChange={handleChangeYellowInput}
-              //onBlur={handleBlur}
+              onBlur={validateYellowLeftInput}
               inputProps={{
                 step: 0,
                 min: 0,
@@ -237,6 +276,7 @@ const RangeSlider = () => {
               value={valueYellow[1]}
               margin="dense"
               onChange={handleChangeYellowInput}
+              onBlur={validateYellowRightInput}
               inputProps={{
                 //readOnly: true,
                 step: 1,
@@ -278,6 +318,7 @@ const RangeSlider = () => {
             <Input
               value={valueRed[1]}
               onChange={handleChangeRedInput}
+              onBlur={validateRedInput}
               margin="dense"
               inputProps={{
                 step: 1,
