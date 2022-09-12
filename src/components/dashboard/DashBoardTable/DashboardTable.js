@@ -7,15 +7,23 @@ import { columns } from "./tableColumns";
 import { RangesContext } from "../../../contexts/ranges";
 import { RatesContext } from "../../../contexts/rates";
 import UserService from "../../services/UserService";
-const DashboardTable = (ratings, years) => {
+import { CompanyUser } from "../../model/CompanyUser";
+const DashboardTable = (ratings) => {
   //Data Fetch
   const [data, setData] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
   const { ranges, updateRanges } = useContext(RangesContext);
   const { prefixIds, updatePrefixIds } = useContext(RatesContext);
 
+  const companyUser = new CompanyUser(
+    UserService.getName(),
+    UserService.getEmail(),
+    UserService.getCompany()
+  );
+
   const fetchData = (expr) => {
     const lexpr = expr.toLowerCase();
+
     getAll(ratings.getRatings, ratings.years, UserService.getToken()).then(
       (response) =>
         setData(
