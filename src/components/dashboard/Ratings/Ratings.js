@@ -88,6 +88,7 @@ const Ratings = ({
 
   const validateInput = (params) => {
     sumTotal = 0;
+    console.log(params);
     if (params.value <= 100 && params.value >= 0 && !isNaN(params.value)) {
       rates.forEach((eachRating) => {
         sumTotal = Number(sumTotal) + Number(eachRating.weight);
