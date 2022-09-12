@@ -28,6 +28,8 @@ export const getCentralIdp = () => {
 
 export const getClientId = () => "Cl2-CX-Portal";
 
+export const getCountryRiskClientId = () => "Cl16-CX-CRisk";
+
 //TODO: remove hard coded url and activate after setup of BPDM Api
 export const getBpdmApiBase = () => {
   const hostname = getHostname();
@@ -64,6 +66,7 @@ const EnvironmentService = {
   getClientId,
   getClientIdSemantic,
   getClientIdDigitalTwin,
+  getCountryRiskClientId,
 };
 
 export default EnvironmentService;

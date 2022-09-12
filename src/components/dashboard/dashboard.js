@@ -1,28 +1,31 @@
 /* eslint-disable no-console */
-import React, { useState } from "react";
-import { Button } from "cx-portal-shared-components";
+import React, { useState, useContext, useEffect } from "react";
 import "./styles.scss";
-import DashboardTable from "./DashboardTable";
-import DatePicker from "./DatePicker";
-import RangeSlider from "./RangeSlider";
-import Ratings from "./Ratings";
-import UploadDownloadZone from "./UploadDownloadZone";
-import { getAll } from "../services/dashboard-api";
-import LeftMap from "./LeftMap";
+import { sendValues } from "../services/ranges-api";
+import { RangesContext } from "../../contexts/ranges";
+import LeftMap from "./LeftMap/LeftMap";
+import FakeLeftMap from "./LeftMap/FakeLeftMap";
+import DashboardTable from "./DashBoardTable/DashboardTable";
+import DatePicker from "./DatePicker/DatePicker";
+import Ratings from "./Ratings/Ratings";
+import UploadDownloadZone from "./UploadDownloadZone/UploadDownloadZone";
+import RangeSlider from "./RangeSlider/RangeSlider";
 
 const Dashboard = () => {
+  const { ranges, updateRanges } = useContext(RangesContext);
+
   const [ratings, setRatings] = useState("");
 
-  const [expandMap, setExpandMap] = useState(false);
+  const [weight, setTotalWeight] = useState("");
 
   const [years, setYears] = useState("");
 
-  const openDialog = () => {
-    setExpandMap(!expandMap);
-  };
-
   const passValuesFromComponent = (rates) => {
     setRatings(rates);
+  };
+
+  const passAutomaticWeightChange = (weight) => {
+    setTotalWeight(weight);
   };
 
   const passYearSelected = (yearSelected) => {
@@ -32,43 +35,39 @@ const Dashboard = () => {
   return (
     <div className="wrapper">
       <div className="main-content">
-        <div className="maps">
-          <LeftMap getRatings={ratings} years={years}></LeftMap>
-          <img alt="mapping" className="right-map" src="right_map.PNG"></img>
+        <div className="maps-content ">
+          <div className="left-map">
+            <LeftMap
+              getRatings={ratings}
+              years={years}
+              weight={weight}
+            ></LeftMap>
+          </div>
+          <div className="right-map">
+            <FakeLeftMap></FakeLeftMap>
+          </div>
         </div>
-
-        <DashboardTable getRatings={ratings} years={years}></DashboardTable>
+        <div className="table-content">
+          <DashboardTable
+            getRatings={ratings}
+            years={years}
+            weight={weight}
+          ></DashboardTable>
+        </div>
       </div>
       <div className="right-content">
-        <div className="right-upper-content">
-          <div className="right-data-picker-content">
-            <DatePicker
-              className="DateForm"
-              passYearSelected={passYearSelected}
-            ></DatePicker>
-          </div>
-          <div className="divider"></div>
-          <div className="right-upper-right-content">
-            <Button title="RefreshButton" onClick={() => getAll(ratings)}>
-              Refresh
-            </Button>
-          </div>
-        </div>
-        <div>
+        <div className="right-top-content">
+          <DatePicker passYearSelected={passYearSelected}></DatePicker>
           <Ratings
             passValuesFromComponent={passValuesFromComponent}
+            passAutomaticWeightChange={passAutomaticWeightChange}
             years={years}
           ></Ratings>
         </div>
-        <div className="right-middle-bottom-content">
+        <div className="right-middle-content">
           <UploadDownloadZone></UploadDownloadZone>
         </div>
         <div className="right-bottom-content">
-          <div className="slider-header">
-            <Button className="SaveRange" size="small">
-              Save Ranges
-            </Button>
-          </div>
           <RangeSlider></RangeSlider>
         </div>
       </div>

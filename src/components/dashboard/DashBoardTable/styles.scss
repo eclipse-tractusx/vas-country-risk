@@ -1,0 +1,18 @@
+.table {
+  border-radius: 0 !important;
+  font-size: 12px !important;
+  .maxColor {
+    background-color: green;
+  }
+
+  .minColor {
+    background-color: red;
+  }
+  .between {
+    background-color: yellow;
+  }
+  .nullColor {
+    background-color: #f5f4f6;
+    color: #f5f4f6;
+  }
+}

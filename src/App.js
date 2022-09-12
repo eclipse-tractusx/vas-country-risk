@@ -3,14 +3,18 @@ import "./App.scss";
 import { RatesProvider } from "./contexts/rates";
 import { PageHeader } from "cx-portal-shared-components";
 import { Footer } from "./components/dashboard/Footer";
+import { RangesProvider } from "./contexts/ranges";
 
 function App() {
   return (
     <>
       <RatesProvider>
-        <PageHeader title="Dashboard" headerHeight={200}></PageHeader>
-        <Dashboard />
+        <RangesProvider>
+          <PageHeader title="Dashboard" headerHeight={200}></PageHeader>
+          <Dashboard />
+        </RangesProvider>
       </RatesProvider>
+
       <div>
         <Footer />
       </div>

@@ -2,7 +2,7 @@
 import axios from "axios";
 
 // Actions
-export function getAll(ratingsArray, years) {
+export function getAll(ratingsArray, years, token) {
   const ratings = new Map();
 
   if (ratingsArray) {
@@ -17,12 +17,13 @@ export function getAll(ratingsArray, years) {
         name: "fabio",
         company: "test",
       },
+      headers: { Authorization: `Bearer ${token}` },
     })
     .then((res) => res.data)
     .catch((err) => err);
 }
 
-export function getWorldMapInfo(ratingsArray, years) {
+export function getWorldMapInfo(ratingsArray, years, token) {
   const ratings = new Map();
 
   if (ratingsArray) {
@@ -37,6 +38,7 @@ export function getWorldMapInfo(ratingsArray, years) {
         name: "fabio",
         company: "test",
       },
+      headers: { Authorization: `Bearer ${token}` },
     })
     .then((res) => res.data)
     .catch((err) => err);

@@ -2,11 +2,11 @@
 import axios from "axios";
 
 // Actions
-export function getRatingsByYear(Year) {
+export function getRatingsByYear(Year, token) {
   var yearAPI;
 
-  if (Year === undefined) {
-    yearAPI = 2021;
+  if (Year === "") {
+    yearAPI = new Date().getFullYear();
   } else {
     yearAPI = Year;
   }
@@ -16,6 +16,7 @@ export function getRatingsByYear(Year) {
       params: {
         year: yearAPI,
       },
+      headers: { Authorization: `Bearer ${token}` },
     })
     .then((res) => res.data)
     .catch((err) => err);
