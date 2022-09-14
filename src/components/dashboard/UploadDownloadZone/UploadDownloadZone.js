@@ -43,7 +43,10 @@ const UploadDownloadZone = () => {
     accept: "text/csv",
     getUploadParams: () => ({
       url: process.env.REACT_APP_UPLOAD_FILE,
-      headers: { ratingName: openRatingName || "defaultName" },
+      headers: {
+        ratingName: openRatingName || "defaultName",
+        Authorization: `Bearer ${UserService.getToken()}`,
+      },
     }),
     onChangeStatus: ({ meta }, status) => {
       if (status === "headers_received") {
@@ -57,6 +60,10 @@ const UploadDownloadZone = () => {
         console.log(status);
         setSeverity("error");
         setSeverityMessage("Your file cannot be processed");
+      } else {
+        console.log("error");
+        console.log(meta);
+        console.log(status);
       }
     },
     errorStatus: [
