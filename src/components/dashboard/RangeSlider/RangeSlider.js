@@ -20,15 +20,16 @@ const RangeSlider = () => {
   const {companyUser, updateCompanyUser} = useContext(CompanyUserContext);
 
   const saveRanges = () => {
-    sendValues(ranges);
+    sendValues(ranges, companyUser);
   };
+
 
   const [minValue, setMin] = useState(37);
   const [betweenValue, setMid] = useState(60);
   const [maxValue, setMax] = useState(100);
 
   useEffect(() => {
-    getAllRanges(UserService.getToken()).then((response) => {
+    getAllRanges(UserService.getToken(), companyUser).then((response) => {
       if (Array.isArray(response)) {
         response.forEach((eachArray) => {
           if (eachArray.range === "Min") {

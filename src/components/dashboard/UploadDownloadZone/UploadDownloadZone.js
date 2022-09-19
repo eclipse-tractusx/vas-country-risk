@@ -1,10 +1,11 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { useState, useEffect, Component, useContext } from "react";
 import "./styles.scss";
 import { Button, Dropzone, Input, Alert } from "cx-portal-shared-components";
 import Dialog from "@mui/material/Dialog";
 import Box from "@mui/material/Box";
 import UserService from "../../services/UserService";
 import { downloadSampleCsvFile } from "../../services/files-api";
+import { CompanyUserContext } from "../../../contexts/companyuser";
 
 const UploadDownloadZone = () => {
   //Upload Button Handlers
@@ -14,6 +15,7 @@ const UploadDownloadZone = () => {
   const [alertOpen, setAlertOpen] = useState(false);
   const [severity, setSeverity] = useState("");
   const [severityMessage, setSeverityMessage] = useState("");
+  const { companyUser, updateCompanyUser} = useContext(CompanyUserContext);
 
   //Rating Button Handlers
   const [openRatingName, setOpenRatingName] = useState("");
@@ -43,6 +45,12 @@ const UploadDownloadZone = () => {
     accept: "text/csv",
     getUploadParams: () => ({
       url: process.env.REACT_APP_UPLOAD_FILE,
+      params: {
+        name: companyUser[0],
+        company: companyUser[2],
+        email: companyUser[1],
+        id: 1
+      },
       headers: {
         ratingName: openRatingName || "defaultName",
         Authorization: `Bearer ${UserService.getToken()}`,

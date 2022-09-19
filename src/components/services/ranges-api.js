@@ -3,16 +3,22 @@ import axios from "axios";
 import { Range } from "../model/Range";
 
 // Actions
-export function getAllRanges(token) {
+export function getAllRanges(token, companyUser) {
   return axios
     .get(process.env.REACT_APP_GET_RANGES, {
+      params: {
+        name: companyUser[0],
+        company: companyUser[2],
+        email: companyUser[1],
+        id: 1
+      },
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((res) => res.data)
     .catch((err) => err);
 }
 
-export function sendValues(rangesList, token) {
+export function sendValues(rangesList, companyUser, token) {
   const rangeDTOS = [];
   rangesList.forEach((element) => {
     let range = "";
@@ -31,8 +37,10 @@ export function sendValues(rangesList, token) {
     url: process.env.REACT_APP_SAVE_RANGES,
     data: rangeDTOS,
     params: {
-      name: "fabio",
-      company: "test",
+      name: companyUser[0],
+      company: companyUser[2],
+      email: companyUser[1],
+      id: 1
     },
 
     headers: { Authorization: `Bearer ${token}` },

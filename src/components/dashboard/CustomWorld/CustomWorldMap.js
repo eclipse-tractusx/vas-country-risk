@@ -12,6 +12,7 @@ import {
 } from "react-simple-maps";
 import { RangesContext } from "../../../contexts/ranges";
 import UserService from "../../services/UserService";
+import { CompanyUserContext } from "../../../contexts/companyuser";
 
 const CustomWorldMap = (ratings) => {
   const [data, setData] = useState([]);
@@ -23,12 +24,15 @@ const CustomWorldMap = (ratings) => {
   const geoUrl =
     "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
 
+  const { companyUser, updateCompanyUser} = useContext(CompanyUserContext);
+
   useEffect(() => {
     if (ratings.weight !== 0) {
       getWorldMapInfo(
         ratings.getRatings,
         ratings.years,
-        UserService.getToken()
+        UserService.getToken(),
+        companyUser
       ).then((response) => {
         setData(response);
       });

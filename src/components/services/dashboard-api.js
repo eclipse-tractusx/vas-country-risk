@@ -9,9 +9,6 @@ export function getAll(ratingsArray, years, token, companyUser) {
     ratings.set("ratings", JSON.stringify(ratingsArray));
   }
 
-  const valor = companyUser[0];
-  console.log(companyUser[0]); 
-
   return axios
     .get(process.env.REACT_APP_DASHBOARD_URL, {
       params: {
@@ -27,7 +24,7 @@ export function getAll(ratingsArray, years, token, companyUser) {
     .catch((err) => err);
 }
 
-export function getWorldMapInfo(ratingsArray, years, token) {
+export function getWorldMapInfo(ratingsArray, years, token, companyUser) {
   const ratings = new Map();
 
   if (ratingsArray) {
@@ -39,8 +36,9 @@ export function getWorldMapInfo(ratingsArray, years, token) {
       params: {
         ratings: ratings.get("ratings"),
         year: years,
-        name: "fabio",
-        company: "test",
+        name: companyUser[0],
+        company: companyUser[2],
+        email: companyUser[1]
       },
       headers: { Authorization: `Bearer ${token}` },
     })

@@ -22,10 +22,6 @@ const DashboardTable = (ratings, years) => {
     [UserService.getName(), UserService.getEmail(), UserService.getCompany()]
   );
 
-  console.log(companyUser); 
-  const teste = Object.assign({}, companyUser);
-  console.log(teste);
-
   const fetchData = (expr) => {
     const lexpr = expr.toLowerCase();
     getAll(ratings.getRatings, ratings.years, UserService.getToken(), companyUser).then(
