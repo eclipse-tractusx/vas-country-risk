@@ -6,6 +6,7 @@ import "./styles.scss";
 import { columns } from "./tableColumns";
 import { RangesContext } from "../../../contexts/ranges";
 import { RatesContext } from "../../../contexts/rates";
+import { CompanyUserContext } from "../../../contexts/companyuser";
 import UserService from "../../services/UserService";
 const DashboardTable = (ratings, years) => {
   //Data Fetch
@@ -13,10 +14,21 @@ const DashboardTable = (ratings, years) => {
   const [selectedRows, setSelectedRows] = useState([]);
   const { ranges, updateRanges } = useContext(RangesContext);
   const { prefixIds, updatePrefixIds } = useContext(RatesContext);
+  const { companyUser, updateCompanyUser} = useContext(CompanyUserContext);
+  
+  useEffect(() => {
+      updateCompanyUser([UserService.getName(), UserService.getEmail(), UserService.getCompany()]);
+    },
+    [UserService.getName(), UserService.getEmail(), UserService.getCompany()]
+  );
+
+  console.log(companyUser); 
+  const teste = Object.assign({}, companyUser);
+  console.log(teste);
 
   const fetchData = (expr) => {
     const lexpr = expr.toLowerCase();
-    getAll(ratings.getRatings, ratings.years, UserService.getToken()).then(
+    getAll(ratings.getRatings, ratings.years, UserService.getToken(), companyUser).then(
       (response) =>
         setData(
           response.filter((row) => {
@@ -54,7 +66,7 @@ const DashboardTable = (ratings, years) => {
 
   useEffect(() => {
     if (ratings.weight !== 0) {
-      getAll(ratings.getRatings, ratings.years, UserService.getToken()).then(
+      getAll(ratings.getRatings, ratings.years, UserService.getToken(), companyUser).then(
         (response) => {
           setData(response);
         }
