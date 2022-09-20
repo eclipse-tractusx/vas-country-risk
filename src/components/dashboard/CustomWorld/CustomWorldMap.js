@@ -36,10 +36,7 @@ const CustomWorldMap = (ratings) => {
   }, [ratings.getRatings, ratings.years, ratings.weight]);
 
   const cordinates = (position, dragging, event) => {
-    console.log(position);
     setKZoom(position.k);
-    console.log(dragging);
-    console.log(event);
   };
 
   const markers = [

@@ -37,3 +37,9 @@ a
 1src/components/dashboard/Ratings/ratingColumns.js,c\e\ce5463b21e923f23d31ef0ba1e80fa075fd143d3
 \
 ,src/components/dashboard/Ratings/styles.scss,4\d\4de8d3bfe1c9d5b916a3562a19e3ab2a3f10325f
+V
+&src/components/services/UserService.js,4\3\43b64a74751ee9053b0052baa95dab17ca3aba2b
+]
+-src/components/services/EnvironmentService.js,e\7\e7596a41f73f1b6663bf8e7cede0e08716cd2c4c
+[
++src/components/dashboard/Ratings/Ratings.js,c\3\c3b8ecc9e6282a9703c70b8202e4a722075673f9
