@@ -4,7 +4,7 @@ import "./styles.scss";
 import { sendValues } from "../services/ranges-api";
 import { RangesContext } from "../../contexts/ranges";
 import LeftMap from "./LeftMap/LeftMap";
-import FakeLeftMap from "./LeftMap/FakeLeftMap";
+import FakeLeftMap from "./RightMap/RightMap";
 import DashboardTable from "./DashBoardTable/DashboardTable";
 import DatePicker from "./DatePicker/DatePicker";
 import Ratings from "./Ratings/Ratings";

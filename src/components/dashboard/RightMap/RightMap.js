@@ -8,8 +8,9 @@ import { Box } from "@mui/material";
 import { toPng } from "html-to-image";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import CloseIcon from "@mui/icons-material/Close";
+import CountryPicker from "./CountryPicker/CountryPicker"
 
-const FakeLeftMap = (ratings) => {
+const RightMap = (ratings) => {
   const [expandMap, setExpandMap] = useState(false);
 
   const openDialog = () => {
@@ -41,7 +42,8 @@ const FakeLeftMap = (ratings) => {
           <div className="expand-box-div">
             <Box className="expand-mui-box">
               <div className="buttons">
-                <h2>World Map</h2>
+                <h2>Company View</h2>
+                <CountryPicker></CountryPicker>
                 <Button size="small" onClick={printMap}>
                   Export Image
                 </Button>
@@ -81,6 +83,7 @@ const FakeLeftMap = (ratings) => {
       </div>
       <div className="left-map-container">
         <Box className="box-country-picker"></Box>
+        <h2>Company View</h2>
         <IconButton
           className="expand-button"
           color="primary"
@@ -103,4 +106,4 @@ const FakeLeftMap = (ratings) => {
   );
 };
 
-export default FakeLeftMap;
+export default RightMap;
