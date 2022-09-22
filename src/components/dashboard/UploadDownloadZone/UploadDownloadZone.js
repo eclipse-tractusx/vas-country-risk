@@ -15,7 +15,7 @@ const UploadDownloadZone = () => {
   const [alertOpen, setAlertOpen] = useState(false);
   const [severity, setSeverity] = useState("");
   const [severityMessage, setSeverityMessage] = useState("");
-  const { companyUser, updateCompanyUser} = useContext(CompanyUserContext);
+  const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
 
   //Rating Button Handlers
   const [openRatingName, setOpenRatingName] = useState("");
@@ -45,11 +45,11 @@ const UploadDownloadZone = () => {
     accept: "text/csv",
     getUploadParams: () => ({
       url: process.env.REACT_APP_UPLOAD_FILE,
-      params: {
-        name: companyUser[0],
-        company: companyUser[2],
-        email: companyUser[1],
-        id: 1
+
+      fields: {
+        name: companyUser.name,
+        email: companyUser.email,
+        company: companyUser.company,
       },
       headers: {
         ratingName: openRatingName || "defaultName",

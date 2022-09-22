@@ -2,16 +2,15 @@
 import axios from "axios";
 
 // Actions
-export function uploadCsvFile(formData, token, companyUser) {
+export function uploadCsvFile(formData, token, customerUser) {
   return axios({
     method: "post",
     url: "http://localhost:8080/api/dashboard/uploadCsv",
     data: formData,
     params: {
-      name: companyUser[0],
-      company: companyUser[2],
-      email: companyUser[1],
-      id: 1
+      name: customerUser.name,
+      email: customerUser.email,
+      company: customerUser.company,
     },
     headers: {
       "Content-Type": `multipart/form-data`,

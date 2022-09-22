@@ -24,7 +24,7 @@ const CustomWorldMap = (ratings) => {
   const geoUrl =
     "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
 
-  const { companyUser, updateCompanyUser} = useContext(CompanyUserContext);
+  const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
 
   useEffect(() => {
     if (ratings.weight !== 0) {

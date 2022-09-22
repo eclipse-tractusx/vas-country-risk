@@ -13,8 +13,8 @@ function App() {
       <RatesProvider>
         <RangesProvider>
           <CompanyUserProvider>
-          <PageHeader title="Dashboard" headerHeight={200}></PageHeader>
-          <Dashboard />
+            <PageHeader title="Dashboard" headerHeight={200}></PageHeader>
+            <Dashboard />
           </CompanyUserProvider>
         </RangesProvider>
       </RatesProvider>
