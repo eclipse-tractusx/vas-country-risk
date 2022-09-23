@@ -1,11 +1,4 @@
-import React, {
-  useState,
-  useContext,
-  useEffect,
-  useCallback,
-  useRef,
-  useMemo,
-} from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./styles.scss";
 import Dialog from "@mui/material/Dialog";
 import { Table, Alert } from "cx-portal-shared-components";
@@ -13,12 +6,14 @@ import { RatesContext } from "../../../contexts/rates";
 import { getRatingsByYear } from "../../services/ratingstable-api";
 import { columns } from "./ratingColumns";
 import UserService from "../../services/UserService";
+import { CompanyUserContext } from "../../../contexts/companyuser";
 
 const Ratings = ({
   passAutomaticWeightChange,
   passValuesFromComponent,
   years,
 }) => {
+  const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
   const [automatic, setAutomatic] = useState(true);
 
   //Upload Button Handlers
@@ -47,14 +42,14 @@ const Ratings = ({
   };
 
   const fetchData = () => {
-    getRatingsByYear("", UserService.getToken()).then((response) =>
+    getRatingsByYear("", UserService.getToken(), companyUser).then((response) =>
       setTableRatings(response)
     );
   };
 
   useEffect(() => {
-    getRatingsByYear(years, UserService.getToken()).then((response) =>
-      setTableRatings(response)
+    getRatingsByYear(years, UserService.getToken(), companyUser).then(
+      (response) => setTableRatings(response)
     );
   }, [years]);
 
