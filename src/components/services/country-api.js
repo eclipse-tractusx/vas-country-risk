@@ -18,5 +18,5 @@ export function getCountrys(token, customerUser) {
       }
     )
     .then((res) => res.data)
-    .catch((err) => err);
+    .catch((err) => []);
 }
