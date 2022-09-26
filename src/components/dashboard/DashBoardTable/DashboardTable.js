@@ -7,6 +7,8 @@ import { columns } from "./tableColumns";
 import { RangesContext } from "../../../contexts/ranges";
 import { RatesContext } from "../../../contexts/rates";
 import UserService from "../../services/UserService";
+import { CompanyUserContext } from "../../../contexts/companyuser";
+
 const DashboardTable = (ratings, years) => {
   //Data Fetch
   const [data, setData] = useState([]);

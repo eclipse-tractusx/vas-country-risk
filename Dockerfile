@@ -4,6 +4,10 @@ COPY . .
 
 ENV PATH="./node_modules/.bin:$PATH"
 
+RUN npm install react-dom --legacy-peer-deps
+
+RUN npm install react-tooltip --legacy-peer-deps
+
 RUN npm install keycloak-js --legacy-peer-deps
 
 RUN npm install @mui/icons-material --legacy-peer-deps

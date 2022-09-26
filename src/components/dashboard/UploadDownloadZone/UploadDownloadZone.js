@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { useState, useContext } from "react";
 import "./styles.scss";
 import { Button, Dropzone, Input, Alert } from "cx-portal-shared-components";
 import Dialog from "@mui/material/Dialog";
