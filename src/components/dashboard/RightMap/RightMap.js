@@ -9,6 +9,7 @@ import { toPng } from "html-to-image";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import CloseIcon from "@mui/icons-material/Close";
 import CountryPicker from "./CountryPicker/CountryPicker"
+import CustomCompanyMap from "../CustomCompanyMap/CustomCompanyMap";
 
 const RightMap = (ratings) => {
   const [expandMap, setExpandMap] = useState(false);
@@ -60,18 +61,13 @@ const RightMap = (ratings) => {
               </div>
               <div className="map-and-progressbar" id="idCustomWorldMap">
                 <div className="expand-custom-world-map">
-                  <CustomWorldMap
+                  <CustomCompanyMap
                     getRatings={ratings.getRatings}
-                    years={ratings.years}
-                    // minMapWidth={500}
-                    // maxMapWidth={1100}
-                    // minMapHeight={500}
-                    // maxMapHeight={1000}
                     minMapWidth={0}
                     maxMapWidth={800}
                     minMapHeight={0}
                     maxMapHeight={600}
-                  ></CustomWorldMap>
+                  ></CustomCompanyMap>
                 </div>
                 <div className="progress-bar" style={{ width: "250px" }}>
                   <ProgressBar className="bar" valuePercentage={100} />
@@ -84,6 +80,7 @@ const RightMap = (ratings) => {
       <div className="left-map-container">
         <Box className="box-country-picker"></Box>
         <h2>Company View</h2>
+        <CountryPicker></CountryPicker>
         <IconButton
           className="expand-button"
           color="primary"
@@ -94,14 +91,13 @@ const RightMap = (ratings) => {
           <OpenWithIcon></OpenWithIcon>
         </IconButton>
       </div>
-      <CustomWorldMap
+      <CustomCompanyMap
         getRatings={ratings.getRatings}
-        years={ratings.years}
         minMapWidth={0}
         maxMapWidth={800}
         minMapHeight={0}
         maxMapHeight={600}
-      ></CustomWorldMap>
+      ></CustomCompanyMap>
     </>
   );
 };

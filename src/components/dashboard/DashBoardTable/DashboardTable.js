@@ -6,13 +6,16 @@ import "./styles.scss";
 import { columns } from "./tableColumns";
 import { RangesContext } from "../../../contexts/ranges";
 import { RatesContext } from "../../../contexts/rates";
+import { CountryContext } from "../../../contexts/country";
 import UserService from "../../services/UserService";
+
 const DashboardTable = (ratings, years) => {
   //Data Fetch
   const [data, setData] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
   const { ranges, updateRanges } = useContext(RangesContext);
   const { prefixIds, updatePrefixIds } = useContext(RatesContext);
+  const { countryS, updateCountry } = useContext(CountryContext);
 
   const fetchData = (expr) => {
     const lexpr = expr.toLowerCase();
@@ -53,14 +56,30 @@ const DashboardTable = (ratings, years) => {
   };
 
   useEffect(() => {
-    if (ratings.weight !== 0) {
+    if (countryS !== "none" ) {
+      getAll(ratings.getRatings, ratings.years, UserService.getToken()).then(
+        (response) => {
+          const array = [];
+          for (let i = 0; i < response.length; i++) {
+            if(response[i].country == countryS.country){
+              array.push(response[i]);
+            }
+          }
+          setData(array);
+        }
+      );
+    }
+  }, [countryS.country, ratings.getRatings, ratings.years, ratings.weight]);
+
+  useEffect(() => {
+    if (ratings.weight !== 0 && countryS == "none") {
       getAll(ratings.getRatings, ratings.years, UserService.getToken()).then(
         (response) => {
           setData(response);
         }
       );
     }
-  }, [ratings.getRatings, ratings.years, ratings.weight]);
+  }, [countryS.country, ratings.getRatings, ratings.years, ratings.weight]);
 
   return (
     <>

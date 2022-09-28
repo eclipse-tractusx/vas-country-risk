@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./styles.scss";
 import Box from "@mui/material/Box";
 import { TextField } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
 import { getCountryByUser } from "../../../services/countries-api";
 import UserService from "../../../services/UserService";
+import { CountryContext } from "../../../../contexts/country";
 
 const CountryPicker = () => {
 
   const [Countries, setCountries] = useState();
-  const [country, setcountry] = useState("");
+
+  const { countryS, updateCountry } = useContext(CountryContext);
 
   useEffect(() => {
     getCountryByUser(UserService.getToken()).then((response) => {
@@ -18,8 +20,11 @@ const CountryPicker = () => {
   }, []);
 
   const handleChange = (event, newValue) => {
-    setcountry(newValue.country);
-    console.log(newValue.country)
+    if(newValue == null){
+      updateCountry("none")
+    } else {
+      updateCountry(newValue)
+    }
   };
 
   return (
@@ -53,6 +58,8 @@ const CountryPicker = () => {
         />
       )}
     />
+
+
     </Box>
   );
 };
