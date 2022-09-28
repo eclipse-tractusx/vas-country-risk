@@ -5,6 +5,7 @@ import { PageHeader } from "cx-portal-shared-components";
 import { Footer } from "./components/dashboard/Footer";
 import { RangesProvider } from "./contexts/ranges";
 import { CountryProvider } from "./contexts/country";
+import { CompanyUserProvider } from "./contexts/companyuser";
 
 function App() {
   return (
@@ -12,8 +13,10 @@ function App() {
       <RatesProvider>
         <RangesProvider>
           <CountryProvider>
-          <PageHeader title="Dashboard" headerHeight={200}></PageHeader>
-          <Dashboard />
+            <CompanyUserProvider>
+            <PageHeader title="Dashboard" headerHeight={200}></PageHeader>
+            <Dashboard />
+            </CompanyUserProvider>
           </CountryProvider>
         </RangesProvider>
       </RatesProvider>

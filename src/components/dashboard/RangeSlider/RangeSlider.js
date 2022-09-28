@@ -8,7 +8,7 @@ import { getAllRanges } from "../../services/ranges-api";
 import { RangesContext } from "../../../contexts/ranges";
 import { Alert, Button } from "cx-portal-shared-components";
 import { sendValues } from "../../services/ranges-api";
-
+import { CompanyUserContext } from "../../../contexts/companyuser";
 function valuetext(valueGreen) {
   return `${valueGreen}`;
 }
@@ -17,17 +17,19 @@ const RangeSlider = () => {
   const { ranges, updateRanges } = useContext(RangesContext);
   const [severityRange, setSeverityRange] = useState("");
   const [severityMessageRange, setSeverityMessageRange] = useState("");
+  const {companyUser, updateCompanyUser} = useContext(CompanyUserContext);
 
   const saveRanges = () => {
-    sendValues(ranges);
+    sendValues(ranges, companyUser);
   };
+
 
   const [minValue, setMin] = useState(37);
   const [betweenValue, setMid] = useState(60);
   const [maxValue, setMax] = useState(100);
 
   useEffect(() => {
-    getAllRanges(UserService.getToken()).then((response) => {
+    getAllRanges(UserService.getToken(), companyUser).then((response) => {
       if (Array.isArray(response)) {
         response.forEach((eachArray) => {
           if (eachArray.range === "Min") {
@@ -221,6 +223,7 @@ const RangeSlider = () => {
                 min: 0,
                 max: 100,
                 type: "number",
+                "aria-labelledby": "input-slider",
               }}
             />
           </Grid>
@@ -228,7 +231,10 @@ const RangeSlider = () => {
             <Slider
               value={valueGreen}
               onChange={handleChangeGreen}
+              valueLabelDisplay="auto"
               aria-labelledby="range-slider"
+              getAriaValueText={valuetext}
+              disableSwap
             />
           </Grid>
           <Grid item xs={2}>
@@ -236,10 +242,12 @@ const RangeSlider = () => {
               value={100}
               readOnly={true}
               inputProps={{
+                readOnly: true,
                 step: 1,
                 min: 0,
                 max: 100,
                 type: "number",
+                "aria-labelledby": "input-slider",
               }}
             />
           </Grid>

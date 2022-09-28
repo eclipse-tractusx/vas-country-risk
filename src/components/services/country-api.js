@@ -2,10 +2,9 @@
 import axios from "axios";
 
 // Actions
-
-export function getAllDates(token, customerUser) {
+export function getCountrys(token, customerUser) {
   return axios
-    .get(process.env.REACT_APP_DATEFORM_URL, {
+    .get(process.env.REACT_APP_GET_COUNTRYS, {
       params: {
         name: customerUser.name,
         email: customerUser.email,
@@ -14,5 +13,5 @@ export function getAllDates(token, customerUser) {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((res) => res.data)
-    .catch((err) => err);
+    .catch((err) => []);
 }

@@ -8,6 +8,7 @@ import { RangesContext } from "../../../contexts/ranges";
 import { RatesContext } from "../../../contexts/rates";
 import { CountryContext } from "../../../contexts/country";
 import UserService from "../../services/UserService";
+import { CompanyUserContext } from "../../../contexts/companyuser";
 
 const DashboardTable = (ratings, years) => {
   //Data Fetch
@@ -16,20 +17,23 @@ const DashboardTable = (ratings, years) => {
   const { ranges, updateRanges } = useContext(RangesContext);
   const { prefixIds, updatePrefixIds } = useContext(RatesContext);
   const { countryS, updateCountry } = useContext(CountryContext);
+  const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
 
   const fetchData = (expr) => {
     const lexpr = expr.toLowerCase();
-    getAll(ratings.getRatings, ratings.years, UserService.getToken()).then(
-      (response) =>
-        setData(
-          response.filter((row) => {
-            return Object.keys(row).reduce((acc, value) => {
-              return acc
-                ? acc
-                : String(row[value]).toLowerCase().includes(lexpr);
-            }, false);
-          })
-        )
+    getAll(
+      ratings.getRatings,
+      ratings.years,
+      UserService.getToken(),
+      companyUser
+    ).then((response) =>
+      setData(
+        response.filter((row) => {
+          return Object.keys(row).reduce((acc, value) => {
+            return acc ? acc : String(row[value]).toLowerCase().includes(lexpr);
+          }, false);
+        })
+      )
     );
   };
 
@@ -57,8 +61,12 @@ const DashboardTable = (ratings, years) => {
 
   useEffect(() => {
     if (countryS !== "none" ) {
-      getAll(ratings.getRatings, ratings.years, UserService.getToken()).then(
-        (response) => {
+            getAll(
+               ratings.getRatings,
+               ratings.years,
+               UserService.getToken(),
+               companyUser
+            ).then((response) => {
           const array = [];
           for (let i = 0; i < response.length; i++) {
             if(response[i].country == countryS.country){
@@ -73,7 +81,12 @@ const DashboardTable = (ratings, years) => {
 
   useEffect(() => {
     if (ratings.weight !== 0 && countryS == "none") {
-      getAll(ratings.getRatings, ratings.years, UserService.getToken()).then(
+      getAll(
+         ratings.getRatings,
+         ratings.years,
+         UserService.getToken(),
+         companyUser
+      ).then(
         (response) => {
           setData(response);
         }
