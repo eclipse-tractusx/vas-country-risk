@@ -6,6 +6,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import { getCountryByUser } from "../../../services/countries-api";
 import UserService from "../../../services/UserService";
 import { CountryContext } from "../../../../contexts/country";
+import { CompanyUserContext } from "../../../../contexts/companyuser";
 
 const CountryPicker = () => {
 
@@ -13,11 +14,23 @@ const CountryPicker = () => {
 
   const { countryS, updateCountry } = useContext(CountryContext);
 
+  const [def, setDef] = useState(null);
+
+  const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
+
   useEffect(() => {
-    getCountryByUser(UserService.getToken()).then((response) => {
+    getCountryByUser(UserService.getToken(), companyUser).then((response) => {
       setCountries(response);
     });
   }, []);
+
+  useEffect(() => {
+    if(countryS == "none"){
+      setDef(null);
+    } else {
+      setDef(countryS);
+    }
+  }, [countryS]);
 
   const handleChange = (event, newValue) => {
     if(newValue == null){
@@ -35,6 +48,7 @@ const CountryPicker = () => {
       onChange={handleChange}
       options={Countries}
       autoHighlight
+      value={def}
       getOptionLabel={(option) => option.country}
       renderOption={(props, option) => (
         <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
@@ -51,10 +65,7 @@ const CountryPicker = () => {
         <TextField
           {...params}
           label="Choose a country"
-          inputProps={{
-            ...params.inputProps,
-            autoComplete: 'new-pass', 
-          }}
+
         />
       )}
     />

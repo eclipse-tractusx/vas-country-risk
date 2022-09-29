@@ -60,21 +60,21 @@ const DashboardTable = (ratings, years) => {
   };
 
   useEffect(() => {
-    if (countryS !== "none" ) {
-            getAll(
-               ratings.getRatings,
-               ratings.years,
-               UserService.getToken(),
-               companyUser
-            ).then((response) => {
-          const array = [];
-          for (let i = 0; i < response.length; i++) {
-            if(response[i].country == countryS.country){
-              array.push(response[i]);
-            }
+    if (countryS !== "none") {
+      getAll(
+        ratings.getRatings,
+        ratings.years,
+        UserService.getToken(),
+        companyUser
+      ).then((response) => {
+        const array = [];
+        for (let i = 0; i < response.length; i++) {
+          if (response[i].country == countryS.country) {
+            array.push(response[i]);
           }
-          setData(array);
         }
+        setData(array);
+      }
       );
     }
   }, [countryS.country, ratings.getRatings, ratings.years, ratings.weight]);
@@ -82,10 +82,10 @@ const DashboardTable = (ratings, years) => {
   useEffect(() => {
     if (ratings.weight !== 0 && countryS == "none") {
       getAll(
-         ratings.getRatings,
-         ratings.years,
-         UserService.getToken(),
-         companyUser
+        ratings.getRatings,
+        ratings.years,
+        UserService.getToken(),
+        companyUser
       ).then(
         (response) => {
           setData(response);
