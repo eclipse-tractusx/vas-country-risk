@@ -35,6 +35,8 @@ const CustomCompanyMap = (ratings) => {
   const [content, setContent] = useState("");
   const [countryMarkers, setCountryMarkers] = useState([]);
 
+  const [markercontent, setMarkercontent] = useState("");
+
   let latCenter = 0;
   let longCenter = 0;
 
@@ -76,7 +78,7 @@ const CustomCompanyMap = (ratings) => {
 
   //Gets all Coords
   useEffect(() => {
-    if (countryS.country != "none" ) {
+    if (countryS.country != "none") {
       getAll(ratings.getRatings,
         ratings.years,
         UserService.getToken(),
@@ -127,7 +129,7 @@ const CustomCompanyMap = (ratings) => {
               geographies.map((geo) => {
                 let geoMap = new Map();
                 if (countryS.country === geo.properties.name) {
-                  geoMap.set("color", "green");
+                  geoMap.set("color", "#82e362");
                   geoMap.set(geo, geo);
                 }
                 return (
@@ -170,12 +172,23 @@ const CustomCompanyMap = (ratings) => {
 
           {coordsBP.map((marker) => {
             if (kZoom >= 3 && kZoom <= 20) {
-              console.log(marker.longitude)
+              console.log(marker)
               return (
-                  <Marker 
-                  coordinates={[marker.longitude, marker.latitude]}>
-                  <circle r={2} fill="#F53" />
-                  </Marker>
+                <Marker
+                  coordinates={[marker.longitude, marker.latitude]}
+                  onMouseEnter={() => {
+                    setMarkercontent(<div>
+                      <div>Legal Name: {marker.legalName}</div>
+                      <div>Address: {marker.address}</div>
+                      <div>City: {marker.city}</div>
+                    </div>
+                    );
+                  }}
+                  onMouseLeave={() => {
+                    setMarkercontent("");
+                  }}>
+                  <circle r={1} cx={2} cy={2} fill="#0c00ad"/>
+                </Marker>
               );
             }
           })}
@@ -201,6 +214,7 @@ const CustomCompanyMap = (ratings) => {
 
         </ZoomableGroup>
       </ComposableMap>
+      <ReactTooltip>{markercontent}</ReactTooltip>
       <ReactTooltip>{content}</ReactTooltip>
     </>
   );
