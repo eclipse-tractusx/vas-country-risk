@@ -1,18 +1,29 @@
-.table {
-  border-radius: 0 !important;
-  font-size: 12px !important;
-  .maxColor {
-    background-color: green;
-  }
+.dashboard-table-style {
+  height: inherit !important;
+  display: flex;
+  .table {
+    height: 100% !important;
+    display: flex;
+    width: 100%;
+    border: 1px solid #000;
+    border-radius: 0;
+    font-size: 12px;
+    border-radius: 0 !important;
+    font-size: 12px !important;
+    height: 100% !important;
+    .maxColor {
+      background-color: green;
+    }
 
-  .minColor {
-    background-color: red;
-  }
-  .between {
-    background-color: yellow;
-  }
-  .nullColor {
-    background-color: #f5f4f6;
-    color: #f5f4f6;
+    .minColor {
+      background-color: red;
+    }
+    .between {
+      background-color: yellow;
+    }
+    .nullColor {
+      background-color: #f5f4f6;
+      color: #f5f4f6;
+    }
   }
 }
