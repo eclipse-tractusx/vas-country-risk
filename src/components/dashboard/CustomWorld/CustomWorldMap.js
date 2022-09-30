@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 
-import React, { useState, useEffect, useContext } from "react";
-
+import { useState, useEffect, useContext } from "react";
+import ReactTooltip from "react-tooltip";
 import { getWorldMapInfo } from "../../services/dashboard-api";
 import {
   ComposableMap,
@@ -12,10 +12,13 @@ import {
 } from "react-simple-maps";
 import { RangesContext } from "../../../contexts/ranges";
 import UserService from "../../services/UserService";
+import { CompanyUserContext } from "../../../contexts/companyuser";
+import { getCountrys } from "../../services/country-api";
 
 const CustomWorldMap = (ratings) => {
   const [data, setData] = useState([]);
-
+  const [countryMarkers, setCountryMarkers] = useState([]);
+  const [content, setContent] = useState("");
   const [kZoom, setKZoom] = useState(1);
 
   const { ranges, updateRanges } = useContext(RangesContext);
@@ -23,83 +26,136 @@ const CustomWorldMap = (ratings) => {
   const geoUrl =
     "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
 
+  const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
+
   useEffect(() => {
     if (ratings.weight !== 0) {
       getWorldMapInfo(
         ratings.getRatings,
         ratings.years,
-        UserService.getToken()
+        UserService.getToken(),
+        companyUser
       ).then((response) => {
         setData(response);
       });
     }
   }, [ratings.getRatings, ratings.years, ratings.weight]);
 
-  return (
-    <ComposableMap>
-      <ZoomableGroup
-        zoom={1}
-        translateExtent={[
-          [parseFloat(-ratings.minMapWidth), parseFloat(-ratings.minMapHeight)],
-          [ratings.maxMapWidth, ratings.maxMapHeight],
-        ]}
-      >
-        <Geographies geography={geoUrl}>
-          {({ geographies }) =>
-            geographies.map((geo) => {
-              let geoMap = new Map();
+  useEffect(() => {
+    getCountrys(UserService.getToken(), companyUser).then((response) => {
+      setCountryMarkers(response);
+    });
+  }, []);
 
-              if (Array.isArray(data)) {
-                data.forEach((s) => {
-                  if (s.country === geo.properties.name) {
-                    if (s.score >= ranges[2][0]) {
-                      geoMap.set("color", "green");
-                      geoMap.set(geo, geo);
-                    } else if (
-                      s.score >= ranges[1][0] &&
-                      s.score < ranges[2][0]
-                    ) {
-                      geoMap.set("color", "yellow");
-                      geoMap.set(geo, geo);
-                    } else if (s.score < ranges[1][0] && s.score > 0) {
-                      geoMap.set(geo, geo);
-                      geoMap.set("color", "red");
-                    } else if (s.score <= 0) {
-                      geoMap.set(geo, geo);
-                      geoMap.set("color", "#F5F4F6");
+  const cordinates = (position, dragging, event) => {
+    setKZoom(position.k);
+  };
+
+  const handlePopoverClose = () => {
+    setContent("");
+  };
+
+  return (
+    <>
+      <ComposableMap data-tip="">
+        <ZoomableGroup
+          onMove={cordinates}
+          zoom={1}
+          maxZoom={50}
+          translateExtent={[
+            [
+              parseFloat(-ratings.minMapWidth),
+              parseFloat(-ratings.minMapHeight),
+            ],
+            [ratings.maxMapWidth, ratings.maxMapHeight],
+          ]}
+        >
+          <Geographies geography={geoUrl}>
+            {({ geographies }) =>
+              geographies.map((geo) => {
+                let geoMap = new Map();
+
+                if (Array.isArray(data)) {
+                  data.forEach((s) => {
+                    if (s.country === geo.properties.name) {
+                      if (s.score >= ranges[2][0]) {
+                        geoMap.set("color", "green");
+                        geoMap.set(geo, geo);
+                      } else if (
+                        s.score >= ranges[1][0] &&
+                        s.score < ranges[2][0]
+                      ) {
+                        geoMap.set("color", "yellow");
+                        geoMap.set(geo, geo);
+                      } else if (s.score < ranges[1][0] && s.score > 0) {
+                        geoMap.set(geo, geo);
+                        geoMap.set("color", "red");
+                      } else if (s.score <= 0) {
+                        geoMap.set(geo, geo);
+                        geoMap.set("color", "#F5F4F6");
+                      }
                     }
-                  }
-                });
-              }
+                  });
+                }
+                return (
+                  <Geography
+                    key={geoMap.size > 0 ? geoMap.get(geo).rsmKey : geo.rsmKey}
+                    geography={geoMap.size > 0 ? geoMap.get(geo) : geo}
+                    fill={geoMap.size > 0 ? geoMap.get("color") : "#F5F4F6"}
+                    onMouseEnter={() => {
+                      countryMarkers.forEach((s) => {
+                        if (s.country === geo.properties.name) {
+                          setContent(s.country + " " + s.totalBpn);
+                        }
+                      });
+                    }}
+                    onMouseLeave={handlePopoverClose}
+                    style={{
+                      default: {
+                        stroke: "#607D8B",
+                        strokeWidth: 0.75,
+                        outline: "none",
+                      },
+                      hover: {
+                        stroke: "#607D8B",
+                        strokeWidth: 1,
+                        outline: "none",
+                        fill: "#F53",
+                      },
+                      pressed: {
+                        stroke: "#607D8B",
+                        strokeWidth: 1,
+                        outline: "none",
+                      },
+                    }}
+                  />
+                );
+              })
+            }
+          </Geographies>
+
+          {countryMarkers.map((marker) => {
+            if (kZoom >= 3 && kZoom <= 20) {
               return (
-                <Geography
-                  key={geoMap.size > 0 ? geoMap.get(geo).rsmKey : geo.rsmKey}
-                  geography={geoMap.size > 0 ? geoMap.get(geo) : geo}
-                  fill={geoMap.size > 0 ? geoMap.get("color") : "#F5F4F6"}
-                  style={{
-                    default: {
-                      stroke: "#607D8B",
-                      strokeWidth: 0.75,
-                      outline: "none",
-                    },
-                    hover: {
-                      stroke: "#607D8B",
-                      strokeWidth: 1,
-                      outline: "none",
-                    },
-                    pressed: {
-                      stroke: "#607D8B",
-                      strokeWidth: 1,
-                      outline: "none",
-                    },
-                  }}
-                />
+                <Marker
+                  key={marker.iso3}
+                  coordinates={[marker.longitude, marker.latitude]}
+                >
+                  <text
+                    textAnchor=""
+                    fill="#000"
+                    fontSize={kZoom >= 10 ? 1 : 2}
+                  >
+                    {marker.iso2}
+                  </text>
+                </Marker>
               );
-            })
-          }
-        </Geographies>
-      </ZoomableGroup>
-    </ComposableMap>
+            }
+          })}
+        </ZoomableGroup>
+      </ComposableMap>
+      <ReactTooltip>{content}</ReactTooltip>
+    </>
   );
 };
 

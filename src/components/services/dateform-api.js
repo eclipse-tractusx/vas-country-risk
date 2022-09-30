@@ -3,9 +3,14 @@ import axios from "axios";
 
 // Actions
 
-export function getAllDates(token) {
+export function getAllDates(token, customerUser) {
   return axios
     .get(process.env.REACT_APP_DATEFORM_URL, {
+      params: {
+        name: customerUser.name,
+        email: customerUser.email,
+        company: customerUser.company,
+      },
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((res) => res.data)

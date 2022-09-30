@@ -2,7 +2,7 @@
 import axios from "axios";
 
 // Actions
-export function getRatingsByYear(Year, token) {
+export function getRatingsByYear(Year, token, customerUser) {
   var yearAPI;
 
   if (Year === "") {
@@ -15,7 +15,11 @@ export function getRatingsByYear(Year, token) {
     .get(process.env.REACT_APP_DASHBOARD_URL_RATINGSTABLE, {
       params: {
         year: yearAPI,
+        name: customerUser.name,
+        email: customerUser.email,
+        company: customerUser.company,
       },
+      data: customerUser,
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((res) => res.data)

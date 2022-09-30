@@ -1,10 +1,11 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { useState, useContext } from "react";
 import "./styles.scss";
 import { Button, Dropzone, Input, Alert } from "cx-portal-shared-components";
 import Dialog from "@mui/material/Dialog";
 import Box from "@mui/material/Box";
 import UserService from "../../services/UserService";
 import { downloadSampleCsvFile } from "../../services/files-api";
+import { CompanyUserContext } from "../../../contexts/companyuser";
 
 const UploadDownloadZone = () => {
   //Upload Button Handlers
@@ -14,6 +15,7 @@ const UploadDownloadZone = () => {
   const [alertOpen, setAlertOpen] = useState(false);
   const [severity, setSeverity] = useState("");
   const [severityMessage, setSeverityMessage] = useState("");
+  const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
 
   //Rating Button Handlers
   const [openRatingName, setOpenRatingName] = useState("");
@@ -43,7 +45,16 @@ const UploadDownloadZone = () => {
     accept: "text/csv",
     getUploadParams: () => ({
       url: process.env.REACT_APP_UPLOAD_FILE,
-      headers: { ratingName: openRatingName || "defaultName" },
+
+      fields: {
+        name: companyUser.name,
+        email: companyUser.email,
+        company: companyUser.company,
+      },
+      headers: {
+        ratingName: openRatingName || "defaultName",
+        Authorization: `Bearer ${UserService.getToken()}`,
+      },
     }),
     onChangeStatus: ({ meta }, status) => {
       if (status === "headers_received") {
@@ -57,6 +68,10 @@ const UploadDownloadZone = () => {
         console.log(status);
         setSeverity("error");
         setSeverityMessage("Your file cannot be processed");
+      } else {
+        console.log("error");
+        console.log(meta);
+        console.log(status);
       }
     },
     errorStatus: [
