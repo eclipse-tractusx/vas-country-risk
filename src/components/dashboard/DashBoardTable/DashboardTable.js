@@ -96,29 +96,31 @@ const DashboardTable = (ratings, years) => {
 
   return (
     <>
-      <Table
-        className="table"
-        columns={columns(ranges)}
-        rowsCount={data.length}
-        rows={data}
-        pageSize={15}
-        rowHeight={50}
-        headerHeight={40}
-        autoHeight={false}
-        checkboxSelection
-        getRowClassName={(params) => `${params.row.status}`}
-        onSelectionModelChange={(ids) => {
-          const selectedIds = new Set(ids);
-          const selectedRows = data.filter((row) => selectedIds.has(row.id));
-          setSelectedRows(selectedRows);
-        }}
-        toolbar={{
-          buttonLabel: "Export to csv",
-          onButtonClick: exportCsv,
-          onSearch: fetchData,
-          title: "Number of Filtered Business Partners:",
-        }}
-      ></Table>
+      <div className="dashboard-table-style">
+        <Table
+          className="table"
+          columns={columns(ranges)}
+          rowsCount={data.length}
+          rows={data}
+          pageSize={15}
+          rowHeight={50}
+          headerHeight={40}
+          autoHeight={true}
+          checkboxSelection
+          getRowClassName={(params) => `${params.row.status}`}
+          onSelectionModelChange={(ids) => {
+            const selectedIds = new Set(ids);
+            const selectedRows = data.filter((row) => selectedIds.has(row.id));
+            setSelectedRows(selectedRows);
+          }}
+          toolbar={{
+            buttonLabel: "Export to csv",
+            onButtonClick: exportCsv,
+            onSearch: fetchData,
+            title: "Number of Filtered Business Partners:",
+          }}
+        ></Table>
+      </div>
     </>
   );
 };
