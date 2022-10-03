@@ -18,23 +18,30 @@ import {
 const CustomCompanyMap = (ratings) => {
   const [data, setData] = useState([]);
 
+  //Zoom in and out const
   const [kZoom, setKZoom] = useState(1);
 
   //Constant for Country Zoom Coordinates
-  const [coordsZoom, setCoordsZoom] = useState([]);
+  const [coordsZoom, setCoordsZoom] = useState([0,0]);
 
+  //Business Partners Coords
   const [coordsBP, setCoordsBP] = useState([]);
 
   //Constant for Zoom variation
   const [zoomVar, setZoomVar] = useState(1);
 
+  //Selected country
   const { countryS, updateCountry } = useContext(CountryContext);
 
   const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
 
+  //Content for the ISO Marker
   const [content, setContent] = useState("");
+
+  //Marker for the ISO code
   const [countryMarkers, setCountryMarkers] = useState([]);
 
+  //Content for the BP markers
   const [markercontent, setMarkercontent] = useState("");
 
   let latCenter = 0;
@@ -43,14 +50,9 @@ const CustomCompanyMap = (ratings) => {
   const geoUrl =
     "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
 
-  /* for (let i = 0; i < coords.length; i++) {
-     <Marker coordinates={coords[i]}>
-     <circle r={2} fill="#F53" />
-     </Marker>
-   }*/
 
+  //Method for getting the name of current selected country
   const handleClick = geo => () => {
-    console.log(geo);
     getCountryByUser(UserService.getToken(), companyUser).then(
       (response) => {
         for (let i = 0; i < response.length; i++) {
@@ -67,11 +69,11 @@ const CustomCompanyMap = (ratings) => {
     if (countryS != "none") {
       latCenter = countryS.longitude;
       longCenter = countryS.latitude;
-      setCoordsZoom([latCenter, longCenter])
+      setCoordsZoom([countryS.longitude, countryS.latitude])
       setZoomVar(5);
     }
     else {
-      setCoordsZoom([0, 0])
+      setCoordsZoom([0,0])
       setZoomVar(1);
     }
   }, [countryS]);
@@ -104,6 +106,7 @@ const CustomCompanyMap = (ratings) => {
     setContent("");
   };
 
+  //Call to get all country coords
   useEffect(() => {
     getCountrys(UserService.getToken(), companyUser).then((response) => {
       setCountryMarkers(response);
@@ -113,7 +116,6 @@ const CustomCompanyMap = (ratings) => {
   return (
     <>
       <ComposableMap data-tip="">
-        console.log(latCenter)
         <ZoomableGroup
           onMove={coordinates}
           center={coordsZoom}
@@ -172,7 +174,6 @@ const CustomCompanyMap = (ratings) => {
 
           {coordsBP.map((marker) => {
             if (kZoom >= 3 && kZoom <= 20) {
-              console.log(marker)
               return (
                 <Marker
                   coordinates={[marker.longitude, marker.latitude]}

@@ -1,12 +1,10 @@
 
 import React, { createContext, useState } from "react";
-import { Country } from "../../components/model/Country";
 
 const CountryContext = createContext({});
 
 const CountryProvider = ({ children, updatedCountry }) => {
-  const [countryS, setCountry] = useState("none" || []
-  );
+  const [countryS, setCountry] = useState("none");
 
   const updateCountry = (country) => {
     setCountry(country);

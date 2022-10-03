@@ -10,28 +10,22 @@ import { CompanyUserContext } from "../../../../contexts/companyuser";
 
 const CountryPicker = () => {
 
+  //Const with Countries relative to the user and BP
   const [Countries, setCountries] = useState();
 
+  //Context to save the current selected country
   const { countryS, updateCountry } = useContext(CountryContext);
-
-  const [def, setDef] = useState(null);
 
   const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
 
+  //Call to get all the Countries relative to a User and BP
   useEffect(() => {
     getCountryByUser(UserService.getToken(), companyUser).then((response) => {
       setCountries(response);
     });
   }, []);
 
-  useEffect(() => {
-    if(countryS == "none"){
-      setDef(null);
-    } else {
-      setDef(countryS);
-    }
-  }, [countryS]);
-
+  //Handler to get current selected value on Autocomplete component
   const handleChange = (event, newValue) => {
     if(newValue == null){
       updateCountry("none")
@@ -41,15 +35,16 @@ const CountryPicker = () => {
   };
 
   return (
-    <Box sx={{ minWidth: 150 }}>
+    <Box sx={{ minWidth: 350, padding: "10px", marginRight: "2px" }}> 
       <Autocomplete
       fullWidth variant="filled"
       sx={{ width: 300 }}
       onChange={handleChange}
-      options={Countries}
+      options={Countries || []}
       autoHighlight
-      value={def}
-      getOptionLabel={(option) => option.country}
+      freeSolo={true}
+      value={countryS || []}
+      getOptionLabel={(option) => option.country || "Select a country"}
       renderOption={(props, option) => (
         <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
           <img

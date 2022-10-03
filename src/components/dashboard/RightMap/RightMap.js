@@ -8,7 +8,7 @@ import { Box } from "@mui/material";
 import { toPng } from "html-to-image";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import CloseIcon from "@mui/icons-material/Close";
-import CountryPicker from "./CountryPicker/CountryPicker"
+import CountryPicker from "../CountryPicker/CountryPicker"
 import CustomCompanyMap from "../CustomCompanyMap/CustomCompanyMap";
 
 const RightMap = (ratings) => {
@@ -38,7 +38,7 @@ const RightMap = (ratings) => {
         <Dialog
           open={expandMap}
           onClose={openDialog}
-          className="left-dialog-expand-map"
+          className="right-dialog-expand-map"
         >
           <div className="expand-box-div">
             <Box className="expand-mui-box">
@@ -77,16 +77,16 @@ const RightMap = (ratings) => {
           </div>
         </Dialog>
       </div>
-      <div className="left-map-container">
-        <Box className="box-country-picker"></Box>
+      <div className="right-map-container">
         <h2>Company View</h2>
-        <CountryPicker></CountryPicker>
+        <CountryPicker className="country-picker"></CountryPicker>
         <IconButton
           className="expand-button"
           color="primary"
           onClick={openDialog}
           size="medium"
           variant="outlined"
+          sx={{ marginRight: "2px"}}
         >
           <OpenWithIcon></OpenWithIcon>
         </IconButton>
