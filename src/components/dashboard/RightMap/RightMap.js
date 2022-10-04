@@ -79,15 +79,14 @@ const RightMap = (ratings) => {
       </div>
       <div className="right-map-container">
         <h2>Company View</h2>
-        <CountryPicker className="country-picker"></CountryPicker>
+        <CountryPicker></CountryPicker>
         <IconButton
           className="expand-button"
           color="primary"
           onClick={openDialog}
           size="medium"
           variant="outlined"
-          sx={{ marginRight: "2px"}}
-        >
+          sx={{ marginRight: "2px" }}>
           <OpenWithIcon></OpenWithIcon>
         </IconButton>
       </div>

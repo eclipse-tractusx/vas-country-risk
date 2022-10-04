@@ -3,10 +3,10 @@ import "./styles.scss";
 import Box from "@mui/material/Box";
 import { TextField } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
-import { getCountryByUser } from "../../../services/countries-api";
-import UserService from "../../../services/UserService";
-import { CountryContext } from "../../../../contexts/country";
-import { CompanyUserContext } from "../../../../contexts/companyuser";
+import { getCountryByUser } from "../../services/countries-api";
+import UserService from "../../services/UserService";
+import { CountryContext } from "../../../contexts/country";
+import { CompanyUserContext } from "../../../contexts/companyuser";
 
 const CountryPicker = () => {
 
@@ -35,10 +35,8 @@ const CountryPicker = () => {
   };
 
   return (
-    <Box sx={{ minWidth: 350, padding: "10px", marginRight: "2px" }}> 
-      <Autocomplete
-      fullWidth variant="filled"
-      sx={{ width: 300 }}
+      <Autocomplete style={{ width: "50%", padding: 20 }}
+      fullWidth="false" variant="filled"
       onChange={handleChange}
       options={Countries || []}
       autoHighlight
@@ -63,10 +61,7 @@ const CountryPicker = () => {
 
         />
       )}
-    />
-
-
-    </Box>
+    /> 
   );
 };
 
