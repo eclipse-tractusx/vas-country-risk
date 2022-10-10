@@ -35,8 +35,9 @@ const CountryPicker = () => {
   };
 
   return (
-      <Autocomplete style={{ width: "50%", padding: 20 }}
-      fullWidth="false" variant="filled"
+      <Autocomplete style={{ width: "45%", padding: 20, maxWidth: 300}}
+      fullWidth="false" variant="filled"  
+      size="small"
       onChange={handleChange}
       options={Countries || []}
       autoHighlight
@@ -44,7 +45,7 @@ const CountryPicker = () => {
       value={countryS || []}
       getOptionLabel={(option) => option.country || "Select a country"}
       renderOption={(props, option) => (
-        <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+        <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 }, fontSize: 13 }} {...props}>
           <img
             loading="lazy"
             width="20"

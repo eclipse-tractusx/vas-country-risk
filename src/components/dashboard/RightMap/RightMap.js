@@ -2,11 +2,9 @@
 import React, { useState } from "react";
 import { Dialog, IconButton, Button } from "cx-portal-shared-components";
 import "./styles.scss";
-import CustomWorldMap from "../CustomWorld/CustomWorldMap";
 import OpenWithIcon from "@mui/icons-material/OpenWith";
 import { Box } from "@mui/material";
 import { toPng } from "html-to-image";
-import ProgressBar from "../ProgressBar/ProgressBar";
 import CloseIcon from "@mui/icons-material/Close";
 import CountryPicker from "../CountryPicker/CountryPicker"
 import CustomCompanyMap from "../CustomCompanyMap/CustomCompanyMap";
@@ -19,13 +17,13 @@ const RightMap = (ratings) => {
   };
 
   const printMap = () => {
-    const link = document.getElementById("idCustomWorldMap");
+    const link = document.getElementById("idCustomCompanyView");
     toPng(link)
       .then((res) => {
         const img = new Image();
         img.src = res;
         var link = document.createElement("a");
-        link.download = "worldMap.png";
+        link.download = "BussinessPartnerMap.png";
         link.href = res;
         link.click();
       })
@@ -48,7 +46,6 @@ const RightMap = (ratings) => {
                 <Button size="small" onClick={printMap}>
                   Export Image
                 </Button>
-
                 <IconButton
                   className="close-button"
                   color="primary"
@@ -59,7 +56,7 @@ const RightMap = (ratings) => {
                   <CloseIcon></CloseIcon>
                 </IconButton>
               </div>
-              <div className="map-and-progressbar" id="idCustomWorldMap">
+              <div className="map-and-progressbar" id="idCustomCompanyView">
                 <div className="expand-custom-world-map">
                   <CustomCompanyMap
                     getRatings={ratings.getRatings}
@@ -68,9 +65,6 @@ const RightMap = (ratings) => {
                     minMapHeight={0}
                     maxMapHeight={600}
                   ></CustomCompanyMap>
-                </div>
-                <div className="progress-bar" style={{ width: "250px" }}>
-                  <ProgressBar className="bar" valuePercentage={100} />
                 </div>
               </div>
             </Box>
