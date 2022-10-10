@@ -87,13 +87,15 @@ const CustomCompanyMap = (ratings) => {
     }
   }, [countryS.country]);
 
-  //Gets all Coords once started and saves
+
   useEffect(() => {
+    //Call to get all countries relative to the user
     getCountryByUser(UserService.getToken(), companyUser).then(
       (response) => {
         setallCountries(response);
       },
     );
+    //Gets all Coords once started and saves
     getAll(ratings.getRatings,
       ratings.years,
       UserService.getToken(),
@@ -101,8 +103,12 @@ const CustomCompanyMap = (ratings) => {
         (response) => {
           setallCoords(response);
         }
-      )
-      console.log("teste");
+      );
+      //Call to get all country coords
+    getCountrys(UserService.getToken(), companyUser).then((response) => {
+      setCountryMarkers(response);
+    }
+    );
   }, []);
 
   const coordinates = (position, dragging, event) => {
@@ -112,13 +118,6 @@ const CustomCompanyMap = (ratings) => {
   const handlePopoverClose = () => {
     setContent("");
   };
-
-  //Call to get all country coords
-  useEffect(() => {
-    getCountrys(UserService.getToken(), companyUser).then((response) => {
-      setCountryMarkers(response);
-    });
-  }, []);
 
   return (
     <>
@@ -137,7 +136,7 @@ const CustomCompanyMap = (ratings) => {
             {({ geographies }) =>
               geographies.map((geo) => {
                 let geoMap = new Map();
-                if (countryS.country === geo.properties.name) {
+                if (countryS.iso2 === geo.properties['Alpha-2']) {
                   geoMap.set("color", "#82e362");
                   geoMap.set(geo, geo);
                 }
