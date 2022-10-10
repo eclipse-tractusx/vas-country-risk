@@ -13,6 +13,8 @@ import { CompanyUserContext } from "../../../contexts/companyuser";
 const DashboardTable = (ratings, years) => {
   //Data Fetch
   const [data, setData] = useState([]);
+  const [globalData, setGlobalData] = useState([]);
+
   const [selectedRows, setSelectedRows] = useState([]);
   const { ranges, updateRanges } = useContext(RangesContext);
   const { prefixIds, updatePrefixIds } = useContext(RatesContext);
@@ -61,26 +63,21 @@ const DashboardTable = (ratings, years) => {
 
   useEffect(() => {
     if (countryS !== "none") {
-      getAll(
-        ratings.getRatings,
-        ratings.years,
-        UserService.getToken(),
-        companyUser
-      ).then((response) => {
         const array = [];
-        for (let i = 0; i < response.length; i++) {
-          if (response[i].country == countryS.country) {
-            array.push(response[i]);
+        globalData.forEach((gd) => {
+          if (gd.country == countryS.country) {
+            array.push(gd);
           }
-        }
+        });
         setData(array);
-      }
-      );
     }
-  }, [countryS.country, ratings.getRatings, ratings.years, ratings.weight]);
+    else if(countryS == "none"){
+      setData(globalData);
+    }
+  }, [countryS.country, globalData]);
 
   useEffect(() => {
-    if (ratings.weight !== 0 && countryS == "none") {
+    if (ratings.weight !== 0 ) {
       getAll(
         ratings.getRatings,
         ratings.years,
@@ -88,11 +85,11 @@ const DashboardTable = (ratings, years) => {
         companyUser
       ).then(
         (response) => {
-          setData(response);
+          setGlobalData(response);
         }
       );
     }
-  }, [countryS.country, ratings.getRatings, ratings.years, ratings.weight]);
+  }, [ratings.getRatings, ratings.years, ratings.weight]);
 
   return (
     <>
