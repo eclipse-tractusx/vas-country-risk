@@ -76,7 +76,6 @@ const CustomCompanyMap = (ratings) => {
     if (countryS.country !== "none") {
       let array = [];
       array = allCoords.filter((acc) => countryS.country === acc.country);
-
       setCoordsBP(array);
     }
   }, [countryS.country]);
@@ -170,7 +169,7 @@ const CustomCompanyMap = (ratings) => {
             }
           </Geographies>
 
-          {coordsBP.map((marker) => {
+          {coordsBP.forEach((marker) => {
             if (kZoom >= 3 && kZoom <= 20) {
               return (
                 <Marker
@@ -194,7 +193,7 @@ const CustomCompanyMap = (ratings) => {
             }
           })}
 
-          {countryMarkers.map((marker) => {
+          {countryMarkers.forEach((marker) => {
             if (kZoom >= 3 && kZoom <= 20) {
               return (
                 <Marker

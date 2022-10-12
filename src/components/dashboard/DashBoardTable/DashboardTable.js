@@ -63,31 +63,28 @@ const DashboardTable = (ratings, years) => {
 
   useEffect(() => {
     if (countryS !== "none") {
-        const array = [];
-        globalData.forEach((gd) => {
-          if (gd.country == countryS.country) {
-            array.push(gd);
-          }
-        });
-        setData(array);
-    }
-    else if(countryS == "none"){
+      const array = [];
+      globalData.forEach((gd) => {
+        if (gd.country === countryS.country) {
+          array.push(gd);
+        }
+      });
+      setData(array);
+    } else if (countryS === "none") {
       setData(globalData);
     }
   }, [countryS.country, globalData]);
 
   useEffect(() => {
-    if (ratings.weight !== 0 ) {
+    if (ratings.weight !== 0) {
       getAll(
         ratings.getRatings,
         ratings.years,
         UserService.getToken(),
         companyUser
-      ).then(
-        (response) => {
-          setGlobalData(response);
-        }
-      );
+      ).then((response) => {
+        setGlobalData(response);
+      });
     }
   }, [ratings.getRatings, ratings.years, ratings.weight]);
 
