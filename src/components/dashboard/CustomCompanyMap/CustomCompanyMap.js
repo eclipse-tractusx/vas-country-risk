@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import UserService from "../../services/UserService";
 import { getAll } from "../../services/dashboard-api";
-import { getCountryByUser } from "../../services/countries-api";
 import { CountryContext } from "../../../contexts/country";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { getCountryByUser, getCountrys } from "../../services/country-api";
@@ -174,7 +173,7 @@ const CustomCompanyMap = (ratings) => {
             }
           </Geographies>
 
-          {coordsBP.forEach((marker) => {
+          {coordsBP.map((marker) => {
             if (kZoom >= 3 && kZoom <= 20) {
               return (
                 <Marker
@@ -212,7 +211,7 @@ const CustomCompanyMap = (ratings) => {
             }
           })}
 
-          {countryMarkers.forEach((marker) => {
+          {countryMarkers.map((marker) => {
             if (kZoom >= 3 && kZoom <= 20) {
               return (
                 <Marker
