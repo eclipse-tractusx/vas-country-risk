@@ -62,7 +62,7 @@ const CustomCompanyMap = (ratings) => {
 
   //Zoom in on country selected
   useEffect(() => {
-    if (countryS != "none") {
+    if (countryS !== "none") {
       setCoordsZoom([countryS.longitude, countryS.latitude]);
       setZoomVar(5);
     } else {

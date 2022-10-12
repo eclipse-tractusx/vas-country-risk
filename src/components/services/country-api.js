@@ -13,7 +13,7 @@ export function getCountryByUser(token, customerUser) {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((res) => res.data)
-    .catch((err) => err);
+    .catch((err) => []);
 }
 
 // Get Country bt ISO2

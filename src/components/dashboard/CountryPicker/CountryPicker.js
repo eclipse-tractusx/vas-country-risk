@@ -10,7 +10,7 @@ import { CompanyUserContext } from "../../../contexts/companyuser";
 
 const CountryPicker = () => {
   //Const with Countries relative to the user and BP
-  const [Countries, setCountries] = useState();
+  const [Countries, setCountries] = useState("");
 
   //Context to save the current selected country
   const { countryS, updateCountry } = useContext(CountryContext);
@@ -20,7 +20,7 @@ const CountryPicker = () => {
   //Call to get all the Countries relative to a User and BP
   useEffect(() => {
     getCountryByUser(UserService.getToken(), companyUser).then((response) => {
-      setCountries(response | []);
+      setCountries(response);
     });
   }, []);
 
