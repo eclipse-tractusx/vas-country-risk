@@ -17,5 +17,5 @@ cd product-vas-country-risk-frontend
 
 To run with the APIs of the local backend part of the project, you need to change the APIs URLs on the .env file!
 
-Do the following command `mvn clean compile`.
+Do the following command `npm start`.
 This will run the application on the following URL: [http://localhost:3000](http://localhost:3000)
