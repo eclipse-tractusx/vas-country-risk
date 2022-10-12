@@ -3,10 +3,11 @@ import "./styles.scss";
 import Box from "@mui/material/Box";
 import { TextField } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
-import { getCountryByUser } from "../../services/countries-api";
+import { getCountryByUser } from "../../services/country-api";
 import UserService from "../../services/UserService";
 import { CountryContext } from "../../../contexts/country";
 import { CompanyUserContext } from "../../../contexts/companyuser";
+import { AxiosError } from "axios";
 
 const CountryPicker = () => {
 
@@ -21,13 +22,18 @@ const CountryPicker = () => {
   //Call to get all the Countries relative to a User and BP
   useEffect(() => {
     getCountryByUser(UserService.getToken(), companyUser).then((response) => {
+      if(response.name === "AxiosError"){
+        setCountries(null);
+      }
+      else{
       setCountries(response);
+      }
     });
   }, []);
 
   //Handler to get current selected value on Autocomplete component
   const handleChange = (event, newValue) => {
-    if(newValue == null){
+    if(newValue === null){
       updateCountry("none")
     } else {
       updateCountry(newValue)

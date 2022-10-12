@@ -15,7 +15,7 @@ import UserService from "../../services/UserService";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { getCountrys } from "../../services/country-api";
 import { getBpns } from "../../services/bpns-api";
-import ImageMarker from "./marker.png";
+import ImageMarker from "../../../resources/marker.png";
 
 const CustomWorldMap = (ratings) => {
   const [data, setData] = useState([]);

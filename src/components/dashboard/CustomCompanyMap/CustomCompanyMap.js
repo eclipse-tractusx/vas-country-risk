@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import UserService from "../../services/UserService";
 import { getAll } from "../../services/dashboard-api";
-import { getCountryByUser } from "../../services/countries-api";
 import { CountryContext } from "../../../contexts/country";
 import { CompanyUserContext } from "../../../contexts/companyuser";
-import { getCountrys } from "../../services/country-api";
+import { getCountryByUser, getCountrys } from "../../services/country-api";
 import ReactTooltip from "react-tooltip";
+import ImageMarker from "../../../resources/marker.png";
 
 import {
   ComposableMap,
@@ -56,7 +56,7 @@ const CustomCompanyMap = (ratings) => {
   //Method for getting the name of current selected country
   const handleClick = geo => () => {
     allCountries.forEach((ac) => {
-      if (geo['Alpha-2'] == ac.iso2) {
+      if (geo['Alpha-2'] === ac.iso2) {
         updateCountry(ac)
       }
     });
@@ -79,7 +79,7 @@ const CustomCompanyMap = (ratings) => {
     if (countryS.country != "none") {
       const array = [];
       allCoords.forEach((acc) => {
-        if (countryS.country == acc.country) {
+        if (countryS.country === acc.country) {
           array.push(acc);
         }
       });
@@ -194,7 +194,22 @@ const CustomCompanyMap = (ratings) => {
                   onMouseLeave={() => {
                     setMarkercontent("");
                   }}>
-                  <circle r={1} cx={2} cy={2} fill="#0c00ad" />
+                                    <g>
+                    <image
+                      href={ImageMarker}
+                      x="0"
+                      y="0"
+                      height="0.6%"
+                      width="0.6%"
+                    />
+                  </g>
+                  <text
+                    textAnchor=""
+                    fill="#000"
+                    fontSize={kZoom >= 10 ? 1 : 2}
+                  >
+                    {marker.iso2}
+                  </text>
                 </Marker>
               );
             }
