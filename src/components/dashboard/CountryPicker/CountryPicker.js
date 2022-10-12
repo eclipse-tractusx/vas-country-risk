@@ -7,7 +7,6 @@ import { getCountryByUser } from "../../services/country-api";
 import UserService from "../../services/UserService";
 import { CountryContext } from "../../../contexts/country";
 import { CompanyUserContext } from "../../../contexts/companyuser";
-import { AxiosError } from "axios";
 
 const CountryPicker = () => {
 
@@ -36,13 +35,15 @@ const CountryPicker = () => {
     if(newValue === null){
       updateCountry("none")
     } else {
-      updateCountry(newValue)
+      updateCountry(newValue);
     }
   };
 
   return (
-      <Autocomplete style={{ width: "45%", padding: 20, maxWidth: 300}}
-      fullWidth="false" variant="filled"  
+    <Autocomplete
+      style={{ width: "45%", padding: 20, maxWidth: 300 }}
+      fullWidth="false"
+      variant="filled"
       size="small"
       onChange={handleChange}
       options={Countries || []}
@@ -51,24 +52,24 @@ const CountryPicker = () => {
       value={countryS || []}
       getOptionLabel={(option) => option.country || "Select a country"}
       renderOption={(props, option) => (
-        <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 }, fontSize: 13 }} {...props}>
+        <Box
+          component="li"
+          sx={{ "& > img": { mr: 2, flexShrink: 0 }, fontSize: 13 }}
+          {...props}
+        >
           <img
             loading="lazy"
             width="20"
             src={`https://flagcdn.com/w20/${option.iso2.toLowerCase()}.png`}
             srcSet={`https://flagcdn.com/w40/${option.iso2.toLowerCase()}.png 2x`}
           />
-          {option.country} ({option.iso2}) 
+          {option.country} ({option.iso2})
         </Box>
       )}
       renderInput={(params) => (
-        <TextField
-          {...params}
-          label="Choose a country"
-
-        />
+        <TextField {...params} label="Choose a country" />
       )}
-    /> 
+    />
   );
 };
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import UserService from "../../services/UserService";
 import { getAll } from "../../services/dashboard-api";
+import { getCountryByUser } from "../../services/countries-api";
 import { CountryContext } from "../../../contexts/country";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { getCountryByUser, getCountrys } from "../../services/country-api";
@@ -54,7 +55,7 @@ const CustomCompanyMap = (ratings) => {
 
 
   //Method for getting the name of current selected country
-  const handleClick = geo => () => {
+  const handleClick = (geo) => () => {
     allCountries.forEach((ac) => {
       if (geo['Alpha-2'] === ac.iso2) {
         updateCountry(ac)
@@ -65,24 +66,19 @@ const CustomCompanyMap = (ratings) => {
   //Zoom in on country selected
   useEffect(() => {
     if (countryS != "none") {
-      setCoordsZoom([countryS.longitude, countryS.latitude])
+      setCoordsZoom([countryS.longitude, countryS.latitude]);
       setZoomVar(5);
-    }
-    else {
-      setCoordsZoom([0, 0])
+    } else {
+      setCoordsZoom([0, 0]);
       setZoomVar(1);
     }
   }, [countryS]);
 
   //Gets all Coords for selected country
   useEffect(() => {
-    if (countryS.country != "none") {
-      const array = [];
-      allCoords.forEach((acc) => {
-        if (countryS.country === acc.country) {
-          array.push(acc);
-        }
-      });
+    if (countryS.country !== "none") {
+      let array = [];
+      array = allCoords.filter((acc) => countryS.country === acc.country);
       setCoordsBP(array);
     }
   }, [countryS.country]);
@@ -90,25 +86,22 @@ const CustomCompanyMap = (ratings) => {
 
   useEffect(() => {
     //Call to get all countries relative to the user
-    getCountryByUser(UserService.getToken(), companyUser).then(
-      (response) => {
-        setallCountries(response);
-      },
-    );
+    getCountryByUser(UserService.getToken(), companyUser).then((response) => {
+      setallCountries(response);
+    });
     //Gets all Coords once started and saves
-    getAll(ratings.getRatings,
+    getAll(
+      ratings.getRatings,
       ratings.years,
       UserService.getToken(),
-      companyUser).then(
-        (response) => {
-          setallCoords(response);
-        }
-      );
-      //Call to get all country coords
+      companyUser
+    ).then((response) => {
+      setallCoords(response);
+    });
+    //Call to get all country coords
     getCountrys(UserService.getToken(), companyUser).then((response) => {
       setCountryMarkers(response);
-    }
-    );
+    });
   }, []);
 
   const coordinates = (position, dragging, event) => {
@@ -127,7 +120,10 @@ const CustomCompanyMap = (ratings) => {
           center={coordsZoom}
           zoom={zoomVar}
           translateExtent={[
-            [parseFloat(-ratings.minMapWidth), parseFloat(-ratings.minMapHeight)],
+            [
+              parseFloat(-ratings.minMapWidth),
+              parseFloat(-ratings.minMapHeight),
+            ],
             [ratings.maxMapWidth, ratings.maxMapHeight],
           ]}
         >
@@ -136,7 +132,7 @@ const CustomCompanyMap = (ratings) => {
             {({ geographies }) =>
               geographies.map((geo) => {
                 let geoMap = new Map();
-                if (countryS.iso2 === geo.properties['Alpha-2']) {
+                if (countryS.iso2 === geo.properties["Alpha-2"]) {
                   geoMap.set("color", "#82e362");
                   geoMap.set(geo, geo);
                 }
@@ -148,7 +144,7 @@ const CustomCompanyMap = (ratings) => {
                     fill={geoMap.size > 0 ? geoMap.get("color") : "#F5F4F6"}
                     onMouseEnter={() => {
                       countryMarkers.forEach((s) => {
-                        if (s.iso2 === geo.properties['Alpha-2']) {
+                        if (s.iso2 === geo.properties["Alpha-2"]) {
                           setContent(s.country + " " + s.totalBpn);
                         }
                       });
@@ -178,17 +174,18 @@ const CustomCompanyMap = (ratings) => {
             }
           </Geographies>
 
-          {coordsBP.map((marker) => {
+          {coordsBP.forEach((marker) => {
             if (kZoom >= 3 && kZoom <= 20) {
               return (
                 <Marker
                   coordinates={[marker.longitude, marker.latitude]}
                   onMouseEnter={() => {
-                    setMarkercontent(<div>
-                      <div>Legal Name: {marker.legalName}</div>
-                      <div>Address: {marker.address}</div>
-                      <div>City: {marker.city}</div>
-                    </div>
+                    setMarkercontent(
+                      <div>
+                        <div>Legal Name: {marker.legalName}</div>
+                        <div>Address: {marker.address}</div>
+                        <div>City: {marker.city}</div>
+                      </div>
                     );
                   }}
                   onMouseLeave={() => {
@@ -215,7 +212,7 @@ const CustomCompanyMap = (ratings) => {
             }
           })}
 
-          {countryMarkers.map((marker) => {
+          {countryMarkers.forEach((marker) => {
             if (kZoom >= 3 && kZoom <= 20) {
               return (
                 <Marker
