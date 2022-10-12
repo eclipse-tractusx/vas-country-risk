@@ -178,7 +178,13 @@ const CustomWorldMap = (ratings) => {
               return (
                 <Marker
                   onMouseEnter={() => {
-                    setContent(bpn.bpn);
+                    setContent(
+                      <div>
+                        <div>{bpn.legalName}</div>
+                        <div>{bpn.address}</div>
+                        <div>{bpn.city}</div>
+                      </div>
+                    );
                   }}
                   onMouseLeave={handlePopoverClose}
                   key={bpn.iso3}
@@ -193,9 +199,7 @@ const CustomWorldMap = (ratings) => {
                       width="0.5%"
                     />
                   </g>
-                  <text textAnchor="" fill="#000" fontSize={0.25}>
-                    {bpn.bpn}
-                  </text>
+                  <text textAnchor="" fill="#000" fontSize={0.25}></text>
                 </Marker>
               );
             }

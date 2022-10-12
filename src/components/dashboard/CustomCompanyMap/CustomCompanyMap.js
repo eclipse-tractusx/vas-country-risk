@@ -16,7 +16,6 @@ import {
 } from "react-simple-maps";
 
 const CustomCompanyMap = (ratings) => {
-
   //Zoom in and out const
   const [kZoom, setKZoom] = useState(1);
 
@@ -43,21 +42,20 @@ const CustomCompanyMap = (ratings) => {
   //Content for the BP markers
   const [markercontent, setMarkercontent] = useState("");
 
-  //Const with all saved coords 
+  //Const with all saved coords
   const [allCoords, setallCoords] = useState([]);
 
-  //Const with all saved coords 
+  //Const with all saved coords
   const [allCountries, setallCountries] = useState([]);
 
   const geoUrl =
     "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
 
-
   //Method for getting the name of current selected country
   const handleClick = (geo) => () => {
     allCountries.forEach((ac) => {
-      if (geo['Alpha-2'] === ac.iso2) {
-        updateCountry(ac)
+      if (geo["Alpha-2"] === ac.iso2) {
+        updateCountry(ac);
       }
     });
   };
@@ -81,7 +79,6 @@ const CustomCompanyMap = (ratings) => {
       setCoordsBP(array);
     }
   }, [countryS.country]);
-
 
   useEffect(() => {
     //Call to get all countries relative to the user
@@ -126,7 +123,6 @@ const CustomCompanyMap = (ratings) => {
             [ratings.maxMapWidth, ratings.maxMapHeight],
           ]}
         >
-
           <Geographies geography={geoUrl}>
             {({ geographies }) =>
               geographies.map((geo) => {
@@ -181,16 +177,17 @@ const CustomCompanyMap = (ratings) => {
                   onMouseEnter={() => {
                     setMarkercontent(
                       <div>
-                        <div>Legal Name: {marker.legalName}</div>
-                        <div>Address: {marker.address}</div>
-                        <div>City: {marker.city}</div>
+                        <div>{marker.legalName}</div>
+                        <div>{marker.address}</div>
+                        <div>{marker.city}</div>
                       </div>
                     );
                   }}
                   onMouseLeave={() => {
                     setMarkercontent("");
-                  }}>
-                                    <g>
+                  }}
+                >
+                  <g>
                     <image
                       href={ImageMarker}
                       x="0"
@@ -229,7 +226,6 @@ const CustomCompanyMap = (ratings) => {
               );
             }
           })}
-
         </ZoomableGroup>
       </ComposableMap>
       <ReactTooltip>{markercontent}</ReactTooltip>
@@ -239,4 +235,3 @@ const CustomCompanyMap = (ratings) => {
 };
 
 export default CustomCompanyMap;
-

@@ -9,7 +9,6 @@ import { CountryContext } from "../../../contexts/country";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 
 const CountryPicker = () => {
-
   //Const with Countries relative to the user and BP
   const [Countries, setCountries] = useState();
 
@@ -21,19 +20,14 @@ const CountryPicker = () => {
   //Call to get all the Countries relative to a User and BP
   useEffect(() => {
     getCountryByUser(UserService.getToken(), companyUser).then((response) => {
-      if(response.name === "AxiosError"){
-        setCountries(null);
-      }
-      else{
-      setCountries(response);
-      }
+      setCountries(response | []);
     });
   }, []);
 
   //Handler to get current selected value on Autocomplete component
   const handleChange = (event, newValue) => {
-    if(newValue === null){
-      updateCountry("none")
+    if (newValue === null) {
+      updateCountry("none");
     } else {
       updateCountry(newValue);
     }
