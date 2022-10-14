@@ -190,8 +190,8 @@ const CustomCompanyMap = (ratings) => {
                   <g>
                     <image
                       href={ImageMarker}
-                      x="0"
-                      y="0"
+                      x="-2.2"
+                      y="-3"
                       height="0.6%"
                       width="0.6%"
                     />
