@@ -37,10 +37,12 @@
     }
 
     .right-middle-content {
-      display: flex;
+      //display: flex;
       justify-content: center;
       align-items: center;
       margin: 5% 0;
+      width: 100%;
+      border: 1px solid #000;
     }
 
     .right-bottom-content {

@@ -11,6 +11,8 @@ import Ratings from "./Ratings/Ratings";
 import UploadDownloadZone from "./UploadDownloadZone/UploadDownloadZone";
 import RangeSlider from "./RangeSlider/RangeSlider";
 
+import Reports from "./Reports/Reports";
+
 const Dashboard = () => {
   const { ranges, updateRanges } = useContext(RangesContext);
 
@@ -64,8 +66,11 @@ const Dashboard = () => {
             years={years}
           ></Ratings>
         </div>
-        <div className="right-middle-content">
+        <div>
           <UploadDownloadZone></UploadDownloadZone>
+        </div>
+        <div className="right-middle-content">
+          <Reports></Reports>
         </div>
         <div className="right-bottom-content">
           <RangeSlider></RangeSlider>

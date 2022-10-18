@@ -167,7 +167,7 @@ const UploadDownloadZone = () => {
         </div>
       </Dialog>
 
-      <div className="divider" />
+      
       <Button
         className="DownloadButton"
         size="small"
