@@ -45,6 +45,21 @@ const Reports = () => {
         setOpen(!open);
     };
 
+    //Handler for Checkbox
+    const handleChangeCheckbox = (event) => {
+        console.log(event.target.name)
+    };
+
+    //Handler for Input Component
+    const handleInputReportChange = (event) => {
+        if (event.target.value.length > 32 || event.target.value.length === 0) {
+            //Needs to throw error
+            console.log("error")
+        } else {
+            console.log(event.target.value)
+        }
+    };
+
     //Test Values Only
     const columns = [
         {
@@ -99,39 +114,42 @@ const Reports = () => {
                     if (selection.length > 1) {
                         const selectionSet = new Set(selectionModel);
                         const result = selection.filter((s) => !selectionSet.has(s));
-                        setSelectionModel(selectionModel.length ? result:[]);
-                      } else {
+                        setSelectionModel(selectionModel.length ? result : []);
+                    } else {
                         setSelectionModel(selection);
-                      }
-                    }}
+                    }
+                }}
             />
 
             <Dialog open={open} onClose={closeDialogs} className="Dialog-Expand" >
                 <div className="Dialog-Expand-Div">
 
-                    <div className="FirstLabel"><FormLabel component="legend">Select availability</FormLabel></div>
+                    <FormLabel className="FirstLabel" component="legend">Select availability</FormLabel>
                     <div className="CheckBox-Div">
                         <FormControlLabel
                             control={
-                                <Checkbox name="OnlyMe" />
+                                <Checkbox name="OnlyMe" onChange={handleChangeCheckbox} />
                             }
                             label="Only For me"
                         />
                         <FormControlLabel
                             control={
-                                <Checkbox name="Company" />
+                                <Checkbox name="Company" onChange={handleChangeCheckbox} />
                             }
                             label="For the company"
                         />
                     </div>
 
-                    <FormLabel component="legend">Please input the name of the Report</FormLabel>
-                    <Input
+                    <FormLabel className="SecondLabel" component="legend">Please input the name of the Report</FormLabel>
+
+                    <Input className="input-report"
+
                         helperText="Helper"
                         placeholder="Max 32 Characters"
                         size={"small"}
-                    //onChange={saveRatingName}
+                        onChange={handleInputReportChange}
                     ></Input>
+
 
                     <Button style={{ margin: "1%" }} onClick={closeDialogs}>
                         Close

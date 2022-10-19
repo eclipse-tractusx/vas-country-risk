@@ -31,40 +31,43 @@
         border-radius: 0;
         font-size: 12px;
     }
-
-    //Dialog 
-    .Dialog-Expand {
-        height: 100% !important;
-
-        .Dialog-Expand-Div {
-            display: flex;
-            width: 20%;
-            border: 1px solid #000;
-            border-radius: 0;
-            font-size: 12px;
-            background-color: aqua !important;
-
-            .FirstLabel {
-                background: "grey" !important;
-                width: "100%";
-                border-radius: 0;
-                padding: "1%";
-            }
-        }
-    }
 }
 
 .Dialog-Expand {
     height: 100% !important;
+    width: 30%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 250px;
+
     .Dialog-Expand-Div {
       text-align: center;
-      border-radius: 0 !important;
+      background-color: grayscale($color: #c8c4c4);
+      border-radius: 0px !important;
 
       .FirstLabel{
+        background-color: gray;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .SecondLabel{
+        background-color: gray;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       .CheckBox-Div{
+        margin-top: 1%;
         width: auto;
+      }
+
+      .input-report{
+        margin-top: 1%;
+        margin-left: 10%;
+        margin-right: 10%;
+        border: 1px solid #000;
       }
     }
   }
