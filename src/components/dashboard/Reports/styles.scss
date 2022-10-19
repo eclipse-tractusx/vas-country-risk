@@ -54,4 +54,17 @@
     }
 }
 
-.MuiDataGrid-columnHeaders { display: "none"; }
+.Dialog-Expand {
+    height: 100% !important;
+    .Dialog-Expand-Div {
+      text-align: center;
+      border-radius: 0 !important;
+
+      .FirstLabel{
+      }
+
+      .CheckBox-Div{
+        width: auto;
+      }
+    }
+  }

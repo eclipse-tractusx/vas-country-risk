@@ -13,11 +13,11 @@ import UserService from "../../services/UserService";
 import { CountryContext } from "../../../contexts/country";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { ReportContext } from "../../../contexts/reports";
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 
 const Reports = () => {
 
-    const [selectiomodel, setselectiomodel] = useState([]);
+    const [selectionModel, setSelectionModel] = useState([]);
 
     //Context to get current selected country
     const { countryS, updateCountry } = useContext(CountryContext);
@@ -31,6 +31,7 @@ const Reports = () => {
 
     const [open, setOpen] = React.useState(false);
 
+    //Get Reports By user 
     useEffect(() => {
         getReportsByCompanyUser(UserService.getToken(), companyUser).then((response) => {
             console.log(response);
@@ -44,6 +45,7 @@ const Reports = () => {
         setOpen(!open);
     };
 
+    //Test Values Only
     const columns = [
         {
             field: 'reportSavedName',
@@ -53,6 +55,7 @@ const Reports = () => {
         },
     ];
 
+    //Test Values Only
     const rows = [
         { id: 1, reportSavedName: 'Teste' },
         { id: 2, reportSavedName: 'Teste2.0' },
@@ -90,24 +93,20 @@ const Reports = () => {
                 rowsPerPageOptions={[5]}
                 checkboxSelection={true}
                 hideFooter
-                selectionModel={selectiomodel}
+                selectionModel={selectionModel}
                 autoHeight={true}
                 onSelectionModelChange={(selection) => {
                     if (selection.length > 1) {
-                        const selectionSet = new Set(selectiomodel);
+                        const selectionSet = new Set(selectionModel);
                         const result = selection.filter((s) => !selectionSet.has(s));
-                        console.log("Primeiro " + selection)
-                        console.log("Primeiro Model " + selectiomodel)
-                        
-                        setselectiomodel(selectiomodel.length ? result:[]);
+                        setSelectionModel(selectionModel.length ? result:[]);
                       } else {
-                        console.log("Segundo " + selection)
-                        setselectiomodel(selection);
+                        setSelectionModel(selection);
                       }
                     }}
             />
 
-            <Dialog open={open} onClose={closeDialogs} className="Dialog-Expand">
+            <Dialog open={open} onClose={closeDialogs} className="Dialog-Expand" >
                 <div className="Dialog-Expand-Div">
 
                     <div className="FirstLabel"><FormLabel component="legend">Select availability</FormLabel></div>
