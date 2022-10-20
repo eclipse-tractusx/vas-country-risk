@@ -5,6 +5,7 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Dialog from "@mui/material/Dialog";
 import FormLabel from "@mui/material/FormLabel";
+import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from '@mui/material/Checkbox';
 import { Button, Input } from "cx-portal-shared-components";
@@ -14,6 +15,8 @@ import { CountryContext } from "../../../contexts/country";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { ReportContext } from "../../../contexts/reports";
 import { DataGrid } from '@mui/x-data-grid';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup'
 
 const Reports = () => {
 
@@ -31,6 +34,12 @@ const Reports = () => {
 
     const [open, setOpen] = React.useState(false);
 
+    const [valueRadio, setValueRadio] = React.useState('OnlyMe');
+
+    const [selectedDataTable, setselectedDataTable] = useState([]);
+
+    const [valueTextField, setValueTextField] = React.useState('Select an Report Bellow');
+
     //Get Reports By user 
     useEffect(() => {
         getReportsByCompanyUser(UserService.getToken(), companyUser).then((response) => {
@@ -47,10 +56,11 @@ const Reports = () => {
 
     //Handler for Checkbox
     const handleChangeCheckbox = (event) => {
-        console.log(event.target.name)
+        console.log(event.target.value)
+        setValueRadio(event.target.value)
     };
 
-    //Handler for Input Component
+    //Handler for Input Report name in Dialog Component
     const handleInputReportChange = (event) => {
         if (event.target.value.length > 32 || event.target.value.length === 0) {
             //Needs to throw error
@@ -59,6 +69,11 @@ const Reports = () => {
             console.log(event.target.value)
         }
     };
+
+    //Handler for textvalue in main report component
+    const handleChangeInput = (event) => {
+        setValueTextField(event.target.value);
+      };
 
     //Test Values Only
     const columns = [
@@ -76,11 +91,7 @@ const Reports = () => {
         { id: 2, reportSavedName: 'Teste2.0' },
     ];
 
-    return (
-        <div className="reportdiv">
-            <div className="reports-header">
-                <FormControl className="formReports" variant="filled">
-                    <Select
+                        /*<Select
                         value={reports}
                         label="Reports"
                     >
@@ -93,8 +104,15 @@ const Reports = () => {
                                 );
                             })
                             : []}
-                    </Select>
-                </FormControl>
+                    </Select>*/
+
+    return (
+        <div className="reportdiv">
+            <div className="reports-header">
+                <TextField className="formReports" variant="filled"
+                value={valueTextField}
+                onChange = {handleChangeInput}>
+                </TextField>
                 <div className="divider" />
                 <Button size="small" className="ButtonSave" onClick={openDialog}>
                     Save Reports
@@ -111,6 +129,11 @@ const Reports = () => {
                 selectionModel={selectionModel}
                 autoHeight={true}
                 onSelectionModelChange={(selection) => {
+                    if(rows[selection.at(-1) - 1 ] === undefined){
+                        setValueTextField('Select an Report Bellow')
+                    }else{
+                        setValueTextField(rows[selection.at(-1) - 1 ].reportSavedName)
+                    }
                     if (selection.length > 1) {
                         const selectionSet = new Set(selectionModel);
                         const result = selection.filter((s) => !selectionSet.has(s));
@@ -126,18 +149,15 @@ const Reports = () => {
 
                     <FormLabel className="FirstLabel" component="legend">Select availability</FormLabel>
                     <div className="CheckBox-Div">
-                        <FormControlLabel
-                            control={
-                                <Checkbox name="OnlyMe" onChange={handleChangeCheckbox} />
-                            }
-                            label="Only For me"
-                        />
-                        <FormControlLabel
-                            control={
-                                <Checkbox name="Company" onChange={handleChangeCheckbox} />
-                            }
-                            label="For the company"
-                        />
+                        <RadioGroup className="CheckBox-Div-Radio"
+                            aria-labelledby="demo-controlled-radio-buttons-group"
+                            name="controlled-radio-buttons-group"
+                            value={valueRadio}
+                            onChange={handleChangeCheckbox}
+                        >
+                            <FormControlLabel value="OnlyMe" control={<Radio />} label="Only For me" />
+                            <FormControlLabel value="Company" control={<Radio />} label="For the company" />
+                        </RadioGroup>
                     </div>
 
                     <FormLabel className="SecondLabel" component="legend">Please input the name of the Report</FormLabel>

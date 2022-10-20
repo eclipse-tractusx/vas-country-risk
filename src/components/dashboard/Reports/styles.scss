@@ -61,6 +61,10 @@
       .CheckBox-Div{
         margin-top: 1%;
         width: auto;
+
+        .CheckBox-Div-Radio{
+            display: inline;
+        }
       }
 
       .input-report{
