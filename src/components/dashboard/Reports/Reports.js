@@ -40,6 +40,12 @@ const Reports = () => {
 
     const [valueTextField, setValueTextField] = React.useState('Select an Report Bellow');
 
+    //Const for triggering error on Dialog Text Field
+    const [ErrorTrigger, setErrorTrigger] = React.useState(true);
+
+    //Const for triggering error on Dialog Text Field
+    const [ValueDialogTextField, setValueDialogTextField] = React.useState(null);
+
     //Get Reports By user 
     useEffect(() => {
         getReportsByCompanyUser(UserService.getToken(), companyUser).then((response) => {
@@ -50,6 +56,14 @@ const Reports = () => {
     const closeDialogs = () => {
         setOpen(false);
     };
+
+    const closeDialogsAndSave = () => {
+        if(ValueDialogTextField != null){
+            setOpen(false);
+            //Save Operation
+        } 
+    };
+
     const openDialog = () => {
         setOpen(!open);
     };
@@ -63,17 +77,18 @@ const Reports = () => {
     //Handler for Input Report name in Dialog Component
     const handleInputReportChange = (event) => {
         if (event.target.value.length > 32 || event.target.value.length === 0) {
-            //Needs to throw error
-            console.log("error")
+            setErrorTrigger(true)
+            setValueDialogTextField(null)
         } else {
-            console.log(event.target.value)
+            setErrorTrigger(false)
+            setValueDialogTextField(event.target.value)
         }
     };
 
     //Handler for textvalue in main report component
     const handleChangeInput = (event) => {
         setValueTextField(event.target.value);
-      };
+    };
 
     //Test Values Only
     const columns = [
@@ -89,29 +104,33 @@ const Reports = () => {
     const rows = [
         { id: 1, reportSavedName: 'Teste' },
         { id: 2, reportSavedName: 'Teste2.0' },
+        { id: 3, reportSavedName: 'Teste30' },
+        { id: 4, reportSavedName: 'Teste7.0' },
+        //{ id: 5, reportSavedName: 'Teste8.0' },
+        //{ id: 6, reportSavedName: 'Teste9.0' },
     ];
 
-                        /*<Select
-                        value={reports}
-                        label="Reports"
-                    >
-                        {Array.isArray(reports)
-                            ? reports.map((item) => {
-                                return (
-                                    <MenuItem key={item} value={item}>
-                                        {item}
-                                    </MenuItem>
-                                );
-                            })
-                            : []}
-                    </Select>*/
+    /*<Select
+    value={reports}
+    label="Reports"
+>
+    {Array.isArray(reports)
+        ? reports.map((item) => {
+            return (
+                <MenuItem key={item} value={item}>
+                    {item}
+                </MenuItem>
+            );
+        })
+        : []}
+</Select>*/
 
     return (
         <div className="reportdiv">
             <div className="reports-header">
                 <TextField className="formReports" variant="filled"
-                value={valueTextField}
-                onChange = {handleChangeInput}>
+                    value={valueTextField}
+                    onChange={handleChangeInput}>
                 </TextField>
                 <div className="divider" />
                 <Button size="small" className="ButtonSave" onClick={openDialog}>
@@ -125,14 +144,14 @@ const Reports = () => {
                 headerHeight={0}
                 rowsPerPageOptions={[5]}
                 checkboxSelection={true}
-                hideFooter
+                //hideFooter
                 selectionModel={selectionModel}
                 autoHeight={true}
                 onSelectionModelChange={(selection) => {
-                    if(rows[selection.at(-1) - 1 ] === undefined){
+                    if (rows[selection.at(-1) - 1] === undefined) {
                         setValueTextField('Select an Report Bellow')
-                    }else{
-                        setValueTextField(rows[selection.at(-1) - 1 ].reportSavedName)
+                    } else {
+                        setValueTextField(rows[selection.at(-1) - 1].reportSavedName)
                     }
                     if (selection.length > 1) {
                         const selectionSet = new Set(selectionModel);
@@ -163,8 +182,8 @@ const Reports = () => {
                     <FormLabel className="SecondLabel" component="legend">Please input the name of the Report</FormLabel>
 
                     <Input className="input-report"
-
-                        helperText="Helper"
+                        error={ErrorTrigger}
+                        //helperText={"ERROR"}
                         placeholder="Max 32 Characters"
                         size={"small"}
                         onChange={handleInputReportChange}
@@ -174,7 +193,7 @@ const Reports = () => {
                     <Button style={{ margin: "1%" }} onClick={closeDialogs}>
                         Close
                     </Button>
-                    <Button style={{ margin: "1%" }} onClick={closeDialogs}>
+                    <Button style={{ margin: "1%" }} onClick={closeDialogsAndSave}>
                         Save
                     </Button>
                 </div>
