@@ -4,10 +4,9 @@ import axios from "axios";
 // Actions
 export function getAll(ratingsArray, years, token, customerUser) {
   const ratings = new Map();
-
-  if (ratingsArray) {
-    ratings.set("ratings", JSON.stringify(ratingsArray));
-  }
+  ratingsArray
+    ? ratings.set("ratings", JSON.stringify(ratingsArray))
+    : ratings.set("ratings", JSON.stringify([]));
 
   return axios
     .get(process.env.REACT_APP_DASHBOARD_URL, {
@@ -27,9 +26,9 @@ export function getAll(ratingsArray, years, token, customerUser) {
 export function getWorldMapInfo(ratingsArray, years, token, customerUser) {
   const ratings = new Map();
 
-  if (ratingsArray) {
-    ratings.set("ratings", JSON.stringify(ratingsArray));
-  }
+  ratingsArray
+    ? ratings.set("ratings", JSON.stringify(ratingsArray))
+    : ratings.set("ratings", JSON.stringify([]));
 
   return axios
     .get(process.env.REACT_APP_DASHBOARD_WOLRD_MAP_URL, {

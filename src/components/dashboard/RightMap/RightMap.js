@@ -6,10 +6,10 @@ import OpenWithIcon from "@mui/icons-material/OpenWith";
 import { Box } from "@mui/material";
 import { toPng } from "html-to-image";
 import CloseIcon from "@mui/icons-material/Close";
-import CountryPicker from "../CountryPicker/CountryPicker"
+import CountryPicker from "../CountryPicker/CountryPicker";
 import CustomCompanyMap from "../CustomCompanyMap/CustomCompanyMap";
 
-const RightMap = (ratings) => {
+const RightMap = () => {
   const [expandMap, setExpandMap] = useState(false);
 
   const openDialog = () => {
@@ -59,7 +59,6 @@ const RightMap = (ratings) => {
               <div className="map-and-progressbar" id="idCustomCompanyView">
                 <div className="expand-custom-world-map">
                   <CustomCompanyMap
-                    getRatings={ratings.getRatings}
                     minMapWidth={0}
                     maxMapWidth={800}
                     minMapHeight={0}
@@ -80,12 +79,12 @@ const RightMap = (ratings) => {
           onClick={openDialog}
           size="medium"
           variant="outlined"
-          sx={{ marginRight: "2px" }}>
+          sx={{ marginRight: "2px" }}
+        >
           <OpenWithIcon></OpenWithIcon>
         </IconButton>
       </div>
       <CustomCompanyMap
-        getRatings={ratings.getRatings}
         minMapWidth={0}
         maxMapWidth={800}
         minMapHeight={0}

@@ -46,7 +46,7 @@ const Dashboard = () => {
             ></LeftMap>
           </div>
           <div className="right-map">
-            <RightMap ></RightMap>
+            <RightMap></RightMap>
           </div>
         </div>
         <div className="table-content">
