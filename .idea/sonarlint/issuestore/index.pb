@@ -21,8 +21,6 @@ c
 0src/components/dashboard/RangeSlider/styles.scss,f\f\ff6103c0f552313e6dd59b7fc49b9b28d7b12aac
 A
 chart/values.yaml,6\7\679c9c413d4749f4bd9d593879d89e405b2e471e
-U
-%src/components/dashboard/dashboard.js,4\d\4d483efec471c46a10a0e967ac5e1f0c4cba0425
 \
 ,src/components/dashboard/LeftMap/styles.scss,e\d\ed2ee03bbe5a1eb9b1c56b59ecdc40d6abd3f0fe
 a

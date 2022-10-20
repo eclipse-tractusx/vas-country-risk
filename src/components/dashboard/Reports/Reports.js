@@ -92,16 +92,6 @@ const Reports = () => {
   };
 
   //Test Values Only
-  const columns = [
-    {
-      field: "reportSavedName",
-      headerName: "Saved Reports",
-      sortable: false,
-      width: 200,
-    },
-  ];
-
-  //Test Values Only
   const rows = [
     { id: 1, reportSavedName: "Teste" },
     { id: 2, reportSavedName: "Teste2.0" },
@@ -110,6 +100,45 @@ const Reports = () => {
     { id: 5, reportSavedName: "Teste8.0" },
     { id: 6, reportSavedName: "Teste9.0" },
   ];
+
+  let radioChecked = [rows[0].id | []];
+  //Test Values Only
+
+  const [valueRadioChecked, setValueRadioChecked] = useState(false);
+
+  const clearButton = () => {
+    setSelectionModel([]);
+    setValueTextField("Select a Report Bellow");
+    setValueRadioChecked(!valueRadioChecked);
+  };
+
+  const handleChange = () => {
+    setValueRadioChecked(false);
+  };
+
+  const columns = [
+    {
+      field: "radiobutton",
+      headerName: <Radio onChange={clearButton} checked={valueRadioChecked} />,
+      width: 120,
+      renderCell: (params) => (
+        <Radio
+          onChange={handleChange}
+          checked={radioChecked[0] === params.id}
+          value={params.id}
+        />
+      ),
+      sortable: false,
+    },
+
+    {
+      field: "reportSavedName",
+      headerName: "Report Name",
+      width: 150,
+    },
+  ];
+
+  radioChecked = selectionModel;
 
   return (
     <div className="reportdiv">
@@ -132,35 +161,17 @@ const Reports = () => {
         rows={rows}
         columns={columns}
         pageSize={5}
-        headerHeight={0}
         rowsPerPageOptions={[5]}
-        checkboxSelection={true}
-        //hideFooter
+        checkboxSelection={false}
         selectionModel={selectionModel}
         autoHeight={true}
-        onSelectionModelChange={(ids) => {
-          const selectedIds = new Set(ids);
-          const selectedRows = rows.filter((row) => selectedIds.has(row.id));
-
-          if (selectedRows.length > 1) {
-            const selectionSet = new Set(selectionModel);
-            const result = selectedRows.filter((s) => !selectionSet.has(s.id));
-            setSelectionModel(
-              selectedRows.length ? result.map((r) => r.id) : []
-            );
-            setValueTextField(
-              selectedRows.length
-                ? result.map((r) => r.reportSavedName)
-                : "Select a Report Bellow"
-            );
-          } else {
-            setSelectionModel(selectedRows.map((r) => r.id));
-            setValueTextField(
-              selectedRows.length
-                ? selectedRows.map((r) => r.reportSavedName)
-                : "Select a Report Bellow"
-            );
-          }
+        disableColumnFilter={true}
+        disableColumnSelector={true}
+        onSelectionModelChange={(newSelectionModel) => {
+          setSelectionModel(newSelectionModel);
+          const selectionSet = new Set(newSelectionModel);
+          const result = rows.filter((s) => selectionSet.has(s.id));
+          setValueTextField(result[0].reportSavedName);
         }}
       />
 
