@@ -1,77 +1,76 @@
 .reportdiv {
+  //Main Dashboard
+  .reports-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 2%;
 
-    //Main Dashboard
-    .reports-header {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        margin: 2%;
-
-        //Form
-        .formReports {
-            width: 60%;
-            border: 1px solid #000;
-        }
-
-        .divider {
-            width: 12%;
-        }
-
-        .ButtonSave {
-            float: right;
-        }
+    //Form
+    .formReports {
+      width: 60%;
+      border: 1px solid #000;
     }
 
-    //DataGrid Table
-    .table {
-        height: 100% !important;
-        display: flex;
-        width: 100%;
-        //border: 3px solid #000;
-        border-radius: 0;
-        font-size: 12px;
+    .divider {
+      width: 12%;
     }
+
+    .ButtonSave {
+      float: right;
+    }
+  }
+
+  //DataGrid Table
+  .table {
+    height: 100% !important;
+    display: flex;
+    width: 100%;
+    //border: 3px solid #000;
+    border-radius: 0;
+    font-size: 12px;
+  }
 }
 
 .Dialog-Expand {
-    height: 100% !important;
-    width: 30%;
+  height: 100% !important;
+  width: 30%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 250px;
+
+  .Dialog-Expand-Div {
     text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    min-width: 250px;
+    background-color: grayscale($color: #c8c4c4);
+    border-radius: 0px !important;
 
-    .Dialog-Expand-Div {
-      text-align: center;
-      background-color: grayscale($color: #c8c4c4);
-      border-radius: 0px !important;
+    .FirstLabel {
+      background-color: gray;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-      .FirstLabel{
-        background-color: gray;
-        margin-left: auto;
-        margin-right: auto;
-      }
+    .SecondLabel {
+      background-color: gray;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-      .SecondLabel{
-        background-color: gray;
-        margin-left: auto;
-        margin-right: auto;
-      }
+    .CheckBox-Div {
+      margin-top: 1%;
+      width: auto;
 
-      .CheckBox-Div{
-        margin-top: 1%;
-        width: auto;
-
-        .CheckBox-Div-Radio{
-            display: inline;
-        }
-      }
-
-      .input-report{
-        margin-top: 1%;
-        margin-left: 10%;
-        margin-right: 10%;
-        border: 1px solid #000;
+      .CheckBox-Div-Radio {
+        display: inline;
       }
     }
+
+    .input-report {
+      margin-top: 1%;
+      margin-left: 10%;
+      margin-right: 10%;
+      border: 1px solid #000;
+    }
   }
+}

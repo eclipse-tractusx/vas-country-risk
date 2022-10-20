@@ -75,7 +75,10 @@ const CustomCompanyMap = (ratings) => {
   useEffect(() => {
     if (countryS.country !== "none") {
       let array = [];
-      array = allCoords.filter((acc) => countryS.country === acc.country);
+
+      array = Array.isArray(allCoords)
+        ? allCoords.filter((acc) => countryS.country === acc.country)
+        : [];
       setCoordsBP(array);
     }
   }, [countryS.country]);
