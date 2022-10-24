@@ -1,57 +1,59 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./styles.scss";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
 import Dialog from "@mui/material/Dialog";
 import FormLabel from "@mui/material/FormLabel";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import { Button, Input } from "cx-portal-shared-components";
-import { getReportsByCompanyUser } from "../../services/reports-api";
+import {
+  getReportsByCompanyUser,
+  saveReports,
+} from "../../services/reports-api";
 import UserService from "../../services/UserService";
-import { CountryContext } from "../../../contexts/country";
-import { CompanyUserContext } from "../../../contexts/companyuser";
-import { ReportContext } from "../../../contexts/reports";
 import { DataGrid } from "@mui/x-data-grid";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
+import { RangesContext } from "../../../contexts/ranges";
+import { RatesContext } from "../../../contexts/rates";
+import { CountryContext } from "../../../contexts/country";
+import { CompanyUserContext } from "../../../contexts/companyuser";
+import { ReportContext } from "../../../contexts/reports";
+import { Report } from "../../model/Report";
 
 const Reports = () => {
   const [selectionModel, setSelectionModel] = useState([]);
 
   //Context to get current selected country
   const { countryS, updateCountry } = useContext(CountryContext);
+  const { ranges, updateRanges } = useContext(RangesContext);
+  const { prefixIds, updatePrefixIds } = useContext(RatesContext);
 
   //Context to save report data
-  const { report, updateReport } = useContext(ReportContext);
+  const { reportValuesContext, updateReport } = useContext(ReportContext);
+
+  const [report, setReport] = useState([]);
 
   const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
 
-  const [reports, setReport] = useState(["teste"]);
-
   const [open, setOpen] = React.useState(false);
 
-  const [valueRadio, setValueRadio] = React.useState("OnlyMe");
-
-  const [selectedDataTable, setselectedDataTable] = useState([]);
+  const [valueRadio, setValueRadio] = useState("OnlyMe");
 
   const [valueTextField, setValueTextField] = React.useState(
     "Select a Report Bellow"
   );
 
   //Const for triggering error on Dialog Text Field
-  const [ErrorTrigger, setErrorTrigger] = React.useState(true);
+  const [errorTrigger, setErrorTrigger] = React.useState(true);
 
   //Const for triggering error on Dialog Text Field
-  const [ValueDialogTextField, setValueDialogTextField] = React.useState(null);
+  const [valueDialogTextField, setValueDialogTextField] = React.useState(null);
 
   //Get Reports By user
   useEffect(() => {
     getReportsByCompanyUser(UserService.getToken(), companyUser).then(
       (response) => {
-        console.log(response);
+        setReport(response || []);
       }
     );
   }, []);
@@ -61,9 +63,21 @@ const Reports = () => {
   };
 
   const closeDialogsAndSave = () => {
-    if (ValueDialogTextField != null) {
-      setOpen(false);
-    }
+    const list = [];
+    list.push(
+      { name: "Range", objectValue: ranges },
+      { name: "Country", objectValue: countryS === "none" ? [] : countryS },
+      { name: "Ratings", objectValue: prefixIds }
+    );
+    const newReport = new Report(
+      valueDialogTextField,
+      companyUser.name,
+      companyUser.company,
+      "Global",
+      list
+    );
+
+    saveReports(UserService.getToken(), companyUser, newReport);
   };
 
   const openDialog = () => {
@@ -80,9 +94,11 @@ const Reports = () => {
     if (event.target.value.length > 32 || event.target.value.length === 0) {
       setErrorTrigger(true);
       setValueDialogTextField(null);
+      setValidateSave(true);
     } else {
       setErrorTrigger(false);
       setValueDialogTextField(event.target.value);
+      setValidateSave(false);
     }
   };
 
@@ -91,25 +107,15 @@ const Reports = () => {
     setValueTextField(event.target.value);
   };
 
-  //Test Values Only
-  const rows = [
-    { id: 1, reportSavedName: "Teste" },
-    { id: 2, reportSavedName: "Teste2.0" },
-    { id: 3, reportSavedName: "Teste30" },
-    { id: 4, reportSavedName: "Teste7.0" },
-    { id: 5, reportSavedName: "Teste8.0" },
-    { id: 6, reportSavedName: "Teste9.0" },
-  ];
-
-  let radioChecked = [rows[0].id | []];
-  //Test Values Only
-
   const [valueRadioChecked, setValueRadioChecked] = useState(false);
+
+  const [validateSave, setValidateSave] = useState(true);
 
   const clearButton = () => {
     setSelectionModel([]);
     setValueTextField("Select a Report Bellow");
     setValueRadioChecked(!valueRadioChecked);
+    updateReport("");
   };
 
   const handleChange = () => {
@@ -124,7 +130,7 @@ const Reports = () => {
       renderCell: (params) => (
         <Radio
           onChange={handleChange}
-          checked={radioChecked[0] === params.id}
+          checked={selectionModel[0] === params.id}
           value={params.id}
         />
       ),
@@ -132,13 +138,21 @@ const Reports = () => {
     },
 
     {
-      field: "reportSavedName",
+      field: "reportName",
       headerName: "Report Name",
       width: 150,
     },
+    {
+      field: "company",
+      headerName: "Company",
+      width: 150,
+    },
+    {
+      field: "type",
+      headerName: "Type",
+      width: 150,
+    },
   ];
-
-  radioChecked = selectionModel;
 
   return (
     <div className="reportdiv">
@@ -158,20 +172,22 @@ const Reports = () => {
       </div>
       <DataGrid
         className="table"
-        rows={rows}
+        rows={report}
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
         checkboxSelection={false}
         selectionModel={selectionModel}
-        autoHeight={true}
+        autoHeight={!report || report.length ? true : false}
         disableColumnFilter={true}
         disableColumnSelector={true}
         onSelectionModelChange={(newSelectionModel) => {
           setSelectionModel(newSelectionModel);
           const selectionSet = new Set(newSelectionModel);
-          const result = rows.filter((s) => selectionSet.has(s.id));
-          setValueTextField(result[0].reportSavedName);
+          const result = report.filter((s) => selectionSet.has(s.id));
+          setValueTextField(result[0].reportName);
+
+          updateReport(result[0]);
         }}
       />
 
@@ -207,7 +223,7 @@ const Reports = () => {
 
           <Input
             className="input-report"
-            error={ErrorTrigger}
+            error={errorTrigger}
             //helperText={"ERROR"}
             placeholder="Max 32 Characters"
             size={"small"}
@@ -217,7 +233,11 @@ const Reports = () => {
           <Button style={{ margin: "1%" }} onClick={closeDialogs}>
             Close
           </Button>
-          <Button style={{ margin: "1%" }} onClick={closeDialogsAndSave}>
+          <Button
+            style={{ margin: "1%" }}
+            onClick={closeDialogsAndSave}
+            disabled={validateSave}
+          >
             Save
           </Button>
         </div>

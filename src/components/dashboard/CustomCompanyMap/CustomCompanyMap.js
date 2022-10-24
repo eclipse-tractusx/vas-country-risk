@@ -6,7 +6,7 @@ import { CompanyUserContext } from "../../../contexts/companyuser";
 import { getCountryByUser, getCountrys } from "../../services/country-api";
 import ReactTooltip from "react-tooltip";
 import ImageMarker from "../../../resources/marker.png";
-
+import { ReportContext } from "../../../contexts/reports";
 import {
   ComposableMap,
   Geographies,
@@ -47,6 +47,15 @@ const CustomCompanyMap = (ratings) => {
 
   //Const with all saved coords
   const [allCountries, setallCountries] = useState([]);
+
+  const { reportValuesContext, updateReport } = useContext(ReportContext);
+
+  useEffect(() => {
+    const reportCountry = reportValuesContext.filter(
+      (r) => r.name === "Country"
+    );
+    updateCountry(reportCountry.length ? reportCountry[0].objectValue : "none");
+  }, [reportValuesContext]);
 
   const geoUrl =
     "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
