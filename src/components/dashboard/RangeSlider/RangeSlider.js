@@ -31,7 +31,7 @@ const RangeSlider = () => {
 
   const { reportValuesContext, updateReport } = useContext(ReportContext);
 
-  useEffect(() => {
+  const getRanges = () => {
     getAllRanges(UserService.getToken(), companyUser).then((response) => {
       if (Array.isArray(response)) {
         response.forEach((eachArray) => {
@@ -48,6 +48,10 @@ const RangeSlider = () => {
         });
       }
     });
+  };
+
+  useEffect(() => {
+    getRanges();
   }, [betweenValue, maxValue, minValue]);
 
   //Slide Initialization
@@ -204,21 +208,15 @@ const RangeSlider = () => {
     updateRanges([valueRed, valueYellow, valueGreen]);
   }, [valueGreen, valueRed, valueYellow]);
 
-  const [rangeTemp, setRangeTemp] = useState([]);
-
   useEffect(() => {
     const reportRange = reportValuesContext.filter((r) => r.name === "Range");
 
     if (reportRange.length) {
-      setRangeTemp(ranges);
       setRedValues(reportRange[0].objectValue[0]);
       setYellowValues(reportRange[0].objectValue[1]);
       setGreenValues(reportRange[0].objectValue[2]);
-    } else if (rangeTemp.length) {
-      console.log(rangeTemp);
-      setRedValues(rangeTemp[0]);
-      setYellowValues(rangeTemp[1]);
-      setGreenValues(rangeTemp[2]);
+    } else {
+      getRanges();
     }
   }, [reportValuesContext]);
 

@@ -20,11 +20,11 @@ export function getReportValuesByReport(token, report) {
   return axios
     .get(process.env.REACT_APP_GET_REPORT_VALUES_BY_REPORT, {
       params: {
-        reportName: report.reportName || "fake rating",
-        companyUserName: report.companyUserName || "joao",
-        company: report.company || "CGI",
-        type: report.type || "Company",
-        id: report.id || "1",
+        reportName: report.reportName || "",
+        companyUserName: report.companyUserName || "",
+        company: report.company || "",
+        type: report.type || "",
+        id: report.id || "",
       },
       headers: { Authorization: `Bearer ${token}` },
     })

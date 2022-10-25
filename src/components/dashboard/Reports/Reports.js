@@ -19,6 +19,7 @@ import { CountryContext } from "../../../contexts/country";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { ReportContext } from "../../../contexts/reports";
 import { Report } from "../../model/Report";
+import { Alert } from "cx-portal-shared-components";
 
 const Reports = () => {
   const [selectionModel, setSelectionModel] = useState([]);
@@ -37,7 +38,7 @@ const Reports = () => {
 
   const [open, setOpen] = React.useState(false);
 
-  const [valueRadio, setValueRadio] = useState("OnlyMe");
+  const [valueType, setType] = useState("Global");
 
   const [valueTextField, setValueTextField] = React.useState(
     "Select a Report Bellow"
@@ -62,6 +63,9 @@ const Reports = () => {
     setOpen(false);
   };
 
+  const [severity, setSeverity] = useState("");
+  const [severityMessage, setSeverityMessage] = useState("");
+
   const closeDialogsAndSave = () => {
     const list = [];
     list.push(
@@ -73,24 +77,37 @@ const Reports = () => {
       valueDialogTextField,
       companyUser.name,
       companyUser.company,
-      "Global",
+      valueType,
       list
     );
 
-    saveReports(UserService.getToken(), companyUser, newReport);
+    saveReports(UserService.getToken(), companyUser, newReport)
+      .then(setOpen(false))
+      .catch((response) => {
+        if (response.response.status === 400) {
+          setSeverity("error");
+          setSeverityMessage(response.response.data.message);
+          setOpen(true);
+          setValidateSave(false);
+        }
+      });
   };
 
   const openDialog = () => {
+    setSeverity("");
+    setSeverityMessage("");
     setOpen(!open);
   };
 
   //Handler for Checkbox
   const handleChangeCheckbox = (event) => {
-    setValueRadio(event.target.value);
+    setType(event.target.value);
   };
 
   //Handler for Input Report name in Dialog Component
   const handleInputReportChange = (event) => {
+    setSeverity("");
+    setSeverityMessage("");
     if (event.target.value.length > 32 || event.target.value.length === 0) {
       setErrorTrigger(true);
       setValueDialogTextField(null);
@@ -186,7 +203,6 @@ const Reports = () => {
           const selectionSet = new Set(newSelectionModel);
           const result = report.filter((s) => selectionSet.has(s.id));
           setValueTextField(result[0].reportName);
-
           updateReport(result[0]);
         }}
       />
@@ -201,11 +217,11 @@ const Reports = () => {
               className="CheckBox-Div-Radio"
               aria-labelledby="demo-controlled-radio-buttons-group"
               name="controlled-radio-buttons-group"
-              value={valueRadio}
+              value={valueType}
               onChange={handleChangeCheckbox}
             >
               <FormControlLabel
-                value="OnlyMe"
+                value="Custom"
                 control={<Radio />}
                 label="Only For me"
               />
@@ -229,7 +245,9 @@ const Reports = () => {
             size={"small"}
             onChange={handleInputReportChange}
           ></Input>
-
+          <Alert severity={severity}>
+            <span>{severityMessage}</span>
+          </Alert>
           <Button style={{ margin: "1%" }} onClick={closeDialogs}>
             Close
           </Button>

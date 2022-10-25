@@ -8,6 +8,7 @@ import Box from "@mui/material/Box";
 import { getAllDates } from "../../services/dateform-api";
 import UserService from "../../services/UserService";
 import { CompanyUserContext } from "../../../contexts/companyuser";
+import { ReportContext } from "../../../contexts/reports";
 
 const DatePicker = ({ passYearSelected }) => {
   //Store Dates coming from API
@@ -27,6 +28,15 @@ const DatePicker = ({ passYearSelected }) => {
   const handleChange = (event) => {
     setDate(event.target.value);
   };
+
+  const { reportValuesContext, updateReport } = useContext(ReportContext);
+
+  useEffect(() => {
+    const reportRates = reportValuesContext.filter((r) => r.name === "Ratings");
+    setDate(
+      reportRates.length ? reportRates[0].objectValue[0].yearPublished : date
+    );
+  }, [reportValuesContext]);
 
   return (
     <Box sx={{ minWidth: 120 }}>

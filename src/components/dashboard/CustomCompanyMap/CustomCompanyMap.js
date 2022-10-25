@@ -54,7 +54,12 @@ const CustomCompanyMap = (ratings) => {
     const reportCountry = reportValuesContext.filter(
       (r) => r.name === "Country"
     );
-    updateCountry(reportCountry.length ? reportCountry[0].objectValue : "none");
+
+    updateCountry(
+      reportCountry.length && !Array.isArray(reportCountry[0].objectValue)
+        ? reportCountry[0].objectValue
+        : "none"
+    );
   }, [reportValuesContext]);
 
   const geoUrl =
