@@ -93,10 +93,23 @@ const Reports = () => {
       });
   };
 
+  const [reportType, setReportType] = useState(false);
+
+  const setMessage = () => {
+    setReportType(true);
+    setSeverity("warning");
+    setSeverityMessage("Custom Rating Selected");
+  };
   const openDialog = () => {
     setSeverity("");
     setSeverityMessage("");
     setOpen(!open);
+
+    const customSelection = prefixIds.find(
+      (element) => element.type === "Custom"
+    );
+
+    customSelection ? setMessage() : setReportType(false);
   };
 
   //Handler for Checkbox
@@ -229,6 +242,7 @@ const Reports = () => {
                 value="Company"
                 control={<Radio />}
                 label="For the company"
+                disabled={reportType}
               />
             </RadioGroup>
           </div>
