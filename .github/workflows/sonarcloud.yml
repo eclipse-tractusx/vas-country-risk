@@ -5,15 +5,15 @@ on:
     branches:
       - 'main'
       - 'dev'
-      
+
   pull_request:
     types: [ opened, reopened, synchronize ]
-    
+
   workflow_call:
     secrets:
       SONAR_TOKEN:
         required: true
-        
+
 jobs:
   Analysis:
     name: Analyse
@@ -33,10 +33,10 @@ jobs:
 
       - name: npm ci, build and test
         run: |
-          npm ci
+          npm --force ci
           npm run build --if-present
           npm test
-          
+
       - uses: SonarSource/sonarcloud-github-action@master
 
     env:
