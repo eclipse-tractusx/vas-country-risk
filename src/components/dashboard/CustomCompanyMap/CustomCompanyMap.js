@@ -15,7 +15,7 @@ import {
   Marker,
 } from "react-simple-maps";
 
-import { Spring, config } from "react-spring";
+
 
 const CustomCompanyMap = (ratings) => {
   //Zoom in and out const
