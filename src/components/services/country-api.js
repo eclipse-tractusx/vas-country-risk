@@ -3,6 +3,7 @@ import axios from "axios";
 
 //Get BPN Countries
 export function getCountryByUser(token, customerUser) {
+  console.log("LOGGGSSS", customerUser);
   return axios
     .get(process.env.REACT_APP_GET_BPN_COUNTRYS, {
       params: {

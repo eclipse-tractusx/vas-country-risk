@@ -7,7 +7,7 @@ import { RangesProvider } from "./contexts/ranges";
 import { CountryProvider } from "./contexts/country";
 import { CompanyUserProvider } from "./contexts/companyuser";
 import { ReportProvider } from "./contexts/reports";
-
+import { ReloadProvider } from "./contexts/refresh";
 function App() {
   return (
     <>
@@ -16,13 +16,18 @@ function App() {
           <CountryProvider>
             <CompanyUserProvider>
               <ReportProvider>
-                <div className="App-pageheader">
-                  <PageHeader title="Dashboard" headerHeight={200}></PageHeader>
-                </div>
-                <div className="App">
-                  <Dashboard />
-                  <Footer />
-                </div>
+                <ReloadProvider>
+                  <div className="App-pageheader">
+                    <PageHeader
+                      title="Dashboard"
+                      headerHeight={200}
+                    ></PageHeader>
+                  </div>
+                  <div className="App">
+                    <Dashboard />
+                    <Footer />
+                  </div>
+                </ReloadProvider>
               </ReportProvider>
             </CompanyUserProvider>
           </CountryProvider>

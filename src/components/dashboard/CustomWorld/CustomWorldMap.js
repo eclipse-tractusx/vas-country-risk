@@ -127,7 +127,7 @@ const CustomWorldMap = (ratings) => {
                         stroke: "#607D8B",
                         strokeWidth: 1,
                         outline: "none",
-                        fill: "#F53",
+                        fill: "#82e362",
                       },
                       pressed: {
                         stroke: "#607D8B",
@@ -142,7 +142,7 @@ const CustomWorldMap = (ratings) => {
           </Geographies>
 
           {countryMarkers.map((marker) => {
-            if (kZoom >= 3 && kZoom <= 15) {
+            if (kZoom >= 3) {
               return (
                 <Marker
                   key={marker.iso3}
@@ -154,7 +154,7 @@ const CustomWorldMap = (ratings) => {
                 >
                   <g>
                     <image
-                      href={ImageMarker}
+                      //href={ImageMarker}
                       x="-2.2"
                       y="-3"
                       height="0.5%"

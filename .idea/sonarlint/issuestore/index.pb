@@ -19,8 +19,6 @@ c
 3src/components/dashboard/ProgressBar/ProgressBar.js,6\7\67d295badc748915bf1a6efeea38b9c58f514818
 `
 0src/components/dashboard/RangeSlider/styles.scss,f\f\ff6103c0f552313e6dd59b7fc49b9b28d7b12aac
-A
-chart/values.yaml,6\7\679c9c413d4749f4bd9d593879d89e405b2e471e
 \
 ,src/components/dashboard/LeftMap/styles.scss,e\d\ed2ee03bbe5a1eb9b1c56b59ecdc40d6abd3f0fe
 a
@@ -31,5 +29,11 @@ V
 &src/components/services/UserService.js,4\3\43b64a74751ee9053b0052baa95dab17ca3aba2b
 ]
 -src/components/services/EnvironmentService.js,e\7\e7596a41f73f1b6663bf8e7cede0e08716cd2c4c
-[
-+src/components/dashboard/Ratings/Ratings.js,c\3\c3b8ecc9e6282a9703c70b8202e4a722075673f9
+4
+.env,3\c\3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
+c
+3src/components/dashboard/RangeSlider/RangeSlider.js,2\b\2b0c794dfbe2b2456026dac1ed4438645be6cab9
+\
+,src/components/dashboard/Reports/styles.scss,4\a\4a129faee094a8015045b8a522d0953ed45bd147
+V
+&src/components/services/reports-api.js,f\0\f05c0050f44f114ff09381b3bd8ccfacab6956d3

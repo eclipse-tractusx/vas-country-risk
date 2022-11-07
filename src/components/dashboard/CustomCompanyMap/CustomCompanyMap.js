@@ -15,6 +15,8 @@ import {
   Marker,
 } from "react-simple-maps";
 
+import { Spring, config } from "react-spring";
+
 const CustomCompanyMap = (ratings) => {
   //Zoom in and out const
   const [kZoom, setKZoom] = useState(1);
@@ -132,6 +134,7 @@ const CustomCompanyMap = (ratings) => {
           onMove={coordinates}
           center={coordsZoom}
           zoom={zoomVar}
+          maxZoom={50}
           translateExtent={[
             [
               parseFloat(-ratings.minMapWidth),
@@ -172,7 +175,7 @@ const CustomCompanyMap = (ratings) => {
                         stroke: "#607D8B",
                         strokeWidth: 1,
                         outline: "none",
-                        fill: "#F53",
+                        fill: "#82e362",
                       },
                       pressed: {
                         stroke: "#607D8B",
@@ -187,7 +190,7 @@ const CustomCompanyMap = (ratings) => {
           </Geographies>
 
           {coordsBP.map((marker) => {
-            if (kZoom >= 3 && kZoom <= 20) {
+            if (kZoom >= 3) {
               return (
                 <Marker
                   coordinates={[marker.longitude, marker.latitude]}
@@ -207,18 +210,14 @@ const CustomCompanyMap = (ratings) => {
                   <g>
                     <image
                       href={ImageMarker}
-                      x="-2.2"
-                      y="-3"
-                      height="0.6%"
-                      width="0.6%"
+                      x={kZoom >= 15 ? "-1" : "-3.7"}
+                      y={kZoom >= 15 ? "-2" : "-3"}
+                      height={kZoom >= 15 ? "0.3%" : "0.9%"}
+                      width={kZoom >= 15 ? "0.3%" : "0.9%"}
                     />
                   </g>
-                  <text
-                    textAnchor=""
-                    fill="#000"
-                    fontSize={kZoom >= 10 ? 1 : 2}
-                  >
-                    {marker.iso2}
+                  <text textAnchor="" fill="#000" fontSize={0.5}>
+                    {kZoom >= 15 ? marker.legalName : ""}
                   </text>
                 </Marker>
               );
@@ -226,7 +225,7 @@ const CustomCompanyMap = (ratings) => {
           })}
 
           {countryMarkers.map((marker) => {
-            if (kZoom >= 3 && kZoom <= 20) {
+            if (kZoom >= 3) {
               return (
                 <Marker
                   key={marker.iso3}

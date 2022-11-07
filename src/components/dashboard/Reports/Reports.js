@@ -20,6 +20,7 @@ import { CompanyUserContext } from "../../../contexts/companyuser";
 import { ReportContext } from "../../../contexts/reports";
 import { Report } from "../../model/Report";
 import { Alert } from "cx-portal-shared-components";
+import { ReloadContext } from "../../../contexts/refresh";
 
 const Reports = () => {
   const [selectionModel, setSelectionModel] = useState([]);
@@ -37,6 +38,8 @@ const Reports = () => {
   const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
 
   const [open, setOpen] = React.useState(false);
+
+  const { reload, updateReload } = useContext(ReloadContext);
 
   const [valueType, setType] = useState("Global");
 
@@ -57,7 +60,7 @@ const Reports = () => {
         setReport(response || []);
       }
     );
-  }, []);
+  }, [reload]);
 
   const closeDialogs = () => {
     setOpen(false);
@@ -82,7 +85,10 @@ const Reports = () => {
     );
 
     saveReports(UserService.getToken(), companyUser, newReport)
-      .then(setOpen(false))
+      .then((res) => {
+        setOpen(false);
+        updateReload(!reload);
+      })
       .catch((response) => {
         if (response.response.status === 400) {
           setSeverity("error");
@@ -146,6 +152,7 @@ const Reports = () => {
     setValueTextField("Select a Report Bellow");
     setValueRadioChecked(!valueRadioChecked);
     updateReport("");
+    updateReload(!reload);
   };
 
   const handleChange = () => {
@@ -230,7 +237,6 @@ const Reports = () => {
               className="CheckBox-Div-Radio"
               aria-labelledby="demo-controlled-radio-buttons-group"
               name="controlled-radio-buttons-group"
-              value={valueType}
               onChange={handleChangeCheckbox}
             >
               <FormControlLabel

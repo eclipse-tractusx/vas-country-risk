@@ -9,18 +9,21 @@ import { getAllDates } from "../../services/dateform-api";
 import UserService from "../../services/UserService";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { ReportContext } from "../../../contexts/reports";
+import { ReloadContext } from "../../../contexts/refresh";
 
 const DatePicker = ({ passYearSelected }) => {
   //Store Dates coming from API
   const [AllDate, setAllDate] = useState();
   const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
 
+  const { reload, updateReload } = useContext(ReloadContext);
+
   useEffect(() => {
     getAllDates(UserService.getToken(), companyUser).then((response) => {
       setAllDate(response.sort().reverse());
       setDate(response.sort().reverse()[0]);
     });
-  }, []);
+  }, [reload]);
 
   //Date Currently Selected
   const [date, setDate] = useState("");
@@ -33,8 +36,13 @@ const DatePicker = ({ passYearSelected }) => {
 
   useEffect(() => {
     const reportRates = reportValuesContext.filter((r) => r.name === "Ratings");
+
     setDate(
-      reportRates.length ? reportRates[0].objectValue[0].yearPublished : date
+      reportRates.length
+        ? reportRates[0].objectValue[0]
+          ? reportRates[0].objectValue[0].yearPublished
+          : date
+        : date
     );
   }, [reportValuesContext]);
 

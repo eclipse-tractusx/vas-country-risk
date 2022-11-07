@@ -8,6 +8,7 @@ import { columns } from "./ratingColumns";
 import UserService from "../../services/UserService";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { ReportContext } from "../../../contexts/reports";
+import { ReloadContext } from "../../../contexts/refresh";
 
 const Ratings = ({
   passAutomaticWeightChange,
@@ -23,6 +24,8 @@ const Ratings = ({
   const [tableRatings, setTableRatings] = useState([]);
 
   const [rates, setRatings] = useState([]);
+
+  const { reload, updateReload } = useContext(ReloadContext);
 
   const [sumTotalEffect, setSumTotalEffect] = useState(-1);
 
@@ -60,7 +63,7 @@ const Ratings = ({
     getRatingsByYear(years, UserService.getToken(), companyUser).then(
       (response) => setTableRatings(response)
     );
-  }, [years]);
+  }, [years, reload]);
 
   useEffect(() => {
     fetchData();
