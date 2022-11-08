@@ -7,6 +7,8 @@ import { getRatingsByYear } from "../../services/ratingstable-api";
 import { columns } from "./ratingColumns";
 import UserService from "../../services/UserService";
 import { CompanyUserContext } from "../../../contexts/companyuser";
+import { ReportContext } from "../../../contexts/reports";
+import { ReloadContext } from "../../../contexts/refresh";
 
 const Ratings = ({
   passAutomaticWeightChange,
@@ -23,6 +25,8 @@ const Ratings = ({
 
   const [rates, setRatings] = useState([]);
 
+  const { reload, updateReload } = useContext(ReloadContext);
+
   const [sumTotalEffect, setSumTotalEffect] = useState(-1);
 
   const [severity, setSeverity] = useState("");
@@ -31,6 +35,14 @@ const Ratings = ({
   let sumTotal = 0;
 
   const { prefixIds, updatePrefixIds } = useContext(RatesContext);
+
+  const { reportValuesContext, updateReport } = useContext(ReportContext);
+
+  useEffect(() => {
+    const reportRates = reportValuesContext.filter((r) => r.name === "Ratings");
+    updatePrefixIds(reportRates.length ? reportRates[0].objectValue : []);
+    setRatings(reportRates.length ? reportRates[0].objectValue : []);
+  }, [reportValuesContext]);
 
   const openDialog = () => {
     setOpen(!open);
@@ -51,7 +63,7 @@ const Ratings = ({
     getRatingsByYear(years, UserService.getToken(), companyUser).then(
       (response) => setTableRatings(response)
     );
-  }, [years]);
+  }, [years, reload]);
 
   useEffect(() => {
     fetchData();

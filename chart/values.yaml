@@ -40,7 +40,7 @@ service:
 autoscaling:
   enabled: false
 
-appName: vas-country-risk-frontend
+appName: country-risk-dashboard
 environment: "dev"
 
 ingress:

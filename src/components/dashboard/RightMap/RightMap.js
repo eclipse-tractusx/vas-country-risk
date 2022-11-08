@@ -2,14 +2,14 @@
 import React, { useState } from "react";
 import { Dialog, IconButton, Button } from "cx-portal-shared-components";
 import "./styles.scss";
-import CustomWorldMap from "../CustomWorld/CustomWorldMap";
 import OpenWithIcon from "@mui/icons-material/OpenWith";
 import { Box } from "@mui/material";
 import { toPng } from "html-to-image";
-import ProgressBar from "../ProgressBar/ProgressBar";
 import CloseIcon from "@mui/icons-material/Close";
+import CountryPicker from "../CountryPicker/CountryPicker";
+import CustomCompanyMap from "../CustomCompanyMap/CustomCompanyMap";
 
-const FakeLeftMap = (ratings) => {
+const RightMap = () => {
   const [expandMap, setExpandMap] = useState(false);
 
   const openDialog = () => {
@@ -17,13 +17,13 @@ const FakeLeftMap = (ratings) => {
   };
 
   const printMap = () => {
-    const link = document.getElementById("idCustomWorldMap");
+    const link = document.getElementById("idCustomCompanyView");
     toPng(link)
       .then((res) => {
         const img = new Image();
         img.src = res;
         var link = document.createElement("a");
-        link.download = "worldMap.png";
+        link.download = "BussinessPartnerMap.png";
         link.href = res;
         link.click();
       })
@@ -36,16 +36,16 @@ const FakeLeftMap = (ratings) => {
         <Dialog
           open={expandMap}
           onClose={openDialog}
-          className="left-dialog-expand-map"
+          className="right-dialog-expand-map"
         >
           <div className="expand-box-div">
             <Box className="expand-mui-box">
               <div className="buttons">
-                <h2>World Map</h2>
+                <h2>Company View</h2>
+                <CountryPicker></CountryPicker>
                 <Button size="small" onClick={printMap}>
                   Export Image
                 </Button>
-
                 <IconButton
                   className="close-button"
                   color="primary"
@@ -56,51 +56,42 @@ const FakeLeftMap = (ratings) => {
                   <CloseIcon></CloseIcon>
                 </IconButton>
               </div>
-              <div className="map-and-progressbar" id="idCustomWorldMap">
+              <div className="map-and-progressbar" id="idCustomCompanyView">
                 <div className="expand-custom-world-map">
-                  <CustomWorldMap
-                    getRatings={ratings.getRatings}
-                    years={ratings.years}
-                    // minMapWidth={500}
-                    // maxMapWidth={1100}
-                    // minMapHeight={500}
-                    // maxMapHeight={1000}
+                  <CustomCompanyMap
                     minMapWidth={0}
                     maxMapWidth={800}
                     minMapHeight={0}
                     maxMapHeight={600}
-                  ></CustomWorldMap>
-                </div>
-                <div className="progress-bar" style={{ width: "250px" }}>
-                  <ProgressBar className="bar" valuePercentage={100} />
+                  ></CustomCompanyMap>
                 </div>
               </div>
             </Box>
           </div>
         </Dialog>
       </div>
-      <div className="left-map-container">
-        <Box className="box-country-picker"></Box>
+      <div className="right-map-container">
+        <h2>Company View</h2>
+        <CountryPicker></CountryPicker>
         <IconButton
           className="expand-button"
           color="primary"
           onClick={openDialog}
           size="medium"
           variant="outlined"
+          sx={{ marginRight: "2px" }}
         >
           <OpenWithIcon></OpenWithIcon>
         </IconButton>
       </div>
-      <CustomWorldMap
-        getRatings={ratings.getRatings}
-        years={ratings.years}
+      <CustomCompanyMap
         minMapWidth={0}
         maxMapWidth={800}
         minMapHeight={0}
         maxMapHeight={600}
-      ></CustomWorldMap>
+      ></CustomCompanyMap>
     </>
   );
 };
 
-export default FakeLeftMap;
+export default RightMap;

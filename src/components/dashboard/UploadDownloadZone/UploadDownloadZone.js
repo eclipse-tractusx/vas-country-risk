@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import UserService from "../../services/UserService";
 import { downloadSampleCsvFile } from "../../services/files-api";
 import { CompanyUserContext } from "../../../contexts/companyuser";
+import { ReloadContext } from "../../../contexts/refresh";
 
 const UploadDownloadZone = () => {
   //Upload Button Handlers
@@ -16,6 +17,7 @@ const UploadDownloadZone = () => {
   const [severity, setSeverity] = useState("");
   const [severityMessage, setSeverityMessage] = useState("");
   const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
+  const { reload, updateReload } = useContext(ReloadContext);
 
   //Rating Button Handlers
   const [openRatingName, setOpenRatingName] = useState("");
@@ -61,6 +63,7 @@ const UploadDownloadZone = () => {
         console.log(`${meta.name} uploaded`);
         setSeverity("info");
         setSeverityMessage("Your file has been validated");
+        updateReload(!reload);
       } else if (status === "aborted") {
         console.log(`${meta.name}, upload failed...`);
       } else if (status === "error_upload") {
@@ -167,7 +170,6 @@ const UploadDownloadZone = () => {
         </div>
       </Dialog>
 
-      <div className="divider" />
       <Button
         className="DownloadButton"
         size="small"

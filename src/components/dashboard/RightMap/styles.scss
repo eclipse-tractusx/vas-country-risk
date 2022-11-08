@@ -1,0 +1,53 @@
+.right-map-container {
+  height: 15%;
+  width: 100%; 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1%;
+}
+
+
+.right-dialog-expand-map {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .expand-box-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .expand-mui-box {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 1%;
+        font-size: 12px;
+      }
+      .map-and-progressbar {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        background-color: white;
+        .expand-custom-world-map {
+          display: flex;
+          background-color: white;
+          flex-direction: column;
+          height: 64vh;
+        }
+        .progress-bar {
+          align-self: flex-start;
+          background-color: white;
+        }
+      }
+    }
+  }
+}

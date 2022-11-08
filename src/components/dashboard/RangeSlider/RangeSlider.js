@@ -9,6 +9,8 @@ import { RangesContext } from "../../../contexts/ranges";
 import { Alert, Button } from "cx-portal-shared-components";
 import { sendValues } from "../../services/ranges-api";
 import { CompanyUserContext } from "../../../contexts/companyuser";
+import { ReportContext } from "../../../contexts/reports";
+
 function valuetext(valueGreen) {
   return `${valueGreen}`;
 }
@@ -17,18 +19,19 @@ const RangeSlider = () => {
   const { ranges, updateRanges } = useContext(RangesContext);
   const [severityRange, setSeverityRange] = useState("");
   const [severityMessageRange, setSeverityMessageRange] = useState("");
-  const {companyUser, updateCompanyUser} = useContext(CompanyUserContext);
+  const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
 
   const saveRanges = () => {
     sendValues(ranges, companyUser);
   };
 
-
   const [minValue, setMin] = useState(37);
   const [betweenValue, setMid] = useState(60);
   const [maxValue, setMax] = useState(100);
 
-  useEffect(() => {
+  const { reportValuesContext, updateReport } = useContext(ReportContext);
+
+  const getRanges = () => {
     getAllRanges(UserService.getToken(), companyUser).then((response) => {
       if (Array.isArray(response)) {
         response.forEach((eachArray) => {
@@ -45,6 +48,10 @@ const RangeSlider = () => {
         });
       }
     });
+  };
+
+  useEffect(() => {
+    getRanges();
   }, [betweenValue, maxValue, minValue]);
 
   //Slide Initialization
@@ -200,6 +207,18 @@ const RangeSlider = () => {
   useEffect(() => {
     updateRanges([valueRed, valueYellow, valueGreen]);
   }, [valueGreen, valueRed, valueYellow]);
+
+  useEffect(() => {
+    const reportRange = reportValuesContext.filter((r) => r.name === "Range");
+
+    if (reportRange.length) {
+      setRedValues(reportRange[0].objectValue[0]);
+      setYellowValues(reportRange[0].objectValue[1]);
+      setGreenValues(reportRange[0].objectValue[2]);
+    } else {
+      getRanges();
+    }
+  }, [reportValuesContext]);
 
   return (
     <>

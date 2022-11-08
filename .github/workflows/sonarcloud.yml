@@ -1,0 +1,39 @@
+name: "Sonar Cloud Workflow"
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'dev'
+
+  pull_request:
+    types: [ opened, reopened, synchronize ]
+
+  workflow_call:
+    secrets:
+      SONAR_TOKEN:
+        required: true
+
+jobs:
+  Analysis:
+    name: Analyse
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 16.x, 18.x ]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: test
+        uses: SonarSource/sonarcloud-github-action@master
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

@@ -1,13 +1,12 @@
 .wrapper {
   display: flex;
-  height: 100vh;
-  width: 100vw;
-
+  flex-direction: row;
   .main-content {
     width: 65%;
     padding: 10px;
+
     .maps-content {
-      justify-content: space-evenly;
+      justify-content: space-between;
       display: flex;
       .left-map {
         align-items: center;
@@ -24,7 +23,6 @@
 
     .table-content {
       margin-top: 2%;
-      height: 80%;
       border: 1px solid #000;
       border-radius: 0;
     }
@@ -39,10 +37,12 @@
     }
 
     .right-middle-content {
-      display: flex;
+      //display: flex;
       justify-content: center;
       align-items: center;
       margin: 5% 0;
+      width: 100%;
+      border: 1px solid #000;
     }
 
     .right-bottom-content {

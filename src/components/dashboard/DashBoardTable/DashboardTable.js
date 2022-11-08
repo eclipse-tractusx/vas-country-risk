@@ -6,15 +6,19 @@ import "./styles.scss";
 import { columns } from "./tableColumns";
 import { RangesContext } from "../../../contexts/ranges";
 import { RatesContext } from "../../../contexts/rates";
+import { CountryContext } from "../../../contexts/country";
 import UserService from "../../services/UserService";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 
 const DashboardTable = (ratings, years) => {
   //Data Fetch
   const [data, setData] = useState([]);
+  const [globalData, setGlobalData] = useState([]);
+
   const [selectedRows, setSelectedRows] = useState([]);
   const { ranges, updateRanges } = useContext(RangesContext);
   const { prefixIds, updatePrefixIds } = useContext(RatesContext);
+  const { countryS, updateCountry } = useContext(CountryContext);
   const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
 
   const fetchData = (expr) => {
@@ -58,6 +62,20 @@ const DashboardTable = (ratings, years) => {
   };
 
   useEffect(() => {
+    if (countryS !== "none") {
+      const array = [];
+      globalData.forEach((gd) => {
+        if (gd.country === countryS.country) {
+          array.push(gd);
+        }
+      });
+      setData(array);
+    } else if (countryS === "none") {
+      setData(globalData);
+    }
+  }, [countryS.country, globalData]);
+
+  useEffect(() => {
     if (ratings.weight !== 0) {
       getAll(
         ratings.getRatings,
@@ -65,36 +83,38 @@ const DashboardTable = (ratings, years) => {
         UserService.getToken(),
         companyUser
       ).then((response) => {
-        setData(response);
+        setGlobalData(response);
       });
     }
   }, [ratings.getRatings, ratings.years, ratings.weight]);
 
   return (
     <>
-      <Table
-        className="table"
-        columns={columns(ranges)}
-        rowsCount={data.length}
-        rows={data}
-        pageSize={15}
-        rowHeight={50}
-        headerHeight={40}
-        autoHeight={false}
-        checkboxSelection
-        getRowClassName={(params) => `${params.row.status}`}
-        onSelectionModelChange={(ids) => {
-          const selectedIds = new Set(ids);
-          const selectedRows = data.filter((row) => selectedIds.has(row.id));
-          setSelectedRows(selectedRows);
-        }}
-        toolbar={{
-          buttonLabel: "Export to csv",
-          onButtonClick: exportCsv,
-          onSearch: fetchData,
-          title: "Number of Filtered Business Partners:",
-        }}
-      ></Table>
+      <div className="dashboard-table-style">
+        <Table
+          className="table"
+          columns={columns(ranges)}
+          rowsCount={data.length}
+          rows={data}
+          pageSize={15}
+          rowHeight={50}
+          headerHeight={40}
+          autoHeight={true}
+          checkboxSelection
+          getRowClassName={(params) => `${params.row.status}`}
+          onSelectionModelChange={(ids) => {
+            const selectedIds = new Set(ids);
+            const selectedRows = data.filter((row) => selectedIds.has(row.id));
+            setSelectedRows(selectedRows);
+          }}
+          toolbar={{
+            buttonLabel: "Export to csv",
+            onButtonClick: exportCsv,
+            onSearch: fetchData,
+            title: "Number of Filtered Business Partners:",
+          }}
+        ></Table>
+      </div>
     </>
   );
 };

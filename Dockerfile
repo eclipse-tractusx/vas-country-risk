@@ -6,6 +6,8 @@ ENV PATH="./node_modules/.bin:$PATH"
 
 RUN npm install react-dom --legacy-peer-deps
 
+RUN npm install jest enzyme enzyme-adapter-react-16 @babel/core @babel/preset-env --legacy-peer-deps
+
 RUN npm install react-tooltip --legacy-peer-deps
 
 RUN npm install keycloak-js --legacy-peer-deps
@@ -33,6 +35,10 @@ COPY --from=compile-image /build .
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
 EXPOSE 8080
+
+
+
+
 EXPOSE 80
 
 

@@ -14,12 +14,15 @@ import { RangesContext } from "../../../contexts/ranges";
 import UserService from "../../services/UserService";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { getCountrys } from "../../services/country-api";
+import { getBpns } from "../../services/bpns-api";
+import ImageMarker from "../../../resources/marker.png";
 
 const CustomWorldMap = (ratings) => {
   const [data, setData] = useState([]);
   const [countryMarkers, setCountryMarkers] = useState([]);
   const [content, setContent] = useState("");
   const [kZoom, setKZoom] = useState(1);
+  const [bpns, setBpns] = useState([]);
 
   const { ranges, updateRanges } = useContext(RangesContext);
 
@@ -44,6 +47,10 @@ const CustomWorldMap = (ratings) => {
   useEffect(() => {
     getCountrys(UserService.getToken(), companyUser).then((response) => {
       setCountryMarkers(response);
+    });
+
+    getBpns(UserService.getToken(), companyUser).then((response) => {
+      setBpns(response);
     });
   }, []);
 
@@ -77,7 +84,7 @@ const CustomWorldMap = (ratings) => {
 
                 if (Array.isArray(data)) {
                   data.forEach((s) => {
-                    if (s.country === geo.properties.name) {
+                    if (s.country.iso3 === geo.id) {
                       if (s.score >= ranges[2][0]) {
                         geoMap.set("color", "green");
                         geoMap.set(geo, geo);
@@ -104,7 +111,7 @@ const CustomWorldMap = (ratings) => {
                     fill={geoMap.size > 0 ? geoMap.get("color") : "#F5F4F6"}
                     onMouseEnter={() => {
                       countryMarkers.forEach((s) => {
-                        if (s.country === geo.properties.name) {
+                        if (s.iso3 === geo.id) {
                           setContent(s.country + " " + s.totalBpn);
                         }
                       });
@@ -120,7 +127,7 @@ const CustomWorldMap = (ratings) => {
                         stroke: "#607D8B",
                         strokeWidth: 1,
                         outline: "none",
-                        fill: "#F53",
+                        fill: "#82e362",
                       },
                       pressed: {
                         stroke: "#607D8B",
@@ -135,12 +142,25 @@ const CustomWorldMap = (ratings) => {
           </Geographies>
 
           {countryMarkers.map((marker) => {
-            if (kZoom >= 3 && kZoom <= 20) {
+            if (kZoom >= 3) {
               return (
                 <Marker
                   key={marker.iso3}
                   coordinates={[marker.longitude, marker.latitude]}
+                  onMouseEnter={() => {
+                    setContent(marker.country);
+                  }}
+                  onMouseLeave={handlePopoverClose}
                 >
+                  <g>
+                    <image
+                      //href={ImageMarker}
+                      x="-2.2"
+                      y="-3"
+                      height="0.5%"
+                      width="0.5%"
+                    />
+                  </g>
                   <text
                     textAnchor=""
                     fill="#000"
@@ -148,6 +168,38 @@ const CustomWorldMap = (ratings) => {
                   >
                     {marker.iso2}
                   </text>
+                </Marker>
+              );
+            }
+          })}
+
+          {bpns.map((bpn) => {
+            if (kZoom >= 10) {
+              return (
+                <Marker
+                  onMouseEnter={() => {
+                    setContent(
+                      <div>
+                        <div>{bpn.legalName}</div>
+                        <div>{bpn.address}</div>
+                        <div>{bpn.city}</div>
+                      </div>
+                    );
+                  }}
+                  onMouseLeave={handlePopoverClose}
+                  key={bpn.iso3}
+                  coordinates={[bpn.longitude, bpn.latitude]}
+                >
+                  <g>
+                    <image
+                      href={ImageMarker}
+                      x="-2.2"
+                      y="-3"
+                      height="0.5%"
+                      width="0.5%"
+                    />
+                  </g>
+                  <text textAnchor="" fill="#000" fontSize={0.25}></text>
                 </Marker>
               );
             }

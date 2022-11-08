@@ -4,12 +4,14 @@ import "./styles.scss";
 import { sendValues } from "../services/ranges-api";
 import { RangesContext } from "../../contexts/ranges";
 import LeftMap from "./LeftMap/LeftMap";
-import FakeLeftMap from "./LeftMap/FakeLeftMap";
+import RightMap from "./RightMap/RightMap";
 import DashboardTable from "./DashBoardTable/DashboardTable";
 import DatePicker from "./DatePicker/DatePicker";
 import Ratings from "./Ratings/Ratings";
 import UploadDownloadZone from "./UploadDownloadZone/UploadDownloadZone";
 import RangeSlider from "./RangeSlider/RangeSlider";
+
+import Reports from "./Reports/Reports";
 
 const Dashboard = () => {
   const { ranges, updateRanges } = useContext(RangesContext);
@@ -44,7 +46,7 @@ const Dashboard = () => {
             ></LeftMap>
           </div>
           <div className="right-map">
-            <FakeLeftMap></FakeLeftMap>
+            <RightMap></RightMap>
           </div>
         </div>
         <div className="table-content">
@@ -64,8 +66,11 @@ const Dashboard = () => {
             years={years}
           ></Ratings>
         </div>
-        <div className="right-middle-content">
+        <div>
           <UploadDownloadZone></UploadDownloadZone>
+        </div>
+        <div className="right-middle-content">
+          <Reports></Reports>
         </div>
         <div className="right-bottom-content">
           <RangeSlider></RangeSlider>
