@@ -43,6 +43,9 @@ jobs:
       - name: See lcov
         run: cat coverage/lcov.info
 
+      - name: See lcov pwd
+        run: pwd
+
       - name: Test
         uses: SonarSource/sonarcloud-github-action@master
         env:
