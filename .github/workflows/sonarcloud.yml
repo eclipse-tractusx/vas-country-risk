@@ -41,7 +41,7 @@ jobs:
         run: npm run coverage
 
       - name: See lcov
-        run: ls
+        run: cat coverage/lcov.info
 
       - name: Test
         uses: SonarSource/sonarcloud-github-action@master
