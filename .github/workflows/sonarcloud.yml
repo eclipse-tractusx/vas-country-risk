@@ -40,6 +40,9 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: npm run coverage
 
+      - name: See lcov
+        run: ls
+
       - name: Test
         uses: SonarSource/sonarcloud-github-action@master
         env:
