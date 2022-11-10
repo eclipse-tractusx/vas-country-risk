@@ -3,7 +3,8 @@ import { test } from "@jest/globals";
 import Reports from "../../../components/dashboard/Reports/Reports";
 import { getReportsByCompanyUser } from "../../../components/services/reports-api";
 import "@testing-library/jest-dom/extend-expect";
-
+import userEvent from "@testing-library/user-event";
+import { RatesProvider } from "../../../contexts/rates";
 const reports = [
   {
     id: 1,
@@ -23,12 +24,14 @@ test("Renders Report", async () => {
   getReportsByCompanyUser.mockImplementation(() => Promise.resolve(reports));
   const customerUser = { name: "test" };
   console.log(customerUser);
-  let findAllByText;
-  await (async () => {
-    ({ findAllByText } = render(<Reports />));
+  let getByText;
+  await act(async () => {
+    ({ getByText } = render(
+      <RatesProvider>
+        <Reports />
+      </RatesProvider>
+    ));
   });
-
-  //screen.findAllByAltText("table");
-  //screen.getByDisplayValue("Select a Report Bellow");
-  //expect(document.querySelector("#ButtonSave")).toHaveClass("#ButtonSave");
+  expect(getByText("Save Reports")).toBeInTheDocument();
+  await userEvent.click(getByText("Save Reports"));
 });
