@@ -57,6 +57,7 @@ const Reports = () => {
   useEffect(() => {
     getReportsByCompanyUser(UserService.getToken(), companyUser).then(
       (response) => {
+        console.log("code", response);
         setReport(response || []);
       }
     );
