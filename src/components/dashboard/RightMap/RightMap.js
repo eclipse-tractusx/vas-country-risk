@@ -74,6 +74,7 @@ const RightMap = () => {
         <h2>Company View</h2>
         <CountryPicker></CountryPicker>
         <IconButton
+          data-testid="expand-btn"
           className="expand-button"
           color="primary"
           onClick={openDialog}

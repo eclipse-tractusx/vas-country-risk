@@ -79,6 +79,7 @@ const LeftMap = (ratings) => {
       <div className="left-map-container">
         <h2>World Map</h2>
         <IconButton
+          data-testid="expand-btn"
           className="expand-button"
           color="primary"
           onClick={openDialog}
