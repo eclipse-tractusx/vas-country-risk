@@ -10,8 +10,8 @@ import DatePicker from "./DatePicker/DatePicker";
 import Ratings from "./Ratings/Ratings";
 import UploadDownloadZone from "./UploadDownloadZone/UploadDownloadZone";
 import RangeSlider from "./RangeSlider/RangeSlider";
-
 import Reports from "./Reports/Reports";
+import GatePicker from "./GatePicker/GatePicker";
 
 const Dashboard = () => {
   const { ranges, updateRanges } = useContext(RangesContext);
@@ -59,7 +59,14 @@ const Dashboard = () => {
       </div>
       <div className="right-content">
         <div className="right-top-content">
-          <DatePicker passYearSelected={passYearSelected}></DatePicker>
+          <div className="dropdown-content">
+            <div className="dropdown-content-left">
+              <DatePicker passYearSelected={passYearSelected}></DatePicker>
+            </div>
+            <div className="dropdown-content-right">
+              <GatePicker passYearSelected={passYearSelected}></GatePicker>
+            </div>
+          </div>
           <Ratings
             passValuesFromComponent={passValuesFromComponent}
             passAutomaticWeightChange={passAutomaticWeightChange}

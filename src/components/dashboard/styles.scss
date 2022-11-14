@@ -36,6 +36,20 @@
       width: 100%;
     }
 
+    .dropdown-content {
+      display: flex; 
+      justify-content: space-between;
+
+      .dropdown-content-left {
+        width: 45%;
+      }
+
+      .dropdown-content-right {
+        width: 45%;
+      }
+      
+    }
+
     .right-middle-content {
       //display: flex;
       justify-content: center;
