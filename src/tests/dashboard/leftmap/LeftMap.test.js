@@ -1,9 +1,8 @@
-import { render, screen, act } from "@testing-library/react";
+import { render, act } from "@testing-library/react";
 import { test } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
 import userEvent from "@testing-library/user-event";
 import LeftMap from "../../../components/dashboard/LeftMap/LeftMap";
-import { CountryProvider } from "../../../contexts/country";
 import { getWorldMapInfo, getAll } from "../../../components/services/dashboard-api";
 import { getCountryByUser, getCountrys } from "../../../components/services/country-api";
 import { getBpns } from "../../../components/services/bpns-api";
@@ -36,7 +35,7 @@ const tableinfoData = [
         rating: "Fake Rating",
         longitude: "107.6185727",
         latitude: "-6.6889038"
-      },
+    },
 ];
 
 const countryData = [
@@ -50,7 +49,7 @@ const countryData = [
         longitude: "23.8222636",
         totalBpn: 11
     },
-  ];
+];
 
 const bpnData = [
     {
@@ -62,8 +61,8 @@ const bpnData = [
         country: "Portugal",
         longitude: "107.6185727",
         latitude: "-6.6889038"
-      },
-];  
+    },
+];
 
 jest.mock("../../../components/services/dashboard-api", () => ({
     getWorldMapInfo: jest.fn(() => getWorldMapData),
@@ -89,9 +88,7 @@ test("Renders Left Map", async () => {
     const customerUser = { name: "test" };
     await act(async () => {
         ({ getByTestId } = render(
-
-                <LeftMap />
-
+            <LeftMap />
         ));
     });
     expect(getByTestId("expand-btn")).toBeInTheDocument();

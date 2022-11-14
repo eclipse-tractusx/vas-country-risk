@@ -1,4 +1,4 @@
-import { render, screen, act } from "@testing-library/react";
+import { render, act } from "@testing-library/react";
 import { test } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
 import userEvent from "@testing-library/user-event";
