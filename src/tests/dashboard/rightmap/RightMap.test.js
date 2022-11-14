@@ -63,5 +63,5 @@ test("Renders Right Map", async () => {
         ));
     });
     expect(getByTestId("expand-btn")).toBeInTheDocument();
-    await userEvent.click(getByTestId("expand-btn"));
+    userEvent.click(getByTestId("expand-btn"));
 });

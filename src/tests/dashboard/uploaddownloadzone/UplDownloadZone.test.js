@@ -19,5 +19,5 @@ test("Ranges Test", async () => {
     ));
   });
   expect(getByText("Upload Rating")).toBeInTheDocument();
-  await userEvent.click(getByText("Upload Rating"));
+  userEvent.click(getByText("Upload Rating"));
 });
