@@ -13,7 +13,6 @@ import { ReloadContext } from "../../../contexts/refresh";
 import { GatesContext } from "../../../contexts/gates";
 
 const GatePicker = () => {
-
   const [AllGates, setAllGates] = useState();
   const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
 
@@ -55,16 +54,12 @@ const GatePicker = () => {
     <Box>
       <FormControl fullWidth variant="filled">
         <InputLabel id="demo-simple-select-label">Select a Gate</InputLabel>
-        <Select
-          value={gate}
-          onChange={handleChange}
-          label="Gate"
-        >
+        <Select value={gate} onChange={handleChange} label="Gate">
           {Array.isArray(AllGates)
             ? AllGates.map((item) => {
                 return (
                   <MenuItem key={item} value={item}>
-                    {item}
+                    {item.gateName}
                   </MenuItem>
                 );
               })

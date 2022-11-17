@@ -8,7 +8,7 @@ export function getReportsByCompanyUser(token, customerUser) {
       params: {
         name: customerUser.name,
         email: customerUser.email,
-        company: customerUser.company,
+        companyName: customerUser.companyName,
       },
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -41,7 +41,7 @@ export function saveReports(token, customerUser, report) {
     params: {
       name: customerUser.name,
       email: customerUser.email,
-      company: customerUser.company,
+      company: customerUser.companyName,
     },
 
     headers: { Authorization: `Bearer ${token}` },

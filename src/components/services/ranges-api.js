@@ -9,7 +9,7 @@ export function getAllRanges(token, customerUser) {
       params: {
         name: customerUser.name,
         email: customerUser.email,
-        company: customerUser.company,
+        companyName: customerUser.companyName,
       },
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -38,7 +38,7 @@ export function sendValues(rangesList, customerUser, token) {
     params: {
       name: customerUser.name,
       email: customerUser.email,
-      company: customerUser.company,
+      companyName: customerUser.companyName,
     },
 
     headers: { Authorization: `Bearer ${token}` },

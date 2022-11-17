@@ -1,7 +1,7 @@
 export class CompanyUser {
-  constructor(name, email, company) {
+  constructor(name, email, companyName) {
     this.name = name;
     this.email = email;
-    this.company = company;
+    this.companyName = companyName;
   }
 }

@@ -51,7 +51,7 @@ const UploadDownloadZone = () => {
       fields: {
         name: companyUser.name,
         email: companyUser.email,
-        company: companyUser.company,
+        companyName: companyUser.companyName,
       },
       headers: {
         ratingName: openRatingName || "defaultName",

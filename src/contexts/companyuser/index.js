@@ -18,7 +18,7 @@ const CompanyUserProvider = ({ children, updatedCompanyUser }) => {
   };
 
   return (
-    <CompanyUserContext.Provider value={{ companyUser, updateCompanyUser }}>
+    <CompanyUserContext.Provider value={{ companyUser, updatedCompanyUser }}>
       {children}
     </CompanyUserContext.Provider>
   );

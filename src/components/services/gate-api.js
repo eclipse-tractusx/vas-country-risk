@@ -8,7 +8,7 @@ export function getUserBpdmGates(token, customerUser) {
       params: {
         name: customerUser.name,
         email: customerUser.email,
-        company: customerUser.company,
+        companyName: customerUser.companyName,
       },
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -17,15 +17,15 @@ export function getUserBpdmGates(token, customerUser) {
 }
 
 export function getDataFromSelectedGate(token, customerUser) {
-    return axios
-      .get(process.env.REACT_APP_GET_FROM_SELECTED_GATE, {
-        params: {
-          name: customerUser.name,
-          email: customerUser.email,
-          company: customerUser.company,
-        },
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => res.data)
-      .catch((err) => []);
-  }
+  return axios
+    .get(process.env.REACT_APP_GET_FROM_SELECTED_GATE, {
+      params: {
+        name: customerUser.name,
+        email: customerUser.email,
+        companyName: customerUser.companyName,
+      },
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then((res) => res.data)
+    .catch((err) => []);
+}
