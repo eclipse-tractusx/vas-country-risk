@@ -234,6 +234,7 @@ const Reports = () => {
           </FormLabel>
           <div className="CheckBox-Div">
             <RadioGroup
+              defaultValue="Custom"
               className="CheckBox-Div-Radio"
               aria-labelledby="demo-controlled-radio-buttons-group"
               name="controlled-radio-buttons-group"
