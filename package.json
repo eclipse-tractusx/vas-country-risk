@@ -32,7 +32,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "coverage": "react-scripts test --env=jsdom --watchAll --coverage --collectCoverageFrom='src/components/dashboard/**/*.js'"
+    "coverage": "react-scripts test --env=jsdom --coverage --collectCoverageFrom='src/components/dashboard/**/*.js'"
   },
   "eslintConfig": {
     "extends": [
