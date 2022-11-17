@@ -11,7 +11,7 @@ import UserService from "./components/services/UserService";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 UserService.init((user) => {
-  console.log(user);
+  //console.log(user);
   root.render(
     <React.StrictMode>
       <SharedCssBaseline />
