@@ -86,6 +86,7 @@ test("Renders Left Map", async () => {
     getBpns.mockImplementation(() => Promise.resolve(bpnData));
     let getByTestId, getByText;
     const customerUser = { name: "test" };
+    console.log(customerUser);
     await act(async () => {
         ({ getByTestId, getByText } = render(
             <LeftMap />
