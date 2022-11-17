@@ -79,7 +79,7 @@ const Reports = () => {
     const newReport = new Report(
       valueDialogTextField,
       companyUser.name,
-      companyUser.company,
+      companyUser.companyName,
       valueType,
       list
     );

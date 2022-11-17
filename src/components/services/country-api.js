@@ -8,7 +8,7 @@ export function getCountryByUser(token, customerUser) {
       params: {
         name: customerUser.name,
         email: customerUser.email,
-        company: customerUser.company,
+        companyName: customerUser.companyName,
       },
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -23,7 +23,7 @@ export function getCountrys(token, customerUser) {
       params: {
         name: customerUser.name,
         email: customerUser.email,
-        company: customerUser.company,
+        companyName: customerUser.companyName,
       },
       headers: { Authorization: `Bearer ${token}` },
     })

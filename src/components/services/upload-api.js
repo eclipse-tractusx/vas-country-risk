@@ -10,7 +10,7 @@ export function uploadCsvFile(formData, token, customerUser) {
     params: {
       name: customerUser.name,
       email: customerUser.email,
-      company: customerUser.company,
+      companyName: customerUser.companyName,
     },
     headers: {
       "Content-Type": `multipart/form-data`,
