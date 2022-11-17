@@ -44,11 +44,11 @@ test("Renders Report", async () => {
 
 
   expect(getByTestId("radioClear")).toBeInTheDocument();
-  await userEvent.click(getByTestId("radioClear"));
+  userEvent.click(getByTestId("radioClear"));
 
   expect(getByText("Save Reports")).toBeInTheDocument();
-  await userEvent.click(getByText("Save Reports"));
+  userEvent.click(getByText("Save Reports"));
 
   expect(getByText("Close")).toBeInTheDocument();
-  await userEvent.click(getByText("Close"));
+  userEvent.click(getByText("Close"));
 });

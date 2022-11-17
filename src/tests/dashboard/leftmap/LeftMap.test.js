@@ -93,9 +93,9 @@ test("Renders Left Map", async () => {
         ));
     });
     expect(getByTestId("expand-btn")).toBeInTheDocument();
-    await userEvent.click(getByTestId("expand-btn"));
+    userEvent.click(getByTestId("expand-btn"));
 
     expect(getByText("Export Image")).toBeInTheDocument();
-    await userEvent.click(getByText("Export Image"));
+    userEvent.click(getByText("Export Image"));
 
 });
