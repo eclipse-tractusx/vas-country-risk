@@ -1,4 +1,4 @@
-import { render, act } from "@testing-library/react";
+import { render, act, fireEvent } from "@testing-library/react";
 import { test } from "@jest/globals";
 import RangeSlider from "../../../components/dashboard/RangeSlider/RangeSlider";
 import {
@@ -12,21 +12,45 @@ import userEvent from "@testing-library/user-event";
 
 const range = [
   {
-    id: 0,
-    range: "Max",
-    value: 80,
-    description: "Max value",
+    id: null,
+    range: "Min",
+    value: 25,
+    description: "Min Range",
     companyUser: {
-      id: 0,
-      name: "John",
-      email: "John@email.com",
-      company: "TestCompany",
+      id: null,
+      name: "Test User CX Admin",
+      email: "cxadmin@cx.com",
+      company: "CX-Test-Access",
+    },
+  },
+  {
+    id: null,
+    range: "Between",
+    value: 50,
+    description: "BetWeen Range",
+    companyUser: {
+      id: null,
+      name: "Test User CX Admin",
+      email: "cxadmin@cx.com",
+      company: "CX-Test-Access",
+    },
+  },
+  {
+    id: null,
+    range: "Max",
+    value: 100,
+    description: null,
+    companyUser: {
+      id: null,
+      name: "Test User CX Admin",
+      email: "cxadmin@cx.com",
+      company: "CX-Test-Access",
     },
   },
 ];
 
 jest.mock("../../../components/services/ranges-api", () => ({
-  getAllRanges: jest.fn(() => range),
+  getAllRanges: jest.fn().mockReturnValue(range),
   sendValues: jest.fn(),
 }));
 
@@ -45,6 +69,10 @@ test("Ranges Test", async () => {
       </ReportProvider>
     ));
   });
-  expect(getByText("Save Ranges")).toBeInTheDocument();
-  await userEvent.click(getByText("Save Ranges"));
+
+  const saveRangesButton = getByText("Save Ranges");
+  expect(saveRangesButton).toBeInTheDocument();
+  act(() => {
+    fireEvent.click(saveRangesButton);
+  });
 });
