@@ -10,7 +10,7 @@ const reports = [
   {
     id: 1,
     reportName: "fake rating",
-    companyUserName: "John",
+    companyUserName: "joao",
     company: "CGI",
     type: "Company",
     reportValues: null,
