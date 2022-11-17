@@ -2,7 +2,10 @@ import { render, act } from "@testing-library/react";
 import CountryPicker from "../../../components/dashboard/CountryPicker/CountryPicker";
 import { test } from "@jest/globals";
 import { CountryProvider } from "../../../contexts/country";
-import { getCountryByUser, getCountrys } from "../../../components/services/country-api";
+import {
+  getCountryByUser,
+  getCountrys,
+} from "../../../components/services/country-api";
 
 const countryData = [
   {
@@ -13,7 +16,7 @@ const countryData = [
     continent: "Europe",
     latitude: "-2.9814344",
     longitude: "23.8222636",
-    totalBpn: 11
+    totalBpn: 11,
   },
 ];
 
@@ -28,10 +31,10 @@ test("CountryPicker Test", async () => {
   const customerUser = { name: "test" };
   console.log(customerUser);
   await act(async () => {
-    ( render(
+    render(
       <CountryProvider>
         <CountryPicker />
       </CountryProvider>
-    ));
+    );
   });
 });
