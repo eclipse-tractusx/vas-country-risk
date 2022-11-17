@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import React, { useState, useContext, useEffect } from "react";
 import "./styles.scss";
-import { sendValues } from "../services/ranges-api";
 import { RangesContext } from "../../contexts/ranges";
 import LeftMap from "./LeftMap/LeftMap";
 import RightMap from "./RightMap/RightMap";
