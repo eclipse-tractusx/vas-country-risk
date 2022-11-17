@@ -84,13 +84,17 @@ test("Renders Left Map", async () => {
     getCountrys.mockImplementation(() => Promise.resolve(countryData));
     getWorldMapInfo.mockImplementation(() => Promise.resolve(getWorldMapData));
     getBpns.mockImplementation(() => Promise.resolve(bpnData));
-    let getByTestId;
+    let getByTestId, getByText;
     const customerUser = { name: "test" };
     await act(async () => {
-        ({ getByTestId } = render(
+        ({ getByTestId, getByText } = render(
             <LeftMap />
         ));
     });
     expect(getByTestId("expand-btn")).toBeInTheDocument();
     await userEvent.click(getByTestId("expand-btn"));
+
+    expect(getByText("Export Image")).toBeInTheDocument();
+    await userEvent.click(getByText("Export Image"));
+
 });
