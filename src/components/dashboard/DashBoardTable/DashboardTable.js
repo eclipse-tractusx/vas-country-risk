@@ -84,12 +84,13 @@ const DashboardTable = (ratings, years) => {
         ratings.getRatings,
         ratings.years,
         UserService.getToken(),
-        companyUser
+        companyUser,
+        gates
       ).then((response) => {
         setGlobalData(response);
       });
     }
-  }, [ratings.getRatings, ratings.years, ratings.weight]);
+  }, [ratings.getRatings, ratings.years, ratings.weight, gates]);
 
   return (
     <>

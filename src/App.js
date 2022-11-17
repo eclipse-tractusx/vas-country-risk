@@ -9,6 +9,7 @@ import { CompanyUserProvider } from "./contexts/companyuser";
 import { ReportProvider } from "./contexts/reports";
 import { ReloadProvider } from "./contexts/refresh";
 import { GatesProvider } from "./contexts/gates";
+import  NavigationBar  from "./components/dashboard/NavigationBar/NavigationBar";
 function App() {
   return (
     <>
@@ -19,6 +20,9 @@ function App() {
               <CompanyUserProvider>
                 <ReportProvider>
                   <ReloadProvider>
+                    <div>
+                      <NavigationBar/>
+                    </div>
                     <div className="App-pageheader">
                       <PageHeader
                         title="Dashboard"

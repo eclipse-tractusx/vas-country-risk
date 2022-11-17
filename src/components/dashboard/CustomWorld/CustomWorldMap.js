@@ -16,6 +16,7 @@ import { CompanyUserContext } from "../../../contexts/companyuser";
 import { getCountrys } from "../../services/country-api";
 import { getBpns } from "../../services/bpns-api";
 import ImageMarker from "../../../resources/marker.png";
+import { GatesContext } from "../../../contexts/gates";
 
 const CustomWorldMap = (ratings) => {
   const [data, setData] = useState([]);
@@ -23,6 +24,7 @@ const CustomWorldMap = (ratings) => {
   const [content, setContent] = useState("");
   const [kZoom, setKZoom] = useState(1);
   const [bpns, setBpns] = useState([]);
+  const { gates, updateGate } = useContext(GatesContext);
 
   const { ranges, updateRanges } = useContext(RangesContext);
 
@@ -37,12 +39,13 @@ const CustomWorldMap = (ratings) => {
         ratings.getRatings,
         ratings.years,
         UserService.getToken(),
-        companyUser
+        companyUser,
+        gates
       ).then((response) => {
         setData(response);
       });
     }
-  }, [ratings.getRatings, ratings.years, ratings.weight]);
+  }, [ratings.getRatings, ratings.years, ratings.weight, gates]);
 
   useEffect(() => {
     getCountrys(UserService.getToken(), companyUser).then((response) => {

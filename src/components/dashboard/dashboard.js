@@ -1,8 +1,6 @@
 /* eslint-disable no-console */
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import "./styles.scss";
-import { sendValues } from "../services/ranges-api";
-import { RangesContext } from "../../contexts/ranges";
 import LeftMap from "./LeftMap/LeftMap";
 import RightMap from "./RightMap/RightMap";
 import DashboardTable from "./DashBoardTable/DashboardTable";
@@ -14,7 +12,6 @@ import Reports from "./Reports/Reports";
 import GatePicker from "./GatePicker/GatePicker";
 
 const Dashboard = () => {
-  const { ranges, updateRanges } = useContext(RangesContext);
 
   const [ratings, setRatings] = useState("");
 

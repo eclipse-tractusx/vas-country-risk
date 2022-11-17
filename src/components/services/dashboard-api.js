@@ -24,7 +24,7 @@ export function getAll(ratingsArray, years, token, customerUser, gates) {
     .catch((err) => err);
 }
 
-export function getWorldMapInfo(ratingsArray, years, token, customerUser) {
+export function getWorldMapInfo(ratingsArray, years, token, customerUser, gates) {
   const ratings = new Map();
 
   ratingsArray
@@ -39,6 +39,7 @@ export function getWorldMapInfo(ratingsArray, years, token, customerUser) {
         name: customerUser.name,
         email: customerUser.email,
         company: customerUser.company,
+        gate: gates,
       },
       headers: { Authorization: `Bearer ${token}` },
     })

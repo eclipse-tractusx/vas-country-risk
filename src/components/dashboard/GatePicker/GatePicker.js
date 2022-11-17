@@ -24,12 +24,14 @@ const GatePicker = () => {
   useEffect(() => {
     getUserBpdmGates(UserService.getToken(), companyUser).then((response) => {
       setAllGates(response.sort().reverse());
-      //setGate(response.sort().reverse()[0]);
+      //setGate(response.sort().reverse()[0]); //Value on Page Start
     });
   }, [reload]);
 
   //Get Current selected Gate
   const [gate, setGate] = useState("");
+
+  console.log(companyUser)
 
   const handleChange = (event) => {
     setGate(event.target.value);
@@ -52,8 +54,8 @@ const GatePicker = () => {
   }, [reportValuesContext]);*/
 
   return (
-    <Box>
-      <FormControl fullWidth variant="filled">
+    <Box sx={{ minWidth: 120 }}>
+      <FormControl fullWidth variant="filled" color="primary">
         <InputLabel id="demo-simple-select-label">Select a Gate</InputLabel>
         <Select
           value={gate}
