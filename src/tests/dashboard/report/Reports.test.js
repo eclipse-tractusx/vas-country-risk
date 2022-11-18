@@ -1,13 +1,18 @@
-import { render, act } from "@testing-library/react";
+import { render, act, fireEvent } from "@testing-library/react";
 import { test } from "@jest/globals";
 import Reports from "../../../components/dashboard/Reports/Reports";
-import { getReportsByCompanyUser ,
+import {
+  getReportsByCompanyUser,
   getReportValuesByReport,
   saveReports
 } from "../../../components/services/reports-api";
 import "@testing-library/jest-dom/extend-expect";
 import userEvent from "@testing-library/user-event";
 import { RatesProvider } from "../../../contexts/rates";
+import {
+  CompanyUserContext,
+  CompanyUserProvider,
+} from "../../../contexts/companyuser";
 
 const reports = [
   {
@@ -20,28 +25,54 @@ const reports = [
   },
 ];
 
-jest.mock("../../../components/services/reports-api", () => ({
-  getReportsByCompanyUser: jest.fn(() => reports),
-  getReportValuesByReport: jest.fn(() => reports),
-  saveReports: jest.fn(),
-}));
+const customerUser = [
+  {
+    name: "Test",
+    email: "test@test-cx.com",
+    company: "testCompany",
+  },
+];
+
+jest.mock("../../../components/services/reports-api", () => {
+  const saveReports = jest.requireActual(
+    "../../../components/services/reports-api"
+  );
+
+  return {
+    __esModule: true,
+    ...saveReports,
+    getReportsByCompanyUser: jest.fn().mockReturnValue(reports),
+    getReportValuesByReport: jest.fn(() => reports),
+  };
+});
+
+
+
 
 test("Renders Report", async () => {
   getReportsByCompanyUser.mockImplementation(() => Promise.resolve(reports));
   getReportValuesByReport.mockImplementation(() => Promise.resolve(reports));
-  saveReports.mockImplementation(() => Promise.resolve(reports));
-  const customerUser = { name: "test" };
-  console.log(customerUser);
-  let getByText;
-  let getByTestId;
-  await act(async () => {
-    ({ getByText, getByTestId } = render(
+
+  /*const getContainer = () => 
+  render(
+    <CompanyUserProvider value={customerUser}>
       <RatesProvider>
         <Reports />
       </RatesProvider>
+    </CompanyUserProvider>
+  );*/
+
+  let getByTestId;
+  let getByText;
+  await act(async () => {
+    ({ getByTestId, getByText } = render(
+      <CompanyUserProvider value={customerUser}>
+        <RatesProvider>
+          <Reports />
+        </RatesProvider>
+      </CompanyUserProvider>
     ));
   });
-
 
   expect(getByTestId("radioClear")).toBeInTheDocument();
   userEvent.click(getByTestId("radioClear"));
