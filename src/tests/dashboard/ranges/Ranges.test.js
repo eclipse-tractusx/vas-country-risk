@@ -9,6 +9,11 @@ import "@testing-library/jest-dom/extend-expect";
 import { RangesProvider } from "../../../contexts/ranges";
 import { ReportProvider } from "../../../contexts/reports";
 import userEvent from "@testing-library/user-event";
+import {
+  CompanyUserContext,
+  CompanyUserProvider,
+} from "../../../contexts/companyuser";
+import React, { useContext } from "react";
 
 const range = [
   {
@@ -49,30 +54,43 @@ const range = [
   },
 ];
 
-jest.mock("../../../components/services/ranges-api", () => ({
-  getAllRanges: jest.fn().mockReturnValue(range),
-  sendValues: jest.fn(),
-}));
+const customerUser = [
+  {
+    name: "Test",
+    email: "test@test-cx.com",
+    company: "testCompany",
+  },
+];
 
-test("Ranges Test", async () => {
+jest.mock("../../../components/services/ranges-api", () => {
+  const sendValues = jest.requireActual(
+    "../../../components/services/ranges-api"
+  );
+
+  return {
+    __esModule: true,
+    ...sendValues,
+    getAllRanges: jest.fn().mockReturnValue(range),
+  };
+});
+
+test("Ranges Test", () => {
   getAllRanges.mockImplementation(() => Promise.resolve(range));
-  sendValues.mockImplementation(() => Promise.resolve(range));
-  const customerUser = { name: "test" };
-  console.log(customerUser);
-  let getByText;
-  await act(async () => {
-    ({ getByText } = render(
-      <ReportProvider>
-        <RangesProvider>
-          <RangeSlider />
-        </RangesProvider>
-      </ReportProvider>
-    ));
-  });
 
-  const saveRangesButton = getByText("Save Ranges");
-  expect(saveRangesButton).toBeInTheDocument();
+  const getContainer = () =>
+    render(
+      <CompanyUserProvider value={customerUser}>
+        <ReportProvider>
+          <RangesProvider>
+            <RangeSlider />
+          </RangesProvider>
+        </ReportProvider>
+      </CompanyUserProvider>
+    );
+  const saveRangesButton = getContainer().getByText("Save Ranges");
+
   act(() => {
     fireEvent.click(saveRangesButton);
   });
+  expect(saveRangesButton).toBeInTheDocument();
 });
