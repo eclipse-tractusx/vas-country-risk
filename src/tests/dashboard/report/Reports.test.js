@@ -1,54 +1,104 @@
-import { render, act } from "@testing-library/react";
-import { test } from "@jest/globals";
-import Reports from "../../../components/dashboard/Reports/Reports";
-import { getReportsByCompanyUser ,
+import { render, act, fireEvent, useContext } from '@testing-library/react'
+import { test } from '@jest/globals'
+import * as React from 'react'
+import Reports from '../../../components/dashboard/Reports/Reports'
+import {
+  getReportsByCompanyUser,
   getReportValuesByReport,
-  saveReports
-} from "../../../components/services/reports-api";
-import "@testing-library/jest-dom/extend-expect";
-import userEvent from "@testing-library/user-event";
-import { RatesProvider } from "../../../contexts/rates";
+  saveReports,
+} from '../../../components/services/reports-api'
+import '@testing-library/jest-dom/extend-expect'
+import userEvent from '@testing-library/user-event'
+import { RatesProvider, RatesContext } from '../../../contexts/rates'
+import { CountryContext, CountryProvider } from '../../../contexts/country'
+import {
+  CompanyUserContext,
+  CompanyUserProvider,
+} from '../../../contexts/companyuser'
 
 const reports = [
   {
-    id: 1,
-    reportName: "fake rating",
-    companyUserName: "joao",
-    company: "CGI",
-    type: "Company",
-    reportValues: null,
+    id: null,
+    reportName: 'Fake Report',
+    companyUserName: 'Test',
+    company: 'CGI',
+    type: 'Custom',
+    reportValues: [],
   },
-];
+]
 
-jest.mock("../../../components/services/reports-api", () => ({
-  getReportsByCompanyUser: jest.fn(() => reports),
-  getReportValuesByReport: jest.fn(() => reports),
-  saveReports: jest.fn(),
-}));
+const rates = [
+  {
+    id: 1,
+    dataSourceName: 'CPI Rating 2021',
+    type: 'Global',
+    yearPublished: 2021,
+    fileName: null,
+    companyUser: null,
+    weight: 100,
+  },
+]
 
-test("Renders Report", async () => {
-  getReportsByCompanyUser.mockImplementation(() => Promise.resolve(reports));
-  getReportValuesByReport.mockImplementation(() => Promise.resolve(reports));
-  saveReports.mockImplementation(() => Promise.resolve(reports));
-  const customerUser = { name: "test" };
-  console.log(customerUser);
-  let getByText;
-  let getByTestId;
-  await act(async () => {
-    ({ getByText, getByTestId } = render(
-      <RatesProvider>
-        <Reports />
-      </RatesProvider>
-    ));
-  });
+const customerUser = [
+  {
+    name: 'Test',
+    email: 'test@test-cx.com',
+    company: 'testCompany',
+  },
+]
+
+jest.mock('../../../components/services/reports-api', () => {
+  const saveReports = jest.requireActual(
+    '../../../components/services/reports-api',
+  )
+
+  return {
+    __esModule: true,
+    ...saveReports,
+    getReportsByCompanyUser: jest.fn().mockReturnValue(reports),
+    getReportValuesByReport: jest.fn(() => reports),
+  }
+})
+
+//jest.spyOn(React,'useContext').mockImplementation(() =>(reports));
+
+test('Renders Report', () => {
+  getReportsByCompanyUser.mockImplementation(() => Promise.resolve(reports))
+  getReportValuesByReport.mockImplementation(() => Promise.resolve(reports))
+
+  const getContainer = () =>
+    render(
+      <RatesProvider value={rates}>
+        <CountryProvider>
+          <CompanyUserProvider value={customerUser}>
+            <Reports />
+          </CompanyUserProvider>
+        </CountryProvider>
+      </RatesProvider>,
+    )
 
 
-  expect(getByTestId("radioClear")).toBeInTheDocument();
-  userEvent.click(getByTestId("radioClear"));
+  const saveRepBtn = getContainer().getByText('Save Reports')
+  act(() => {
+    fireEvent.click(saveRepBtn)
+  })
 
-  expect(getByText("Save Reports")).toBeInTheDocument();
-  await userEvent.click(getByText("Save Reports"));
+  const optionOnlyMe = getContainer().getByText('Only For me')
+  act(() => {
+    fireEvent.click(optionOnlyMe)
+  })
 
-  expect(getByText("Close")).toBeInTheDocument();
-  userEvent.click(getByText("Close"));
-});
+  const setName = getContainer().getByTestId('inputReportName').querySelector('input')
+  act(() => {
+    fireEvent.change(setName, {target: { value: 'testreport'}})
+  })
+
+  const saveBtn = getContainer().getByText('Save')
+  act(() => {
+    fireEvent.click(saveBtn)
+  })
+
+  //expect(clearBtn).toBeInTheDocument();
+  //expect(saveRepBtn).toBeInTheDocument()
+  //expect(closeBtn).toBeInTheDocument();
+})
