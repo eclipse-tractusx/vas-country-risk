@@ -23,8 +23,6 @@ a
 1src/components/dashboard/Ratings/ratingColumns.js,c\e\ce5463b21e923f23d31ef0ba1e80fa075fd143d3
 \
 ,src/components/dashboard/Ratings/styles.scss,4\d\4de8d3bfe1c9d5b916a3562a19e3ab2a3f10325f
-c
-3src/components/dashboard/RangeSlider/RangeSlider.js,2\b\2b0c794dfbe2b2456026dac1ed4438645be6cab9
 \
 ,src/components/dashboard/Reports/styles.scss,4\a\4a129faee094a8015045b8a522d0953ed45bd147
 E
@@ -34,8 +32,6 @@ K
 :
 
 Dockerfile,6\6\6651ddff6eb82c840ced7c1dddee15c6e1913dd4
-g
-7src/tests/dashboard/CountryPicker/CountryPicker.test.js,7\0\701db55217aee459d454818f2376bb36569ed3c0
 V
 &src/components/services/UserService.js,4\3\43b64a74751ee9053b0052baa95dab17ca3aba2b
 A
