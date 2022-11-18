@@ -54,13 +54,11 @@ const range = [
   },
 ];
 
-const customerUser = [
-  {
-    name: "Test",
-    email: "test@test-cx.com",
-    company: "testCompany",
-  },
-];
+const customerUser = {
+  name: "Test",
+  email: "test@test-cx.com",
+  company: "testCompany",
+};
 
 jest.mock("../../../components/services/ranges-api", () => {
   const sendValues = jest.requireActual(
@@ -79,7 +77,7 @@ test("Ranges Test", () => {
 
   const getContainer = () =>
     render(
-      <CompanyUserProvider value={customerUser}>
+      <CompanyUserProvider>
         <ReportProvider>
           <RangesProvider>
             <RangeSlider />
