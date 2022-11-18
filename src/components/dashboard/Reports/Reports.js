@@ -257,7 +257,7 @@ const Reports = () => {
             Please input the name of the Report
           </FormLabel>
 
-          <Input
+          <Input data-testid="inputReportName"
             className="input-report"
             error={errorTrigger}
             //helperText={"ERROR"}
