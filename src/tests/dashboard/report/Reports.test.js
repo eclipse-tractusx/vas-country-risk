@@ -33,8 +33,9 @@ test("Renders Report", async () => {
   const customerUser = { name: "test" };
   console.log(customerUser);
   let getByText;
+  let getByTestId;
   await act(async () => {
-    ({ getByText } = render(
+    ({ getByText, getByTestId } = render(
       <RatesProvider>
         <Reports />
       </RatesProvider>
@@ -42,8 +43,8 @@ test("Renders Report", async () => {
   });
 
 
-  //expect(getByTestId("radioClear")).toBeInTheDocument();
-  //userEvent.click(getByTestId("radioClear"));
+  expect(getByTestId("radioClear")).toBeInTheDocument();
+  userEvent.click(getByTestId("radioClear"));
 
   expect(getByText("Save Reports")).toBeInTheDocument();
   await userEvent.click(getByText("Save Reports"));
