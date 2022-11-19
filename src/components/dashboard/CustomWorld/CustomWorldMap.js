@@ -26,8 +26,7 @@ const CustomWorldMap = (ratings) => {
 
   const { ranges, updateRanges } = useContext(RangesContext);
 
-  const geoUrl =
-    "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
+  const geoUrl = require("./world-countries.json");
 
   const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
 
@@ -61,10 +60,9 @@ const CustomWorldMap = (ratings) => {
   const handlePopoverClose = () => {
     setContent("");
   };
-
   return (
     <>
-      <ComposableMap data-tip="">
+      <ComposableMap data-tip="Map" data-testid="Map">
         <ZoomableGroup
           onMove={cordinates}
           zoom={1}
@@ -77,11 +75,10 @@ const CustomWorldMap = (ratings) => {
             [ratings.maxMapWidth, ratings.maxMapHeight],
           ]}
         >
-          <Geographies geography={geoUrl}>
+          <Geographies geography={geoUrl} data-testid="geo">
             {({ geographies }) =>
               geographies.map((geo) => {
                 let geoMap = new Map();
-
                 if (Array.isArray(data)) {
                   data.forEach((s) => {
                     if (s.country.iso3 === geo.id) {
