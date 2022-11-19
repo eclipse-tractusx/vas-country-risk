@@ -49,7 +49,7 @@ const Ratings = ({
   };
 
   const ExpandTable = () => {
-    openDialog(false);
+    openDialog();
     prefixIds.open = !prefixIds.open;
   };
 
