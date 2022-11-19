@@ -72,30 +72,6 @@ jest.mock("../../../components/services/ranges-api", () => {
   };
 });
 
-// test("Ranges Click Button to Save", async () => {
-//   getAllRanges.mockImplementation(() => Promise.resolve(range));
-
-//   let getByText;
-//   await act(async () => {
-//     ({ getByText } = render(
-//       <CompanyUserProvider>
-//         <ReportProvider>
-//           <RangesProvider>
-//             <RangeSlider />
-//           </RangesProvider>
-//         </ReportProvider>
-//       </CompanyUserProvider>
-//     ));
-//   });
-//   const buttonSaveRanges = getByText("Save Ranges");
-
-//   act(() => {
-//     fireEvent.click(buttonSaveRanges);
-//   });
-
-//   expect(buttonSaveRanges).toBeInTheDocument();
-// });
-
 test("Ranges Change Input Slider", async () => {
   getAllRanges.mockImplementation(() => Promise.resolve(range));
 
