@@ -72,34 +72,37 @@ jest.mock("../../../components/services/ranges-api", () => {
   };
 });
 
-test("Ranges Click Button to Save", () => {
-  getAllRanges.mockImplementation(() => Promise.resolve(range));
+// test("Ranges Click Button to Save", async () => {
+//   getAllRanges.mockImplementation(() => Promise.resolve(range));
 
-  const getContainer = () =>
-    render(
-      <CompanyUserProvider>
-        <ReportProvider>
-          <RangesProvider>
-            <RangeSlider />
-          </RangesProvider>
-        </ReportProvider>
-      </CompanyUserProvider>
-    );
+//   let getByText;
+//   await act(async () => {
+//     ({ getByText } = render(
+//       <CompanyUserProvider>
+//         <ReportProvider>
+//           <RangesProvider>
+//             <RangeSlider />
+//           </RangesProvider>
+//         </ReportProvider>
+//       </CompanyUserProvider>
+//     ));
+//   });
+//   const buttonSaveRanges = getByText("Save Ranges");
 
-  const buttonSaveRanges = getContainer().getByText("Save Ranges");
-  act(() => {
-    fireEvent.click(buttonSaveRanges);
-  });
+//   act(() => {
+//     fireEvent.click(buttonSaveRanges);
+//   });
 
-  expect(buttonSaveRanges).toBeInTheDocument();
-});
+//   expect(buttonSaveRanges).toBeInTheDocument();
+// });
 
 test("Ranges Change Input Slider", async () => {
   getAllRanges.mockImplementation(() => Promise.resolve(range));
 
   let getByTestId;
+  let getByText;
   await act(async () => {
-    ({ getByTestId } = render(
+    ({ getByTestId, getByText } = render(
       <CompanyUserProvider>
         <ReportProvider>
           <RangesProvider>
@@ -109,6 +112,15 @@ test("Ranges Change Input Slider", async () => {
       </CompanyUserProvider>
     ));
   });
+
+  const buttonSaveRanges = getByText("Save Ranges");
+
+  act(() => {
+    fireEvent.click(buttonSaveRanges);
+  });
+
+  expect(buttonSaveRanges).toBeInTheDocument();
+
   const getSliderGreen = getByTestId("input-slider-greenSlider");
   act(() => {
     fireEvent.blur(getSliderGreen);
@@ -178,4 +190,53 @@ test("Ranges Change Blur Slider", async () => {
   });
 
   expect(getSliderYellowRed).toBeInTheDocument();
+});
+
+test("Ranges Move Slider", async () => {
+  getAllRanges.mockImplementation(() => Promise.resolve(range));
+
+  let getByTestId;
+  await act(async () => {
+    ({ getByTestId } = render(
+      <CompanyUserProvider>
+        <ReportProvider>
+          <RangesProvider>
+            <RangeSlider />
+          </RangesProvider>
+        </ReportProvider>
+      </CompanyUserProvider>
+    ));
+  });
+  const getSliderGreen = getByTestId("slider-green");
+
+  act(() => {
+    fireEvent.mouseDown(getSliderGreen, {
+      clientX: 1286,
+      clientY: 367,
+    });
+  });
+
+  expect(getSliderGreen).toBeInTheDocument();
+
+  const getSliderYellow = getByTestId("slider-yellow");
+
+  act(() => {
+    fireEvent.mouseDown(getSliderYellow, {
+      clientX: 1281,
+      clientY: 404,
+    });
+  });
+
+  expect(getSliderYellow).toBeInTheDocument();
+
+  const getSliderRed = getByTestId("slider-red");
+
+  act(() => {
+    fireEvent.mouseDown(getSliderRed, {
+      clientX: 1136,
+      clientY: 440,
+    });
+  });
+
+  expect(getSliderRed).toBeInTheDocument();
 });

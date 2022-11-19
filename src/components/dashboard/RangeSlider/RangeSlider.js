@@ -299,6 +299,7 @@ const RangeSlider = () => {
               valueLabelDisplay="auto"
               aria-labelledby="range-slider"
               getAriaValueText={valuetext}
+              data-testid="slider-yellow"
             />
           </Grid>
           <Grid item xs={2}>
@@ -343,6 +344,7 @@ const RangeSlider = () => {
               valueLabelDisplay="auto"
               aria-labelledby="range-slider"
               getAriaValueText={valuetext}
+              data-testid="slider-red"
             />
           </Grid>
           <Grid item xs={2}>
