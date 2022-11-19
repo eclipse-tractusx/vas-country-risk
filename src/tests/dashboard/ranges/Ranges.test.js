@@ -72,7 +72,7 @@ jest.mock("../../../components/services/ranges-api", () => {
   };
 });
 
-test("Ranges Test", () => {
+test("Ranges Click Button to Save", () => {
   getAllRanges.mockImplementation(() => Promise.resolve(range));
 
   const getContainer = () =>
@@ -85,10 +85,97 @@ test("Ranges Test", () => {
         </ReportProvider>
       </CompanyUserProvider>
     );
-  const saveRangesButton = getContainer().getByText("Save Ranges");
 
+  const buttonSaveRanges = getContainer().getByText("Save Ranges");
   act(() => {
-    fireEvent.click(saveRangesButton);
+    fireEvent.click(buttonSaveRanges);
   });
-  expect(saveRangesButton).toBeInTheDocument();
+
+  expect(buttonSaveRanges).toBeInTheDocument();
+});
+
+test("Ranges Change Input Slider", async () => {
+  getAllRanges.mockImplementation(() => Promise.resolve(range));
+
+  let getByTestId;
+  await act(async () => {
+    ({ getByTestId } = render(
+      <CompanyUserProvider>
+        <ReportProvider>
+          <RangesProvider>
+            <RangeSlider />
+          </RangesProvider>
+        </ReportProvider>
+      </CompanyUserProvider>
+    ));
+  });
+  const getSliderGreen = getByTestId("input-slider-greenSlider");
+  act(() => {
+    fireEvent.blur(getSliderGreen);
+  });
+  expect(getSliderGreen).toBeInTheDocument();
+
+  const getSliderYellowRight = getByTestId("input-slider-yellow-left");
+  act(() => {
+    fireEvent.change(getSliderYellowRight, { target: { value: 40 } });
+  });
+
+  expect(getSliderYellowRight).toBeInTheDocument();
+
+  const getSliderYellowLeft = getByTestId("input-slider-yellow-right");
+  act(() => {
+    fireEvent.change(getSliderYellowLeft, { target: { value: 70 } });
+  });
+
+  expect(getSliderYellowLeft).toBeInTheDocument();
+
+  const getSliderYellowRed = getByTestId("input-slider-red-right");
+  act(() => {
+    fireEvent.change(getSliderYellowRed, { target: { value: 10 } });
+  });
+
+  expect(getSliderYellowRed).toBeInTheDocument();
+});
+
+test("Ranges Change Blur Slider", async () => {
+  getAllRanges.mockImplementation(() => Promise.resolve(range));
+
+  let getByTestId;
+  await act(async () => {
+    ({ getByTestId } = render(
+      <CompanyUserProvider>
+        <ReportProvider>
+          <RangesProvider>
+            <RangeSlider />
+          </RangesProvider>
+        </ReportProvider>
+      </CompanyUserProvider>
+    ));
+  });
+  const getSliderGreen = getByTestId("input-slider-greenSlider");
+  act(() => {
+    fireEvent.blur(getSliderGreen, { target: { value: 40 } });
+  });
+  expect(getSliderGreen).toBeInTheDocument();
+
+  const getSliderYellowRight = getByTestId("input-slider-yellow-left");
+  act(() => {
+    fireEvent.blur(getSliderYellowRight, { target: { value: 40 } });
+  });
+
+  expect(getSliderYellowRight).toBeInTheDocument();
+
+  const getSliderYellowLeft = getByTestId("input-slider-yellow-right");
+  act(() => {
+    fireEvent.blur(getSliderYellowLeft, { target: { value: 70 } });
+  });
+
+  expect(getSliderYellowLeft).toBeInTheDocument();
+
+  const getSliderYellowRed = getByTestId("input-slider-red-right");
+  act(() => {
+    fireEvent.blur(getSliderYellowRed, { target: { value: 10 } });
+  });
+
+  expect(getSliderYellowRed).toBeInTheDocument();
 });
