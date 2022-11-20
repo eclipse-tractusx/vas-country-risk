@@ -1,4 +1,4 @@
-import { render, act } from "@testing-library/react";
+import { render, act, fireEvent } from "@testing-library/react";
 import { test } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
 import Ratings from "../../../components/dashboard/Ratings/Ratings";
@@ -7,40 +7,49 @@ import { ReportProvider } from "../../../contexts/reports";
 import { getRatingsByYear } from "../../../components/services/ratingstable-api";
 
 const ratingsData = [
-    {
-      id: 0,
-      dataSourceName: "Fake Rating",
-      type: "Custom",
-      yearPublished: 2021,
-      fileName: "Test Company Rating",
-      companyUser: {
-        id: 0,
-        name: "John",
-        email: "John@email.com",
-        company: "TestCompany"
-      },
-    },
-  ];
+  {
+    id: 1,
+    dataSourceName: "CPI Rating 2021",
+    type: "Global",
+    yearPublished: 2021,
+    fileName: null,
+    companyUser: null,
+  },
+];
+
+const passValuesFromComponent = (rates) => {
+  return ratingsData;
+};
+
+const passAutomaticWeightChange = (weight) => {
+  return 1;
+};
 
 jest.mock("../../../components/services/ratingstable-api", () => ({
-    getRatingsByYear: jest.fn(() => ratingsData),
+  getRatingsByYear: jest.fn().mockReturnValue(ratingsData),
 }));
 
-const mockpassValuesFromComponent = jest.fn();
-const mockpassAutomaticWeightChange = jest.fn();
-
 test("Renders Ratings", async () => {
-    getRatingsByYear.mockImplementation(() => Promise.resolve(ratingsData));
-    let getByText;
-    const customerUser = { name: "test" };
-    await act(async () => {
-        (getByText = render(
-            <ReportProvider>
-                <RatesProvider>
-                    <Ratings passValuesFromComponent={mockpassValuesFromComponent} 
-                    passAutomaticWeightChange={mockpassAutomaticWeightChange}/>
-                </RatesProvider>
-            </ReportProvider>
-        ));
-    });
+  getRatingsByYear.mockImplementation(() => Promise.resolve(ratingsData));
+
+  let getByLabelText;
+  await act(async () => {
+    ({ getByLabelText } = render(
+      <ReportProvider>
+        <RatesProvider>
+          <Ratings
+            passValuesFromComponent={passValuesFromComponent}
+            passAutomaticWeightChange={passAutomaticWeightChange}
+            years={2021}
+          ></Ratings>
+        </RatesProvider>
+      </ReportProvider>
+    ));
+  });
+
+  const ratingsTable = getByLabelText("Select all rows");
+  await act(async () => {
+    fireEvent.click(ratingsTable);
+  });
+  expect(ratingsTable).toBeInTheDocument();
 });

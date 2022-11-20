@@ -1,4 +1,4 @@
-import { render, act, fireEvent } from "@testing-library/react";
+import { render, act, fireEvent, screen } from "@testing-library/react";
 import CountryPicker from "../../../components/dashboard/CountryPicker/CountryPicker";
 import { test } from "@jest/globals";
 import { CountryProvider } from "../../../contexts/country";
