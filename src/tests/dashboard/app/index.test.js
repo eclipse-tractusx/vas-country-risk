@@ -34,6 +34,7 @@ import {
   getReportsByCompanyUser,
   saveReports,
 } from "../../../components/services/reports-api";
+import { ReportProvider } from "../../../contexts/reports";
 const countryData = [
   {
     id: 0,
@@ -161,12 +162,23 @@ const bpns = [
 ];
 const reports = [
   {
-    id: 1,
-    reportName: "Fake Report",
-    companyUserName: "Test",
-    company: "CGI",
-    type: "Custom",
-    reportValues: [],
+    id: 3,
+    reportName: "Fabio Report 2",
+    companyUserName: "Test User CX Admin",
+    company: "CX-Test-Access",
+    type: "Company",
+    reportValues: null,
+  },
+];
+const reportValues = [
+  {
+    id: 7,
+    name: "Range",
+    objectValue: [
+      [0, "1"],
+      [2, 11],
+      [12, 100],
+    ],
   },
 ];
 
@@ -192,18 +204,11 @@ jest.mock("../../../components/services/dateform-api", () => ({
   getAllDates: jest.fn().mockReturnValue([2021, 2020]),
 }));
 
-jest.mock("../../../components/services/reports-api", () => {
-  const saveReports = jest.requireActual(
-    "../../../components/services/reports-api"
-  );
-
-  return {
-    __esModule: true,
-    ...saveReports,
-    getReportsByCompanyUser: jest.fn().mockReturnValue(reports),
-    getReportValuesByReport: jest.fn(() => reports),
-  };
-});
+jest.mock("../../../components/services/reports-api", () => ({
+  saveReports: jest.fn().mockReturnValue(reports),
+  getReportsByCompanyUser: jest.fn().mockReturnValue(reports),
+  getReportValuesByReport: jest.fn().mockReturnValue(reportValues),
+}));
 
 test("Renders index.js", async () => {
   getCountryByUser.mockImplementation(() => Promise.resolve(countryData));
@@ -216,6 +221,11 @@ test("Renders index.js", async () => {
   getAllDates.mockImplementation(() => Promise.resolve([2021, 2020]));
   getReportsByCompanyUser.mockImplementation(() => Promise.resolve(reports));
   getReportValuesByReport.mockImplementation(() => Promise.resolve(reports));
+  getReportsByCompanyUser.mockImplementation(() => Promise.resolve(reports));
+  getReportValuesByReport.mockImplementation(() =>
+    Promise.resolve(reportValues)
+  );
+  saveReports.mockImplementation(() => Promise.resolve(reports));
   await render(
     <React.StrictMode>
       <SharedCssBaseline />
@@ -245,24 +255,31 @@ test("Renders Many Components", async () => {
   getAllDates.mockImplementation(() => Promise.resolve([2021, 2020]));
   getReportsByCompanyUser.mockImplementation(() => Promise.resolve(reports));
   getReportValuesByReport.mockImplementation(() => Promise.resolve(reports));
+  getReportsByCompanyUser.mockImplementation(() => Promise.resolve(reports));
+  getReportValuesByReport.mockImplementation(() =>
+    Promise.resolve(reportValues)
+  );
+  saveReports.mockImplementation(() => Promise.resolve(reports));
   const testRender = () =>
     render(
       <RangesProvider>
         <CountryProvider>
           <CompanyUserProvider>
             <RatesProvider>
-              <Ratings
-                passValuesFromComponent={passValuesFromComponent}
-                passAutomaticWeightChange={passAutomaticWeightChange}
-                years={2021}
-              ></Ratings>
-              <DashboardTable
-                getRatings={ratingsData}
-                years={2021}
-                weight={1}
-              ></DashboardTable>
-              <CountryPicker></CountryPicker>
-              <Reports></Reports>
+              <ReportProvider>
+                <Ratings
+                  passValuesFromComponent={passValuesFromComponent}
+                  passAutomaticWeightChange={passAutomaticWeightChange}
+                  years={2021}
+                ></Ratings>
+                <DashboardTable
+                  getRatings={ratingsData}
+                  years={2021}
+                  weight={1}
+                ></DashboardTable>
+                <CountryPicker></CountryPicker>
+                <Reports></Reports>
+              </ReportProvider>
             </RatesProvider>
           </CompanyUserProvider>
         </CountryProvider>
@@ -281,4 +298,8 @@ test("Renders Many Components", async () => {
   ratingsTable.forEach((element) => {
     fireEvent.click(element);
   });
+
+  const reportTable = screen.queryAllByRole("cell");
+
+  reportTable.forEach((element) => fireEvent.click(element));
 });
