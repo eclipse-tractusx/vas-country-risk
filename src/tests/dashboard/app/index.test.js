@@ -57,6 +57,14 @@ const ratingsData = [
     fileName: null,
     companyUser: null,
   },
+  {
+    id: 2,
+    dataSourceName: "CPI Rating Test",
+    type: "Custom",
+    yearPublished: 2021,
+    fileName: null,
+    companyUser: null,
+  },
 ];
 
 const tableinfoData = [
@@ -302,4 +310,18 @@ test("Renders Many Components", async () => {
   const reportTable = screen.queryAllByRole("cell");
 
   reportTable.forEach((element) => fireEvent.click(element));
+
+  const clearButton = screen.getByTestId("radioClear");
+  fireEvent.click(clearButton);
+
+  const saveRepBtn = screen.getByText("Save Reports");
+  fireEvent.click(saveRepBtn);
+
+  const optionOnlyMe = screen.getByText("Only For me");
+  fireEvent.click(optionOnlyMe);
+
+  const setName = screen.getByTestId("inputReportName").querySelector("input");
+  fireEvent.change(setName, {
+    target: { value: "testreportmaxletterallowedtoinput9999999999999" },
+  });
 });
