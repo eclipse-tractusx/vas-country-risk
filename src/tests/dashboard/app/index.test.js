@@ -3,6 +3,7 @@ import { test } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
 import App from "../../../App";
 import React from "react";
+import userEvent from "@testing-library/user-event";
 import ReactDOM from "react-dom/client";
 import {
   SharedThemeProvider,
@@ -167,6 +168,90 @@ jest.mock("../../../components/services/dateform-api", () => ({
   getAllDates: jest.fn().mockReturnValue([2021, 2020]),
 }));
 
+// test("Renders index.js", async () => {
+//   getCountryByUser.mockImplementation(() => Promise.resolve(countryData));
+//   getCountrys.mockImplementation(() => Promise.resolve(countryData));
+//   getRatingsByYear.mockImplementation(() => Promise.resolve(ratingsData));
+//   getAll.mockImplementation(() => Promise.resolve(tableinfoData));
+//   getWorldMapInfo.mockImplementation(() => Promise.resolve(worldMapInfo));
+//   getBpns.mockImplementation(() => Promise.resolve(bpns));
+//   getCountrys.mockImplementation(() => Promise.resolve(worldMapInfo));
+//   getAllDates.mockImplementation(() => Promise.resolve([2021, 2020]));
+//   // let getByRole;
+//   // let getByTestId;
+//   // let getByLabelText;
+//   // await act(async () => {
+//   //   ({ getByRole, getByTestId, getByLabelText } = render(
+//   //     <React.StrictMode>
+//   //       <SharedCssBaseline />
+//   //       <SharedThemeProvider>
+//   //         <App />
+//   //       </SharedThemeProvider>
+//   //     </React.StrictMode>
+//   //   ));
+//   // });
+
+//   const user = userEvent.setup();
+
+//   await render(
+//     <React.StrictMode>
+//       <SharedCssBaseline />
+//       <SharedThemeProvider>
+//         <App />
+//       </SharedThemeProvider>
+//     </React.StrictMode>
+//   );
+
+//   console.log("\n\n\n\n RENDER \n\n\n\n");
+//   let getCountryDropDown = screen.queryByRole("combobox");
+//   const ratingsTable = screen.queryAllByLabelText("Select all rows");
+
+//   // await act(async () => {
+//   //   await fireEvent.click(getCountryDropDown);
+//   //   await fireEvent.change(getCountryDropDown, {
+//   //     target: { value: "Germany" },
+//   //   });
+//   //   await fireEvent.keyDown(getCountryDropDown, { key: "ArrowDown" });
+//   //   await fireEvent.keyDown(getCountryDropDown, { key: "Enter" });
+//   // });
+
+//   //fireEvent.click(getCountryDropDown);
+
+//   getCountryDropDown = screen.queryByRole("combobox");
+
+//   await user.click(getCountryDropDown);
+
+//   await user.click(getCountryDropDown, "Germany");
+
+//   const event = {
+//     key: "Enter",
+//     keyCode: 13,
+//     charCode: 13,
+//     target: { id: "someid" },
+//   };
+
+//   user.click(getCountryDropDown, event);
+
+//   console.log("\n\n\n\n TABLE \n\n\n\n");
+//   // await act(async () => {
+//   //   getCountryDropDown.forEach((element) => {
+//   //     fireEvent.click(element);
+//   //     fireEvent.change(getCountryDropDown, {
+//   //       target: { value: "Germany" },
+//   //     });
+//   //     fireEvent.keyDown(getCountryDropDown, { key: "ArrowDown" });
+//   //     fireEvent.keyDown(getCountryDropDown, { key: "Enter" });
+//   //   });
+//   // });
+
+//   await act(async () => {
+//     ratingsTable.forEach((element) => {
+//       fireEvent.click(element);
+//     });
+//   });
+//   //expect(ratingsTable).toBeInTheDocument();
+// });
+
 test("Renders index.js", async () => {
   getCountryByUser.mockImplementation(() => Promise.resolve(countryData));
   getCountrys.mockImplementation(() => Promise.resolve(countryData));
@@ -176,36 +261,77 @@ test("Renders index.js", async () => {
   getBpns.mockImplementation(() => Promise.resolve(bpns));
   getCountrys.mockImplementation(() => Promise.resolve(worldMapInfo));
   getAllDates.mockImplementation(() => Promise.resolve([2021, 2020]));
-  let getByRole;
-  let getByTestId;
-  let getByLabelText;
-  await act(async () => {
-    ({ getByRole, getByTestId, getByLabelText } = render(
+
+  const testRender = () =>
+    render(
       <React.StrictMode>
         <SharedCssBaseline />
         <SharedThemeProvider>
           <App />
         </SharedThemeProvider>
       </React.StrictMode>
-    ));
+    );
+
+  console.log("\n\n\n\n RENDER \n\n\n\n");
+  let insertGermany = await testRender().findByRole("combobox");
+
+  fireEvent.change(insertGermany, {
+    target: { value: "Germany" },
   });
 
-  const getCountryDropDown = screen.queryByRole("combobox");
+  let changeEvent = await testRender().findAllByRole("combobox");
+
+  console.log(changeEvent[0]);
+  //fireEvent.keyDown(changeEvent[0], { key: "Enter" });
+
   const ratingsTable = screen.queryAllByLabelText("Select all rows");
-
-  act(() => {
-    fireEvent.click(getCountryDropDown);
-    fireEvent.change(getCountryDropDown, { target: { value: null } });
-    fireEvent.keyDown(getCountryDropDown, { key: "ArrowDown" });
-    fireEvent.keyDown(getCountryDropDown, { key: "Enter" });
+  ratingsTable.forEach((element) => {
+    fireEvent.click(element);
   });
+  //const ratingsTable = screen.queryAllByLabelText("Select all rows");
 
-  // expect(getCountryDropDown).toBeInTheDocument();
+  // await act(async () => {
+  //   await fireEvent.click(getCountryDropDown);
+  //   await fireEvent.change(getCountryDropDown, {
+  //     target: { value: "Germany" },
+  //   });
+  //   await fireEvent.keyDown(getCountryDropDown, { key: "ArrowDown" });
+  //   await fireEvent.keyDown(getCountryDropDown, { key: "Enter" });
+  // });
 
-  await act(async () => {
-    ratingsTable.forEach((element) => {
-      fireEvent.click(element);
-    });
-  });
+  //fireEvent.click(getCountryDropDown);
+
+  // getCountryDropDown = screen.queryByRole("combobox");
+
+  // await user.click(getCountryDropDown);
+
+  // await user.click(getCountryDropDown, "Germany");
+
+  // const event = {
+  //   key: "Enter",
+  //   keyCode: 13,
+  //   charCode: 13,
+  //   target: { id: "someid" },
+  // };
+
+  // user.click(getCountryDropDown, event);
+
+  // console.log("\n\n\n\n TABLE \n\n\n\n");
+  // await act(async () => {
+  //   getCountryDropDown.forEach((element) => {
+  //     fireEvent.click(element);
+  //     fireEvent.change(getCountryDropDown, {
+  //       target: { value: "Germany" },
+  //     });
+  //     fireEvent.keyDown(getCountryDropDown, { key: "ArrowDown" });
+  //     fireEvent.keyDown(getCountryDropDown, { key: "Enter" });
+  //   });
+  // });
+
+  // await act(async () => {
+  //   ratingsTable.forEach((element) => {
+  //     fireEvent.click(element);
+  //   });
+  // });
   //expect(ratingsTable).toBeInTheDocument();
 });
