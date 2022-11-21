@@ -1,4 +1,4 @@
-import { render, act } from "@testing-library/react";
+import { render, act, fireEvent } from "@testing-library/react";
 import { test } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
 import userEvent from "@testing-library/user-event";
@@ -13,6 +13,7 @@ import {
 } from "../../../components/services/country-api";
 import { getBpns } from "../../../components/services/bpns-api";
 import { RangesProvider } from "../../../contexts/ranges";
+import { toPng } from "html-to-image";
 
 const getWorldMapData = [
   {
@@ -85,24 +86,30 @@ jest.mock("../../../components/services/bpns-api", () => ({
   getBpns: jest.fn(() => bpnData),
 }));
 
-test("Renders Left Map", async () => {
+jest.mock("html-to-image", () => ({
+  toPng: jest.fn().mockReturnValue([]),
+}));
+
+test("Renders Left Map", () => {
   getAll.mockImplementation(() => Promise.resolve(tableinfoData));
   getCountryByUser.mockImplementation(() => Promise.resolve(countryData));
   getCountrys.mockImplementation(() => Promise.resolve(countryData));
   getWorldMapInfo.mockImplementation(() => Promise.resolve(getWorldMapData));
   getBpns.mockImplementation(() => Promise.resolve(bpnData));
-  let getByTestId;
-  const customerUser = { name: "test" };
-  await act(async () => {
-    ({ getByTestId } = render(
+  toPng.mockImplementation(() => Promise.resolve([]));
+
+  const getContainer = () =>
+    render(
       <RangesProvider>
         <LeftMap></LeftMap>
       </RangesProvider>
-    ));
-  });
-  expect(getByTestId("expand-btn")).toBeInTheDocument();
-  await userEvent.click(getByTestId("expand-btn"));
+    );
 
-  //expect(getByText("Export Image")).toBeInTheDocument();
-  //userEvent.click(getByText("Export Image"));
+  const buttonExpand = getContainer().getByTestId("expand-btn");
+  expect(buttonExpand).toBeInTheDocument();
+  fireEvent.click(buttonExpand);
+
+  const buttonExport = getContainer().getByText("Export Image");
+  expect(buttonExport).toBeInTheDocument();
+  fireEvent.click(buttonExport);
 });

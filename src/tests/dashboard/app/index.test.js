@@ -312,7 +312,7 @@ test("Renders Many Components", async () => {
   reportTable.forEach((element) => fireEvent.click(element));
 
   const clearButton = screen.getByTestId("radioClear");
-  fireEvent.click(clearButton);
+  fireEvent.change(clearButton, "Report");
 
   const saveRepBtn = screen.getByText("Save Reports");
   fireEvent.click(saveRepBtn);
