@@ -64,8 +64,7 @@ const CustomCompanyMap = (ratings) => {
     );
   }, [reportValuesContext]);
 
-  const geoUrl =
-    "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
+  const geoUrl = require("./world-countries.json");
 
   //Method for getting the name of current selected country
   const handleClick = (geo) => () => {
@@ -143,7 +142,7 @@ const CustomCompanyMap = (ratings) => {
             [ratings.maxMapWidth, ratings.maxMapHeight],
           ]}
         >
-          <Geographies geography={geoUrl}>
+          <Geographies geography={geoUrl} data-testid="geo-custom-company-map">
             {({ geographies }) =>
               geographies.map((geo) => {
                 let geoMap = new Map();

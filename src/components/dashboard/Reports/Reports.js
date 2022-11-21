@@ -162,13 +162,20 @@ const Reports = () => {
   const columns = [
     {
       field: "radiobutton",
-      headerName: <Radio data-testid="radioClear" onChange={clearButton} checked={valueRadioChecked} />,
+      headerName: (
+        <Radio
+          data-testid="radioClear"
+          onChange={clearButton}
+          checked={valueRadioChecked}
+        />
+      ),
       width: 120,
       renderCell: (params) => (
         <Radio
           onChange={handleChange}
           checked={selectionModel[0] === params.id}
           value={params.id}
+          data-testid="radio-choose-report"
         />
       ),
       sortable: false,
@@ -257,7 +264,8 @@ const Reports = () => {
             Please input the name of the Report
           </FormLabel>
 
-          <Input data-testid="inputReportName"
+          <Input
+            data-testid="inputReportName"
             className="input-report"
             error={errorTrigger}
             //helperText={"ERROR"}
