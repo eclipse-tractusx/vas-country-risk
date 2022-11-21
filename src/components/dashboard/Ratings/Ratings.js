@@ -39,7 +39,9 @@ const Ratings = ({
   const { reportValuesContext, updateReport } = useContext(ReportContext);
 
   useEffect(() => {
-    const reportRates = reportValuesContext.filter((r) => r.name === "Ratings");
+    const reportRates = Array.isArray(reportValuesContext)
+      ? reportValuesContext.filter((r) => r.name === "Ratings")
+      : [];
     updatePrefixIds(reportRates.length ? reportRates[0].objectValue : []);
     setRatings(reportRates.length ? reportRates[0].objectValue : []);
   }, [reportValuesContext]);
