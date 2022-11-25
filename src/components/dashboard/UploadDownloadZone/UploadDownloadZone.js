@@ -113,8 +113,8 @@ const UploadDownloadZone = () => {
         <Box style={{ padding: "30px" }}>
           <Input
             helperText="Helper"
-            label="Label"
-            placeholder="Input Rating Name"
+            label="Please write your rating name"
+            placeholder="Rating Name"
             size={"small"}
             onChange={saveRatingName}
           ></Input>
