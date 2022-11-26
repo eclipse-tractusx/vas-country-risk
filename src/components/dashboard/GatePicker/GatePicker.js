@@ -14,43 +14,23 @@ import { GatesContext } from "../../../contexts/gates";
 
 const GatePicker = () => {
   const [AllGates, setAllGates] = useState();
-  const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
-
-  const { reload, updateReload } = useContext(ReloadContext);
+  const { companyUser } = useContext(CompanyUserContext);
 
   const { gates, updateGate } = useContext(GatesContext);
 
   useEffect(() => {
     getUserBpdmGates(UserService.getToken(), companyUser).then((response) => {
-      setAllGates(response.sort().reverse());
-      //setGate(response.sort().reverse()[0]); //Value on Page Start
+      setAllGates(response);
     });
-  }, [reload]);
+  }, []);
 
   //Get Current selected Gate
   const [gate, setGate] = useState("");
-
-  console.log(companyUser)
 
   const handleChange = (event) => {
     setGate(event.target.value);
     updateGate(event.target.value);
   };
-
-  /*const { reportValuesContext, updateReport } = useContext(ReportContext);
-
-  //Set Reports Data
-  useEffect(() => {
-    const reportRates = reportValuesContext.filter((r) => r.name === "Ratings");
-
-    setGate(
-      reportRates.length
-        ? reportRates[0].objectValue[0]
-          ? reportRates[0].objectValue[0].yearPublished //Mudar
-          : gate
-        : gate
-    );
-  }, [reportValuesContext]);*/
 
   return (
     <Box sx={{ minWidth: 120 }}>
