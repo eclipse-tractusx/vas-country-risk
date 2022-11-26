@@ -27,8 +27,6 @@ V
 &src/components/services/UserService.js,4\3\43b64a74751ee9053b0052baa95dab17ca3aba2b
 ]
 -src/components/services/EnvironmentService.js,e\7\e7596a41f73f1b6663bf8e7cede0e08716cd2c4c
-4
-.env,3\c\3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
 c
 3src/components/dashboard/RangeSlider/RangeSlider.js,2\b\2b0c794dfbe2b2456026dac1ed4438645be6cab9
 \
