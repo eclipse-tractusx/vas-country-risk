@@ -15,8 +15,6 @@ import {
   Marker,
 } from "react-simple-maps";
 
-
-
 const CustomCompanyMap = (ratings) => {
   //Zoom in and out const
   const [kZoom, setKZoom] = useState(1);
@@ -119,6 +117,9 @@ const CustomCompanyMap = (ratings) => {
   }, []);
 
   const coordinates = (position, dragging, event) => {
+    console.log("position", position.dragging);
+    console.log("dragging", JSON.stringify(dragging.sourceEvent));
+    console.log("event", event);
     setKZoom(position.k);
   };
 
@@ -128,8 +129,9 @@ const CustomCompanyMap = (ratings) => {
 
   return (
     <>
-      <ComposableMap data-tip="">
+      <ComposableMap data-tip="" data-testid="composable-custom-company-map">
         <ZoomableGroup
+          data-testid="zoomableGroup-custom-company-map"
           onMove={coordinates}
           center={coordsZoom}
           zoom={zoomVar}
@@ -146,6 +148,7 @@ const CustomCompanyMap = (ratings) => {
             {({ geographies }) =>
               geographies.map((geo) => {
                 let geoMap = new Map();
+
                 if (countryS.iso2 === geo.properties["Alpha-2"]) {
                   geoMap.set("color", "#82e362");
                   geoMap.set(geo, geo);
@@ -190,6 +193,7 @@ const CustomCompanyMap = (ratings) => {
 
           {coordsBP.map((marker) => {
             if (kZoom >= 3) {
+              console.log("teste", kZoom);
               return (
                 <Marker
                   coordinates={[marker.longitude, marker.latitude]}
@@ -225,6 +229,7 @@ const CustomCompanyMap = (ratings) => {
 
           {countryMarkers.map((marker) => {
             if (kZoom >= 3) {
+              console.log("teste", kZoom);
               return (
                 <Marker
                   key={marker.iso3}

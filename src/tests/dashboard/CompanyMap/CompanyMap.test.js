@@ -1,4 +1,10 @@
-import { render, act, fireEvent } from "@testing-library/react";
+import {
+  render,
+  rerender,
+  act,
+  fireEvent,
+  screen,
+} from "@testing-library/react";
 import { test } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
 import { RangesProvider } from "../../../contexts/ranges";
@@ -21,24 +27,24 @@ const tableinfoData = [
     legalName: "Divape Company",
     address: "15874 Sutteridge Trail",
     city: "Covilhã",
-    country: "Germany",
+    country: "Brazil",
     score: 90,
     rating: "Fake Rating",
-    longitude: "107.6185727",
-    latitude: "-6.6889038",
+    latitude: "-10.3333333",
+    longitude: "-53.2",
   },
 ];
 
 const countryData = [
   {
-    id: 0,
-    country: "Germany",
-    iso3: "DEU",
-    iso2: "DE",
-    continent: "Europe",
-    latitude: "-2.9814344",
-    longitude: "23.8222636",
-    totalBpn: 11,
+    id: 32,
+    country: "Brazil",
+    iso3: "BRA",
+    iso2: "BR",
+    continent: "WORLD",
+    latitude: "-10.3333333",
+    longitude: "-53.2",
+    totalBpn: null,
   },
 ];
 
@@ -51,17 +57,26 @@ jest.mock("../../../components/services/country-api", () => ({
   getCountrys: jest.fn().mockReturnValue(countryData),
 }));
 
+jest.mock("react-simple-maps", () => ({
+  ...jest.requireActual("react-simple-maps"),
+  ZoomableGroup: ({ children }) => <>{children}</>,
+}));
+
 test("Company Map Test", async () => {
   getAll.mockImplementation(() => Promise.resolve(tableinfoData));
   getCountryByUser.mockImplementation(() => Promise.resolve(countryData));
   getCountrys.mockImplementation(() => Promise.resolve(countryData));
 
-  const getContainer = () =>
-    render(
+  console.log("\n\n\n new \n\n\n");
+  let getByTestId;
+  let getAllByRole;
+  await act(async () => {
+    ({ getByTestId, getAllByRole } = render(
       <CompanyUserProvider>
         <CountryProvider>
           <ReportProvider>
             <RangesProvider>
+              <CountryPicker />
               <CustomCompanyMap
                 getRatings={[]}
                 years={2021}
@@ -75,10 +90,69 @@ test("Company Map Test", async () => {
           </ReportProvider>
         </CountryProvider>
       </CompanyUserProvider>
-    );
+    ));
+  });
 
-  const mouseOver = await getContainer().getByTestId("geo-custom-company-map");
-  fireEvent.click(mouseOver);
+  const getRoles = screen.getAllByRole("combobox");
+  const getCountryDropDown = getRoles[0];
 
-  expect(mouseOver).toBeInTheDocument();
+  fireEvent.click(getCountryDropDown);
+  fireEvent.change(getCountryDropDown, {
+    target: {
+      value: "Brazil",
+    },
+  });
+  fireEvent.keyDown(getCountryDropDown, { key: "ArrowDown" });
+  fireEvent.keyDown(getCountryDropDown, { key: "Enter" });
+
+  // const mouseOver = screen.getByTestId("zoomableGroup-custom-company-map");
+  // await act(async () => {
+  //   fireEvent.click(mouseOver);
+  //   fireEvent.scroll(window, { target: { clientX: 783, clientY: 387 } });
+  //   fireEvent.wheel(mouseOver, { clientX: 783, clientY: 387 });
+  // });
+
+  // const mouseScroll = screen.getByTestId("composable-custom-company-map");
+  // await act(async () => {
+  //   fireEvent.wheel(mouseScroll, { clientX: 783, clientY: 387 });
+  //   fireEvent.mouse(mouseScroll, {
+  //     clientX: 1286,
+  //     clientY: 367,
+  //   });
+  //   fireEvent.wheel(mouseOver, { clientX: 783, clientY: 387 });
+  // });
+
+  const geo = screen.getByTestId("geo-custom-company-map");
+  const composable = screen.getByTestId("composable-custom-company-map");
+  const zoom = screen.getByTestId("zoomableGroup-custom-company-map");
+  const childs = geo.childNodes;
+  const mEvent = {
+    target: {
+      deltaY: -125,
+      screenX: 816,
+      screenY: 339,
+      clientX: 816,
+      clientY: 236,
+      deltaX: -0,
+      deltaZ: 0,
+      wheelDelta: -150,
+      wheelDeltaY: -150,
+    },
+  };
+  childs.forEach((element) => {
+    fireEvent.click(element);
+    fireEvent.mouseOver(element, mEvent);
+    fireEvent.mouseMove(element, mEvent);
+    fireEvent.wheel(element, mEvent);
+    fireEvent.scroll(element, mEvent);
+  });
+
+  fireEvent.mouseOver(geo);
+  fireEvent.mouseOver(composable);
+
+  fireEvent.mouseMove(geo, mEvent);
+  fireEvent.mouseMove(composable, mEvent);
+
+  fireEvent.scroll(composable, mEvent);
+  fireEvent.scroll(geo, mEvent);
 });

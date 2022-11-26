@@ -26,6 +26,7 @@ const CountryPicker = () => {
 
   //Handler to get current selected value on Autocomplete component
   const handleChange = (event, newValue) => {
+    console.log("country pick ", newValue);
     if (newValue === null) {
       updateCountry("none");
     } else {
@@ -36,7 +37,7 @@ const CountryPicker = () => {
   return (
     <Autocomplete
       style={{ width: "45%", padding: 20, maxWidth: 300 }}
-      fullWidth="false"
+      fullWidth
       variant="filled"
       size="small"
       onChange={handleChange}
