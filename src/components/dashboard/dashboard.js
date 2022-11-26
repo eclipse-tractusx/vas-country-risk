@@ -1,8 +1,6 @@
 /* eslint-disable no-console */
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import "./styles.scss";
-import { sendValues } from "../services/ranges-api";
-import { RangesContext } from "../../contexts/ranges";
 import LeftMap from "./LeftMap/LeftMap";
 import RightMap from "./RightMap/RightMap";
 import DashboardTable from "./DashBoardTable/DashboardTable";
@@ -10,11 +8,10 @@ import DatePicker from "./DatePicker/DatePicker";
 import Ratings from "./Ratings/Ratings";
 import UploadDownloadZone from "./UploadDownloadZone/UploadDownloadZone";
 import RangeSlider from "./RangeSlider/RangeSlider";
-
 import Reports from "./Reports/Reports";
+import GatePicker from "./GatePicker/GatePicker";
 
 const Dashboard = () => {
-  const { ranges, updateRanges } = useContext(RangesContext);
 
   const [ratings, setRatings] = useState("");
 
@@ -59,7 +56,14 @@ const Dashboard = () => {
       </div>
       <div className="right-content">
         <div className="right-top-content">
-          <DatePicker passYearSelected={passYearSelected}></DatePicker>
+          <div className="dropdown-content">
+            <div className="dropdown-content-left">
+              <DatePicker passYearSelected={passYearSelected}></DatePicker>
+            </div>
+            <div className="dropdown-content-right">
+              <GatePicker passYearSelected={passYearSelected}></GatePicker>
+            </div>
+          </div>
           <Ratings
             passValuesFromComponent={passValuesFromComponent}
             passAutomaticWeightChange={passAutomaticWeightChange}

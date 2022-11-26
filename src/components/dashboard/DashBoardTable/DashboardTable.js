@@ -9,6 +9,7 @@ import { RatesContext } from "../../../contexts/rates";
 import { CountryContext } from "../../../contexts/country";
 import UserService from "../../services/UserService";
 import { CompanyUserContext } from "../../../contexts/companyuser";
+import { GatesContext } from "../../../contexts/gates";
 
 const DashboardTable = (ratings, years) => {
   //Data Fetch
@@ -20,6 +21,7 @@ const DashboardTable = (ratings, years) => {
   const { prefixIds, updatePrefixIds } = useContext(RatesContext);
   const { countryS, updateCountry } = useContext(CountryContext);
   const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
+  const { gates, updateGate } = useContext(GatesContext);
 
   const fetchData = (expr) => {
     const lexpr = expr.toLowerCase();
@@ -27,7 +29,8 @@ const DashboardTable = (ratings, years) => {
       ratings.getRatings,
       ratings.years,
       UserService.getToken(),
-      companyUser
+      companyUser,
+      gates
     ).then((response) =>
       setData(
         response.filter((row) => {
@@ -81,12 +84,13 @@ const DashboardTable = (ratings, years) => {
         ratings.getRatings,
         ratings.years,
         UserService.getToken(),
-        companyUser
+        companyUser,
+        gates
       ).then((response) => {
         setGlobalData(response);
       });
     }
-  }, [ratings.getRatings, ratings.years, ratings.weight]);
+  }, [ratings.getRatings, ratings.years, ratings.weight, gates]);
 
   return (
     <>

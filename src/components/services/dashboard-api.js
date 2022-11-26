@@ -2,7 +2,7 @@
 import axios from "axios";
 
 // Actions
-export function getAll(ratingsArray, years, token, customerUser) {
+export function getAll(ratingsArray, years, token, customerUser, gates) {
   const ratings = new Map();
   ratingsArray
     ? ratings.set("ratings", JSON.stringify(ratingsArray))
@@ -15,7 +15,8 @@ export function getAll(ratingsArray, years, token, customerUser) {
         year: years,
         name: customerUser.name,
         email: customerUser.email,
-        company: customerUser.company,
+        companyName: customerUser.companyName,
+        gate: gates,
       },
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -23,7 +24,7 @@ export function getAll(ratingsArray, years, token, customerUser) {
     .catch((err) => err);
 }
 
-export function getWorldMapInfo(ratingsArray, years, token, customerUser) {
+export function getWorldMapInfo(ratingsArray, years, token, customerUser, gates) {
   const ratings = new Map();
 
   ratingsArray
@@ -37,7 +38,8 @@ export function getWorldMapInfo(ratingsArray, years, token, customerUser) {
         year: years,
         name: customerUser.name,
         email: customerUser.email,
-        company: customerUser.company,
+        companyName: customerUser.companyName,
+        gate: gates,
       },
       headers: { Authorization: `Bearer ${token}` },
     })

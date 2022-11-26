@@ -17,7 +17,7 @@ export function getRatingsByYear(Year, token, customerUser) {
         year: yearAPI,
         name: customerUser.name,
         email: customerUser.email,
-        company: customerUser.company,
+        companyName: customerUser.companyName,
       },
       data: customerUser,
       headers: { Authorization: `Bearer ${token}` },

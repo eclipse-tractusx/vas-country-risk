@@ -8,31 +8,38 @@ import { CountryProvider } from "./contexts/country";
 import { CompanyUserProvider } from "./contexts/companyuser";
 import { ReportProvider } from "./contexts/reports";
 import { ReloadProvider } from "./contexts/refresh";
+import { GatesProvider } from "./contexts/gates";
+import  NavigationBar  from "./components/dashboard/NavigationBar/NavigationBar";
 function App() {
   return (
     <>
-      <RatesProvider>
-        <RangesProvider>
-          <CountryProvider>
-            <CompanyUserProvider>
-              <ReportProvider>
-                <ReloadProvider>
-                  <div className="App-pageheader">
-                    <PageHeader
-                      title="Dashboard"
-                      headerHeight={200}
-                    ></PageHeader>
-                  </div>
-                  <div className="App">
-                    <Dashboard />
-                    <Footer />
-                  </div>
-                </ReloadProvider>
-              </ReportProvider>
-            </CompanyUserProvider>
-          </CountryProvider>
-        </RangesProvider>
-      </RatesProvider>
+      <GatesProvider>
+        <RatesProvider>
+          <RangesProvider>
+            <CountryProvider>
+              <CompanyUserProvider>
+                <ReportProvider>
+                  <ReloadProvider>
+                    <div>
+                      <NavigationBar/>
+                    </div>
+                    <div className="App-pageheader">
+                      <PageHeader
+                        title="Dashboard"
+                        headerHeight={200}
+                      ></PageHeader>
+                    </div>
+                    <div className="App">
+                      <Dashboard />
+                      <Footer />
+                    </div>
+                  </ReloadProvider>
+                </ReportProvider>
+              </CompanyUserProvider>
+            </CountryProvider>
+          </RangesProvider>
+        </RatesProvider>
+      </GatesProvider>
     </>
   );
 }

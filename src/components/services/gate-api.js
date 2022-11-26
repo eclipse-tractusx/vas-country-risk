@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 import axios from "axios";
 
-//Get BPN Countries
-export function getCountryByUser(token, customerUser) {
+// Actions
+export function getUserBpdmGates(token, customerUser) {
   return axios
-    .get(process.env.REACT_APP_GET_BPN_COUNTRYS, {
+    .get(process.env.REACT_APP_GET_USER_BPDM_GATES, {
       params: {
         name: customerUser.name,
         email: customerUser.email,
@@ -16,10 +16,9 @@ export function getCountryByUser(token, customerUser) {
     .catch((err) => []);
 }
 
-// Get Country bt ISO2
-export function getCountrys(token, customerUser) {
+export function getDataFromSelectedGate(token, customerUser) {
   return axios
-    .get(process.env.REACT_APP_GET_COUNTRYS, {
+    .get(process.env.REACT_APP_GET_FROM_SELECTED_GATE, {
       params: {
         name: customerUser.name,
         email: customerUser.email,

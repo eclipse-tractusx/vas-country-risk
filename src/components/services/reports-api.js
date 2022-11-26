@@ -3,12 +3,13 @@ import axios from "axios";
 
 //Get Reports By User
 export function getReportsByCompanyUser(token, customerUser) {
+
   return axios
     .get(process.env.REACT_APP_GET_REPORTS_BY_USER, {
       params: {
         name: customerUser.name,
         email: customerUser.email,
-        company: customerUser.company,
+        companyName: customerUser.companyName,
       },
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -22,7 +23,7 @@ export function getReportValuesByReport(token, report) {
       params: {
         reportName: report.reportName || "",
         companyUserName: report.companyUserName || "",
-        company: report.company || "",
+        companyName: report.company || "",
         type: report.type || "",
         id: report.id || "",
       },
@@ -41,7 +42,7 @@ export function saveReports(token, customerUser, report) {
     params: {
       name: customerUser.name,
       email: customerUser.email,
-      company: customerUser.company,
+      companyName: customerUser.companyName,
     },
 
     headers: { Authorization: `Bearer ${token}` },
