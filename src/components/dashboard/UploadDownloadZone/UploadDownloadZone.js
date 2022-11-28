@@ -1,50 +1,54 @@
-import React, { useState, useContext } from "react";
-import "./styles.scss";
-import { Button, Dropzone, Input, Alert } from "cx-portal-shared-components";
-import Dialog from "@mui/material/Dialog";
-import Box from "@mui/material/Box";
-import UserService from "../../services/UserService";
-import { downloadSampleCsvFile } from "../../services/files-api";
-import { CompanyUserContext } from "../../../contexts/companyuser";
-import { ReloadContext } from "../../../contexts/refresh";
+import React, { useState, useContext } from 'react'
+import './styles.scss'
+import { Button, Dropzone, Input, Alert } from 'cx-portal-shared-components'
+import Dialog from '@mui/material/Dialog'
+import Box from '@mui/material/Box'
+import UserService from '../../services/UserService'
+import FormLabel from '@mui/material/FormLabel'
+import Radio from '@mui/material/Radio'
+import RadioGroup from '@mui/material/RadioGroup'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import { downloadSampleCsvFile } from '../../services/files-api'
+import { CompanyUserContext } from '../../../contexts/companyuser'
+import { ReloadContext } from '../../../contexts/refresh'
 
 const UploadDownloadZone = () => {
   //Upload Button Handlers
-  const [open, setOpen] = React.useState(false);
-  const [disabled, setDisable] = useState(false);
-  const [autoUp, setAutoUp] = useState(false);
-  const [alertOpen, setAlertOpen] = useState(false);
-  const [severity, setSeverity] = useState("");
-  const [severityMessage, setSeverityMessage] = useState("");
-  const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
-  const { reload, updateReload } = useContext(ReloadContext);
+  const [open, setOpen] = React.useState(false)
+  const [disabled, setDisable] = useState(false)
+  const [autoUp, setAutoUp] = useState(false)
+  const [alertOpen, setAlertOpen] = useState(false)
+  const [severity, setSeverity] = useState('')
+  const [severityMessage, setSeverityMessage] = useState('')
+  const { companyUser, updateCompanyUser } = useContext(CompanyUserContext)
+  const { reload, updateReload } = useContext(ReloadContext)
 
   //Rating Button Handlers
-  const [openRatingName, setOpenRatingName] = useState("");
+  const [openRatingName, setOpenRatingName] = useState('')
 
   const enableUpload = () => {
-    setOpen(false);
-    setAutoUp(true);
-  };
+    setOpen(false)
+    setAutoUp(true)
+  }
 
   const closeDialogs = () => {
-    setOpen(false);
-    setAutoUp(false);
-    setSeverityMessage("");
-    setSeverity("");
-  };
+    setOpen(false)
+    setAutoUp(false)
+    setSeverityMessage('')
+    setSeverity('')
+  }
   const openDialog = () => {
-    setOpen(!open);
-  };
+    setOpen(!open)
+  }
 
   const saveRatingName = (event) => {
-    setOpenRatingName(event.target.value);
-  };
+    setOpenRatingName(event.target.value)
+  }
 
   const dropzoneProps = {
-    title: "userUpload.title",
-    subtitle: "userUpload.subtitle",
-    accept: "text/csv",
+    title: 'userUpload.title',
+    subtitle: 'userUpload.subtitle',
+    accept: 'text/csv',
     getUploadParams: () => ({
       url: process.env.REACT_APP_UPLOAD_FILE,
 
@@ -54,94 +58,105 @@ const UploadDownloadZone = () => {
         companyName: companyUser.companyName,
       },
       headers: {
-        ratingName: openRatingName || "defaultName",
+        ratingName: openRatingName || 'defaultName',
         Authorization: `Bearer ${UserService.getToken()}`,
       },
     }),
     onChangeStatus: ({ meta }, status) => {
-      if (status === "headers_received") {
-        console.log(`${meta.name} uploaded`);
-        setSeverity("info");
-        setSeverityMessage("Your file has been validated");
-        updateReload(!reload);
-      } else if (status === "aborted") {
-        console.log(`${meta.name}, upload failed...`);
-      } else if (status === "error_upload") {
-        console.log(meta);
-        console.log(status);
-        setSeverity("error");
-        setSeverityMessage("Your file cannot be processed");
+      if (status === 'headers_received') {
+        console.log(`${meta.name} uploaded`)
+        setSeverity('info')
+        setSeverityMessage('Your file has been validated')
+        updateReload(!reload)
+      } else if (status === 'aborted') {
+        console.log(`${meta.name}, upload failed...`)
+      } else if (status === 'error_upload') {
+        console.log(meta)
+        console.log(status)
+        setSeverity('error')
+        setSeverityMessage('Your file cannot be processed')
       } else {
-        console.log("error");
-        console.log(meta);
-        console.log(status);
+        console.log('error')
+        console.log(meta)
+        console.log(status)
       }
     },
     errorStatus: [
-      "error_upload_params",
-      "exception_upload",
-      "error_upload",
-      "aborted",
-      "ready",
+      'error_upload_params',
+      'exception_upload',
+      'error_upload',
+      'aborted',
+      'ready',
     ],
-  };
+  }
 
   const downloadTemplate = () => {
-    setDisable(true);
+    setDisable(true)
 
     downloadSampleCsvFile(UserService.getToken()).then((data) => {
-      let csvContent = "data:text/csv;charset=utf-8,\uFEFF";
-      csvContent += data.data + "\r\n";
-      var encodedUri = encodeURI(csvContent);
-      const link = document.createElement("a");
-      link.setAttribute("href", encodedUri);
-      link.setAttribute("download", "table-content.csv");
-      link.style.visibility = "hidden";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      setDisable(false);
-    });
-  };
+      let csvContent = 'data:text/csv;charset=utf-8,\uFEFF'
+      csvContent += data.data + '\r\n'
+      var encodedUri = encodeURI(csvContent)
+      const link = document.createElement('a')
+      link.setAttribute('href', encodedUri)
+      link.setAttribute('download', 'table-content.csv')
+      link.style.visibility = 'hidden'
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      setDisable(false)
+    })
+  }
 
   return (
     <div className="upload-content">
       <Button size="small" onClick={openDialog}>
         Upload Rating
       </Button>
-      <Dialog open={open} onClose={closeDialogs}>
-        <Box style={{ padding: "30px" }}>
+      <Dialog open={open} onClose={closeDialogs} className="First-Dialog">
+        <div className="Dialog-Expand-Div">
+          <FormLabel className="FirstLabel" component="legend">
+            Select availability
+          </FormLabel>
+          <div className="CheckBox-Div">
+            <RadioGroup
+              defaultValue="Custom"
+              className="CheckBox-Div-Radio"
+              aria-labelledby="demo-controlled-radio-buttons-group"
+              name="controlled-radio-buttons-group"
+              //onChange={handleChangeCheckbox}
+            >
+              <FormControlLabel
+                value="Custom"
+                control={<Radio />}
+                label="Only For me"
+              />
+              <FormControlLabel
+                value="Company"
+                control={<Radio />}
+                label="For the company"
+                //disabled={reportType}
+              />
+            </RadioGroup>
+          </div>
           <Input
             helperText="Helper"
             label="Please write your rating name"
             placeholder="Rating Name"
-            size={"small"}
+            size={'small'}
             onChange={saveRatingName}
           ></Input>
-          <div
-            style={{
-              background: "white",
-              display: "flex",
-              alignSelf: "center",
-              padding: "1%",
-            }}
-          >
-            <Button style={{ margin: "1%" }} onClick={openDialog}>
-              Close
-            </Button>
-
-            <Button style={{ margin: "1%" }} onClick={enableUpload}>
-              Next
-            </Button>
-          </div>
-        </Box>
+          <Button style={{ margin: '1%' }} onClick={openDialog}>
+            Close
+          </Button>
+          <Button style={{ margin: '1%' }} onClick={enableUpload}>
+            Next
+          </Button>
+        </div>
       </Dialog>
 
-      <Dialog
-        open={autoUp}
-        onClose={closeDialogs}
-        style={{ width: "100%", height: "70%" }}
-      >
+      <Dialog open={autoUp} onClose={closeDialogs} className="Second-Dialog">
+        <div className="Second-Expand-Div">
         <Alert severity={severity}>
           <span>{severityMessage}</span>
         </Alert>
@@ -155,18 +170,11 @@ const UploadDownloadZone = () => {
           multiple={false}
           maxFiles={1}
         />
-        <div
-          style={{
-            background: "white",
-            display: "flex",
-            alignSelf: "center",
-            flexDirection: "row",
-            padding: "1%",
-          }}
-        >
-          <Button style={{ margin: "1%" }} onClick={closeDialogs}>
+
+          <Button style={{ margin: '1%' }} onClick={closeDialogs}>
             Close
           </Button>
+        
         </div>
       </Dialog>
 
@@ -179,7 +187,7 @@ const UploadDownloadZone = () => {
         Download Template
       </Button>
     </div>
-  );
-};
+  )
+}
 
-export default UploadDownloadZone;
+export default UploadDownloadZone
