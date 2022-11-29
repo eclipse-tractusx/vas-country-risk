@@ -105,26 +105,11 @@ test("Company Map Test", async () => {
   fireEvent.keyDown(getCountryDropDown, { key: "ArrowDown" });
   fireEvent.keyDown(getCountryDropDown, { key: "Enter" });
 
-  // const mouseOver = screen.getByTestId("zoomableGroup-custom-company-map");
-  // await act(async () => {
-  //   fireEvent.click(mouseOver);
-  //   fireEvent.scroll(window, { target: { clientX: 783, clientY: 387 } });
-  //   fireEvent.wheel(mouseOver, { clientX: 783, clientY: 387 });
-  // });
 
-  // const mouseScroll = screen.getByTestId("composable-custom-company-map");
-  // await act(async () => {
-  //   fireEvent.wheel(mouseScroll, { clientX: 783, clientY: 387 });
-  //   fireEvent.mouse(mouseScroll, {
-  //     clientX: 1286,
-  //     clientY: 367,
-  //   });
-  //   fireEvent.wheel(mouseOver, { clientX: 783, clientY: 387 });
-  // });
 
   const geo = screen.getByTestId("geo-custom-company-map");
   const composable = screen.getByTestId("composable-custom-company-map");
-  const zoom = screen.getByTestId("zoomableGroup-custom-company-map");
+
   const childs = geo.childNodes;
   const mEvent = {
     target: {

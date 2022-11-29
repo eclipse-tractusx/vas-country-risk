@@ -26,7 +26,7 @@ const CountryPicker = () => {
 
   //Handler to get current selected value on Autocomplete component
   const handleChange = (event, newValue) => {
-    console.log("country pick ", newValue);
+
     if (newValue === null) {
       updateCountry("none");
     } else {

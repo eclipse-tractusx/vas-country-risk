@@ -117,9 +117,7 @@ const CustomCompanyMap = (ratings) => {
   }, []);
 
   const coordinates = (position, dragging, event) => {
-    console.log("position", position.dragging);
-    console.log("dragging", JSON.stringify(dragging.sourceEvent));
-    console.log("event", event);
+
     setKZoom(position.k);
   };
 
@@ -229,7 +227,7 @@ const CustomCompanyMap = (ratings) => {
 
           {countryMarkers.map((marker) => {
             if (kZoom >= 3) {
-              console.log("teste", kZoom);
+
               return (
                 <Marker
                   key={marker.iso3}
