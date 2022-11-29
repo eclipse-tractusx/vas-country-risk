@@ -35,61 +35,49 @@ const Dashboard = () => {
   };
 
   return (
-    // <div className="wrapper">
-    //   <div className="main-content">
-    //     <div className="maps-content ">
-    //       <div className="left-map">
-    //         <LeftMap
-    //           getRatings={ratings}
-    //           years={years}
-    //           weight={weight}
-    //         ></LeftMap>
-    //       </div>
-    //       <div className="right-map">
-    //         <RightMap></RightMap>
-    //       </div>
-    //     </div>
-    //     <div className="table-content">
-    //       <DashboardTable
-    //         getRatings={ratings}
-    //         years={years}
-    //         weight={weight}
-    //       ></DashboardTable>
-    //     </div>
-    //   </div>
-    //   <div className="right-content">
-    //     <div className="right-top-content">
-    //       <DatePicker passYearSelected={passYearSelected}></DatePicker>
-    //       <Ratings
-    //         passValuesFromComponent={passValuesFromComponent}
-    //         passAutomaticWeightChange={passAutomaticWeightChange}
-    //         years={years}
-    //       ></Ratings>
-    //     </div>
-    //     <div>
-    //       <UploadDownloadZone></UploadDownloadZone>
-    //     </div>
-    //     <div className="right-middle-content">
-    //       <Reports></Reports>
-    //     </div>
-    //     <div className="right-bottom-content">
-    //       <RangeSlider></RangeSlider>
-    //     </div>
-    //   </div>
-    // </div>
+     <div className="wrapper">
+       <div className="main-content">
+         <div className="maps-content ">
+           <div className="left-map">
+             <LeftMap
+               getRatings={ratings}
+               years={years}
+               weight={weight}
+             ></LeftMap>
+           </div>
+           <div className="right-map">
+             <RightMap></RightMap>
+           </div>
+         </div>
+         <div className="table-content">
+           <DashboardTable
+             getRatings={ratings}
+             years={years}
+             weight={weight}
+           ></DashboardTable>
+         </div>
+       </div>
+       <div className="right-content">
+         <div className="right-top-content">
+           <DatePicker passYearSelected={passYearSelected}></DatePicker>
+           <Ratings
+             passValuesFromComponent={passValuesFromComponent}
+             passAutomaticWeightChange={passAutomaticWeightChange}
+             years={years}
+           ></Ratings>
+         </div>
+         <div>
+           <UploadDownloadZone></UploadDownloadZone>
+         </div>
+         <div className="right-middle-content">
+           <Reports></Reports>
+         </div>
+         <div className="right-bottom-content">
+           <RangeSlider></RangeSlider>
+         </div>
+       </div>
+     </div>
 
-    <>
-      <CountryPicker />
-      <CustomCompanyMap
-        getRatings={[]}
-        years={2021}
-        weight={1}
-        minMapWidth={0}
-        maxMapWidth={800}
-        minMapHeight={0}
-        maxMapHeight={600}
-      />
-    </>
   );
 };
 
