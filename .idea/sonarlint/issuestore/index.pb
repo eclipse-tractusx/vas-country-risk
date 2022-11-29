@@ -23,18 +23,13 @@ a
 1src/components/dashboard/Ratings/ratingColumns.js,c\e\ce5463b21e923f23d31ef0ba1e80fa075fd143d3
 \
 ,src/components/dashboard/Ratings/styles.scss,4\d\4de8d3bfe1c9d5b916a3562a19e3ab2a3f10325f
-\
-,src/components/dashboard/Reports/styles.scss,4\a\4a129faee094a8015045b8a522d0953ed45bd147
-E
-chart/values-dev.yaml,d\7\d70c5f664b9af980d5efd6da2ff82c9d497493be
-K
-.github/workflows/build.yml,f\e\fe77d5d1439f26e353a42bbd38dece2467ff6558
-:
-
-Dockerfile,6\6\6651ddff6eb82c840ced7c1dddee15c6e1913dd4
 V
 &src/components/services/UserService.js,4\3\43b64a74751ee9053b0052baa95dab17ca3aba2b
-A
-chart/values.yaml,6\7\679c9c413d4749f4bd9d593879d89e405b2e471e
-P
- .github/workflows/sonarcloud.yml,0\7\077a84aad902191fd63fd374880221279f02a65d
+]
+-src/components/services/EnvironmentService.js,e\7\e7596a41f73f1b6663bf8e7cede0e08716cd2c4c
+c
+3src/components/dashboard/RangeSlider/RangeSlider.js,2\b\2b0c794dfbe2b2456026dac1ed4438645be6cab9
+\
+,src/components/dashboard/Reports/styles.scss,4\a\4a129faee094a8015045b8a522d0953ed45bd147
+V
+&src/components/services/reports-api.js,f\0\f05c0050f44f114ff09381b3bd8ccfacab6956d3

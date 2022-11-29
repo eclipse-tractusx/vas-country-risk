@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./styles.scss";
 import Slider from "@mui/material/Slider";
 import Input from "@mui/material/Input";

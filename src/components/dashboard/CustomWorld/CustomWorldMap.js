@@ -16,6 +16,7 @@ import { CompanyUserContext } from "../../../contexts/companyuser";
 import { getCountrys } from "../../services/country-api";
 import { getBpns } from "../../services/bpns-api";
 import ImageMarker from "../../../resources/marker.png";
+import { GatesContext } from "../../../contexts/gates";
 
 const CustomWorldMap = (ratings) => {
   const [data, setData] = useState([]);
@@ -23,10 +24,12 @@ const CustomWorldMap = (ratings) => {
   const [content, setContent] = useState("");
   const [kZoom, setKZoom] = useState(1);
   const [bpns, setBpns] = useState([]);
+  const { gates, updateGate } = useContext(GatesContext);
 
   const { ranges, updateRanges } = useContext(RangesContext);
 
-  const geoUrl = require("./world-countries.json");
+  const geoUrl =
+    "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
 
   const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
 
@@ -36,12 +39,13 @@ const CustomWorldMap = (ratings) => {
         ratings.getRatings,
         ratings.years,
         UserService.getToken(),
-        companyUser
+        companyUser,
+        gates
       ).then((response) => {
         setData(response);
       });
     }
-  }, [ratings.getRatings, ratings.years, ratings.weight]);
+  }, [ratings.getRatings, ratings.years, ratings.weight, gates]);
 
   useEffect(() => {
     getCountrys(UserService.getToken(), companyUser).then((response) => {
@@ -60,10 +64,11 @@ const CustomWorldMap = (ratings) => {
   const handlePopoverClose = () => {
     setContent("");
   };
+
   return (
     <>
-      <ComposableMap data-tip="Map" data-testid="Map">
-        <ZoomableGroup
+      <ComposableMap data-tip="" >
+        <ZoomableGroup 
           onMove={cordinates}
           zoom={1}
           maxZoom={50}
@@ -75,10 +80,11 @@ const CustomWorldMap = (ratings) => {
             [ratings.maxMapWidth, ratings.maxMapHeight],
           ]}
         >
-          <Geographies geography={geoUrl} data-testid="geo">
+          <Geographies geography={geoUrl}>
             {({ geographies }) =>
               geographies.map((geo) => {
                 let geoMap = new Map();
+
                 if (Array.isArray(data)) {
                   data.forEach((s) => {
                     if (s.country.iso3 === geo.id) {
@@ -102,7 +108,7 @@ const CustomWorldMap = (ratings) => {
                   });
                 }
                 return (
-                  <Geography
+                  <Geography 
                     key={geoMap.size > 0 ? geoMap.get(geo).rsmKey : geo.rsmKey}
                     geography={geoMap.size > 0 ? geoMap.get(geo) : geo}
                     fill={geoMap.size > 0 ? geoMap.get("color") : "#F5F4F6"}
@@ -116,19 +122,19 @@ const CustomWorldMap = (ratings) => {
                     onMouseLeave={handlePopoverClose}
                     style={{
                       default: {
-                        stroke: "#607D8B",
-                        strokeWidth: 0.75,
+                        stroke: "#4d493f",
+                        strokeWidth: 0.2,
                         outline: "none",
                       },
                       hover: {
-                        stroke: "#607D8B",
-                        strokeWidth: 1,
+                        stroke: "#4d493f",
+                        strokeWidth: 0.1,
                         outline: "none",
                         fill: "#82e362",
                       },
                       pressed: {
-                        stroke: "#607D8B",
-                        strokeWidth: 1,
+                        stroke: "#4d493f",
+                        strokeWidth: 0.1,
                         outline: "none",
                       },
                     }}

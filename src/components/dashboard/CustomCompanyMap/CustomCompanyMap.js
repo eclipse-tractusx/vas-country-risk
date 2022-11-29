@@ -167,19 +167,19 @@ const CustomCompanyMap = (ratings) => {
                     onMouseLeave={handlePopoverClose}
                     style={{
                       default: {
-                        stroke: "#607D8B",
-                        strokeWidth: 0.75,
+                        stroke: "#4d493f",
+                        strokeWidth: 0.2,
                         outline: "none",
                       },
                       hover: {
-                        stroke: "#607D8B",
-                        strokeWidth: 1,
+                        stroke: "#4d493f",
+                        strokeWidth: 0.1,
                         outline: "none",
                         fill: "#82e362",
                       },
                       pressed: {
-                        stroke: "#607D8B",
-                        strokeWidth: 1,
+                        stroke: "#4d493f",
+                        strokeWidth: 0.1,
                         outline: "none",
                       },
                     }}

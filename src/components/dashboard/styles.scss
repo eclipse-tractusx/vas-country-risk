@@ -1,6 +1,7 @@
 .wrapper {
   display: flex;
   flex-direction: row;
+
   .main-content {
     width: 65%;
     padding: 10px;
@@ -8,32 +9,72 @@
     .maps-content {
       justify-content: space-between;
       display: flex;
+      background-color:#F4F5F6;
+      padding: 10px;
+      border: 1px solid #000;
+      border-radius: 20px;
+
       .left-map {
         align-items: center;
         display: flex;
         flex-direction: column;
         border: 1px solid #000;
+        border-radius: 20px;
         width: 48%;
+        background-color: rgba(20, 177, 245, 0.132);
       }
       .right-map {
         border: 1px solid #000;
+        border-radius: 20px;
         width: 48%;
+        background-color: rgba(20, 177, 245, 0.132);
       }
     }
 
     .table-content {
       margin-top: 2%;
       border: 1px solid #000;
-      border-radius: 0;
+      border-radius: 20px;
+      padding: 1%;
+      background-color:#F4F5F6;
     }
   }
+
   .right-content {
     width: 30%;
     height: 100%;
     padding: 10px;
+    margin-right: 10px;
 
     .right-top-content {
       width: 100%;
+      background-color:#F4F5F6;
+      border-radius: 20px;
+      padding: 10px;
+      border: 1px solid #000;
+    }
+
+    .dropdown-content {
+      display: flex; 
+      justify-content: space-between;
+
+      .dropdown-content-left {
+        width: 45%;
+      }
+
+      .dropdown-content-right {
+        width: 45%;
+      }
+      
+    }
+
+    .upload-content {
+      margin-top: 10px;
+      width: 100%;
+      background-color:#F4F5F6;
+      border-radius: 20px;
+      padding: 10px;
+      border: 1px solid #000;
     }
 
     .right-middle-content {
@@ -42,14 +83,19 @@
       align-items: center;
       margin: 5% 0;
       width: 100%;
+      border-radius: 25px;
+      background-color:#F4F5F6;
       border: 1px solid #000;
+      padding: 2%;
     }
 
     .right-bottom-content {
       padding: 8px;
       width: 100%;
       border: 1px solid #000;
+      background-color:#F4F5F6;
       border-radius: 0px;
+      border-radius: 20px;
     }
   }
 }

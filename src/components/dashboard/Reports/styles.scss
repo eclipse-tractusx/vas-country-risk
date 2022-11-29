@@ -9,7 +9,7 @@
     //Form
     .formReports {
       width: 60%;
-      border: 1px solid #000;
+      //border: 1px solid #000;
     }
 
     .divider {
@@ -27,9 +27,9 @@
     display: flex;
     width: 100%;
     //border: 3px solid #000;
-    border-radius: 0;
     font-size: 12px;
     text-align: center;
+    background-color: white;
   }
 }
 
@@ -43,17 +43,16 @@
 
   .Dialog-Expand-Div {
     text-align: center;
-    background-color: rgb(251, 250, 250);
-    border-radius: 0px !important;
+    background-color: #DCDCDC;
+    border-radius: 39px !important;
+    border: 2px solid #000;
 
     .FirstLabel {
-      background-color: rgb(251, 250, 250);
       margin-left: auto;
       margin-right: auto;
     }
 
     .SecondLabel {
-      background-color: rgb(251, 250, 250);
       margin-left: auto;
       margin-right: auto;
     }
