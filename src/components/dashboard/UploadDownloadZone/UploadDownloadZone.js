@@ -1,13 +1,18 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import './styles.scss'
 import { Button, Dropzone, Input, Alert } from 'cx-portal-shared-components'
 import Dialog from '@mui/material/Dialog'
-import Box from '@mui/material/Box'
 import UserService from '../../services/UserService'
 import FormLabel from '@mui/material/FormLabel'
 import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
+
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+
 import { downloadSampleCsvFile } from '../../services/files-api'
 import { CompanyUserContext } from '../../../contexts/companyuser'
 import { ReloadContext } from '../../../contexts/refresh'
@@ -23,8 +28,38 @@ const UploadDownloadZone = () => {
   const { companyUser, updateCompanyUser } = useContext(CompanyUserContext)
   const { reload, updateReload } = useContext(ReloadContext)
 
+  //Radio Button Role Enabler
+  const [ratingType, setRatingType] = useState(false)
+
+console.log(companyUser)
+
   //Rating Button Handlers
   const [openRatingName, setOpenRatingName] = useState('')
+  const [valueType, setType] = useState("Global")
+
+  //Years Calculation [Current date - 2000]
+  const now = new Date().getUTCFullYear();
+  const updateDate = now - 1999;    
+  const years = Array(now - (now - updateDate)).fill('').map((v, idx) => now - idx);
+ 
+  //Date Currently Selected
+  const [date, setDate] = useState("");
+
+  const role = "user" //Just used as a test purpose
+
+  useEffect(() => {
+    setDate(now);
+    if(role == "admin"){
+      setRatingType(false);
+    }
+    else if (role == "user"){
+      setRatingType(true);
+    }
+  }, [reload]);
+
+  const handleChange = (event) => {
+    setDate(event.target.value);
+  };
 
   const enableUpload = () => {
     setOpen(false)
@@ -38,12 +73,17 @@ const UploadDownloadZone = () => {
     setSeverity('')
   }
   const openDialog = () => {
-    setOpen(!open)
+      setOpen(!open)
   }
 
   const saveRatingName = (event) => {
     setOpenRatingName(event.target.value)
   }
+
+  //Handler for Checkbox
+  const handleChangeCheckbox = (event) => {
+    setType(event.target.value);
+  };
 
   const dropzoneProps = {
     title: 'userUpload.title',
@@ -60,6 +100,8 @@ const UploadDownloadZone = () => {
       headers: {
         ratingName: openRatingName || 'defaultName',
         Authorization: `Bearer ${UserService.getToken()}`,
+        year: date,
+        type: valueType,
       },
     }),
     onChangeStatus: ({ meta }, status) => {
@@ -124,7 +166,7 @@ const UploadDownloadZone = () => {
               className="CheckBox-Div-Radio"
               aria-labelledby="demo-controlled-radio-buttons-group"
               name="controlled-radio-buttons-group"
-              //onChange={handleChangeCheckbox}
+              onChange={handleChangeCheckbox}
             >
               <FormControlLabel
                 value="Custom"
@@ -135,18 +177,40 @@ const UploadDownloadZone = () => {
                 value="Company"
                 control={<Radio />}
                 label="For the company"
-                //disabled={reportType}
+                disabled={ratingType}
               />
             </RadioGroup>
           </div>
+          <div className='form-year'>
+          <FormControl fullWidth variant="filled">
+        <InputLabel id="demo-simple-select-label">Select a Year</InputLabel>
+        <Select
+          value={date}
+          onChange={handleChange}
+          label="Year"
+          data-testid= "yearselect"
+        >
+          {Array.isArray(years)
+            ? years.map((item) => {
+                return (
+                  <MenuItem key={item} value={item}>
+                    {item}
+                  </MenuItem>
+                );
+              })
+            : []}
+        </Select>
+      </FormControl>
+          </div>
           <Input
+            data-testid= "inputelement"
             helperText="Helper"
             label="Please write your rating name"
             placeholder="Rating Name"
             size={'small'}
             onChange={saveRatingName}
           ></Input>
-          <Button style={{ margin: '1%' }} onClick={openDialog}>
+          <Button data-testid= "closeFirst" style={{ margin: '1%' }} onClick={openDialog}>
             Close
           </Button>
           <Button style={{ margin: '1%' }} onClick={enableUpload}>
@@ -162,6 +226,7 @@ const UploadDownloadZone = () => {
         </Alert>
 
         <Dropzone
+          data-testid= "dropzonetest"
           accept={dropzoneProps.accept}
           statusText={dropzoneProps.statusText}
           errorStatus={dropzoneProps.errorStatus}
