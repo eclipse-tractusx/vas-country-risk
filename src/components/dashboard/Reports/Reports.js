@@ -26,16 +26,16 @@ const Reports = () => {
   const [selectionModel, setSelectionModel] = useState([]);
 
   //Context to get current selected country
-  const { countryS, updateCountry } = useContext(CountryContext);
-  const { ranges, updateRanges } = useContext(RangesContext);
-  const { prefixIds, updatePrefixIds } = useContext(RatesContext);
+  const { countryS } = useContext(CountryContext);
+  const { ranges } = useContext(RangesContext);
+  const { prefixIds } = useContext(RatesContext);
 
   //Context to save report data
-  const { reportValuesContext, updateReport } = useContext(ReportContext);
+  const { updateReport } = useContext(ReportContext);
 
   const [report, setReport] = useState([]);
 
-  const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
+  const { companyUser } = useContext(CompanyUserContext);
 
   const [open, setOpen] = React.useState(false);
 
@@ -162,13 +162,20 @@ const Reports = () => {
   const columns = [
     {
       field: "radiobutton",
-      headerName: <Radio onChange={clearButton} checked={valueRadioChecked} />,
+      headerName: (
+        <Radio
+          data-testid="radioClear"
+          onChange={clearButton}
+          checked={valueRadioChecked}
+        />
+      ),
       width: 120,
       renderCell: (params) => (
         <Radio
           onChange={handleChange}
           checked={selectionModel[0] === params.id}
           value={params.id}
+          data-testid="radio-choose-report"
         />
       ),
       sortable: false,
@@ -259,6 +266,7 @@ const Reports = () => {
           </FormLabel>
 
           <Input
+            data-testid="inputReportName"
             className="input-report"
             error={errorTrigger}
             //helperText={"ERROR"}

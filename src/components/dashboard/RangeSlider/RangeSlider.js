@@ -242,7 +242,8 @@ const RangeSlider = () => {
                 min: 0,
                 max: 100,
                 type: "number",
-                "aria-labelledby": "input-slider",
+                "aria-labelledby": "input-slider-greenSlider",
+                "data-testid": "input-slider-greenSlider",
               }}
             />
           </Grid>
@@ -254,6 +255,7 @@ const RangeSlider = () => {
               aria-labelledby="range-slider"
               getAriaValueText={valuetext}
               disableSwap
+              data-testid="slider-green"
             />
           </Grid>
           <Grid item xs={2}>
@@ -286,6 +288,7 @@ const RangeSlider = () => {
                 max: 100,
                 type: "number",
                 "aria-labelledby": "input-slider",
+                "data-testid": "input-slider-yellow-left",
               }}
             />
           </Grid>
@@ -296,6 +299,7 @@ const RangeSlider = () => {
               valueLabelDisplay="auto"
               aria-labelledby="range-slider"
               getAriaValueText={valuetext}
+              data-testid="slider-yellow"
             />
           </Grid>
           <Grid item xs={2}>
@@ -311,6 +315,7 @@ const RangeSlider = () => {
                 max: 100,
                 type: "number",
                 "aria-labelledby": "input-slider",
+                "data-testid": "input-slider-yellow-right",
               }}
             />
           </Grid>
@@ -339,6 +344,7 @@ const RangeSlider = () => {
               valueLabelDisplay="auto"
               aria-labelledby="range-slider"
               getAriaValueText={valuetext}
+              data-testid="slider-red"
             />
           </Grid>
           <Grid item xs={2}>
@@ -353,6 +359,7 @@ const RangeSlider = () => {
                 max: 100,
                 type: "number",
                 "aria-labelledby": "input-slider",
+                "data-testid": "input-slider-red-right",
               }}
             />
           </Grid>

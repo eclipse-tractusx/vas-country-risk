@@ -56,7 +56,7 @@ const DatePicker = ({ passYearSelected }) => {
           passYearSelected={passYearSelected(date)}
           label="Year"
         >
-          {Array.isArray(AllDate)
+          {AllDate && Array.isArray(AllDate)
             ? AllDate.map((item) => {
                 return (
                   <MenuItem key={item} value={item}>

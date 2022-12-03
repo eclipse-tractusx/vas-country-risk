@@ -6,18 +6,18 @@ import "@testing-library/jest-dom/extend-expect";
 import userEvent from "@testing-library/user-event";
 
 jest.mock("../../../components/services/files-api", () => ({
-    downloadSampleCsvFile: jest.fn(() => []),
+  downloadSampleCsvFile: jest.fn().mockReturnValue([]),
 }));
 
-test("Ranges Test", async () => {
+test("Download template Test", async () => {
   downloadSampleCsvFile.mockImplementation(() => Promise.resolve([]));
   const customerUser = { name: "test" };
   let getByText;
   await act(async () => {
-    ({ getByText } = render(
-        <UploadDownloadZone />
-    ));
+    ({ getByText } = render(<UploadDownloadZone />));
   });
   expect(getByText("Upload Rating")).toBeInTheDocument();
   userEvent.click(getByText("Upload Rating"));
+  expect(getByText("Download Template")).toBeInTheDocument();
+  userEvent.click(getByText("Download Template"));
 });
