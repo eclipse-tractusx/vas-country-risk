@@ -228,7 +228,7 @@ const UploadDownloadZone = () => {
 
       <Dialog open={autoUp} onClose={closeDialogs} className="Second-Dialog">
         <div className="Second-Expand-Div">
-          <Alert className="alert-message-dialog" severity={severity}>
+          <Alert severity={severity}>
             <span>{severityMessage}</span>
           </Alert>
 

@@ -1,8 +1,17 @@
-import { render, act } from "@testing-library/react";
+import { render, act, fireEvent } from "@testing-library/react";
 import { test } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
-import userEvent from "@testing-library/user-event";
 import RightMap from "../../../components/dashboard/RightMap/RightMap";
+import {
+  getCountrys,
+  getCountryByUser,
+} from "../../../components/services/country-api";
+import {
+  getWorldMapInfo,
+  getAll,
+} from "../../../components/services/dashboard-api";
+import { getBpns } from "../../../components/services/bpns-api";
+import { toPng } from "html-to-image";
 import { CountryProvider } from "../../../contexts/country";
 import CountryPicker from "../../../components/dashboard/CountryPicker/CountryPicker";
 import { ReportProvider } from "../../../contexts/reports";
@@ -19,6 +28,8 @@ const getWorldMapData = [
       longitude: "23.8222636",
       totalBpn: 11,
     },
+    score: 90,
+  },
 ];
 
 const tableinfoData = [
