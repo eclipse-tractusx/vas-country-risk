@@ -1,9 +1,18 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./styles.scss";
 import { Button, Dropzone, Input, Alert } from "cx-portal-shared-components";
 import Dialog from "@mui/material/Dialog";
-import Box from "@mui/material/Box";
 import UserService from "../../services/UserService";
+import FormLabel from "@mui/material/FormLabel";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+
 import { downloadSampleCsvFile } from "../../services/files-api";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { ReloadContext } from "../../../contexts/refresh";

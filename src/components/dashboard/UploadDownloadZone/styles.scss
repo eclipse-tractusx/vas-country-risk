@@ -3,3 +3,56 @@
   justify-content: space-evenly;
   width: 100%;
 }
+
+.First-Dialog {
+  height: 100% !important;
+  width: 30%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 250px;
+
+  .Dialog-Expand-Div {
+    text-align: center;
+    background-color: #dcdcdc;
+    border-radius: 39px !important;
+    border: 2px solid #000;
+
+    .FirstLabel {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .SecondLabel {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .CheckBox-Div {
+      margin-top: 1%;
+      width: auto;
+
+      .CheckBox-Div-Radio {
+        display: inline;
+      }
+    }
+  }
+}
+
+.Second-Dialog {
+  height: 100% !important;
+  width: 30%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 250px;
+  width: 100%; 
+  height: 70%;
+
+  .Second-Expand-Div {
+    text-align: center;
+    background-color: #dcdcdc;
+    border-radius: 39px !important;
+    border: 2px solid #000;
+  }
+}
