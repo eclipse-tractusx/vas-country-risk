@@ -23,7 +23,7 @@ jest.mock("../../../components/services/reports-api", () => ({
 test("Renders Report", async () => {
   getReportsByCompanyUser.mockImplementation(() => Promise.resolve(reports));
   const customerUser = { name: "test" };
-  console.log(customerUser);
+
   let getByText;
   await act(async () => {
     ({ getByText } = render(

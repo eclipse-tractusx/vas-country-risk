@@ -1,58 +1,57 @@
-import React, { useState, useContext, useEffect } from 'react'
-import './styles.scss'
-import { Button, Dropzone, Input, Alert } from 'cx-portal-shared-components'
-import Dialog from '@mui/material/Dialog'
-import UserService from '../../services/UserService'
-import FormLabel from '@mui/material/FormLabel'
-import Radio from '@mui/material/Radio'
-import RadioGroup from '@mui/material/RadioGroup'
-import FormControlLabel from '@mui/material/FormControlLabel'
+import React, { useState, useContext, useEffect } from "react";
+import "./styles.scss";
+import { Button, Dropzone, Input, Alert } from "cx-portal-shared-components";
+import Dialog from "@mui/material/Dialog";
+import UserService from "../../services/UserService";
+import FormLabel from "@mui/material/FormLabel";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 
-import { downloadSampleCsvFile } from '../../services/files-api'
-import { CompanyUserContext } from '../../../contexts/companyuser'
-import { ReloadContext } from '../../../contexts/refresh'
+import { downloadSampleCsvFile } from "../../services/files-api";
+import { CompanyUserContext } from "../../../contexts/companyuser";
+import { ReloadContext } from "../../../contexts/refresh";
 
 const UploadDownloadZone = () => {
   //Upload Button Handlers
-  const [open, setOpen] = React.useState(false)
-  const [disabled, setDisable] = useState(false)
-  const [autoUp, setAutoUp] = useState(false)
-  const [alertOpen, setAlertOpen] = useState(false)
-  const [severity, setSeverity] = useState('')
-  const [severityMessage, setSeverityMessage] = useState('')
-  const { companyUser, updateCompanyUser } = useContext(CompanyUserContext)
-  const { reload, updateReload } = useContext(ReloadContext)
+  const [open, setOpen] = React.useState(false);
+  const [disabled, setDisable] = useState(false);
+  const [autoUp, setAutoUp] = useState(false);
+
+  const [severity, setSeverity] = useState("");
+  const [severityMessage, setSeverityMessage] = useState("");
+  const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
+  const { reload, updateReload } = useContext(ReloadContext);
 
   //Radio Button Role Enabler
-  const [ratingType, setRatingType] = useState(false)
-
-console.log(companyUser)
+  const [ratingType, setRatingType] = useState(false);
 
   //Rating Button Handlers
-  const [openRatingName, setOpenRatingName] = useState('')
-  const [valueType, setType] = useState("Global")
+  const [openRatingName, setOpenRatingName] = useState("");
+  const [valueType, setType] = useState("Global");
 
   //Years Calculation [Current date - 2000]
   const now = new Date().getUTCFullYear();
-  const updateDate = now - 1999;    
-  const years = Array(now - (now - updateDate)).fill('').map((v, idx) => now - idx);
- 
+  const updateDate = now - 1999;
+  const years = Array(now - (now - updateDate))
+    .fill("")
+    .map((v, idx) => now - idx);
+
   //Date Currently Selected
   const [date, setDate] = useState("");
 
-  const role = "user" //Just used as a test purpose
+  const role = "user"; //Just used as a test purpose
 
   useEffect(() => {
     setDate(now);
-    if(role == "admin"){
+    if (role === "admin") {
       setRatingType(false);
-    }
-    else if (role == "user"){
+    } else if (role === "user") {
       setRatingType(true);
     }
   }, [reload]);
@@ -62,23 +61,23 @@ console.log(companyUser)
   };
 
   const enableUpload = () => {
-    setOpen(false)
-    setAutoUp(true)
-  }
+    setOpen(false);
+    setAutoUp(true);
+  };
 
   const closeDialogs = () => {
-    setOpen(false)
-    setAutoUp(false)
-    setSeverityMessage('')
-    setSeverity('')
-  }
+    setOpen(false);
+    setAutoUp(false);
+    setSeverityMessage("");
+    setSeverity("");
+  };
   const openDialog = () => {
-      setOpen(!open)
-  }
+    setOpen(!open);
+  };
 
   const saveRatingName = (event) => {
-    setOpenRatingName(event.target.value)
-  }
+    setOpenRatingName(event.target.value);
+  };
 
   //Handler for Checkbox
   const handleChangeCheckbox = (event) => {
@@ -86,9 +85,9 @@ console.log(companyUser)
   };
 
   const dropzoneProps = {
-    title: 'userUpload.title',
-    subtitle: 'userUpload.subtitle',
-    accept: 'text/csv',
+    title: "userUpload.title",
+    subtitle: "userUpload.subtitle",
+    accept: "text/csv",
     getUploadParams: () => ({
       url: process.env.REACT_APP_UPLOAD_FILE,
 
@@ -98,57 +97,59 @@ console.log(companyUser)
         companyName: companyUser.companyName,
       },
       headers: {
-        ratingName: openRatingName || 'defaultName',
+        ratingName: openRatingName || "defaultName",
         Authorization: `Bearer ${UserService.getToken()}`,
         year: date,
         type: valueType,
       },
     }),
     onChangeStatus: ({ meta }, status) => {
-      if (status === 'headers_received') {
-        console.log(`${meta.name} uploaded`)
-        setSeverity('info')
-        setSeverityMessage('Your file has been validated')
-        updateReload(!reload)
-      } else if (status === 'aborted') {
-        console.log(`${meta.name}, upload failed...`)
-      } else if (status === 'error_upload') {
-        console.log(meta)
-        console.log(status)
-        setSeverity('error')
-        setSeverityMessage('Your file cannot be processed')
+      if (status === "headers_received") {
+        console.log(`${meta.name} uploaded`);
+        setSeverity("info");
+        setSeverityMessage("Your rating has been uploaded");
+        updateReload(!reload);
+      } else if (status === "aborted") {
+        console.log(`${meta.name}, upload failed...`);
+      } else if (status === "error_upload") {
+        console.log(meta);
+        console.log(status);
+        setSeverity("error");
+        setSeverityMessage(
+          "Rating name already exists. Please chose a different name"
+        );
       } else {
-        console.log('error')
-        console.log(meta)
-        console.log(status)
+        console.log("error");
+        console.log(meta);
+        console.log(status);
       }
     },
     errorStatus: [
-      'error_upload_params',
-      'exception_upload',
-      'error_upload',
-      'aborted',
-      'ready',
+      "error_upload_params",
+      "exception_upload",
+      "error_upload",
+      "aborted",
+      "ready",
     ],
-  }
+  };
 
   const downloadTemplate = () => {
-    setDisable(true)
+    setDisable(true);
 
     downloadSampleCsvFile(UserService.getToken()).then((data) => {
-      let csvContent = 'data:text/csv;charset=utf-8,\uFEFF'
-      csvContent += data.data + '\r\n'
-      var encodedUri = encodeURI(csvContent)
-      const link = document.createElement('a')
-      link.setAttribute('href', encodedUri)
-      link.setAttribute('download', 'table-content.csv')
-      link.style.visibility = 'hidden'
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
-      setDisable(false)
-    })
-  }
+      let csvContent = "data:text/csv;charset=utf-8,\uFEFF";
+      csvContent += data.data + "\r\n";
+      var encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "Country Risk Rating Template.csv");
+      link.style.visibility = "hidden";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setDisable(false);
+    });
+  };
 
   return (
     <div className="upload-content">
@@ -181,39 +182,45 @@ console.log(companyUser)
               />
             </RadioGroup>
           </div>
-          <div className='form-year'>
-          <FormControl fullWidth variant="filled">
-        <InputLabel id="demo-simple-select-label">Select a Year</InputLabel>
-        <Select
-          value={date}
-          onChange={handleChange}
-          label="Year"
-          data-testid= "yearselect"
-        >
-          {Array.isArray(years)
-            ? years.map((item) => {
-                return (
-                  <MenuItem key={item} value={item}>
-                    {item}
-                  </MenuItem>
-                );
-              })
-            : []}
-        </Select>
-      </FormControl>
+          <div className="form-year">
+            <FormControl fullWidth variant="filled">
+              <InputLabel id="demo-simple-select-label">
+                Select a Year
+              </InputLabel>
+              <Select
+                value={date}
+                onChange={handleChange}
+                label="Year"
+                data-testid="yearselect"
+              >
+                {Array.isArray(years)
+                  ? years.map((item) => {
+                      return (
+                        <MenuItem key={item} value={item}>
+                          {item}
+                        </MenuItem>
+                      );
+                    })
+                  : []}
+              </Select>
+            </FormControl>
           </div>
           <Input
-            data-testid= "inputelement"
+            data-testid="inputelement"
             helperText="Helper"
             label="Please write your rating name"
             placeholder="Rating Name"
-            size={'small'}
+            size={"small"}
             onChange={saveRatingName}
           ></Input>
-          <Button data-testid= "closeFirst" style={{ margin: '1%' }} onClick={openDialog}>
+          <Button
+            data-testid="closeFirst"
+            style={{ margin: "1%" }}
+            onClick={openDialog}
+          >
             Close
           </Button>
-          <Button style={{ margin: '1%' }} onClick={enableUpload}>
+          <Button style={{ margin: "1%" }} onClick={enableUpload}>
             Next
           </Button>
         </div>
@@ -221,25 +228,24 @@ console.log(companyUser)
 
       <Dialog open={autoUp} onClose={closeDialogs} className="Second-Dialog">
         <div className="Second-Expand-Div">
-        <Alert severity={severity}>
-          <span>{severityMessage}</span>
-        </Alert>
+          <Alert className="alert-message-dialog" severity={severity}>
+            <span>{severityMessage}</span>
+          </Alert>
 
-        <Dropzone
-          data-testid= "dropzonetest"
-          accept={dropzoneProps.accept}
-          statusText={dropzoneProps.statusText}
-          errorStatus={dropzoneProps.errorStatus}
-          getUploadParams={dropzoneProps.getUploadParams}
-          onChangeStatus={dropzoneProps.onChangeStatus}
-          multiple={false}
-          maxFiles={1}
-        />
+          <Dropzone
+            data-testid="dropzonetest"
+            accept={dropzoneProps.accept}
+            statusText={dropzoneProps.statusText}
+            errorStatus={dropzoneProps.errorStatus}
+            getUploadParams={dropzoneProps.getUploadParams}
+            onChangeStatus={dropzoneProps.onChangeStatus}
+            multiple={false}
+            maxFiles={1}
+          />
 
-          <Button style={{ margin: '1%' }} onClick={closeDialogs}>
+          <Button style={{ margin: "1%" }} onClick={closeDialogs}>
             Close
           </Button>
-        
         </div>
       </Dialog>
 
@@ -252,7 +258,7 @@ console.log(companyUser)
         Download Template
       </Button>
     </div>
-  )
-}
+  );
+};
 
-export default UploadDownloadZone
+export default UploadDownloadZone;

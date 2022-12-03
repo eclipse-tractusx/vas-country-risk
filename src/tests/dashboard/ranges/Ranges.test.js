@@ -16,28 +16,27 @@ const range = [
       id: 0,
       name: "John",
       email: "John@email.com",
-      company: "TestCompany"
-    }
+      company: "TestCompany",
+    },
   },
 ];
 
-
 jest.mock("../../../components/services/ranges-api", () => ({
-    getAllRanges: jest.fn(() => range),
+  getAllRanges: jest.fn(() => range),
 }));
 
 test("Ranges Test", async () => {
-    getAllRanges.mockImplementation(() => Promise.resolve(range));
+  getAllRanges.mockImplementation(() => Promise.resolve(range));
   const customerUser = { name: "test" };
-  console.log(customerUser);
+
   let getByText;
   await act(async () => {
     ({ getByText } = render(
-        <ReportProvider>
-            <RangesProvider>
-                <RangeSlider />
-            </RangesProvider>
-        </ReportProvider>
+      <ReportProvider>
+        <RangesProvider>
+          <RangeSlider />
+        </RangesProvider>
+      </ReportProvider>
     ));
   });
   expect(getByText("Save Ranges")).toBeInTheDocument();

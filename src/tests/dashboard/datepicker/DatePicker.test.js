@@ -8,21 +8,20 @@ import { ReportProvider } from "../../../contexts/reports";
 const date = [2022];
 
 jest.mock("../../../components/services/dateform-api", () => ({
-    getAllDates: jest.fn(() => date),
+  getAllDates: jest.fn(() => date),
 }));
 
 const mockpassYearSelected = jest.fn();
 
 test("DatePicker Test", async () => {
-    getAllDates.mockImplementation(() => Promise.resolve(date));
-  const customerUser = { name: "test" };
-  console.log(customerUser);
+  getAllDates.mockImplementation(() => Promise.resolve(date));
+
   let getByText;
   await act(async () => {
     ({ getByText } = render(
-        <ReportProvider>
-            <DatePicker passYearSelected={mockpassYearSelected}/>
-        </ReportProvider>
+      <ReportProvider>
+        <DatePicker passYearSelected={mockpassYearSelected} />
+      </ReportProvider>
     ));
   });
   expect(getByText("Select a Year")).toBeInTheDocument();
