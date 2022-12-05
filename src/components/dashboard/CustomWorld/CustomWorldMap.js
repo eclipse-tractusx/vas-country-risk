@@ -67,7 +67,7 @@ const CustomWorldMap = (ratings) => {
 
   return (
     <>
-  <ComposableMap data-tip="Map" data-testid="Map">
+      <ComposableMap data-testid="Map">
         <ZoomableGroup
           onMove={cordinates}
           zoom={1}
@@ -108,7 +108,7 @@ const CustomWorldMap = (ratings) => {
                   });
                 }
                 return (
-                  <Geography 
+                  <Geography
                     key={geoMap.size > 0 ? geoMap.get(geo).rsmKey : geo.rsmKey}
                     geography={geoMap.size > 0 ? geoMap.get(geo) : geo}
                     fill={geoMap.size > 0 ? geoMap.get("color") : "#F5F4F6"}
