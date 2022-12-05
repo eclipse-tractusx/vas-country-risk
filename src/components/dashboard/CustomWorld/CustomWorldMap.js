@@ -28,8 +28,7 @@ const CustomWorldMap = (ratings) => {
 
   const { ranges, updateRanges } = useContext(RangesContext);
 
-  const geoUrl =
-    "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
+  const geoUrl = require("./world-countries.json");
 
   const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
 
