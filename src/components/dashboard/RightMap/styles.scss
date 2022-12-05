@@ -1,6 +1,6 @@
 .right-map-container {
   height: 15%;
-  width: 100%; 
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -8,9 +8,8 @@
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
   border-bottom: 1px solid #000;
-  background-color: #DCDCDC;
+  background-color: #dcdcdc;
 }
-
 
 .right-dialog-expand-map {
   display: flex;
@@ -23,7 +22,7 @@
     justify-content: space-between;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
-    background-color: #DCDCDC;
+    background-color: #dcdcdc;
 
     .expand-mui-box {
       display: flex;
@@ -47,7 +46,7 @@
         background-color: white;
         .expand-custom-world-map {
           display: flex;
-          background-color: white;
+
           flex-direction: column;
           height: 64vh;
           background-color: rgba(20, 177, 245, 0.132);
