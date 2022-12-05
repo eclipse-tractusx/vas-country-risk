@@ -1,9 +1,18 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./styles.scss";
 import { Button, Dropzone, Input, Alert } from "cx-portal-shared-components";
 import Dialog from "@mui/material/Dialog";
-import Box from "@mui/material/Box";
 import UserService from "../../services/UserService";
+import FormLabel from "@mui/material/FormLabel";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+
 import { downloadSampleCsvFile } from "../../services/files-api";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { ReloadContext } from "../../../contexts/refresh";
@@ -13,14 +22,43 @@ const UploadDownloadZone = () => {
   const [open, setOpen] = React.useState(false);
   const [disabled, setDisable] = useState(false);
   const [autoUp, setAutoUp] = useState(false);
-  const [alertOpen, setAlertOpen] = useState(false);
+
   const [severity, setSeverity] = useState("");
   const [severityMessage, setSeverityMessage] = useState("");
   const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
   const { reload, updateReload } = useContext(ReloadContext);
 
+  //Radio Button Role Enabler
+  const [ratingType, setRatingType] = useState(false);
+
   //Rating Button Handlers
   const [openRatingName, setOpenRatingName] = useState("");
+  const [valueType, setType] = useState("Global");
+
+  //Years Calculation [Current date - 2000]
+  const now = new Date().getUTCFullYear();
+  const updateDate = now - 1999;
+  const years = Array(now - (now - updateDate))
+    .fill("")
+    .map((v, idx) => now - idx);
+
+  //Date Currently Selected
+  const [date, setDate] = useState("");
+
+  const role = "user"; //Just used as a test purpose
+
+  useEffect(() => {
+    setDate(now);
+    if (role === "admin") {
+      setRatingType(false);
+    } else if (role === "user") {
+      setRatingType(true);
+    }
+  }, [reload]);
+
+  const handleChange = (event) => {
+    setDate(event.target.value);
+  };
 
   const enableUpload = () => {
     setOpen(false);
@@ -41,6 +79,11 @@ const UploadDownloadZone = () => {
     setOpenRatingName(event.target.value);
   };
 
+  //Handler for Checkbox
+  const handleChangeCheckbox = (event) => {
+    setType(event.target.value);
+  };
+
   const dropzoneProps = {
     title: "userUpload.title",
     subtitle: "userUpload.subtitle",
@@ -56,13 +99,15 @@ const UploadDownloadZone = () => {
       headers: {
         ratingName: openRatingName || "defaultName",
         Authorization: `Bearer ${UserService.getToken()}`,
+        year: date,
+        type: valueType,
       },
     }),
     onChangeStatus: ({ meta }, status) => {
       if (status === "headers_received") {
         console.log(`${meta.name} uploaded`);
         setSeverity("info");
-        setSeverityMessage("Your file has been validated");
+        setSeverityMessage("Your rating has been uploaded");
         updateReload(!reload);
       } else if (status === "aborted") {
         console.log(`${meta.name}, upload failed...`);
@@ -70,7 +115,9 @@ const UploadDownloadZone = () => {
         console.log(meta);
         console.log(status);
         setSeverity("error");
-        setSeverityMessage("Your file cannot be processed");
+        setSeverityMessage(
+          "Rating name already exists. Please chose a different name"
+        );
       } else {
         console.log("error");
         console.log(meta);
@@ -95,7 +142,7 @@ const UploadDownloadZone = () => {
       var encodedUri = encodeURI(csvContent);
       const link = document.createElement("a");
       link.setAttribute("href", encodedUri);
-      link.setAttribute("download", "table-content.csv");
+      link.setAttribute("download", "Country Risk Rating Template.csv");
       link.style.visibility = "hidden";
       document.body.appendChild(link);
       link.click();
@@ -109,61 +156,93 @@ const UploadDownloadZone = () => {
       <Button size="small" onClick={openDialog}>
         Upload Rating
       </Button>
-      <Dialog open={open} onClose={closeDialogs}>
-        <Box style={{ padding: "30px" }}>
+      <Dialog open={open} onClose={closeDialogs} className="First-Dialog">
+        <div className="Dialog-Expand-Div">
+          <FormLabel className="FirstLabel" component="legend">
+            Select availability
+          </FormLabel>
+          <div className="CheckBox-Div">
+            <RadioGroup
+              defaultValue="Custom"
+              className="CheckBox-Div-Radio"
+              aria-labelledby="demo-controlled-radio-buttons-group"
+              name="controlled-radio-buttons-group"
+              onChange={handleChangeCheckbox}
+            >
+              <FormControlLabel
+                value="Custom"
+                control={<Radio />}
+                label="Only For me"
+              />
+              <FormControlLabel
+                value="Company"
+                control={<Radio />}
+                label="For the company"
+                disabled={ratingType}
+              />
+            </RadioGroup>
+          </div>
+          <div className="form-year">
+            <FormControl fullWidth variant="filled">
+              <InputLabel id="demo-simple-select-label">
+                Select a Year
+              </InputLabel>
+              <Select
+                value={date}
+                onChange={handleChange}
+                label="Year"
+                data-testid="yearselect"
+              >
+                {Array.isArray(years)
+                  ? years.map((item) => {
+                      return (
+                        <MenuItem key={item} value={item}>
+                          {item}
+                        </MenuItem>
+                      );
+                    })
+                  : []}
+              </Select>
+            </FormControl>
+          </div>
           <Input
+            data-testid="inputelement"
             helperText="Helper"
             label="Please write your rating name"
             placeholder="Rating Name"
             size={"small"}
             onChange={saveRatingName}
           ></Input>
-          <div
-            style={{
-              background: "white",
-              display: "flex",
-              alignSelf: "center",
-              padding: "1%",
-            }}
+          <Button
+            data-testid="closeFirst"
+            style={{ margin: "1%" }}
+            onClick={openDialog}
           >
-            <Button style={{ margin: "1%" }} onClick={openDialog}>
-              Close
-            </Button>
-
-            <Button style={{ margin: "1%" }} onClick={enableUpload}>
-              Next
-            </Button>
-          </div>
-        </Box>
+            Close
+          </Button>
+          <Button style={{ margin: "1%" }} onClick={enableUpload}>
+            Next
+          </Button>
+        </div>
       </Dialog>
 
-      <Dialog
-        open={autoUp}
-        onClose={closeDialogs}
-        style={{ width: "100%", height: "70%" }}
-      >
-        <Alert severity={severity}>
-          <span>{severityMessage}</span>
-        </Alert>
+      <Dialog open={autoUp} onClose={closeDialogs} className="Second-Dialog">
+        <div className="Second-Expand-Div">
+          <Alert severity={severity}>
+            <span>{severityMessage}</span>
+          </Alert>
 
-        <Dropzone
-          accept={dropzoneProps.accept}
-          statusText={dropzoneProps.statusText}
-          errorStatus={dropzoneProps.errorStatus}
-          getUploadParams={dropzoneProps.getUploadParams}
-          onChangeStatus={dropzoneProps.onChangeStatus}
-          multiple={false}
-          maxFiles={1}
-        />
-        <div
-          style={{
-            background: "white",
-            display: "flex",
-            alignSelf: "center",
-            flexDirection: "row",
-            padding: "1%",
-          }}
-        >
+          <Dropzone
+            data-testid="dropzonetest"
+            accept={dropzoneProps.accept}
+            statusText={dropzoneProps.statusText}
+            errorStatus={dropzoneProps.errorStatus}
+            getUploadParams={dropzoneProps.getUploadParams}
+            onChangeStatus={dropzoneProps.onChangeStatus}
+            multiple={false}
+            maxFiles={1}
+          />
+
           <Button style={{ margin: "1%" }} onClick={closeDialogs}>
             Close
           </Button>

@@ -22,6 +22,10 @@ import { Report } from "../../model/Report";
 import { Alert } from "cx-portal-shared-components";
 import { ReloadContext } from "../../../contexts/refresh";
 
+import { IconButton } from 'cx-portal-shared-components'
+import DeleteIcon from '@mui/icons-material/Delete'
+import EditIcon from '@mui/icons-material/Edit'
+
 const Reports = () => {
   const [selectionModel, setSelectionModel] = useState([]);
 
@@ -157,6 +161,11 @@ const Reports = () => {
 
   const handleChange = () => {
     setValueRadioChecked(false);
+    console.log("testes")
+  };
+
+  const onClickDelete = () => {
+    console.log("click")
   };
 
   const columns = [
@@ -195,6 +204,26 @@ const Reports = () => {
       field: "type",
       headerName: "Type",
       width: 150,
+    },
+        {
+      field: "Edit",
+      headerName: "Edit",
+      width: 100,
+      renderCell: () => (
+      <IconButton color="secondary">
+        <EditIcon />
+      </IconButton>
+      ),
+    },
+    {
+      field: "Delete",
+      headerName: "Delete",
+      width: 100,
+      renderCell: () => (
+      <IconButton color="secondary" onClick={onClickDelete}>
+        <DeleteIcon />
+      </IconButton>
+      ),
     },
   ];
 

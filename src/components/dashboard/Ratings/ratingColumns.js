@@ -1,3 +1,7 @@
+import { IconButton } from 'cx-portal-shared-components'
+import DeleteIcon from '@mui/icons-material/Delete'
+import EditIcon from '@mui/icons-material/Edit'
+
 export const columns = (rates) => [
   {
     field: "id",
@@ -24,5 +28,27 @@ export const columns = (rates) => [
         return 0;
       }
     },
+  },
+  {
+    description: "Edit",
+    field: "Edit",
+    flex: 1,
+    headerName: "Edit",
+    renderCell: () => (
+      <IconButton color="secondary">
+      <EditIcon />
+    </IconButton>
+    ),
+  },
+  {
+    description: "Delete",
+    field: "delete",
+    flex: 1,
+    headerName: "Delete",
+    renderCell: () => (
+      <IconButton color="secondary">
+      <DeleteIcon />
+    </IconButton>
+    ),
   },
 ];

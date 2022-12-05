@@ -191,7 +191,7 @@ const CustomCompanyMap = (ratings) => {
 
           {coordsBP.map((marker) => {
             if (kZoom >= 3) {
-              console.log("teste", kZoom);
+
               return (
                 <Marker
                   coordinates={[marker.longitude, marker.latitude]}
