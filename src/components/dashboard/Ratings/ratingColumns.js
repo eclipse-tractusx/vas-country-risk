@@ -32,7 +32,7 @@ export const columns = (rates) => [
   {
     description: "Edit",
     field: "Edit",
-    flex: 1,
+    flex: 1.5,
     headerName: "Edit",
     renderCell: () => (
       <IconButton color="secondary">
@@ -43,7 +43,7 @@ export const columns = (rates) => [
   {
     description: "Delete",
     field: "delete",
-    flex: 1,
+    flex: 2,
     headerName: "Delete",
     renderCell: () => (
       <IconButton color="secondary">

@@ -13,7 +13,7 @@ const NavigationBar = () => {
   return (
     <div>
       <MainNavigation
-        items={[
+        /*items={[
           {
             //href: '/home',
             title: 'Home'
@@ -30,7 +30,7 @@ const NavigationBar = () => {
             //href: '/partnernetwork',
             title: 'Partner Network'
           }
-        ]}
+        ]}*/
       >
         <Box
           component="img"

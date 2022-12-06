@@ -32,7 +32,7 @@ export const columnsUser = (rates) => [
   {
     description: "Delete",
     field: "delete",
-    flex: 1,
+    flex: 2,
     headerName: "Delete",
     renderCell: () => (
       <IconButton color="secondary">
