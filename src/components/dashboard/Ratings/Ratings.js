@@ -5,6 +5,7 @@ import { Table, Alert } from "cx-portal-shared-components";
 import { RatesContext } from "../../../contexts/rates";
 import { getRatingsByYear } from "../../services/ratingstable-api";
 import { columns } from "./ratingColumns";
+import { columnsUser } from "./ratingUserColumns";
 import UserService from "../../services/UserService";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { ReportContext } from "../../../contexts/reports";
@@ -37,6 +38,9 @@ const Ratings = ({
   const { prefixIds, updatePrefixIds } = useContext(RatesContext);
 
   const { reportValuesContext, updateReport } = useContext(ReportContext);
+
+  const role = companyUser.roles[0]; //Used as a test purpose only
+  console.log(companyUser.roles[0])
 
   useEffect(() => {
     const reportRates = Array.isArray(reportValuesContext)
@@ -95,6 +99,15 @@ const Ratings = ({
     setAutomatic(false);
   };
 
+  //Change Edit/Delete Buttons based on Role
+  const onRoleChangeButtons = (params) => {
+    if(role === "User"){
+      return columnsUser(params);
+    }else if (role === "Admin"){
+      return columns(params);
+    }
+  };
+
   const validateInput = (params) => {
     sumTotal = 0;
     if (params.value <= 100 && params.value >= 0 && !isNaN(params.value)) {
@@ -136,7 +149,7 @@ const Ratings = ({
     <div className="rating-table">
       <Table
         className="rating-table-content"
-        columns={columns(rates)}
+        columns={onRoleChangeButtons(rates)}
         rows={tableRatings}
         rowsCount={tableRatings.length}
         pageSize={5}
