@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./styles.scss";
 import Dialog from "@mui/material/Dialog";
-import { Table, Alert } from "cx-portal-shared-components";
+import { Table, Alert, Button } from "cx-portal-shared-components";
 import { RatesContext } from "../../../contexts/rates";
 import { getRatingsByYear } from "../../services/ratingstable-api";
 import { columns } from "./ratingColumns";
@@ -193,7 +193,7 @@ const Ratings = ({
         <div className="rating-div-table-expand-style">
           <Table
             className="table-expand-style"
-            columns={columns(rates)}
+            columns={onRoleChangeButtons(rates)}
             rows={tableRatings}
             rowsCount={tableRatings.length}
             pageSize={tableRatings.length >= 10 ? 10 : tableRatings.length}
@@ -216,12 +216,15 @@ const Ratings = ({
               updatePrefixIds(selectedRows);
             }}
             toolbar={{
-              buttonLabel: open ? "Close Ratings" : "Show Ratings",
-              onButtonClick: ExpandTable,
               title: "Ratings",
             }}
             hideFooter={tableRatings.length > 5 ? false : true}
           ></Table>
+          <div className="closeBtnDialog">
+          <Button style={{ margin: "1%" }} onClick={ExpandTable}>
+            Close
+          </Button>
+        </div>
         </div>
       </Dialog>
     </div>

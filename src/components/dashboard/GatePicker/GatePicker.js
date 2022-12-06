@@ -37,7 +37,7 @@ const GatePicker = () => {
       <FormControl fullWidth variant="filled" color="primary">
         <InputLabel id="demo-simple-select-label">Select a Gate</InputLabel>
         <Select value={gate} onChange={handleChange} label="Gate">
-          {Array.isArray(AllGates)
+          {AllGates && Array.isArray(AllGates)
             ? AllGates.map((item) => {
                 return (
                   <MenuItem key={item} value={item}>

@@ -161,11 +161,11 @@ const Reports = () => {
 
   const handleChange = () => {
     setValueRadioChecked(false);
-    console.log("testes")
+
   };
 
   const onClickDelete = () => {
-    console.log("click")
+
   };
 
   const columns = [

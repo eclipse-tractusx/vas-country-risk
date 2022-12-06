@@ -18,9 +18,13 @@
     .table-expand-style {
       display: flex;
       width: 100%;
-      border: 2px solid #000;
       border-radius: 39px;
       font-size: 12px;
     }
+
+    .closeBtnDialog{
+      text-align: center;
+    }
+
   }
 }

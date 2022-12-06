@@ -6,8 +6,6 @@ i
 `
 0src/components/dashboard/CustomWorld/styles.scss,e\a\ea0e9640f29e5635388da8a67dcd086df2fba49a
 g
-7src/components/dashboard/UploadDownloadZone/styles.scss,f\6\f6ed053284fc18c7f9839ebaf11a629c34bdf68c
-g
 7src/components/dashboard/DashBoardTable/tableColumns.js,a\0\a06582b50dd465d272f2fab7f16e85b3a3a82153
 `
 0src/components/dashboard/ProgressBar/styles.scss,9\9\99bd9ab7f7d791756acac6bd0b67a00306bbcfa6
@@ -19,10 +17,6 @@ c
 0src/components/dashboard/RangeSlider/styles.scss,f\f\ff6103c0f552313e6dd59b7fc49b9b28d7b12aac
 \
 ,src/components/dashboard/LeftMap/styles.scss,e\d\ed2ee03bbe5a1eb9b1c56b59ecdc40d6abd3f0fe
-a
-1src/components/dashboard/Ratings/ratingColumns.js,c\e\ce5463b21e923f23d31ef0ba1e80fa075fd143d3
-\
-,src/components/dashboard/Ratings/styles.scss,4\d\4de8d3bfe1c9d5b916a3562a19e3ab2a3f10325f
 \
 ,src/components/dashboard/Reports/styles.scss,4\a\4a129faee094a8015045b8a522d0953ed45bd147
 E
@@ -48,8 +42,6 @@ a
 1src/tests/dashboard/CompanyMap/CompanyMap.test.js,4\1\418be6fd39f5454dfdc9f464b26fe6b1ac5b9b22
 g
 7src/components/dashboard/CountryPicker/CountryPicker.js,9\e\9e64c56a3d55d4c4bff840610045dad14026a967
-<
-src/index.js,f\9\f900edc44cb929c2267a16100a32851f6d5b477d
 :
 
 src/App.js,1\e\1e43fa63aecd2127be034b3fb9d4caa172275714
