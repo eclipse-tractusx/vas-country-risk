@@ -113,9 +113,19 @@ const CustomWorldMap = (ratings) => {
                     fill={geoMap.size > 0 ? geoMap.get("color") : "#F5F4F6"}
                     onMouseEnter={() => {
                       countryMarkers.forEach((s) => {
-                        if (s.iso3 === geo.id) {
-                          setContent(s.country + " " + s.totalBpn);
-                        }
+                        data.forEach((d) => { 
+                          if(d.country.iso3 === s.iso3){
+                            if (s.iso3 === geo.id) {
+                              setContent(
+                                <div>
+                                  <div>Country: {s.country}</div>
+                                  <div>BPNs: {s.totalBpn}</div>
+                                  <div>Score: {d.score}</div>
+                                </div>
+                              );
+                            }
+                          }
+                        });
                       });
                     }}
                     onMouseLeave={handlePopoverClose}

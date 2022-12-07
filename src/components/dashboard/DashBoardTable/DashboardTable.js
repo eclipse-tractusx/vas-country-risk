@@ -105,6 +105,7 @@ const DashboardTable = (ratings, years) => {
           headerHeight={40}
           autoHeight={true}
           checkboxSelection
+          disableColumnMenu = {true} //Remove Filtering
           getRowClassName={(params) => `${params.row.status}`}
           onSelectionModelChange={(ids) => {
             const selectedIds = new Set(ids);

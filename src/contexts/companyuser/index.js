@@ -10,7 +10,7 @@ const CompanyUserProvider = ({ children, updatedCompanyUser }) => {
       UserService.getName(),
       UserService.getEmail(),
       UserService.getCompany(),
-      UserService.getRoles()
+      UserService.getRoles() || ["User"],
     ) || []
   );
 

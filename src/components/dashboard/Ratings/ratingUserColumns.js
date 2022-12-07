@@ -10,7 +10,7 @@ export const columnsUser = (rates) => [
   {
     description: "Rating",
     field: "dataSourceName",
-    flex: 2,
+    flex: 3,
     headerName: "Rating",
   },
   {
@@ -32,7 +32,7 @@ export const columnsUser = (rates) => [
   {
     description: "Delete",
     field: "delete",
-    flex: 2,
+    flex: 1.5,
     headerName: "Delete",
     renderCell: () => (
       <IconButton color="secondary">

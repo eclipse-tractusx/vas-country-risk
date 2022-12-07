@@ -32,6 +32,7 @@ const NavigationBar = () => {
           }
         ]}*/
       >
+        <a href="/"> 
         <Box
           component="img"
           src={LogoSVG}
@@ -41,6 +42,7 @@ const NavigationBar = () => {
             width: '170px'
           }}
         />
+        </a>
         <Box>
           <Button
             color="secondary"

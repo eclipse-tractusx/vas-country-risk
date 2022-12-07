@@ -45,7 +45,7 @@ const Reports = () => {
 
   const { reload, updateReload } = useContext(ReloadContext);
 
-  const [valueType, setType] = useState("Global");
+  const [valueType, setType] = useState("Custom");
 
   const [valueTextField, setValueTextField] = React.useState(
     "Select a Report Bellow"
@@ -101,6 +101,7 @@ const Reports = () => {
           setValidateSave(false);
         }
       });
+      setValidateSave(true);
   };
 
   const [reportType, setReportType] = useState(false);

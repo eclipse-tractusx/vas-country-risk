@@ -22,6 +22,20 @@ export const columns = (ranges) => [
     minWidth: 100,
     headerName: "Address",
   },
+  /*{
+    description: "Street",
+    field: "street",
+    flex: 1,
+    minWidth: 100,
+    headerName: "Street",
+  },
+  {
+    description: "Zip-Code",
+    field: "zipcode",
+    flex: 1,
+    minWidth: 100,
+    headerName: "Zip-Code",
+  },*/
   {
     description: "City",
     field: "city",
