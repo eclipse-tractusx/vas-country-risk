@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import './styles.scss'
 import Dialog from '@mui/material/Dialog'
-import { Table, Alert, Button } from 'cx-portal-shared-components'
+import { Table, Alert, Button, IconButton } from 'cx-portal-shared-components'
 import { RatesContext } from '../../../contexts/rates'
 import { getRatingsByYear } from '../../services/ratingstable-api'
 import { columns } from './ratingColumns'
@@ -10,6 +10,7 @@ import UserService from '../../services/UserService'
 import { CompanyUserContext } from '../../../contexts/companyuser'
 import { ReportContext } from '../../../contexts/reports'
 import { ReloadContext } from '../../../contexts/refresh'
+import CloseIcon from '@mui/icons-material/Close'
 
 const Ratings = ({
   passAutomaticWeightChange,
@@ -39,7 +40,8 @@ const Ratings = ({
 
   const { reportValuesContext, updateReport } = useContext(ReportContext)
 
-  const role = companyUser.roles //Used as a test purpose only
+   //Gets Current Roles for the User
+  const role = companyUser.roles 
 
   useEffect(() => {
     const reportRates = Array.isArray(reportValuesContext)
@@ -189,6 +191,11 @@ const Ratings = ({
         open={open}
         onClose={openDialog}
       >
+        <div className='closeButton'>
+          <IconButton variant="primary"> 
+            <CloseIcon onClick = {ExpandTable}/>
+          </IconButton>
+        </div>
         <div className="rating-div-table-expand-style">
           <Table
             className="table-expand-style"

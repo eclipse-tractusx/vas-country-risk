@@ -1,177 +1,178 @@
-import React, { useState, useEffect, useContext } from "react";
-import "./styles.scss";
-import Dialog from "@mui/material/Dialog";
-import FormLabel from "@mui/material/FormLabel";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import { Button, Input } from "cx-portal-shared-components";
+import React, { useState, useEffect, useContext } from 'react'
+import './styles.scss'
+import Dialog from '@mui/material/Dialog'
+import FormLabel from '@mui/material/FormLabel'
+import TextField from '@mui/material/TextField'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import { Button, Input } from 'cx-portal-shared-components'
 import {
   getReportsByCompanyUser,
   saveReports,
-} from "../../services/reports-api";
-import UserService from "../../services/UserService";
-import { DataGrid } from "@mui/x-data-grid";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import { RangesContext } from "../../../contexts/ranges";
-import { RatesContext } from "../../../contexts/rates";
-import { CountryContext } from "../../../contexts/country";
-import { CompanyUserContext } from "../../../contexts/companyuser";
-import { ReportContext } from "../../../contexts/reports";
-import { Report } from "../../model/Report";
-import { Alert } from "cx-portal-shared-components";
-import { ReloadContext } from "../../../contexts/refresh";
+} from '../../services/reports-api'
+import UserService from '../../services/UserService'
+import { DataGrid } from '@mui/x-data-grid'
+import Radio from '@mui/material/Radio'
+import RadioGroup from '@mui/material/RadioGroup'
+import { RangesContext } from '../../../contexts/ranges'
+import { RatesContext } from '../../../contexts/rates'
+import { CountryContext } from '../../../contexts/country'
+import { CompanyUserContext } from '../../../contexts/companyuser'
+import { ReportContext } from '../../../contexts/reports'
+import { Report } from '../../model/Report'
+import { Alert } from 'cx-portal-shared-components'
+import { ReloadContext } from '../../../contexts/refresh'
 
 import { IconButton } from 'cx-portal-shared-components'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 
 const Reports = () => {
-  const [selectionModel, setSelectionModel] = useState([]);
+  const [selectionModel, setSelectionModel] = useState([])
 
   //Context to get current selected country
-  const { countryS } = useContext(CountryContext);
-  const { ranges } = useContext(RangesContext);
-  const { prefixIds } = useContext(RatesContext);
+  const { countryS } = useContext(CountryContext)
+  const { ranges } = useContext(RangesContext)
+  const { prefixIds } = useContext(RatesContext)
 
   //Context to save report data
-  const { updateReport } = useContext(ReportContext);
+  const { updateReport } = useContext(ReportContext)
 
-  const [report, setReport] = useState([]);
+  const [report, setReport] = useState([])
 
-  const { companyUser } = useContext(CompanyUserContext);
+  const { companyUser } = useContext(CompanyUserContext)
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false)
 
-  const { reload, updateReload } = useContext(ReloadContext);
+  const { reload, updateReload } = useContext(ReloadContext)
 
-  const [valueType, setType] = useState("Custom");
+  const [valueType, setType] = useState('Custom')
 
   const [valueTextField, setValueTextField] = React.useState(
-    "Select a Report Bellow"
-  );
+    'Select a Report Bellow',
+  )
 
   //Const for triggering error on Dialog Text Field
-  const [errorTrigger, setErrorTrigger] = React.useState(true);
+  const [errorTrigger, setErrorTrigger] = React.useState(true)
 
   //Const for triggering error on Dialog Text Field
-  const [valueDialogTextField, setValueDialogTextField] = React.useState(null);
+  const [valueDialogTextField, setValueDialogTextField] = React.useState(null)
+
+  //Gets Current Roles for the User
+  const role = companyUser.roles
 
   //Get Reports By user
   useEffect(() => {
     getReportsByCompanyUser(UserService.getToken(), companyUser).then(
       (response) => {
-        setReport(response || []);
-      }
-    );
-  }, [reload]);
+        setReport(response || [])
+      },
+    )
+  }, [reload])
 
   const closeDialogs = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
-  const [severity, setSeverity] = useState("");
-  const [severityMessage, setSeverityMessage] = useState("");
+  const [severity, setSeverity] = useState('')
+  const [severityMessage, setSeverityMessage] = useState('')
 
   const closeDialogsAndSave = () => {
-    const list = [];
+    const list = []
     list.push(
-      { name: "Range", objectValue: ranges },
-      { name: "Country", objectValue: countryS === "none" ? [] : countryS },
-      { name: "Ratings", objectValue: prefixIds }
-    );
+      { name: 'Range', objectValue: ranges },
+      { name: 'Country', objectValue: countryS === 'none' ? [] : countryS },
+      { name: 'Ratings', objectValue: prefixIds },
+    )
     const newReport = new Report(
       valueDialogTextField,
       companyUser.name,
       companyUser.companyName,
       valueType,
-      list
-    );
+      list,
+    )
 
     saveReports(UserService.getToken(), companyUser, newReport)
       .then((res) => {
-        setOpen(false);
-        updateReload(!reload);
+        setOpen(false)
+        updateReload(!reload)
       })
       .catch((response) => {
         if (response.response.status === 400) {
-          setSeverity("error");
-          setSeverityMessage(response.response.data.message);
-          setOpen(true);
-          setValidateSave(false);
+          setSeverity('error')
+          setSeverityMessage(response.response.data.message)
+          setOpen(true)
+          setValidateSave(false)
         }
-      });
-      setValidateSave(true);
-  };
+      })
+    setValidateSave(true)
+  }
 
-  const [reportType, setReportType] = useState(false);
+  const [reportType, setReportType] = useState(false)
 
   const setMessage = () => {
-    setReportType(true);
-    setSeverity("warning");
-    setSeverityMessage("Custom Rating Selected");
-  };
+    setReportType(true)
+    setSeverity('warning')
+    setSeverityMessage('Custom Rating Selected')
+  }
   const openDialog = () => {
-    setSeverity("");
-    setSeverityMessage("");
-    setOpen(!open);
+    setSeverity('')
+    setSeverityMessage('')
+    setOpen(!open)
 
     const customSelection = prefixIds.find(
-      (element) => element.type === "Custom"
-    );
+      (element) => element.type === 'Custom',
+    )
 
-    customSelection ? setMessage() : setReportType(false);
-  };
+    customSelection ? setMessage() : setReportType(false)
+  }
 
   //Handler for Checkbox
   const handleChangeCheckbox = (event) => {
-    setType(event.target.value);
-  };
+    setType(event.target.value)
+  }
 
   //Handler for Input Report name in Dialog Component
   const handleInputReportChange = (event) => {
-    setSeverity("");
-    setSeverityMessage("");
+    setSeverity('')
+    setSeverityMessage('')
     if (event.target.value.length > 32 || event.target.value.length === 0) {
-      setErrorTrigger(true);
-      setValueDialogTextField(null);
-      setValidateSave(true);
+      setErrorTrigger(true)
+      setValueDialogTextField(null)
+      setValidateSave(true)
     } else {
-      setErrorTrigger(false);
-      setValueDialogTextField(event.target.value);
-      setValidateSave(false);
+      setErrorTrigger(false)
+      setValueDialogTextField(event.target.value)
+      setValidateSave(false)
     }
-  };
+  }
 
   //Handler for textvalue in main report component
   const handleChangeInput = (event) => {
-    setValueTextField(event.target.value);
-  };
+    setValueTextField(event.target.value)
+  }
 
-  const [valueRadioChecked, setValueRadioChecked] = useState(false);
+  const [valueRadioChecked, setValueRadioChecked] = useState(false)
 
-  const [validateSave, setValidateSave] = useState(true);
+  const [validateSave, setValidateSave] = useState(true)
 
   const clearButton = () => {
-    setSelectionModel([]);
-    setValueTextField("Select a Report Bellow");
-    setValueRadioChecked(!valueRadioChecked);
-    updateReport("");
-    updateReload(!reload);
-  };
+    setSelectionModel([])
+    setValueTextField('Select a Report Bellow')
+    setValueRadioChecked(!valueRadioChecked)
+    updateReport('')
+    updateReload(!reload)
+  }
 
   const handleChange = () => {
-    setValueRadioChecked(false);
+    setValueRadioChecked(false)
+  }
 
-  };
+  const onClickDelete = () => {}
 
-  const onClickDelete = () => {
-
-  };
-
+  //Admin Columns
   const columns = [
     {
-      field: "radiobutton",
+      field: 'radiobutton',
       headerName: (
         <Radio
           data-testid="radioClear"
@@ -192,41 +193,91 @@ const Reports = () => {
     },
 
     {
-      field: "reportName",
-      headerName: "Report Name",
+      field: 'reportName',
+      headerName: 'Report Name',
       width: 150,
     },
     {
-      field: "company",
-      headerName: "Company",
+      field: 'company',
+      headerName: 'Company',
       width: 150,
     },
     {
-      field: "type",
-      headerName: "Type",
+      field: 'type',
+      headerName: 'Type',
       width: 150,
     },
-        {
-      field: "Edit",
-      headerName: "Edit",
+    {
+      field: 'Edit',
+      headerName: 'Edit',
       width: 100,
       renderCell: () => (
-      <IconButton color="secondary">
-        <EditIcon />
-      </IconButton>
+        <IconButton color="secondary">
+          <EditIcon />
+        </IconButton>
       ),
     },
     {
-      field: "Delete",
-      headerName: "Delete",
+      field: 'Delete',
+      headerName: 'Delete',
       width: 100,
       renderCell: () => (
-      <IconButton color="secondary" onClick={onClickDelete}>
-        <DeleteIcon />
-      </IconButton>
+        <IconButton color="secondary" onClick={onClickDelete}>
+          <DeleteIcon />
+        </IconButton>
       ),
     },
-  ];
+  ]
+
+  //User Columns
+  const columnsUser = [
+    {
+      field: 'radiobutton',
+      headerName: (
+        <Radio
+          data-testid="radioClear"
+          onChange={clearButton}
+          checked={valueRadioChecked}
+        />
+      ),
+      width: 120,
+      renderCell: (params) => (
+        <Radio
+          onChange={handleChange}
+          checked={selectionModel[0] === params.id}
+          value={params.id}
+          data-testid="radio-choose-report"
+        />
+      ),
+      sortable: false,
+    },
+
+    {
+      field: 'reportName',
+      headerName: 'Report Name',
+      width: 150,
+    },
+    {
+      field: 'company',
+      headerName: 'Company',
+      width: 150,
+    },
+    {
+      field: 'type',
+      headerName: 'Type',
+      width: 150,
+    },
+    {
+      field: 'Delete',
+      headerName: 'Delete',
+      width: 100,
+      renderCell: () => (
+        <IconButton color="secondary" onClick={onClickDelete}>
+          <DeleteIcon />
+        </IconButton>
+      ),
+    },
+  ]
 
   return (
     <div className="reportdiv">
@@ -237,7 +288,7 @@ const Reports = () => {
           variant="filled"
           value={valueTextField}
           onChange={handleChangeInput}
-          size={"12px"}
+          size={'12px'}
         ></TextField>
         <div className="divider" />
         <Button size="small" className="ButtonSave" onClick={openDialog}>
@@ -247,7 +298,7 @@ const Reports = () => {
       <DataGrid
         className="table"
         rows={report}
-        columns={columns}
+        columns={role.includes('Company Admin') ? columns : columnsUser}
         pageSize={5}
         rowsPerPageOptions={[5]}
         checkboxSelection={false}
@@ -255,12 +306,13 @@ const Reports = () => {
         autoHeight={!report || report.length ? true : false}
         disableColumnFilter={true}
         disableColumnSelector={true}
+        disableColumnMenu = {true} 
         onSelectionModelChange={(newSelectionModel) => {
-          setSelectionModel(newSelectionModel);
-          const selectionSet = new Set(newSelectionModel);
-          const result = report.filter((s) => selectionSet.has(s.id));
-          setValueTextField(result[0].reportName);
-          updateReport(result[0]);
+          setSelectionModel(newSelectionModel)
+          const selectionSet = new Set(newSelectionModel)
+          const result = report.filter((s) => selectionSet.has(s.id))
+          setValueTextField(result[0].reportName)
+          updateReport(result[0])
         }}
       />
 
@@ -301,17 +353,17 @@ const Reports = () => {
             error={errorTrigger}
             //helperText={"ERROR"}
             placeholder="Max 32 Characters"
-            size={"small"}
+            size={'small'}
             onChange={handleInputReportChange}
           ></Input>
           <Alert severity={severity}>
             <span>{severityMessage}</span>
           </Alert>
-          <Button style={{ margin: "1%" }} onClick={closeDialogs}>
+          <Button style={{ margin: '1%' }} onClick={closeDialogs}>
             Close
           </Button>
           <Button
-            style={{ margin: "1%" }}
+            style={{ margin: '1%' }}
             onClick={closeDialogsAndSave}
             disabled={validateSave}
           >
@@ -320,7 +372,7 @@ const Reports = () => {
         </div>
       </Dialog>
     </div>
-  );
-};
+  )
+}
 
-export default Reports;
+export default Reports
