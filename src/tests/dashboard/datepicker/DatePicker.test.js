@@ -4,6 +4,7 @@ import DatePicker from "../../../components/dashboard/DatePicker/DatePicker";
 import { getAllDates } from "../../../components/services/dateform-api";
 import "@testing-library/jest-dom/extend-expect";
 import { ReportProvider } from "../../../contexts/reports";
+import { CompanyUserProvider } from "../../../contexts/companyuser";
 
 const date = [2022];
 
@@ -19,9 +20,11 @@ test("DatePicker Test", async () => {
   let getByText;
   await act(async () => {
     ({ getByText } = render(
-      <ReportProvider>
-        <DatePicker passYearSelected={mockpassYearSelected} />
-      </ReportProvider>
+      <CompanyUserProvider>
+        <ReportProvider>
+          <DatePicker passYearSelected={mockpassYearSelected} />
+        </ReportProvider>
+      </CompanyUserProvider>
     ));
   });
   expect(getByText("Select a Year")).toBeInTheDocument();

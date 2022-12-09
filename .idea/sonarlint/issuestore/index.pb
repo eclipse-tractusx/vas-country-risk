@@ -45,8 +45,6 @@ g
 :
 
 src/App.js,1\e\1e43fa63aecd2127be034b3fb9d4caa172275714
-U
-%src/tests/dashboard/app/index.test.js,5\1\51da7271bd705d28762a23f793386819330f45e8
 d
 4src/tests/dashboard/dashboard/DashboardTable.test.js,1\b\1b4be994832f584e06cad22ad624c5e7f3076ceb
 U

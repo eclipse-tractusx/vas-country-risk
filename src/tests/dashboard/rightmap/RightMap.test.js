@@ -15,6 +15,7 @@ import { toPng } from "html-to-image";
 import { CountryProvider } from "../../../contexts/country";
 import CountryPicker from "../../../components/dashboard/CountryPicker/CountryPicker";
 import { ReportProvider } from "../../../contexts/reports";
+import { CompanyUserProvider } from "../../../contexts/companyuser";
 
 const getWorldMapData = [
   {
@@ -101,11 +102,13 @@ test("Renders Right Map", async () => {
 
   const getContainer = () =>
     render(
-      <ReportProvider>
-        <CountryProvider>
-          <RightMap></RightMap>
-        </CountryProvider>
-      </ReportProvider>
+      <CompanyUserProvider>
+        <ReportProvider>
+          <CountryProvider>
+            <RightMap></RightMap>
+          </CountryProvider>
+        </ReportProvider>
+      </CompanyUserProvider>
     );
 
   const buttonExpand = getContainer().getByTestId("expand-btn");

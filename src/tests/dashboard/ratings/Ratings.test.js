@@ -5,7 +5,7 @@ import Ratings from "../../../components/dashboard/Ratings/Ratings";
 import { RatesProvider } from "../../../contexts/rates";
 import { ReportProvider } from "../../../contexts/reports";
 import { getRatingsByYear } from "../../../components/services/ratingstable-api";
-
+import { CompanyUserProvider } from "../../../contexts/companyuser";
 const ratingsData = [
   {
     id: 1,
@@ -35,15 +35,17 @@ test("Renders Ratings", async () => {
   let getByLabelText;
   await act(async () => {
     ({ getByLabelText } = render(
-      <ReportProvider>
-        <RatesProvider>
-          <Ratings
-            passValuesFromComponent={passValuesFromComponent}
-            passAutomaticWeightChange={passAutomaticWeightChange}
-            years={2021}
-          ></Ratings>
-        </RatesProvider>
-      </ReportProvider>
+      <CompanyUserProvider>
+        <ReportProvider>
+          <RatesProvider>
+            <Ratings
+              passValuesFromComponent={passValuesFromComponent}
+              passAutomaticWeightChange={passAutomaticWeightChange}
+              years={2021}
+            ></Ratings>
+          </RatesProvider>
+        </ReportProvider>
+      </CompanyUserProvider>
     ));
   });
 

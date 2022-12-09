@@ -4,6 +4,7 @@ import UploadDownloadZone from "../../../components/dashboard/UploadDownloadZone
 import { downloadSampleCsvFile } from "../../../components/services/files-api";
 import "@testing-library/jest-dom/extend-expect";
 import userEvent from "@testing-library/user-event";
+import { CompanyUserProvider } from "../../../contexts/companyuser";
 
 jest.mock("../../../components/services/files-api", () => ({
   downloadSampleCsvFile: jest.fn().mockReturnValue([]),
@@ -14,7 +15,11 @@ test("Download template Test", async () => {
   const customerUser = { name: "test" };
   let getByText;
   await act(async () => {
-    ({ getByText } = render(<UploadDownloadZone />));
+    ({ getByText } = render(
+      <CompanyUserProvider>
+        <UploadDownloadZone />
+      </CompanyUserProvider>
+    ));
   });
   expect(getByText("Upload Rating")).toBeInTheDocument();
   userEvent.click(getByText("Upload Rating"));
