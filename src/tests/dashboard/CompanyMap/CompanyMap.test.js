@@ -67,7 +67,6 @@ test("Company Map Test", async () => {
   getCountryByUser.mockImplementation(() => Promise.resolve(countryData));
   getCountrys.mockImplementation(() => Promise.resolve(countryData));
 
-  console.log("\n\n\n new \n\n\n");
   let getByTestId;
   let getAllByRole;
   await act(async () => {
@@ -104,8 +103,6 @@ test("Company Map Test", async () => {
   });
   fireEvent.keyDown(getCountryDropDown, { key: "ArrowDown" });
   fireEvent.keyDown(getCountryDropDown, { key: "Enter" });
-
-
 
   const geo = screen.getByTestId("geo-custom-company-map");
   const composable = screen.getByTestId("composable-custom-company-map");

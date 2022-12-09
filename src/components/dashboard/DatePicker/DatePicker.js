@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import "./styles.scss";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -16,7 +16,7 @@ const DatePicker = ({ passYearSelected }) => {
   const [AllDate, setAllDate] = useState();
   const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
 
-  const { reload, updateReload } = useContext(ReloadContext);
+  const { reload } = useContext(ReloadContext);
 
   useEffect(() => {
     getAllDates(UserService.getToken(), companyUser).then((response) => {
@@ -31,6 +31,10 @@ const DatePicker = ({ passYearSelected }) => {
   const handleChange = (event) => {
     setDate(event.target.value);
   };
+
+  useEffect(() => {
+    passYearSelected(date);
+  }, [date]);
 
   const { reportValuesContext, updateReport } = useContext(ReportContext);
 
@@ -50,12 +54,7 @@ const DatePicker = ({ passYearSelected }) => {
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth variant="filled">
         <InputLabel id="demo-simple-select-label">Select a Year</InputLabel>
-        <Select
-          value={date}
-          onChange={handleChange}
-          passYearSelected={passYearSelected(date)}
-          label="Year"
-        >
+        <Select value={date} onChange={handleChange} label="Year">
           {AllDate && Array.isArray(AllDate)
             ? AllDate.map((item) => {
                 return (

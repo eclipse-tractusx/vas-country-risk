@@ -1,8 +1,9 @@
-import { IconButton } from 'cx-portal-shared-components'
-import DeleteIcon from '@mui/icons-material/Delete'
+import { IconButton } from "cx-portal-shared-components";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { GridActionsCellItem } from "@mui/x-data-grid";
+import { useCallback } from "react";
 
-
-export const columnsUser = (rates) => [
+export const columnsUser = (rates, onClickDelete) => [
   {
     field: "id",
     hide: true,
@@ -30,14 +31,15 @@ export const columnsUser = (rates) => [
     },
   },
   {
-    description: "Delete",
-    field: "delete",
-    flex: 1.5,
-    headerName: "Delete",
-    renderCell: () => (
-      <IconButton color="secondary">
-      <DeleteIcon />
-    </IconButton>
-    ),
+    field: "actions",
+    type: "actions",
+    width: 100,
+    getActions: (params) => [
+      <GridActionsCellItem
+        icon={<DeleteIcon />}
+        label="Delete"
+        onClick={onClickDelete(params.id)}
+      />,
+    ],
   },
 ];

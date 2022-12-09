@@ -10,6 +10,7 @@ import { CountryContext } from "../../../contexts/country";
 import UserService from "../../services/UserService";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { GatesContext } from "../../../contexts/gates";
+import { style } from "@mui/system";
 
 const DashboardTable = (ratings, years) => {
   //Data Fetch
@@ -105,7 +106,7 @@ const DashboardTable = (ratings, years) => {
           headerHeight={40}
           autoHeight={true}
           checkboxSelection
-          disableColumnMenu = {true} //Remove Filtering
+          disableColumnMenu={true} //Remove Filtering
           getRowClassName={(params) => `${params.row.status}`}
           onSelectionModelChange={(ids) => {
             const selectedIds = new Set(ids);

@@ -25,7 +25,7 @@ const UploadDownloadZone = () => {
 
   const [severity, setSeverity] = useState("");
   const [severityMessage, setSeverityMessage] = useState("");
-  const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
+  const { companyUser } = useContext(CompanyUserContext);
   const { reload, updateReload } = useContext(ReloadContext);
 
   //Radio Button Role Enabler
@@ -33,7 +33,7 @@ const UploadDownloadZone = () => {
 
   //Rating Button Handlers
   const [openRatingName, setOpenRatingName] = useState("");
-  const [valueType, setType] = useState("Global");
+  const [valueType, setType] = useState("Custom");
 
   //Years Calculation [Current date - 2000]
   const now = new Date().getUTCFullYear();
@@ -45,16 +45,13 @@ const UploadDownloadZone = () => {
   //Date Currently Selected
   const [date, setDate] = useState("");
 
-  const role = "user"; //Just used as a test purpose
+  //Gets Current Roles for the User
+  const role = companyUser.roles;
 
   useEffect(() => {
     setDate(now);
-    if (role === "admin") {
-      setRatingType(false);
-    } else if (role === "user") {
-      setRatingType(true);
-    }
-  }, [reload]);
+    role.includes("Company Admin") ? setRatingType(false) : setRatingType(true);
+  }, [role]);
 
   const handleChange = (event) => {
     setDate(event.target.value);
@@ -136,7 +133,7 @@ const UploadDownloadZone = () => {
   const downloadTemplate = () => {
     setDisable(true);
 
-    downloadSampleCsvFile(UserService.getToken()).then((data) => {
+    downloadSampleCsvFile(UserService.getToken(), companyUser).then((data) => {
       let csvContent = "data:text/csv;charset=utf-8,\uFEFF";
       csvContent += data.data + "\r\n";
       var encodedUri = encodeURI(csvContent);

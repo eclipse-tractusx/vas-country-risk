@@ -4,50 +4,52 @@ export const columns = (ranges) => [
   {
     description: "Business Partner Number",
     field: "bpn",
-    flex: 1,
+    flex: 2,
     minWidth: 100,
+
     headerName: "Business Partner Number",
   },
   {
     description: "Legal Name",
     field: "legalName",
-    flex: 1,
+    flex: 2,
     minWidth: 100,
     headerName: "Legal Name",
   },
+
   {
-    description: "Address",
-    field: "address",
-    flex: 1,
-    minWidth: 100,
-    headerName: "Address",
-  },
-  /*{
     description: "Street",
     field: "street",
-    flex: 1,
-    minWidth: 100,
+    flex: 2,
+    minWidth: 120,
     headerName: "Street",
   },
   {
+    description: "House Number",
+    field: "houseNumber",
+    flex: 2,
+    minWidth: 120,
+    headerName: "House Number",
+  },
+  {
     description: "Zip-Code",
-    field: "zipcode",
-    flex: 1,
-    minWidth: 100,
+    field: "zipCode",
+    flex: 2,
+    minWidth: 120,
     headerName: "Zip-Code",
-  },*/
+  },
   {
     description: "City",
     field: "city",
-    flex: 1,
-    minWidth: 100,
+    flex: 2,
+    minWidth: 120,
     headerName: "City",
   },
   {
     description: "Country",
     field: "country",
-    flex: 1,
-    minWidth: 100,
+    flex: 2,
+    minWidth: 120,
     headerName: "Country",
   },
   {
@@ -67,8 +69,8 @@ export const columns = (ranges) => [
   {
     description: "Rating",
     field: "rating",
-    flex: 1,
-    minWidth: 100,
+    flex: 2,
+    minWidth: 120,
     headerName: "Rating",
     cellClassName: (params) =>
       clsx("super-app", {

@@ -25,3 +25,17 @@ export function getRatingsByYear(Year, token, customerUser) {
     .then((res) => res.data)
     .catch((err) => err);
 }
+
+export function deleteRating(token, customerUser, ratingId) {
+  return axios({
+    method: "delete",
+    url: process.env.REACT_APP_DELETE_RATINGS + `/${ratingId}`,
+    params: {
+      name: customerUser.name,
+      email: customerUser.email,
+      companyName: customerUser.companyName,
+    },
+
+    headers: { Authorization: `Bearer ${token}` },
+  });
+}
