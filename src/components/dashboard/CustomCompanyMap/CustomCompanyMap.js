@@ -160,7 +160,12 @@ const CustomCompanyMap = (ratings) => {
                     onMouseEnter={() => {
                       countryMarkers.forEach((s) => {
                         if (s.iso2 === geo.properties["Alpha-2"]) {
-                          setContent(s.country + " " + s.totalBpn);
+                          setContent(
+                            <div>
+                              <div>Country: {s.country}</div>
+                              <div>BPNs: {s.totalBpn}</div>
+                            </div>
+                          );
                         }
                       });
                     }}
