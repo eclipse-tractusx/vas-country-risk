@@ -208,7 +208,7 @@ const Ratings = ({
         <div className="rating-div-table-expand-style">
           <Table
             className="table-expand-style"
-            columns={onRoleChangeButtons(rates)}
+            columns={columnsUser(rates, onClickDelete)}
             rows={tableRatings}
             rowsCount={tableRatings.length}
             pageSize={tableRatings.length >= 10 ? 10 : tableRatings.length}
