@@ -32,7 +32,7 @@ const NavigationBar = () => {
           }
         ]}*/
       >
-        <a href="https://portal.dev.demo.catena-x.net/"> 
+        <a href="https://portal.int.demo.catena-x.net/">
         <Box
           component="img"
           src={LogoSVG}
