@@ -27,7 +27,7 @@ export const columns = (ranges) => [
   {
     description: "House Number",
     field: "houseNumber",
-    flex: 2,
+    flex: 2.5,
     minWidth: 120,
     headerName: "House Number",
   },
