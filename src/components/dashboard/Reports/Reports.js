@@ -58,6 +58,16 @@ const Reports = () => {
   //Const for triggering error on Dialog Text Field
   const [valueDialogTextField, setValueDialogTextField] = React.useState(null);
 
+  //Warning Dialog
+  const [openWarning, setOpenWarning] = useState(false)
+
+  //Delete Boolean
+  const [deleteID, setdeleteID] = useState(0)
+
+  //Delete Warning
+  const [severityDelete, setseverityDelete] = useState('')
+  const [severityMessageDelete, setSeverityMessageDelete] = useState('')
+
   //Gets Current Roles for the User
   const role = companyUser.roles;
 
@@ -175,11 +185,37 @@ const Reports = () => {
   };
 
   const onClickDelete = (id) => () => {
-    console.log(id, "delete");
-    deleteReport(UserService.getToken(), companyUser, id)
-      .then((status) => updateReload(!reload))
-      .catch((err) => console.log(err.response.data.error));
+    console.log(id, 'delete')
+    setdeleteID(id)
+    setOpenWarning(true)
   };
+
+  const closeDialogsAndDelete = () => {
+    console.log(deleteID)
+    deleteReport(UserService.getToken(), companyUser, deleteID)
+      .then((status) => updateReload(!reload))
+      .catch((err) => 
+        { if(err.response.data.error ?? "Unauthorized" ) {
+          console.log(err.response.data.error)
+          setseverityDelete('error')
+          setSeverityMessageDelete('You do not have the permission to deleted this report!')
+        } 
+      }).finally(
+        setseverityDelete('success'),
+        setSeverityMessageDelete('Report delete sucessfully!')
+      )
+  
+    setOpenWarning(!openWarning)
+  }
+
+  setTimeout(() => {
+    setseverityDelete('')
+    setSeverityMessageDelete('');
+  }, 5000);
+
+  const openWarn = () => {
+    setOpenWarning(!openWarning)
+  }
 
   //edit and delete Columns
   const columns = [
@@ -295,6 +331,11 @@ const Reports = () => {
 
   return (
     <div className="reportdiv">
+      <div className='alertDialog'>
+        <Alert severity={severityDelete}>
+          <span>{severityMessageDelete}</span>
+        </Alert>
+      </div>
       <div className="reports-header">
         <TextField
           InputProps={{ style: { fontSize: 12 } }}
@@ -329,6 +370,31 @@ const Reports = () => {
           updateReport(result[0]);
         }}
       />
+
+      <Dialog
+        className="warning"
+        aria-labelledby="customized-dialog-title"
+        open={openWarning}
+        onClose={openWarn}
+      >
+        <div className="Dialog-Expand-Div">
+          <div>
+            <h2>Do you want to delete this Rating?</h2>
+          </div>
+          <div className="warning-header">
+            <Button style={{ margin: '1%' }} onClick={openWarn}>
+              No
+            </Button>
+            <Button
+              style={{ margin: '1%' }}
+              onClick={closeDialogsAndDelete}
+              //disabled={validateSave}
+            >
+              Yes
+            </Button>
+          </div>
+        </div>
+      </Dialog>
 
       <Dialog open={open} onClose={closeDialogs} className="Dialog-Expand">
         <div className="Dialog-Expand-Div">
