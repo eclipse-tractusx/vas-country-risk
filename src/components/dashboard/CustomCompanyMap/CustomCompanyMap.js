@@ -1,128 +1,128 @@
-import React, { useState, useEffect, useContext } from 'react'
-import UserService from '../../services/UserService'
-import { getAll } from '../../services/dashboard-api'
-import { CountryContext } from '../../../contexts/country'
-import { CompanyUserContext } from '../../../contexts/companyuser'
-import { getCountryByUser, getCountrys } from '../../services/country-api'
-import ReactTooltip from 'react-tooltip'
-import ImageMarker from '../../../resources/marker.png'
-import { ReportContext } from '../../../contexts/reports'
-import { getWorldMapInfo } from '../../services/dashboard-api'
-import { GatesContext } from '../../../contexts/gates'
+import React, { useState, useEffect, useContext } from "react";
+import UserService from "../../services/UserService";
+import { getAll } from "../../services/dashboard-api";
+import { CountryContext } from "../../../contexts/country";
+import { CompanyUserContext } from "../../../contexts/companyuser";
+import { getCountryByUser, getCountrys } from "../../services/country-api";
+import ReactTooltip from "react-tooltip";
+import ImageMarker from "../../../resources/marker.png";
+import { ReportContext } from "../../../contexts/reports";
+import { getWorldMapInfo } from "../../services/dashboard-api";
+import { GatesContext } from "../../../contexts/gates";
 import {
   ComposableMap,
   Geographies,
   Geography,
   ZoomableGroup,
   Marker,
-} from 'react-simple-maps'
+} from "react-simple-maps";
 
 const CustomCompanyMap = (ratings) => {
   //Zoom in and out const
-  const [kZoom, setKZoom] = useState(1)
+  const [kZoom, setKZoom] = useState(1);
 
   //Constant for Country Zoom Coordinates
-  const [coordsZoom, setCoordsZoom] = useState([0, 0])
+  const [coordsZoom, setCoordsZoom] = useState([0, 0]);
 
   //Business Partners Coords
-  const [coordsBP, setCoordsBP] = useState([])
+  const [coordsBP, setCoordsBP] = useState([]);
 
   //Constant for Zoom variation
-  const [zoomVar, setZoomVar] = useState(1)
+  const [zoomVar, setZoomVar] = useState(1);
 
   //Selected country
-  const { countryS, updateCountry } = useContext(CountryContext)
+  const { countryS, updateCountry } = useContext(CountryContext);
 
-  const { companyUser, updateCompanyUser } = useContext(CompanyUserContext)
+  const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
 
   //Content for the ISO Marker
-  const [content, setContent] = useState('')
+  const [content, setContent] = useState("");
 
   //Marker for the ISO code
-  const [countryMarkers, setCountryMarkers] = useState([])
+  const [countryMarkers, setCountryMarkers] = useState([]);
 
   //Content for the BP markers
-  const [markercontent, setMarkercontent] = useState('')
+  const [markercontent, setMarkercontent] = useState("");
 
   //Const with all saved coords
-  const [allCoords, setallCoords] = useState([])
+  const [allCoords, setallCoords] = useState([]);
 
   //Const with all saved coords
-  const [allCountries, setallCountries] = useState([])
+  const [allCountries, setallCountries] = useState([]);
 
   //Gates Context
-  const { gates, updateGate } = useContext(GatesContext)
+  const { gates, updateGate } = useContext(GatesContext);
 
   //Score for each country
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
 
-  const { reportValuesContext, updateReport } = useContext(ReportContext)
+  const { reportValuesContext, updateReport } = useContext(ReportContext);
 
   useEffect(() => {
     const reportCountry = reportValuesContext.filter(
-      (r) => r.name === 'Country',
-    )
+      (r) => r.name === "Country"
+    );
 
     updateCountry(
       reportCountry.length && !Array.isArray(reportCountry[0].objectValue)
         ? reportCountry[0].objectValue
-        : 'none',
-    )
-  }, [reportValuesContext])
+        : "none"
+    );
+  }, [reportValuesContext]);
 
-  const geoUrl = require('./world-countries.json')
+  const geoUrl = require("./world-countries.json");
 
   //Method for getting the name of current selected country
   const handleClick = (geo) => () => {
     allCountries.forEach((ac) => {
-      if (geo['Alpha-2'] === ac.iso2) {
-        updateCountry(ac)
+      if (geo["Alpha-2"] === ac.iso2) {
+        updateCountry(ac);
       }
-    })
-  }
+    });
+  };
 
   //Zoom in on country selected
   useEffect(() => {
-    if (countryS !== 'none') {
-      setCoordsZoom([countryS.longitude, countryS.latitude])
-      setZoomVar(5)
+    if (countryS !== "none") {
+      setCoordsZoom([countryS.longitude, countryS.latitude]);
+      setZoomVar(5);
     } else {
-      setCoordsZoom([0, 0])
-      setZoomVar(1)
+      setCoordsZoom([0, 0]);
+      setZoomVar(1);
     }
-  }, [countryS])
+  }, [countryS]);
 
   //Gets all Coords for selected country
   useEffect(() => {
-    if (countryS.country !== 'none') {
-      let array = []
+    if (countryS.country !== "none") {
+      let array = [];
 
       array = Array.isArray(allCoords)
         ? allCoords.filter((acc) => countryS.country === acc.country)
-        : []
-      setCoordsBP(array)
+        : [];
+      setCoordsBP(array);
     }
-  }, [countryS.country])
+  }, [countryS.country]);
 
   useEffect(() => {
     //Call to get all countries relative to the user
     getCountryByUser(UserService.getToken(), companyUser).then((response) => {
-      setallCountries(response)
-    })
+      setallCountries(response);
+    });
     //Gets all Coords once started and saves
     getAll(
       ratings.getRatings,
       ratings.years,
       UserService.getToken(),
-      companyUser,
+      companyUser
     ).then((response) => {
-      setallCoords(response)
-    })
+      setallCoords(response);
+    });
     //Call to get all country coords
     getCountrys(UserService.getToken(), companyUser).then((response) => {
-      setCountryMarkers(response)
-    })
-  }, [])
+      setCountryMarkers(response);
+    });
+  }, []);
 
   //Get Score Based on selected Ratings
   useEffect(() => {
@@ -132,20 +132,29 @@ const CustomCompanyMap = (ratings) => {
         ratings.years,
         UserService.getToken(),
         companyUser,
-        gates,
+        gates
       ).then((response) => {
-        setData(response)
-      })
+        setData(response);
+      });
     }
-  }, [ratings.getRatings, ratings.years, ratings.weight, gates])
+  }, [ratings.getRatings, ratings.years, ratings.weight, gates]);
 
   const coordinates = (position, dragging, event) => {
-    setKZoom(position.k)
-  }
+    setKZoom(position.k);
+  };
 
   const handlePopoverClose = () => {
-    setContent('')
-  }
+    setContent("");
+  };
+
+  const getScore = (s) => {
+    const element = data.find((d) => d.country.iso3 === s.iso3);
+    if (element && element.score) {
+      return element.score;
+    } else {
+      return "No Rating Selected";
+    }
+  };
 
   return (
     <>
@@ -167,86 +176,55 @@ const CustomCompanyMap = (ratings) => {
           <Geographies geography={geoUrl} data-testid="geo-custom-company-map">
             {({ geographies }) =>
               geographies.map((geo) => {
-                let geoMap = new Map()
+                let geoMap = new Map();
 
-                if (countryS.iso2 === geo.properties['Alpha-2']) {
-                  geoMap.set('color', '#82e362')
-                  geoMap.set(geo, geo)
+                if (countryS.iso2 === geo.properties["Alpha-2"]) {
+                  geoMap.set("color", "#82e362");
+                  geoMap.set(geo, geo);
                 }
                 return (
                   <Geography
                     key={geoMap.size > 0 ? geoMap.get(geo).rsmKey : geo.rsmKey}
                     geography={geoMap.size > 0 ? geoMap.get(geo) : geo}
                     onClick={handleClick(geo.properties)}
-                    fill={geoMap.size > 0 ? geoMap.get('color') : '#F5F4F6'}
+                    fill={geoMap.size > 0 ? geoMap.get("color") : "#F5F4F6"}
                     onMouseEnter={() => {
-                      if (data.length <= 0) {
-                        for (var i = 0; i <= 1; i++) {
-                          countryMarkers.forEach((s) => {
-                            if (s.iso2 === geo.properties['Alpha-2']) {
-                              setContent(
-                                <div>
-                                  <div>Country: {s.country}</div>
-                                  <div>BPNs: {s.totalBpn}</div>
-                                  <div>Score: No Rating Selected</div>
-                                </div>,
-                              )
-                            }
-                          })
+                      countryMarkers.forEach((s) => {
+                        if (s.iso2 === geo.properties["Alpha-2"]) {
+                          setContent(
+                            <div>
+                              <div>Country: {s.country}</div>
+                              <div>BPNs: {s.totalBpn}</div>
+                              <div>
+                                Score:
+                                {getScore(s)}
+                              </div>
+                            </div>
+                          );
                         }
-                      } else {
-                        data.forEach((d) => {
-                          countryMarkers.forEach((s) => {
-                            if (s.iso2 === geo.properties['Alpha-2']) {
-                              if (d.country.iso3 === s.iso3) {
-                                if (s.iso3 === geo.id) {
-                                  setContent(
-                                    <div>
-                                      <div>Country: {s.country}</div>
-                                      <div>BPNs: {s.totalBpn}</div>
-                                      <div>Score: {d.score}</div>
-                                    </div>
-                                  )
-                                }
-                              } else if (s.iso3 === geo.id) {
-                                if (d.country.iso3 !== s.iso3) {
-                                  if (s.iso3 !== geo.id) {
-                                    setContent(
-                                      <div>
-                                        <div>Country: {s.country}</div>
-                                        <div>BPNs: {s.totalBpn}</div>
-                                        <div>Score: No Rating Selected</div>
-                                      </div>
-                                    )
-                                  }
-                                }
-                              }
-                            }
-                          })
-                        })
-                      }
+                      });
                     }}
                     onMouseLeave={handlePopoverClose}
                     style={{
                       default: {
-                        stroke: '#4d493f',
+                        stroke: "#4d493f",
                         strokeWidth: 0.2,
-                        outline: 'none',
+                        outline: "none",
                       },
                       hover: {
-                        stroke: '#4d493f',
+                        stroke: "#4d493f",
                         strokeWidth: 0.1,
-                        outline: 'none',
-                        fill: '#82e362',
+                        outline: "none",
+                        fill: "#82e362",
                       },
                       pressed: {
-                        stroke: '#4d493f',
+                        stroke: "#4d493f",
                         strokeWidth: 0.1,
-                        outline: 'none',
+                        outline: "none",
                       },
                     }}
                   />
-                )
+                );
               })
             }
           </Geographies>
@@ -262,27 +240,27 @@ const CustomCompanyMap = (ratings) => {
                         <div>{marker.legalName}</div>
                         <div>{marker.address}</div>
                         <div>{marker.city}</div>
-                      </div>,
-                    )
+                      </div>
+                    );
                   }}
                   onMouseLeave={() => {
-                    setMarkercontent('')
+                    setMarkercontent("");
                   }}
                 >
                   <g>
                     <image
                       href={ImageMarker}
-                      x={kZoom >= 15 ? '-1' : '-3.7'}
-                      y={kZoom >= 15 ? '-2' : '-3'}
-                      height={kZoom >= 15 ? '0.3%' : '0.9%'}
-                      width={kZoom >= 15 ? '0.3%' : '0.9%'}
+                      x={kZoom >= 15 ? "-1" : "-3.7"}
+                      y={kZoom >= 15 ? "-2" : "-3"}
+                      height={kZoom >= 15 ? "0.3%" : "0.9%"}
+                      width={kZoom >= 15 ? "0.3%" : "0.9%"}
                     />
                   </g>
                   <text textAnchor="" fill="#000" fontSize={0.5}>
-                    {kZoom >= 15 ? marker.legalName : ''}
+                    {kZoom >= 15 ? marker.legalName : ""}
                   </text>
                 </Marker>
-              )
+              );
             }
           })}
 
@@ -301,7 +279,7 @@ const CustomCompanyMap = (ratings) => {
                     {marker.iso2}
                   </text>
                 </Marker>
-              )
+              );
             }
           })}
         </ZoomableGroup>
@@ -309,7 +287,7 @@ const CustomCompanyMap = (ratings) => {
       <ReactTooltip>{markercontent}</ReactTooltip>
       <ReactTooltip>{content}</ReactTooltip>
     </>
-  )
-}
+  );
+};
 
-export default CustomCompanyMap
+export default CustomCompanyMap;

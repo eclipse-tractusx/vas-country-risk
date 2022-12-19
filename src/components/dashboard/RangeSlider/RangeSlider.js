@@ -22,7 +22,7 @@ const RangeSlider = () => {
   const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
 
   const saveRanges = () => {
-    sendValues(ranges, companyUser);
+    sendValues(ranges, companyUser, UserService.getToken());
   };
 
   const [minValue, setMin] = useState(37);
@@ -115,28 +115,30 @@ const RangeSlider = () => {
 
   //Changes Values Using User Input
   const validateGreenInput = (event) => {
-    if (
-      event.target.value > 3 &&
-      event.target.value < 100
-    ) {
-      if((parseFloat(event.target.value) - 1) <= valueYellow[0]){
-        const yelloTempVal = [parseFloat(event.target.value) - 2, parseFloat(event.target.value) - 1];
+    if (event.target.value > 3 && event.target.value < 100) {
+      if (parseFloat(event.target.value) - 1 <= valueYellow[0]) {
+        const yelloTempVal = [
+          parseFloat(event.target.value) - 2,
+          parseFloat(event.target.value) - 1,
+        ];
         setYellowValues(yelloTempVal);
         setSeverityRange("");
         setSeverityMessageRange("");
 
-        if ((parseFloat(event.target.value) - 2) <= valueRed[1]){
+        if (parseFloat(event.target.value) - 2 <= valueRed[1]) {
           const redTempVal = [0, parseFloat(event.target.value) - 3];
           setRedValues(redTempVal);
           setSeverityRange("");
           setSeverityMessageRange("");
         }
-      }
-      else {
-      const yelloTempVal = [valueYellow[0], parseFloat(event.target.value) - 1];
-      setYellowValues(yelloTempVal);
-      setSeverityRange("");
-      setSeverityMessageRange("");
+      } else {
+        const yelloTempVal = [
+          valueYellow[0],
+          parseFloat(event.target.value) - 1,
+        ];
+        setYellowValues(yelloTempVal);
+        setSeverityRange("");
+        setSeverityMessageRange("");
       }
     } else {
       setGreenValues([parseFloat(valueYellow[1] + 1), 100]);
@@ -204,25 +206,27 @@ const RangeSlider = () => {
 
   //Changes Values Using User Input
   const validateRedInput = (event) => {
-    if (
-      event.target.value > 0 &&
-      event.target.value < 97
-    ) {
-      if((parseFloat(event.target.value) + 1) >= valueYellow[1]){
-        const yelloTempVal = [parseFloat(event.target.value) + 1, parseFloat(event.target.value) + 2];
+    if (event.target.value > 0 && event.target.value < 97) {
+      if (parseFloat(event.target.value) + 1 >= valueYellow[1]) {
+        const yelloTempVal = [
+          parseFloat(event.target.value) + 1,
+          parseFloat(event.target.value) + 2,
+        ];
         setYellowValues(yelloTempVal);
         setSeverityRange("");
         setSeverityMessageRange("");
 
-        if ((parseFloat(event.target.value) + 2) >= valueGreen[0]){
+        if (parseFloat(event.target.value) + 2 >= valueGreen[0]) {
           const greenTempVal = [parseFloat(event.target.value) + 3, 100];
           setGreenValues(greenTempVal);
           setSeverityRange("");
           setSeverityMessageRange("");
         }
-      }
-      else {
-        const yelloTempVal = [parseFloat(event.target.value) + 1, valueYellow[1]];
+      } else {
+        const yelloTempVal = [
+          parseFloat(event.target.value) + 1,
+          valueYellow[1],
+        ];
         setYellowValues(yelloTempVal);
         setSeverityRange("");
         setSeverityMessageRange("");
@@ -251,10 +255,10 @@ const RangeSlider = () => {
   }, [reportValuesContext]);
 
   const handleKeyPress = (e) => {
-    if(e.key === 'Enter'){
-      e.target.blur(); 
+    if (e.key === "Enter") {
+      e.target.blur();
     }
-  }
+  };
 
   return (
     <>
@@ -316,7 +320,7 @@ const RangeSlider = () => {
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={2}>
             <Input
-            onKeyDown={(e) => handleKeyPress(e)}
+              onKeyDown={(e) => handleKeyPress(e)}
               value={valueYellow[0]}
               margin="dense"
               onChange={handleChangeYellowInput}

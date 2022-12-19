@@ -1,209 +1,208 @@
-import React, { useState, useContext, useEffect, useRef } from 'react'
-import './styles.scss'
-import Dialog from '@mui/material/Dialog'
-import { Table, Button, IconButton } from 'cx-portal-shared-components'
-import Alert from '@mui/material/Alert'
-import { RatesContext } from '../../../contexts/rates'
-import { getRatingsByYear, deleteRating } from '../../services/ratingstable-api'
-import { columns } from './ratingColumns'
-import { columnsUser } from './ratingUserColumns'
-import UserService from '../../services/UserService'
-import { CompanyUserContext } from '../../../contexts/companyuser'
-import { ReportContext } from '../../../contexts/reports'
-import { ReloadContext } from '../../../contexts/refresh'
-import CloseIcon from '@mui/icons-material/Close'
-import Collapse from '@mui/material/Collapse'
+import React, { useState, useContext, useEffect, useRef } from "react";
+import "./styles.scss";
+import Dialog from "@mui/material/Dialog";
+import { Table, Button, IconButton } from "cx-portal-shared-components";
+import Alert from "@mui/material/Alert";
+import { RatesContext } from "../../../contexts/rates";
+import {
+  getRatingsByYear,
+  deleteRating,
+} from "../../services/ratingstable-api";
+import { columns } from "./ratingColumns";
+import { columnsUser } from "./ratingUserColumns";
+import UserService from "../../services/UserService";
+import { CompanyUserContext } from "../../../contexts/companyuser";
+import { ReportContext } from "../../../contexts/reports";
+import { ReloadContext } from "../../../contexts/refresh";
+import CloseIcon from "@mui/icons-material/Close";
+import Collapse from "@mui/material/Collapse";
 
 const Ratings = ({
   passAutomaticWeightChange,
   passValuesFromComponent,
   years,
 }) => {
-  const { companyUser, updateCompanyUser } = useContext(CompanyUserContext)
-  const [automatic, setAutomatic] = useState(true)
+  const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
+  const [automatic, setAutomatic] = useState(true);
 
   //Upload Button Handlers
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
-  const [tableRatings, setTableRatings] = useState([])
+  const [tableRatings, setTableRatings] = useState([]);
 
-  const [rates, setRatings] = useState([])
+  const [rates, setRatings] = useState([]);
 
-  const { reload, updateReload } = useContext(ReloadContext)
+  const { reload, updateReload } = useContext(ReloadContext);
 
-  const [sumTotalEffect, setSumTotalEffect] = useState(-1)
+  const [sumTotalEffect, setSumTotalEffect] = useState(-1);
 
-  const [severity, setSeverity] = useState('')
-  const [severityMessage, setSeverityMessage] = useState('')
+  const [severity, setSeverity] = useState("");
+  const [severityMessage, setSeverityMessage] = useState("");
 
   //Delete Warning
-  const [severityDelete, setseverityDelete] = useState('')
-  const [severityMessageDelete, setSeverityMessageDelete] = useState('')
+  const [severityDelete, setseverityDelete] = useState("");
+  const [severityMessageDelete, setSeverityMessageDelete] = useState("");
 
-  let sumTotal = 0
+  let sumTotal = 0;
 
-  const { prefixIds, updatePrefixIds } = useContext(RatesContext)
+  const { prefixIds, updatePrefixIds } = useContext(RatesContext);
 
-  const { reportValuesContext, updateReport } = useContext(ReportContext)
+  const { reportValuesContext, updateReport } = useContext(ReportContext);
 
   //Warning Dialog
-  const [openWarning, setOpenWarning] = useState(false)
+  const [openWarning, setOpenWarning] = useState(false);
 
   //Delete Boolean
-  const [deleteID, setdeleteID] = useState(0)
+  const [deleteID, setdeleteID] = useState(0);
 
   //Open Error/Sucess Dialog
-  const [openAlert, setopenAlert] = React.useState(false)
+  const [openAlert, setopenAlert] = React.useState(false);
 
   //Gets Current Roles for the User
-  const role = companyUser.roles
+  const role = companyUser.roles;
 
   useEffect(() => {
     const reportRates = Array.isArray(reportValuesContext)
-      ? reportValuesContext.filter((r) => r.name === 'Ratings')
-      : []
-    updatePrefixIds(reportRates.length ? reportRates[0].objectValue : [])
-    setRatings(reportRates.length ? reportRates[0].objectValue : [])
-  }, [reportValuesContext])
+      ? reportValuesContext.filter((r) => r.name === "Ratings")
+      : [];
+    updatePrefixIds(reportRates.length ? reportRates[0].objectValue : []);
+    setRatings(reportRates.length ? reportRates[0].objectValue : []);
+  }, [reportValuesContext]);
 
   const openDialog = () => {
-    setOpen(!open)
-  }
+    setOpen(!open);
+  };
 
   const openWarn = () => {
-    setOpenWarning(!openWarning)
-  }
+    setOpenWarning(!openWarning);
+  };
 
   const ExpandTable = () => {
-    openDialog()
-    prefixIds.open = !prefixIds.open
-  }
+    openDialog();
+    prefixIds.open = !prefixIds.open;
+  };
 
   const fetchData = () => {
-    getRatingsByYear('', UserService.getToken(), companyUser).then((response) =>
-      setTableRatings(response),
-    )
-  }
+    getRatingsByYear("", UserService.getToken(), companyUser).then((response) =>
+      setTableRatings(response)
+    );
+  };
 
   useEffect(() => {
-    getRatingsByYear(
-      years,
-      UserService.getToken(),
-      companyUser,
-    ).then((response) => setTableRatings(response))
-  }, [years, reload])
+    getRatingsByYear(years, UserService.getToken(), companyUser).then(
+      (response) => setTableRatings(response)
+    );
+  }, [years, reload]);
 
   useEffect(() => {
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
   useEffect(() => {
     if (automatic) {
-      let totalWeight = rates.length > 0 ? 100 / rates.length : 0
-      totalWeight = Number(totalWeight.toFixed(2))
+      let totalWeight = rates.length > 0 ? 100 / rates.length : 0;
+      totalWeight = Number(totalWeight.toFixed(2));
       if (Array.isArray(rates)) {
         rates.forEach((each) => {
-          each.weight = totalWeight
-        })
+          each.weight = totalWeight;
+        });
       }
     }
-  }, [updatePrefixIds])
+  }, [updatePrefixIds]);
 
   const onEditCellPropsChange = (params) => {
-    setSeverity('')
-    setSeverityMessage('')
-    setSumTotalEffect(0)
+    setSeverity("");
+    setSeverityMessage("");
+    setSumTotalEffect(0);
     rates.forEach((eachRating) => {
       if (eachRating.id === params.id) {
-        eachRating.weight = params.props.value
+        eachRating.weight = params.props.value;
       }
-    })
-    setAutomatic(false)
-  }
+    });
+    setAutomatic(false);
+  };
 
   //Change Edit/Delete Buttons based on Role
   const onRoleChangeButtons = (rates) => {
-    return role.includes('Company Admin')
+    return role.includes("Company Admin")
       ? columnsUser(rates)
-      : columnsUser(rates)
-  }
+      : columnsUser(rates);
+  };
 
   const validateInput = (params) => {
-    sumTotal = 0
+    sumTotal = 0;
     if (params.value <= 100 && params.value >= 0 && !isNaN(params.value)) {
       rates.forEach((eachRating) => {
-        sumTotal = Number(sumTotal) + Number(eachRating.weight)
-      })
+        sumTotal = Number(sumTotal) + Number(eachRating.weight);
+      });
       if (sumTotal === 100) {
-        setSumTotalEffect(sumTotal)
+        setSumTotalEffect(sumTotal);
       } else {
-        setSeverity('error')
-        setSeverityMessage('Total weight must be 100')
+        setSeverity("error");
+        setSeverityMessage("Total weight must be 100");
       }
     } else {
-      setSeverity('error')
-      setSeverityMessage('Value must be between 0-100')
+      setSeverity("error");
+      setSeverityMessage("Value must be between 0-100");
     }
-  }
+  };
 
   const handleEdit = (params) => {
-    return rates.find((each) => each.id === params.id)
-  }
+    return rates.find((each) => each.id === params.id);
+  };
 
   useEffect(() => {
     if (rates.length === 0) {
-      setAutomatic(true)
-      setSumTotalEffect(-1)
+      setAutomatic(true);
+      setSumTotalEffect(-1);
     }
-  }, [rates])
+  }, [rates]);
 
   useEffect(() => {
-    passValuesFromComponent(rates)
-  }, [rates])
+    passValuesFromComponent(rates);
+  }, [rates]);
 
   useEffect(() => {
-    passAutomaticWeightChange(sumTotalEffect)
-  }, [sumTotalEffect])
+    passAutomaticWeightChange(sumTotalEffect);
+  }, [sumTotalEffect]);
 
   const closeDialogsAndDelete = () => {
-    console.log(deleteID)
     deleteRating(UserService.getToken(), companyUser, deleteID)
       .then((code) => {
-        updateReload(!reload)
+        updateReload(!reload);
         if (code.status === 204) {
-          setopenAlert(!openAlert)
-          setseverityDelete('success')
-          setSeverityMessageDelete('Rating delete sucessfully!')
+          setopenAlert(!openAlert);
+          setseverityDelete("success");
+          setSeverityMessageDelete("Rating delete sucessfully!");
         }
       })
       .catch((err) => {
         if (err.response.data.status === 401) {
-          setopenAlert(!openAlert)
-          setseverityDelete('error')
+          setopenAlert(!openAlert);
+          setseverityDelete("error");
           setSeverityMessageDelete(
-            'You do not have the permission to deleted this rating!',
-          )
+            "You do not have the permission to deleted this rating!"
+          );
         }
         if (err.response.data.status === 500) {
-          setopenAlert(!openAlert)
-          setseverityDelete('error')
-          setSeverityMessageDelete('Wrong Request Type!')
+          setopenAlert(!openAlert);
+          setseverityDelete("error");
+          setSeverityMessageDelete("Wrong Request Type!");
         }
-      })
-    setOpenWarning(!openWarning)
-  }
+      });
+    setOpenWarning(!openWarning);
+  };
 
   const hideAlert = () => {
-    setseverityDelete('')
-    setSeverityMessageDelete('')
-    setopenAlert(!openAlert)
-  }
+    setseverityDelete("");
+    setSeverityMessageDelete("");
+    setopenAlert(!openAlert);
+  };
 
   const onClickDelete = (id) => () => {
-    console.log(id, 'delete')
-    setdeleteID(id)
-    setOpenWarning(true)
-  }
+    setdeleteID(id);
+    setOpenWarning(true);
+  };
 
   return (
     <div className="rating-table">
@@ -220,7 +219,8 @@ const Ratings = ({
                 <CloseIcon fontSize="inherit" />
               </IconButton>
             }
-            severity={severityDelete}>
+            severity={severityDelete}
+          >
             <span>{severityMessageDelete}</span>
           </Alert>
         </Collapse>
@@ -243,19 +243,19 @@ const Ratings = ({
         onEditCellPropsChange={onEditCellPropsChange} // this works
         onCellEditCommit={validateInput}
         onSelectionModelChange={(ids) => {
-          const selectedIds = new Set(ids)
+          const selectedIds = new Set(ids);
           const selectedRows = tableRatings.filter((row) =>
-            selectedIds.has(row.id),
-          )
+            selectedIds.has(row.id)
+          );
           //pass ratings selected to top component
-          selectedRows.open = prefixIds.open
-          setRatings(selectedRows)
-          updatePrefixIds(selectedRows)
+          selectedRows.open = prefixIds.open;
+          setRatings(selectedRows);
+          updatePrefixIds(selectedRows);
         }}
         toolbar={{
-          buttonLabel: open ? 'Close Ratings' : 'Show Ratings',
+          buttonLabel: open ? "Close Ratings" : "Show Ratings",
           onButtonClick: ExpandTable,
-          title: 'Ratings',
+          title: "Ratings",
         }}
         hideFooter={tableRatings.length > 5 ? false : true}
       ></Table>
@@ -274,11 +274,11 @@ const Ratings = ({
             <h2>Do you want to delete this Rating?</h2>
           </div>
           <div className="warning-header">
-            <Button style={{ margin: '1%' }} onClick={openWarn}>
+            <Button style={{ margin: "1%" }} onClick={openWarn}>
               No
             </Button>
             <Button
-              style={{ margin: '1%' }}
+              style={{ margin: "1%" }}
               onClick={closeDialogsAndDelete}
               //disabled={validateSave}
             >
@@ -316,29 +316,29 @@ const Ratings = ({
             isCellEditable={handleEdit} // this works
             onEditCellPropsChange={onEditCellPropsChange} // this works
             onSelectionModelChange={(ids) => {
-              const selectedIds = new Set(ids)
+              const selectedIds = new Set(ids);
               const selectedRows = tableRatings.filter((row) =>
-                selectedIds.has(row.id),
-              )
+                selectedIds.has(row.id)
+              );
               //pass ratings selected to top component
-              selectedRows.open = prefixIds.open
-              setRatings(selectedRows)
-              updatePrefixIds(selectedRows)
+              selectedRows.open = prefixIds.open;
+              setRatings(selectedRows);
+              updatePrefixIds(selectedRows);
             }}
             toolbar={{
-              title: 'Ratings',
+              title: "Ratings",
             }}
             hideFooter={tableRatings.length > 5 ? false : true}
           ></Table>
           <div className="closeBtnDialog">
-            <Button style={{ margin: '1%' }} onClick={ExpandTable}>
+            <Button style={{ margin: "1%" }} onClick={ExpandTable}>
               Close
             </Button>
           </div>
         </div>
       </Dialog>
     </div>
-  )
-}
+  );
+};
 
-export default Ratings
+export default Ratings;
