@@ -1,7 +1,8 @@
-import React, { useState, useContext, useEffect, useCallback } from 'react'
+import React, { useState, useContext, useEffect, useRef } from 'react'
 import './styles.scss'
 import Dialog from '@mui/material/Dialog'
-import { Table, Alert, Button, IconButton } from 'cx-portal-shared-components'
+import { Table, Button, IconButton } from 'cx-portal-shared-components'
+import Alert from '@mui/material/Alert'
 import { RatesContext } from '../../../contexts/rates'
 import { getRatingsByYear, deleteRating } from '../../services/ratingstable-api'
 import { columns } from './ratingColumns'
@@ -11,6 +12,7 @@ import { CompanyUserContext } from '../../../contexts/companyuser'
 import { ReportContext } from '../../../contexts/reports'
 import { ReloadContext } from '../../../contexts/refresh'
 import CloseIcon from '@mui/icons-material/Close'
+import Collapse from '@mui/material/Collapse'
 
 const Ratings = ({
   passAutomaticWeightChange,
@@ -49,6 +51,9 @@ const Ratings = ({
 
   //Delete Boolean
   const [deleteID, setdeleteID] = useState(0)
+
+  //Open Error/Sucess Dialog
+  const [openAlert, setopenAlert] = React.useState(false)
 
   //Gets Current Roles for the User
   const role = companyUser.roles
@@ -163,26 +168,36 @@ const Ratings = ({
   const closeDialogsAndDelete = () => {
     console.log(deleteID)
     deleteRating(UserService.getToken(), companyUser, deleteID)
-      .then((status) => updateReload(!reload))
-      .catch((err) => 
-        { if(err.response.data.error ?? "Unauthorized" ) {
-          console.log(err.response.data.error)
+      .then((code) => {
+        updateReload(!reload)
+        if (code.status === 204) {
+          setopenAlert(!openAlert)
+          setseverityDelete('success')
+          setSeverityMessageDelete('Rating delete sucessfully!')
+        }
+      })
+      .catch((err) => {
+        if (err.response.data.status === 401) {
+          setopenAlert(!openAlert)
           setseverityDelete('error')
-          setSeverityMessageDelete('You do not have the permission to deleted this rating!')
-        } 
-      }).finally(
-        setseverityDelete('success'),
-        setSeverityMessageDelete('Rating delete sucessfully!')
-      )
-  
+          setSeverityMessageDelete(
+            'You do not have the permission to deleted this rating!',
+          )
+        }
+        if (err.response.data.status === 500) {
+          setopenAlert(!openAlert)
+          setseverityDelete('error')
+          setSeverityMessageDelete('Wrong Request Type!')
+        }
+      })
     setOpenWarning(!openWarning)
-
   }
 
-  setTimeout(() => {
+  const hideAlert = () => {
     setseverityDelete('')
-    setSeverityMessageDelete('');
-  }, 5000);
+    setSeverityMessageDelete('')
+    setopenAlert(!openAlert)
+  }
 
   const onClickDelete = (id) => () => {
     console.log(id, 'delete')
@@ -192,10 +207,23 @@ const Ratings = ({
 
   return (
     <div className="rating-table">
-      <div className='alertDialog'>
-        <Alert severity={severityDelete}>
-          <span>{severityMessageDelete}</span>
-        </Alert>
+      <div className="alertDialog">
+        <Collapse in={openAlert}>
+          <Alert
+            action={
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={hideAlert}
+              >
+                <CloseIcon fontSize="inherit" />
+              </IconButton>
+            }
+            severity={severityDelete}>
+            <span>{severityMessageDelete}</span>
+          </Alert>
+        </Collapse>
       </div>
       <Table
         className="rating-table-content"

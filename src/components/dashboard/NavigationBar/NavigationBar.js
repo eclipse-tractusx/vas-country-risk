@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import LogoSVG from '../../../resources/cxlogo.svg'
 import { CompanyUserContext } from "../../../contexts/companyuser";
+import { getPortalLink } from "../../services/EnvironmentService";
 
 const NavigationBar = () => {
 
@@ -32,7 +33,7 @@ const NavigationBar = () => {
           }
         ]}*/
       >
-        <a href="https://portal.dev.demo.catena-x.net/"> 
+        <a href = { getPortalLink() }> 
         <Box
           component="img"
           src={LogoSVG}

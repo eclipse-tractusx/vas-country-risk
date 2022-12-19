@@ -45,6 +45,12 @@ const UploadDownloadZone = () => {
   //Date Currently Selected
   const [date, setDate] = useState("");
 
+  //Const for triggering error on Dialog Text Field
+  const [errorTrigger, setErrorTrigger] = React.useState(true);
+
+  //Validates if next button is active
+  const [validateSave, setValidateSave] = useState(true);
+
   //Gets Current Roles for the User
   const role = companyUser.roles;
 
@@ -65,15 +71,27 @@ const UploadDownloadZone = () => {
   const closeDialogs = () => {
     setOpen(false);
     setAutoUp(false);
+    setValidateSave(true);
     setSeverityMessage("");
     setSeverity("");
   };
   const openDialog = () => {
     setOpen(!open);
+    setValidateSave(true);
   };
 
   const saveRatingName = (event) => {
-    setOpenRatingName(event.target.value);
+    setSeverity("");
+    setSeverityMessage("");
+    if (event.target.value.length > 32 || event.target.value.length === 0) {
+      setErrorTrigger(true);
+      setOpenRatingName(null);
+      setValidateSave(true);
+    } else {
+      setErrorTrigger(false);
+      setOpenRatingName(event.target.value);
+      setValidateSave(false);
+    }
   };
 
   //Handler for Checkbox
@@ -204,10 +222,10 @@ const UploadDownloadZone = () => {
           </div>
           <Input
             data-testid="inputelement"
-            helperText="Helper"
             label="Please write your rating name"
-            placeholder="Rating Name"
+            placeholder="Insert the Rating Name"
             size={"small"}
+            error={errorTrigger}
             onChange={saveRatingName}
           ></Input>
           <Button
@@ -217,7 +235,7 @@ const UploadDownloadZone = () => {
           >
             Close
           </Button>
-          <Button style={{ margin: "1%" }} onClick={enableUpload}>
+          <Button style={{ margin: "1%" }} onClick={enableUpload} disabled={validateSave}>
             Next
           </Button>
         </div>

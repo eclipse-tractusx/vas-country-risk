@@ -9,7 +9,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import CountryPicker from "../CountryPicker/CountryPicker";
 import CustomCompanyMap from "../CustomCompanyMap/CustomCompanyMap";
 
-const RightMap = () => {
+const RightMap = (ratings) => {
   const [expandMap, setExpandMap] = useState(false);
 
   const openDialog = () => {
@@ -86,6 +86,9 @@ const RightMap = () => {
         </IconButton>
       </div>
       <CustomCompanyMap
+        getRatings={ratings.getRatings}
+        years={ratings.years}
+        weight={ratings.weight}
         minMapWidth={0}
         maxMapWidth={800}
         minMapHeight={0}
