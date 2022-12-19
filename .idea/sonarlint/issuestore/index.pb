@@ -42,9 +42,6 @@ m
 =src/components/dashboard/CustomCompanyMap/CustomCompanyMap.js,2\d\2d46a6a48fb6c6944b3fb0242d9ce9a8a51c4be7
 g
 7src/components/dashboard/CountryPicker/CountryPicker.js,9\e\9e64c56a3d55d4c4bff840610045dad14026a967
-:
-
-src/App.js,1\e\1e43fa63aecd2127be034b3fb9d4caa172275714
 d
 4src/tests/dashboard/dashboard/DashboardTable.test.js,1\b\1b4be994832f584e06cad22ad624c5e7f3076ceb
 U

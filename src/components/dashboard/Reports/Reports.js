@@ -175,7 +175,6 @@ const Reports = () => {
   };
 
   const onClickDelete = (id) => () => {
-    console.log(id, "delete");
     deleteReport(UserService.getToken(), companyUser, id)
       .then((status) => updateReload(!reload))
       .catch((err) => console.log(err.response.data.error));

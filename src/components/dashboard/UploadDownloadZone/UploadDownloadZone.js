@@ -100,25 +100,32 @@ const UploadDownloadZone = () => {
         type: valueType,
       },
     }),
-    onChangeStatus: ({ meta }, status) => {
-      if (status === "headers_received") {
-        console.log(`${meta.name} uploaded`);
-        setSeverity("info");
-        setSeverityMessage("Your rating has been uploaded");
-        updateReload(!reload);
-      } else if (status === "aborted") {
-        console.log(`${meta.name}, upload failed...`);
-      } else if (status === "error_upload") {
+
+    onChangeStatus: ({ meta }, file, status, allFiles) => {
+      if (status[0].xhr) {
         console.log(meta);
         console.log(status);
-        setSeverity("error");
-        setSeverityMessage(
-          "Rating name already exists. Please chose a different name"
-        );
-      } else {
-        console.log("error");
-        console.log(meta);
-        console.log(status);
+        if (status[0].xhr.status === 200) {
+          setSeverity("info");
+          setSeverityMessage("Your rating has been uploaded");
+          updateReload(!reload);
+        } else if (meta.status === "error_upload") {
+          if (status[0].xhr.status === 400) {
+            setSeverity("error");
+            setSeverityMessage(
+              "Rating name already exists. Please chose a different name"
+            );
+          } else if (status[0].xhr.status === 406) {
+            setSeverity("error");
+            setSeverityMessage("Invalid Rating please check all the fields");
+          } else {
+            setSeverity("error");
+            setSeverityMessage("Unexpected error");
+          }
+        } else if (meta.status === "exception_upload") {
+          setSeverity("error");
+          setSeverityMessage("Unexpected error");
+        }
       }
     },
     errorStatus: [
