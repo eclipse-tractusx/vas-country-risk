@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Dialog, IconButton, Button } from "cx-portal-shared-components";
 import "./styles.scss";
 import CustomWorldMap from "../CustomWorld/CustomWorldMap";
-import OpenWithIcon from "@mui/icons-material/OpenWith";
+import OpenWithIcon from "@mui/icons-material/ZoomIn";
 import { Box } from "@mui/material";
 import { toPng } from "html-to-image";
 import ProgressBar from "../ProgressBar/ProgressBar";
@@ -52,6 +52,7 @@ const LeftMap = (ratings) => {
                   onClick={openDialog}
                   size="medium"
                   variant="outlined"
+                  sx={{ marginRight: "2px" }}
                 >
                   <CloseIcon></CloseIcon>
                 </IconButton>
@@ -85,6 +86,7 @@ const LeftMap = (ratings) => {
           onClick={openDialog}
           size="medium"
           variant="outlined"
+          sx={{ marginRight: "2px" }}
         >
           <OpenWithIcon></OpenWithIcon>
         </IconButton>

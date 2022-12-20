@@ -22,7 +22,19 @@ const RangeSlider = () => {
   const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
 
   const saveRanges = () => {
-    sendValues(ranges, companyUser, UserService.getToken());
+    sendValues(ranges, companyUser, UserService.getToken())
+    .then((code) => {
+      if (code.status === 200) {
+        setSeverityRange("success");
+        setSeverityMessageRange("Ranges Saved!");
+      }
+    })
+    .catch((err) => {
+      if (err.response.data.status === 500) {
+        setSeverityRange("error");
+        setSeverityMessageRange("Coulnd't save!");
+      }
+    });
   };
 
   const [minValue, setMin] = useState(37);
@@ -258,7 +270,7 @@ const RangeSlider = () => {
     if (e.key === "Enter") {
       e.target.blur();
     }
-  };
+  }
 
   return (
     <>

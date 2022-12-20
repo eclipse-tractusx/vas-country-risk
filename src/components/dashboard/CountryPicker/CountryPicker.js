@@ -62,7 +62,7 @@ const CountryPicker = () => {
         </Box>
       )}
       renderInput={(params) => (
-        <TextField {...params} label="Choose a country" />
+        <TextField {...params}  />
       )}
     />
   );

@@ -66,6 +66,7 @@ const UploadDownloadZone = () => {
   const enableUpload = () => {
     setOpen(false);
     setAutoUp(true);
+    setErrorTrigger(true);
   };
 
   const closeDialogs = () => {

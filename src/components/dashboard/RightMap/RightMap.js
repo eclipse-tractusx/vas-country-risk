@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Dialog, IconButton, Button } from "cx-portal-shared-components";
 import "./styles.scss";
-import OpenWithIcon from "@mui/icons-material/OpenWith";
+import OpenWithIcon from "@mui/icons-material/ZoomIn";
 import { Box } from "@mui/material";
 import { toPng } from "html-to-image";
 import CloseIcon from "@mui/icons-material/Close";
@@ -52,6 +52,7 @@ const RightMap = (ratings) => {
                   onClick={openDialog}
                   size="medium"
                   variant="outlined"
+                  sx={{ marginRight: "2px" }}
                 >
                   <CloseIcon></CloseIcon>
                 </IconButton>

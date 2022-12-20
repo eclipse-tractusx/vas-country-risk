@@ -26,7 +26,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import Collapse from '@mui/material/Collapse'
 
 import { IconButton } from 'cx-portal-shared-components'
-import DeleteIcon from '@mui/icons-material/Delete'
+import DeleteIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import EditIcon from '@mui/icons-material/Edit'
 
 const Reports = () => {

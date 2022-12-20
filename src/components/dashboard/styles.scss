@@ -1,9 +1,10 @@
 .wrapper {
   display: flex;
   flex-direction: row;
-
+  justify-content: center; //aligns items at center of screen
+  
   .main-content {
-    width: 65%;
+    width: 70%;
     padding: 10px;
 
     .maps-content {

@@ -1,35 +1,34 @@
 /* eslint-disable no-console */
-import React, { useState, useContext } from "react";
-import "./styles.scss";
-import LeftMap from "./LeftMap/LeftMap";
-import RightMap from "./RightMap/RightMap";
-import DashboardTable from "./DashBoardTable/DashboardTable";
-import DatePicker from "./DatePicker/DatePicker";
-import Ratings from "./Ratings/Ratings";
-import UploadDownloadZone from "./UploadDownloadZone/UploadDownloadZone";
-import RangeSlider from "./RangeSlider/RangeSlider";
-import Reports from "./Reports/Reports";
-import GatePicker from "./GatePicker/GatePicker";
+import React, { useState, useContext } from 'react'
+import './styles.scss'
+import LeftMap from './LeftMap/LeftMap'
+import RightMap from './RightMap/RightMap'
+import DashboardTable from './DashBoardTable/DashboardTable'
+import DatePicker from './DatePicker/DatePicker'
+import Ratings from './Ratings/Ratings'
+import UploadDownloadZone from './UploadDownloadZone/UploadDownloadZone'
+import RangeSlider from './RangeSlider/RangeSlider'
+import Reports from './Reports/Reports'
+import GatePicker from './GatePicker/GatePicker'
 
 const Dashboard = () => {
+  const [ratings, setRatings] = useState('')
 
-  const [ratings, setRatings] = useState("");
+  const [weight, setTotalWeight] = useState('')
 
-  const [weight, setTotalWeight] = useState("");
-
-  const [years, setYears] = useState("");
+  const [years, setYears] = useState('')
 
   const passValuesFromComponent = (rates) => {
-    setRatings(rates);
-  };
+    setRatings(rates)
+  }
 
   const passAutomaticWeightChange = (weight) => {
-    setTotalWeight(weight);
-  };
+    setTotalWeight(weight)
+  }
 
   const passYearSelected = (yearSelected) => {
-    setYears(yearSelected);
-  };
+    setYears(yearSelected)
+  }
 
   return (
     <div className="wrapper">
@@ -44,9 +43,10 @@ const Dashboard = () => {
           </div>
           <div className="right-map">
             <RightMap
-                          getRatings={ratings}
-                          years={years}
-                          weight={weight}></RightMap>
+              getRatings={ratings}
+              years={years}
+              weight={weight}
+            ></RightMap>
           </div>
         </div>
         <div className="table-content">
@@ -84,7 +84,7 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard
