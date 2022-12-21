@@ -3,15 +3,10 @@ import axios from "axios";
 
 // Actions
 export function getAll(ratingsArray, years, token, customerUser, gates) {
-  const ratings = new Map();
-  ratingsArray
-    ? ratings.set("ratings", JSON.stringify(ratingsArray))
-    : ratings.set("ratings", JSON.stringify([]));
-
   return axios
     .get(process.env.REACT_APP_DASHBOARD_URL, {
       params: {
-        ratings: ratings.get("ratings"),
+        ratings: ratingsArray,
         year: years,
         name: customerUser.name,
         email: customerUser.email,
@@ -24,17 +19,17 @@ export function getAll(ratingsArray, years, token, customerUser, gates) {
     .catch((err) => err);
 }
 
-export function getWorldMapInfo(ratingsArray, years, token, customerUser, gates) {
-  const ratings = new Map();
-
-  ratingsArray
-    ? ratings.set("ratings", JSON.stringify(ratingsArray))
-    : ratings.set("ratings", JSON.stringify([]));
-
+export function getWorldMapInfo(
+  ratingsArray,
+  years,
+  token,
+  customerUser,
+  gates
+) {
   return axios
     .get(process.env.REACT_APP_DASHBOARD_WOLRD_MAP_URL, {
       params: {
-        ratings: ratings.get("ratings"),
+        ratings: ratingsArray,
         year: years,
         name: customerUser.name,
         email: customerUser.email,
