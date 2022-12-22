@@ -32,7 +32,7 @@ const RangeSlider = () => {
     .catch((err) => {
       if (err.response.data.status === 500) {
         setSeverityRange("error");
-        setSeverityMessageRange("Coulnd't save!");
+        setSeverityMessageRange("Error on save!");
       }
     });
   };
