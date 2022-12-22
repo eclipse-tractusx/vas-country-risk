@@ -40,12 +40,13 @@ const CountryPicker = () => {
       fullWidth
       variant="filled"
       size="small"
+      noOptionsText={'No country found'}
       onChange={handleChange}
       options={Countries || []}
       autoHighlight
-      freeSolo={true}
+      freeSolo={false}
       value={countryS || []}
-      getOptionLabel={(option) => option.country || "Select a country"}
+      getOptionLabel={(option) => option.country || []}
       renderOption={(props, option) => (
         <Box
           component="li"
@@ -62,7 +63,11 @@ const CountryPicker = () => {
         </Box>
       )}
       renderInput={(params) => (
-        <TextField {...params}  />
+        <TextField {...params }              
+        label="Select a country"
+        InputProps={{
+          ...params.InputProps,
+        }}/>
       )}
     />
   );

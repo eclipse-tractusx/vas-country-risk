@@ -411,7 +411,7 @@ const Reports = () => {
             <h2>Do you want to delete this Rating?</h2>
           </div>
           <div className="warning-header">
-            <Button style={{ margin: '1%' }} onClick={openWarn}>
+            <Button variant="outlined" style={{ margin: '1%' }} onClick={openWarn}>
               No
             </Button>
             <Button
