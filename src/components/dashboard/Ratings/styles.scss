@@ -23,9 +23,15 @@
     margin-right: 2%;
     margin-top: 2%;
   }
+
+  .header {
+    text-align: center;
+    margin-top: -5%;
+  }
   
 
   .rating-div-table-expand-style {
+    -ms-overflow-style: none;
     //height: 1200px;
     .table-expand-style {
       display: flex;
@@ -56,7 +62,7 @@
 
   .Dialog-Expand-Div {
     text-align: center;
-    background-color: #DCDCDC;
+    background-color: #F9F9F9;
     border-radius: 39px !important;
     border: 2px solid #000;
 

@@ -274,7 +274,7 @@ const Ratings = ({
             <h2>Do you want to delete this Rating?</h2>
           </div>
           <div className="warning-header">
-            <Button style={{ margin: "1%" }} onClick={openWarn}>
+            <Button variant="outlined" style={{ margin: "1%" }} onClick={openWarn}>
               No
             </Button>
             <Button
@@ -298,6 +298,10 @@ const Ratings = ({
           <IconButton variant="primary">
             <CloseIcon onClick={ExpandTable} />
           </IconButton>
+        </div>
+        <div className="header">
+          <h2>Ratings table</h2>
+          In this it is possible to see the ratings
         </div>
         <div className="rating-div-table-expand-style">
           <Table
