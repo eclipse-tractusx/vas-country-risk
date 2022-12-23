@@ -394,8 +394,8 @@ const Reports = () => {
           setSelectionModel(newSelectionModel);
           const selectionSet = new Set(newSelectionModel);
           const result = report.filter((s) => selectionSet.has(s.id));
-          setValueTextField(result[0].reportName);
-          updateReport(result[0]);
+          setValueTextField(result.length ? result[0].reportName : "");
+          updateReport(result.length ? result[0] : "");
         }}
       />
 

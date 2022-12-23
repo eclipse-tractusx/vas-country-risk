@@ -1,32 +1,51 @@
+.logosvg {
+  display: flex;
+  height: 40px;
+  width: 170px;
+}
+
+.btn-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .help-btn {
+    margin-right: 30%;
+  }
+
+  .user-btn {
+    margin-right: 1%;
+  }
+}
 
 .Dialog-Help {
-    height: 100% !important;
-    width: auto;
+  height: 100% !important;
+  width: auto;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 250px;
+
+  .closeButton {
+    text-align: right;
+    margin-right: 2%;
+    margin-top: 2%;
+  }
+
+  .Dialog-Help-Expand-Div {
     text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    min-width: 250px;
+    background-color: #edf0f4;
+    border-radius: 39px !important;
+    border: 2px solid #000;
 
-    .closeButton {
-        text-align: right;
-        margin-right: 2%;
-        margin-top: 2%;
-      }
-  
-    .Dialog-Help-Expand-Div {
-      text-align: center;
-      background-color: #EDF0F4;
-      border-radius: 39px !important;
-      border: 2px solid #000;
+    .header {
+      margin-top: -3%;
+    }
 
-      .header {
-        margin-top: -3%;
-      }
-
-      .text {
-        margin-right: 3%;
-        margin-left: 3%;
-        text-align: left;
-      }
+    .text {
+      margin-right: 3%;
+      margin-left: 3%;
+      text-align: left;
     }
   }
+}

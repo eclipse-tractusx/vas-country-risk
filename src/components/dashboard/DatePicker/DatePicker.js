@@ -51,7 +51,7 @@ const DatePicker = ({ passYearSelected }) => {
   }, [reportValuesContext]);
 
   return (
-    <Box sx={{ minWidth: 120 }}>
+    <Box>
       <FormControl fullWidth variant="filled">
         <InputLabel id="demo-simple-select-label">Select a Year</InputLabel>
         <Select value={date} onChange={handleChange} label="Year">

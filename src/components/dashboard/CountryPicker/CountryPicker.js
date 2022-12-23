@@ -46,7 +46,7 @@ const CountryPicker = () => {
       autoHighlight
       freeSolo={false}
       value={countryS || []}
-      getOptionLabel={(option) => option.country || []}
+      getOptionLabel={(option) => option.country || ""}
       renderOption={(props, option) => (
         <Box
           component="li"

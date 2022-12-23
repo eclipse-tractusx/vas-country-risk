@@ -33,7 +33,7 @@ const GatePicker = () => {
   };
 
   return (
-    <Box sx={{ minWidth: 120 }}>
+    <Box>
       <FormControl fullWidth variant="filled" color="primary">
         <InputLabel id="demo-simple-select-label">Select a Gate</InputLabel>
         <Select value={gate} onChange={handleChange} label="Gate">

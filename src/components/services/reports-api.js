@@ -17,6 +17,8 @@ export function getReportsByCompanyUser(token, customerUser) {
 }
 
 export function getReportValuesByReport(token, report, customerUser) {
+  console.log(report)
+  console.log(customerUser)
   return axios
     .get(process.env.REACT_APP_GET_REPORT_VALUES_BY_REPORT, {
       params: {

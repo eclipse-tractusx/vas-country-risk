@@ -39,7 +39,7 @@ const Ratings = ({
   const [severityMessage, setSeverityMessage] = useState("");
 
   //Delete Warning
-  const [severityDelete, setseverityDelete] = useState("");
+  const [severityDelete, setSeverityDelete] = useState("");
   const [severityMessageDelete, setSeverityMessageDelete] = useState("");
 
   let sumTotal = 0;
@@ -70,6 +70,10 @@ const Ratings = ({
 
   const openDialog = () => {
     setOpen(!open);
+    if(openAlert === true) {
+      setOpenAlert(!open)
+      hideAlert()
+    }
   };
 
   const openWarn = () => {
@@ -171,21 +175,21 @@ const Ratings = ({
         updateReload(!reload);
         if (code.status === 204) {
           setOpenAlert(!openAlert);
-          setseverityDelete("success");
+          setSeverityDelete("success");
           setSeverityMessageDelete("Rating delete sucessfully!");
         }
       })
       .catch((err) => {
         if (err.response.data.status === 401) {
           setOpenAlert(!openAlert);
-          setseverityDelete("error");
+          setSeverityDelete("error");
           setSeverityMessageDelete(
             "You do not have the permission to deleted this rating!"
           );
         }
         if (err.response.data.status === 500) {
           setOpenAlert(!openAlert);
-          setseverityDelete("error");
+          setSeverityDelete("error");
           setSeverityMessageDelete("Wrong Request Type!");
         }
       });
@@ -193,7 +197,7 @@ const Ratings = ({
   };
 
   const hideAlert = () => {
-    setseverityDelete("");
+    setSeverityDelete("");
     setSeverityMessageDelete("");
     setOpenAlert(!openAlert);
   };
