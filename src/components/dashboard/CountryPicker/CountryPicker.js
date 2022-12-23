@@ -36,7 +36,7 @@ const CountryPicker = () => {
 
   return (
     <Autocomplete
-      style={{ width: "45%", padding: 20, maxWidth: 300 }}
+      className="autocomplete"
       fullWidth
       variant="filled"
       size="small"

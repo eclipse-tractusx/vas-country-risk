@@ -9,6 +9,15 @@
     flex-direction: row;
     align-items: center;
     float: right;
+    margin-top: 10px;
+    margin-bottom: auto;
+
+    .saveRanges {
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      height: 30px;
+    }
   }
 
   .sliderone {

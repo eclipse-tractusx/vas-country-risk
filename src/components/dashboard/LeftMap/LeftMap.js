@@ -51,8 +51,7 @@ const LeftMap = (ratings) => {
                   color="primary"
                   onClick={openDialog}
                   size="medium"
-                  variant="outlined"
-                  sx={{ marginRight: "2px" }}
+                  variant="text"
                 >
                   <CloseIcon></CloseIcon>
                 </IconButton>
@@ -69,7 +68,7 @@ const LeftMap = (ratings) => {
                     maxMapHeight={600}
                   ></CustomWorldMap>
                 </div>
-                <div className="progress-bar" style={{ width: "250px" }}>
+                <div className="progress-bar">
                   <ProgressBar className="bar" valuePercentage={100} />
                 </div>
               </div>
@@ -85,8 +84,7 @@ const LeftMap = (ratings) => {
           color="primary"
           onClick={openDialog}
           size="medium"
-          variant="outlined"
-          sx={{ marginRight: "2px" }}
+          variant="text"
         >
           <OpenWithIcon></OpenWithIcon>
         </IconButton>

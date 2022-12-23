@@ -1,5 +1,5 @@
 .bar {
-  padding: 2%;
+  margin-bottom: 4%;
   .textValueScore {
     width: 100%;
     text-align: center;
@@ -12,6 +12,8 @@
       width: 45px;
       text-align: center;
       font-size: 10px;
+      margin-right: 2%;
+      margin-left: 2%;
     }
     .barContainer {
       flex: 1;

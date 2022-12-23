@@ -42,13 +42,13 @@ const CustomCompanyMap = (ratings) => {
   const [countryMarkers, setCountryMarkers] = useState([]);
 
   //Content for the BP markers
-  const [markercontent, setMarkercontent] = useState("");
+  const [bpMarkers, setBpMarkers] = useState("");
 
   //Const with all saved coords
-  const [allCoords, setallCoords] = useState([]);
+  const [savedCoords, setSavedCoords] = useState([]);
 
   //Const with all saved coords
-  const [allCountries, setallCountries] = useState([]);
+  const [savedCountries, setSavedCountries] = useState([]);
 
   //Gates Context
   const { gates, updateGate } = useContext(GatesContext);
@@ -74,7 +74,7 @@ const CustomCompanyMap = (ratings) => {
 
   //Method for getting the name of current selected country
   const handleClick = (geo) => () => {
-    allCountries.forEach((ac) => {
+    savedCountries.forEach((ac) => {
       if (geo["Alpha-2"] === ac.iso2) {
         updateCountry(ac);
       }
@@ -97,8 +97,8 @@ const CustomCompanyMap = (ratings) => {
     if (countryS.country !== "none") {
       let array = [];
 
-      array = Array.isArray(allCoords)
-        ? allCoords.filter((acc) => countryS.country === acc.country)
+      array = Array.isArray(savedCoords)
+        ? savedCoords.filter((acc) => countryS.country === acc.country)
         : [];
       setCoordsBP(array);
     }
@@ -107,7 +107,7 @@ const CustomCompanyMap = (ratings) => {
   useEffect(() => {
     //Call to get all countries relative to the user
     getCountryByUser(UserService.getToken(), companyUser).then((response) => {
-      setallCountries(response);
+      setSavedCountries(response);
     });
     //Gets all Coords once started and saves
     getAll(
@@ -116,7 +116,7 @@ const CustomCompanyMap = (ratings) => {
       UserService.getToken(),
       companyUser
     ).then((response) => {
-      setallCoords(response);
+      setSavedCoords(response);
     });
     //Call to get all country coords
     getCountrys(UserService.getToken(), companyUser).then((response) => {
@@ -158,8 +158,8 @@ const CustomCompanyMap = (ratings) => {
 
   return (
     <>
-      <ComposableMap data-tip="" data-testid="composable-custom-company-map">
-        <ZoomableGroup
+      <ComposableMap data-testid="composable-custom-company-map">
+        <ZoomableGroup data-tip="" 
           data-testid="zoomableGroup-custom-company-map"
           onMove={coordinates}
           center={coordsZoom}
@@ -235,7 +235,7 @@ const CustomCompanyMap = (ratings) => {
                 <Marker
                   coordinates={[marker.longitude, marker.latitude]}
                   onMouseEnter={() => {
-                    setMarkercontent(
+                    setBpMarkers(
                       <div>
                         <div>{marker.legalName}</div>
                         <div>{marker.address}</div>
@@ -244,7 +244,7 @@ const CustomCompanyMap = (ratings) => {
                     );
                   }}
                   onMouseLeave={() => {
-                    setMarkercontent("");
+                    setBpMarkers("");
                   }}
                 >
                   <g>
@@ -284,7 +284,7 @@ const CustomCompanyMap = (ratings) => {
           })}
         </ZoomableGroup>
       </ComposableMap>
-      <ReactTooltip>{markercontent}</ReactTooltip>
+      <ReactTooltip>{bpMarkers}</ReactTooltip>
       <ReactTooltip>{content}</ReactTooltip>
     </>
   );

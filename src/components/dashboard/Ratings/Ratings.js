@@ -8,7 +8,6 @@ import {
   getRatingsByYear,
   deleteRating,
 } from "../../services/ratingstable-api";
-import { columns } from "./ratingColumns";
 import { columnsUser } from "./ratingUserColumns";
 import UserService from "../../services/UserService";
 import { CompanyUserContext } from "../../../contexts/companyuser";
@@ -53,10 +52,10 @@ const Ratings = ({
   const [openWarning, setOpenWarning] = useState(false);
 
   //Delete Boolean
-  const [deleteID, setdeleteID] = useState(0);
+  const [deleteID, setDeleteID] = useState(0);
 
-  //Open Error/Sucess Dialog
-  const [openAlert, setopenAlert] = React.useState(false);
+  //Open Error/Success Dialog
+  const [openAlert, setOpenAlert] = React.useState(false);
 
   //Gets Current Roles for the User
   const role = companyUser.roles;
@@ -171,21 +170,21 @@ const Ratings = ({
       .then((code) => {
         updateReload(!reload);
         if (code.status === 204) {
-          setopenAlert(!openAlert);
+          setOpenAlert(!openAlert);
           setseverityDelete("success");
           setSeverityMessageDelete("Rating delete sucessfully!");
         }
       })
       .catch((err) => {
         if (err.response.data.status === 401) {
-          setopenAlert(!openAlert);
+          setOpenAlert(!openAlert);
           setseverityDelete("error");
           setSeverityMessageDelete(
             "You do not have the permission to deleted this rating!"
           );
         }
         if (err.response.data.status === 500) {
-          setopenAlert(!openAlert);
+          setOpenAlert(!openAlert);
           setseverityDelete("error");
           setSeverityMessageDelete("Wrong Request Type!");
         }
@@ -196,11 +195,11 @@ const Ratings = ({
   const hideAlert = () => {
     setseverityDelete("");
     setSeverityMessageDelete("");
-    setopenAlert(!openAlert);
+    setOpenAlert(!openAlert);
   };
 
   const onClickDelete = (id) => () => {
-    setdeleteID(id);
+    setDeleteID(id);
     setOpenWarning(true);
   };
 
@@ -253,7 +252,7 @@ const Ratings = ({
           updatePrefixIds(selectedRows);
         }}
         toolbar={{
-          buttonLabel: open ? "Close Ratings" : "Show Ratings",
+          buttonLabel: "Show Ratings",
           onButtonClick: ExpandTable,
           title: "Ratings",
         }}
@@ -274,11 +273,10 @@ const Ratings = ({
             <h2>Do you want to delete this Rating?</h2>
           </div>
           <div className="warning-header">
-            <Button variant="outlined" style={{ margin: "1%" }} onClick={openWarn}>
+            <Button variant="outlined" className="btn-no" onClick={openWarn}>
               No
             </Button>
             <Button
-              style={{ margin: "1%" }}
               onClick={closeDialogsAndDelete}
               //disabled={validateSave}
             >
@@ -301,7 +299,7 @@ const Ratings = ({
         </div>
         <div className="header">
           <h2>Ratings table</h2>
-          In this it is possible to see the ratings
+          <p>In this it is possible to see the ratings. They can be selected one at a time or all at the same time.</p>
         </div>
         <div className="rating-div-table-expand-style">
           <Table
@@ -335,7 +333,7 @@ const Ratings = ({
             hideFooter={tableRatings.length > 5 ? false : true}
           ></Table>
           <div className="closeBtnDialog">
-            <Button style={{ margin: "1%" }} onClick={ExpandTable}>
+            <Button className="btn-close-dialog" onClick={ExpandTable}>
               Close
             </Button>
           </div>

@@ -47,6 +47,10 @@
       margin-top: 3%;
       text-align: center;
       background-color: #EDF0F4;
+
+      .btn-close-dialog{
+        margin: 1%;
+      }
     }
 
   }
@@ -69,6 +73,10 @@
     .warning-header {
       margin-left: auto;
       margin-right: auto;
+
+      .btn-no{
+        margin-right: 5%;
+      }
     }
 
     .SecondLabel {

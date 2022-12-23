@@ -51,8 +51,7 @@ const RightMap = (ratings) => {
                   color="primary"
                   onClick={openDialog}
                   size="medium"
-                  variant="outlined"
-                  sx={{ marginRight: "2px" }}
+                  variant="text"
                 >
                   <CloseIcon></CloseIcon>
                 </IconButton>
@@ -80,8 +79,7 @@ const RightMap = (ratings) => {
           color="primary"
           onClick={openDialog}
           size="medium"
-          variant="outlined"
-          sx={{ marginRight: "2px" }}
+          variant="text"
         >
           <OpenWithIcon></OpenWithIcon>
         </IconButton>

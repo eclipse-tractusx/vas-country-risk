@@ -238,12 +238,12 @@ const UploadDownloadZone = () => {
           ></Input>
           <Button
             data-testid="closeFirst"
-            style={{ margin: "1%" }}
+            className="btn-close-upload"
             onClick={openDialog}
           >
             Close
           </Button>
-          <Button style={{ margin: "1%" }} onClick={enableUpload} disabled={validateSave}>
+          <Button className="btn-next-upload" onClick={enableUpload} disabled={validateSave}>
             Next
           </Button>
         </div>
@@ -266,7 +266,7 @@ const UploadDownloadZone = () => {
             maxFiles={1}
           />
 
-          <Button style={{ margin: "1%" }} onClick={closeDialogs}>
+          <Button className="btn-close-upload-second" onClick={closeDialogs}>
             Close
           </Button>
         </div>

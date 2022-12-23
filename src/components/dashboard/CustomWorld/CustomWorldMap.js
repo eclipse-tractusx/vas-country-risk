@@ -66,8 +66,8 @@ const CustomWorldMap = (ratings) => {
 
   return (
     <>
-      <ComposableMap data-tip="" data-testid="Map">
-        <ZoomableGroup
+      <ComposableMap data-testid="Map">
+        <ZoomableGroup data-tip="" 
           onMove={cordinates}
           zoom={1}
           maxZoom={50}

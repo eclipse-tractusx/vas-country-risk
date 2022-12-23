@@ -4,7 +4,7 @@
   .alertDialog {
     margin-top: 1%;
   }
-  
+
   .reports-header {
     display: flex;
     flex-direction: row;
@@ -38,6 +38,14 @@
   }
 }
 
+.warning-header {
+  margin: 2%;
+
+  .btn-no {
+    margin-right: 5%;
+  }
+}
+
 .Dialog-Expand {
   height: 100% !important;
   width: 30%;
@@ -48,7 +56,7 @@
 
   .Dialog-Expand-Div {
     text-align: center;
-    background-color: #EDF0F4;
+    background-color: #edf0f4;
     border-radius: 39px !important;
     border: 2px solid #000;
 
@@ -76,6 +84,15 @@
       margin-left: 10%;
       margin-right: 10%;
       border: 1px solid #000;
+    }
+
+    .btn-close {
+      margin-right: 5%;
+      margin-bottom: 5%;
+    }
+
+    .btn-save {
+      margin-bottom: 5%;
     }
   }
 }

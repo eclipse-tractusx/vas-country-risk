@@ -64,10 +64,10 @@ const Reports = () => {
   const [openWarning, setOpenWarning] = useState(false);
 
   //Delete Boolean
-  const [deleteID, setdeleteID] = useState(0);
+  const [deleteID, setDeleteID] = useState(0);
 
   //Delete Warning
-  const [severityDelete, setseverityDelete] = useState("");
+  const [severityDelete, setSeverityDelete] = useState("");
   const [severityMessageDelete, setSeverityMessageDelete] = useState("");
 
   //Gets Current Roles for the User
@@ -78,7 +78,7 @@ const Reports = () => {
   const [reportType, setReportType] = useState(false);
 
   //Open Error/Sucess Dialog
-  const [openAlert, setopenAlert] = React.useState(false);
+  const [openAlert, setOpenAlert] = React.useState(false);
 
   useEffect(() => {
     role.includes("Company Admin") ? setReportType(false) : setReportType(true);
@@ -190,33 +190,31 @@ const Reports = () => {
   };
 
   const onClickDelete = (id) => () => {
-    console.log(id, "delete");
     setOpenWarning(true);
-    setdeleteID(id);
-  };
+    setDeleteID(id);
+  }
 
   const closeDialogsAndDelete = () => {
-    console.log(deleteID);
     deleteReport(UserService.getToken(), companyUser, deleteID)
       .then((code) => {
         updateReload(!reload);
         if (code.status === 204) {
-          setopenAlert(!openAlert);
-          setseverityDelete("success");
+          setOpenAlert(!openAlert);
+          setSeverityDelete("success");
           setSeverityMessageDelete("Rating delete sucessfully!");
         }
       })
       .catch((err) => {
         if (err.response.data.status === 401) {
-          setopenAlert(!openAlert);
-          setseverityDelete("error");
+          setOpenAlert(!openAlert);
+          setSeverityDelete("error");
           setSeverityMessageDelete(
             "You do not have the permission to deleted this rating!"
           );
         }
         if (err.response.data.status === 500) {
-          setopenAlert(!openAlert);
-          setseverityDelete("error");
+          setOpenAlert(!openAlert);
+          setSeverityDelete("error");
           setSeverityMessageDelete("Wrong Request Type!");
         }
       });
@@ -224,10 +222,10 @@ const Reports = () => {
   };
 
   const hideAlert = () => {
-    setseverityDelete("");
+    setSeverityDelete("");
     setSeverityMessageDelete("");
-    setopenAlert(!openAlert);
-  };
+    setOpenAlert(!openAlert);
+  }
 
   const openWarn = () => {
     setOpenWarning(!openWarning);
@@ -412,15 +410,10 @@ const Reports = () => {
             <h2>Do you want to delete this Rating?</h2>
           </div>
           <div className="warning-header">
-            <Button
-              variant="outlined"
-              style={{ margin: "1%" }}
-              onClick={openWarn}
-            >
+            <Button className="btn-no" variant="outlined" onClick={openWarn}>
               No
             </Button>
             <Button
-              style={{ margin: "1%" }}
               onClick={closeDialogsAndDelete}
               //disabled={validateSave}
             >
@@ -473,11 +466,11 @@ const Reports = () => {
           <Alert severity={severity}>
             <span>{severityMessage}</span>
           </Alert>
-          <Button style={{ margin: "1%" }} onClick={closeDialogs}>
+          <Button className="btn-close" onClick={closeDialogs}>
             Close
           </Button>
           <Button
-            style={{ margin: "1%" }}
+            className="btn-save"
             onClick={closeDialogsAndSave}
             disabled={validateSave}
           >
