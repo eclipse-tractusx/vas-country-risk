@@ -9,6 +9,7 @@ import {
   getReportsByCompanyUser,
   saveReports,
   deleteReport,
+  updateReports,
 } from "../../services/reports-api";
 import UserService from "../../services/UserService";
 import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
@@ -27,7 +28,8 @@ import Collapse from "@mui/material/Collapse";
 
 import { IconButton } from "cx-portal-shared-components";
 import DeleteIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import EditIcon from "@mui/icons-material/Edit";
+import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
+import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 
 const Reports = () => {
   const [selectionModel, setSelectionModel] = useState([]);
@@ -64,7 +66,7 @@ const Reports = () => {
   const [openWarning, setOpenWarning] = useState(false);
 
   //Delete Boolean
-  const [deleteID, setDeleteID] = useState(0);
+  const [selectedID, setSelectedID] = useState(null);
 
   //Delete Warning
   const [severityDelete, setSeverityDelete] = useState("");
@@ -76,9 +78,15 @@ const Reports = () => {
   const [severity, setSeverity] = useState("");
   const [severityMessage, setSeverityMessage] = useState("");
   const [reportType, setReportType] = useState(false);
-
+  const [editDeleteShareActive, setEditDeleteShareActive] = useState(true);
   //Open Error/Sucess Dialog
   const [openAlert, setOpenAlert] = React.useState(false);
+
+  //Dialog on delete and save/update messages
+  const [doubleCheckMessage, setDoubleCheckMessage] = useState("");
+
+  //Dialog on delete and save/update operation
+  const [operation, setOperation] = useState("");
 
   useEffect(() => {
     role.includes("Company Admin") ? setReportType(false) : setReportType(true);
@@ -94,8 +102,10 @@ const Reports = () => {
   }, [reload]);
 
   const closeDialogs = () => {
+    console.log("openWarning", openWarning);
     setValidateSave(true);
     setOpen(false);
+    setOpenWarning(false);
   };
 
   const closeDialogsAndSave = () => {
@@ -105,7 +115,9 @@ const Reports = () => {
       { name: "Country", objectValue: countryS === "none" ? [] : countryS },
       { name: "Ratings", objectValue: prefixIds }
     );
+
     const newReport = new Report(
+      selectedID ? selectedID : null,
       valueDialogTextField,
       companyUser.name,
       companyUser.companyName,
@@ -113,20 +125,38 @@ const Reports = () => {
       list
     );
 
-    saveReports(UserService.getToken(), companyUser, newReport)
-      .then((res) => {
-        setOpen(false);
-        updateReload(!reload);
-      })
-      .catch((response) => {
-        if (response.response.status === 400) {
-          setSeverity("error");
-          setSeverityMessage(response.response.data.message);
-          setOpen(true);
-          setValidateSave(false);
-        }
-      });
-    setValidateSave(true);
+    if (newReport.id !== null) {
+      updateReports(UserService.getToken(), companyUser, newReport)
+        .then((res) => {
+          updateReload(!reload);
+          validateUpdateDeleteResponseCode(
+            res,
+            "Report changed sucessfully!",
+            "You do not have the permission to change this report!"
+          );
+        })
+        .catch((err) => {
+          validateUpdateDeleteResponseCode(
+            err.response.data.status,
+            "Report changed sucessfully!",
+            "You do not have the permission to change this report!"
+          );
+        });
+    } else {
+      saveReports(UserService.getToken(), companyUser, newReport)
+        .then((res) => {
+          updateReload(!reload);
+        })
+        .catch((response) => {
+          if (response.response.status === 400) {
+            setSeverity("error");
+            setSeverityMessage(response.response.data.message);
+            setOpen(true);
+            setValidateSave(false);
+          }
+        });
+    }
+    closeDialogs();
   };
 
   const setMessage = () => {
@@ -183,113 +213,80 @@ const Reports = () => {
     setValueRadioChecked(!valueRadioChecked);
     updateReport("");
     updateReload(!reload);
+    setEditDeleteShareActive(true);
   };
 
   const handleChange = () => {
     setValueRadioChecked(false);
   };
 
-  const onClickDelete = (id) => () => {
+  const onClickShare = (id) => () => {
     setOpenWarning(true);
-    setDeleteID(id);
-  }
+    setSelectedID(id);
+  };
+
+  const onClickActionDeleteUpdate =
+    (id, operation, doubleCheckMessage) => () => {
+      setOperation(operation);
+      setDoubleCheckMessage(doubleCheckMessage);
+      setOpenWarning(true);
+      setSelectedID(id);
+    };
 
   const closeDialogsAndDelete = () => {
-    deleteReport(UserService.getToken(), companyUser, deleteID)
+    deleteReport(UserService.getToken(), companyUser, selectedID)
       .then((code) => {
         updateReload(!reload);
-        if (code.status === 204) {
-          setOpenAlert(!openAlert);
-          setSeverityDelete("success");
-          setSeverityMessageDelete("Rating delete sucessfully!");
-        }
+        validateUpdateDeleteResponseCode(
+          code,
+          "Report delete sucessfully!",
+          "You do not have the permission to deleted this report!"
+        );
       })
       .catch((err) => {
-        if (err.response.data.status === 401) {
-          setOpenAlert(!openAlert);
-          setSeverityDelete("error");
-          setSeverityMessageDelete(
-            "You do not have the permission to deleted this rating!"
-          );
-        }
-        if (err.response.data.status === 500) {
-          setOpenAlert(!openAlert);
-          setSeverityDelete("error");
-          setSeverityMessageDelete("Wrong Request Type!");
-        }
+        validateUpdateDeleteResponseCode(
+          err.response.data.status,
+          "Report delete sucessfully!",
+          "You do not have the permission to deleted this report!"
+        );
       });
-    setOpenWarning(!openWarning);
+    closeDialogs();
+  };
+
+  const validateUpdateDeleteResponseCode = (
+    code,
+    successMessage,
+    errorMessage
+  ) => {
+    if (code.status === 204) {
+      setOpenAlert(!openAlert);
+      setSeverityDelete("success");
+      setSeverityMessageDelete(successMessage);
+    } else if (code === 401) {
+      setOpenAlert(!openAlert);
+      setSeverityDelete("error");
+      setSeverityMessageDelete(errorMessage);
+    } else if (code === 500) {
+      setOpenAlert(!openAlert);
+      setSeverityDelete("error");
+      setSeverityMessageDelete("Wrong Request Type!");
+    }
+  };
+
+  const decideAction = () => {
+    if (operation === "Save Changes") {
+      closeDialogsAndSave();
+    } else if (operation === "Delete Report") {
+      closeDialogsAndDelete();
+    }
+    setSelectedID(null);
   };
 
   const hideAlert = () => {
     setSeverityDelete("");
     setSeverityMessageDelete("");
     setOpenAlert(!openAlert);
-  }
-
-  const openWarn = () => {
-    setOpenWarning(!openWarning);
   };
-
-  //edit and delete Columns
-  const columns = [
-    {
-      field: "radiobutton",
-      headerName: (
-        <Radio
-          data-testid="radioClear"
-          onChange={clearButton}
-          checked={valueRadioChecked}
-        />
-      ),
-      width: 120,
-      renderCell: (params) => (
-        <Radio
-          onChange={handleChange}
-          checked={selectionModel[0] === params.id}
-          value={params.id}
-          data-testid="radio-choose-report"
-        />
-      ),
-      sortable: false,
-    },
-
-    {
-      field: "reportName",
-      headerName: "Report Name",
-      width: 150,
-    },
-    {
-      field: "company",
-      headerName: "Company",
-      width: 150,
-    },
-    {
-      field: "type",
-      headerName: "Type",
-      width: 150,
-    },
-    {
-      field: "Edit",
-      headerName: "Edit",
-      width: 100,
-      renderCell: () => (
-        <IconButton color="secondary">
-          <EditIcon />
-        </IconButton>
-      ),
-    },
-    {
-      field: "Delete",
-      headerName: "Delete",
-      width: 100,
-      renderCell: () => (
-        <IconButton color="secondary" onClick={onClickDelete}>
-          <DeleteIcon />
-        </IconButton>
-      ),
-    },
-  ];
 
   //only delete Columns
   const columnsUser = [
@@ -330,14 +327,49 @@ const Reports = () => {
       width: 150,
     },
     {
-      field: "actions",
+      field: "update",
       type: "actions",
-      width: 100,
+      width: 50,
+      getActions: (params) => [
+        <GridActionsCellItem
+          icon={<SaveOutlinedIcon />}
+          label="Save"
+          onClick={onClickActionDeleteUpdate(
+            params.id,
+            "Save Changes",
+            "Do you want to save the changes to this Report?"
+          )}
+          disabled={editDeleteShareActive}
+        />,
+      ],
+    },
+    {
+      field: "delete",
+      type: "actions",
+      width: 50,
       getActions: (params) => [
         <GridActionsCellItem
           icon={<DeleteIcon />}
           label="Delete"
-          onClick={onClickDelete(params.id)}
+          onClick={onClickActionDeleteUpdate(
+            params.id,
+            "Delete Report",
+            "Do you want to delete this Report?"
+          )}
+          disabled={editDeleteShareActive}
+        />,
+      ],
+    },
+    {
+      field: "share",
+      type: "actions",
+      width: 50,
+      getActions: (params) => [
+        <GridActionsCellItem
+          icon={<ShareOutlinedIcon />}
+          label="Share"
+          onClick={onClickShare(params)}
+          disabled={editDeleteShareActive}
         />,
       ],
     },
@@ -394,8 +426,10 @@ const Reports = () => {
           setSelectionModel(newSelectionModel);
           const selectionSet = new Set(newSelectionModel);
           const result = report.filter((s) => selectionSet.has(s.id));
+          setValueDialogTextField(result.length ? result[0].reportName : "");
           setValueTextField(result.length ? result[0].reportName : "");
           updateReport(result.length ? result[0] : "");
+          setEditDeleteShareActive(result.length ? false : true);
         }}
       />
 
@@ -403,18 +437,27 @@ const Reports = () => {
         className="warning"
         aria-labelledby="customized-dialog-title"
         open={openWarning}
-        onClose={openWarn}
+        onClose={closeDialogs}
       >
         <div className="Dialog-Expand-Div">
+          <h2>{operation}</h2>
+
           <div>
-            <h2>Do you want to delete this Rating?</h2>
+            <h3>{doubleCheckMessage}</h3>
           </div>
+          <Alert severity="warning">
+            <span>This cannot be undone</span>
+          </Alert>
           <div className="warning-header">
-            <Button className="btn-no" variant="outlined" onClick={openWarn}>
+            <Button
+              className="btn-no"
+              variant="outlined"
+              onClick={closeDialogs}
+            >
               No
             </Button>
             <Button
-              onClick={closeDialogsAndDelete}
+              onClick={decideAction}
               //disabled={validateSave}
             >
               Yes

@@ -17,8 +17,6 @@ export function getReportsByCompanyUser(token, customerUser) {
 }
 
 export function getReportValuesByReport(token, report, customerUser) {
-  console.log(report)
-  console.log(customerUser)
   return axios
     .get(process.env.REACT_APP_GET_REPORT_VALUES_BY_REPORT, {
       params: {
@@ -42,6 +40,22 @@ export function saveReports(token, customerUser, report) {
   return axios({
     method: "post",
     url: process.env.REACT_APP_SAVE_REPORTS,
+    data: report,
+    params: {
+      name: customerUser.name,
+      email: customerUser.email,
+      companyName: customerUser.companyName,
+    },
+
+    headers: { Authorization: `Bearer ${token}` },
+  });
+}
+
+//Update Reports By User
+export function updateReports(token, customerUser, report) {
+  return axios({
+    method: "put",
+    url: process.env.REACT_APP_UPDATE_REPORTS,
     data: report,
     params: {
       name: customerUser.name,

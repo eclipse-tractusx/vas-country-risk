@@ -36,8 +36,6 @@ P
  .github/workflows/sonarcloud.yml,0\7\077a84aad902191fd63fd374880221279f02a65d
 H
 sonar-project.properties,2\5\2538046035efb77ecc44e1fd2eec1e2641594d4c
-<
-package.json,7\0\7030d0b2f71b999ff89a343de08c414af32fc93a
 m
 =src/components/dashboard/CustomCompanyMap/CustomCompanyMap.js,2\d\2d46a6a48fb6c6944b3fb0242d9ce9a8a51c4be7
 g

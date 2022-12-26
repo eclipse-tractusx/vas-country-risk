@@ -1,5 +1,6 @@
 export class Report {
-  constructor(reportName, companyUserName, company, type, reportValues) {
+  constructor(id, reportName, companyUserName, company, type, reportValues) {
+    this.id = id;
     this.reportName = reportName;
     this.companyUserName = companyUserName;
     this.company = company;
