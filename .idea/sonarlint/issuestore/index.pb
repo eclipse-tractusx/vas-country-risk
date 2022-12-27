@@ -19,8 +19,6 @@ a
 1src/components/dashboard/Ratings/ratingColumns.js,c\e\ce5463b21e923f23d31ef0ba1e80fa075fd143d3
 \
 ,src/components/dashboard/Ratings/styles.scss,4\d\4de8d3bfe1c9d5b916a3562a19e3ab2a3f10325f
-\
-,src/components/dashboard/Reports/styles.scss,4\a\4a129faee094a8015045b8a522d0953ed45bd147
 E
 chart/values-dev.yaml,d\7\d70c5f664b9af980d5efd6da2ff82c9d497493be
 K
@@ -44,3 +42,11 @@ d
 4src/tests/dashboard/dashboard/DashboardTable.test.js,1\b\1b4be994832f584e06cad22ad624c5e7f3076ceb
 U
 %src/components/dashboard/dashboard.js,4\d\4d483efec471c46a10a0e967ac5e1f0c4cba0425
+U
+%src/tests/dashboard/app/index.test.js,5\1\51da7271bd705d28762a23f793386819330f45e8
+4
+.env,3\c\3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
+N
+src/components/model/Report.js,1\1\11e77aac29eff96c7738ca3d0e76b449f99cb340
+V
+&src/components/services/reports-api.js,f\0\f05c0050f44f114ff09381b3bd8ccfacab6956d3

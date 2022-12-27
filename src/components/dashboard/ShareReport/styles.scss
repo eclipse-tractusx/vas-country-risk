@@ -1,0 +1,16 @@
+.shareReportComponent {
+  height: 100% !important;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 2%;
+  .btn-close {
+    margin-right: 5%;
+    margin-bottom: 5%;
+  }
+
+  .btn-save {
+    margin-right: 5%;
+    margin-bottom: 5%;
+  }
+}

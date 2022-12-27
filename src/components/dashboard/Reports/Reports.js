@@ -30,6 +30,7 @@ import { IconButton } from "cx-portal-shared-components";
 import DeleteIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
+import ShareReport from "../ShareReport/ShareReport";
 
 const Reports = () => {
   const [selectionModel, setSelectionModel] = useState([]);
@@ -47,6 +48,8 @@ const Reports = () => {
   const { companyUser } = useContext(CompanyUserContext);
 
   const [open, setOpen] = React.useState(false);
+
+  const [openShareReport, setOpenShareReport] = React.useState(false);
 
   const { reload, updateReload } = useContext(ReloadContext);
 
@@ -102,10 +105,10 @@ const Reports = () => {
   }, [reload]);
 
   const closeDialogs = () => {
-    console.log("openWarning", openWarning);
     setValidateSave(true);
     setOpen(false);
     setOpenWarning(false);
+    setOpenShareReport(false);
   };
 
   const closeDialogsAndSave = () => {
@@ -221,7 +224,7 @@ const Reports = () => {
   };
 
   const onClickShare = (id) => () => {
-    setOpenWarning(true);
+    setOpenShareReport(true);
     setSelectedID(id);
   };
 
@@ -520,6 +523,13 @@ const Reports = () => {
             Save
           </Button>
         </div>
+      </Dialog>
+      <Dialog
+        className="share-dialog-expand"
+        open={openShareReport}
+        onClose={closeDialogs}
+      >
+        <ShareReport></ShareReport>
       </Dialog>
     </div>
   );
