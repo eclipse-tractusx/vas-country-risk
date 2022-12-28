@@ -26,24 +26,24 @@ const RangeSlider = () => {
       .then((code) => {
         if (code.status === 200) {
           setOpenAlert(true);
-          setSeverityRange('success')
-          setSeverityMessageRange('Ranges Saved!')
+          setSeverityRange("success");
+          setSeverityMessageRange("Ranges Saved!");
         }
       })
       .catch((err) => {
         if (err.response.data.status === 500) {
           setOpenAlert(true);
-          setSeverityRange('error')
-          setSeverityMessageRange('Error on save!')
+          setSeverityRange("error");
+          setSeverityMessageRange("Error on save!");
         }
         if (err.response.data.status === 401) {
           setOpenAlert(true);
-          setSeverityRange('error')
-          setSeverityMessageRange('No permissions!')
+          setSeverityRange("error");
+          setSeverityMessageRange("No permissions!");
         }
-      })
-      timerFuntion()
-  }
+      });
+    timerFuntion();
+  };
 
   const [minValue, setMin] = useState(37);
   const [betweenValue, setMid] = useState(60);
@@ -278,7 +278,7 @@ const RangeSlider = () => {
     if (e.key === "Enter") {
       e.target.blur();
     }
-  }
+  };
 
   return (
     <>

@@ -5,16 +5,10 @@ i
 9src/components/dashboard/CustomWorld/world-countries.json,9\6\964454a00cd9b08f2004f686499ab3f77c8cf50b
 `
 0src/components/dashboard/CustomWorld/styles.scss,e\a\ea0e9640f29e5635388da8a67dcd086df2fba49a
-`
-0src/components/dashboard/ProgressBar/styles.scss,9\9\99bd9ab7f7d791756acac6bd0b67a00306bbcfa6
 _
 /src/components/dashboard/DatePicker/styles.scss,2\6\26ceddae0ddfb332d7ae5514653323df59660f5a
 c
 3src/components/dashboard/ProgressBar/ProgressBar.js,6\7\67d295badc748915bf1a6efeea38b9c58f514818
-`
-0src/components/dashboard/RangeSlider/styles.scss,f\f\ff6103c0f552313e6dd59b7fc49b9b28d7b12aac
-\
-,src/components/dashboard/LeftMap/styles.scss,e\d\ed2ee03bbe5a1eb9b1c56b59ecdc40d6abd3f0fe
 a
 1src/components/dashboard/Ratings/ratingColumns.js,c\e\ce5463b21e923f23d31ef0ba1e80fa075fd143d3
 \
@@ -34,8 +28,6 @@ P
  .github/workflows/sonarcloud.yml,0\7\077a84aad902191fd63fd374880221279f02a65d
 H
 sonar-project.properties,2\5\2538046035efb77ecc44e1fd2eec1e2641594d4c
-m
-=src/components/dashboard/CustomCompanyMap/CustomCompanyMap.js,2\d\2d46a6a48fb6c6944b3fb0242d9ce9a8a51c4be7
 g
 7src/components/dashboard/CountryPicker/CountryPicker.js,9\e\9e64c56a3d55d4c4bff840610045dad14026a967
 d
@@ -44,9 +36,3 @@ U
 %src/components/dashboard/dashboard.js,4\d\4d483efec471c46a10a0e967ac5e1f0c4cba0425
 U
 %src/tests/dashboard/app/index.test.js,5\1\51da7271bd705d28762a23f793386819330f45e8
-4
-.env,3\c\3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
-N
-src/components/model/Report.js,1\1\11e77aac29eff96c7738ca3d0e76b449f99cb340
-V
-&src/components/services/reports-api.js,f\0\f05c0050f44f114ff09381b3bd8ccfacab6956d3
