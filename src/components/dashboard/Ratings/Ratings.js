@@ -60,6 +60,8 @@ const Ratings = ({
   //Gets Current Roles for the User
   const role = companyUser.roles;
 
+  const [timer, setTimer] = React.useState(0)
+
   useEffect(() => {
     const reportRates = Array.isArray(reportValuesContext)
       ? reportValuesContext.filter((r) => r.name === "Ratings")
@@ -174,26 +176,27 @@ const Ratings = ({
       .then((code) => {
         updateReload(!reload);
         if (code.status === 204) {
-          setOpenAlert(!openAlert);
+          setOpenAlert(true);
           setSeverityDelete("success");
           setSeverityMessageDelete("Rating delete sucessfully!");
         }
       })
       .catch((err) => {
         if (err.response.data.status === 401) {
-          setOpenAlert(!openAlert);
+          setOpenAlert(true);
           setSeverityDelete("error");
           setSeverityMessageDelete(
             "You do not have the permission to deleted this rating!"
           );
         }
         if (err.response.data.status === 500) {
-          setOpenAlert(!openAlert);
+          setOpenAlert(true);
           setSeverityDelete("error");
           setSeverityMessageDelete("Wrong Request Type!");
         }
       });
     setOpenWarning(!openWarning);
+    timerFuntion();
   };
 
   const hideAlert = () => {
@@ -206,6 +209,21 @@ const Ratings = ({
     setDeleteID(id);
     setOpenWarning(true);
   };
+
+  const timerFuntion = () => {
+    if (timer) {
+      clearTimeout(timer)
+    }
+
+    setTimer(
+      setTimeout(() => {
+        setSeverityDelete('')
+        setSeverityMessageDelete('')
+        setOpenAlert(false)
+        console.log('timeout')
+      }, 4000),
+    )
+  }
 
   return (
     <div className="rating-table">

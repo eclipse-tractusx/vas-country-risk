@@ -159,7 +159,8 @@ const CustomCompanyMap = (ratings) => {
   return (
     <>
       <ComposableMap data-testid="composable-custom-company-map">
-        <ZoomableGroup data-tip="" 
+        <ZoomableGroup
+          data-tip=""
           data-testid="zoomableGroup-custom-company-map"
           onMove={coordinates}
           center={coordsZoom}

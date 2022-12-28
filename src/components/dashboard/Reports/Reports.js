@@ -124,10 +124,12 @@ const Reports = () => {
       valueDialogTextField,
       companyUser.name,
       companyUser.companyName,
+      companyUser.email,
       valueType,
       list
     );
 
+    console.log("save report", newReport);
     if (newReport.id !== null) {
       updateReports(UserService.getToken(), companyUser, newReport)
         .then((res) => {
@@ -148,6 +150,7 @@ const Reports = () => {
     } else {
       saveReports(UserService.getToken(), companyUser, newReport)
         .then((res) => {
+          console.log("res", res);
           updateReload(!reload);
         })
         .catch((response) => {
@@ -225,11 +228,11 @@ const Reports = () => {
 
   const onClickShare = (id) => () => {
     setOpenShareReport(true);
-    setSelectedID(id);
   };
 
   const onClickActionDeleteUpdate =
     (id, operation, doubleCheckMessage) => () => {
+      console.log("onClickActionDeleteUpdate", id);
       setOperation(operation);
       setDoubleCheckMessage(doubleCheckMessage);
       setOpenWarning(true);
@@ -371,7 +374,7 @@ const Reports = () => {
         <GridActionsCellItem
           icon={<ShareOutlinedIcon />}
           label="Share"
-          onClick={onClickShare(params)}
+          onClick={onClickShare(params.id)}
           disabled={editDeleteShareActive}
         />,
       ],
@@ -529,7 +532,7 @@ const Reports = () => {
         open={openShareReport}
         onClose={closeDialogs}
       >
-        <ShareReport></ShareReport>
+        <ShareReport closeDialogs={closeDialogs}></ShareReport>
       </Dialog>
     </div>
   );

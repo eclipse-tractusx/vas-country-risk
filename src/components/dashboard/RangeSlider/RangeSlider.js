@@ -23,19 +23,27 @@ const RangeSlider = () => {
 
   const saveRanges = () => {
     sendValues(ranges, companyUser, UserService.getToken())
-    .then((code) => {
-      if (code.status === 200) {
-        setSeverityRange("success");
-        setSeverityMessageRange("Ranges Saved!");
-      }
-    })
-    .catch((err) => {
-      if (err.response.data.status === 500) {
-        setSeverityRange("error");
-        setSeverityMessageRange("Error on save!");
-      }
-    });
-  };
+      .then((code) => {
+        if (code.status === 200) {
+          setOpenAlert(true);
+          setSeverityRange('success')
+          setSeverityMessageRange('Ranges Saved!')
+        }
+      })
+      .catch((err) => {
+        if (err.response.data.status === 500) {
+          setOpenAlert(true);
+          setSeverityRange('error')
+          setSeverityMessageRange('Error on save!')
+        }
+        if (err.response.data.status === 401) {
+          setOpenAlert(true);
+          setSeverityRange('error')
+          setSeverityMessageRange('No permissions!')
+        }
+      })
+      timerFuntion()
+  }
 
   const [minValue, setMin] = useState(37);
   const [betweenValue, setMid] = useState(60);
