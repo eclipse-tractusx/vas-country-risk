@@ -6,10 +6,13 @@ import Grid from "@mui/material/Grid";
 import UserService from "../../services/UserService";
 import { getAllRanges } from "../../services/ranges-api";
 import { RangesContext } from "../../../contexts/ranges";
-import { Alert, Button } from "cx-portal-shared-components";
+import { Button, IconButton } from "cx-portal-shared-components";
 import { sendValues } from "../../services/ranges-api";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { ReportContext } from "../../../contexts/reports";
+import CloseIcon from "@mui/icons-material/Close";
+import Collapse from "@mui/material/Collapse";
+import Alert from "@mui/material/Alert";
 
 function valuetext(valueGreen) {
   return `${valueGreen}`;
@@ -17,9 +20,17 @@ function valuetext(valueGreen) {
 
 const RangeSlider = () => {
   const { ranges, updateRanges } = useContext(RangesContext);
+
   const [severityRange, setSeverityRange] = useState("");
+
   const [severityMessageRange, setSeverityMessageRange] = useState("");
+
   const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
+
+  const [timer, setTimer] = React.useState(0);
+
+  //Open Error/Sucess Dialog
+  const [openAlert, setOpenAlert] = React.useState(false);
 
   const saveRanges = () => {
     sendValues(ranges, companyUser, UserService.getToken())
@@ -84,6 +95,7 @@ const RangeSlider = () => {
   const handleChangeGreen = (event, newValue) => {
     setSeverityRange("");
     setSeverityMessageRange("");
+    setOpenAlert(false);
     newValue[1] = 100;
     newValue[0] =
       newValue[1] === newValue[0]
@@ -99,6 +111,7 @@ const RangeSlider = () => {
   const handleChangeYellow = (event, newValue) => {
     setSeverityRange("");
     setSeverityMessageRange("");
+    setOpenAlert(false);
 
     if (!(newValue[0] === newValue[1])) {
       const tempValG = [newValue[1] + 1, valueGreen[1]];
@@ -114,6 +127,7 @@ const RangeSlider = () => {
   const handleChangeRed = (event, newValue) => {
     setSeverityRange("");
     setSeverityMessageRange("");
+    setOpenAlert(false);
     newValue[0] = 0;
     newValue[1] =
       newValue[1] === newValue[0]
@@ -144,12 +158,14 @@ const RangeSlider = () => {
         setYellowValues(yelloTempVal);
         setSeverityRange("");
         setSeverityMessageRange("");
+        setOpenAlert(false);
 
         if (parseFloat(event.target.value) - 2 <= valueRed[1]) {
           const redTempVal = [0, parseFloat(event.target.value) - 3];
           setRedValues(redTempVal);
           setSeverityRange("");
           setSeverityMessageRange("");
+          setOpenAlert(false);
         }
       } else {
         const yelloTempVal = [
@@ -159,11 +175,15 @@ const RangeSlider = () => {
         setYellowValues(yelloTempVal);
         setSeverityRange("");
         setSeverityMessageRange("");
+        setOpenAlert(false);
       }
     } else {
       setGreenValues([parseFloat(valueYellow[1] + 1), 100]);
+      setOpenAlert(false);
       setSeverityRange("error");
       setSeverityMessageRange("Overlap Value");
+      setOpenAlert(true);
+      timerFuntion();
     }
   };
 
@@ -188,13 +208,17 @@ const RangeSlider = () => {
       setRedValues(redTempVal);
       setSeverityRange("");
       setSeverityMessageRange("");
+      setOpenAlert(false);
     } else {
       setYellowValues([
         parseFloat(valueRed[1] + 1),
         parseFloat(valueGreen[0] - 1),
       ]);
+      setOpenAlert(false);
       setSeverityRange("error");
       setSeverityMessageRange("Overlap Value");
+      setOpenAlert(true);
+      timerFuntion();
     }
   };
 
@@ -208,13 +232,17 @@ const RangeSlider = () => {
       setGreenValues(greenTempVal);
       setSeverityRange("");
       setSeverityMessageRange("");
+      setOpenAlert(false);
     } else {
       setYellowValues([
         parseFloat(valueRed[1] + 1),
         parseFloat(valueGreen[0] - 1),
       ]);
+      setOpenAlert(false);
       setSeverityRange("error");
       setSeverityMessageRange("Overlap Value");
+      setOpenAlert(true);
+      timerFuntion();
     }
   };
 
@@ -235,12 +263,14 @@ const RangeSlider = () => {
         setYellowValues(yelloTempVal);
         setSeverityRange("");
         setSeverityMessageRange("");
+        setOpenAlert(false);
 
         if (parseFloat(event.target.value) + 2 >= valueGreen[0]) {
           const greenTempVal = [parseFloat(event.target.value) + 3, 100];
           setGreenValues(greenTempVal);
           setSeverityRange("");
           setSeverityMessageRange("");
+          setOpenAlert(false);
         }
       } else {
         const yelloTempVal = [
@@ -250,11 +280,15 @@ const RangeSlider = () => {
         setYellowValues(yelloTempVal);
         setSeverityRange("");
         setSeverityMessageRange("");
+        setOpenAlert(false);
       }
     } else {
       setRedValues([0, parseFloat(valueYellow[0] - 1)]);
+      setOpenAlert(false);
       setSeverityRange("error");
       setSeverityMessageRange("Overlap Value");
+      setOpenAlert(true);
+      timerFuntion();
     }
   };
 
@@ -280,6 +314,26 @@ const RangeSlider = () => {
     }
   };
 
+  const hideAlert = () => {
+    setSeverityRange("");
+    setSeverityMessageRange("");
+    setOpenAlert(!openAlert);
+  };
+
+  const timerFuntion = () => {
+    if (timer) {
+      clearTimeout(timer);
+    }
+
+    setTimer(
+      setTimeout(() => {
+        setSeverityRange("");
+        setSeverityMessageRange("");
+        setOpenAlert(false);
+      }, 4000)
+    );
+  };
+
   return (
     <>
       <div className="slider-header">
@@ -287,9 +341,6 @@ const RangeSlider = () => {
           Save Ranges
         </Button>
       </div>
-      <Alert severity={severityRange}>
-        <span>{severityMessageRange}</span>
-      </Alert>
       <div className="sliderone">
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={2}>

@@ -149,10 +149,18 @@ const CustomCompanyMap = (ratings) => {
 
   const getScore = (s) => {
     const element = data.find((d) => d.country.iso3 === s.iso3);
-    if (element && element.score) {
-      return element.score;
+    if (data.length) {
+      if (element && element.score) {
+        return element.score;
+      } else {
+        return " No Score Available";
+      }
     } else {
-      return "No Rating Selected";
+      if (element && element.score) {
+        return element.score;
+      } else {
+        return " No Rating Selected";
+      }
     }
   };
 
@@ -196,10 +204,7 @@ const CustomCompanyMap = (ratings) => {
                             <div>
                               <div>Country: {s.country}</div>
                               <div>BPNs: {s.totalBpn}</div>
-                              <div>
-                                Score:
-                                {getScore(s)}
-                              </div>
+                              <div>Score: {getScore(s)}</div>
                             </div>
                           );
                         }

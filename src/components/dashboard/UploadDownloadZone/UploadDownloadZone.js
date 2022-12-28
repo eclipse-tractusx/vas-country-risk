@@ -79,6 +79,7 @@ const UploadDownloadZone = () => {
   const openDialog = () => {
     setOpen(!open);
     setValidateSave(true);
+    setErrorTrigger(true)
   };
 
   const saveRatingName = (event) => {
@@ -186,7 +187,7 @@ const UploadDownloadZone = () => {
           </FormLabel>
           <div className="CheckBox-Div">
             <RadioGroup
-              defaultValue="Custom"
+              value={valueType}
               className="CheckBox-Div-Radio"
               aria-labelledby="demo-controlled-radio-buttons-group"
               name="controlled-radio-buttons-group"
