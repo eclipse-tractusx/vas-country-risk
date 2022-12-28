@@ -8,8 +8,9 @@ import { Button } from "cx-portal-shared-components";
 const ShareReport = () => {
   return (
     <div className="shareReportComponent">
-      <Box>
+      <Box className="box-select">
         <MultiSelectList
+          className="multibox-select"
           clearText="clear"
           filterOptionsArgs={{}}
           helperText="Helper"
@@ -71,7 +72,7 @@ const ShareReport = () => {
           variant="filled"
         />
 
-        <div>
+        <div className="btn-div">
           <Button className="btn-close">Close</Button>
           <Button className="btn-save">Share</Button>
         </div>
