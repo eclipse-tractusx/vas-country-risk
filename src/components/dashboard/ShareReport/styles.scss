@@ -1,16 +1,34 @@
 .shareReportComponent {
   height: 100% !important;
-  display: flex;
-  flex-direction: column;
   width: 100%;
-  padding: 2%;
-  .btn-close {
-    margin-right: 5%;
-    margin-bottom: 5%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 250px;
+  background-color: #edf0f4;
+  border-radius: 39px !important;
+  border: 2px solid #000;
+
+  .box-select {
+    margin-top: 5%;
+
+    .multibox-select {
+      margin-top: 10%;
+      margin-left: 10%;
+      margin-right: 10%;
+      border: 1px solid #000;
+    }
   }
 
-  .btn-save {
-    margin-right: 5%;
-    margin-bottom: 5%;
+  .btn-div {
+    margin-top: 4%;
+    margin-bottom: 1%;
+
+    .btn-close {
+      margin-right: 3%;
+    }
+
+    .btn-save {
+    }
   }
 }

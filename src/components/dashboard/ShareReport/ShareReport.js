@@ -73,8 +73,9 @@ const ShareReport = ({ closeDialogs }) => {
 
   return (
     <div className="shareReportComponent">
-      <Box>
+      <Box className="box-select">
         <MultiSelectList
+          className="multibox-select"
           clearText="clear"
           filterOptionsArgs={{}}
           helperText="Helper"
@@ -91,13 +92,13 @@ const ShareReport = ({ closeDialogs }) => {
           popperHeight={0}
         />
 
-        <div>
-          <Button className="btn-close" onClick={closeShareReport}>
-            Close
-          </Button>
-          <Button className="btn-save" onClick={shareReportAction}>
-            Share
-          </Button>
+        <div className="btn-div">
+                <Button className="btn-close" onClick={closeShareReport}>
+                    Close
+                  </Button>
+                  <Button className="btn-save" onClick={shareReportAction}>
+                    Share
+                  </Button>
         </div>
       </Box>
     </div>
