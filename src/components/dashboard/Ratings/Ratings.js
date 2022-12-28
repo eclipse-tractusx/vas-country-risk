@@ -60,7 +60,7 @@ const Ratings = ({
   //Gets Current Roles for the User
   const role = companyUser.roles;
 
-  const [timer, setTimer] = React.useState(0)
+  const [timer, setTimer] = React.useState(0);
 
   useEffect(() => {
     const reportRates = Array.isArray(reportValuesContext)
@@ -72,9 +72,9 @@ const Ratings = ({
 
   const openDialog = () => {
     setOpen(!open);
-    if(openAlert === true) {
-      setOpenAlert(!open)
-      hideAlert()
+    if (openAlert === true) {
+      setOpenAlert(!open);
+      hideAlert();
     }
   };
 
@@ -196,7 +196,7 @@ const Ratings = ({
         }
       });
     setOpenWarning(!openWarning);
-    timerFuntion();
+    timerFunction();
   };
 
   const hideAlert = () => {
@@ -210,20 +210,19 @@ const Ratings = ({
     setOpenWarning(true);
   };
 
-  const timerFuntion = () => {
+  const timerFunction = () => {
     if (timer) {
-      clearTimeout(timer)
+      clearTimeout(timer);
     }
 
     setTimer(
       setTimeout(() => {
-        setSeverityDelete('')
-        setSeverityMessageDelete('')
-        setOpenAlert(false)
-        console.log('timeout')
-      }, 4000),
-    )
-  }
+        setSeverityDelete("");
+        setSeverityMessageDelete("");
+        setOpenAlert(false);
+      }, 4000)
+    );
+  };
 
   return (
     <div className="rating-table">
@@ -321,7 +320,10 @@ const Ratings = ({
         </div>
         <div className="header">
           <h2>Ratings table</h2>
-          <p>In this it is possible to see the ratings. They can be selected one at a time or all at the same time.</p>
+          <p>
+            In this it is possible to see the ratings. They can be selected one
+            at a time or all at the same time.
+          </p>
         </div>
         <div className="rating-div-table-expand-style">
           <Table

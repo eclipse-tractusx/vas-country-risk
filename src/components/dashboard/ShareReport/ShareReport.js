@@ -93,12 +93,12 @@ const ShareReport = ({ closeDialogs }) => {
         />
 
         <div className="btn-div">
-                <Button className="btn-close" onClick={closeShareReport}>
-                    Close
-                  </Button>
-                  <Button className="btn-save" onClick={shareReportAction}>
-                    Share
-                  </Button>
+          <Button className="btn-close" onClick={closeShareReport}>
+            Close
+          </Button>
+          <Button className="btn-save" onClick={shareReportAction}>
+            Share
+          </Button>
         </div>
       </Box>
     </div>

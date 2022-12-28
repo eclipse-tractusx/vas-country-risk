@@ -91,6 +91,8 @@ const Reports = () => {
   //Dialog on delete and save/update operation
   const [operation, setOperation] = useState("");
 
+  const [timer, setTimer] = React.useState(0);
+
   useEffect(() => {
     role.includes("Company Admin") ? setReportType(false) : setReportType(true);
   }, [role]);
@@ -129,7 +131,6 @@ const Reports = () => {
       list
     );
 
-    console.log("save report", newReport);
     if (newReport.id !== null) {
       updateReports(UserService.getToken(), companyUser, newReport)
         .then((res) => {
@@ -150,7 +151,6 @@ const Reports = () => {
     } else {
       saveReports(UserService.getToken(), companyUser, newReport)
         .then((res) => {
-          console.log("res", res);
           updateReload(!reload);
         })
         .catch((response) => {
@@ -163,6 +163,7 @@ const Reports = () => {
         });
     }
     closeDialogs();
+    timerFunction();
   };
 
   const setMessage = () => {
@@ -174,6 +175,8 @@ const Reports = () => {
     setSeverity("");
     setSeverityMessage("");
     setOpen(!open);
+    setErrorTrigger(true);
+    setValueDialogTextField(null);
 
     const customSelection = prefixIds.find(
       (element) => element.type === "Custom"
@@ -232,7 +235,6 @@ const Reports = () => {
 
   const onClickActionDeleteUpdate =
     (id, operation, doubleCheckMessage) => () => {
-      console.log("onClickActionDeleteUpdate", id);
       setOperation(operation);
       setDoubleCheckMessage(doubleCheckMessage);
       setOpenWarning(true);
@@ -257,6 +259,7 @@ const Reports = () => {
         );
       });
     closeDialogs();
+    timerFunction();
   };
 
   const validateUpdateDeleteResponseCode = (
@@ -265,15 +268,15 @@ const Reports = () => {
     errorMessage
   ) => {
     if (code.status === 204) {
-      setOpenAlert(!openAlert);
+      setOpenAlert(true);
       setSeverityDelete("success");
       setSeverityMessageDelete(successMessage);
     } else if (code === 401) {
-      setOpenAlert(!openAlert);
+      setOpenAlert(true);
       setSeverityDelete("error");
       setSeverityMessageDelete(errorMessage);
     } else if (code === 500) {
-      setOpenAlert(!openAlert);
+      setOpenAlert(true);
       setSeverityDelete("error");
       setSeverityMessageDelete("Wrong Request Type!");
     }
@@ -294,7 +297,6 @@ const Reports = () => {
     setOpenAlert(!openAlert);
   };
 
-  //only delete Columns
   const columnsUser = [
     {
       field: "radiobutton",
@@ -381,6 +383,20 @@ const Reports = () => {
     },
   ];
 
+  const timerFunction = () => {
+    if (timer) {
+      clearTimeout(timer);
+    }
+
+    setTimer(
+      setTimeout(() => {
+        setSeverityDelete("");
+        setSeverityMessageDelete("");
+        setOpenAlert(false);
+      }, 4000)
+    );
+  };
+
   return (
     <div className="reportdiv">
       <div className="alertDialog">
@@ -404,7 +420,11 @@ const Reports = () => {
       </div>
       <div className="reports-header">
         <TextField
-          InputProps={{ style: { fontSize: 12 } }}
+          InputProps={{
+            style: { fontSize: 12 },
+            readOnly: true,
+            disableUnderline: true,
+          }} //Block edit on textfield
           className="formReports"
           variant="filled"
           value={valueTextField}
@@ -451,9 +471,6 @@ const Reports = () => {
           <div>
             <h3>{doubleCheckMessage}</h3>
           </div>
-          <Alert severity="warning">
-            <span>This cannot be undone</span>
-          </Alert>
           <div className="warning-header">
             <Button
               className="btn-no"
@@ -479,7 +496,7 @@ const Reports = () => {
           </FormLabel>
           <div className="CheckBox-Div">
             <RadioGroup
-              defaultValue="Custom"
+              value={valueType}
               className="CheckBox-Div-Radio"
               aria-labelledby="demo-controlled-radio-buttons-group"
               name="controlled-radio-buttons-group"

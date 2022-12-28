@@ -53,7 +53,7 @@ const RangeSlider = () => {
           setSeverityMessageRange("No permissions!");
         }
       });
-    timerFuntion();
+    timerFunction();
   };
 
   const [minValue, setMin] = useState(37);
@@ -183,7 +183,7 @@ const RangeSlider = () => {
       setSeverityRange("error");
       setSeverityMessageRange("Overlap Value");
       setOpenAlert(true);
-      timerFuntion();
+      timerFunction();
     }
   };
 
@@ -218,7 +218,7 @@ const RangeSlider = () => {
       setSeverityRange("error");
       setSeverityMessageRange("Overlap Value");
       setOpenAlert(true);
-      timerFuntion();
+      timerFunction();
     }
   };
 
@@ -242,7 +242,7 @@ const RangeSlider = () => {
       setSeverityRange("error");
       setSeverityMessageRange("Overlap Value");
       setOpenAlert(true);
-      timerFuntion();
+      timerFunction();
     }
   };
 
@@ -288,7 +288,7 @@ const RangeSlider = () => {
       setSeverityRange("error");
       setSeverityMessageRange("Overlap Value");
       setOpenAlert(true);
-      timerFuntion();
+      timerFunction();
     }
   };
 
@@ -320,7 +320,7 @@ const RangeSlider = () => {
     setOpenAlert(!openAlert);
   };
 
-  const timerFuntion = () => {
+  const timerFunction = () => {
     if (timer) {
       clearTimeout(timer);
     }
@@ -480,6 +480,25 @@ const RangeSlider = () => {
             />
           </Grid>
         </Grid>
+        <div className="alertDialog">
+          <Collapse in={openAlert}>
+            <Alert
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={hideAlert}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+              severity={severityRange}
+            >
+              <span>{severityMessageRange}</span>
+            </Alert>
+          </Collapse>
+        </div>
       </div>
     </>
   );
