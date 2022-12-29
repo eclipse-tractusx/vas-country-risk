@@ -71,9 +71,9 @@ const Reports = () => {
   //Delete Boolean
   const [selectedID, setSelectedID] = useState(null);
 
-  //Delete Warning
-  const [severityDelete, setSeverityDelete] = useState("");
-  const [severityMessageDelete, setSeverityMessageDelete] = useState("");
+  //Alert trigger consts Delete/Save
+  const [severityAlert, setSeverityAlert] = useState("");
+  const [severityMessageAlert, setSeverityMessageAlert] = useState("");
 
   //Gets Current Roles for the User
   const role = companyUser.roles;
@@ -154,9 +154,9 @@ const Reports = () => {
           setOpen(false)
           updateReload(!reload);
           if (res.status === 200) {
-            setOpenAlert(true)
-            setSeverityDelete('success')
-            setSeverityMessageDelete('Report saved sucessfully!')
+            setOpenAlert(true);
+            setSeverityAlert('success');
+            setSeverityMessageAlert('Report saved sucessfully!');
           }
         })
         .catch((response) => {
@@ -275,16 +275,16 @@ const Reports = () => {
   ) => {
     if (code.status === 204) {
       setOpenAlert(true);
-      setSeverityDelete("success");
-      setSeverityMessageDelete(successMessage);
+      setSeverityAlert("success");
+      setSeverityMessageAlert(successMessage);
     } else if (code === 401) {
       setOpenAlert(true);
-      setSeverityDelete("error");
-      setSeverityMessageDelete(errorMessage);
+      setSeverityAlert("error");
+      setSeverityMessageAlert(errorMessage);
     } else if (code === 500) {
       setOpenAlert(true);
-      setSeverityDelete("error");
-      setSeverityMessageDelete("Wrong Request Type!");
+      setSeverityAlert("error");
+      setSeverityMessageAlert("Wrong Request Type!");
     }
   };
 
@@ -298,8 +298,8 @@ const Reports = () => {
   };
 
   const hideAlert = () => {
-    setSeverityDelete("");
-    setSeverityMessageDelete("");
+    setSeverityAlert("");
+    setSeverityMessageAlert("");
     setOpenAlert(!openAlert);
   };
 
@@ -396,8 +396,8 @@ const Reports = () => {
 
     setTimer(
       setTimeout(() => {
-        setSeverityDelete("");
-        setSeverityMessageDelete("");
+        setSeverityAlert("");
+        setSeverityMessageAlert("");
         setOpenAlert(false);
       }, 4000)
     );
@@ -418,9 +418,9 @@ const Reports = () => {
                 <CloseIcon fontSize="inherit" />
               </IconButton>
             }
-            severity={severityDelete}
+            severity={severityAlert}
           >
-            <span>{severityMessageDelete}</span>
+            <span>{severityMessageAlert}</span>
           </Alert>
         </Collapse>
       </div>
