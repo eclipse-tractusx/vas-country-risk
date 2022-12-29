@@ -151,7 +151,13 @@ const Reports = () => {
     } else {
       saveReports(UserService.getToken(), companyUser, newReport)
         .then((res) => {
+          setOpen(false)
           updateReload(!reload);
+          if (res.status === 200) {
+            setOpenAlert(true)
+            setSeverityDelete('success')
+            setSeverityMessageDelete('Report saved sucessfully!')
+          }
         })
         .catch((response) => {
           if (response.response.status === 400) {
@@ -481,7 +487,7 @@ const Reports = () => {
             </Button>
             <Button
               onClick={decideAction}
-              //disabled={validateSave}
+            //disabled={validateSave}
             >
               Yes
             </Button>

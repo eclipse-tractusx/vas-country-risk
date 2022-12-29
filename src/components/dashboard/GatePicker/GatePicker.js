@@ -8,8 +8,6 @@ import Box from "@mui/material/Box";
 import { getUserBpdmGates } from "../../services/gate-api";
 import UserService from "../../services/UserService";
 import { CompanyUserContext } from "../../../contexts/companyuser";
-import { ReportContext } from "../../../contexts/reports";
-import { ReloadContext } from "../../../contexts/refresh";
 import { GatesContext } from "../../../contexts/gates";
 
 const GatePicker = () => {
