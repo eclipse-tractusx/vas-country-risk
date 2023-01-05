@@ -31,6 +31,9 @@ import DeleteIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import ShareReport from "../ShareReport/ShareReport";
+import DeleteUpdateComponent from "../DeleteUpdateComponent/DeleteUpdateComponent";
+
+import { DeleteOrUpdate } from "../../model/DeleteOrUpdate";
 
 const Reports = () => {
   const [selectionModel, setSelectionModel] = useState([]);
@@ -68,9 +71,6 @@ const Reports = () => {
   //Warning Dialog
   const [openWarning, setOpenWarning] = useState(false);
 
-  //Delete Boolean
-  const [selectedID, setSelectedID] = useState(null);
-
   //Alert trigger consts Delete/Save
   const [severityAlert, setSeverityAlert] = useState("");
   const [severityMessageAlert, setSeverityMessageAlert] = useState("");
@@ -82,14 +82,12 @@ const Reports = () => {
   const [severityMessage, setSeverityMessage] = useState("");
   const [reportType, setReportType] = useState(false);
   const [editDeleteShareActive, setEditDeleteShareActive] = useState(true);
+
   //Open Error/Sucess Dialog
   const [openAlert, setOpenAlert] = React.useState(false);
 
-  //Dialog on delete and save/update messages
-  const [doubleCheckMessage, setDoubleCheckMessage] = useState("");
-
-  //Dialog on delete and save/update operation
-  const [operation, setOperation] = useState("");
+  //Const used to pass Delete/Update Information to the other component
+  const [deleteUpdateData, setDeleteUpdateData] = useState("");
 
   const [timer, setTimer] = React.useState(0);
 
@@ -113,7 +111,24 @@ const Reports = () => {
     setOpenShareReport(false);
   };
 
-  const closeDialogsAndSave = () => {
+  //Close Dialog function for DeleteAndUpdateComponent
+  const closeDialogsDeleteAndUpdate = (    
+    code,
+    successMessage,
+    errorMessage) => {
+    if(code !== null) {
+      validateUpdateDeleteResponseCode(code,successMessage,errorMessage);
+    }
+    setValidateSave(true);
+    setOpen(false);
+    setOpenWarning(false);
+    setOpenShareReport(false);
+    updateReload(!reload);
+  };
+
+  //Func to create a new Report Object
+  const newReportFunc = (operation, id) => {
+
     const list = [];
     list.push(
       { name: "Range", objectValue: ranges },
@@ -121,8 +136,16 @@ const Reports = () => {
       { name: "Ratings", objectValue: prefixIds }
     );
 
+    let idObj;
+    
+    if(operation === "Save Changes" || "Delete Report") {
+      idObj = id ? id : null;
+    } else if (operation === "Save Report") {
+      idObj = null;
+    }
+
     const newReport = new Report(
-      selectedID ? selectedID : null,
+      idObj ? idObj : null,
       valueDialogTextField,
       companyUser.name,
       companyUser.companyName,
@@ -131,24 +154,16 @@ const Reports = () => {
       list
     );
 
-    if (newReport.id !== null) {
-      updateReports(UserService.getToken(), companyUser, newReport)
-        .then((res) => {
-          updateReload(!reload);
-          validateUpdateDeleteResponseCode(
-            res,
-            "Report changed sucessfully!",
-            "You do not have the permission to change this report!"
-          );
-        })
-        .catch((err) => {
-          validateUpdateDeleteResponseCode(
-            err.response.data.status,
-            "Report changed sucessfully!",
-            "You do not have the permission to change this report!"
-          );
-        });
-    } else {
+    return newReport;
+
+  }
+
+  const closeDialogsAndSave = () => {
+
+    //Creates a Report Object (Operation, ID)
+    const newReport = newReportFunc("Save Report", null);
+
+    if (newReport.id === null) {
       saveReports(UserService.getToken(), companyUser, newReport)
         .then((res) => {
           setOpen(false)
@@ -241,32 +256,22 @@ const Reports = () => {
 
   const onClickActionDeleteUpdate =
     (id, operation, doubleCheckMessage) => () => {
-      setOperation(operation);
-      setDoubleCheckMessage(doubleCheckMessage);
-      setOpenWarning(true);
-      setSelectedID(id);
-    };
 
-  const closeDialogsAndDelete = () => {
-    deleteReport(UserService.getToken(), companyUser, selectedID)
-      .then((code) => {
-        updateReload(!reload);
-        validateUpdateDeleteResponseCode(
-          code,
-          "Report delete sucessfully!",
-          "You do not have the permission to deleted this report!"
-        );
-      })
-      .catch((err) => {
-        validateUpdateDeleteResponseCode(
-          err.response.data.status,
-          "Report delete sucessfully!",
-          "You do not have the permission to deleted this report!"
-        );
-      });
-    closeDialogs();
-    timerFunction();
-  };
+      //Creates a Report Object (Operation, ID)
+      const newReport = newReportFunc(operation, id);
+
+      //Creates an Object with ID, Operation Type (Update/Delete) and Message
+      const newDeleteOrUpdate = new DeleteOrUpdate(
+        id ? id : null,
+        operation,
+        doubleCheckMessage,
+        newReport
+      );
+
+      setDeleteUpdateData(newDeleteOrUpdate)
+      setOpenWarning(true);
+
+    };
 
   const validateUpdateDeleteResponseCode = (
     code,
@@ -277,24 +282,18 @@ const Reports = () => {
       setOpenAlert(true);
       setSeverityAlert("success");
       setSeverityMessageAlert(successMessage);
+      timerFunction();
     } else if (code === 401) {
       setOpenAlert(true);
       setSeverityAlert("error");
       setSeverityMessageAlert(errorMessage);
-    } else if (code === 500) {
+      timerFunction();
+    } else if (code === 500 || 400) {
       setOpenAlert(true);
       setSeverityAlert("error");
       setSeverityMessageAlert("Wrong Request Type!");
+      timerFunction();
     }
-  };
-
-  const decideAction = () => {
-    if (operation === "Save Changes") {
-      closeDialogsAndSave();
-    } else if (operation === "Delete Report") {
-      closeDialogsAndDelete();
-    }
-    setSelectedID(null);
   };
 
   const hideAlert = () => {
@@ -471,28 +470,10 @@ const Reports = () => {
         open={openWarning}
         onClose={closeDialogs}
       >
-        <div className="Dialog-Expand-Div">
-          <h2>{operation}</h2>
-
-          <div>
-            <h3>{doubleCheckMessage}</h3>
-          </div>
-          <div className="warning-header">
-            <Button
-              className="btn-no"
-              variant="outlined"
-              onClick={closeDialogs}
-            >
-              No
-            </Button>
-            <Button
-              onClick={decideAction}
-            //disabled={validateSave}
-            >
-              Yes
-            </Button>
-          </div>
-        </div>
+        <DeleteUpdateComponent 
+        deleteUpdateData={deleteUpdateData} 
+        closeDialogsDeleteAndUpdate={closeDialogsDeleteAndUpdate}
+        closeDialogsDeleteRatings={null}/>
       </Dialog>
 
       <Dialog open={open} onClose={closeDialogs} className="Dialog-Expand">

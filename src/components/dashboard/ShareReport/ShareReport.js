@@ -11,6 +11,7 @@ import { ReportContext } from "../../../contexts/reports";
 import { Report } from "../../model/Report";
 
 const ShareReport = ({ closeDialogs }) => {
+  
   const { companyUser } = useContext(CompanyUserContext);
 
   const [emailsData, setEmailsData] = useState([]);

@@ -16,6 +16,9 @@ import { ReloadContext } from "../../../contexts/refresh";
 import CloseIcon from "@mui/icons-material/Close";
 import Collapse from "@mui/material/Collapse";
 
+import DeleteUpdateComponent from "../DeleteUpdateComponent/DeleteUpdateComponent";
+import { DeleteOrUpdate } from "../../model/DeleteOrUpdate";
+
 const Ratings = ({
   passAutomaticWeightChange,
   passValuesFromComponent,
@@ -51,14 +54,14 @@ const Ratings = ({
   //Warning Dialog
   const [openWarning, setOpenWarning] = useState(false);
 
-  //Delete Boolean
-  const [deleteID, setDeleteID] = useState(0);
-
   //Open Error/Success Dialog
   const [openAlert, setOpenAlert] = React.useState(false);
 
   //Gets Current Roles for the User
   const role = companyUser.roles;
+
+  //Const used to pass Delete/Update Information to the other component
+  const [deleteUpdateData, setDeleteUpdateData] = useState("");
 
   const [timer, setTimer] = React.useState(0);
 
@@ -171,32 +174,40 @@ const Ratings = ({
     passAutomaticWeightChange(sumTotalEffect);
   }, [sumTotalEffect]);
 
-  const closeDialogsAndDelete = () => {
-    deleteRating(UserService.getToken(), companyUser, deleteID)
-      .then((code) => {
-        updateReload(!reload);
-        if (code.status === 204) {
-          setOpenAlert(true);
-          setSeverityDelete("success");
-          setSeverityMessageDelete("Rating delete sucessfully!");
-        }
-      })
-      .catch((err) => {
-        if (err.response.data.status === 401) {
-          setOpenAlert(true);
-          setSeverityDelete("error");
-          setSeverityMessageDelete(
-            "You do not have the permission to deleted this rating!"
-          );
-        }
-        if (err.response.data.status === 500) {
-          setOpenAlert(true);
-          setSeverityDelete("error");
-          setSeverityMessageDelete("Wrong Request Type!");
-        }
-      });
-    setOpenWarning(!openWarning);
-    timerFunction();
+  //Close Dialog function for DeleteAndUpdateComponent
+  const closeDialogsDeleteRatings = (    
+    code,
+    successMessage,
+    errorMessage) => {
+    if(code !== null) {
+      validateUpdateDeleteResponseCode(code,successMessage,errorMessage);
+    }
+    setOpen(false);
+    setOpenWarning(false);
+    updateReload(!reload);
+  };  
+
+  const validateUpdateDeleteResponseCode = (
+    code,
+    successMessage,
+    errorMessage
+  ) => {
+    if (code.status === 204) {
+      setOpenAlert(true);
+      setSeverityDelete("success");
+      setSeverityMessageDelete(successMessage);
+      timerFunction();
+    } else if (code === 401) {
+      setOpenAlert(true);
+      setSeverityDelete("error");
+      setSeverityMessageDelete(errorMessage);
+      timerFunction();
+    } else if (code === 500 || 400) {
+      setOpenAlert(true);
+      setSeverityDelete("error");
+      setSeverityMessageDelete("Wrong Request Type!");
+      timerFunction();
+    }
   };
 
   const hideAlert = () => {
@@ -206,7 +217,17 @@ const Ratings = ({
   };
 
   const onClickDelete = (id) => () => {
-    setDeleteID(id);
+
+    //Creates an Object with ID, Operation Type (Update/Delete) and Message
+    const newDeleteOrUpdate = new DeleteOrUpdate(
+      id ? id : null,
+      "Delete Rating",
+      "Do you want to delete this Rating?",
+      null
+    );
+
+    setDeleteUpdateData(newDeleteOrUpdate)
+
     setOpenWarning(true);
   };
 
@@ -289,22 +310,10 @@ const Ratings = ({
         open={openWarning}
         onClose={openWarn}
       >
-        <div className="Dialog-Expand-Div">
-          <div>
-            <h2>Do you want to delete this Rating?</h2>
-          </div>
-          <div className="warning-header">
-            <Button variant="outlined" className="btn-no" onClick={openWarn}>
-              No
-            </Button>
-            <Button
-              onClick={closeDialogsAndDelete}
-              //disabled={validateSave}
-            >
-              Yes
-            </Button>
-          </div>
-        </div>
+        <DeleteUpdateComponent 
+        deleteUpdateData={deleteUpdateData} 
+        closeDialogsDeleteAndUpdate={null}
+        closeDialogsDeleteRatings={closeDialogsDeleteRatings}/>
       </Dialog>
 
       <Dialog

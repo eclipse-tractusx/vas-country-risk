@@ -1,0 +1,107 @@
+.reportdiv {
+  //Main Dashboard
+
+  .alertDialog {
+    margin-top: 1%;
+  }
+
+  .reports-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 2%;
+
+    //Form
+    .formReports {
+      width: 60%;
+      //border: 1px solid #000;
+    }
+
+    .divider {
+      width: 12%;
+    }
+
+    .ButtonSave {
+      float: right;
+    }
+  }
+
+  //DataGrid Table
+  .table {
+    height: 100% !important;
+    display: flex;
+    width: 100%;
+    //border: 3px solid #000;
+    font-size: 12px;
+    text-align: center;
+    background-color: white;
+  }
+}
+
+.warning-header {
+  margin: 2%;
+
+  .btn-no {
+    margin-right: 5%;
+  }
+}
+
+.Dialog-Expand {
+  height: 100% !important;
+  width: 30%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 250px;
+
+  .Dialog-Expand-Div {
+    text-align: center;
+    background-color: #edf0f4;
+    border-radius: 39px !important;
+    border: 2px solid #000;
+
+    .FirstLabel {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .SecondLabel {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .CheckBox-Div {
+      margin-top: 1%;
+      width: auto;
+
+      .CheckBox-Div-Radio {
+        display: inline;
+      }
+    }
+
+    .input-report {
+      margin-top: 1%;
+      margin-left: 10%;
+      margin-right: 10%;
+      border: 1px solid #000;
+    }
+
+    .btn-close {
+      margin-right: 5%;
+      margin-bottom: 5%;
+    }
+
+    .btn-save {
+      margin-bottom: 5%;
+    }
+  }
+}
+
+.share-dialog-expand {
+  height: 100%;
+  width: 50%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 250px;
+}
