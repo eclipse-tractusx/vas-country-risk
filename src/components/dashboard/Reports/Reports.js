@@ -117,10 +117,7 @@ const Reports = () => {
     successMessage,
     errorMessage) => {
     validateUpdateDeleteResponseCode(code,successMessage,errorMessage);
-    setValidateSave(true);
-    setOpen(false);
-    setOpenWarning(false);
-    setOpenShareReport(false);
+    closeDialogs();
     updateReload(!reload);
   };
 

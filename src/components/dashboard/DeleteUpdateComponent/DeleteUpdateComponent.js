@@ -20,24 +20,21 @@ const DeleteUpdateComponent = ({ deleteUpdateData, closeDialogsDeleteAndUpdate, 
 
   //Close Dialog and Update Report
   const closeDialogsAndSave = () => {
-
-    if (deleteUpdateData.id !== null) {
-      updateReports(UserService.getToken(), companyUser, deleteUpdateData.newReport)
-        .then((res) => {
-          closeDialogsDeleteAndUpdate(
-            res,
-            "Report changed sucessfully!",
-            "You do not have the permission to change this report!"
-          );
-        })
-        .catch((err) => {
-          closeDialogsDeleteAndUpdate(
-            err.response.data.status,
-            "Report changed sucessfully!",
-            "You do not have the permission to change this report!"
-          );
-        });
-    } 
+    updateReports(UserService.getToken(), companyUser, deleteUpdateData.newReport)
+      .then((res) => {
+        closeDialogsDeleteAndUpdate(
+          res,
+          "Report changed sucessfully!",
+          "You do not have the permission to change this report!"
+        );
+      })
+      .catch((err) => {
+        closeDialogsDeleteAndUpdate(
+          err.response.data.status,
+          "Report changed sucessfully!",
+          "You do not have the permission to change this report!"
+        );
+    }); 
   };
 
   //Function to call the DELETE Report API
