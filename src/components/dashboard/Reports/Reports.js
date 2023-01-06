@@ -238,7 +238,7 @@ const Reports = () => {
   const clearButton = () => {
     setSelectionModel([]);
     setValueTextField("Select a Report Bellow");
-    setValueRadioChecked(!valueRadioChecked);
+    setValueRadioChecked(true);
     updateReport("");
     updateReload(!reload);
     setEditDeleteShareActive(true);
@@ -452,6 +452,7 @@ const Reports = () => {
         disableColumnSelector={true}
         disableColumnMenu={true}
         onSelectionModelChange={(newSelectionModel) => {
+          handleChange();
           setSelectionModel(newSelectionModel);
           const selectionSet = new Set(newSelectionModel);
           const result = report.filter((s) => selectionSet.has(s.id));
