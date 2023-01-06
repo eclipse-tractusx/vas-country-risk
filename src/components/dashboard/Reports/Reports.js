@@ -116,9 +116,7 @@ const Reports = () => {
     code,
     successMessage,
     errorMessage) => {
-    if(code !== null) {
-      validateUpdateDeleteResponseCode(code,successMessage,errorMessage);
-    }
+    validateUpdateDeleteResponseCode(code,successMessage,errorMessage);
     setValidateSave(true);
     setOpen(false);
     setOpenWarning(false);
@@ -473,7 +471,7 @@ const Reports = () => {
         <DeleteUpdateComponent 
         deleteUpdateData={deleteUpdateData} 
         closeDialogsDeleteAndUpdate={closeDialogsDeleteAndUpdate}
-        closeDialogsDeleteRatings={null}/>
+        closeDialogs={closeDialogs}/>
       </Dialog>
 
       <Dialog open={open} onClose={closeDialogs} className="Dialog-Expand">

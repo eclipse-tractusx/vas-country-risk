@@ -6,19 +6,15 @@ import { updateReports, deleteReport } from "../../services/reports-api";
 import { deleteRating } from "../../services/ratingstable-api";
 import UserService from "../../services/UserService";
 
-const DeleteUpdateComponent = ({ deleteUpdateData, closeDialogsDeleteAndUpdate, closeDialogsDeleteRatings }) => {
+const DeleteUpdateComponent = ({ deleteUpdateData, closeDialogsDeleteAndUpdate, closeDialogs }) => {
     
   const { companyUser } = useContext(CompanyUserContext);
-
-  console.log(deleteUpdateData)
 
   const decideAction = () => {
     if (deleteUpdateData.operation === "Save Changes") {
       closeDialogsAndSave();
     } else if (deleteUpdateData.operation === "Delete Report") {
       closeDialogsAndDelete();
-    } else if (deleteUpdateData.operation === "Delete Rating") {
-      closeDialogsAndDeleteRating();
     }
   };
 
@@ -42,7 +38,6 @@ const DeleteUpdateComponent = ({ deleteUpdateData, closeDialogsDeleteAndUpdate, 
           );
         });
     } 
-    closeDialogsDeleteAndUpdate(null);
   };
 
   //Function to call the DELETE Report API
@@ -64,32 +59,8 @@ const DeleteUpdateComponent = ({ deleteUpdateData, closeDialogsDeleteAndUpdate, 
       });
   };
 
-  const closeDialogsAndDeleteRating = () => {
-    deleteRating(UserService.getToken(), companyUser, deleteUpdateData.id)
-      .then((code) => {
-        closeDialogsDeleteRatings(
-          code,
-          "Rating delete sucessfully!",
-          "You do not have the permission to deleted this rating!"
-        );
-      })
-      .catch((err) => {
-        closeDialogsDeleteRatings(
-          err.response.data.status,
-          "Rating delete sucessfully!",
-          "You do not have the permission to deleted this rating!"
-        );
-      });
-
-  };
-
   const closeDialog = () => {
-    if(deleteUpdateData.operation === "Delete Report" || deleteUpdateData.operation === "Save Changes") {
-      console.log(deleteUpdateData.operation);
-      closeDialogsDeleteAndUpdate(null); //Sets the API error code to NULL and closes Dialog
-    } else if(deleteUpdateData.operation === "Delete Rating") {
-      closeDialogsDeleteRatings(null); 
-    }
+    closeDialogs(); 
   };
 
   return (
