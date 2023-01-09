@@ -115,7 +115,9 @@ const Reports = () => {
   const closeDialogsDeleteAndUpdate = (code, successMessage, errorMessage) => {
     validateUpdateDeleteResponseCode(code, successMessage, errorMessage);
     closeDialogs();
-    updateReload(!reload);
+    if(deleteUpdateData.operation !== "Save Changes"){
+      updateReload(!reload);
+    }
   };
 
   //Func to create a new Report Object
