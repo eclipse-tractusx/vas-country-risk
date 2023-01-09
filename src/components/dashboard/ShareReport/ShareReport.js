@@ -6,41 +6,16 @@ import { getUserFromCompany } from "../../services/company-api";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { Button } from "cx-portal-shared-components";
 import UserService from "../../services/UserService";
-import { shareReports } from "../../services/reports-api";
-import { ReportContext } from "../../../contexts/reports";
-import { Report } from "../../model/Report";
 
-const ShareReport = ({ closeDialogs }) => {
-  
+import { Dialog } from "cx-portal-shared-components";
+import DeleteUpdateComponent from "../DeleteUpdateComponent/DeleteUpdateComponent";
+
+const ShareReport = ({ closeDialogs, closeDialogsDeleteAndUpdate }) => {
   const { companyUser } = useContext(CompanyUserContext);
 
   const [emailsData, setEmailsData] = useState([]);
 
   const [selectedItems, setSelectedItems] = useState([]);
-
-  const { report, reportValuesContext } = useContext(ReportContext);
-
-  const saveReportForEachPerson = () => {
-    selectedItems.forEach((eachPerson) => {
-      const newReport = new Report(
-        null,
-        report.reportName,
-        eachPerson.name,
-        eachPerson.companyName,
-        eachPerson.email,
-        "Custom",
-        reportValuesContext
-      );
-      shareReports(UserService.getToken(), companyUser, newReport)
-        .then((res) => {
-          console.log("success", res);
-        })
-        .catch((err) => {
-          console.log("error", err);
-        });
-    });
-    closeDialogs();
-  };
 
   //Get Reports By user
   useEffect(() => {
@@ -64,8 +39,11 @@ const ShareReport = ({ closeDialogs }) => {
     setSelectedItems(item);
   };
 
+  const [openWarning, setOpenWarning] = useState(false);
   const shareReportAction = () => {
-    saveReportForEachPerson();
+    selectedItems.operation = "Share Report";
+    selectedItems.doubleCheckMessage = "Do you want to share this Report?";
+    setOpenWarning(true);
   };
 
   const closeShareReport = () => {
@@ -102,6 +80,18 @@ const ShareReport = ({ closeDialogs }) => {
           </Button>
         </div>
       </Box>
+      <Dialog
+        className="share-double-check-warning"
+        aria-labelledby="customized-dialog-title"
+        open={openWarning}
+        onClose={closeDialogs}
+      >
+        <DeleteUpdateComponent
+          deleteUpdateData={selectedItems}
+          closeDialogsDeleteAndUpdate={closeDialogsDeleteAndUpdate}
+          closeDialogs={closeDialogs}
+        />
+      </Dialog>
     </div>
   );
 };

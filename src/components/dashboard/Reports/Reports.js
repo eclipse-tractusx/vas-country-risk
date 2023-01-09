@@ -112,18 +112,14 @@ const Reports = () => {
   };
 
   //Close Dialog function for DeleteAndUpdateComponent
-  const closeDialogsDeleteAndUpdate = (    
-    code,
-    successMessage,
-    errorMessage) => {
-    validateUpdateDeleteResponseCode(code,successMessage,errorMessage);
+  const closeDialogsDeleteAndUpdate = (code, successMessage, errorMessage) => {
+    validateUpdateDeleteResponseCode(code, successMessage, errorMessage);
     closeDialogs();
     updateReload(!reload);
   };
 
   //Func to create a new Report Object
   const newReportFunc = (operation, id) => {
-
     const list = [];
     list.push(
       { name: "Range", objectValue: ranges },
@@ -132,8 +128,8 @@ const Reports = () => {
     );
 
     let idObj;
-    
-    if(operation === "Save Changes" || "Delete Report") {
+
+    if (operation === "Save Changes" || "Delete Report") {
       idObj = id ? id : null;
     } else if (operation === "Save Report") {
       idObj = null;
@@ -150,23 +146,21 @@ const Reports = () => {
     );
 
     return newReport;
-
-  }
+  };
 
   const closeDialogsAndSave = () => {
-
     //Creates a Report Object (Operation, ID)
     const newReport = newReportFunc("Save Report", null);
 
     if (newReport.id === null) {
       saveReports(UserService.getToken(), companyUser, newReport)
         .then((res) => {
-          setOpen(false)
+          setOpen(false);
           updateReload(!reload);
           if (res.status === 200) {
             setOpenAlert(true);
-            setSeverityAlert('success');
-            setSeverityMessageAlert('Report saved sucessfully!');
+            setSeverityAlert("success");
+            setSeverityMessageAlert("Report saved sucessfully!");
           }
         })
         .catch((response) => {
@@ -251,7 +245,6 @@ const Reports = () => {
 
   const onClickActionDeleteUpdate =
     (id, operation, doubleCheckMessage) => () => {
-
       //Creates a Report Object (Operation, ID)
       const newReport = newReportFunc(operation, id);
 
@@ -263,9 +256,8 @@ const Reports = () => {
         newReport
       );
 
-      setDeleteUpdateData(newDeleteOrUpdate)
+      setDeleteUpdateData(newDeleteOrUpdate);
       setOpenWarning(true);
-
     };
 
   const validateUpdateDeleteResponseCode = (
@@ -283,7 +275,7 @@ const Reports = () => {
       setSeverityAlert("error");
       setSeverityMessageAlert(errorMessage);
       timerFunction();
-    } else if (code === 500 || 400) {
+    } else if (code === 500 || code === 400) {
       setOpenAlert(true);
       setSeverityAlert("error");
       setSeverityMessageAlert("Wrong Request Type!");
@@ -466,10 +458,11 @@ const Reports = () => {
         open={openWarning}
         onClose={closeDialogs}
       >
-        <DeleteUpdateComponent 
-        deleteUpdateData={deleteUpdateData} 
-        closeDialogsDeleteAndUpdate={closeDialogsDeleteAndUpdate}
-        closeDialogs={closeDialogs}/>
+        <DeleteUpdateComponent
+          deleteUpdateData={deleteUpdateData}
+          closeDialogsDeleteAndUpdate={closeDialogsDeleteAndUpdate}
+          closeDialogs={closeDialogs}
+        />
       </Dialog>
 
       <Dialog open={open} onClose={closeDialogs} className="Dialog-Expand">
@@ -532,7 +525,10 @@ const Reports = () => {
         open={openShareReport}
         onClose={closeDialogs}
       >
-        <ShareReport closeDialogs={closeDialogs}></ShareReport>
+        <ShareReport
+          closeDialogs={closeDialogs}
+          closeDialogsDeleteAndUpdate={closeDialogsDeleteAndUpdate}
+        ></ShareReport>
       </Dialog>
     </div>
   );
