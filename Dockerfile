@@ -28,6 +28,8 @@ RUN npm run build
 
 FROM nginxinc/nginx-unprivileged:stable-alpine
 
+USER swuser
+
 WORKDIR /usr/share/nginx/html
 
 COPY --from=compile-image /build .
