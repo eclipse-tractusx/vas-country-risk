@@ -28,11 +28,6 @@ RUN npm run build
 
 FROM nginxinc/nginx-unprivileged:latest
 
-RUN useradd -m someuser
-
-# Set 'someuser' as the default user
-USER someuser
-
 WORKDIR /usr/share/nginx/html
 
 COPY --from=compile-image /build .
