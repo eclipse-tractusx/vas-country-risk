@@ -1,4 +1,4 @@
-FROM node:16.15.1 AS compile-image
+FROM node:latest AS compile-image
 
 COPY . .
 
