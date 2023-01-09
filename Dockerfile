@@ -28,10 +28,6 @@ RUN npm run build
 
 FROM nginxinc/nginx-unprivileged:latest
 
-RUN groupadd -r swuser -g 433 && \
-    useradd -u 431 -r -g swuser -s /sbin/nologin -c "Docker image user" swuser
-
-USER swuser
 
 WORKDIR /usr/share/nginx/html
 
