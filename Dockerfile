@@ -45,8 +45,6 @@ ENTRYPOINT ["nginx", "-g", "daemon off;"]
 EXPOSE 8080
 
 
-
-
 EXPOSE 80
 
 
