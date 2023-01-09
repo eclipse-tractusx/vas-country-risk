@@ -86,12 +86,12 @@ const ShareReport = ({ closeDialogs, closeDialogsDeleteAndUpdate }) => {
         open={openWarning}
         onClose={closeDialogs}
       >
-        <div className="Teste">        <DeleteUpdateComponent
-          deleteUpdateData={selectedItems}
-          closeDialogsDeleteAndUpdate={closeDialogsDeleteAndUpdate}
-          closeDialogs={closeDialogs}
-        /></div>
-
+        <div className="Teste">    <DeleteUpdateComponent
+            deleteUpdateData={selectedItems}
+            closeDialogsDeleteAndUpdate={closeDialogsDeleteAndUpdate}
+            closeDialogs={closeDialogs}
+          />
+        </div>
       </Dialog>
     </div>
   );
