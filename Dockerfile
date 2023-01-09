@@ -4,6 +4,8 @@ COPY . .
 
 ENV PATH="./node_modules/.bin:$PATH"
 
+RUN apt-get update && apt-get install -y
+
 RUN npm install react-dom --legacy-peer-deps
 
 RUN npm install jest enzyme enzyme-adapter-react-16 @babel/core @babel/preset-env --legacy-peer-deps
@@ -25,6 +27,10 @@ RUN npm install --legacy-peer-deps
 RUN npm install curl@latest --legacy-peer-deps
 
 RUN npm install react-scripts --legacy-peer-deps
+
+RUN groupadd -r swuser && useradd --no-log-init -r -g swuser swuser
+
+USER swuser
 
 RUN npm run build
 
