@@ -1,4 +1,4 @@
-FROM node:latest AS compile-image
+FROM node:16.15.1 AS compile-image
 
 # Create a new user called 'myuser'
 RUN useradd -m myuser
@@ -39,7 +39,7 @@ RUN npm install react-scripts --legacy-peer-deps --prefix /home/myuser
 
 RUN npm run build --prefix /home/myuser
 
-FROM nginxinc/nginx-unprivileged:latest
+FROM nginxinc/nginx-unprivileged:stable-alpine
 
 WORKDIR /usr/share/nginx/html
 
