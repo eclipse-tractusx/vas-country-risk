@@ -1,7 +1,5 @@
 FROM node:latest AS compile-image
 
-RUN apt-get update && apt-get install -y
-
 # Create a new user called 'myuser'
 RUN useradd -m myuser
 
@@ -43,7 +41,16 @@ RUN npm run build --prefix /home/myuser
 
 FROM nginxinc/nginx-unprivileged:latest
 
+# Create a new user called 'myuser'
+RUN useradd -m myuser
+
+RUN chown -R root:myuser /usr/share/nginx/html
+
+RUN chmod -R 775 /usr/share/nginx/html
+
 WORKDIR /usr/share/nginx/html
+
+USER myuser
 
 COPY --from=compile-image /home/myuser/build .
 
