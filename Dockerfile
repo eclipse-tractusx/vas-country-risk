@@ -35,26 +35,13 @@ RUN apk add libcurl=7.83.1-r5
 RUN apk search curl
 RUN apk add curl=7.83.1-r5
 
+RUN chmod -R 777 /var/cache/nginx/ && chmod -R 777 /var/run
+
 WORKDIR /usr/share/nginx/html
 
-# Create a new user called 'myuser'
-RUN adduser -D -g 'myuser' myuser
-
-RUN chown -R root:myuser .
-
-RUN chmod -R 775 .
-
-RUN chown -R root:myuser /home/myuser
-
-RUN chmod -R 775 /home/myuser
-
-RUN chown -R root:myuser /usr/share/nginx/html
-
-RUN chmod -R 775 /usr/share/nginx/html
-
-USER myuser
-
 COPY --from=compile-image /build .
+
+USER nginx
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
