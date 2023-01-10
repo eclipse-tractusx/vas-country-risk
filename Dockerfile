@@ -3,7 +3,7 @@ FROM node:16.15.1 AS compile-image
 # Create a new user called 'myuser'
 RUN useradd -m myuser
 
-COPY . . /home/myuser
+COPY . . /home/myuser/
 
 RUN chown -R root:myuser /usr/local/lib/node_modules/
 
