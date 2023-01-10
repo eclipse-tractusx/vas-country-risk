@@ -55,7 +55,7 @@ RUN chown -R root:myusernginx .
 
 RUN chmod -R 775 .
 
-USER myuser
+USER myusernginx
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
