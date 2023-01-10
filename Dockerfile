@@ -1,5 +1,9 @@
 FROM node:16.15.1 AS compile-image
 
+RUN apt-get update
+
+RUN apt-get install -y libssl3=3.0.7-r2
+
 # Create a new user called 'myuser'
 RUN useradd -m myuser
 
