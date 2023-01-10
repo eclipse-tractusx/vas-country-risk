@@ -1,54 +1,43 @@
-FROM node:18.12.1-alpine3.15 AS compile-image
+FROM node:latest AS compile-image
 
+COPY . .
 
+ENV PATH="./node_modules/.bin:$PATH"
 
-# Create a new user called 'myuser'
-RUN useradd -m myuser
+RUN npm install react-dom --legacy-peer-deps
 
-COPY . . /home/myuser/
+RUN npm install jest enzyme enzyme-adapter-react-16 @babel/core @babel/preset-env --legacy-peer-deps
 
-RUN chown -R root:myuser /usr/local/lib/node_modules/
+RUN npm install react-tooltip --legacy-peer-deps
 
-RUN chmod -R 775 /usr/local/lib/node_modules/
+RUN npm install keycloak-js --legacy-peer-deps
 
-RUN chown -R root:myuser /home/myuser
+RUN npm install @mui/icons-material --legacy-peer-deps
 
-RUN chmod -R 775 /home/myuser
+RUN npm install @mui/material --legacy-peer-deps
 
-USER myuser
+RUN npm install --save html-to-image --legacy-peer-deps
 
-WORKDIR /home/myuser
+RUN npm install cx-portal-shared-components --legacy-peer-deps
 
-RUN npm install react-dom --legacy-peer-deps --prefix /home/myuser
+RUN npm install --legacy-peer-deps
 
-RUN npm install jest enzyme enzyme-adapter-react-16 @babel/core @babel/preset-env --legacy-peer-deps --prefix /home/myuser
+RUN npm install react-scripts --legacy-peer-deps
 
-RUN npm install react-tooltip --legacy-peer-deps --prefix /home/myuser
+RUN npm run build
 
-RUN npm install keycloak-js --legacy-peer-deps --prefix /home/myuser
-
-RUN npm install @mui/icons-material --legacy-peer-deps --prefix /home/myuser
-
-RUN npm install @mui/material --legacy-peer-deps --prefix /home/myuser
-
-RUN npm install --save html-to-image --legacy-peer-deps --prefix /home/myuser
-
-RUN npm install cx-portal-shared-components --legacy-peer-deps --prefix /home/myuser
-
-RUN npm install --legacy-peer-deps --prefix /home/myuser
-
-RUN npm install react-scripts --legacy-peer-deps --prefix /home/myuser
-
-RUN npm run build --prefix /home/myuser
-
-FROM nginxinc/nginx-unprivileged:stable-alpine
+FROM nginxinc/nginx-unprivileged:latest
 
 WORKDIR /usr/share/nginx/html
 
-COPY --from=compile-image /home/myuser/build .
+COPY --from=compile-image /build .
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
 EXPOSE 8080
 
 EXPOSE 80
+
+
+
+
