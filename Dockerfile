@@ -26,12 +26,6 @@ RUN npm install --legacy-peer-deps
 
 RUN npm install react-scripts --legacy-peer-deps
 
-RUN groupadd -r swuser && useradd --no-log-init -r -g swuser swuser
-
-RUN chmod o+x /build
-
-USER swuser
-
 RUN npm run build
 
 FROM nginxinc/nginx-unprivileged:latest
