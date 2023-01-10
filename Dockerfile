@@ -24,13 +24,11 @@ RUN npm install cx-portal-shared-components --legacy-peer-deps
 
 RUN npm install --legacy-peer-deps
 
-RUN npm install curl@latest --legacy-peer-deps
-
 RUN npm install react-scripts --legacy-peer-deps
 
 RUN groupadd -r swuser && useradd --no-log-init -r -g swuser swuser
 
-RUN chmod +x build
+RUN chmod +x /build
 
 USER swuser
 
