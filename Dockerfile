@@ -48,6 +48,10 @@ RUN chown -R root:myuser /home/myuser
 
 RUN chmod -R 775 /home/myuser
 
+RUN chown -R root:myuser /usr/share/nginx/html
+
+RUN chmod -R 775 /usr/share/nginx/html
+
 USER myuser
 
 COPY --from=compile-image /build .
