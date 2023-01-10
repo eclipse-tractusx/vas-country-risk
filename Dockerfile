@@ -46,16 +46,13 @@ FROM nginxinc/nginx-unprivileged:stable-alpine
 
 WORKDIR /usr/share/nginx/html
 
-# Create a new user called 'myuser'
-RUN useradd -m myusernginx
-
 COPY --from=compile-image /home/myuser/build .
 
-RUN chown -R root:myusernginx .
+RUN chown -R root:myuser .
 
 RUN chmod -R 775 .
 
-USER myusernginx
+USER myuser
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
