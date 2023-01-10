@@ -1,4 +1,4 @@
-FROM node:16.15.1 AS compile-image
+FROM node:18.12.1-alpine3.15 AS compile-image
 
 RUN apt-get update && apt-get install -y
 RUN apt-get upgrade -y

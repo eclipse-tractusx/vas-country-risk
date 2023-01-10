@@ -25,9 +25,6 @@ E
 chart/values-dev.yaml,d\7\d70c5f664b9af980d5efd6da2ff82c9d497493be
 K
 .github/workflows/build.yml,f\e\fe77d5d1439f26e353a42bbd38dece2467ff6558
-:
-
-Dockerfile,6\6\6651ddff6eb82c840ced7c1dddee15c6e1913dd4
 V
 &src/components/services/UserService.js,4\3\43b64a74751ee9053b0052baa95dab17ca3aba2b
 A
