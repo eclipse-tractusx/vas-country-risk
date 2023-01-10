@@ -28,7 +28,7 @@ RUN npm install react-scripts --legacy-peer-deps
 
 RUN groupadd -r swuser && useradd --no-log-init -r -g swuser swuser
 
-RUN chmod +x /build
+RUN chmod o+x /build
 
 USER swuser
 
