@@ -4,6 +4,8 @@ COPY . .
 
 ENV PATH="./node_modules/.bin:$PATH"
 
+RUN npm install json5@2.2.3 --legacy-peer-deps
+
 RUN npm install react-dom --legacy-peer-deps
 
 RUN npm install jest enzyme enzyme-adapter-react-16 @babel/core @babel/preset-env --legacy-peer-deps
