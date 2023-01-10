@@ -1,9 +1,11 @@
 FROM node:latest AS compile-image
 
+RUN apt-get update && apt-get install -y
+
 # Create a new user called 'myuser'
 RUN useradd -m myuser
 
-COPY . . /home/myuser
+COPY . ./ /home/myuser/
 
 RUN chown -R root:myuser /usr/local/lib/node_modules/
 
