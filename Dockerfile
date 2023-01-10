@@ -1,7 +1,7 @@
 
 
 
-FROM nginxinc/nginx-unprivileged:latest
+FROM nginxinc/nginx-unprivileged:stable-alpine
 
 
 
