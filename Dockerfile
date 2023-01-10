@@ -48,12 +48,6 @@ WORKDIR /usr/share/nginx/html
 
 COPY --from=compile-image /home/myuser/build .
 
-RUN chown -R root:myuser .
-
-RUN chmod -R 775 .
-
-USER myuser
-
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
 EXPOSE 8080
