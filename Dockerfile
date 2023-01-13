@@ -26,7 +26,7 @@ RUN npm install react-scripts --legacy-peer-deps
 
 RUN npm run build
 
-FROM nginx:1.22.1-alpine
+FROM nginxinc/nginx-unprivileged:stable-alpine
 
 RUN apk update && apk add openssl
 RUN apk del libssl1.1
@@ -40,7 +40,6 @@ RUN chmod -R 777 /var/cache/nginx/ && chmod -R 777 /var/run
 WORKDIR /usr/share/nginx/html
 
 COPY --from=compile-image /build .
-
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
