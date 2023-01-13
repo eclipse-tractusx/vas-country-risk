@@ -36,16 +36,17 @@ const CountryPicker = () => {
 
   return (
     <Autocomplete
-      style={{ width: "45%", padding: 20, maxWidth: 300 }}
+      className="autocomplete"
       fullWidth
       variant="filled"
       size="small"
+      noOptionsText={'No country found'}
       onChange={handleChange}
       options={Countries || []}
       autoHighlight
-      freeSolo={true}
+      freeSolo={false}
       value={countryS || []}
-      getOptionLabel={(option) => option.country || "Select a country"}
+      getOptionLabel={(option) => option.country || ""}
       renderOption={(props, option) => (
         <Box
           component="li"
@@ -62,7 +63,11 @@ const CountryPicker = () => {
         </Box>
       )}
       renderInput={(params) => (
-        <TextField {...params} label="Choose a country" />
+        <TextField {...params }              
+        label="Select a country"
+        InputProps={{
+          ...params.InputProps,
+        }}/>
       )}
     />
   );

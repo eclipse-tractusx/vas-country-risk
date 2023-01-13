@@ -1,9 +1,10 @@
 .wrapper {
   display: flex;
   flex-direction: row;
-
+  justify-content: center; //aligns items at center of screen
+  
   .main-content {
-    width: 65%;
+    width: 70%;
     padding: 10px;
 
     .maps-content {
@@ -20,12 +21,16 @@
         flex-direction: column;
         border: 1px solid #000;
         border-radius: 20px;
+        margin-right: auto;
+        margin-left: auto;
         width: 48%;
         background-color: rgba(20, 177, 245, 0.132);
       }
       .right-map {
         border: 1px solid #000;
         border-radius: 20px;
+        margin-right: auto;
+        margin-left: auto;
         width: 48%;
         background-color: rgba(20, 177, 245, 0.132);
       }

@@ -2,14 +2,14 @@
 import React, { useState } from "react";
 import { Dialog, IconButton, Button } from "cx-portal-shared-components";
 import "./styles.scss";
-import OpenWithIcon from "@mui/icons-material/OpenWith";
+import OpenWithIcon from "@mui/icons-material/ZoomIn";
 import { Box } from "@mui/material";
 import { toPng } from "html-to-image";
 import CloseIcon from "@mui/icons-material/Close";
 import CountryPicker from "../CountryPicker/CountryPicker";
 import CustomCompanyMap from "../CustomCompanyMap/CustomCompanyMap";
 
-const RightMap = () => {
+const RightMap = (ratings) => {
   const [expandMap, setExpandMap] = useState(false);
 
   const openDialog = () => {
@@ -51,7 +51,7 @@ const RightMap = () => {
                   color="primary"
                   onClick={openDialog}
                   size="medium"
-                  variant="outlined"
+                  variant="text"
                 >
                   <CloseIcon></CloseIcon>
                 </IconButton>
@@ -79,13 +79,15 @@ const RightMap = () => {
           color="primary"
           onClick={openDialog}
           size="medium"
-          variant="outlined"
-          sx={{ marginRight: "2px" }}
+          variant="text"
         >
           <OpenWithIcon></OpenWithIcon>
         </IconButton>
       </div>
       <CustomCompanyMap
+        getRatings={ratings.getRatings}
+        years={ratings.years}
+        weight={ratings.weight}
         minMapWidth={0}
         maxMapWidth={800}
         minMapHeight={0}

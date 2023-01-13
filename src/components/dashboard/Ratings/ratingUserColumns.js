@@ -1,5 +1,5 @@
 import { IconButton } from "cx-portal-shared-components";
-import DeleteIcon from "@mui/icons-material/Delete";
+import DeleteIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import { GridActionsCellItem } from "@mui/x-data-grid";
 import { useCallback } from "react";
 

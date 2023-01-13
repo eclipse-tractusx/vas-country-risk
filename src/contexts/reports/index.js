@@ -27,7 +27,9 @@ const ReportProvider = ({ children, updatedReport }) => {
   };
 
   return (
-    <ReportContext.Provider value={{ reportValuesContext, updateReport }}>
+    <ReportContext.Provider
+      value={{ report, reportValuesContext, updateReport }}
+    >
       {children}
     </ReportContext.Provider>
   );

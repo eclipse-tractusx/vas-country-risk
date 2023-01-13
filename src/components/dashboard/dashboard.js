@@ -12,7 +12,6 @@ import Reports from "./Reports/Reports";
 import GatePicker from "./GatePicker/GatePicker";
 
 const Dashboard = () => {
-
   const [ratings, setRatings] = useState("");
 
   const [weight, setTotalWeight] = useState("");
@@ -43,7 +42,11 @@ const Dashboard = () => {
             ></LeftMap>
           </div>
           <div className="right-map">
-            <RightMap></RightMap>
+            <RightMap
+              getRatings={ratings}
+              years={years}
+              weight={weight}
+            ></RightMap>
           </div>
         </div>
         <div className="table-content">

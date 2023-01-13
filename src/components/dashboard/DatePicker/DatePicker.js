@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useCallback } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./styles.scss";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -51,7 +51,7 @@ const DatePicker = ({ passYearSelected }) => {
   }, [reportValuesContext]);
 
   return (
-    <Box sx={{ minWidth: 120 }}>
+    <Box>
       <FormControl fullWidth variant="filled">
         <InputLabel id="demo-simple-select-label">Select a Year</InputLabel>
         <Select value={date} onChange={handleChange} label="Year">

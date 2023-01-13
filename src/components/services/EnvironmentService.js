@@ -24,6 +24,15 @@ export const getCentralIdp = () => {
   return "https://centralidp.dev.demo.catena-x.net/auth";
 };
 
+export const getPortalLink = () => {
+  const hostname = getHostname();
+  if (hostname === "country-risk-dashboard.dev.demo.catena-x.net")
+    return "https://portal.dev.demo.catena-x.net/";
+  if (hostname === "country-risk-dashboard.int.demo.catena-x.net")
+    return "https://portal.int.demo.catena-x.net/";
+  return "https://portal.dev.demo.catena-x.net/";
+};
+
 export const getClientId = () => "Cl2-CX-Portal";
 
 export const getCountryRiskClientId = () => "Cl16-CX-CRisk";

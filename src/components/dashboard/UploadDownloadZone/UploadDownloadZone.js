@@ -45,6 +45,12 @@ const UploadDownloadZone = () => {
   //Date Currently Selected
   const [date, setDate] = useState("");
 
+  //Const for triggering error on Dialog Text Field
+  const [errorTrigger, setErrorTrigger] = React.useState(true);
+
+  //Validates if next button is active
+  const [validateSave, setValidateSave] = useState(true);
+
   //Gets Current Roles for the User
   const role = companyUser.roles;
 
@@ -60,20 +66,34 @@ const UploadDownloadZone = () => {
   const enableUpload = () => {
     setOpen(false);
     setAutoUp(true);
+    setErrorTrigger(true);
   };
 
   const closeDialogs = () => {
     setOpen(false);
     setAutoUp(false);
+    setValidateSave(true);
     setSeverityMessage("");
     setSeverity("");
   };
   const openDialog = () => {
     setOpen(!open);
+    setValidateSave(true);
+    setErrorTrigger(true)
   };
 
   const saveRatingName = (event) => {
-    setOpenRatingName(event.target.value);
+    setSeverity("");
+    setSeverityMessage("");
+    if (event.target.value.length > 32 || event.target.value.length === 0) {
+      setErrorTrigger(true);
+      setOpenRatingName(null);
+      setValidateSave(true);
+    } else {
+      setErrorTrigger(false);
+      setOpenRatingName(event.target.value);
+      setValidateSave(false);
+    }
   };
 
   //Handler for Checkbox
@@ -100,25 +120,32 @@ const UploadDownloadZone = () => {
         type: valueType,
       },
     }),
-    onChangeStatus: ({ meta }, status) => {
-      if (status === "headers_received") {
-        console.log(`${meta.name} uploaded`);
-        setSeverity("info");
-        setSeverityMessage("Your rating has been uploaded");
-        updateReload(!reload);
-      } else if (status === "aborted") {
-        console.log(`${meta.name}, upload failed...`);
-      } else if (status === "error_upload") {
+
+    onChangeStatus: ({ meta }, file, status, allFiles) => {
+      if (status[0].xhr) {
         console.log(meta);
         console.log(status);
-        setSeverity("error");
-        setSeverityMessage(
-          "Rating name already exists. Please chose a different name"
-        );
-      } else {
-        console.log("error");
-        console.log(meta);
-        console.log(status);
+        if (status[0].xhr.status === 200) {
+          setSeverity("info");
+          setSeverityMessage("Your rating has been uploaded");
+          updateReload(!reload);
+        } else if (meta.status === "error_upload") {
+          if (status[0].xhr.status === 400) {
+            setSeverity("error");
+            setSeverityMessage(
+              "Rating name already exists. Please chose a different name"
+            );
+          } else if (status[0].xhr.status === 406) {
+            setSeverity("error");
+            setSeverityMessage("Invalid Rating please check all the fields");
+          } else {
+            setSeverity("error");
+            setSeverityMessage("Unexpected error");
+          }
+        } else if (meta.status === "exception_upload") {
+          setSeverity("error");
+          setSeverityMessage("Unexpected error");
+        }
       }
     },
     errorStatus: [
@@ -160,7 +187,7 @@ const UploadDownloadZone = () => {
           </FormLabel>
           <div className="CheckBox-Div">
             <RadioGroup
-              defaultValue="Custom"
+              value={valueType}
               className="CheckBox-Div-Radio"
               aria-labelledby="demo-controlled-radio-buttons-group"
               name="controlled-radio-buttons-group"
@@ -204,20 +231,20 @@ const UploadDownloadZone = () => {
           </div>
           <Input
             data-testid="inputelement"
-            helperText="Helper"
             label="Please write your rating name"
-            placeholder="Rating Name"
+            placeholder="Insert the Rating Name"
             size={"small"}
+            error={errorTrigger}
             onChange={saveRatingName}
           ></Input>
           <Button
             data-testid="closeFirst"
-            style={{ margin: "1%" }}
+            className="btn-close-upload"
             onClick={openDialog}
           >
             Close
           </Button>
-          <Button style={{ margin: "1%" }} onClick={enableUpload}>
+          <Button className="btn-next-upload" onClick={enableUpload} disabled={validateSave}>
             Next
           </Button>
         </div>
@@ -240,7 +267,7 @@ const UploadDownloadZone = () => {
             maxFiles={1}
           />
 
-          <Button style={{ margin: "1%" }} onClick={closeDialogs}>
+          <Button className="btn-close-upload-second" onClick={closeDialogs}>
             Close
           </Button>
         </div>

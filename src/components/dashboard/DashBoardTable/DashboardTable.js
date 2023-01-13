@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect, useContext, useCallback } from "react";
 import { getAll } from "../../services/dashboard-api";
-import { Table, Button, Typography } from "cx-portal-shared-components";
+import { Table } from "cx-portal-shared-components";
 import "./styles.scss";
 import { columns } from "./tableColumns";
 import { RangesContext } from "../../../contexts/ranges";
@@ -10,7 +10,6 @@ import { CountryContext } from "../../../contexts/country";
 import UserService from "../../services/UserService";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { GatesContext } from "../../../contexts/gates";
-import { style } from "@mui/system";
 
 const DashboardTable = (ratings, years) => {
   //Data Fetch

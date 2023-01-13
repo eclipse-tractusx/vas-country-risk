@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Dialog, IconButton, Button } from "cx-portal-shared-components";
 import "./styles.scss";
 import CustomWorldMap from "../CustomWorld/CustomWorldMap";
-import OpenWithIcon from "@mui/icons-material/OpenWith";
+import OpenWithIcon from "@mui/icons-material/ZoomIn";
 import { Box } from "@mui/material";
 import { toPng } from "html-to-image";
 import ProgressBar from "../ProgressBar/ProgressBar";
@@ -51,7 +51,7 @@ const LeftMap = (ratings) => {
                   color="primary"
                   onClick={openDialog}
                   size="medium"
-                  variant="outlined"
+                  variant="text"
                 >
                   <CloseIcon></CloseIcon>
                 </IconButton>
@@ -68,7 +68,7 @@ const LeftMap = (ratings) => {
                     maxMapHeight={600}
                   ></CustomWorldMap>
                 </div>
-                <div className="progress-bar" style={{ width: "250px" }}>
+                <div className="progress-bar">
                   <ProgressBar className="bar" valuePercentage={100} />
                 </div>
               </div>
@@ -84,7 +84,7 @@ const LeftMap = (ratings) => {
           color="primary"
           onClick={openDialog}
           size="medium"
-          variant="outlined"
+          variant="text"
         >
           <OpenWithIcon></OpenWithIcon>
         </IconButton>

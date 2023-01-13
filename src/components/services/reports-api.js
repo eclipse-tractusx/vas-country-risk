@@ -51,6 +51,37 @@ export function saveReports(token, customerUser, report) {
   });
 }
 
+export function shareReports(token, customerUser, report) {
+  return axios({
+    method: "post",
+    url: process.env.REACT_APP_SHARE_REPORTS,
+    data: report,
+    params: {
+      name: customerUser.name,
+      email: customerUser.email,
+      companyName: customerUser.companyName,
+    },
+
+    headers: { Authorization: `Bearer ${token}` },
+  });
+}
+
+//Update Reports By User
+export function updateReports(token, customerUser, report) {
+  return axios({
+    method: "put",
+    url: process.env.REACT_APP_UPDATE_REPORTS,
+    data: report,
+    params: {
+      name: customerUser.name,
+      email: customerUser.email,
+      companyName: customerUser.companyName,
+    },
+
+    headers: { Authorization: `Bearer ${token}` },
+  });
+}
+
 export function deleteReport(token, customerUser, reportId) {
   return axios({
     method: "delete",

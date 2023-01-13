@@ -8,8 +8,6 @@ import Box from "@mui/material/Box";
 import { getUserBpdmGates } from "../../services/gate-api";
 import UserService from "../../services/UserService";
 import { CompanyUserContext } from "../../../contexts/companyuser";
-import { ReportContext } from "../../../contexts/reports";
-import { ReloadContext } from "../../../contexts/refresh";
 import { GatesContext } from "../../../contexts/gates";
 
 const GatePicker = () => {
@@ -33,7 +31,7 @@ const GatePicker = () => {
   };
 
   return (
-    <Box sx={{ minWidth: 120 }}>
+    <Box>
       <FormControl fullWidth variant="filled" color="primary">
         <InputLabel id="demo-simple-select-label">Select a Gate</InputLabel>
         <Select value={gate} onChange={handleChange} label="Gate">
