@@ -46,7 +46,7 @@ const Ratings = ({
 
   const { prefixIds, updatePrefixIds } = useContext(RatesContext);
 
-  const { reportValuesContext, updateReport } = useContext(ReportContext);
+  const { reportValuesContext } = useContext(ReportContext);
 
   //Warning Dialog
   const [openWarning, setOpenWarning] = useState(false);
