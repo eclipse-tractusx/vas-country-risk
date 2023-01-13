@@ -127,13 +127,6 @@ const Ratings = ({
     setAutomatic(false);
   };
 
-  //Change Edit/Delete Buttons based on Role
-  const onRoleChangeButtons = (rates) => {
-    return role.includes("Company Admin")
-      ? columnsUser(rates)
-      : columnsUser(rates);
-  };
-
   const validateInput = (params) => {
     sumTotal = 0;
     if (params.value <= 100 && params.value >= 0 && !isNaN(params.value)) {

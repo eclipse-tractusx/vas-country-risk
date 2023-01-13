@@ -115,7 +115,7 @@ const Reports = () => {
   const closeDialogsDeleteAndUpdate = (code, successMessage, errorMessage) => {
     validateUpdateDeleteResponseCode(code, successMessage, errorMessage);
     closeDialogs();
-    if(deleteUpdateData.operation !== "Save Changes"){
+    if (deleteUpdateData.operation !== "Save Changes") {
       updateReload(!reload);
     }
   };
@@ -433,7 +433,7 @@ const Reports = () => {
       <DataGrid
         className="table"
         rows={report}
-        columns={role.includes("Company Admin") ? columnsUser : columnsUser}
+        columns={columnsUser}
         pageSize={5}
         rowsPerPageOptions={[5]}
         checkboxSelection={false}
