@@ -15,17 +15,10 @@ a
 ,src/components/dashboard/Ratings/styles.scss,4\d\4de8d3bfe1c9d5b916a3562a19e3ab2a3f10325f
 E
 chart/values-dev.yaml,d\7\d70c5f664b9af980d5efd6da2ff82c9d497493be
-K
-.github/workflows/build.yml,f\e\fe77d5d1439f26e353a42bbd38dece2467ff6558
-:
-
-Dockerfile,6\6\6651ddff6eb82c840ced7c1dddee15c6e1913dd4
 V
 &src/components/services/UserService.js,4\3\43b64a74751ee9053b0052baa95dab17ca3aba2b
 A
 chart/values.yaml,6\7\679c9c413d4749f4bd9d593879d89e405b2e471e
-P
- .github/workflows/sonarcloud.yml,0\7\077a84aad902191fd63fd374880221279f02a65d
 H
 sonar-project.properties,2\5\2538046035efb77ecc44e1fd2eec1e2641594d4c
 g
@@ -36,3 +29,5 @@ U
 %src/components/dashboard/dashboard.js,4\d\4d483efec471c46a10a0e967ac5e1f0c4cba0425
 U
 %src/tests/dashboard/app/index.test.js,5\1\51da7271bd705d28762a23f793386819330f45e8
+A
+package-lock.json,f\a\fa288d1472d29beccb489a676f68739ad365fc47
