@@ -41,7 +41,6 @@ WORKDIR /usr/share/nginx/html
 
 COPY --from=compile-image /build .
 
-USER nginx
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
