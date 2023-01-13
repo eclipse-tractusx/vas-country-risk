@@ -1,49 +1,47 @@
-FROM node:latest AS compile-image 
+FROM node:16.15.1 AS compile-image
 
-# Create a new user called 'myuser'
-RUN useradd -m myuser
+COPY . .
 
-COPY . . /home/myuser
+ENV PATH="./node_modules/.bin:$PATH"
 
-RUN chown -R root:myuser /usr/local/lib/node_modules/
+RUN npm install react-dom --legacy-peer-deps
 
-RUN chmod -R 775 /usr/local/lib/node_modules/
+RUN npm install jest enzyme enzyme-adapter-react-16 @babel/core @babel/preset-env --legacy-peer-deps
 
-RUN chown -R root:myuser /home/myuser
+RUN npm install react-tooltip --legacy-peer-deps
 
-RUN chmod -R 775 /home/myuser
+RUN npm install keycloak-js --legacy-peer-deps
 
-USER myuser
+RUN npm install @mui/icons-material --legacy-peer-deps
 
-WORKDIR /home/myuser
+RUN npm install @mui/material --legacy-peer-deps
 
-RUN npm install react-dom --legacy-peer-deps --prefix /home/myuser
+RUN npm install --save html-to-image --legacy-peer-deps
 
-RUN npm install jest enzyme enzyme-adapter-react-16 @babel/core @babel/preset-env --legacy-peer-deps --prefix /home/myuser
+RUN npm install cx-portal-shared-components --legacy-peer-deps
 
-RUN npm install react-tooltip --legacy-peer-deps --prefix /home/myuser
+RUN npm install --legacy-peer-deps
 
-RUN npm install keycloak-js --legacy-peer-deps --prefix /home/myuser
+RUN npm install react-scripts --legacy-peer-deps
 
-RUN npm install @mui/icons-material --legacy-peer-deps --prefix /home/myuser
+RUN npm run build
 
-RUN npm install @mui/material --legacy-peer-deps --prefix /home/myuser
+FROM nginx:1.22.1-alpine
 
-RUN npm install --save html-to-image --legacy-peer-deps --prefix /home/myuser
+RUN apk update && apk add openssl
+RUN apk del libssl1.1
+RUN apk search libcurl
+RUN apk add libcurl=7.83.1-r5
+RUN apk search curl
+RUN apk add curl=7.83.1-r5
 
-RUN npm install cx-portal-shared-components --legacy-peer-deps --prefix /home/myuser
-
-RUN npm install --legacy-peer-deps --prefix /home/myuser
-
-RUN npm install react-scripts --legacy-peer-deps --prefix /home/myuser
-
-RUN npm run build --prefix /home/myuser
-
-FROM nginxinc/nginx-unprivileged:latest
+RUN chmod -R 777 /var/cache/nginx/ && chmod -R 777 /var/run
 
 WORKDIR /usr/share/nginx/html
 
-COPY --from=compile-image /home/myuser/build .
+COPY --from=compile-image /build .
+
+USER nginx
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
