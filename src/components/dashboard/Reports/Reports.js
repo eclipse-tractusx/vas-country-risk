@@ -115,7 +115,7 @@ const Reports = () => {
   const closeDialogsDeleteAndUpdate = (code, successMessage, errorMessage) => {
     validateUpdateDeleteResponseCode(code, successMessage, errorMessage);
     closeDialogs();
-    if(deleteUpdateData.operation !== "Save Changes"){
+    if (deleteUpdateData.operation !== "Save Changes") {
       updateReload(!reload);
     }
   };

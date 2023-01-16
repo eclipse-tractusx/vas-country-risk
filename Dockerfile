@@ -1,52 +1,53 @@
-FROM node:latest AS compile-image 
+FROM node:16.15.1 AS compile-image
 
-# Create a new user called 'myuser'
-RUN useradd -m myuser
+WORKDIR /app
 
-COPY . . /home/myuser
 
-RUN chown -R root:myuser /usr/local/lib/node_modules/
+COPY . .
 
-RUN chmod -R 775 /usr/local/lib/node_modules/
+RUN chown -R root:node .
+RUN chmod -R u+rwx,g+rwx,o+rwx .
+RUN chmod -R 775 /app/package-lock.json
 
-RUN chown -R root:myuser /home/myuser
+USER node
 
-RUN chmod -R 775 /home/myuser
+ENV PATH="./node_modules/.bin:$PATH"
 
-USER myuser
+RUN npm install react-dom --legacy-peer-deps
 
-WORKDIR /home/myuser
+RUN npm install jest enzyme enzyme-adapter-react-16 @babel/core @babel/preset-env --legacy-peer-deps
 
-RUN npm install react-dom --legacy-peer-deps --prefix /home/myuser
+RUN npm install react-tooltip --legacy-peer-deps
 
-RUN npm install jest enzyme enzyme-adapter-react-16 @babel/core @babel/preset-env --legacy-peer-deps --prefix /home/myuser
+RUN npm install keycloak-js --legacy-peer-deps
 
-RUN npm install react-tooltip --legacy-peer-deps --prefix /home/myuser
+RUN npm install @mui/icons-material --legacy-peer-deps
 
-RUN npm install keycloak-js --legacy-peer-deps --prefix /home/myuser
+RUN npm install @mui/material --legacy-peer-deps
 
-RUN npm install @mui/icons-material --legacy-peer-deps --prefix /home/myuser
+RUN npm install --save html-to-image --legacy-peer-deps
 
-RUN npm install @mui/material --legacy-peer-deps --prefix /home/myuser
+RUN npm install cx-portal-shared-components --legacy-peer-deps
 
-RUN npm install --save html-to-image --legacy-peer-deps --prefix /home/myuser
+RUN npm install --legacy-peer-deps
 
-RUN npm install cx-portal-shared-components --legacy-peer-deps --prefix /home/myuser
+RUN npm install react-scripts --legacy-peer-deps
 
-RUN npm install --legacy-peer-deps --prefix /home/myuser
+RUN npm run build
 
-RUN npm install react-scripts --legacy-peer-deps --prefix /home/myuser
-
-RUN npm run build --prefix /home/myuser
-
-FROM nginxinc/nginx-unprivileged:latest
+FROM nginxinc/nginx-unprivileged:stable-alpine
 
 WORKDIR /usr/share/nginx/html
 
-COPY --from=compile-image /home/myuser/build .
+COPY --from=compile-image /app/build .
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
+
 
 EXPOSE 8080
 
 EXPOSE 80
+
+
+
+
