@@ -433,7 +433,7 @@ const Reports = () => {
       <DataGrid
         className="table"
         rows={report}
-        columns={role.includes("Company Admin") ? columnsUser : columnsUser}
+        columns={columnsUser}
         pageSize={5}
         rowsPerPageOptions={[5]}
         checkboxSelection={false}

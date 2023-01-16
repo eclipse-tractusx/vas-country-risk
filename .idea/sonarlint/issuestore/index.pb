@@ -19,8 +19,6 @@ V
 &src/components/services/UserService.js,4\3\43b64a74751ee9053b0052baa95dab17ca3aba2b
 A
 chart/values.yaml,6\7\679c9c413d4749f4bd9d593879d89e405b2e471e
-H
-sonar-project.properties,2\5\2538046035efb77ecc44e1fd2eec1e2641594d4c
 g
 7src/components/dashboard/CountryPicker/CountryPicker.js,9\e\9e64c56a3d55d4c4bff840610045dad14026a967
 d
@@ -29,5 +27,3 @@ U
 %src/components/dashboard/dashboard.js,4\d\4d483efec471c46a10a0e967ac5e1f0c4cba0425
 U
 %src/tests/dashboard/app/index.test.js,5\1\51da7271bd705d28762a23f793386819330f45e8
-A
-package-lock.json,f\a\fa288d1472d29beccb489a676f68739ad365fc47
