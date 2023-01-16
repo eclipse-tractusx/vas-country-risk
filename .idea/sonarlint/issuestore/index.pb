@@ -27,5 +27,3 @@ U
 %src/components/dashboard/dashboard.js,4\d\4d483efec471c46a10a0e967ac5e1f0c4cba0425
 U
 %src/tests/dashboard/app/index.test.js,5\1\51da7271bd705d28762a23f793386819330f45e8
-A
-package-lock.json,f\a\fa288d1472d29beccb489a676f68739ad365fc47

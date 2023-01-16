@@ -34,7 +34,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "coverage": "react-scripts test --env=jsdom --coverage --collectCoverageFrom='src/**/*.js'",
-    "local-coverage": "react-scripts test --env=jsdom --watchAll --coverage --collectCoverageFrom='src/**/*.js'"
+    "local-coverage": "react-scripts test --env=jsdom --watchAll --coverage --collectCoverageFrom='src/**/*.js'",
+    "preinstall": "npx npm-force-resolutions"
   },
   "eslintConfig": {
     "extends": [
@@ -56,5 +57,8 @@
   },
   "devDependencies": {
     "sass": "^1.53.0"
+  },
+  "resolutions": {
+    "json5": "1.0.2"
   }
 }
