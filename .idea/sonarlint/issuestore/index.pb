@@ -25,5 +25,3 @@ d
 4src/tests/dashboard/dashboard/DashboardTable.test.js,1\b\1b4be994832f584e06cad22ad624c5e7f3076ceb
 U
 %src/components/dashboard/dashboard.js,4\d\4d483efec471c46a10a0e967ac5e1f0c4cba0425
-U
-%src/tests/dashboard/app/index.test.js,5\1\51da7271bd705d28762a23f793386819330f45e8

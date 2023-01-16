@@ -33,6 +33,8 @@ RUN npm install --legacy-peer-deps
 
 RUN npm install react-scripts --legacy-peer-deps
 
+RUN npm install ajv --legacy-peer-deps
+
 RUN npm run build
 
 FROM nginxinc/nginx-unprivileged:stable-alpine
