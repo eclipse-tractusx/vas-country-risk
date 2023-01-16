@@ -3,27 +3,30 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@emotion/react": "^11.9.3",
-    "@emotion/styled": "^11.9.3",
-    "@mui/icons-material": "^5.8.4",
-    "@mui/material": "^5.9.1",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^13.5.0",
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "@cfaester/enzyme-adapter-react-18": "^0.6.0",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.4",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
     "axios": "^0.27.2",
+    "babel-preset-react-app": "^7.0.0",
+    "buffer": "^6.0.3",
     "cx-portal-shared-components": "^0.4.5",
     "d3-fetch": "^3.0.1",
     "env-cmd": "^10.1.0",
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.6",
-    "html-to-image": "^1.9.0",
-    "jest": "^29.2.2",
-    "json5": "^2.2.3",
-    "keycloak-js": "^19.0.1",
+    "html-to-image": "^1.11.4",
+    "jest": "^29.3.1",
+    "keycloak-js": "^20.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
-    "react-simple-maps": "^2.3.0",
+    "react-simple-maps": "^3.0.0",
     "react-svg-worldmap": "^2.0.0-alpha.1",
     "react-tooltip": "^4.2.21",
     "web-vitals": "^2.1.4"
@@ -34,8 +37,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "coverage": "react-scripts test --env=jsdom --coverage --collectCoverageFrom='src/**/*.js'",
-    "local-coverage": "react-scripts test --env=jsdom --watchAll --coverage --collectCoverageFrom='src/**/*.js'",
-    "preinstall": "npx npm-force-resolutions"
+    "local-coverage": "react-scripts test --env=jsdom --watchAll --coverage --collectCoverageFrom='src/**/*.js' --testPathIgnorePatterns='src/features','src/resources','src/components/services/EnvironmentService.js','src/components/services/UserService.js','src/index.js'"
   },
   "eslintConfig": {
     "extends": [
@@ -56,9 +58,11 @@
     ]
   },
   "devDependencies": {
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^29.3.1",
     "sass": "^1.53.0"
   },
-  "resolutions": {
-    "json5": "1.0.2"
+  "browser": {
+    "buffer": false
   }
 }
