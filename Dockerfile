@@ -7,7 +7,7 @@ COPY . .
 
 RUN chown -R root:node .
 RUN chmod -R u+rwx,g+rwx,o+rwx .
-RUN chmod -R 775 /app/package-lock.json
+
 
 USER node
 
