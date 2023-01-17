@@ -13,6 +13,8 @@ USER node
 
 ENV PATH="./node_modules/.bin:$PATH"
 
+RUN npm install @mui/icons-material @mui/material react-scripts cx-portal-shared-components
+
 RUN npm install
 
 RUN npm run build
