@@ -2,10 +2,11 @@ import { render, act, fireEvent, screen } from "@testing-library/react";
 import CountryPicker from "../../../components/dashboard/CountryPicker/CountryPicker";
 import { test } from "@jest/globals";
 import { CountryProvider } from "../../../contexts/country";
-import {
-  getCountryByUser,
-  getCountrys,
-} from "../../../components/services/country-api";
+
+import { getCountryByUser } from "../../../components/services/country-api";
+
+import React from "react";
+import renderer from "react-test-renderer";
 
 const countryData = [
   {
@@ -22,45 +23,49 @@ const countryData = [
 
 jest.mock("../../../components/services/country-api", () => ({
   getCountryByUser: jest.fn().mockReturnValue(countryData),
-  getCountrys: jest.fn().mockReturnValue(countryData),
 }));
 
-test("CountryPicker Test", () => {
-  getCountryByUser.mockImplementation(() => Promise.resolve(countryData));
-  getCountrys.mockImplementation(() => Promise.resolve(countryData));
+test("CountryPicker snapshot test", () => {
+  const component = renderer.create(<CountryPicker />);
+  let tree = component.toJSON();
+  expect(tree).toMatchSnapshot();
+});
 
-  const getContainer = () =>
-    render(
+test("handleChange updates countryS context correctly", async () => {
+  getCountryByUser.mockImplementation(() => Promise.resolve(countryData));
+
+  await act(async () => {
+    ({} = render(
       <CountryProvider>
         <CountryPicker />
       </CountryProvider>
-    );
+    ));
+  });
+  const autocomplete = screen.getByLabelText("Select a country");
 
-  const getCountryDropDown = getContainer().getByRole("combobox");
   act(() => {
-    fireEvent.click(getCountryDropDown);
-    fireEvent.change(getCountryDropDown, { target: { value: "Germany" } });
-    fireEvent.keyDown(getCountryDropDown, { key: "ArrowDown" });
-    fireEvent.keyDown(getCountryDropDown, { key: "Enter" });
+    fireEvent.change(autocomplete, { target: { value: "Germany" } });
+    fireEvent.keyDown(autocomplete, { key: "ArrowDown" });
+    fireEvent.keyDown(autocomplete, { key: "Enter" });
   });
 });
 
-test("CountryPicker Test no Value", () => {
+test("handleChange updates countryS context with null", async () => {
   getCountryByUser.mockImplementation(() => Promise.resolve(countryData));
-  getCountrys.mockImplementation(() => Promise.resolve(countryData));
 
-  const getContainer = () =>
-    render(
+  await act(async () => {
+    ({} = render(
       <CountryProvider>
         <CountryPicker />
       </CountryProvider>
-    );
-
-  const getCountryDropDown = getContainer().getByRole("combobox");
+    ));
+  });
+  const autocomplete = screen.getByLabelText("Select a country");
+  const clearBox = screen.getByTitle("Clear");
   act(() => {
-    fireEvent.click(getCountryDropDown);
-    fireEvent.change(getCountryDropDown, { target: { value: null } });
-    fireEvent.keyDown(getCountryDropDown, { key: "ArrowDown" });
-    fireEvent.keyDown(getCountryDropDown, { key: "Enter" });
+    fireEvent.change(autocomplete, { target: { value: "Germany" } });
+    fireEvent.keyDown(autocomplete, { key: "ArrowDown" });
+    fireEvent.keyDown(autocomplete, { key: "Enter" });
+    fireEvent.click(clearBox);
   });
 });

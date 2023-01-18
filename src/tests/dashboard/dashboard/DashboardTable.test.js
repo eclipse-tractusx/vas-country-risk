@@ -1,4 +1,4 @@
-import { render, act, getByLabelText, fireEvent } from "@testing-library/react";
+import { render, act, fireEvent } from "@testing-library/react";
 import { test } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
 import DashBoardTable from "../../../components/dashboard/DashBoardTable/DashboardTable";
@@ -8,7 +8,8 @@ import { RatesProvider } from "../../../contexts/rates";
 import { RangesProvider } from "../../../contexts/ranges";
 import { CompanyUserProvider } from "../../../contexts/companyuser";
 import React, { useState } from "react";
-import CountryPicker from "../../../components/dashboard/CountryPicker/CountryPicker";
+import UserService from "../../../components/services/UserService";
+import DashboardTable from "../../../components/dashboard/DashBoardTable/DashboardTable";
 
 const tableinfoData = [
   {
@@ -63,10 +64,10 @@ test("Renders Dashboard Table", async () => {
 
 test("Renders Dashboard Table search Function", async () => {
   getAll.mockImplementation(() => Promise.resolve(tableinfoData));
-
-  let getByTestId;
+  let getByLabelText;
+  let getAllByRole;
   await act(async () => {
-    ({ getByTestId } = render(
+    ({ getAllByRole, getByLabelText } = render(
       <RangesProvider>
         <CountryProvider>
           <CompanyUserProvider>
@@ -79,8 +80,24 @@ test("Renders Dashboard Table search Function", async () => {
     ));
   });
 
-  const search = getByTestId("SearchIcon");
+  const row1 = getByLabelText("Select all rows");
+
   await act(async () => {
-    fireEvent.click(search);
+    fireEvent.click(row1);
+  });
+
+  const buttons = getAllByRole("button");
+
+  const button = buttons[0];
+
+  await act(async () => {
+    fireEvent.click(button);
+  });
+
+  await act(async () => {
+    fireEvent.change(button, { target: { value: "Divape" } });
+  });
+  await act(async () => {
+    fireEvent.keyDown(button, { key: "Enter", code: 13 });
   });
 });

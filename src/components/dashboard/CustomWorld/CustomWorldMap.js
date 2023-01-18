@@ -67,7 +67,9 @@ const CustomWorldMap = (ratings) => {
   return (
     <>
       <ComposableMap data-testid="Map">
-        <ZoomableGroup data-tip="" 
+        <ZoomableGroup
+          data-testid="ZoomableGroup"
+          data-tip=""
           onMove={cordinates}
           zoom={1}
           maxZoom={50}
@@ -113,8 +115,8 @@ const CustomWorldMap = (ratings) => {
                     fill={geoMap.size > 0 ? geoMap.get("color") : "#F5F4F6"}
                     onMouseEnter={() => {
                       countryMarkers.forEach((s) => {
-                        data.forEach((d) => { 
-                          if(d.country.iso3 === s.iso3){
+                        data.forEach((d) => {
+                          if (d.country.iso3 === s.iso3) {
                             if (s.iso3 === geo.id) {
                               setContent(
                                 <div>

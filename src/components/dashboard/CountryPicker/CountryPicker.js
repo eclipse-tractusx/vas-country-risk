@@ -15,7 +15,7 @@ const CountryPicker = () => {
   //Context to save the current selected country
   const { countryS, updateCountry } = useContext(CountryContext);
 
-  const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
+  const { companyUser } = useContext(CompanyUserContext);
 
   //Call to get all the Countries relative to a User and BP
   useEffect(() => {
@@ -26,7 +26,6 @@ const CountryPicker = () => {
 
   //Handler to get current selected value on Autocomplete component
   const handleChange = (event, newValue) => {
-
     if (newValue === null) {
       updateCountry("none");
     } else {
