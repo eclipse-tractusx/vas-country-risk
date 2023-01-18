@@ -9,8 +9,6 @@ _
 /src/components/dashboard/DatePicker/styles.scss,2\6\26ceddae0ddfb332d7ae5514653323df59660f5a
 c
 3src/components/dashboard/ProgressBar/ProgressBar.js,6\7\67d295badc748915bf1a6efeea38b9c58f514818
-a
-1src/components/dashboard/Ratings/ratingColumns.js,c\e\ce5463b21e923f23d31ef0ba1e80fa075fd143d3
 \
 ,src/components/dashboard/Ratings/styles.scss,4\d\4de8d3bfe1c9d5b916a3562a19e3ab2a3f10325f
 E

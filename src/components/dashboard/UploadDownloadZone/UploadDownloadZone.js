@@ -79,7 +79,7 @@ const UploadDownloadZone = () => {
   const openDialog = () => {
     setOpen(!open);
     setValidateSave(true);
-    setErrorTrigger(true)
+    setErrorTrigger(true);
   };
 
   const saveRatingName = (event) => {
@@ -122,6 +122,10 @@ const UploadDownloadZone = () => {
     }),
 
     onChangeStatus: ({ meta }, file, status, allFiles) => {
+      console.log("meta", meta);
+      console.log("status", status);
+      console.log("file", file);
+      console.log("allFiles", allFiles);
       if (status[0].xhr) {
         console.log(meta);
         console.log(status);
@@ -244,7 +248,11 @@ const UploadDownloadZone = () => {
           >
             Close
           </Button>
-          <Button className="btn-next-upload" onClick={enableUpload} disabled={validateSave}>
+          <Button
+            className="btn-next-upload"
+            onClick={enableUpload}
+            disabled={validateSave}
+          >
             Next
           </Button>
         </div>
