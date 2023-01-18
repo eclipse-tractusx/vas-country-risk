@@ -13,25 +13,9 @@ USER node
 
 ENV PATH="./node_modules/.bin:$PATH"
 
-RUN npm install react-dom --legacy-peer-deps
+RUN npm install @emotion/react@11.10.4  @emotion/styled@11.10.4  @mui/icons-material@5.10.6  @mui/material@5.10.7 react-simple-maps cx-portal-shared-components react-scripts
 
-RUN npm install jest enzyme enzyme-adapter-react-16 @babel/core @babel/preset-env --legacy-peer-deps
-
-RUN npm install react-tooltip --legacy-peer-deps
-
-RUN npm install keycloak-js --legacy-peer-deps
-
-RUN npm install @mui/icons-material --legacy-peer-deps
-
-RUN npm install @mui/material --legacy-peer-deps
-
-RUN npm install --save html-to-image --legacy-peer-deps
-
-RUN npm install cx-portal-shared-components --legacy-peer-deps
-
-RUN npm install --legacy-peer-deps
-
-RUN npm install react-scripts --legacy-peer-deps
+RUN npm install 
 
 RUN npm run build
 
