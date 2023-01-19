@@ -7,7 +7,6 @@ import FormLabel from "@mui/material/FormLabel";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
@@ -104,7 +103,7 @@ const UploadDownloadZone = () => {
   const dropzoneProps = {
     title: "userUpload.title",
     subtitle: "userUpload.subtitle",
-    accept: "text/csv",
+    accept: "text/csv,application/vnd.ms-excel",
     getUploadParams: () => ({
       url: process.env.REACT_APP_UPLOAD_FILE,
 
