@@ -90,6 +90,7 @@ test("Renders Report", () => {
       </RatesProvider>
     );
 
+
   const saveRepBtn = getContainer().getByText("Save Reports");
   act(() => {
     fireEvent.click(saveRepBtn);

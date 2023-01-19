@@ -35,12 +35,13 @@ test("handleChange updates countryS context correctly", async () => {
   getCountryByUser.mockImplementation(() => Promise.resolve(countryData));
 
   await act(async () => {
-    ({} = render(
+    render(
       <CountryProvider>
         <CountryPicker />
       </CountryProvider>
-    ));
+    );
   });
+
   const autocomplete = screen.getByLabelText("Select a country");
 
   act(() => {
@@ -54,12 +55,13 @@ test("handleChange updates countryS context with null", async () => {
   getCountryByUser.mockImplementation(() => Promise.resolve(countryData));
 
   await act(async () => {
-    ({} = render(
+    render(
       <CountryProvider>
         <CountryPicker />
       </CountryProvider>
-    ));
+    );
   });
+
   const autocomplete = screen.getByLabelText("Select a country");
   const clearBox = screen.getByTitle("Clear");
   act(() => {

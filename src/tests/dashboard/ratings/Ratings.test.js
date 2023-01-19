@@ -6,6 +6,7 @@ import { RatesProvider } from "../../../contexts/rates";
 import { ReportProvider } from "../../../contexts/reports";
 import { getRatingsByYear } from "../../../components/services/ratingstable-api";
 import { CompanyUserProvider } from "../../../contexts/companyuser";
+import renderer from "react-test-renderer";
 const ratingsData = [
   {
     id: 1,
@@ -32,9 +33,10 @@ jest.mock("../../../components/services/ratingstable-api", () => ({
 test("Renders Ratings", async () => {
   getRatingsByYear.mockImplementation(() => Promise.resolve(ratingsData));
 
+  let getByText;
   let getByLabelText;
   await act(async () => {
-    ({ getByLabelText } = render(
+    ({ getByLabelText, getByText } = render(
       <CompanyUserProvider>
         <ReportProvider>
           <RatesProvider>
@@ -54,4 +56,18 @@ test("Renders Ratings", async () => {
     fireEvent.click(ratingsTable);
   });
   expect(ratingsTable).toBeInTheDocument();
+
+  //Open Dialog
+  const btndialog = getByText("Show Ratings");
+  await act(async () => {
+    fireEvent.click(btndialog);
+  });
+  //expect(btndialog).toBeInTheDocument();
+
+  //Close Dialog
+  const closebtn = getByText("Close");
+  await act(async () => {
+    fireEvent.click(closebtn);
+  });
+  //expect(btndialog).toBeInTheDocument();
 });

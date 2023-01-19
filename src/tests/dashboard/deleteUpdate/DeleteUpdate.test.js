@@ -120,22 +120,28 @@ test("Renders Delete Update Component (Delete Report)", async () => {
 // ############## Share Test ###############
 
 //Object for Share
-const deleteUpdateDataShare = new DeleteOrUpdate([
-  1,
-  "Share Report",
-  "Test",
-  {
-    id: 3,
-    reportName: "Fabio Report 2",
-    companyUserName: "Test User CX Admin",
-    company: "CX-Test-Access",
-    type: "Company",
-    reportValues: null,
-  },
-]);
+const deleteUpdateDataShare = [
+
+    {
+      name: "Martin Rohrmeier",
+      email: "martin.ra.rohrmeier@bmw.de",
+      companyName: "CX-Test-Access",
+      title: "martin.ra.rohrmeier@bmw.de",
+      id: 1674054191678,
+    },
+    {
+      name: "Test User CX User",
+      email: "cxuser@cx.com",
+      companyName: "CX-Test-Access",
+      title: "cxuser@cx.com",
+      id: 1674054191678,
+    }
+];
 
 test("Renders Delete Update Component (Share Report)", async () => {
   let getByLabelText;
+  deleteUpdateDataShare.doubleCheckMessage= "Do you want to share this Report?";
+  deleteUpdateDataShare.operation = "Share Report";
   let getByTestId;
   await act(async () => {
     ({ getByLabelText, getByTestId } = render(

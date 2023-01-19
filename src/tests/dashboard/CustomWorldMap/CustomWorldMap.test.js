@@ -124,6 +124,18 @@ const mockRatings = {
   maxMapHeight: 1000,
 };
 
+// test("Custom World Map snapshot test", () => {
+//   const component = renderer.create(
+//     <CompanyUserProvider>
+//       <RangesProvider>
+//         <CustomWorldMap ratings={mockRatings} />
+//       </RangesProvider>
+//     </CompanyUserProvider>
+//   );
+//   let tree = component.toJSON();
+//   expect(tree).toMatchSnapshot();
+// });
+
 test("Custom World Map Test", async () => {
   getWorldMapInfo.mockImplementation(() => Promise.resolve(worldMapInfo));
   getBpns.mockImplementation(() => Promise.resolve(bpns));
