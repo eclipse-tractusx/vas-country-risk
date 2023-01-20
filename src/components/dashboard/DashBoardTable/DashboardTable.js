@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect, useContext, useCallback } from "react";
 import { getAll } from "../../services/dashboard-api";
-import { Table } from "cx-portal-shared-components";
+
+import { Dialog, Table } from "cx-portal-shared-components";
 import "./styles.scss";
 import { columns } from "./tableColumns";
 import { RangesContext } from "../../../contexts/ranges";
@@ -10,6 +11,9 @@ import { CountryContext } from "../../../contexts/country";
 import UserService from "../../services/UserService";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { GatesContext } from "../../../contexts/gates";
+import { capitalize } from "@mui/material";
+import { DetailGrid } from "../DetailGrid/DetailGrid";
+import DetailDialog from "../DetailDialog/DetailDialog";
 
 const DashboardTable = (ratings, years) => {
   //Data Fetch
@@ -17,11 +21,21 @@ const DashboardTable = (ratings, years) => {
   const [globalData, setGlobalData] = useState([]);
 
   const [selectedRows, setSelectedRows] = useState([]);
-  const { ranges, updateRanges } = useContext(RangesContext);
-  const { prefixIds, updatePrefixIds } = useContext(RatesContext);
-  const { countryS, updateCountry } = useContext(CountryContext);
-  const { companyUser, updateCompanyUser } = useContext(CompanyUserContext);
-  const { gates, updateGate } = useContext(GatesContext);
+  const { ranges } = useContext(RangesContext);
+  const { countryS } = useContext(CountryContext);
+  const { companyUser } = useContext(CompanyUserContext);
+  const { gates } = useContext(GatesContext);
+  const [openDetailGrid, setOpenDetailGrid] = useState(false);
+  const [selectedDetailRow, setSelectedDetailRow] = useState([]);
+  const openDetailGridFunction = (row) => {
+    setOpenDetailGrid(true);
+    setSelectedDetailRow([row]);
+    console.log(row);
+  };
+
+  const onCloseDetailGridFunction = () => {
+    setOpenDetailGrid(false);
+  };
 
   const fetchData = (expr) => {
     const lexpr = expr.toLowerCase();
@@ -97,7 +111,7 @@ const DashboardTable = (ratings, years) => {
       <div className="dashboard-table-style">
         <Table
           className="table"
-          columns={columns(ranges)}
+          columns={columns(ranges, openDetailGridFunction)}
           rowsCount={data.length}
           rows={data}
           pageSize={15}
@@ -120,6 +134,12 @@ const DashboardTable = (ratings, years) => {
           }}
         ></Table>
       </div>
+      <Dialog open={openDetailGrid} onClose={onCloseDetailGridFunction}>
+        <DetailDialog
+          selectedDetailRow={selectedDetailRow}
+          onCloseDetailGridFunction={onCloseDetailGridFunction}
+        ></DetailDialog>
+      </Dialog>
     </>
   );
 };

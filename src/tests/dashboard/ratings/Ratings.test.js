@@ -58,7 +58,7 @@ test("Renders Ratings", async () => {
   expect(ratingsTable).toBeInTheDocument();
 
   //Open Dialog
-  const btndialog = getByText("Show Ratings");
+  const btndialog = getByText("Show More Ratings");
   await act(async () => {
     fireEvent.click(btndialog);
   });

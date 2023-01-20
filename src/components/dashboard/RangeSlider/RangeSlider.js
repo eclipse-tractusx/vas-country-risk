@@ -116,6 +116,7 @@ const RangeSlider = () => {
     if (!(newValue[0] === newValue[1])) {
       const tempValG = [newValue[1] + 1, valueGreen[1]];
       const tempValR = [valueRed[0], newValue[0] - 1];
+
       if (newValue[1] < 99 && newValue[0] > 1) {
         setYellowValues(newValue);
         setGreenValues(tempValG);
