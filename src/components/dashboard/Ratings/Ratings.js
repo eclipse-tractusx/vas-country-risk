@@ -266,7 +266,7 @@ const Ratings = ({
           updatePrefixIds(selectedRows);
         }}
         toolbar={{
-          buttonLabel: "Show Ratings",
+          buttonLabel: "Show More Ratings",
           onButtonClick: ExpandTable,
           title: "Ratings",
         }}

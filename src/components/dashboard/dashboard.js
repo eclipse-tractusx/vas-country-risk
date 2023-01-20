@@ -72,10 +72,9 @@ const Dashboard = () => {
             passAutomaticWeightChange={passAutomaticWeightChange}
             years={years}
           ></Ratings>
-        </div>
-        <div>
           <UploadDownloadZone></UploadDownloadZone>
         </div>
+
         <div className="right-middle-content">
           <Reports></Reports>
         </div>
