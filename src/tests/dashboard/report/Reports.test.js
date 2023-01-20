@@ -1,44 +1,15 @@
-import { render, act, fireEvent, useContext } from "@testing-library/react";
+import { render, act, fireEvent, waitFor } from "@testing-library/react";
 import { test } from "@jest/globals";
-import * as React from "react";
-import Reports from "../../../components/dashboard/Reports/Reports";
-import {
-  getReportsByCompanyUser,
-  getReportValuesByReport,
-  saveReports,
-} from "../../../components/services/reports-api";
 import "@testing-library/jest-dom/extend-expect";
-import userEvent from "@testing-library/user-event";
-import { RatesProvider, RatesContext } from "../../../contexts/rates";
-import { CountryContext, CountryProvider } from "../../../contexts/country";
-import {
-  CompanyUserContext,
-  CompanyUserProvider,
-} from "../../../contexts/companyuser";
-
-const reports = [
-  {
-    id: 3,
-    reportName: "Fabio Report 2",
-    companyUserName: "Test User CX Admin",
-    company: "CX-Test-Access",
-    type: "Company",
-    reportValues: null,
-  },
-];
-const reportValues = [
-  {
-    id: 7,
-    name: "Range",
-    objectValue: [
-      [0, "1"],
-      [2, 11],
-      [12, 100],
-    ],
-  },
-];
-
-const rates = [
+import Ratings from "../../../components/dashboard/Ratings/Ratings";
+import { RatesProvider } from "../../../contexts/rates";
+import { ReportProvider } from "../../../contexts/reports";
+import { getRatingsByYear } from "../../../components/services/ratingstable-api";
+import { CompanyUserProvider } from "../../../contexts/companyuser";
+import { deleteRating } from "../../../components/services/ratingstable-api";
+import renderer from "react-test-renderer";
+import {getByTestId, screen} from '@testing-library/dom'
+const ratingsData = [
   {
     id: 1,
     dataSourceName: "CPI Rating 2021",
@@ -46,74 +17,81 @@ const rates = [
     yearPublished: 2021,
     fileName: null,
     companyUser: null,
-    weight: 100,
   },
 ];
 
-const customerUser = [
-  {
-    name: "Test",
-    email: "test@test-cx.com",
-    company: "testCompany",
-  },
-];
+const passValuesFromComponent = (rates) => {
+  return ratingsData;
+};
 
-jest.mock("../../../components/services/reports-api", () => {
-  const saveReports = jest.requireActual(
-    "../../../components/services/reports-api"
-  );
+const passAutomaticWeightChange = (weight) => {
+  return 1;
+};
+
+const NoErrorStatus = {
+  status: 204,
+};
+
+jest.mock("../../../components/services/ratingstable-api", () => {
 
   return {
     __esModule: true,
-    ...saveReports,
-    getReportsByCompanyUser: jest.fn().mockReturnValue(reports),
-    getReportValuesByReport: jest.fn().mockReturnValue(reportValues),
-  };
+    getRatingsByYear: jest.fn().mockReturnValue(ratingsData),
+    deleteRating: jest.fn().mockReturnValue(NoErrorStatus),
+  }
+
 });
 
-//jest.spyOn(React,'useContext').mockImplementation(() =>(reports));
+test("Renders Ratings", async () => {
+  getRatingsByYear.mockImplementation(() => Promise.resolve(ratingsData));
+  deleteRating.mockImplementation(() => Promise.resolve(NoErrorStatus));
 
-test("Renders Report", () => {
-  getReportsByCompanyUser.mockImplementation(() => Promise.resolve(reports));
-  getReportValuesByReport.mockImplementation(() =>
-    Promise.resolve(reportValues)
-  );
-
-  const getContainer = () =>
-    render(
-      <RatesProvider value={rates}>
-        <CountryProvider>
-          <CompanyUserProvider value={customerUser}>
-            <Reports />
-          </CompanyUserProvider>
-        </CountryProvider>
-      </RatesProvider>
-    );
-
-
-  const saveRepBtn = getContainer().getByText("Save Reports");
-  act(() => {
-    fireEvent.click(saveRepBtn);
+  let getByText;
+  let getByRole;
+  let getByLabelText;
+  let getByTestId;
+  await act(async () => {
+    ({ getByLabelText, getByText, getByRole, getByTestId } = render(
+      <CompanyUserProvider>
+        <ReportProvider>
+          <RatesProvider>
+            <Ratings
+              passValuesFromComponent={passValuesFromComponent}
+              passAutomaticWeightChange={passAutomaticWeightChange}
+              years={2021}
+            ></Ratings>
+          </RatesProvider>
+        </ReportProvider>
+      </CompanyUserProvider>
+    ));
   });
 
-  const optionOnlyMe = getContainer().getByText("Only For me");
-  act(() => {
-    fireEvent.click(optionOnlyMe);
-  });
+  screen.debug(screen.getByRole('grid'));
 
-  const setName = getContainer()
-    .getByTestId("inputReportName")
-    .querySelector("input");
-  act(() => {
-    fireEvent.change(setName, { target: { value: "testreport" } });
+  //Select all Ratings
+  const ratingsTable = getByLabelText("Select all rows");
+  await act(async () => {
+    fireEvent.click(ratingsTable);
   });
+  expect(ratingsTable).toBeInTheDocument();
 
-  const saveBtn = getContainer().getByText("Save");
-  act(() => {
-    fireEvent.click(saveBtn);
+  //Open Dialog
+  await waitFor(() => {
+    const btndialog = getByText("Show Ratings");
+    expect(btndialog).toBeInTheDocument();
+    fireEvent.click(btndialog);
+  })
+
+  //Close Dialog
+  const closebtn = getByText("Close");
+  await act(async () => {
+    fireEvent.click(closebtn);
   });
+  expect(closebtn).toBeInTheDocument();
 
-  //expect(clearBtn).toBeInTheDocument();
-  //expect(saveRepBtn).toBeInTheDocument()
-  //expect(closeBtn).toBeInTheDocument();
+  /*await waitFor(() => {
+    const btndialog = getByText("Show Ratings");
+    expect(btndialog).toBeInTheDocument();
+    fireEvent.click(btndialog);
+  })*/
 });

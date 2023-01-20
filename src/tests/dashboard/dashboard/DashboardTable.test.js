@@ -24,6 +24,42 @@ const tableinfoData = [
     longitude: "107.6185727",
     latitude: "-6.6889038",
   },
+  {
+    id: 1,
+    bpn: "BPN-NUMBER",
+    legalName: "Divape Company",
+    address: "15874 Sutteridge Trail",
+    city: "Covilhã",
+    country: "Portugal",
+    score: 10,
+    rating: "Fake Rating",
+    longitude: "107.6185727",
+    latitude: "-6.6889038",
+  },
+  {
+    id: 2,
+    bpn: "BPN-NUMBER",
+    legalName: "Divape Company",
+    address: "15874 Sutteridge Trail",
+    city: "Covilhã",
+    country: "Portugal",
+    score: 39,
+    rating: "Fake Rating",
+    longitude: "107.6185727",
+    latitude: "-6.6889038",
+  },
+  {
+    id: 3,
+    bpn: "BPN-NUMBER",
+    legalName: "Divape Company",
+    address: "15874 Sutteridge Trail",
+    city: "Covilhã",
+    country: "Portugal",
+    score: 41,
+    rating: "",
+    longitude: "107.6185727",
+    latitude: "-6.6889038",
+  }
 ];
 
 jest.mock("../../../components/services/dashboard-api", () => ({
@@ -62,17 +98,44 @@ test("Renders Dashboard Table", async () => {
   expect(button).toBeInTheDocument();
 });
 
+const rangesval = [
+  [0, 24],
+  [25, 55],
+  [56, 100],
+];
+
+const ratingsMock = {
+  getRatings: [
+    {
+      id: 91,
+      dataSourceName: "Aaa",
+      type: "Custom",
+      yearPublished: 2023,
+      fileName: "aaa",
+      weight: 100,
+    },
+  ],
+  years: 2023,
+  weight: -1,
+};
+
+/*jest.mock("../../../components/dashboard/DashBoardTable/tableColumns", () => ({
+  columns: jest.fn().mockReturnValue(test123),
+}));*/
+
 test("Renders Dashboard Table search Function", async () => {
   getAll.mockImplementation(() => Promise.resolve(tableinfoData));
+
   let getByLabelText;
   let getAllByRole;
+  let getByText;
   await act(async () => {
-    ({ getAllByRole, getByLabelText } = render(
+    ({ getAllByRole, getByLabelText, getByText } = render(
       <RangesProvider>
         <CountryProvider>
           <CompanyUserProvider>
             <RatesProvider>
-              <DashBoardTable />
+              <DashboardTable/>
             </RatesProvider>
           </CompanyUserProvider>
         </CountryProvider>
@@ -99,5 +162,12 @@ test("Renders Dashboard Table search Function", async () => {
   });
   await act(async () => {
     fireEvent.keyDown(button, { key: "Enter", code: 13 });
+  });
+
+  //Export CSV
+  const btnExport = getByText("Export to csv");
+
+  await act(async () => {
+    fireEvent.click(btnExport);
   });
 });

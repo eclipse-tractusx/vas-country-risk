@@ -4,11 +4,11 @@ import "@testing-library/jest-dom/extend-expect";
 import DeleteUpdateComponent from "../../../components/dashboard/DeleteUpdateComponent/DeleteUpdateComponent";
 import { ReportProvider } from "../../../contexts/reports";
 import { DeleteOrUpdate } from "../../../components/model/DeleteOrUpdate";
-import { Button } from "cx-portal-shared-components";
 import {
   updateReports,
   deleteReport,
   shareReports,
+  getReportValuesByReport,
 } from "../../../components/services/reports-api";
 import { CompanyUserProvider } from "../../../contexts/companyuser";
 
@@ -35,29 +35,38 @@ const closeDialogsDeleteAndUpdate = () => {
   );
 };
 
+//Sucess on API response
+const NoErrorStatus = {
+  status: 204,
+};
+
+const expectedResponse = [
+  {
+    name: "Range",
+    objectValue: {}
+  }
+];
+
 jest.mock("../../../components/services/reports-api", () => {
-  const deleteReport = jest.requireActual(
-    "../../../components/services/reports-api"
-  );
-  const updateReports = jest.requireActual(
-    "../../../components/services/reports-api"
-  );
-  const shareReports = jest.requireActual(
-    "../../../components/services/reports-api"
-  );
 
   return {
     __esModule: true,
-    ...deleteReport,
-    ...updateReports,
-    ...shareReports,
+    getReportValuesByReport: jest.fn().mockReturnValue(expectedResponse),
+    deleteReport: jest.fn().mockReturnValue(NoErrorStatus),
+    updateReports: jest.fn().mockReturnValue(NoErrorStatus),
+    shareReports: jest.fn().mockReturnValue(NoErrorStatus),
   };
 });
 
 test("Renders Delete Update Component (Update Report)", async () => {
+  deleteReport.mockImplementation(() => Promise.resolve(NoErrorStatus));
+  updateReports.mockImplementation(() => Promise.resolve(NoErrorStatus));
+  shareReports.mockImplementation(() => Promise.resolve(NoErrorStatus));
+  getReportValuesByReport.mockImplementation(() => Promise.resolve(expectedResponse));
+
+
   let getByLabelText;
   let getByTestId;
-
   await act(async () => {
     ({ getByLabelText, getByTestId } = render(
       <CompanyUserProvider>
@@ -94,6 +103,10 @@ const deleteUpdateDataDelete = new DeleteOrUpdate(1, "Delete Report", "Test", [
 ]);
 
 test("Renders Delete Update Component (Delete Report)", async () => {
+  deleteReport.mockImplementation(() => Promise.resolve(NoErrorStatus));
+  updateReports.mockImplementation(() => Promise.resolve(NoErrorStatus));
+  shareReports.mockImplementation(() => Promise.resolve(NoErrorStatus));
+  getReportValuesByReport.mockImplementation(() => Promise.resolve(expectedResponse));
   let getByLabelText;
   let getByTestId;
   await act(async () => {
@@ -138,6 +151,10 @@ const deleteUpdateDataShare = [
 ];
 
 test("Renders Delete Update Component (Share Report)", async () => {
+  deleteReport.mockImplementation(() => Promise.resolve(NoErrorStatus));
+  updateReports.mockImplementation(() => Promise.resolve(NoErrorStatus));
+  shareReports.mockImplementation(() => Promise.resolve(NoErrorStatus));
+  getReportValuesByReport.mockImplementation(() => Promise.resolve(expectedResponse));
   let getByLabelText;
   deleteUpdateDataShare.doubleCheckMessage =
     "Do you want to share this Report?";
@@ -166,6 +183,10 @@ test("Renders Delete Update Component (Share Report)", async () => {
 
 //No Update/Delete Operation
 test("No Update/Share/Delete button No Click", async () => {
+  deleteReport.mockImplementation(() => Promise.resolve(NoErrorStatus));
+  updateReports.mockImplementation(() => Promise.resolve(NoErrorStatus));
+  shareReports.mockImplementation(() => Promise.resolve(NoErrorStatus));
+  getReportValuesByReport.mockImplementation(() => Promise.resolve(expectedResponse));
   let getByLabelText;
   let getByTestId;
   let getByText;

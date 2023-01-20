@@ -1,4 +1,4 @@
-import { render, act, fireEvent } from "@testing-library/react";
+import { render, act, fireEvent, waitFor } from "@testing-library/react";
 import { test } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
 import Ratings from "../../../components/dashboard/Ratings/Ratings";
@@ -6,7 +6,9 @@ import { RatesProvider } from "../../../contexts/rates";
 import { ReportProvider } from "../../../contexts/reports";
 import { getRatingsByYear } from "../../../components/services/ratingstable-api";
 import { CompanyUserProvider } from "../../../contexts/companyuser";
+import { deleteRating } from "../../../components/services/ratingstable-api";
 import renderer from "react-test-renderer";
+import {getByTestId, screen} from '@testing-library/dom'
 const ratingsData = [
   {
     id: 1,
@@ -26,17 +28,30 @@ const passAutomaticWeightChange = (weight) => {
   return 1;
 };
 
-jest.mock("../../../components/services/ratingstable-api", () => ({
-  getRatingsByYear: jest.fn().mockReturnValue(ratingsData),
-}));
+const NoErrorStatus = {
+  status: 204,
+};
+
+jest.mock("../../../components/services/ratingstable-api", () => {
+
+  return {
+    __esModule: true,
+    getRatingsByYear: jest.fn().mockReturnValue(ratingsData),
+    deleteRating: jest.fn().mockReturnValue(NoErrorStatus),
+  }
+
+});
 
 test("Renders Ratings", async () => {
   getRatingsByYear.mockImplementation(() => Promise.resolve(ratingsData));
+  deleteRating.mockImplementation(() => Promise.resolve(NoErrorStatus));
 
   let getByText;
+  let getByRole;
   let getByLabelText;
+  let getByTestId;
   await act(async () => {
-    ({ getByLabelText, getByText } = render(
+    ({ getByLabelText, getByText, getByRole, getByTestId } = render(
       <CompanyUserProvider>
         <ReportProvider>
           <RatesProvider>
@@ -51,6 +66,9 @@ test("Renders Ratings", async () => {
     ));
   });
 
+  screen.debug(screen.getByRole('grid'));
+
+  //Select all Ratings
   const ratingsTable = getByLabelText("Select all rows");
   await act(async () => {
     fireEvent.click(ratingsTable);
@@ -58,16 +76,22 @@ test("Renders Ratings", async () => {
   expect(ratingsTable).toBeInTheDocument();
 
   //Open Dialog
-  const btndialog = getByText("Show More Ratings");
-  await act(async () => {
+  await waitFor(() => {
+    const btndialog = getByText("Show Ratings");
+    expect(btndialog).toBeInTheDocument();
     fireEvent.click(btndialog);
-  });
-  //expect(btndialog).toBeInTheDocument();
+  })
 
   //Close Dialog
   const closebtn = getByText("Close");
   await act(async () => {
     fireEvent.click(closebtn);
   });
-  //expect(btndialog).toBeInTheDocument();
+  expect(closebtn).toBeInTheDocument();
+
+  /*await waitFor(() => {
+    const btndialog = getByText("Show Ratings");
+    expect(btndialog).toBeInTheDocument();
+    fireEvent.click(btndialog);
+  })*/
 });

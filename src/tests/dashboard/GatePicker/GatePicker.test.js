@@ -35,4 +35,12 @@ test("Gate Picker Test", async () => {
     ));
   });
 
+  /*const selectgate = screen.getByTestId("selectGate");
+
+  act(() => {
+    fireEvent.change(selectgate, { target: { value: "BMW" } });
+    fireEvent.keyDown(selectgate, { key: "ArrowDown" });
+    fireEvent.keyDown(selectgate, { key: "Enter" });
+  });*/
+
 });
