@@ -63,6 +63,8 @@ export const columns = (ranges, onDetailClick) => {
           onClick={() => onDetailClick(row)}
           color="secondary"
           size="small"
+          title="Detail"
+          aria-label="detail-button"
         >
           <ArrowForwardIcon />
         </IconButton>

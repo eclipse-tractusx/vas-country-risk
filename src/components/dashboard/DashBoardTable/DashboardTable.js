@@ -30,7 +30,6 @@ const DashboardTable = (ratings, years) => {
   const openDetailGridFunction = (row) => {
     setOpenDetailGrid(true);
     setSelectedDetailRow([row]);
-    console.log(row);
   };
 
   const onCloseDetailGridFunction = () => {
@@ -119,6 +118,7 @@ const DashboardTable = (ratings, years) => {
           headerHeight={40}
           autoHeight={true}
           checkboxSelection
+          columnBuffer={columns().length}
           disableColumnMenu={true} //Remove Filtering
           getRowClassName={(params) => `${params.row.status}`}
           onSelectionModelChange={(ids) => {

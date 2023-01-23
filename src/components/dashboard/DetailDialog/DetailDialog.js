@@ -12,7 +12,6 @@ import { Divider } from "@mui/material";
 const DetailDialog = ({ selectedDetailRow, onCloseDetailGridFunction }) => {
   const margin = { mr: -2, ml: -2 };
 
-  console.log(selectedDetailRow);
   const showFields = Object.keys(selectedDetailRow[0]).map((key) => {
     return (
       <>

@@ -1,4 +1,4 @@
-import { render, act, fireEvent } from "@testing-library/react";
+import { render, act, fireEvent, screen } from "@testing-library/react";
 import { test } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
 import DashBoardTable from "../../../components/dashboard/DashBoardTable/DashboardTable";
@@ -7,15 +7,13 @@ import { getAll } from "../../../components/services/dashboard-api";
 import { RatesProvider } from "../../../contexts/rates";
 import { RangesProvider } from "../../../contexts/ranges";
 import { CompanyUserProvider } from "../../../contexts/companyuser";
-import React, { useState } from "react";
-import { columns } from "../../../components/dashboard/DashBoardTable/tableColumns";
-import { Table } from "cx-portal-shared-components";
+import React from "react";
 import DashboardTable from "../../../components/dashboard/DashBoardTable/DashboardTable";
 
 const tableinfoData = [
   {
     id: 0,
-    bpn: "BPN-NUMBER",
+    bpn: "BPN-NUMBER-TEST",
     legalName: "Divape Company",
     address: "15874 Sutteridge Trail",
     city: "Covilhã",
@@ -60,7 +58,7 @@ const tableinfoData = [
     rating: "",
     longitude: "107.6185727",
     latitude: "-6.6889038",
-  }
+  },
 ];
 
 jest.mock("../../../components/services/dashboard-api", () => ({
@@ -78,7 +76,13 @@ test("Renders Dashboard Table", async () => {
         <CountryProvider>
           <CompanyUserProvider>
             <RatesProvider>
-              <DashBoardTable />
+              <div className="table-content">
+                <DashboardTable
+                  getRatings={[]}
+                  years={2023}
+                  weight={-1}
+                ></DashboardTable>
+              </div>
             </RatesProvider>
           </CompanyUserProvider>
         </CountryProvider>
@@ -99,76 +103,66 @@ test("Renders Dashboard Table", async () => {
   expect(button).toBeInTheDocument();
 });
 
-const rangesval = [
-  [0, 24],
-  [25, 55],
-  [56, 100],
-];
-
-const ratingsMock = {
-  getRatings: [
-    {
-      id: 91,
-      dataSourceName: "Aaa",
-      type: "Custom",
-      yearPublished: 2023,
-      fileName: "aaa",
-      weight: 100,
-    },
-  ],
-  years: 2023,
-  weight: -1,
-};
-
-/*jest.mock("../../../components/dashboard/DashBoardTable/tableColumns", () => ({
-  columns: jest.fn().mockReturnValue(test123),
-}));*/
-
-test("Renders Dashboard Table search Function", async () => {
+test("Renders Dashboard Detail Function", async () => {
   getAll.mockImplementation(() => Promise.resolve(tableinfoData));
-
-  let getByLabelText;
-  let getAllByRole;
-  let getByText;
   await act(async () => {
-    ({ getAllByRole, getByLabelText, getByText } = render(
+    render(
       <RangesProvider>
         <CountryProvider>
           <CompanyUserProvider>
             <RatesProvider>
-              <DashboardTable/>
+              <DashBoardTable getRatings={[]} years={2023} weight={-1} />
             </RatesProvider>
           </CompanyUserProvider>
         </CountryProvider>
       </RangesProvider>
-    ));
+    );
   });
 
-  const row1 = getByLabelText("Select all rows");
+  screen.debug(undefined, 300000);
+
+  const row1 = screen.getAllByTitle("Detail", undefined, 30000);
 
   await act(async () => {
-    fireEvent.click(row1);
+    fireEvent.click(row1[0]);
   });
 
-  const buttons = getAllByRole("button");
+  expect(row1[0]).toBeInTheDocument();
 
-  const button = buttons[0];
+  const detailClose = screen.getByTestId("CloseIcon", undefined, 30000);
 
   await act(async () => {
-    fireEvent.click(button);
+    fireEvent.click(detailClose);
   });
 
+  expect(detailClose).toBeInTheDocument();
+});
+
+test("Renders Dashboard Search Function", async () => {
+  getAll.mockImplementation(() => Promise.resolve([tableinfoData[0]]));
   await act(async () => {
-    fireEvent.change(button, { target: { value: "Divape" } });
-  });
-  await act(async () => {
-    fireEvent.keyDown(button, { key: "Enter", code: 13 });
+    render(
+      <RangesProvider>
+        <CountryProvider>
+          <CompanyUserProvider>
+            <RatesProvider>
+              <DashBoardTable getRatings={[]} years={2023} weight={-1} />
+            </RatesProvider>
+          </CompanyUserProvider>
+        </CountryProvider>
+      </RangesProvider>
+    );
   });
 
-  //Export CSV
-  const btnExport = getByText("Export to csv");
+  const searchIcon = screen.getByTestId("SearchIcon", undefined, 30000);
 
   await act(async () => {
-    fireEvent.click(btnExport);
+    fireEvent.change(searchIcon, { target: { value: "Germany" } });
+    fireEvent.keyDown(searchIcon, { key: "ArrowDown" });
+    fireEvent.keyDown(searchIcon, { key: "Enter" });
   });
+
+  screen.debug(undefined, 300000);
+
+  expect(searchIcon).toBeInTheDocument();
 });
