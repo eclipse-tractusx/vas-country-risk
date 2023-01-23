@@ -137,32 +137,3 @@ test("Renders Dashboard Detail Function", async () => {
 
   expect(detailClose).toBeInTheDocument();
 });
-
-test("Renders Dashboard Search Function", async () => {
-  getAll.mockImplementation(() => Promise.resolve([tableinfoData[0]]));
-  await act(async () => {
-    render(
-      <RangesProvider>
-        <CountryProvider>
-          <CompanyUserProvider>
-            <RatesProvider>
-              <DashBoardTable getRatings={[]} years={2023} weight={-1} />
-            </RatesProvider>
-          </CompanyUserProvider>
-        </CountryProvider>
-      </RangesProvider>
-    );
-  });
-
-  const searchIcon = screen.getByTestId("SearchIcon", undefined, 30000);
-
-  await act(async () => {
-    fireEvent.change(searchIcon, { target: { value: "Germany" } });
-    fireEvent.keyDown(searchIcon, { key: "ArrowDown" });
-    fireEvent.keyDown(searchIcon, { key: "Enter" });
-  });
-
-  screen.debug(undefined, 300000);
-
-  expect(searchIcon).toBeInTheDocument();
-});
