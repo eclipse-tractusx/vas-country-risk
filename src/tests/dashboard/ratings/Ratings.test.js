@@ -8,7 +8,7 @@ import { getRatingsByYear } from "../../../components/services/ratingstable-api"
 import { CompanyUserProvider } from "../../../contexts/companyuser";
 import { deleteRating } from "../../../components/services/ratingstable-api";
 import renderer from "react-test-renderer";
-import {getByTestId, screen} from '@testing-library/dom'
+import { getByTestId, screen } from "@testing-library/dom";
 const ratingsData = [
   {
     id: 1,
@@ -33,13 +33,11 @@ const NoErrorStatus = {
 };
 
 jest.mock("../../../components/services/ratingstable-api", () => {
-
   return {
     __esModule: true,
     getRatingsByYear: jest.fn().mockReturnValue(ratingsData),
     deleteRating: jest.fn().mockReturnValue(NoErrorStatus),
-  }
-
+  };
 });
 
 test("Renders Ratings", async () => {
@@ -66,7 +64,7 @@ test("Renders Ratings", async () => {
     ));
   });
 
-  screen.debug(screen.getByRole('grid'));
+  screen.debug(screen.getByRole("grid"));
 
   //Select all Ratings
   const ratingsTable = getByLabelText("Select all rows");
@@ -77,10 +75,10 @@ test("Renders Ratings", async () => {
 
   //Open Dialog
   await waitFor(() => {
-    const btndialog = getByText("Show Ratings");
+    const btndialog = getByText("Show More Ratings");
     expect(btndialog).toBeInTheDocument();
     fireEvent.click(btndialog);
-  })
+  });
 
   //Close Dialog
   const closebtn = getByText("Close");

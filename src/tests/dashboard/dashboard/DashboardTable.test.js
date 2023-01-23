@@ -8,7 +8,8 @@ import { RatesProvider } from "../../../contexts/rates";
 import { RangesProvider } from "../../../contexts/ranges";
 import { CompanyUserProvider } from "../../../contexts/companyuser";
 import React, { useState } from "react";
-import UserService from "../../../components/services/UserService";
+import { columns } from "../../../components/dashboard/DashBoardTable/tableColumns";
+import { Table } from "cx-portal-shared-components";
 import DashboardTable from "../../../components/dashboard/DashBoardTable/DashboardTable";
 
 const tableinfoData = [

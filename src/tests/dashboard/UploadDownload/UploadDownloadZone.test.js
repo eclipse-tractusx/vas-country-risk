@@ -5,7 +5,7 @@ import UploadDownloadZone from "../../../components/dashboard/UploadDownloadZone
 import { downloadSampleCsvFile } from "../../../components/services/files-api";
 import { CompanyUserProvider } from "../../../contexts/companyuser";
 import Dialog from "@mui/material/Dialog";
-import fileCsv from "./files/testfile.csv"
+//import fileCsv from "./files/testfile.csv"
 
 import renderer from "react-test-renderer";
 
