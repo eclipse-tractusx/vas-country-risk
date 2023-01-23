@@ -1,4 +1,4 @@
-import { render, act, getByLabelText, fireEvent } from "@testing-library/react";
+import { render, act, fireEvent, screen } from "@testing-library/react";
 import { test } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
 import DashBoardTable from "../../../components/dashboard/DashBoardTable/DashboardTable";
@@ -7,19 +7,55 @@ import { getAll } from "../../../components/services/dashboard-api";
 import { RatesProvider } from "../../../contexts/rates";
 import { RangesProvider } from "../../../contexts/ranges";
 import { CompanyUserProvider } from "../../../contexts/companyuser";
-import React, { useState } from "react";
-import CountryPicker from "../../../components/dashboard/CountryPicker/CountryPicker";
+import React from "react";
+import DashboardTable from "../../../components/dashboard/DashBoardTable/DashboardTable";
 
 const tableinfoData = [
   {
     id: 0,
-    bpn: "BPN-NUMBER",
+    bpn: "BPN-NUMBER-TEST",
     legalName: "Divape Company",
     address: "15874 Sutteridge Trail",
     city: "Covilhã",
     country: "Portugal",
     score: 90,
     rating: "Fake Rating",
+    longitude: "107.6185727",
+    latitude: "-6.6889038",
+  },
+  {
+    id: 1,
+    bpn: "BPN-NUMBER",
+    legalName: "Divape Company",
+    address: "15874 Sutteridge Trail",
+    city: "Covilhã",
+    country: "Portugal",
+    score: 10,
+    rating: "Fake Rating",
+    longitude: "107.6185727",
+    latitude: "-6.6889038",
+  },
+  {
+    id: 2,
+    bpn: "BPN-NUMBER",
+    legalName: "Divape Company",
+    address: "15874 Sutteridge Trail",
+    city: "Covilhã",
+    country: "Portugal",
+    score: 39,
+    rating: "Fake Rating",
+    longitude: "107.6185727",
+    latitude: "-6.6889038",
+  },
+  {
+    id: 3,
+    bpn: "BPN-NUMBER",
+    legalName: "Divape Company",
+    address: "15874 Sutteridge Trail",
+    city: "Covilhã",
+    country: "Portugal",
+    score: 41,
+    rating: "",
     longitude: "107.6185727",
     latitude: "-6.6889038",
   },
@@ -40,7 +76,13 @@ test("Renders Dashboard Table", async () => {
         <CountryProvider>
           <CompanyUserProvider>
             <RatesProvider>
-              <DashBoardTable />
+              <div className="table-content">
+                <DashboardTable
+                  getRatings={[]}
+                  years={2023}
+                  weight={-1}
+                ></DashboardTable>
+              </div>
             </RatesProvider>
           </CompanyUserProvider>
         </CountryProvider>
@@ -61,26 +103,37 @@ test("Renders Dashboard Table", async () => {
   expect(button).toBeInTheDocument();
 });
 
-test("Renders Dashboard Table search Function", async () => {
+test("Renders Dashboard Detail Function", async () => {
   getAll.mockImplementation(() => Promise.resolve(tableinfoData));
-
-  let getByTestId;
   await act(async () => {
-    ({ getByTestId } = render(
+    render(
       <RangesProvider>
         <CountryProvider>
           <CompanyUserProvider>
             <RatesProvider>
-              <DashBoardTable />
+              <DashBoardTable getRatings={[]} years={2023} weight={-1} />
             </RatesProvider>
           </CompanyUserProvider>
         </CountryProvider>
       </RangesProvider>
-    ));
+    );
   });
 
-  const search = getByTestId("SearchIcon");
+  screen.debug(undefined, 300000);
+
+  const row1 = screen.getAllByTitle("Detail", undefined, 30000);
+
   await act(async () => {
-    fireEvent.click(search);
+    fireEvent.click(row1[0]);
   });
+
+  expect(row1[0]).toBeInTheDocument();
+
+  const detailClose = screen.getByTestId("CloseIcon", undefined, 30000);
+
+  await act(async () => {
+    fireEvent.click(detailClose);
+  });
+
+  expect(detailClose).toBeInTheDocument();
 });

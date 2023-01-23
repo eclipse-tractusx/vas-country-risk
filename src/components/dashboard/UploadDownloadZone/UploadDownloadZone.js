@@ -7,7 +7,6 @@ import FormLabel from "@mui/material/FormLabel";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
@@ -79,7 +78,7 @@ const UploadDownloadZone = () => {
   const openDialog = () => {
     setOpen(!open);
     setValidateSave(true);
-    setErrorTrigger(true)
+    setErrorTrigger(true);
   };
 
   const saveRatingName = (event) => {
@@ -104,7 +103,7 @@ const UploadDownloadZone = () => {
   const dropzoneProps = {
     title: "userUpload.title",
     subtitle: "userUpload.subtitle",
-    accept: "text/csv",
+    accept: "text/csv,application/vnd.ms-excel",
     getUploadParams: () => ({
       url: process.env.REACT_APP_UPLOAD_FILE,
 
@@ -122,6 +121,10 @@ const UploadDownloadZone = () => {
     }),
 
     onChangeStatus: ({ meta }, file, status, allFiles) => {
+      console.log("meta", meta);
+      console.log("status", status);
+      console.log("file", file);
+      console.log("allFiles", allFiles);
       if (status[0].xhr) {
         console.log(meta);
         console.log(status);
@@ -244,7 +247,11 @@ const UploadDownloadZone = () => {
           >
             Close
           </Button>
-          <Button className="btn-next-upload" onClick={enableUpload} disabled={validateSave}>
+          <Button
+            className="btn-next-upload"
+            onClick={enableUpload}
+            disabled={validateSave}
+          >
             Next
           </Button>
         </div>

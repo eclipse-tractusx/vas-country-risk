@@ -1,8 +1,15 @@
-import { render, act, fireEvent } from "@testing-library/react";
+import {
+  render,
+  act,
+  fireEvent,
+  waitFor,
+  screen,
+  getByTestId,
+  querySelectorAll,
+} from "@testing-library/react";
 import { test } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
 import { RangesProvider } from "../../../contexts/ranges";
-
 import { CompanyUserProvider } from "../../../contexts/companyuser";
 import React from "react";
 import { getWorldMapInfo } from "../../../components/services/dashboard-api";
@@ -53,15 +60,15 @@ const worldMapInfo = [
   {
     country: {
       id: null,
-      country: "Qatar",
-      iso3: "QAT",
-      iso2: "QA",
+      country: "Denmark",
+      iso3: "DNK",
+      iso2: "DK",
       continent: "World",
       latitude: null,
       longitude: null,
       totalBpn: null,
     },
-    score: -1,
+    score: 0,
   },
 ];
 const bpns = [
@@ -96,11 +103,6 @@ const bpns = [
     latitude: "43.817071",
   },
 ];
-const customerUser = {
-  name: "Test",
-  email: "test@test-cx.com",
-  company: "testCompany",
-};
 
 jest.mock("../../../components/services/dashboard-api", () => ({
   getWorldMapInfo: jest.fn().mockReturnValue(worldMapInfo),
@@ -112,6 +114,28 @@ jest.mock("../../../components/services/country-api", () => ({
   getCountrys: jest.fn().mockReturnValue(worldMapInfo),
 }));
 
+const mockRatings = {
+  weight: 1,
+  getRatings: "all",
+  years: "all",
+  minMapWidth: 0,
+  minMapHeight: 0,
+  maxMapWidth: 1000,
+  maxMapHeight: 1000,
+};
+
+// test("Custom World Map snapshot test", () => {
+//   const component = renderer.create(
+//     <CompanyUserProvider>
+//       <RangesProvider>
+//         <CustomWorldMap ratings={mockRatings} />
+//       </RangesProvider>
+//     </CompanyUserProvider>
+//   );
+//   let tree = component.toJSON();
+//   expect(tree).toMatchSnapshot();
+// });
+
 test("Custom World Map Test", async () => {
   getWorldMapInfo.mockImplementation(() => Promise.resolve(worldMapInfo));
   getBpns.mockImplementation(() => Promise.resolve(bpns));
@@ -122,24 +146,27 @@ test("Custom World Map Test", async () => {
     ({ getByTestId } = render(
       <CompanyUserProvider>
         <RangesProvider>
-          <CustomWorldMap
-            getRatings={[]}
-            years={2021}
-            weight={1}
-            minMapWidth={0}
-            maxMapWidth={800}
-            minMapHeight={0}
-            maxMapHeight={600}
-          />
+          <CustomWorldMap ratings={mockRatings} />
         </RangesProvider>
       </CompanyUserProvider>
     ));
   });
 
-  const mouseOver = getByTestId("geo");
+  const zoomableGroup = screen.getByTestId("geo");
+  zoomableGroup.setAttribute(
+    "transform",
+    "translate(-2691.6091382329055 -1092.06218050271) scale(11.999999999999999)"
+  );
+
+  fireEvent.mouseEnter(zoomableGroup);
+
+  fireEvent.mouseOver(zoomableGroup);
+
+  waitFor(() => screen.getByTestId("geo"));
+
   act(() => {
-    fireEvent.click(mouseOver);
-    fireEvent.scroll(mouseOver);
+    fireEvent.mouseEnter(zoomableGroup);
+    fireEvent.click(zoomableGroup);
   });
-  expect(mouseOver).toBeInTheDocument();
+  expect(zoomableGroup).toBeInTheDocument();
 });

@@ -3,7 +3,8 @@
   display: flex;
   .table {
     display: flex;
-    width: 100%;
+    flex-direction: column;
+    width: 100% !important;
     background-color: white;
     border: 1px solid #000;
     font-size: 12px !important;
@@ -17,6 +18,7 @@
     }
     .between {
       background-color: yellow;
+      justify-content: left;
     }
     .nullColor {
       background-color: #f5f4f6;

@@ -9,8 +9,6 @@ _
 /src/components/dashboard/DatePicker/styles.scss,2\6\26ceddae0ddfb332d7ae5514653323df59660f5a
 c
 3src/components/dashboard/ProgressBar/ProgressBar.js,6\7\67d295badc748915bf1a6efeea38b9c58f514818
-a
-1src/components/dashboard/Ratings/ratingColumns.js,c\e\ce5463b21e923f23d31ef0ba1e80fa075fd143d3
 \
 ,src/components/dashboard/Ratings/styles.scss,4\d\4de8d3bfe1c9d5b916a3562a19e3ab2a3f10325f
 E
@@ -21,9 +19,5 @@ A
 chart/values.yaml,6\7\679c9c413d4749f4bd9d593879d89e405b2e471e
 g
 7src/components/dashboard/CountryPicker/CountryPicker.js,9\e\9e64c56a3d55d4c4bff840610045dad14026a967
-d
-4src/tests/dashboard/dashboard/DashboardTable.test.js,1\b\1b4be994832f584e06cad22ad624c5e7f3076ceb
 U
 %src/components/dashboard/dashboard.js,4\d\4d483efec471c46a10a0e967ac5e1f0c4cba0425
-U
-%src/tests/dashboard/app/index.test.js,5\1\51da7271bd705d28762a23f793386819330f45e8

@@ -112,7 +112,7 @@ const DeleteUpdateComponent = ({
         <Button className="btn-no" variant="outlined" onClick={closeDialog}>
           No
         </Button>
-        <Button onClick={decideAction}>Yes</Button>
+        <Button data-testid="btnYes" onClick={decideAction}>Yes</Button>
       </div>
     </div>
   );

@@ -16,6 +16,8 @@ import {
   CompanyUserProvider,
 } from "../../../contexts/companyuser";
 
+import renderer from "react-test-renderer";
+
 const reports = [
   {
     id: 3,
@@ -71,7 +73,25 @@ jest.mock("../../../components/services/reports-api", () => {
   };
 });
 
-//jest.spyOn(React,'useContext').mockImplementation(() =>(reports));
+/*test("Report snapshot test", () => {
+  getReportsByCompanyUser.mockImplementation(() => Promise.resolve(reports));
+  getReportValuesByReport.mockImplementation(() =>
+    Promise.resolve(reportValues)
+  );
+
+  const component = renderer.create(
+    <RatesProvider value={rates}>
+    <CountryProvider>
+      <CompanyUserProvider value={customerUser}>
+        <Reports />
+      </CompanyUserProvider>
+    </CountryProvider>
+  </RatesProvider>
+  );
+  let tree = component.toJSON();
+  expect(tree).toMatchSnapshot();
+});*/
+
 
 test("Renders Report", () => {
   getReportsByCompanyUser.mockImplementation(() => Promise.resolve(reports));
@@ -89,6 +109,7 @@ test("Renders Report", () => {
         </CountryProvider>
       </RatesProvider>
     );
+
 
   const saveRepBtn = getContainer().getByText("Save Reports");
   act(() => {
