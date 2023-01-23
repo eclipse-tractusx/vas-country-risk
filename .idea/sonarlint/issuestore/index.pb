@@ -19,7 +19,5 @@ A
 chart/values.yaml,6\7\679c9c413d4749f4bd9d593879d89e405b2e471e
 g
 7src/components/dashboard/CountryPicker/CountryPicker.js,9\e\9e64c56a3d55d4c4bff840610045dad14026a967
-d
-4src/tests/dashboard/dashboard/DashboardTable.test.js,1\b\1b4be994832f584e06cad22ad624c5e7f3076ceb
 U
 %src/components/dashboard/dashboard.js,4\d\4d483efec471c46a10a0e967ac5e1f0c4cba0425
