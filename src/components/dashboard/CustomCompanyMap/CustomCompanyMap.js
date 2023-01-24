@@ -193,6 +193,7 @@ const CustomCompanyMap = (ratings) => {
                 }
                 return (
                   <Geography
+                    data-testid="geo-show-marker"
                     key={geoMap.size > 0 ? geoMap.get(geo).rsmKey : geo.rsmKey}
                     geography={geoMap.size > 0 ? geoMap.get(geo) : geo}
                     onClick={handleClick(geo.properties)}

@@ -239,6 +239,7 @@ const Ratings = ({
         </Collapse>
       </div>
       <Table
+        data-testid="tabletestid"
         className="rating-table-content"
         columns={columnsUser(rates, onClickDelete)}
         rows={tableRatings}

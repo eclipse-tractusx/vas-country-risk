@@ -83,21 +83,9 @@ describe("getAllRanges", () => {
       companyName: "Doe Inc.",
     };
     const rangelist = [
-      {
-        range: "Min",
-        value: 22,
-        description: "Min Range",
-      },
-      {
-        range: "Between",
-        value: 55,
-        description: "BetWeen Range",
-      },
-      {
-        range: "Max",
-        value: 100,
-        description: "Max Range",
-      },
+      [0, 37],
+      [38, 60],
+      [61, 100],
     ];
     const expectedResponse = { message: "Range successfully saved!" };
 
@@ -115,21 +103,9 @@ describe("getAllRanges", () => {
       companyName: "Doe Inc.",
     };
     const rangelist = [
-      {
-        range: "Min",
-        value: 22,
-        description: "Min Range",
-      },
-      {
-        range: "Between",
-        value: 55,
-        description: "BetWeen Range",
-      },
-      {
-        range: "Max",
-        value: 100,
-        description: "Max Range",
-      },
+      [0, 37],
+      [38, 60],
+      [61, 100],
     ];
     const expectedError = "Error saving ranges";
 

@@ -1,4 +1,4 @@
-import { render, act, fireEvent, useContext } from "@testing-library/react";
+import { render, act, fireEvent, screen } from "@testing-library/react";
 import { test } from "@jest/globals";
 import * as React from "react";
 import Reports from "../../../components/dashboard/Reports/Reports";
@@ -6,17 +6,18 @@ import {
   getReportsByCompanyUser,
   getReportValuesByReport,
   saveReports,
+  updateReports,
+  deleteReport,
 } from "../../../components/services/reports-api";
 import "@testing-library/jest-dom/extend-expect";
-import userEvent from "@testing-library/user-event";
-import { RatesProvider, RatesContext } from "../../../contexts/rates";
-import { CountryContext, CountryProvider } from "../../../contexts/country";
-import {
-  CompanyUserContext,
-  CompanyUserProvider,
-} from "../../../contexts/companyuser";
-
-import renderer from "react-test-renderer";
+import { RatesProvider } from "../../../contexts/rates";
+import { CountryProvider } from "../../../contexts/country";
+import { CompanyUserProvider } from "../../../contexts/companyuser";
+import { ReportProvider } from "../../../contexts/reports";
+import { ReloadProvider } from "../../../contexts/refresh";
+import Ratings from "../../../components/dashboard/Ratings/Ratings";
+import { getRatingsByYear } from "../../../components/services/ratingstable-api";
+import { getUserFromCompany } from "../../../components/services/company-api";
 
 const reports = [
   {
@@ -44,7 +45,7 @@ const rates = [
   {
     id: 1,
     dataSourceName: "CPI Rating 2021",
-    type: "Global",
+    type: "Custom",
     yearPublished: 2021,
     fileName: null,
     companyUser: null,
@@ -60,80 +61,321 @@ const customerUser = [
   },
 ];
 
-jest.mock("../../../components/services/reports-api", () => {
-  const saveReports = jest.requireActual(
-    "../../../components/services/reports-api"
-  );
+const response = {
+  status: 204,
+  name: "AxiosError",
+  response: {
+    status: 400,
+  },
+};
 
-  return {
-    __esModule: true,
-    ...saveReports,
-    getReportsByCompanyUser: jest.fn().mockReturnValue(reports),
-    getReportValuesByReport: jest.fn().mockReturnValue(reportValues),
-  };
-});
+const passValuesFromComponent = (rates) => {
+  return rates;
+};
 
-/*test("Report snapshot test", () => {
+const passAutomaticWeightChange = (weight) => {
+  return 1;
+};
+
+jest.mock("../../../components/services/reports-api", () => ({
+  saveReports: jest.fn().mockReturnValue(response),
+  getReportsByCompanyUser: jest.fn().mockReturnValue(reports),
+  getReportValuesByReport: jest.fn().mockReturnValue(reportValues),
+  updateReports: jest.fn().mockReturnValue(response),
+  deleteReport: jest.fn().mockReturnValue(response),
+}));
+
+jest.mock("../../../components/services/ratingstable-api", () => ({
+  getRatingsByYear: jest.fn().mockReturnValue(rates),
+}));
+
+jest.mock("../../../components/services/company-api", () => ({
+  getUserFromCompany: jest.fn(() => customerUser),
+}));
+
+test("Renders Report Save", async () => {
   getReportsByCompanyUser.mockImplementation(() => Promise.resolve(reports));
   getReportValuesByReport.mockImplementation(() =>
     Promise.resolve(reportValues)
   );
-
-  const component = renderer.create(
-    <RatesProvider value={rates}>
-    <CountryProvider>
-      <CompanyUserProvider value={customerUser}>
-        <Reports />
-      </CompanyUserProvider>
-    </CountryProvider>
-  </RatesProvider>
-  );
-  let tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
-});*/
-
-
-test("Renders Report", () => {
-  getReportsByCompanyUser.mockImplementation(() => Promise.resolve(reports));
-  getReportValuesByReport.mockImplementation(() =>
-    Promise.resolve(reportValues)
-  );
-
-  const getContainer = () =>
+  saveReports.mockImplementation(() => Promise.resolve({ status: 200 }));
+  await act(async () => {
     render(
-      <RatesProvider value={rates}>
-        <CountryProvider>
-          <CompanyUserProvider value={customerUser}>
-            <Reports />
-          </CompanyUserProvider>
-        </CountryProvider>
-      </RatesProvider>
+      <ReloadProvider>
+        <RatesProvider value={rates}>
+          <CountryProvider>
+            <CompanyUserProvider value={customerUser}>
+              <Reports />
+            </CompanyUserProvider>
+          </CountryProvider>
+        </RatesProvider>
+      </ReloadProvider>
     );
+  });
 
-
-  const saveRepBtn = getContainer().getByText("Save Reports");
-  act(() => {
+  const saveRepBtn = screen.getByText("Save Reports");
+  await act(async () => {
     fireEvent.click(saveRepBtn);
   });
 
-  const optionOnlyMe = getContainer().getByText("Only For me");
-  act(() => {
+  const optionOnlyMe = screen.getByText("Only For me");
+  await act(async () => {
     fireEvent.click(optionOnlyMe);
   });
 
-  const setName = getContainer()
+  const setWrongName = screen
     .getByTestId("inputReportName")
     .querySelector("input");
-  act(() => {
+  await act(async () => {
+    fireEvent.change(setWrongName, {
+      target: { value: "testreportToLONGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG" },
+    });
+  });
+
+  const setName = screen.getByTestId("inputReportName").querySelector("input");
+  await act(async () => {
     fireEvent.change(setName, { target: { value: "testreport" } });
   });
 
-  const saveBtn = getContainer().getByText("Save");
-  act(() => {
+  const saveBtn = screen.getByText("Save");
+  await act(async () => {
     fireEvent.click(saveBtn);
   });
+});
 
-  //expect(clearBtn).toBeInTheDocument();
-  //expect(saveRepBtn).toBeInTheDocument()
-  //expect(closeBtn).toBeInTheDocument();
+test("Renders Report Update", async () => {
+  getReportsByCompanyUser.mockImplementation(() => Promise.resolve(reports));
+  getReportValuesByReport.mockImplementation(() =>
+    Promise.resolve(reportValues)
+  );
+  saveReports.mockImplementation(() => Promise.resolve(response));
+  updateReports.mockImplementation(() => Promise.resolve(response));
+  await act(async () => {
+    render(
+      <ReloadProvider>
+        <RatesProvider value={rates}>
+          <CountryProvider>
+            <CompanyUserProvider value={customerUser}>
+              <ReportProvider>
+                <Reports />
+              </ReportProvider>
+            </CompanyUserProvider>
+          </CountryProvider>
+        </RatesProvider>
+      </ReloadProvider>
+    );
+  });
+
+  const selectItem = screen.getAllByTestId("radio-choose-report");
+  await act(async () => {
+    fireEvent.click(selectItem[0]);
+  });
+
+  const saveIcon = screen.getByTestId("saveIcon");
+  await act(async () => {
+    fireEvent.click(saveIcon);
+  });
+
+  const clickYes = screen.getByTestId("btnYes");
+  await act(async () => {
+    fireEvent.click(clickYes);
+  });
+});
+
+test("Renders Report Delete", async () => {
+  getReportsByCompanyUser.mockImplementation(() => Promise.resolve(reports));
+  getReportValuesByReport.mockImplementation(() =>
+    Promise.resolve(reportValues)
+  );
+  saveReports.mockImplementation(() => Promise.resolve(response));
+  updateReports.mockImplementation(() => Promise.resolve(response));
+  deleteReport.mockImplementation(() => Promise.resolve(response));
+  await act(async () => {
+    render(
+      <ReloadProvider>
+        <RatesProvider value={rates}>
+          <CountryProvider>
+            <CompanyUserProvider value={customerUser}>
+              <ReportProvider>
+                <Reports />
+              </ReportProvider>
+            </CompanyUserProvider>
+          </CountryProvider>
+        </RatesProvider>
+      </ReloadProvider>
+    );
+  });
+
+  const selectItem = screen.getAllByTestId("radio-choose-report");
+  await act(async () => {
+    fireEvent.click(selectItem[0]);
+  });
+
+  const saveIcon = screen.getByTestId("deleteIcon");
+  await act(async () => {
+    fireEvent.click(saveIcon);
+  });
+
+  const clickYes = screen.getByTestId("btnYes");
+  await act(async () => {
+    fireEvent.click(clickYes);
+  });
+});
+
+test("Renders Report Save wiht custom Selection", async () => {
+  getReportsByCompanyUser.mockImplementation(() => Promise.resolve(reports));
+  getReportValuesByReport.mockImplementation(() =>
+    Promise.resolve(reportValues)
+  );
+  saveReports.mockImplementation(() => Promise.resolve({ status: 200 }));
+  getRatingsByYear.mockImplementation(() => Promise.resolve(rates));
+  await act(async () => {
+    render(
+      <ReloadProvider>
+        <RatesProvider value={rates}>
+          <CountryProvider>
+            <CompanyUserProvider value={customerUser}>
+              <Ratings
+                passValuesFromComponent={passValuesFromComponent}
+                passAutomaticWeightChange={passAutomaticWeightChange}
+                years={2021}
+              />
+              <Reports />
+            </CompanyUserProvider>
+          </CountryProvider>
+        </RatesProvider>
+      </ReloadProvider>
+    );
+  });
+
+  //Select all Ratings
+  const ratingsTable = screen.getAllByLabelText("Select all rows");
+  await act(async () => {
+    fireEvent.click(ratingsTable[0]);
+  });
+  expect(ratingsTable[0]).toBeInTheDocument();
+
+  const saveRepBtn = screen.getByText("Save Reports");
+  await act(async () => {
+    fireEvent.click(saveRepBtn);
+  });
+});
+
+test("Renders Report Share", async () => {
+  getReportsByCompanyUser.mockImplementation(() => Promise.resolve(reports));
+  getReportValuesByReport.mockImplementation(() =>
+    Promise.resolve(reportValues)
+  );
+  saveReports.mockImplementation(() => Promise.resolve(response));
+  updateReports.mockImplementation(() => Promise.resolve(response));
+  deleteReport.mockImplementation(() => Promise.resolve(response));
+  getUserFromCompany.mockImplementation(() => Promise.resolve(customerUser));
+  await act(async () => {
+    render(
+      <ReloadProvider>
+        <RatesProvider value={rates}>
+          <CountryProvider>
+            <CompanyUserProvider value={customerUser}>
+              <ReportProvider>
+                <Reports />
+              </ReportProvider>
+            </CompanyUserProvider>
+          </CountryProvider>
+        </RatesProvider>
+      </ReloadProvider>
+    );
+  });
+
+  const selectItem = screen.getAllByTestId("radio-choose-report");
+  await act(async () => {
+    fireEvent.click(selectItem[0]);
+  });
+
+  const saveIcon = screen.getByTestId("shareIcon");
+  await act(async () => {
+    fireEvent.click(saveIcon);
+  });
+
+  expect(saveIcon).toBeInTheDocument();
+});
+
+test("Renders Report Delete with error 401", async () => {
+  getReportsByCompanyUser.mockImplementation(() => Promise.resolve(reports));
+  getReportValuesByReport.mockImplementation(() =>
+    Promise.resolve(reportValues)
+  );
+  saveReports.mockImplementation(() => Promise.resolve(response));
+  updateReports.mockImplementation(() => Promise.resolve(response));
+  deleteReport.mockImplementation(() => Promise.resolve(401));
+  await act(async () => {
+    render(
+      <ReloadProvider>
+        <RatesProvider value={rates}>
+          <CountryProvider>
+            <CompanyUserProvider value={customerUser}>
+              <ReportProvider>
+                <Reports />
+              </ReportProvider>
+            </CompanyUserProvider>
+          </CountryProvider>
+        </RatesProvider>
+      </ReloadProvider>
+    );
+  });
+
+  const selectItem = screen.getAllByTestId("radio-choose-report");
+  await act(async () => {
+    fireEvent.click(selectItem[0]);
+  });
+
+  const saveIcon = screen.getByTestId("deleteIcon");
+  await act(async () => {
+    fireEvent.click(saveIcon);
+  });
+
+  const clickYes = screen.getByTestId("btnYes");
+  await act(async () => {
+    fireEvent.click(clickYes);
+  });
+});
+
+test("Renders Report Delete with error 500", async () => {
+  getReportsByCompanyUser.mockImplementation(() => Promise.resolve(reports));
+  getReportValuesByReport.mockImplementation(() =>
+    Promise.resolve(reportValues)
+  );
+  saveReports.mockImplementation(() => Promise.resolve(response));
+  updateReports.mockImplementation(() => Promise.resolve(response));
+  deleteReport.mockImplementation(() => Promise.resolve(500));
+  getUserFromCompany.mockImplementation(() => Promise.resolve(customerUser));
+  await act(async () => {
+    render(
+      <ReloadProvider>
+        <RatesProvider value={rates}>
+          <CountryProvider>
+            <CompanyUserProvider value={customerUser}>
+              <ReportProvider>
+                <Reports />
+              </ReportProvider>
+            </CompanyUserProvider>
+          </CountryProvider>
+        </RatesProvider>
+      </ReloadProvider>
+    );
+  });
+
+  const selectItem = screen.getAllByTestId("radio-choose-report");
+  await act(async () => {
+    fireEvent.click(selectItem[0]);
+  });
+
+  const saveIcon = screen.getByTestId("deleteIcon");
+  await act(async () => {
+    fireEvent.click(saveIcon);
+  });
+
+  const clickYes = screen.getByTestId("btnYes");
+  await act(async () => {
+    fireEvent.click(clickYes);
+  });
 });
