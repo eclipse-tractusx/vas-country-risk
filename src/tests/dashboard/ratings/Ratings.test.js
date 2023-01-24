@@ -64,8 +64,6 @@ test("Renders Ratings", async () => {
     ));
   });
 
-  screen.debug(screen.getByRole("grid"));
-
   //Select all Ratings
   const ratingsTable = getByLabelText("Select all rows");
   await act(async () => {
@@ -86,10 +84,4 @@ test("Renders Ratings", async () => {
     fireEvent.click(closebtn);
   });
   expect(closebtn).toBeInTheDocument();
-
-  /*await waitFor(() => {
-    const btndialog = getByText("Show Ratings");
-    expect(btndialog).toBeInTheDocument();
-    fireEvent.click(btndialog);
-  })*/
 });

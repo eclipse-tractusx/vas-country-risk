@@ -61,7 +61,7 @@ const customerUser = {
 };
 
 const NoErrorStatus = {
-  status: 204,
+  status: 200,
 };
 
 jest.mock("../../../components/services/ranges-api", () => {
@@ -343,6 +343,51 @@ test("Ranges automatic change red", async () => {
   const getSliderYellowLeft = getByTestId("input-slider-yellow-right");
   act(() => {
     fireEvent.blur(getSliderYellowLeft, { target: { value: 98 } });
+  });
+
+  expect(getSliderYellowLeft).toBeInTheDocument();
+
+  const getSliderYellowRed = getByTestId("input-slider-red-right");
+  act(() => {
+    fireEvent.blur(getSliderYellowRed, { target: { value: 96 } });
+  });
+
+  expect(getSliderYellowRed).toBeInTheDocument();
+});
+
+
+//Change values automaticly if red above all
+test("Ranges automatic change red if value above all", async () => {
+  getAllRanges.mockImplementation(() => Promise.resolve(range));
+
+  let getByTestId;
+  await act(async () => {
+    ({ getByTestId } = render(
+      <CompanyUserProvider>
+        <ReportProvider>
+          <RangesProvider>
+            <RangeSlider />
+          </RangesProvider>
+        </ReportProvider>
+      </CompanyUserProvider>
+    ));
+  });
+  const getSliderGreen = getByTestId("input-slider-greenSlider");
+  act(() => {
+    fireEvent.blur(getSliderGreen, { target: { value: 91} });
+  });
+  expect(getSliderGreen).toBeInTheDocument();
+
+  const getSliderYellowRight = getByTestId("input-slider-yellow-left");
+  act(() => {
+    fireEvent.blur(getSliderYellowRight, { target: { value: 89 } });
+  });
+
+  expect(getSliderYellowRight).toBeInTheDocument();
+
+  const getSliderYellowLeft = getByTestId("input-slider-yellow-right");
+  act(() => {
+    fireEvent.blur(getSliderYellowLeft, { target: { value: 90 } });
   });
 
   expect(getSliderYellowLeft).toBeInTheDocument();

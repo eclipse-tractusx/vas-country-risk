@@ -342,6 +342,7 @@ const Reports = () => {
             "Do you want to save the changes to this Report?"
           )}
           disabled={editDeleteShareActive}
+          data-testid={"saveIcon"}
         />,
       ],
     },
@@ -359,6 +360,7 @@ const Reports = () => {
             "Do you want to delete this Report?"
           )}
           disabled={editDeleteShareActive}
+          data-testid={"deleteIcon"}
         />,
       ],
     },
@@ -372,6 +374,7 @@ const Reports = () => {
           label="Share"
           onClick={onClickShare(params.id)}
           disabled={editDeleteShareActive}
+          data-testid={"shareIcon"}
         />,
       ],
     },
@@ -442,6 +445,7 @@ const Reports = () => {
         disableColumnFilter={true}
         disableColumnSelector={true}
         disableColumnMenu={true}
+        columnBuffer={columnsUser.length}
         onSelectionModelChange={(newSelectionModel) => {
           handleChange();
           setSelectionModel(newSelectionModel);

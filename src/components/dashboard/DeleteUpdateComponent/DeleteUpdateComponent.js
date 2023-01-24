@@ -8,6 +8,7 @@ import { Report } from "../../model/Report";
 import { ReportContext } from "../../../contexts/reports";
 import { shareReports } from "../../services/reports-api";
 
+
 const DeleteUpdateComponent = ({
   deleteUpdateData,
   closeDialogsDeleteAndUpdate,
@@ -28,6 +29,7 @@ const DeleteUpdateComponent = ({
   };
 
   const closeDialogsAndShare = () => {
+
     deleteUpdateData.forEach((eachPerson) => {
       const newReport = new Report(
         null,
