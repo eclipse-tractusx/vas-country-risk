@@ -119,7 +119,6 @@ test("Renders Dashboard Detail Function", async () => {
     );
   });
 
-  screen.debug(undefined, 300000);
 
   const row1 = screen.getAllByTitle("Detail", undefined, 30000);
 
