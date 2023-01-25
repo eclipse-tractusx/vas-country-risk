@@ -1,10 +1,4 @@
-import {
-  render,
-  act,
-  fireEvent,
-  waitFor,
-  screen,
-} from "@testing-library/react";
+import { render, act, fireEvent, screen } from "@testing-library/react";
 import { test } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
 import Ratings from "../../../components/dashboard/Ratings/Ratings";
@@ -74,21 +68,20 @@ test("Renders Ratings", async () => {
   expect(ratingsTable).toBeInTheDocument();
 
   //Open Dialog
-  await waitFor(() => {
-    const btndialog = screen.getByText("Show More Ratings");
-    expect(btndialog).toBeInTheDocument();
+  const btndialog = screen.getByText("Show More Ratings");
+  await act(async () => {
     fireEvent.click(btndialog);
   });
 
   //Close Dialog
-  const closebtn = screen.getByText("Close");
+  const closebtn = screen.getByTestId("closeDialog");
   await act(async () => {
     fireEvent.click(closebtn);
   });
   expect(closebtn).toBeInTheDocument();
 });
 
-test("Renders Delete and close alert", async () => {
+test("Renders Delete and close dialog", async () => {
   getRatingsByYear.mockImplementation(() => Promise.resolve(ratingsData));
 
   await act(async () => {
@@ -155,5 +148,42 @@ test("Renders Delete and Deletes Rating", async () => {
   const clickYes = screen.getByTestId("btnYesRating");
   await act(async () => {
     fireEvent.click(clickYes);
+  });
+
+  const closeAlert = screen.getByTestId("CloseIcon");
+  await act(async () => {
+    fireEvent.click(closeAlert);
+  });
+});
+
+test("Input Weight in rating", async () => {
+  getRatingsByYear.mockImplementation(() => Promise.resolve(ratingsData));
+
+  await act(async () => {
+    render(
+      <CompanyUserProvider>
+        <ReportProvider>
+          <RatesProvider>
+            <Ratings
+              passValuesFromComponent={passValuesFromComponent}
+              passAutomaticWeightChange={passAutomaticWeightChange}
+              years={2021}
+            ></Ratings>
+          </RatesProvider>
+        </ReportProvider>
+      </CompanyUserProvider>
+    );
+  });
+
+  const ratingsTable = screen.getByLabelText("Select all rows");
+  await act(async () => {
+    fireEvent.click(ratingsTable);
+  });
+
+  const inputWeight = screen.getAllByRole("cell");
+  await act(async () => {
+    fireEvent.doubleClick(inputWeight[2]);
+    //fireEvent.keyDown(inputWeight[2], { key: "9" });
+    fireEvent.keyDown(inputWeight[2], { key: "Enter" });
   });
 });

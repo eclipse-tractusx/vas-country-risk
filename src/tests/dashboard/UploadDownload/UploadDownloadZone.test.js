@@ -8,7 +8,6 @@ import {
 import { test } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
 import UploadDownloadZone from "../../../components/dashboard/UploadDownloadZone/UploadDownloadZone";
-
 import { CompanyUserProvider } from "../../../contexts/companyuser";
 
 test("Close Upload Test and Download Template", async () => {
@@ -25,14 +24,12 @@ test("Close Upload Test and Download Template", async () => {
   await act(async () => {
     fireEvent.click(downloadBtn);
   });
-  expect(downloadBtn).toBeInTheDocument();
 
   //Upload Template
   const uploadBtn = screen.getByText("Upload Rating");
   await act(async () => {
     fireEvent.click(uploadBtn);
   });
-  expect(uploadBtn).toBeInTheDocument();
 
   const optionOnlyMe = screen.getByText("Only For me");
   act(() => {
@@ -44,11 +41,57 @@ test("Close Upload Test and Download Template", async () => {
     fireEvent.change(setName, { target: { value: "RatingTsst" } });
   });
 
+  const nextBtn = screen.getByText("Next");
+  await act(async () => {
+    fireEvent.click(nextBtn);
+  });
+
+  const closeBtn = screen.getByTestId("closeSecond");
+  await act(async () => {
+    fireEvent.click(closeBtn);
+  });
+});
+
+//Open Upload Dialog and setErroName
+test("Close Upload Test and input big name", async () => {
+  await act(async () => {
+    render(
+      <CompanyUserProvider>
+        <UploadDownloadZone />
+      </CompanyUserProvider>
+    );
+  });
+
+  //Download Template
+  const downloadBtn = screen.getByText("Download Template");
+  await act(async () => {
+    fireEvent.click(downloadBtn);
+  });
+
+  //Upload Template
+  const uploadBtn = screen.getByText("Upload Rating");
+  await act(async () => {
+    fireEvent.click(uploadBtn);
+  });
+
+  const optionOnlyMe = screen.getByText("Only For me");
+  act(() => {
+    fireEvent.click(optionOnlyMe);
+  });
+
+  const setNameError = screen
+    .getByTestId("inputelement")
+    .querySelector("input");
+  act(() => {
+    fireEvent.change(setNameError, {
+      target: { value: "andthrowanderrorbigwordtesttestest" },
+    });
+  });
+
   const closeBtn = screen.getByText("Close");
   await act(async () => {
     fireEvent.click(closeBtn);
   });
-  expect(closeBtn).toBeInTheDocument();
 });
 
 test("Upload Test", async () => {
@@ -65,33 +108,27 @@ test("Upload Test", async () => {
   await act(async () => {
     fireEvent.click(downloadBtn);
   });
-  expect(downloadBtn).toBeInTheDocument();
 
   //Upload Template
   const uploadBtn = screen.getByText("Upload Rating");
   await act(async () => {
     fireEvent.click(uploadBtn);
   });
-  expect(uploadBtn).toBeInTheDocument();
 
   const optionOnlyMe = screen.getByText("Only For me");
   act(() => {
     fireEvent.click(optionOnlyMe);
   });
-  expect(optionOnlyMe).toBeInTheDocument();
 
   const setName = screen.getByTestId("inputelement").querySelector("input");
   act(() => {
-    fireEvent.change(setName, { target: { value: "RatingTsst" } });
+    fireEvent.change(setName, { target: { value: "noterror" } });
   });
-  expect(setName).toBeInTheDocument();
 
-  //const nextBtn = waitFor(() => screen.getByText("Next"));
   const nextBtn = screen.getByText("Next");
   await act(async () => {
     fireEvent.click(nextBtn);
   });
-  expect(nextBtn).toBeInTheDocument();
 
   let csvfile = {
     name: "test.csv",

@@ -268,7 +268,7 @@ const UploadDownloadZone = () => {
             maxFiles={1}
           />
 
-          <Button className="btn-close-upload-second" onClick={closeDialogs}>
+          <Button className="btn-close-upload-second" data-testid="closeSecond" onClick={closeDialogs}>
             Close
           </Button>
         </div>

@@ -353,7 +353,7 @@ const Ratings = ({
             hideFooter={tableRatings.length > 5 ? false : true}
           ></Table>
           <div className="closeBtnDialog">
-            <Button className="btn-close-dialog" onClick={ExpandTable}>
+            <Button className="btn-close-dialog" data-testid="closeDialog" onClick={ExpandTable}>
               Close
             </Button>
           </div>
