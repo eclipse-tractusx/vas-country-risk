@@ -256,6 +256,7 @@ const Ratings = ({
         isCellEditable={handleEdit} // this works
         onEditCellPropsChange={onEditCellPropsChange} // this works
         onCellEditCommit={validateInput}
+        columnBuffer={columnsUser().length}
         onSelectionModelChange={(ids) => {
           const selectedIds = new Set(ids);
           const selectedRows = tableRatings.filter((row) =>
@@ -288,10 +289,11 @@ const Ratings = ({
             <h2>Do you want to delete this Rating?</h2>
           </div>
           <div className="warning-header">
-            <Button variant="outlined" className="btn-no" onClick={openWarn}>
+            <Button variant="outlined" data-testid="btnNoRating" className="btn-no" onClick={openWarn}>
               No
             </Button>
             <Button
+              data-testid="btnYesRating"
               onClick={closeDialogsAndDelete}
               //disabled={validateSave}
             >

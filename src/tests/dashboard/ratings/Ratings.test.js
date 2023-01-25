@@ -7,6 +7,7 @@ import { ReportProvider } from "../../../contexts/reports";
 import { getRatingsByYear } from "../../../components/services/ratingstable-api";
 import { CompanyUserProvider } from "../../../contexts/companyuser";
 import { deleteRating } from "../../../components/services/ratingstable-api";
+import { ReloadProvider } from "../../../contexts/refresh";
 import renderer from "react-test-renderer";
 import { getByTestId, screen } from "@testing-library/dom";
 const ratingsData = [
@@ -28,21 +29,21 @@ const passAutomaticWeightChange = (weight) => {
   return 1;
 };
 
-const NoErrorStatus = {
+const response = {
   status: 204,
+  name: "AxiosError",
+  data: {
+    status: 401,
+  },
 };
 
-jest.mock("../../../components/services/ratingstable-api", () => {
-  return {
-    __esModule: true,
-    getRatingsByYear: jest.fn().mockReturnValue(ratingsData),
-    deleteRating: jest.fn().mockReturnValue(NoErrorStatus),
-  };
-});
+jest.mock("../../../components/services/ratingstable-api", () => ({
+  getRatingsByYear: jest.fn().mockReturnValue(ratingsData),
+  deleteRating: jest.fn().mockReturnValue(response),
+}));
 
 test("Renders Ratings", async () => {
   getRatingsByYear.mockImplementation(() => Promise.resolve(ratingsData));
-  deleteRating.mockImplementation(() => Promise.resolve(NoErrorStatus));
 
   let getByText;
   let getByRole;
@@ -85,3 +86,83 @@ test("Renders Ratings", async () => {
   });
   expect(closebtn).toBeInTheDocument();
 });
+
+test("Renders Delete and close alert", async () => {
+  getRatingsByYear.mockImplementation(() => Promise.resolve(ratingsData));
+
+  let getByText;
+  let getByRole;
+  let getByLabelText;
+  let getByTestId;
+  await act(async () => {
+    ({ getByLabelText, getByText, getByRole, getByTestId } = render(
+      <CompanyUserProvider>
+        <ReportProvider>
+          <RatesProvider>
+            <Ratings
+              passValuesFromComponent={passValuesFromComponent}
+              passAutomaticWeightChange={passAutomaticWeightChange}
+              years={2021}
+            ></Ratings>
+          </RatesProvider>
+        </ReportProvider>
+      </CompanyUserProvider>
+    ));
+  });
+
+  //Select all Ratings
+  const ratingsTable = getByLabelText("Select all rows");
+  await act(async () => {
+    fireEvent.click(ratingsTable);
+  });
+  expect(ratingsTable).toBeInTheDocument();
+
+  const deleteItem = screen.getByTestId("deleteRatingIcon");
+  await act(async () => {
+    fireEvent.click(deleteItem);
+  });
+
+  const closeBtn = screen.getByTestId("btnNoRating");
+  await act(async () => {
+    fireEvent.click(closeBtn);
+  });
+});
+
+test("Renders Delete and Deletes Rating", async () => {
+  getRatingsByYear.mockImplementation(() => Promise.resolve(ratingsData));
+  deleteRating.mockImplementation(() => Promise.resolve(response));
+
+  let getByText;
+  let getByRole;
+  let getByLabelText;
+  let getByTestId;
+  await act(async () => {
+    ({ getByLabelText, getByText, getByRole, getByTestId } = render(
+      <ReloadProvider>
+        <CompanyUserProvider>
+          <ReportProvider>
+            <RatesProvider>
+              <Ratings
+                passValuesFromComponent={passValuesFromComponent}
+                passAutomaticWeightChange={passAutomaticWeightChange}
+                years={2021}
+              ></Ratings>
+            </RatesProvider>
+          </ReportProvider>
+        </CompanyUserProvider>
+      </ReloadProvider>
+    ));
+  });
+
+  const deleteItem = screen.getByTestId("deleteRatingIcon");
+  await act(async () => {
+    fireEvent.click(deleteItem);
+  });
+
+  const clickYes = screen.getByTestId("btnYesRating");
+  await act(async () => {
+    fireEvent.click(clickYes);
+  });
+});
+
+

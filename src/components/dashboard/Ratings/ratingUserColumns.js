@@ -36,6 +36,7 @@ export const columnsUser = (rates, onClickDelete) => [
     width: 100,
     getActions: (params) => [
       <GridActionsCellItem
+        data-testid={"deleteRatingIcon"}
         icon={<DeleteIcon />}
         label="Delete"
         onClick={onClickDelete(params.id)}
