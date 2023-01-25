@@ -1,4 +1,10 @@
-import { render, act, fireEvent, waitFor } from "@testing-library/react";
+import {
+  render,
+  act,
+  fireEvent,
+  waitFor,
+  screen,
+} from "@testing-library/react";
 import { test } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
 import Ratings from "../../../components/dashboard/Ratings/Ratings";
@@ -8,8 +14,7 @@ import { getRatingsByYear } from "../../../components/services/ratingstable-api"
 import { CompanyUserProvider } from "../../../contexts/companyuser";
 import { deleteRating } from "../../../components/services/ratingstable-api";
 import { ReloadProvider } from "../../../contexts/refresh";
-import renderer from "react-test-renderer";
-import { getByTestId, screen } from "@testing-library/dom";
+
 const ratingsData = [
   {
     id: 1,
@@ -45,12 +50,8 @@ jest.mock("../../../components/services/ratingstable-api", () => ({
 test("Renders Ratings", async () => {
   getRatingsByYear.mockImplementation(() => Promise.resolve(ratingsData));
 
-  let getByText;
-  let getByRole;
-  let getByLabelText;
-  let getByTestId;
   await act(async () => {
-    ({ getByLabelText, getByText, getByRole, getByTestId } = render(
+    render(
       <CompanyUserProvider>
         <ReportProvider>
           <RatesProvider>
@@ -62,11 +63,11 @@ test("Renders Ratings", async () => {
           </RatesProvider>
         </ReportProvider>
       </CompanyUserProvider>
-    ));
+    );
   });
 
   //Select all Ratings
-  const ratingsTable = getByLabelText("Select all rows");
+  const ratingsTable = screen.getByLabelText("Select all rows");
   await act(async () => {
     fireEvent.click(ratingsTable);
   });
@@ -74,13 +75,13 @@ test("Renders Ratings", async () => {
 
   //Open Dialog
   await waitFor(() => {
-    const btndialog = getByText("Show More Ratings");
+    const btndialog = screen.getByText("Show More Ratings");
     expect(btndialog).toBeInTheDocument();
     fireEvent.click(btndialog);
   });
 
   //Close Dialog
-  const closebtn = getByText("Close");
+  const closebtn = screen.getByText("Close");
   await act(async () => {
     fireEvent.click(closebtn);
   });
@@ -90,12 +91,8 @@ test("Renders Ratings", async () => {
 test("Renders Delete and close alert", async () => {
   getRatingsByYear.mockImplementation(() => Promise.resolve(ratingsData));
 
-  let getByText;
-  let getByRole;
-  let getByLabelText;
-  let getByTestId;
   await act(async () => {
-    ({ getByLabelText, getByText, getByRole, getByTestId } = render(
+    render(
       <CompanyUserProvider>
         <ReportProvider>
           <RatesProvider>
@@ -107,11 +104,11 @@ test("Renders Delete and close alert", async () => {
           </RatesProvider>
         </ReportProvider>
       </CompanyUserProvider>
-    ));
+    );
   });
 
   //Select all Ratings
-  const ratingsTable = getByLabelText("Select all rows");
+  const ratingsTable = screen.getByLabelText("Select all rows");
   await act(async () => {
     fireEvent.click(ratingsTable);
   });
@@ -132,12 +129,8 @@ test("Renders Delete and Deletes Rating", async () => {
   getRatingsByYear.mockImplementation(() => Promise.resolve(ratingsData));
   deleteRating.mockImplementation(() => Promise.resolve(response));
 
-  let getByText;
-  let getByRole;
-  let getByLabelText;
-  let getByTestId;
   await act(async () => {
-    ({ getByLabelText, getByText, getByRole, getByTestId } = render(
+    render(
       <ReloadProvider>
         <CompanyUserProvider>
           <ReportProvider>
@@ -151,7 +144,7 @@ test("Renders Delete and Deletes Rating", async () => {
           </ReportProvider>
         </CompanyUserProvider>
       </ReloadProvider>
-    ));
+    );
   });
 
   const deleteItem = screen.getByTestId("deleteRatingIcon");
@@ -164,5 +157,3 @@ test("Renders Delete and Deletes Rating", async () => {
     fireEvent.click(clickYes);
   });
 });
-
-

@@ -24,23 +24,12 @@ jest.mock("../../../components/services/gate-api", () => ({
 
 test("Gate Picker Test", async () => {
   getUserBpdmGates.mockImplementation(() => Promise.resolve(gates));
-  let getByLabelText;
-  let getByTestId;
-  let getByText;
+
   await act(async () => {
-    ({ getByLabelText, getByTestId, getByText } = render(
+    render(
       <CompanyUserProvider>
         <GatePicker />
       </CompanyUserProvider>
-    ));
+    );
   });
-
-  /*const selectgate = screen.getByTestId("selectGate");
-
-  act(() => {
-    fireEvent.change(selectgate, { target: { value: "BMW" } });
-    fireEvent.keyDown(selectgate, { key: "ArrowDown" });
-    fireEvent.keyDown(selectgate, { key: "Enter" });
-  });*/
-
 });

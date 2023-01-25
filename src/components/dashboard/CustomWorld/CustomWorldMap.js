@@ -57,7 +57,7 @@ const CustomWorldMap = (ratings) => {
   }, []);
 
   const cordinates = (position, dragging, event) => {
-    setKZoom(position.k);
+    setKZoom(position.zoom);
   };
 
   const handlePopoverClose = () => {
@@ -113,6 +113,7 @@ const CustomWorldMap = (ratings) => {
                     key={geoMap.size > 0 ? geoMap.get(geo).rsmKey : geo.rsmKey}
                     geography={geoMap.size > 0 ? geoMap.get(geo) : geo}
                     fill={geoMap.size > 0 ? geoMap.get("color") : "#F5F4F6"}
+                    data-testid={`geo-show-marker-${geo.id}`}
                     onMouseEnter={() => {
                       countryMarkers.forEach((s) => {
                         data.forEach((d) => {

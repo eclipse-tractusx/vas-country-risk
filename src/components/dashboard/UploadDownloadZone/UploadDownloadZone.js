@@ -121,13 +121,7 @@ const UploadDownloadZone = () => {
     }),
 
     onChangeStatus: ({ meta }, file, status, allFiles) => {
-      console.log("meta", meta);
-      console.log("status", status);
-      console.log("file", file);
-      console.log("allFiles", allFiles);
       if (status[0].xhr) {
-        console.log(meta);
-        console.log(status);
         if (status[0].xhr.status === 200) {
           setSeverity("info");
           setSeverityMessage("Your rating has been uploaded");
