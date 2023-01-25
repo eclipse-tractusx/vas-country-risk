@@ -1,4 +1,4 @@
-import { render, act, fireEvent } from "@testing-library/react";
+import { render, act, fireEvent, screen } from "@testing-library/react";
 import { test } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
 import ShareReport from "../../../components/dashboard/ShareReport/ShareReport";
@@ -7,8 +7,8 @@ import { getUserFromCompany } from "../../../components/services/company-api";
 import { CompanyUserProvider } from "../../../contexts/companyuser";
 
 const closeDialogs = () => {
-    return true;
-  };
+  return true;
+};
 
 const closeDialogsDeleteAndUpdate = () => {
   return (
@@ -20,16 +20,16 @@ const closeDialogsDeleteAndUpdate = () => {
 
 const companyUsers = [
   {
-      name: "Test User CX Admin",
-      email: "cxadmin@cx.com",
-      companyName: "CX-Test-Access",
-   },
-   {
-      name: "Test User CX User",
-      email: "cxuser@cx.com",
-      companyName: "CX-Test-Access",
-   }
-  ];
+    name: "Test User CX Admin",
+    email: "cxadmin@cx.com",
+    companyName: "CX-Test-Access",
+  },
+  {
+    name: "Test User CX User",
+    email: "cxuser@cx.com",
+    companyName: "CX-Test-Access",
+  },
+];
 
 jest.mock("../../../components/services/company-api", () => ({
   getUserFromCompany: jest.fn(() => companyUsers),
@@ -37,50 +37,45 @@ jest.mock("../../../components/services/company-api", () => ({
 
 test("Share Report Tests", async () => {
   getUserFromCompany.mockImplementation(() => Promise.resolve(companyUsers));
-    let getByLabelText;
-    let getByTestId;
-    let getByText;
-    await act(async () => {
-      ({ getByLabelText, getByTestId, getByText } = render(
-        <CompanyUserProvider>
-          <ReportProvider>
-            <ShareReport
-              closeDialogs={closeDialogs}
-              closeDialogsDeleteAndUpdate={closeDialogsDeleteAndUpdate}
-            ></ShareReport>
-          </ReportProvider>
-        </CompanyUserProvider>
-      ));
-    });
-  
-    const shareBtn = getByText("Share");
-    await act(async () => {
-      fireEvent.click(shareBtn);
-    });
-    expect(shareBtn).toBeInTheDocument();
+  await act(async () => {
+    render(
+      <CompanyUserProvider>
+        <ReportProvider>
+          <ShareReport
+            closeDialogs={closeDialogs}
+            closeDialogsDeleteAndUpdate={closeDialogsDeleteAndUpdate}
+          ></ShareReport>
+        </ReportProvider>
+      </CompanyUserProvider>
+    );
   });
 
-  test("Close Share Report", async () => {
-    getUserFromCompany.mockImplementation(() => Promise.resolve(companyUsers));
-      let getByLabelText;
-      let getByTestId;
-      let getByText;
-      await act(async () => {
-        ({ getByLabelText, getByTestId, getByText } = render(
-          <CompanyUserProvider>
-            <ReportProvider>
-              <ShareReport
-                closeDialogs={closeDialogs}
-                closeDialogsDeleteAndUpdate={closeDialogsDeleteAndUpdate}
-              ></ShareReport>
-            </ReportProvider>
-          </CompanyUserProvider>
-        ));
-      });
-    
-      const shareBtn = getByText("Close");
-      await act(async () => {
-        fireEvent.click(shareBtn);
-      });
-      expect(shareBtn).toBeInTheDocument();
-    });
+  const shareBtn = screen.getByText("Share");
+  await act(async () => {
+    fireEvent.click(shareBtn);
+  });
+  expect(shareBtn).toBeInTheDocument();
+});
+
+test("Close Share Report", async () => {
+  getUserFromCompany.mockImplementation(() => Promise.resolve(companyUsers));
+
+  await act(async () => {
+    render(
+      <CompanyUserProvider>
+        <ReportProvider>
+          <ShareReport
+            closeDialogs={closeDialogs}
+            closeDialogsDeleteAndUpdate={closeDialogsDeleteAndUpdate}
+          ></ShareReport>
+        </ReportProvider>
+      </CompanyUserProvider>
+    );
+  });
+
+  const shareBtn = screen.getByText("Close");
+  await act(async () => {
+    fireEvent.click(shareBtn);
+  });
+  expect(shareBtn).toBeInTheDocument();
+});

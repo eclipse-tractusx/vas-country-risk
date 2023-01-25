@@ -4,8 +4,6 @@ import {
   fireEvent,
   waitFor,
   screen,
-  getByTestId,
-  querySelectorAll,
 } from "@testing-library/react";
 import { test } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
@@ -114,6 +112,11 @@ jest.mock("../../../components/services/country-api", () => ({
   getCountrys: jest.fn().mockReturnValue(worldMapInfo),
 }));
 
+jest.mock("react-simple-maps", () => ({
+  ...jest.requireActual("react-simple-maps"),
+  ZoomableGroup: ({ children }) => <>{children}</>,
+}));
+
 const mockRatings = {
   weight: 1,
   getRatings: "all",
@@ -124,32 +127,19 @@ const mockRatings = {
   maxMapHeight: 1000,
 };
 
-// test("Custom World Map snapshot test", () => {
-//   const component = renderer.create(
-//     <CompanyUserProvider>
-//       <RangesProvider>
-//         <CustomWorldMap ratings={mockRatings} />
-//       </RangesProvider>
-//     </CompanyUserProvider>
-//   );
-//   let tree = component.toJSON();
-//   expect(tree).toMatchSnapshot();
-// });
-
 test("Custom World Map Test", async () => {
   getWorldMapInfo.mockImplementation(() => Promise.resolve(worldMapInfo));
   getBpns.mockImplementation(() => Promise.resolve(bpns));
   getCountrys.mockImplementation(() => Promise.resolve(worldMapInfo));
 
-  let getByTestId;
   await act(async () => {
-    ({ getByTestId } = render(
+    render(
       <CompanyUserProvider>
         <RangesProvider>
           <CustomWorldMap ratings={mockRatings} />
         </RangesProvider>
       </CompanyUserProvider>
-    ));
+    );
   });
 
   const zoomableGroup = screen.getByTestId("geo");
@@ -169,4 +159,26 @@ test("Custom World Map Test", async () => {
     fireEvent.click(zoomableGroup);
   });
   expect(zoomableGroup).toBeInTheDocument();
+});
+
+test("Custom World Map Test Pick Prt", async () => {
+  getWorldMapInfo.mockImplementation(() => Promise.resolve(worldMapInfo));
+  getBpns.mockImplementation(() => Promise.resolve(bpns));
+  getCountrys.mockImplementation(() => Promise.resolve(worldMapInfo));
+
+  await act(async () => {
+    render(
+      <CompanyUserProvider>
+        <RangesProvider>
+          <CustomWorldMap ratings={mockRatings} />
+        </RangesProvider>
+      </CompanyUserProvider>
+    );
+  });
+
+  const prtCountryCode = screen.getByTestId("geo-show-marker-PRT");
+  act(() => {
+    fireEvent.mouseEnter(prtCountryCode);
+    fireEvent.click(prtCountryCode);
+  });
 });

@@ -19,13 +19,12 @@ const row = [
 ];
 
 test("DetailDialog Test", async () => {
-  let getByText;
   await act(async () => {
-    ({ getByText } = render(
+    render(
       <DetailDialog
         selectedDetailRow={row}
         onCloseDetailGridFunction={jest.fn()}
       />
-    ));
+    );
   });
 });

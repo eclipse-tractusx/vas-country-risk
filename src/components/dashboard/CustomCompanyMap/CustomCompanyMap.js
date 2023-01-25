@@ -140,7 +140,7 @@ const CustomCompanyMap = (ratings) => {
   }, [ratings.getRatings, ratings.years, ratings.weight, gates]);
 
   const coordinates = (position, dragging, event) => {
-    setKZoom(position.k);
+    setKZoom(position.zoom);
   };
 
   const handlePopoverClose = () => {
@@ -193,7 +193,7 @@ const CustomCompanyMap = (ratings) => {
                 }
                 return (
                   <Geography
-                    data-testid="geo-show-marker"
+                    data-testid={`geo-show-marker-${geo.id}`}
                     key={geoMap.size > 0 ? geoMap.get(geo).rsmKey : geo.rsmKey}
                     geography={geoMap.size > 0 ? geoMap.get(geo) : geo}
                     onClick={handleClick(geo.properties)}
