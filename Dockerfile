@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY package-lock.json .
 COPY package.json .
+RUN mkdir build
+RUN mkdir public
 COPY build/ build
 COPY public/ public
 
