@@ -53,7 +53,7 @@ test("Close Upload Test and Download Template", async () => {
 });
 
 //Open Upload Dialog and setErroName
-/*test("Close Upload Test and input big name", async () => {
+test("Close Upload Test and input big name", async () => {
   await act(async () => {
     render(
       <CompanyUserProvider>
@@ -94,7 +94,7 @@ test("Close Upload Test and Download Template", async () => {
   });
 });
 
-test("Upload Test", async () => {
+/*test("Upload Test", async () => {
   await act(async () => {
     render(
       <CompanyUserProvider>
