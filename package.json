@@ -34,7 +34,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "coverage": "react-scripts test --env=jsdom --coverage --collectCoverageFrom='src/**/*.js' --timeout 3600000",
+    "coverage": "react-scripts test --env=jsdom --coverage --collectCoverageFrom='src/**/*.js' --timeout=3600000",
     "local-coverage": "react-scripts test --env=jsdom --watchAll --coverage --collectCoverageFrom='src/**/*.js' --timeout=3600000"
   },
   "eslintConfig": {
