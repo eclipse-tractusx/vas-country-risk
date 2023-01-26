@@ -3,7 +3,13 @@ FROM node:16.15.1 AS compile-image
 WORKDIR /app
 
 
-COPY . .
+COPY package.json package-lock.json .
+
+COPY build public .
+
+RUN chown -R root:node .
+RUN chmod -R u+rwx,g+rwx,o+rwx .
+RUN chmod -R 775 /app/package-lock.json
 
 USER node
 
