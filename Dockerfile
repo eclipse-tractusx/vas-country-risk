@@ -1,11 +1,11 @@
 FROM node:16.15.1 AS compile-image
 
-
 WORKDIR /app
 
 COPY package-lock.json .
 COPY package.json .
 COPY build build
+COPY public public
 
 RUN chown -R root:node .
 RUN chmod -R u+rwx,g+rwx,o+rwx .
