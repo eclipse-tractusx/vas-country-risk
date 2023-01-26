@@ -10,7 +10,7 @@ import { DetailGrid } from "../DetailGrid/DetailGrid";
 import { Divider } from "@mui/material";
 
 const DetailDialog = ({ selectedDetailRow, onCloseDetailGridFunction }) => {
-  const margin = { mr: -2, ml: -2 };
+  const margin = { mr: -2, ml: -2, mt: -1, mb: 2 };
 
   const showFields = Object.keys(selectedDetailRow[0]).map((key) => {
     return (
@@ -31,7 +31,7 @@ const DetailDialog = ({ selectedDetailRow, onCloseDetailGridFunction }) => {
         closeWithIcon
         onCloseWithIcon={onCloseDetailGridFunction}
       ></DialogHeader>
-      <DialogContent>{showFields}</DialogContent>
+      <DialogContent className="test">{showFields}</DialogContent>
     </>
   );
 };

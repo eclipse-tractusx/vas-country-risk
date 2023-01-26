@@ -23,12 +23,6 @@ function App() {
                     <div className="navbar">
                       <NavigationBar />
                     </div>
-                    <div className="App-pageheader">
-                      <PageHeader
-                        title="Dashboard"
-                        headerHeight={200}
-                      ></PageHeader>
-                    </div>
                     <div className="App">
                       <Dashboard />
                       <Footer />

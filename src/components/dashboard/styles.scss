@@ -10,16 +10,14 @@
     .maps-content {
       justify-content: space-between;
       display: flex;
-      background-color: #f4f5f6;
+      box-shadow: 0 3px 15px rgba(60, 60, 60, 0.2);
+      border: 1px solid rgb(255, 255, 255);
       padding: 10px;
-      border: 1px solid #000;
-      border-radius: 20px;
 
       .left-map {
         align-items: center;
         display: flex;
         flex-direction: column;
-        border: 1px solid #000;
         border-radius: 20px;
         margin-right: auto;
         margin-left: auto;
@@ -27,7 +25,6 @@
         background-color: rgba(20, 177, 245, 0.132);
       }
       .right-map {
-        border: 1px solid #000;
         border-radius: 20px;
         margin-right: auto;
         margin-left: auto;
@@ -38,10 +35,9 @@
 
     .table-content {
       margin-top: 2%;
-      border: 1px solid #000;
-      border-radius: 20px;
+      box-shadow: 0 3px 15px rgba(60, 60, 60, 0.2);
+      border: 1px solid rgb(255, 255, 255);
       padding: 1%;
-      background-color: #f4f5f6;
     }
   }
 
@@ -53,10 +49,9 @@
 
     .right-top-content {
       width: 100%;
-      background-color: #f4f5f6;
-      border-radius: 20px;
+      box-shadow: 0 3px 15px rgba(60, 60, 60, 0.2);
+      border: 1px solid rgb(255, 255, 255);
       padding: 10px;
-      border: 1px solid #000;
     }
 
     .dropdown-content {
@@ -74,7 +69,6 @@
 
     .upload-content {
       width: 100%;
-      background-color: #f4f5f6;
     }
 
     .right-middle-content {
@@ -83,19 +77,16 @@
       align-items: center;
       margin: 5% 0;
       width: 100%;
-      border-radius: 25px;
-      background-color: #f4f5f6;
-      border: 1px solid #000;
+      box-shadow: 0 3px 15px rgba(60, 60, 60, 0.2);
+      border: 1px solid rgb(255, 255, 255);
       padding: 2%;
     }
 
     .right-bottom-content {
       padding: 8px;
       width: 100%;
-      border: 1px solid #000;
-      background-color: #f4f5f6;
-      border-radius: 0px;
-      border-radius: 20px;
+      box-shadow: 0 3px 15px rgba(60, 60, 60, 0.2);
+      border: 1px solid rgb(255, 255, 255);
     }
   }
 }

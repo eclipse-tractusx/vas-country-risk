@@ -3,7 +3,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { IconButton } from "cx-portal-shared-components";
 import { capitalize } from "@mui/material";
 export const columns = (ranges, onDetailClick) => {
-  const hiddenColumns = ["street", "houseNumber", "zipCode", "city"];
+  const hiddenColumns = ["street", "houseNumber", "zipCode"];
   return [
     {
       description: "Business Partner Number",
@@ -27,14 +27,20 @@ export const columns = (ranges, onDetailClick) => {
     {
       description: "Country",
       field: "country",
-      flex: 2,
+      flex: 1.5,
       headerName: "Country",
+    },
+    {
+      description: "City",
+      field: "city",
+      flex: 1.5,
+      headerName: "City",
     },
     {
       description: "Score",
       field: "score",
       headerName: "Score",
-      flex: 2,
+      flex: 1,
       cellClassName: (params) =>
         clsx("super-app", {
           minColor: params.value < ranges[1][0],

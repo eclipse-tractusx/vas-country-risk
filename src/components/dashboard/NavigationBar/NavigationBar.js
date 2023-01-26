@@ -42,9 +42,6 @@ const NavigationBar = () => {
               Help
             </Button>
           </div>
-          <div className="user-btn">
-            <IconButton color="primary" size="medium"></IconButton>
-          </div>
         </div>
       </MainNavigation>
 
