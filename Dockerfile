@@ -3,12 +3,13 @@ FROM node:16.15.1 AS compile-image
 
 WORKDIR /app
 
-COPY . /app/
-
+COPY package-lock.json .
+COPY package.json .
+COPY build build
 
 RUN chown -R root:node .
 RUN chmod -R u+rwx,g+rwx,o+rwx .
-RUN chmod -R 775 /app/package-lock.json
+RUN chmod -R 775 package-lock.json
 
 USER node
 
@@ -16,7 +17,7 @@ ENV PATH="./node_modules/.bin:$PATH"
 
 RUN npm install @emotion/react  @emotion/styled  @mui/icons-material@5.10.6  @mui/material@5.10.7 react-simple-maps cx-portal-shared-components react-scripts
 
-RUN npm install 
+RUN npm install
 
 RUN npm run build
 
