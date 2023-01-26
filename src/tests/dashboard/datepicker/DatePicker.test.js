@@ -1,4 +1,4 @@
-import { render, act } from "@testing-library/react";
+import { render, act, screen, fireEvent } from "@testing-library/react";
 import { test } from "@jest/globals";
 import DatePicker from "../../../components/dashboard/DatePicker/DatePicker";
 import { getAllDates } from "../../../components/services/dateform-api";
@@ -17,15 +17,18 @@ const mockpassYearSelected = jest.fn();
 test("DatePicker Test", async () => {
   getAllDates.mockImplementation(() => Promise.resolve(date));
   const customerUser = { name: "test" };
-  let getByText;
   await act(async () => {
-    ({ getByText } = render(
+    render(
       <CompanyUserProvider>
         <ReportProvider>
           <DatePicker passYearSelected={mockpassYearSelected} />
         </ReportProvider>
       </CompanyUserProvider>
-    ));
+    );
   });
-  expect(getByText("Select a Year")).toBeInTheDocument();
+
+  const picker = screen.getByText("Select a Year");
+
+  expect(picker).toBeInTheDocument();
+
 });
