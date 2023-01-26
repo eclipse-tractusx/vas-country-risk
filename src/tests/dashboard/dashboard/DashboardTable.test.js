@@ -68,10 +68,8 @@ jest.mock("../../../components/services/dashboard-api", () => ({
 test("Renders Dashboard Table", async () => {
   getAll.mockImplementation(() => Promise.resolve(tableinfoData));
 
-  let getByLabelText;
-  let getByText;
   await act(async () => {
-    ({ getByLabelText, getByText } = render(
+    render(
       <RangesProvider>
         <CountryProvider>
           <CompanyUserProvider>
@@ -87,16 +85,16 @@ test("Renders Dashboard Table", async () => {
           </CompanyUserProvider>
         </CountryProvider>
       </RangesProvider>
-    ));
+    );
   });
 
-  const row1 = getByLabelText("Select all rows");
+  const row1 = screen.getByLabelText("Select all rows");
   await act(async () => {
     fireEvent.click(row1);
   });
   expect(row1).toBeInTheDocument();
 
-  const button = getByText("Export to csv");
+  const button = screen.getByText("Export to csv");
   await act(async () => {
     fireEvent.click(button);
   });

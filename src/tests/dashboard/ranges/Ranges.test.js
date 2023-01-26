@@ -1,4 +1,4 @@
-import { render, act, fireEvent } from "@testing-library/react";
+import { render, act, screen ,fireEvent } from "@testing-library/react";
 import { test } from "@jest/globals";
 import RangeSlider from "../../../components/dashboard/RangeSlider/RangeSlider";
 import {
@@ -81,7 +81,7 @@ test("Ranges Change Input Slider", async () => {
   let getByTestId;
   let getByText;
   await act(async () => {
-    ({ getByTestId, getByText } = render(
+    render(
       <CompanyUserProvider>
         <ReportProvider>
           <RangesProvider>
@@ -89,10 +89,10 @@ test("Ranges Change Input Slider", async () => {
           </RangesProvider>
         </ReportProvider>
       </CompanyUserProvider>
-    ));
+    );
   });
 
-  const buttonSaveRanges = getByText("Save Ranges");
+  const buttonSaveRanges = screen.getByText("Save Ranges");
 
   act(() => {
     fireEvent.click(buttonSaveRanges);
@@ -100,27 +100,27 @@ test("Ranges Change Input Slider", async () => {
 
   expect(buttonSaveRanges).toBeInTheDocument();
 
-  const getSliderGreen = getByTestId("input-slider-greenSlider");
+  const getSliderGreen = screen.getByTestId("input-slider-greenSlider");
   act(() => {
     fireEvent.blur(getSliderGreen);
   });
   expect(getSliderGreen).toBeInTheDocument();
 
-  const getSliderYellowRight = getByTestId("input-slider-yellow-left");
+  const getSliderYellowRight = screen.getByTestId("input-slider-yellow-left");
   act(() => {
     fireEvent.change(getSliderYellowRight, { target: { value: 40 } });
   });
 
   expect(getSliderYellowRight).toBeInTheDocument();
 
-  const getSliderYellowLeft = getByTestId("input-slider-yellow-right");
+  const getSliderYellowLeft = screen.getByTestId("input-slider-yellow-right");
   act(() => {
     fireEvent.change(getSliderYellowLeft, { target: { value: 70 } });
   });
 
   expect(getSliderYellowLeft).toBeInTheDocument();
 
-  const getSliderYellowRed = getByTestId("input-slider-red-right");
+  const getSliderYellowRed = screen.getByTestId("input-slider-red-right");
   act(() => {
     fireEvent.change(getSliderYellowRed, { target: { value: 10 } });
   });
@@ -133,7 +133,7 @@ test("Ranges Change Blur Slider", async () => {
 
   let getByTestId;
   await act(async () => {
-    ({ getByTestId } = render(
+    render(
       <CompanyUserProvider>
         <ReportProvider>
           <RangesProvider>
@@ -141,29 +141,29 @@ test("Ranges Change Blur Slider", async () => {
           </RangesProvider>
         </ReportProvider>
       </CompanyUserProvider>
-    ));
+    );
   });
-  const getSliderGreen = getByTestId("input-slider-greenSlider");
+  const getSliderGreen = screen.getByTestId("input-slider-greenSlider");
   act(() => {
     fireEvent.blur(getSliderGreen, { target: { value: 71} });
   });
   expect(getSliderGreen).toBeInTheDocument();
 
-  const getSliderYellowRight = getByTestId("input-slider-yellow-left");
+  const getSliderYellowRight = screen.getByTestId("input-slider-yellow-left");
   act(() => {
     fireEvent.blur(getSliderYellowRight, { target: { value: 11 } });
   });
 
   expect(getSliderYellowRight).toBeInTheDocument();
 
-  const getSliderYellowLeft = getByTestId("input-slider-yellow-right");
+  const getSliderYellowLeft = screen.getByTestId("input-slider-yellow-right");
   act(() => {
     fireEvent.blur(getSliderYellowLeft, { target: { value: 70 } });
   });
 
   expect(getSliderYellowLeft).toBeInTheDocument();
 
-  const getSliderYellowRed = getByTestId("input-slider-red-right");
+  const getSliderYellowRed = screen.getByTestId("input-slider-red-right");
   act(() => {
     fireEvent.blur(getSliderYellowRed, { target: { value: 10 } });
   });
@@ -176,7 +176,7 @@ test("Ranges Move Slider", async () => {
 
   let getByTestId;
   await act(async () => {
-    ({ getByTestId } = render(
+    render(
       <CompanyUserProvider>
         <ReportProvider>
           <RangesProvider>
@@ -184,9 +184,9 @@ test("Ranges Move Slider", async () => {
           </RangesProvider>
         </ReportProvider>
       </CompanyUserProvider>
-    ));
+    );
   });
-  const getSliderGreen = getByTestId("slider-green");
+  const getSliderGreen = screen.getByTestId("slider-green");
 
   act(() => {
     fireEvent.mouseDown(getSliderGreen, {
@@ -197,7 +197,7 @@ test("Ranges Move Slider", async () => {
 
   expect(getSliderGreen).toBeInTheDocument();
 
-  const getSliderYellow = getByTestId("slider-yellow");
+  const getSliderYellow = screen.getByTestId("slider-yellow");
 
   act(() => {
     fireEvent.mouseDown(getSliderYellow, {
@@ -208,7 +208,7 @@ test("Ranges Move Slider", async () => {
 
   expect(getSliderYellow).toBeInTheDocument();
 
-  const getSliderRed = getByTestId("slider-red");
+  const getSliderRed = screen.getByTestId("slider-red");
 
   act(() => {
     fireEvent.mouseDown(getSliderRed, {
@@ -227,7 +227,7 @@ test("Ranges Change wrong values Slider", async () => {
 
   let getByTestId;
   await act(async () => {
-    ({ getByTestId } = render(
+    render(
       <CompanyUserProvider>
         <ReportProvider>
           <RangesProvider>
@@ -235,29 +235,29 @@ test("Ranges Change wrong values Slider", async () => {
           </RangesProvider>
         </ReportProvider>
       </CompanyUserProvider>
-    ));
+    );
   });
-  const getSliderGreen = getByTestId("input-slider-greenSlider");
+  const getSliderGreen = screen.getByTestId("input-slider-greenSlider");
   act(() => {
     fireEvent.blur(getSliderGreen, { target: { value: 100} });
   });
   expect(getSliderGreen).toBeInTheDocument();
 
-  const getSliderYellowRight = getByTestId("input-slider-yellow-left");
+  const getSliderYellowRight = screen.getByTestId("input-slider-yellow-left");
   act(() => {
     fireEvent.blur(getSliderYellowRight, { target: { value: 100 } });
   });
 
   expect(getSliderYellowRight).toBeInTheDocument();
 
-  const getSliderYellowLeft = getByTestId("input-slider-yellow-right");
+  const getSliderYellowLeft = screen.getByTestId("input-slider-yellow-right");
   act(() => {
     fireEvent.blur(getSliderYellowLeft, { target: { value: 100 } });
   });
 
   expect(getSliderYellowLeft).toBeInTheDocument();
 
-  const getSliderYellowRed = getByTestId("input-slider-red-right");
+  const getSliderYellowRed = screen.getByTestId("input-slider-red-right");
   act(() => {
     fireEvent.blur(getSliderYellowRed, { target: { value: 100 } });
   });
@@ -272,7 +272,7 @@ test("Ranges automatic change green", async () => {
 
   let getByTestId;
   await act(async () => {
-    ({ getByTestId } = render(
+    render(
       <CompanyUserProvider>
         <ReportProvider>
           <RangesProvider>
@@ -280,29 +280,29 @@ test("Ranges automatic change green", async () => {
           </RangesProvider>
         </ReportProvider>
       </CompanyUserProvider>
-    ));
+    );
   });
-  const getSliderGreen = getByTestId("input-slider-greenSlider");
+  const getSliderGreen = screen.getByTestId("input-slider-greenSlider");
   act(() => {
     fireEvent.blur(getSliderGreen, { target: { value: 4} });
   });
   expect(getSliderGreen).toBeInTheDocument();
 
-  const getSliderYellowRight = getByTestId("input-slider-yellow-left");
+  const getSliderYellowRight = screen.getByTestId("input-slider-yellow-left");
   act(() => {
     fireEvent.blur(getSliderYellowRight, { target: { value: 97 } });
   });
 
   expect(getSliderYellowRight).toBeInTheDocument();
 
-  const getSliderYellowLeft = getByTestId("input-slider-yellow-right");
+  const getSliderYellowLeft = screen.getByTestId("input-slider-yellow-right");
   act(() => {
     fireEvent.blur(getSliderYellowLeft, { target: { value: 98 } });
   });
 
   expect(getSliderYellowLeft).toBeInTheDocument();
 
-  const getSliderYellowRed = getByTestId("input-slider-red-right");
+  const getSliderYellowRed = screen.getByTestId("input-slider-red-right");
   act(() => {
     fireEvent.blur(getSliderYellowRed, { target: { value: 96 } });
   });
@@ -317,7 +317,7 @@ test("Ranges automatic change red", async () => {
 
   let getByTestId;
   await act(async () => {
-    ({ getByTestId } = render(
+    render(
       <CompanyUserProvider>
         <ReportProvider>
           <RangesProvider>
@@ -325,29 +325,29 @@ test("Ranges automatic change red", async () => {
           </RangesProvider>
         </ReportProvider>
       </CompanyUserProvider>
-    ));
+    );
   });
-  const getSliderGreen = getByTestId("input-slider-greenSlider");
+  const getSliderGreen = screen.getByTestId("input-slider-greenSlider");
   act(() => {
     fireEvent.blur(getSliderGreen, { target: { value: 4} });
   });
   expect(getSliderGreen).toBeInTheDocument();
 
-  const getSliderYellowRight = getByTestId("input-slider-yellow-left");
+  const getSliderYellowRight = screen.getByTestId("input-slider-yellow-left");
   act(() => {
     fireEvent.blur(getSliderYellowRight, { target: { value: 97 } });
   });
 
   expect(getSliderYellowRight).toBeInTheDocument();
 
-  const getSliderYellowLeft = getByTestId("input-slider-yellow-right");
+  const getSliderYellowLeft = screen.getByTestId("input-slider-yellow-right");
   act(() => {
     fireEvent.blur(getSliderYellowLeft, { target: { value: 98 } });
   });
 
   expect(getSliderYellowLeft).toBeInTheDocument();
 
-  const getSliderYellowRed = getByTestId("input-slider-red-right");
+  const getSliderYellowRed = screen.getByTestId("input-slider-red-right");
   act(() => {
     fireEvent.blur(getSliderYellowRed, { target: { value: 96 } });
   });
@@ -362,7 +362,7 @@ test("Ranges automatic change red if value above all", async () => {
 
   let getByTestId;
   await act(async () => {
-    ({ getByTestId } = render(
+    render(
       <CompanyUserProvider>
         <ReportProvider>
           <RangesProvider>
@@ -370,29 +370,29 @@ test("Ranges automatic change red if value above all", async () => {
           </RangesProvider>
         </ReportProvider>
       </CompanyUserProvider>
-    ));
+    );
   });
-  const getSliderGreen = getByTestId("input-slider-greenSlider");
+  const getSliderGreen = screen.getByTestId("input-slider-greenSlider");
   act(() => {
     fireEvent.blur(getSliderGreen, { target: { value: 91} });
   });
   expect(getSliderGreen).toBeInTheDocument();
 
-  const getSliderYellowRight = getByTestId("input-slider-yellow-left");
+  const getSliderYellowRight = screen.getByTestId("input-slider-yellow-left");
   act(() => {
     fireEvent.blur(getSliderYellowRight, { target: { value: 89 } });
   });
 
   expect(getSliderYellowRight).toBeInTheDocument();
 
-  const getSliderYellowLeft = getByTestId("input-slider-yellow-right");
+  const getSliderYellowLeft = screen.getByTestId("input-slider-yellow-right");
   act(() => {
     fireEvent.blur(getSliderYellowLeft, { target: { value: 90 } });
   });
 
   expect(getSliderYellowLeft).toBeInTheDocument();
 
-  const getSliderYellowRed = getByTestId("input-slider-red-right");
+  const getSliderYellowRed = screen.getByTestId("input-slider-red-right");
   act(() => {
     fireEvent.blur(getSliderYellowRed, { target: { value: 96 } });
   });

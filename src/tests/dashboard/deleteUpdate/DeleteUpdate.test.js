@@ -1,4 +1,4 @@
-import { render, useState, act, fireEvent } from "@testing-library/react";
+import { render, screen, act, fireEvent } from "@testing-library/react";
 import { test } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
 import DeleteUpdateComponent from "../../../components/dashboard/DeleteUpdateComponent/DeleteUpdateComponent";
@@ -64,11 +64,8 @@ test("Renders Delete Update Component (Update Report)", async () => {
   shareReports.mockImplementation(() => Promise.resolve(NoErrorStatus));
   getReportValuesByReport.mockImplementation(() => Promise.resolve(expectedResponse));
 
-
-  let getByLabelText;
-  let getByTestId;
   await act(async () => {
-    ({ getByLabelText, getByTestId } = render(
+    render(
       <CompanyUserProvider>
         <ReportProvider>
           <DeleteUpdateComponent
@@ -78,10 +75,10 @@ test("Renders Delete Update Component (Update Report)", async () => {
           ></DeleteUpdateComponent>
         </ReportProvider>
       </CompanyUserProvider>
-    ));
+    );
   });
 
-  const yesbtn = getByTestId("btnYes");
+  const yesbtn = screen.getByTestId("btnYes");
   await act(async () => {
     fireEvent.click(yesbtn);
   });
@@ -107,10 +104,9 @@ test("Renders Delete Update Component (Delete Report)", async () => {
   updateReports.mockImplementation(() => Promise.resolve(NoErrorStatus));
   shareReports.mockImplementation(() => Promise.resolve(NoErrorStatus));
   getReportValuesByReport.mockImplementation(() => Promise.resolve(expectedResponse));
-  let getByLabelText;
-  let getByTestId;
+
   await act(async () => {
-    ({ getByLabelText, getByTestId } = render(
+    render(
       <CompanyUserProvider>
         <ReportProvider>
           <DeleteUpdateComponent
@@ -120,10 +116,10 @@ test("Renders Delete Update Component (Delete Report)", async () => {
           ></DeleteUpdateComponent>
         </ReportProvider>
       </CompanyUserProvider>
-    ));
+    );
   });
 
-  const yesbtn = getByTestId("btnYes");
+  const yesbtn = screen.getByTestId("btnYes");
   await act(async () => {
     fireEvent.click(yesbtn);
   });
@@ -159,9 +155,9 @@ test("Renders Delete Update Component (Share Report)", async () => {
   deleteUpdateDataShare.doubleCheckMessage =
     "Do you want to share this Report?";
   deleteUpdateDataShare.operation = "Share Report";
-  let getByTestId;
+
   await act(async () => {
-    ({ getByLabelText, getByTestId } = render(
+    render(
       <CompanyUserProvider>
         <ReportProvider>
           <DeleteUpdateComponent
@@ -171,10 +167,10 @@ test("Renders Delete Update Component (Share Report)", async () => {
           ></DeleteUpdateComponent>
         </ReportProvider>
       </CompanyUserProvider>
-    ));
+    );
   });
 
-  const yesbtn = getByTestId("btnYes");
+  const yesbtn = screen.getByTestId("btnYes");
   await act(async () => {
     fireEvent.click(yesbtn);
   });
@@ -187,11 +183,9 @@ test("No Update/Share/Delete button No Click", async () => {
   updateReports.mockImplementation(() => Promise.resolve(NoErrorStatus));
   shareReports.mockImplementation(() => Promise.resolve(NoErrorStatus));
   getReportValuesByReport.mockImplementation(() => Promise.resolve(expectedResponse));
-  let getByLabelText;
-  let getByTestId;
-  let getByText;
+
   await act(async () => {
-    ({ getByLabelText, getByTestId, getByText } = render(
+    render(
       <CompanyUserProvider>
         <ReportProvider>
           <DeleteUpdateComponent
@@ -201,10 +195,10 @@ test("No Update/Share/Delete button No Click", async () => {
           ></DeleteUpdateComponent>
         </ReportProvider>
       </CompanyUserProvider>
-    ));
+    );
   });
 
-  const nobtn = getByText("No");
+  const nobtn = screen.getByText("No");
   await act(async () => {
     fireEvent.click(nobtn);
   });

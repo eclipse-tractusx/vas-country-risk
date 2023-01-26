@@ -1,4 +1,4 @@
-import { render, act, fireEvent } from "@testing-library/react";
+import { render, act, fireEvent, screen } from "@testing-library/react";
 import { test } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
 import userEvent from "@testing-library/user-event";
@@ -90,7 +90,7 @@ jest.mock("html-to-image", () => ({
   toPng: jest.fn().mockReturnValue([]),
 }));
 
-test("Renders Left Map", () => {
+test("Renders Left Map", async () => {
   getAll.mockImplementation(() => Promise.resolve(tableinfoData));
   getCountryByUser.mockImplementation(() => Promise.resolve(countryData));
   getCountrys.mockImplementation(() => Promise.resolve(countryData));
@@ -98,18 +98,22 @@ test("Renders Left Map", () => {
   getBpns.mockImplementation(() => Promise.resolve(bpnData));
   toPng.mockImplementation(() => Promise.resolve([]));
 
-  const getContainer = () =>
+  await act(async () => {
     render(
       <RangesProvider>
-        <LeftMap></LeftMap>
+        <LeftMap/>
       </RangesProvider>
     );
+  });
 
-  const buttonExpand = getContainer().getByTestId("expand-btn");
-  expect(buttonExpand).toBeInTheDocument();
-  fireEvent.click(buttonExpand);
+  await act(async () => {
+    const buttonExpand = screen.getByTestId("expand-btn");
+    expect(buttonExpand).toBeInTheDocument();
+    fireEvent.click(buttonExpand);
+  });
 
-  const buttonExport = getContainer().getByText("Export Image");
+  const buttonExport = screen.getByText("Export Image");
   expect(buttonExport).toBeInTheDocument();
   fireEvent.click(buttonExport);
+
 });

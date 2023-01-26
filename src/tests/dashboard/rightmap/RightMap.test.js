@@ -1,4 +1,4 @@
-import { render, act, fireEvent } from "@testing-library/react";
+import { render, act, fireEvent, screen } from "@testing-library/react";
 import { test } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
 import RightMap from "../../../components/dashboard/RightMap/RightMap";
@@ -100,7 +100,7 @@ test("Renders Right Map", async () => {
   getBpns.mockImplementation(() => Promise.resolve(bpnData));
   toPng.mockImplementation(() => Promise.resolve([]));
 
-  const getContainer = () =>
+  await act(async () => {
     render(
       <CompanyUserProvider>
         <ReportProvider>
@@ -110,12 +110,13 @@ test("Renders Right Map", async () => {
         </ReportProvider>
       </CompanyUserProvider>
     );
+  });
 
-  const buttonExpand = getContainer().getByTestId("expand-btn");
+  const buttonExpand = screen.getByTestId("expand-btn");
   expect(buttonExpand).toBeInTheDocument();
   fireEvent.click(buttonExpand);
 
-  const buttonExport = getContainer().getByText("Export Image");
+  const buttonExport = screen.getByText("Export Image");
   expect(buttonExport).toBeInTheDocument();
   fireEvent.click(buttonExport);
 });
