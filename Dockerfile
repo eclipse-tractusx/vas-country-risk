@@ -2,9 +2,8 @@ FROM node:16.15.1 AS compile-image
 
 WORKDIR /app
 
-COPY build/ /app/build/
-COPY public/ /app/public/
-COPY package.json package-lock.json /app/
+
+COPY . .
 
 USER node
 
