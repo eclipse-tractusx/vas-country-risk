@@ -2,16 +2,9 @@ FROM node:16.15.1 AS compile-image
 
 WORKDIR /app
 
-COPY package-lock.json .
-COPY package.json .
-RUN mkdir build
-RUN mkdir public
-COPY build/ /build/
-COPY public/ /public/
-
-RUN chown -R root:node .
-RUN chmod -R u+rwx,g+rwx,o+rwx .
-RUN chmod -R 775 package-lock.json
+COPY build/ /app/build/
+COPY public/ /app/public/
+COPY package.json package-lock.json /app/
 
 USER node
 
