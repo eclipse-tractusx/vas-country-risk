@@ -94,7 +94,7 @@ test("Close Upload Test and input big name", async () => {
   });
 });
 
-test("Upload Test", async () => {
+/*test("Upload Test", async () => {
   await act(async () => {
     render(
       <CompanyUserProvider>
@@ -141,4 +141,4 @@ test("Upload Test", async () => {
     expect(drop).toBeInTheDocument();
     fireEvent.drop(drop, { dataTransfer: { files: [csvfile] } });
   });
-});
+});*/

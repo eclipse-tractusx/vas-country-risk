@@ -105,12 +105,15 @@ test("Renders Left Map", async () => {
       </RangesProvider>
     );
   });
-  
-  const buttonExpand = screen.getByTestId("expand-btn");
-  expect(buttonExpand).toBeInTheDocument();
-  fireEvent.click(buttonExpand);
+
+  await act(async () => {
+    const buttonExpand = screen.getByTestId("expand-btn");
+    expect(buttonExpand).toBeInTheDocument();
+    fireEvent.click(buttonExpand);
+  });
 
   const buttonExport = screen.getByText("Export Image");
   expect(buttonExport).toBeInTheDocument();
   fireEvent.click(buttonExport);
+
 });
