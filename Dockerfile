@@ -6,8 +6,8 @@ COPY package-lock.json .
 COPY package.json .
 RUN mkdir build
 RUN mkdir public
-COPY build/ build
-COPY public/ public
+COPY build/ /build/
+COPY public/ /public/
 
 RUN chown -R root:node .
 RUN chmod -R u+rwx,g+rwx,o+rwx .
