@@ -8,7 +8,6 @@ import { Report } from "../../model/Report";
 import { ReportContext } from "../../../contexts/reports";
 import { shareReports } from "../../services/reports-api";
 
-
 const DeleteUpdateComponent = ({
   deleteUpdateData,
   closeDialogsDeleteAndUpdate,
@@ -19,6 +18,7 @@ const DeleteUpdateComponent = ({
   const { report, reportValuesContext } = useContext(ReportContext);
 
   const decideAction = () => {
+    console.log("UserOperation");
     if (deleteUpdateData.operation === "Save Changes") {
       closeDialogsAndSave();
     } else if (deleteUpdateData.operation === "Delete Report") {
@@ -29,7 +29,6 @@ const DeleteUpdateComponent = ({
   };
 
   const closeDialogsAndShare = () => {
-
     deleteUpdateData.forEach((eachPerson) => {
       const newReport = new Report(
         null,
@@ -114,7 +113,9 @@ const DeleteUpdateComponent = ({
         <Button className="btn-no" variant="outlined" onClick={closeDialog}>
           No
         </Button>
-        <Button data-testid="btnYes" onClick={decideAction}>Yes</Button>
+        <Button data-testid="btnYes" onClick={decideAction}>
+          Yes
+        </Button>
       </div>
     </div>
   );
