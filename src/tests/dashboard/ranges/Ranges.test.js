@@ -356,6 +356,59 @@ test("Ranges automatic change red", async () => {
 });
 
 
+//Change values automaticly if red above all and save value on enter press
+test("Ranges automatic change red if value above all and enter press", async () => {
+  getAllRanges.mockImplementation(() => Promise.resolve(range));
+
+  let getByTestId;
+  await act(async () => {
+    render(
+      <CompanyUserProvider>
+        <ReportProvider>
+          <RangesProvider>
+            <RangeSlider />
+          </RangesProvider>
+        </ReportProvider>
+      </CompanyUserProvider>
+    );
+  });
+  const getSliderGreen = screen.getByTestId("input-slider-greenSlider");
+  act(() => {
+    fireEvent.click(getSliderGreen);
+    fireEvent.change(getSliderGreen, { target: { value: 8 } });
+    fireEvent.keyDown(getSliderGreen, { key: "Enter" });
+  });
+  expect(getSliderGreen).toBeInTheDocument();
+
+  const getSliderYellowRight = screen.getByTestId("input-slider-yellow-left");
+  act(() => {
+    fireEvent.click(getSliderYellowRight);
+    fireEvent.change(getSliderYellowRight, { target: { value: 6 } });
+    fireEvent.keyDown(getSliderYellowRight, { key: "Enter" });
+  });
+
+  expect(getSliderYellowRight).toBeInTheDocument();
+
+  const getSliderYellowLeft = screen.getByTestId("input-slider-yellow-right");
+  act(() => {
+    fireEvent.click(getSliderYellowLeft);
+    fireEvent.change(getSliderYellowLeft, { target: { value: 4 } });
+    fireEvent.keyDown(getSliderYellowLeft, { key: "Enter" });
+  });
+
+  expect(getSliderYellowLeft).toBeInTheDocument();
+
+  const getSliderYellowRed = screen.getByTestId("input-slider-red-right");
+  act(() => {
+    fireEvent.click(getSliderYellowRed);
+    fireEvent.change(getSliderYellowRed, { target: { value: 2 } });
+    fireEvent.keyDown(getSliderYellowRed, { key: "Enter" });
+  });
+
+  expect(getSliderYellowRed).toBeInTheDocument();
+});
+
+
 //Change values automaticly if red above all
 test("Ranges automatic change red if value above all", async () => {
   getAllRanges.mockImplementation(() => Promise.resolve(range));
