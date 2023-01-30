@@ -1,5 +1,5 @@
 image:
-  tag: "main"
+  tag: "1.0.0"
 
 springProfiles:
   - int
