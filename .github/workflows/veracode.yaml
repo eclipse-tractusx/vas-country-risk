@@ -2,7 +2,13 @@ name: "Veracode upload and scan"
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - dev
+    paths:
+      - 'src/**'
+      - 'package.json'
+      - 'Dockerfile'
   schedule:
     # Once a day
     - cron: "0 0 * * *"

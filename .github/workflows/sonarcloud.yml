@@ -3,9 +3,12 @@ name: "Sonar Cloud Workflow"
 on:
   push:
     branches:
-      - 'main'
-      - 'dev'
-
+      - main
+      - dev
+    paths:
+      - 'src/**'
+      - 'package.json'
+      - 'Dockerfile'
   pull_request:
     types: [ opened, reopened, synchronize ]
 
