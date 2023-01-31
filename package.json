@@ -31,7 +31,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:dev": "env-cmd -f .env.development npm start",
+    "start:prod": "env-cmd -f .env.production npm start",
     "build": "react-scripts build",
+    "build:dev": "env-cmd -f .env.development npm run build",
+    "build:prod": "env-cmd -f .env.production npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "coverage": "react-scripts test --env=jsdom --coverage --collectCoverageFrom='src/**/*.js' ",

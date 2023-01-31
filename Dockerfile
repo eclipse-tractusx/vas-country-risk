@@ -5,6 +5,7 @@ WORKDIR /app
 COPY package.json .
 COPY package-lock.json .
 COPY public ./public
+copy .env* .
 COPY src ./src
 
 RUN chown -R root:node .
