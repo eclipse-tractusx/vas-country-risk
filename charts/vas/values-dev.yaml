@@ -1,5 +1,5 @@
 image:
-  tag: "latest"
+  tag: "dev"
 
 springProfiles:
   - dev
