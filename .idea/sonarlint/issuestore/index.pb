@@ -17,3 +17,9 @@ g
 7src/components/dashboard/CountryPicker/CountryPicker.js,9\e\9e64c56a3d55d4c4bff840610045dad14026a967
 U
 %src/components/dashboard/dashboard.js,4\d\4d483efec471c46a10a0e967ac5e1f0c4cba0425
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+B
+src/index-dev.scss,2\1\2141da40a2e04f68f12e4fcdcc340d14a126d224
+B
+src/index-int.scss,f\9\f9b786e2767e92774adcc43fe3e2691333b09c42
