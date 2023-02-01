@@ -11,12 +11,8 @@ c
 3src/components/dashboard/ProgressBar/ProgressBar.js,6\7\67d295badc748915bf1a6efeea38b9c58f514818
 \
 ,src/components/dashboard/Ratings/styles.scss,4\d\4de8d3bfe1c9d5b916a3562a19e3ab2a3f10325f
-E
-chart/values-dev.yaml,d\7\d70c5f664b9af980d5efd6da2ff82c9d497493be
 V
 &src/components/services/UserService.js,4\3\43b64a74751ee9053b0052baa95dab17ca3aba2b
-A
-chart/values.yaml,6\7\679c9c413d4749f4bd9d593879d89e405b2e471e
 g
 7src/components/dashboard/CountryPicker/CountryPicker.js,9\e\9e64c56a3d55d4c4bff840610045dad14026a967
 U
