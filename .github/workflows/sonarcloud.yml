@@ -9,8 +9,6 @@ on:
       - 'src/**'
       - 'package.json'
       - 'Dockerfile'
-  pull_request:
-    types: [ opened, reopened, synchronize ]
 
   workflow_call:
     secrets:
