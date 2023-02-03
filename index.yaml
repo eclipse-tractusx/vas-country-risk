@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  vas-frontend:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2023-02-03T10:19:30.489106603Z"
+    description: A Helm chart for deploying the VAS service
+    digest: d7a126a474325b7982949ec4e30375542506b026755ab17fa4cbfdd165126341
+    name: vas-frontend
+    type: application
+    urls:
+    - https://github.com/eclipse-tractusx/vas-country-risk-frontend/releases/download/vas-frontend-2.0.0/vas-frontend-2.0.0.tgz
+    version: 2.0.0
+generated: "2023-02-03T10:19:30.489112803Z"
