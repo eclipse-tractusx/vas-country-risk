@@ -34,5 +34,5 @@ jobs:
           appname: "product-vas-country-risk-frontend"
           createprofile: false
           filepath: "./veracode-scan-target.zip"
-          vid: "${{ secrets.ORG_VERACODE_API_ID }}"
-          vkey: "${{ secrets.ORG_VERACODE_API_KEY }}"
+          vid: "${{ secrets.VERACODE_API_ID }}"
+          vkey: "${{ secrets.VERACODE_API_KEY }}"
