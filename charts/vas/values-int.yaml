@@ -2,7 +2,7 @@ springProfiles:
   - int
 
 
-appName: vas-country-risk-frontend
+appName: country-risk-frontend
 environment: int
 
 image:
