@@ -15,6 +15,6 @@ ingress:
   enabled: true
 
 certificate:
-  host: "country-risk-frontend.int.demo.catena-x.net"
+  host: "country-risk-dashboard.int.demo.catena-x.net"
 
 
