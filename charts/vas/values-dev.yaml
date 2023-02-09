@@ -1,11 +1,18 @@
-image:
-  tag: "dev"
-
 springProfiles:
   - dev
 
-environment: "dev"
+appName: vas-country-risk-frontend
+environment: dev
+
+image:
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "dev"
 
 ingress:
   host: catenax-vas-dev.demo.catena-x.net
+  enabled: true
+
+certificate:
+  host: "country-risk-frontend.dev.demo.catena-x.net"
 

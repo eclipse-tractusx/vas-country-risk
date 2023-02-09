@@ -1,15 +1,20 @@
-image:
-  tag: "1.0.0"
-
 springProfiles:
   - int
 
+
+appName: vas-country-risk-frontend
+environment: int
+
+image:
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "1.0.0"
+  
 ingress:
   host: catenax-vas-int.demo.catena-x.net
+  enabled: true
 
-environment: "int"
+certificate:
+  host: "country-risk-frontend.int.demo.catena-x.net"
 
-applicationSecret:
-  keycloak: <path:vas/int/keycloak#credentials-secret>
-  cdq: <path:vas/int/cdq#api-key>
 
