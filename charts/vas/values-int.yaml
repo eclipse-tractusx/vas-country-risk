@@ -5,10 +5,6 @@ springProfiles:
 appName: country-risk-frontend
 environment: int
 
-image:
-  pullPolicy: Always
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "main"
   
 ingress:
   host: catenax-vas-int.demo.catena-x.net

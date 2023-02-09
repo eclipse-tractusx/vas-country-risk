@@ -6,22 +6,27 @@ replicaCount: 1
 
 image:
   registry: "ghcr.io"
+  # -- Name of the docker image
   name: "catenax-ng/tx-vas-country-risk-frontend"
   pullPolicy: Always
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "1.0.0"
+  # -- Overrides the image tag whose default is the chart appVersion.
+  tag: ""
 
 certificate:
+  # -- Hostname for the certificate
   host: "localhost"
 
+# -- Name of the backend service
 appName: vas-country-risk-frontend
 
-
+# -- List of secrets to be used
 imagePullSecrets: [ ]
-
+# -- Annotations to be added to the running pod
 podAnnotations: { }
 
+# -- Configuration for security-related options of the running pod
 podSecurityContext:
+  # -- Set the file system group ID for all containers in the pod
   fsGroup: 2000
 
 #Spring profiles under which the application should run
@@ -31,42 +36,60 @@ springProfiles:
 # Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
 # @url: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
 securityContext:
+  # -- Specifies if processes running inside the container can gain more privileges than its initial user
   allowPrivilegeEscalation: false
+  # -- Specifies whether the process inside the container should run as a non-root user
   runAsNonRoot: true
+  # -- Specifies the user ID that the process inside the container should run
   runAsUser: 10001
+  # -- Specifies the group ID that the process inside the container should run
   runAsGroup: 3000
+  # -- Capabilities that the process inside the container should have
   capabilities:
     drop:
       - ALL
 
+# -- Service that should be created for the pod
 service:
+  # -- Type of service to be used
   type: ClusterIP
+  # -- Service port
   port: 8080
 
-
+# -- Specifies whether autoscaling should be enabled for the pod
 autoscaling:
   enabled: false
 
 ingress:
+  # -- Class name
   className: nginx
+  # -- Ingress enabled or not
   enabled: false
 
+ingress:
+  enabled: false
+  className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
 
 
 # Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
 # @url: https://cloud.google.com/blog/products/containers-kubernetes/kubernetes-best-practices-resource-requests-and-limits
 resources:
+  # -- Maximum amount of resources that the deployment should be able to consume
   limits:
     cpu: 800m
     memory: 2Gi
+  # -- Minimum amount of resources that the deployment should be guaranteed to receive
   requests:
     cpu: 300m
     memory: 1Gi
 
-
-
+# -- Node placement constraints
 nodeSelector: { }
 
+# -- Pod toleration constraints
 tolerations: [ ]
 
 # Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
@@ -78,12 +101,15 @@ affinity:
         podAffinityTerm:
           labelSelector:
             matchExpressions:
+                # -- Match Pod rules
               - key: app.kubernetes.io/name
                 operator: DoesNotExist
+          # -- Key that is used to determine the topology of the cluster
           topologyKey: kubernetes.io/hostname
 
 # Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
 # @url: https://github.com/helm/charts/blob/master/stable/nginx-ingress/values.yaml#L210
+# -- Determines if a pod is still alive or not
 livenessProbe:
   failureThreshold: 3
   initialDelaySeconds: 10
@@ -97,6 +123,7 @@ readinessProbe:
   successThreshold: 1
   timeoutSeconds: 1000
 
+# -- Defines the client secret and client ID
 applicationSecret:
   enabled: false
 
@@ -106,8 +133,11 @@ configmap:
 
 
 elastic:
+  # -- Should elastic be enabled or not
   enabled: false
   security:
+    # -- Information about the transport layer security (TLS)
     tls:
+      # -- Encryption for the REST requests made to the Elastic cluster
       restEncryption: false
 
