@@ -60,14 +60,10 @@ service:
 autoscaling:
   enabled: false
 
-ingress:
-  # -- Class name
-  className: nginx
-  # -- Ingress enabled or not
-  enabled: true
+
 
 ingress:
-  enabled: false
+  enabled: true
   className: nginx
   annotations:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
