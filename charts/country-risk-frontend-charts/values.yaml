@@ -2,6 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+# -- Number of replicas of a Kubernetes deployment
 replicaCount: 1
 
 image:
@@ -63,10 +64,14 @@ autoscaling:
 
 
 ingress:
+  # -- Ingress enabled or not
   enabled: false
+  # -- Class name
   className: nginx
   annotations:
+    # -- HTTP traffic should be redirected to HTTPS
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    # -- Ingress controller should pass SSL traffic directly to the backend pods
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
 
 
@@ -108,10 +113,15 @@ affinity:
 # -- Determines if a pod is still alive or not
 livenessProbe:
   failureThreshold: 3
+  # -- Number of seconds to wait before performing the first liveness probe
   initialDelaySeconds: 10
+  # -- Number of seconds to wait between consecutive probes
   periodSeconds: 1000
+  # -- Number of consecutive successful probes before a pod is considered healthy
   successThreshold: 1
+  # -- Number of seconds after which a liveness probe times out
   timeoutSeconds: 1000
+# -- Determine when a pod is ready to start accepting requests
 readinessProbe:
   failureThreshold: 3
   initialDelaySeconds: 10
