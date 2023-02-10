@@ -64,7 +64,7 @@ ingress:
   # -- Class name
   className: nginx
   # -- Ingress enabled or not
-  enabled: false
+  enabled: true
 
 ingress:
   enabled: false
