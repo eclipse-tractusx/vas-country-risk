@@ -1,25 +1,30 @@
 /********************************************************************************
-* Copyright (c) 2022,2023 BMW Group AG 
-* Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
-*
-* See the NOTICE file(s) distributed with this work for additional
-* information regarding copyright ownership.
-*
-* This program and the accompanying materials are made available under the
-* terms of the Apache License, Version 2.0 which is available at
-* https://www.apache.org/licenses/LICENSE-2.0.
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-* WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-* License for the specific language governing permissions and limitations
-* under the License.
-*
-* SPDX-License-Identifier: Apache-2.0
-********************************************************************************/
+ * Copyright (c) 2022,2023 BMW Group AG
+ * Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
 /* eslint-disable no-console */
 import React, { useState } from "react";
-import { Dialog, IconButton, Button } from "cx-portal-shared-components";
+import {
+  Dialog,
+  IconButton,
+  Button,
+  DialogHeader,
+} from "cx-portal-shared-components";
 import "./styles.scss";
 import CustomWorldMap from "../CustomWorld/CustomWorldMap";
 import OpenWithIcon from "@mui/icons-material/ZoomIn";
@@ -58,22 +63,22 @@ const LeftMap = (ratings) => {
           className="left-dialog-expand-map"
         >
           <div className="expand-box-div">
+            <div className="CloseIcon">
+              <IconButton
+                className="close-button"
+                onClick={openDialog}
+                size="medium"
+                variant="primary"
+              >
+                <CloseIcon></CloseIcon>
+              </IconButton>
+            </div>
             <Box className="expand-mui-box">
+            <DialogHeader title="World Map" />
               <div className="buttons">
-                <h2>World Map</h2>
                 <Button size="small" onClick={printMap}>
                   Export Image
                 </Button>
-
-                <IconButton
-                  className="close-button"
-                  color="primary"
-                  onClick={openDialog}
-                  size="medium"
-                  variant="text"
-                >
-                  <CloseIcon></CloseIcon>
-                </IconButton>
               </div>
               <div className="map-and-progressbar" id="idCustomWorldMap">
                 <div className="expand-custom-world-map">
@@ -96,11 +101,10 @@ const LeftMap = (ratings) => {
         </Dialog>
       </div>
       <div className="left-map-container">
-        <h2>World Map</h2>
+        <h3 className="headerName">World Map</h3>
         <IconButton
           data-testid="expand-btn"
           className="expand-button"
-          color="primary"
           onClick={openDialog}
           size="medium"
           variant="text"

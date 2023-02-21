@@ -24,8 +24,7 @@
 }
 
 .First-Dialog {
-  height: 100% !important;
-  width: 30%;
+  height: 100% !important;;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
@@ -33,16 +32,15 @@
 
   .Dialog-Expand-Div {
     text-align: center;
-    background-color: #edf0f4;
+    background-color: #FFFFFF;
     border-radius: 39px !important;
-    border: 2px solid #000;
 
-    .btn-close-upload {
-      margin: 2%;
+    .form-year {
+      margin-top: 2%;
     }
 
-    .btn-next-upload {
-      margin: 2%;
+    .inputrating {
+      margin-top: 5%;
     }
 
     .FirstLabel {
@@ -76,9 +74,8 @@
 
   .Second-Expand-Div {
     text-align: center;
-    background-color: #dcdcdc;
+    background-color: #FFFFFF;
     border-radius: 39px !important;
-    border: 2px solid #000;
 
     .btn-close-upload-second {
       margin: 1%;

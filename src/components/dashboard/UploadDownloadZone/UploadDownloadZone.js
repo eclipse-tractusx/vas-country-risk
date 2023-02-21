@@ -1,25 +1,33 @@
 /********************************************************************************
-* Copyright (c) 2022,2023 BMW Group AG 
-* Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
-*
-* See the NOTICE file(s) distributed with this work for additional
-* information regarding copyright ownership.
-*
-* This program and the accompanying materials are made available under the
-* terms of the Apache License, Version 2.0 which is available at
-* https://www.apache.org/licenses/LICENSE-2.0.
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-* WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-* License for the specific language governing permissions and limitations
-* under the License.
-*
-* SPDX-License-Identifier: Apache-2.0
-********************************************************************************/
+ * Copyright (c) 2022,2023 BMW Group AG
+ * Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
 import React, { useState, useContext, useEffect } from "react";
 import "./styles.scss";
-import { Button, Dropzone, Input, Alert } from "cx-portal-shared-components";
+import {
+  Button,
+  Dropzone,
+  Input,
+  Alert,
+  DialogHeader,
+  DialogContent,
+  DialogActions,
+} from "cx-portal-shared-components";
 import Dialog from "@mui/material/Dialog";
 import UserService from "../../services/UserService";
 import FormLabel from "@mui/material/FormLabel";
@@ -196,104 +204,125 @@ const UploadDownloadZone = () => {
       <Button size="small" onClick={openDialog}>
         Upload Rating
       </Button>
-      <Dialog open={open} onClose={closeDialogs} className="First-Dialog">
-        <div className="Dialog-Expand-Div">
-          <FormLabel className="FirstLabel" component="legend">
-            Select availability
-          </FormLabel>
-          <div className="CheckBox-Div">
-            <RadioGroup
-              value={valueType}
-              className="CheckBox-Div-Radio"
-              aria-labelledby="demo-controlled-radio-buttons-group"
-              name="controlled-radio-buttons-group"
-              onChange={handleChangeCheckbox}
-            >
-              <FormControlLabel
-                value="Custom"
-                control={<Radio />}
-                label="Only For me"
-              />
-              <FormControlLabel
-                value="Company"
-                control={<Radio />}
-                label="For the company"
-                disabled={ratingType}
-              />
-            </RadioGroup>
-          </div>
-          <div className="form-year">
-            <FormControl fullWidth variant="filled">
-              <InputLabel id="demo-simple-select-label">
-                Select a Year
-              </InputLabel>
-              <Select
-                value={date}
-                onChange={handleChange}
-                label="Year"
-                data-testid="yearselect"
+
+      <Dialog
+        open={open}
+        onClose={closeDialogs}
+        maxWidth="lg"
+        className="First-Dialog"
+      >
+        <DialogHeader title="Upload an Rating" />
+        <DialogContent className="content-expand">
+          <div className="Dialog-Expand-Div">
+            <FormLabel className="FirstLabel" component="legend">
+              Select availability
+            </FormLabel>
+            <div className="CheckBox-Div">
+              <RadioGroup
+                value={valueType}
+                className="CheckBox-Div-Radio"
+                aria-labelledby="demo-controlled-radio-buttons-group"
+                name="controlled-radio-buttons-group"
+                onChange={handleChangeCheckbox}
               >
-                {Array.isArray(years)
-                  ? years.map((item) => {
-                      return (
-                        <MenuItem key={item} value={item}>
-                          {item}
-                        </MenuItem>
-                      );
-                    })
-                  : []}
-              </Select>
-            </FormControl>
+                <FormControlLabel
+                  value="Custom"
+                  control={<Radio />}
+                  label="Only For me"
+                />
+                <FormControlLabel
+                  value="Company"
+                  control={<Radio />}
+                  label="For the company"
+                  disabled={ratingType}
+                />
+              </RadioGroup>
+            </div>
+            <div className="form-year">
+              <FormControl fullWidth variant="filled">
+                <InputLabel id="demo-simple-select-label">
+                  Select a Year
+                </InputLabel>
+                <Select
+                  value={date}
+                  onChange={handleChange}
+                  label="Year"
+                  data-testid="yearselect"
+                >
+                  {Array.isArray(years)
+                    ? years.map((item) => {
+                        return (
+                          <MenuItem key={item} value={item}>
+                            {item}
+                          </MenuItem>
+                        );
+                      })
+                    : []}
+                </Select>
+              </FormControl>
+            </div>
+            <div className="inputrating">
+              <Input
+                data-testid="inputelement"
+                label="Please write your rating name"
+                placeholder="Insert the Rating Name"
+                size={"small"}
+                error={errorTrigger}
+                onChange={saveRatingName}
+              ></Input>
+            </div>
           </div>
-          <Input
-            data-testid="inputelement"
-            label="Please write your rating name"
-            placeholder="Insert the Rating Name"
-            size={"small"}
-            error={errorTrigger}
-            onChange={saveRatingName}
-          ></Input>
+        </DialogContent>
+        <DialogActions>
           <Button
-            data-testid="closeFirst"
-            className="btn-close-upload"
+            variant="outlined"
             onClick={openDialog}
+            data-testid="closeFirst"
           >
             Close
           </Button>
           <Button
-            className="btn-next-upload"
+            variant="contained"
             onClick={enableUpload}
             disabled={validateSave}
           >
-            Next
+            Confirm
           </Button>
-        </div>
+        </DialogActions>
       </Dialog>
 
       <Dialog open={autoUp} onClose={closeDialogs} className="Second-Dialog">
+        <DialogHeader
+          intro="Please select or drop the file in the dropzone"
+          title="Upload the File"
+        />
         <div className="Second-Expand-Div">
-          <Alert severity={severity}>
-            <span>{severityMessage}</span>
-          </Alert>
+          <DialogContent>
+            <Alert severity={severity}>
+              <span>{severityMessage}</span>
+            </Alert>
 
-          <Dropzone
-            data-testid="dropzonetest"
-            accept={dropzoneProps.accept}
-            statusText={dropzoneProps.statusText}
-            errorStatus={dropzoneProps.errorStatus}
-            getUploadParams={dropzoneProps.getUploadParams}
-            onChangeStatus={dropzoneProps.onChangeStatus}
-            multiple={false}
-            maxFiles={1}
-          />
-
-          <Button
-            className="btn-close-upload-second"
-            data-testid="closeSecond"
-            onClick={closeDialogs}
-          >
-            Close
-          </Button>
+            <Dropzone
+              data-testid="dropzonetest"
+              accept={dropzoneProps.accept}
+              statusText={dropzoneProps.statusText}
+              errorStatus={dropzoneProps.errorStatus}
+              getUploadParams={dropzoneProps.getUploadParams}
+              onChangeStatus={dropzoneProps.onChangeStatus}
+              multiple={false}
+              maxFiles={1}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button
+              variant="outlined"
+              className="btn-close-upload-second"
+              data-testid="closeSecond"
+              onClick={closeDialogs}
+            >
+              Close
+            </Button>
+          </DialogActions>
         </div>
       </Dialog>
 

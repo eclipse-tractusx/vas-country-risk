@@ -1,5 +1,5 @@
 /********************************************************************************
-* Copyright (c) 2022,2023 BMW Group AG 
+* Copyright (c) 2022,2023 BMW Group AG
 * Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
 *
 * See the NOTICE file(s) distributed with this work for additional
@@ -79,7 +79,7 @@ const RangeSlider = () => {
   const [betweenValue, setMid] = useState(60);
   const [maxValue, setMax] = useState(100);
 
-  const { reportValuesContext, updateReport } = useContext(ReportContext);
+  const { reportValuesContext } = useContext(ReportContext);
 
   const getRanges = () => {
     getAllRanges(UserService.getToken(), companyUser).then((response) => {
