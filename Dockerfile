@@ -24,22 +24,16 @@ RUN npm run build
 
 FROM nginxinc/nginx-unprivileged:stable-alpine
 
-COPY .conf/nginx.conf /etc/nginx/conf.d/default.conf
+WORKDIR /usr/share/nginx/html
 
-COPY --from=compile-image /app/build /usr/share/nginx/html
+COPY --from=compile-image /app/build .
 
-# Change to root user for renaming of index.html to index.html.reference, to be used by env variables inject script
-USER root
-
-RUN mv /usr/share/nginx/html/index.html /usr/share/nginx/html/index.html.reference
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
 
-# Install bash for env variables inject script
-RUN apk update && apk add bash
+EXPOSE 8080
 
-# Make nginx owner of /usr/share/nginx/html/ and change to nginx user
-RUN chown -R 101:101 /usr/share/nginx/html/
-USER 101
+EXPOSE 80
 
 
 
