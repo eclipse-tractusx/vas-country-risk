@@ -33,9 +33,6 @@ USER root
 
 RUN mv /usr/share/nginx/html/index.html /usr/share/nginx/html/index.html.reference
 
-# Add env variables inject script and mark as executable
-COPY ./scripts/inject-dynamic-env.sh /docker-entrypoint.d/00-inject-dynamic-env.sh
-RUN chmod +x /docker-entrypoint.d/00-inject-dynamic-env.sh
 
 # Install bash for env variables inject script
 RUN apk update && apk add bash
