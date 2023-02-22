@@ -36,6 +36,7 @@ else {
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 UserService.init((user) => {
   root.render(
     <React.StrictMode>

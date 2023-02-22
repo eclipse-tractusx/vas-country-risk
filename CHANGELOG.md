@@ -9,7 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Removing fixed hardcoded url and change with dynamic vars using envcmd lib
+- Removing fixed hardcoded url and change with dynamic vars
+- Added Vars to index.html
+
+### Added
+- Added script for injecting vars on nginx
 
 
 ## [1.0.1] - 2023-02-21 
