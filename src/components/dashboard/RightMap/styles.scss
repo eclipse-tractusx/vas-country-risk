@@ -28,6 +28,11 @@
   border-top-left-radius: 20px;
   border-bottom: 1px solid #000;
   background-color: #dcdcdc;
+
+  .headerName {
+    margin-left: 2%;
+  }
+
 }
 
 .right-dialog-expand-map {
@@ -41,36 +46,48 @@
     justify-content: space-between;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
-    background-color: #dcdcdc;
+    background-color: #ffffff;
+
+    .closeIcon {
+      text-align: right;
+      margin-right: 2%;
+      margin-top: 2%;
+    }
 
     .expand-mui-box {
       display: flex;
       flex-direction: column;
       text-align: center;
       align-items: center;
-
+      margin-top: -8%;
+  
       .buttons {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-evenly;
         align-items: center;
-        border-bottom: 1px solid #000;
         width: 100%;
         padding: 1%;
         font-size: 12px;
+        margin-top: -4%;
       }
-      
+
       .map-and-progressbar {
         display: flex;
         flex-direction: column;
         width: 100%;
-        background-color: white;
+        margin: 1%;
+        border-radius: 2%;
+
         .expand-custom-world-map {
           display: flex;
-
           flex-direction: column;
           height: 64vh;
+          margin-right: 2%;
+          margin-left: 2%;
+          margin-bottom: 2%;
+          border-radius: 2%;
+          box-shadow: 0 3px 15px rgba(60, 60, 60, 0.2);
           background-color: rgba(20, 177, 245, 0.132);
-          border-bottom: 1px solid #000;
         }
         .progress-bar {
           align-self: flex-start;

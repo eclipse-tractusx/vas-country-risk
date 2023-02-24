@@ -1,26 +1,31 @@
 /********************************************************************************
-* Copyright (c) 2022,2023 BMW Group AG 
-* Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
-*
-* See the NOTICE file(s) distributed with this work for additional
-* information regarding copyright ownership.
-*
-* This program and the accompanying materials are made available under the
-* terms of the Apache License, Version 2.0 which is available at
-* https://www.apache.org/licenses/LICENSE-2.0.
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-* WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-* License for the specific language governing permissions and limitations
-* under the License.
-*
-* SPDX-License-Identifier: Apache-2.0
-********************************************************************************/
+ * Copyright (c) 2022,2023 BMW Group AG
+ * Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
 import React, { useContext } from "react";
 import "./styles.scss";
 import { CompanyUserContext } from "../../../contexts/companyuser";
-import { Button } from "cx-portal-shared-components";
+import {
+  Button,
+  DialogHeader,
+  DialogContent,
+  DialogActions,
+} from "cx-portal-shared-components";
 import { updateReports, deleteReport } from "../../services/reports-api";
 import UserService from "../../services/UserService";
 import { Report } from "../../model/Report";
@@ -124,18 +129,18 @@ const DeleteUpdateComponent = ({
 
   return (
     <div className="Dialog-Expand-Div">
-      <h2>{deleteUpdateData.operation}</h2>
-      <div>
-        <h3>{deleteUpdateData.doubleCheckMessage}</h3>
-      </div>
-      <div className="warning-header">
+      <DialogHeader 
+      title={deleteUpdateData.operation}
+      intro={deleteUpdateData.doubleCheckMessage}
+      />
+      <DialogActions>
         <Button className="btn-no" variant="outlined" onClick={closeDialog}>
           No
         </Button>
         <Button data-testid="btnYes" onClick={decideAction}>
           Yes
         </Button>
-      </div>
+      </DialogActions>
     </div>
   );
 };

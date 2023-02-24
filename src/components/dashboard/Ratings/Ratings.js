@@ -1,26 +1,33 @@
 /********************************************************************************
-* Copyright (c) 2022,2023 BMW Group AG 
-* Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
-*
-* See the NOTICE file(s) distributed with this work for additional
-* information regarding copyright ownership.
-*
-* This program and the accompanying materials are made available under the
-* terms of the Apache License, Version 2.0 which is available at
-* https://www.apache.org/licenses/LICENSE-2.0.
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-* WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-* License for the specific language governing permissions and limitations
-* under the License.
-*
-* SPDX-License-Identifier: Apache-2.0
-********************************************************************************/
+ * Copyright (c) 2022,2023 BMW Group AG
+ * Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
 import React, { useState, useContext, useEffect, useRef } from "react";
 import "./styles.scss";
 import Dialog from "@mui/material/Dialog";
-import { Table, Button, IconButton } from "cx-portal-shared-components";
+import {
+  Table,
+  Button,
+  IconButton,
+  DialogHeader,
+  DialogContent,
+  DialogActions,
+} from "cx-portal-shared-components";
 import Alert from "@mui/material/Alert";
 import { RatesContext } from "../../../contexts/rates";
 import {
@@ -302,13 +309,20 @@ const Ratings = ({
         aria-labelledby="customized-dialog-title"
         open={openWarning}
         onClose={openWarn}
+        maxWidth="md"
       >
         <div className="Dialog-Expand-Div">
-          <div>
-            <h2>Do you want to delete this Rating?</h2>
-          </div>
-          <div className="warning-header">
-            <Button variant="outlined" data-testid="btnNoRating" className="btn-no" onClick={openWarn}>
+          <DialogHeader
+            title="Delete Rating"
+            intro="Do you want to delete this Rating?"
+          />
+          <DialogActions>
+            <Button
+              variant="outlined"
+              data-testid="btnNoRating"
+              className="btn-no"
+              onClick={openWarn}
+            >
               No
             </Button>
             <Button
@@ -318,7 +332,7 @@ const Ratings = ({
             >
               Yes
             </Button>
-          </div>
+          </DialogActions>
         </div>
       </Dialog>
 
@@ -334,11 +348,11 @@ const Ratings = ({
           </IconButton>
         </div>
         <div className="header">
-          <h2>Ratings table</h2>
-          <p>
-            In this it is possible to see the ratings. They can be selected one
-            at a time or all at the same time.
-          </p>
+          <DialogHeader
+            title="Ratings table"
+            intro="In this it is possible to see the ratings. They can be selected one
+          at a time or all at the same time."
+          />
         </div>
         <div className="rating-div-table-expand-style">
           <Table
@@ -371,11 +385,16 @@ const Ratings = ({
             }}
             hideFooter={tableRatings.length > 5 ? false : true}
           ></Table>
-          <div className="closeBtnDialog">
-            <Button className="btn-close-dialog" data-testid="closeDialog" onClick={ExpandTable}>
+          <DialogActions>
+            <Button
+              variant="outlined"
+              className="btn-close-dialog"
+              data-testid="closeDialog"
+              onClick={ExpandTable}
+            >
               Close
             </Button>
-          </div>
+          </DialogActions>
         </div>
       </Dialog>
     </div>

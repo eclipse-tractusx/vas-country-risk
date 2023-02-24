@@ -1,29 +1,35 @@
 /********************************************************************************
-* Copyright (c) 2022,2023 BMW Group AG 
-* Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
-*
-* See the NOTICE file(s) distributed with this work for additional
-* information regarding copyright ownership.
-*
-* This program and the accompanying materials are made available under the
-* terms of the Apache License, Version 2.0 which is available at
-* https://www.apache.org/licenses/LICENSE-2.0.
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-* WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-* License for the specific language governing permissions and limitations
-* under the License.
-*
-* SPDX-License-Identifier: Apache-2.0
-********************************************************************************/
+ * Copyright (c) 2022,2023 BMW Group AG
+ * Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
 import React, { useState, useEffect, useContext } from "react";
 import "./styles.scss";
 import Dialog from "@mui/material/Dialog";
 import FormLabel from "@mui/material/FormLabel";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import { Button, Input } from "cx-portal-shared-components";
+import {
+  Button,
+  Input,
+  DialogActions,
+  DialogContent,
+  DialogHeader,
+} from "cx-portal-shared-components";
 import {
   getReportsByCompanyUser,
   saveReports,
@@ -440,9 +446,10 @@ const Reports = () => {
             style: { fontSize: 12 },
             readOnly: true,
             disableUnderline: true,
+            hiddenLabel: false,
           }} //Block edit on textfield
           className="formReports"
-          variant="filled"
+          variant="standard"
           value={valueTextField}
           onChange={handleChangeInput}
           size={"12px"}
@@ -491,6 +498,10 @@ const Reports = () => {
       </Dialog>
 
       <Dialog open={open} onClose={closeDialogs} className="Dialog-Expand">
+        <DialogHeader
+          title="Save new Report"
+          intro="Create an new report according the select values"
+        />
         <div className="Dialog-Expand-Div">
           <FormLabel className="FirstLabel" component="legend">
             Select availability
@@ -533,7 +544,14 @@ const Reports = () => {
           <Alert severity={severity}>
             <span>{severityMessage}</span>
           </Alert>
-          <Button className="btn-close" onClick={closeDialogs}>
+        </div>
+
+        <DialogActions>
+          <Button
+            className="btn-close"
+            variant="outlined"
+            onClick={closeDialogs}
+          >
             Close
           </Button>
           <Button
@@ -543,7 +561,7 @@ const Reports = () => {
           >
             Save
           </Button>
-        </div>
+        </DialogActions>
       </Dialog>
       <Dialog
         className="share-dialog-expand"

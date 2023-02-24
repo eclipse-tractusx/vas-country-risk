@@ -1,5 +1,5 @@
 /********************************************************************************
-* Copyright (c) 2022,2023 BMW Group AG 
+* Copyright (c) 2022,2023 BMW Group AG
 * Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
 *
 * See the NOTICE file(s) distributed with this work for additional
@@ -55,7 +55,7 @@ const DatePicker = ({ passYearSelected }) => {
     passYearSelected(date);
   }, [date]);
 
-  const { reportValuesContext, updateReport } = useContext(ReportContext);
+  const { reportValuesContext } = useContext(ReportContext);
 
   useEffect(() => {
     const reportRates = reportValuesContext.filter((r) => r.name === "Ratings");

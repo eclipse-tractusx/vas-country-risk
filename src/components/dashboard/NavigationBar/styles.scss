@@ -23,17 +23,13 @@
   width: 170px;
 }
 
-.btn-right {
+.user-btn {
   display: flex;
   flex-direction: row;
   align-items: center;
 
-  .help-btn {
-    margin-right: 30%;
-  }
-
-  .user-btn {
-    margin-right: 1%;
+  .btnHelp{
+    margin-right: 20%;
   }
 }
 
@@ -49,6 +45,18 @@
     text-align: right;
     margin-right: 2%;
     margin-top: 2%;
+  }
+
+  .BoxHelp {
+    margin: 4%;
+    display: flex;
+    margin-left: 15%;
+    margin-right: auto;
+    border-radius: 20px;
+
+    .Hyperlink {
+      text-decoration: none;
+    }
   }
 
   .Dialog-Help-Expand-Div {
