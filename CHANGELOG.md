@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added arq42 documentation 
 - Added UserGuide
 
+### Fixes
+- Fixed a bug in the Help Dialog regarding broken attachments that we´re missing
 
 ## [1.0.1] - 2023-02-21 
 
