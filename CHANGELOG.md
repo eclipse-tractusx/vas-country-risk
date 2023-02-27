@@ -40,6 +40,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - First Release
 
-[unreleased]: https://github.com/eclipse-tractusx/vas-country-risk-frontend/compare
-[1.0.0]: https://github.com/eclipse-tractusx/vas-country-risk-frontend/compare
-[1.1.0]: https://github.com/eclipse-tractusx/vas-country-risk-frontend/compare
+
