@@ -500,7 +500,7 @@ const Reports = () => {
       <Dialog open={open} onClose={closeDialogs} className="Dialog-Expand">
         <DialogHeader
           title="Save new Report"
-          intro="Create an new report according the select values"
+          intro="Create a new report according the select values"
         />
         <div className="Dialog-Expand-Div">
           <FormLabel className="FirstLabel" component="legend">

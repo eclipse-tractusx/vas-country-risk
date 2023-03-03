@@ -23,8 +23,6 @@ export const UserInfo = () => {
 
   const logoutHref = getLogoutLink();
 
-  console.log(logoutHref);
-
   return (
     <div className="UserInfo">
       <div ref={wrapperRef}>
@@ -37,7 +35,8 @@ export const UserInfo = () => {
         userRole={UserService.getCompany()}
         onClickAway={onClickAway}
       >
-        <UserNav divider
+        <UserNav
+          divider
           items={[
             {
               href: logoutHref,
@@ -56,7 +55,6 @@ export const UserInfo = () => {
           ]}
           onChange={function noRefCheck() {}}
         />*/}
-
       </UserMenu>
     </div>
   );

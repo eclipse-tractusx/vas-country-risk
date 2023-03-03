@@ -32,4 +32,12 @@ ingress:
 certificate:
   host: "country-risk-dashboard.int.demo.catena-x.net"
 
+configmap:
+  # Specifies whether a configmap should be created or not
+  data:
+    REACT_APP_AUTH_URL: 'https://centralidp.int.demo.catena-x.net/auth'
+    REACT_APP_COUNTRY_RISK_API: 'https://vas-country-risk-backend.int.demo.catena-x.net'
+    REACT_APP_PORTAL_FRONTEND: 'https://portal.int.demo.catena-x.net'
+    REACT_APP_PORTAL_BACKEND: 'https://portal-backend.int.demo.catena-x.net'
+
 

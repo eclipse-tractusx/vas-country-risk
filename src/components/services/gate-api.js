@@ -19,11 +19,12 @@
 ********************************************************************************/
 /* eslint-disable no-console */
 import axios from "axios";
+import { getCountryRiskApi } from "./EnvironmentService";
 
 // Actions
 export function getUserBpdmGates(token, customerUser) {
   return axios
-    .get(process.env.REACT_APP_GET_USER_BPDM_GATES, {
+    .get(getCountryRiskApi()+ process.env.REACT_APP_GET_USER_BPDM_GATES, {
       params: {
         name: customerUser.name,
         email: customerUser.email,

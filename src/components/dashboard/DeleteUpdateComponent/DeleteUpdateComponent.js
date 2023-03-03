@@ -42,7 +42,6 @@ const DeleteUpdateComponent = ({
   const { report, reportValuesContext } = useContext(ReportContext);
 
   const decideAction = () => {
-    console.log("UserOperation");
     if (deleteUpdateData.operation === "Save Changes") {
       closeDialogsAndSave();
     } else if (deleteUpdateData.operation === "Delete Report") {
@@ -129,9 +128,9 @@ const DeleteUpdateComponent = ({
 
   return (
     <div className="Dialog-Expand-Div">
-      <DialogHeader 
-      title={deleteUpdateData.operation}
-      intro={deleteUpdateData.doubleCheckMessage}
+      <DialogHeader
+        title={deleteUpdateData.operation}
+        intro={deleteUpdateData.doubleCheckMessage}
       />
       <DialogActions>
         <Button className="btn-no" variant="outlined" onClick={closeDialog}>

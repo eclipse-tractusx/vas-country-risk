@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [1.1.1] - 2023-03-02
+
+### Changed
+- Changed scripts for injecting vars on nginx
+- Changed the user to run in container on values.yml
+- Changed copy command on docker file 
+
+### Removed 
+- Remove unused images from public folder
+- Remove env files not used
+- Remove images on public folder not used and not needed
+
+### Fixes
+- Fixed url api from vars
 
 ## [1.1.0] - 2023-02-22
 
@@ -14,13 +28,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Added script for injecting vars on nginx
-- Added arq42 documentation 
+- Added arq42 documentation
 - Added UserGuide
 
 ### Fixes
 - Fixed a bug in the Help Dialog regarding broken attachments that we´re missing
 
-## [1.0.1] - 2023-02-21 
+## [1.0.1] - 2023-02-21
 
 ### Changed
 

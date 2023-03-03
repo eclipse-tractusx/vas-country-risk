@@ -20,11 +20,12 @@
 /* eslint-disable no-console */
 import axios from "axios";
 import { Range } from "../model/Range";
+import { getCountryRiskApi } from "./EnvironmentService";
 
 // Actions
 export function getAllRanges(token, customerUser) {
   return axios
-    .get(process.env.REACT_APP_GET_RANGES, {
+    .get(getCountryRiskApi()+process.env.REACT_APP_GET_RANGES, {
       params: {
         name: customerUser.name,
         email: customerUser.email,
@@ -52,7 +53,7 @@ export function sendValues(rangesList, customerUser, token) {
 
   return axios({
     method: "post",
-    url: process.env.REACT_APP_SAVE_RANGES,
+    url: getCountryRiskApi()+process.env.REACT_APP_SAVE_RANGES,
     data: rangeDTOS,
     params: {
       name: customerUser.name,

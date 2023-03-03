@@ -36,14 +36,27 @@ else {
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
-UserService.init((user) => {
+if(hostname==="localhost"){
   root.render(
-    <React.StrictMode>
-      <SharedCssBaseline />
-      <SharedThemeProvider>
-        <App />
-      </SharedThemeProvider>
-    </React.StrictMode>
+  <React.StrictMode>
+    <SharedCssBaseline />
+    <SharedThemeProvider>
+      <App />
+    </SharedThemeProvider>
+  </React.StrictMode>
   );
-});
+}else{
+  UserService.init((user) => {
+    root.render(
+      <React.StrictMode>
+        {" "}
+        <SharedCssBaseline />{" "}
+        <SharedThemeProvider>
+          {" "}
+          <App />{" "}
+        </SharedThemeProvider>{" "}
+      </React.StrictMode>
+    );
+  });
+}
+

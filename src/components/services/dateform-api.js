@@ -19,12 +19,13 @@
 ********************************************************************************/
 /* eslint-disable no-console */
 import axios from "axios";
+import { getCountryRiskApi } from "./EnvironmentService";
 
 // Actions
 
 export function getAllDates(token, customerUser) {
   return axios
-    .get(process.env.REACT_APP_DATEFORM_URL, {
+    .get(getCountryRiskApi()+process.env.REACT_APP_DATEFORM_URL, {
       params: {
         name: customerUser.name,
         email: customerUser.email,

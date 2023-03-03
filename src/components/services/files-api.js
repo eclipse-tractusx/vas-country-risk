@@ -19,11 +19,12 @@
 ********************************************************************************/
 /* eslint-disable no-console */
 import axios from "axios";
+import { getCountryRiskApi } from "./EnvironmentService";
 
 // Actions
 export function downloadSampleCsvFile(token, customerUser) {
   return axios
-    .get(process.env.REACT_APP_DASHBOARD_FILE_TEMPLATE_DOWNLOAD, {
+    .get(getCountryRiskApi()+process.env.REACT_APP_DASHBOARD_FILE_TEMPLATE_DOWNLOAD, {
       headers: { Authorization: `Bearer ${token}` },
       params: {
         name: customerUser.name,
