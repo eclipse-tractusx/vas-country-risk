@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [1.1.1] - 2023-03-02
+
+### Changed
+- Changed file scripts/inject-dynamic-env.sh adding more dynamic vars into application
+- Changed value  .securityContext.runAsUser   on values.yaml to run in the container as the same privileged user created on the dockerfile 
+- Changed copy command on docker file to a more clean sintaxis combining cp command with chwon command
+
+### Removed
+- Remove env files not used
+- Remove images on public folder not used and not needed
+
+### Fixes
+- Fixed $REACT_APP_AUTH_URL from vars  to be reused on many more files-services for api calling using only common path
 
 ## [1.1.0] - 2023-02-22
 
@@ -14,13 +27,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Added script for injecting vars on nginx
-- Added arq42 documentation 
+- Added arq42 documentation
 - Added UserGuide
 
 ### Fixes
 - Fixed a bug in the Help Dialog regarding broken attachments that we´re missing
 
-## [1.0.1] - 2023-02-21 
+## [1.0.1] - 2023-02-21
 
 ### Changed
 
@@ -42,6 +55,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - First Release
 
-[unreleased]: https://github.com/eclipse-tractusx/vas-country-risk-frontend/compare
-[1.0.0]: https://github.com/eclipse-tractusx/vas-country-risk-frontend/compare
-[1.1.0]: https://github.com/eclipse-tractusx/vas-country-risk-frontend/compare
+

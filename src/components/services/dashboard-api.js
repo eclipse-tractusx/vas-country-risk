@@ -19,11 +19,12 @@
 ********************************************************************************/
 /* eslint-disable no-console */
 import axios from "axios";
+import  { getCountryRiskApi } from "./EnvironmentService"
 
 // Actions
 export function getAll(ratingsArray, years, token, customerUser, gates) {
   return axios
-    .get(process.env.REACT_APP_DASHBOARD_URL, {
+    .get(getCountryRiskApi() +process.env.REACT_APP_DASHBOARD_URL, {
       params: {
         ratings: ratingsArray,
         year: years,
@@ -46,7 +47,7 @@ export function getWorldMapInfo(
   gates
 ) {
   return axios
-    .get(process.env.REACT_APP_DASHBOARD_WOLRD_MAP_URL, {
+    .get(getCountryRiskApi()+ process.env.REACT_APP_DASHBOARD_WOLRD_MAP_URL, {
       params: {
         ratings: ratingsArray,
         year: years,

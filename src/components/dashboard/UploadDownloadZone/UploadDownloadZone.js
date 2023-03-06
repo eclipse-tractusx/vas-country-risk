@@ -42,6 +42,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { downloadSampleCsvFile } from "../../services/files-api";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { ReloadContext } from "../../../contexts/refresh";
+import { getCountryRiskApi } from "../../services/EnvironmentService";
 
 const UploadDownloadZone = () => {
   //Upload Button Handlers
@@ -132,7 +133,7 @@ const UploadDownloadZone = () => {
     subtitle: "userUpload.subtitle",
     accept: "text/csv,application/vnd.ms-excel",
     getUploadParams: () => ({
-      url: process.env.REACT_APP_UPLOAD_FILE,
+      url: getCountryRiskApi() +process.env.REACT_APP_UPLOAD_FILE,
 
       fields: {
         name: companyUser.name,

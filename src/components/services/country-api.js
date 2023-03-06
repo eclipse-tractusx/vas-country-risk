@@ -19,11 +19,12 @@
 ********************************************************************************/
 /* eslint-disable no-console */
 import axios from "axios";
+import { getCountryRiskApi } from "./EnvironmentService";
 
 //Get BPN Countries
 export function getCountryByUser(token, customerUser) {
   return axios
-    .get(process.env.REACT_APP_GET_BPN_COUNTRYS, {
+    .get(getCountryRiskApi()+process.env.REACT_APP_GET_BPN_COUNTRYS, {
       params: {
         name: customerUser.name,
         email: customerUser.email,
@@ -38,7 +39,7 @@ export function getCountryByUser(token, customerUser) {
 // Get Country bt ISO2
 export function getCountrys(token, customerUser) {
   return axios
-    .get(process.env.REACT_APP_GET_COUNTRYS, {
+    .get(getCountryRiskApi()+process.env.REACT_APP_GET_COUNTRYS, {
       params: {
         name: customerUser.name,
         email: customerUser.email,

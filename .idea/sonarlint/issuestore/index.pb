@@ -13,11 +13,20 @@ c
 ,src/components/dashboard/Ratings/styles.scss,4\d\4de8d3bfe1c9d5b916a3562a19e3ab2a3f10325f
 V
 &src/components/services/UserService.js,4\3\43b64a74751ee9053b0052baa95dab17ca3aba2b
-g
-7src/components/dashboard/CountryPicker/CountryPicker.js,9\e\9e64c56a3d55d4c4bff840610045dad14026a967
-U
-%src/components/dashboard/dashboard.js,4\d\4d483efec471c46a10a0e967ac5e1f0c4cba0425
 B
 src/index-dev.scss,2\1\2141da40a2e04f68f12e4fcdcc340d14a126d224
 B
 src/index-int.scss,f\9\f9b786e2767e92774adcc43fe3e2691333b09c42
+@
+.conf/nginx.conf,1\b\1b7d3f43ac3f65995537f164c511c094fd46fcba
+g
+7src/components/dashboard/CountryPicker/CountryPicker.js,9\e\9e64c56a3d55d4c4bff840610045dad14026a967
+K
+.github/workflows/build.yml,f\e\fe77d5d1439f26e353a42bbd38dece2467ff6558
+P
+ .github/workflows/sonarcloud.yml,0\7\077a84aad902191fd63fd374880221279f02a65d
+:
+
+AUTHORS.md,a\2\a2b261d0119ad783ac285fbc4f699e96fc0b7e2f
+]
+-charts/country-risk-frontend-charts/README.md,1\3\13fac6809f5f81eb63578cb1c8eaac14b20c6702

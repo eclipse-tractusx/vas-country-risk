@@ -19,11 +19,12 @@
 ********************************************************************************/
 /* eslint-disable no-console */
 import axios from "axios";
+import { getCountryRiskApi } from "./EnvironmentService";
 
 //Get Reports By User
 export function getReportsByCompanyUser(token, customerUser) {
   return axios
-    .get(process.env.REACT_APP_GET_REPORTS_BY_USER, {
+    .get(getCountryRiskApi()+process.env.REACT_APP_GET_REPORTS_BY_USER, {
       params: {
         name: customerUser.name,
         email: customerUser.email,
@@ -37,7 +38,7 @@ export function getReportsByCompanyUser(token, customerUser) {
 
 export function getReportValuesByReport(token, report, customerUser) {
   return axios
-    .get(process.env.REACT_APP_GET_REPORT_VALUES_BY_REPORT, {
+    .get(getCountryRiskApi()+process.env.REACT_APP_GET_REPORT_VALUES_BY_REPORT, {
       params: {
         reportName: report.reportName || "",
         companyUserName: report.companyUserName || "",
@@ -58,7 +59,7 @@ export function getReportValuesByReport(token, report, customerUser) {
 export function saveReports(token, customerUser, report) {
   return axios({
     method: "post",
-    url: process.env.REACT_APP_SAVE_REPORTS,
+    url: getCountryRiskApi()+process.env.REACT_APP_SAVE_REPORTS,
     data: report,
     params: {
       name: customerUser.name,
@@ -73,7 +74,7 @@ export function saveReports(token, customerUser, report) {
 export function shareReports(token, customerUser, report) {
   return axios({
     method: "post",
-    url: process.env.REACT_APP_SHARE_REPORTS,
+    url:getCountryRiskApi()+ process.env.REACT_APP_SHARE_REPORTS,
     data: report,
     params: {
       name: customerUser.name,
@@ -89,7 +90,7 @@ export function shareReports(token, customerUser, report) {
 export function updateReports(token, customerUser, report) {
   return axios({
     method: "put",
-    url: process.env.REACT_APP_UPDATE_REPORTS,
+    url:getCountryRiskApi()+ process.env.REACT_APP_UPDATE_REPORTS,
     data: report,
     params: {
       name: customerUser.name,
@@ -104,7 +105,7 @@ export function updateReports(token, customerUser, report) {
 export function deleteReport(token, customerUser, reportId) {
   return axios({
     method: "delete",
-    url: process.env.REACT_APP_DELETE_REPORTS + `/${reportId}`,
+    url:getCountryRiskApi()+ process.env.REACT_APP_DELETE_REPORTS + `/${reportId}`,
     params: {
       name: customerUser.name,
       email: customerUser.email,

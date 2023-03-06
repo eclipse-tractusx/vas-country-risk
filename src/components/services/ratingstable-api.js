@@ -19,6 +19,7 @@
 ********************************************************************************/
 /* eslint-disable no-console */
 import axios from "axios";
+import { getCountryRiskApi } from "./EnvironmentService";
 
 // Actions
 export function getRatingsByYear(Year, token, customerUser) {
@@ -31,7 +32,7 @@ export function getRatingsByYear(Year, token, customerUser) {
   }
 
   return axios
-    .get(process.env.REACT_APP_DASHBOARD_URL_RATINGSTABLE, {
+    .get(getCountryRiskApi()+process.env.REACT_APP_DASHBOARD_URL_RATINGSTABLE, {
       params: {
         year: yearAPI,
         name: customerUser.name,
@@ -48,7 +49,7 @@ export function getRatingsByYear(Year, token, customerUser) {
 export function deleteRating(token, customerUser, ratingId) {
   return axios({
     method: "delete",
-    url: process.env.REACT_APP_DELETE_RATINGS + `/${ratingId}`,
+    url:getCountryRiskApi()+ process.env.REACT_APP_DELETE_RATINGS + `/${ratingId}`,
     params: {
       name: customerUser.name,
       email: customerUser.email,

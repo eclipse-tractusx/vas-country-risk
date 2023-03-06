@@ -19,11 +19,12 @@
 ********************************************************************************/
 /* eslint-disable no-console */
 import axios from "axios";
+import { getCountryRiskApi } from "./EnvironmentService";
 
 // Actions
 export function getUserFromCompany(token, customerUser) {
   return axios
-    .get(process.env.REACT_APP_GET_COMPANY_USERS, {
+    .get(getCountryRiskApi()+ process.env.REACT_APP_GET_COMPANY_USERS, {
       params: {
         name: customerUser.name,
         email: customerUser.email,

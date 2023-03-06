@@ -61,7 +61,7 @@ securityContext:
   # -- Specifies whether the process inside the container should run as a non-root user
   runAsNonRoot: true
   # -- Specifies the user ID that the process inside the container should run
-  runAsUser: 10001
+  runAsUser: 101
   # -- Specifies the group ID that the process inside the container should run
   runAsGroup: 3000
   # -- Capabilities that the process inside the container should have

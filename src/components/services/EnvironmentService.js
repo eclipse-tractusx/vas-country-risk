@@ -17,9 +17,10 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-const LOCAL_SERVICES_FRONTEND = process.env.REACT_APP_PORTAL_URL;
-const LOCAL_SERVICES_BACKEND = process.env.REACT_APP_PORTAL_BACKEND_URL;
-
+const LOCAL_SERVICES_FRONTEND = window.ENV?.REACT_APP_PORTAL_FRONTEND?.valueOf();
+const REACT_APP_COUNTRY_RISK_API = window.ENV?.REACT_APP_COUNTRY_RISK_API?.valueOf();
+const LOCAL_SERVICES_BACKEND = window.ENV?.REACT_APP_PORTAL_BACKEND?.valueOf();
+const LOCAL_SERVICES_CENTRALIDP = window.ENV?.REACT_APP_AUTH_URL?.valueOf();
 export const getHostname = () => window.location.hostname;
 
 export const isLocal = () => getHostname() === "localhost";
@@ -33,15 +34,19 @@ export const getAssetBase = () =>
   `${isLocal() ? LOCAL_SERVICES_FRONTEND : ""}/assets`;
 
 export const getCentralIdp = () => {
-  return process.env.REACT_APP_AUTH_URL;
+  return LOCAL_SERVICES_CENTRALIDP;
 };
 
+
 export const getPortalLink = () => {
-  return process.env.REACT_APP_PORTAL_URL;
+ return  LOCAL_SERVICES_FRONTEND
+};
+export const getCountryRiskApi = () => {
+ return  REACT_APP_COUNTRY_RISK_API
 };
 
 export const getLogoutLink = () => {
-  return process.env.REACT_APP_PORTAL_URL + "/logout";
+  return LOCAL_SERVICES_FRONTEND+"/logout"
 };
 
 export const getClientId = () => "Cl2-CX-Portal";
@@ -62,6 +67,7 @@ const EnvironmentService = {
   getClientIdSemantic,
   getClientIdDigitalTwin,
   getCountryRiskClientId,
+  getCountryRiskApi,
 };
 
 export default EnvironmentService;
