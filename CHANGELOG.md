@@ -7,17 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.1.1] - 2023-03-02
 
 ### Changed
-- Changed scripts for injecting vars on nginx
-- Changed the user to run in container on values.yml
-- Changed copy command on docker file 
+- Changed file scripts/inject-dynamic-env.sh adding more dynamic vars into application
+- Changed value  .securityContext.runAsUser   on values.yaml to run in the container as the same privileged user created on the dockerfile 
+- Changed copy command on docker file to a more clean sintaxis combining cp command with chwon command
 
-### Removed 
-- Remove unused images from public folder
+### Removed
 - Remove env files not used
 - Remove images on public folder not used and not needed
 
 ### Fixes
-- Fixed url api from vars
+- Fixed $REACT_APP_AUTH_URL from vars  to be reused on many more files-services for api calling using only common path
 
 ## [1.1.0] - 2023-02-22
 
