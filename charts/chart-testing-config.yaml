@@ -1,0 +1,4 @@
+validate-maintainers: false
+chart-repos:
+  - bitnami=https://charts.bitnami.com/bitnami
+  - runix=https://helm.runix.net

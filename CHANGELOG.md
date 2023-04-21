@@ -9,7 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Changed sonar token on properties
+- Bumped version of Webpack to latest (5.80.0)
+- Bumped version of Web-vitals to 3.1.1
+- Changed Arc42 and User Guide documentation
 
+### Fixes
+- Fixed copyright header in all charts
+- Fixed useEffect of getAllDates on DatePicker with an error catcher 
+- Fixed owner on dockerfile permissions
+
+### Added
+- Added .tractusx metafile defining leading repository
+- Added new images on docs folder
+- Add git helm chart test work flow
 
 ## [1.1.1] - 2023-03-02
 

@@ -1,4 +1,6 @@
-# Value added Services - Frontend
+# Value added Services - Frontend 
+
+![Tag](https://img.shields.io/static/v1?label=&message=LeadingRepository&color=green&style=flat)
 
 This project is a Frontend web application for the value added services project written in React.JS
 

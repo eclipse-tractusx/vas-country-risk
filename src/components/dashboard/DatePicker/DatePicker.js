@@ -38,10 +38,16 @@ const DatePicker = ({ passYearSelected }) => {
   const { reload } = useContext(ReloadContext);
 
   useEffect(() => {
-    getAllDates(UserService.getToken(), companyUser).then((response) => {
-      setAllDate(response.sort().reverse());
-      setDate(response.sort().reverse()[0]);
-    });
+    getAllDates(UserService.getToken(), companyUser)
+      .then((response) => {
+        if (Array.isArray(response) && response.length > 0) {
+          setAllDate(response.sort().reverse());
+          setDate(response.sort().reverse()[0]);
+        } 
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }, [reload]);
 
   //Date Currently Selected
