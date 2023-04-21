@@ -1,22 +1,23 @@
-FROM node:16.15.1 AS compile-image
+FROM node:16-alpine AS compile-image
 
 WORKDIR /app
 
 COPY package.json .
-COPY --chown=root:node package-lock.json .
+COPY --chown=node:node package-lock.json .
 COPY public ./public
-COPY --chown=root:node .env* .
+COPY --chown=node:node .env .
 COPY src ./src
 
-RUN chmod -R u+rwx,g+rwx,o+rwx .
+RUN chown -R node:node /app && \
+    chmod -R u+rwx,g+rx,o-rwx /app
 
 USER node
 
 ENV PATH="./node_modules/.bin:$PATH"
 
-RUN npm install @emotion/react  @emotion/styled  @mui/icons-material@5.10.6  @mui/material@5.10.7 react-simple-maps cx-portal-shared-components react-scripts
+RUN npm install --ignore-scripts @emotion/react  @emotion/styled  @mui/icons-material@5.10.6  @mui/material@5.10.7 react-simple-maps cx-portal-shared-components react-scripts
 
-RUN npm install
+RUN npm install --ignore-scripts
 
 RUN npm run build
 
