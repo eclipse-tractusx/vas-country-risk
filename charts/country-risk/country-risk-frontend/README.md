@@ -10,7 +10,8 @@ This Helm Chart deploys the Country Risk Frontend service to a Kubernetes enviro
 In an existing Kubernetes cluster the application can be deployed with the following command:
 
 ```bash
-helm install release_name ./charts/country-risk-frontend-charts --namespace your_namespace
+helm repo add <URL-Chart-Repository-Location> 
+helm install release_name ./charts/country-risk/country-risk-backend --namespace <your_namespace>
 ```
 
 This will install a new release of the Country Risk in the given namespace.
