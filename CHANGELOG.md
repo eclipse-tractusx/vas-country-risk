@@ -17,11 +17,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed copyright header in all charts
 - Fixed useEffect of getAllDates on DatePicker with an error catcher 
 - Fixed owner on dockerfile permissions
+- Fixed DEPENDENCIES file with newly scanned dependencies version
 
 ### Added
 - Added .tractusx metafile defining leading repository
 - Added new images on docs folder
 - Add git helm chart test work flow
+- New Umbrella Helm Chart added
 
 ## [1.1.1] - 2023-03-02
 
