@@ -15,8 +15,8 @@ This Helm Chart deploys the Country Risk application to a Kubernetes environment
 In an existing Kubernetes cluster the application can be deployed with the following command:
 
 ```bash
-helm repo add <URL-Chart-Repository-Location> 
-helm install release_name ./charts/country-risk --namespace <your_namespace>
+helm repo add tractusx-dev https://eclipse-tractusx.github.io/charts/dev
+helm install release_name tractusx-dev/country-risk --namespace <your_namespace>
 ```
 
 This will install a new release of the Country Risk in the given namespace.
