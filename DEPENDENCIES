@@ -927,7 +927,7 @@ npm/npmjs/-/temp-dir/2.0.0, MIT, approved, clearlydefined
 npm/npmjs/-/tempy/0.6.0, MIT, approved, clearlydefined
 npm/npmjs/-/terminal-link/2.1.1, MIT, approved, clearlydefined
 npm/npmjs/-/terser-webpack-plugin/5.3.7, MIT AND (Apache-2.0 AND MIT) AND Apache-2.0, approved, #7461
-npm/npmjs/-/terser/5.17.1, , restricted, clearlydefined
+npm/npmjs/-/terser/5.17.1, BSD-2-Clause AND BSD-3-Clause AND BSD-2-Clause AND ISC, approved, #7952
 npm/npmjs/-/test-exclude/6.0.0, ISC, approved, clearlydefined
 npm/npmjs/-/text-table/0.2.0, MIT, approved, clearlydefined
 npm/npmjs/-/throat/6.0.2, MIT, approved, clearlydefined
