@@ -27,6 +27,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      # Add this step to remove the cache
+      - name: Clear cache
+        run: |
+          rm -rf node_modules
+          rm -f package-lock.json
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:

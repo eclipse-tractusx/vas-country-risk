@@ -33,7 +33,7 @@ country-risk-frontend:
 
   certificate:
     # -- Hostname for the certificate
-    host: "localhost"
+    host: "frontend.countryrisk.example.net"
 
   # -- Name of the backend service
   appName: vas-country-risk-frontend
@@ -82,13 +82,16 @@ country-risk-frontend:
   ingress:
     # -- Ingress enabled or not
     enabled: false
-    # -- Class name
-    className: nginx
-    annotations:
+    className: ""
+    annotations: {}
+
+    # -- Class name (Example)
+    # className: nginx
+    # annotations:
       # -- HTTP traffic should be redirected to HTTPS
-      nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+      # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
       # -- Ingress controller should pass SSL traffic directly to the backend pods
-      nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+      # nginx.ingress.kubernetes.io/ssl-passthrough: "true"
 
 
   # Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
@@ -177,7 +180,7 @@ country-risk-backend:
 
   certificate:
     # -- Hostname for the certificate
-    host: "localhost"
+    host: "backend.countryrisk.example.net"
 
   # -- Name of the backend service
   appName: vas-country-risk-backend
@@ -224,15 +227,19 @@ country-risk-backend:
     enabled: false
 
   ingress:
-    # -- Class name
-    className: nginx
     # -- Ingress enabled or not
     enabled: false
-    annotations:
+    className: ""
+    annotations: {}
+
+    # -- Class name (Example)
+    # className: nginx
+    # annotations:
       # -- HTTP traffic should be redirected to HTTPS
-      nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+      # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
       # -- Ingress controller should pass SSL traffic directly to the backend pods
-      nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+      # nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+
 
   # Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
   # @url: https://cloud.google.com/blog/products/containers-kubernetes/kubernetes-best-practices-resource-requests-and-limits

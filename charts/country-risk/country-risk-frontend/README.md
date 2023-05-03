@@ -23,7 +23,7 @@ You can configure your own ingress to access the app or use something like port 
 By giving your own values file you can configure the Helm deployment of the Country Risk freely:
 
 ```bash
-helm install release_name ./charts/country-risk-frontend-charts --namespace your_namespace -f ./path/to/your/values.yaml
+helm install release_name tractusx-dev/country-risk-frontend --namespace <your_namespace> -f ./path/to/your/values.yaml
 ```
 
 In the following sections you can have a look at the most important configuration options.

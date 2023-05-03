@@ -41,9 +41,7 @@ USER node
 # Set PATH
 ENV PATH="./node_modules/.bin:$PATH"
 
-# Install dependencies
-RUN npm install --ignore-scripts @emotion/react @emotion/styled @mui/icons-material@5.10.6 @mui/material@5.10.7 react-simple-maps cx-portal-shared-components react-scripts
-
+# Install dependencies for build
 RUN npm install --ignore-scripts
 
 # Build the project

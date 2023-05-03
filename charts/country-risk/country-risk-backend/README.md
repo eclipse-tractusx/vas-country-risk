@@ -24,7 +24,7 @@ Per default ingress is disabled, as well as no authentication for endpoints.
 By giving your own values file you can configure the Helm deployment of the Country Risk freely:
 
 ```bash
-helm install release_name ./charts/country-risk-backend-charts --namespace your_namespace -f ./path/to/your/values.yaml
+helm install release_name tractusx-dev/country-risk-backend --namespace <your_namespace> -f ./path/to/your/values.yaml
 ```
 
 In the following sections you can have a look at the most important configuration options.

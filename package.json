@@ -3,15 +3,15 @@
   "version": "1.1.2",
   "private": true,
   "dependencies": {
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@mui/icons-material": "^5.10.6",
-    "@mui/material": "^5.10.7",
+    "@emotion/react": "11.10.5",
+    "@emotion/styled": "11.10.5",
+    "@mui/icons-material": "5.10.6",
+    "@mui/material": "5.10.7",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^14.4.3",
     "axios": "^0.27.2",
-    "cx-portal-shared-components": "^0.4.5",
+    "cx-portal-shared-components": "0.4.5",
     "d3-fetch": "^3.0.1",
     "env-cmd": "^10.1.0",
     "enzyme": "^3.11.0",
@@ -61,7 +61,24 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/preset-env": "^7.21.5",
+    "babel-jest": "^29.5.0",
     "jsdom": "^21.1.0",
     "sass": "^1.57.1"
+  },
+  "overrides": {
+    "react-simple-maps": {
+      "d3-color": "^3.1.0",
+      "d3-zoom": "^3.0.0"
+    },
+    "react-scripts": {
+      "@svgr/webpack": "7.0.0"
+    }
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!(react-simple-maps|d3-[^/]+)/)"
+    ]
   }
 }
