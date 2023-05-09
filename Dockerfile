@@ -66,8 +66,9 @@ RUN mv /usr/share/nginx/html/index.html /usr/share/nginx/html/index.html.referen
 COPY ./scripts/inject-dynamic-env.sh /docker-entrypoint.d/00-inject-dynamic-env.sh
 RUN chmod +x /docker-entrypoint.d/00-inject-dynamic-env.sh
 
-# Install bash and update vulnerable packages
-RUN apk update
+# Update vulnerable packages
+RUN apk update && \
+    apk upgrade
 
 # Change ownership and switch back to nginx user
 RUN chown -R 101:101 /usr/share/nginx/html/
