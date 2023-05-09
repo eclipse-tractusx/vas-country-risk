@@ -48,9 +48,6 @@ country-risk-frontend:
     # -- Set the file system group ID for all containers in the pod
     fsGroup: 2000
 
-  # Spring profiles under which the application should run
-  springProfiles:
-    - dev
 
   # Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
   # @url: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
@@ -85,13 +82,6 @@ country-risk-frontend:
     className: ""
     annotations: {}
 
-    # -- Class name (Example)
-    # className: nginx
-    # annotations:
-      # -- HTTP traffic should be redirected to HTTPS
-      # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-      # -- Ingress controller should pass SSL traffic directly to the backend pods
-      # nginx.ingress.kubernetes.io/ssl-passthrough: "true"
 
 
   # Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
@@ -195,9 +185,6 @@ country-risk-backend:
     # -- Set the file system group ID for all containers in the pod
     fsGroup: 2000
 
-  # Spring profiles under which the application should run
-  springProfiles:
-    - dev
 
   # Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
   # @url: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
@@ -351,12 +338,9 @@ postgres:
 pgadmin4:
   # -- Should pgadmin4 be enabled or not
   enabled: false
-  secret:
-    # -- Path where the information related to the secret
-    path: value-added-service/data/country-risk/dev/pgadmin4
   env:
     # -- Email used on the Env environment
-    email: vas@catena-x.net
+    email: vas@default.net
   ingress:
     # -- Ingress enabled or not
     enabled: true

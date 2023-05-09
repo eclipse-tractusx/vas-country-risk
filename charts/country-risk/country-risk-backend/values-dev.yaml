@@ -55,6 +55,9 @@ postgres:
 pgadmin4:
   secret:
     path: value-added-service/data/country-risk/dev/pgadmin4
+  env:
+    # -- Password used on the Env environment
+    password: password
   ingress:
     hosts:
       - host: vas-pgadmin4.dev.demo.catena-x.net

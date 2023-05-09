@@ -54,6 +54,9 @@ pgadmin4:
   enabled: true
   secret:
     path: value-added-service/data/country-risk/int/pgadmin4
+  env:
+    # -- password used on the Env environment
+    password: password
   ingress:
     hosts:
       - host: vas-pgadmin4.int.demo.catena-x.net

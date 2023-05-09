@@ -108,10 +108,10 @@ resources:
     memory: 1Gi
 
 # -- Node placement constraints
-nodeSelector: { }
+nodeSelector: {}
 
 # -- Pod toleration constraints
-tolerations: [ ]
+tolerations: []
 
 # Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
 # @url: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity
@@ -199,12 +199,10 @@ postgres:
 pgadmin4:
   # -- Should pgadmin4 be enabled or not
   enabled: false
-  secret:
-    # -- Path where the information related to the secret
-    path: value-added-service/data/country-risk/dev/pgadmin4
   env:
     # -- Email used on the Env environment
-    email: vas@catena-x.net
+    email: vas@default.net
+    password:
   ingress:
     # -- Ingress enabled or not
     enabled: true
