@@ -18,8 +18,6 @@
 # SPDX-License-Identifier: Apache-2.0
 ################################################################################
 
-
-
 # Default values for vas.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
@@ -92,8 +90,6 @@ ingress:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     # -- Ingress controller should pass SSL traffic directly to the backend pods
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-
-
 
 # Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
 # @url: https://cloud.google.com/blog/products/containers-kubernetes/kubernetes-best-practices-resource-requests-and-limits
@@ -173,7 +169,6 @@ configmap:
     # -- Security configurations for the application
     security_enabled: 'false'
 
-
 elastic:
   # -- Should elastic be enabled or not
   enabled: false
@@ -182,7 +177,6 @@ elastic:
     tls:
       # -- Encryption for the REST requests made to the Elastic cluster
       restEncryption: false
-
 
 postgres:
   enabled: true
@@ -193,8 +187,6 @@ postgres:
     username: vas
     # overwrite for security reasons
     password: default
-
-
 
 pgadmin4:
   # -- Should pgadmin4 be enabled or not
