@@ -40,9 +40,9 @@ certificate:
 appName: vas-country-risk-backend
 
 # -- List of secrets to be used
-imagePullSecrets: [ ]
+imagePullSecrets: []
 # -- Annotations to be added to the running pod
-podAnnotations: { }
+podAnnotations: {}
 
 # -- Configuration for security-related options of the running pod
 podSecurityContext:
