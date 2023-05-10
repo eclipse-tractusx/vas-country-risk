@@ -40,9 +40,9 @@ certificate:
 appName: vas-country-risk-frontend
 
 # -- List of secrets to be used
-imagePullSecrets: [ ]
+imagePullSecrets: []
 # -- Annotations to be added to the running pod
-podAnnotations: { }
+podAnnotations: {}
 
 # -- Configuration for security-related options of the running pod
 podSecurityContext:
@@ -107,10 +107,10 @@ resources:
     memory: 1Gi
 
 # -- Node placement constraints
-nodeSelector: { }
+nodeSelector: {}
 
 # -- Pod toleration constraints
-tolerations: [ ]
+tolerations: []
 
 # Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
 # @url: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity
