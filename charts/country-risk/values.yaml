@@ -318,11 +318,8 @@ postgres:
   enabled: true
   auth:
     database: vas
-    # overwrite for security reasons
-    postgresPassword: default
     username: vas
-    # overwrite for security reasons
-    password: default
+
 
 #########################
 # PG Admin configuration     #
