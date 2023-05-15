@@ -48,7 +48,6 @@ country-risk-frontend:
     # -- Set the file system group ID for all containers in the pod
     fsGroup: 2000
 
-
   # Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
   # @url: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   securityContext:
@@ -320,7 +319,6 @@ postgres:
     database: vas
     username: vas
 
-
 #########################
 # PG Admin configuration     #
 #########################
@@ -330,5 +328,3 @@ pgadmin4:
   env:
     # -- Email used on the Env environment
     email: vas@default.net
-
-
