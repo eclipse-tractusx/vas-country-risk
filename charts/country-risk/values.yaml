@@ -324,6 +324,7 @@ postgres:
 # PG Admin configuration     #
 #########################
 pgadmin4:
+  fullnameOverride: ""
   # -- Should pgadmin4 be enabled or not
   enabled: false
   env:
