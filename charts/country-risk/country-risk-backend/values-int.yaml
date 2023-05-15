@@ -64,6 +64,13 @@ pgadmin4:
     # -- Password used on the Env environment
     password: <path:value-added-service/data/country-risk/int/pgadmin4#password>
   ingress:
+    # -- Ingress enabled or not
+    enabled: true
+    annotations:
+      # -- Cluster issuer used for the ingress
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      # -- Class for the pgadmin4 deployment
+      kubernetes.io/ingress.class: nginx
     hosts:
       - host: vas-pgadmin4.int.demo.catena-x.net
         paths:

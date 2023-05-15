@@ -24,7 +24,3 @@ g
 :
 
 AUTHORS.md,a\2\a2b261d0119ad783ac285fbc4f699e96fc0b7e2f
-<
-CHANGELOG.md,a\b\ab09011fa121d0a2bb9fa4ca76094f2482b902b7
-K
-.github/workflows/build.yml,f\e\fe77d5d1439f26e353a42bbd38dece2467ff6558

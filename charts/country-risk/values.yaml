@@ -330,11 +330,5 @@ pgadmin4:
   env:
     # -- Email used on the Env environment
     email: vas@default.net
-  ingress:
-    # -- Ingress enabled or not
-    enabled: true
-    annotations:
-      # -- Cluster issuer used for the ingress
-      cert-manager.io/cluster-issuer: letsencrypt-prod
-      # -- Class for the pgadmin4 deployment
-      kubernetes.io/ingress.class: nginx
+
+
