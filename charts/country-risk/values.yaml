@@ -314,6 +314,7 @@ country-risk-backend:
 #########################
 
 postgres:
+  fullnameOverride: ""
   enabled: true
   auth:
     database: vas
