@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Changed react scripts nth-check top fix vulnerability 
 - Changed transformation on jest to update modules when test runs
 - Updated DEPENDENCIES file
+- Change structure of helms charts
 
 ### Fixes
 - Fixed copyright header in all charts
