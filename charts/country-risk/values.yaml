@@ -20,7 +20,7 @@
 
 
 country-risk-frontend:
-
+  fullnameOverride: ""
   replicaCount: 1
 
   image:
@@ -155,7 +155,7 @@ country-risk-frontend:
 country-risk-backend:
 
   replicaCount: 1
-
+  fullnameOverride: ""
   image:
     registry: "ghcr.io"
     # -- Name of the docker image
