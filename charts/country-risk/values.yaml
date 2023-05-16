@@ -325,6 +325,6 @@ pgadmin4:
   # -- Should pgadmin4 be enabled or not
   enabled: false
   env:
-    # -- Email used on the Env environment
-    email: vas@default.net
+    # -- Email used on the Env environment approiate email needs to be setter on the envs
+    email: ""
     password: ""
