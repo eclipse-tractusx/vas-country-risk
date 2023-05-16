@@ -179,6 +179,7 @@ postgres:
   auth:
     database: vas
     username: vas
+    password: ""
 
 
 pgadmin4:
@@ -186,6 +187,6 @@ pgadmin4:
   enabled: false
   env:
     # -- Email used on the Env environment
-    email: vas@default.net
-    password:
+    email: ""
+    password: ""
 
