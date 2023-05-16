@@ -20,7 +20,6 @@
 
 
 country-risk-frontend:
-  fullnameOverride: ""
   replicaCount: 1
 
   image:
@@ -155,7 +154,6 @@ country-risk-frontend:
 country-risk-backend:
 
   replicaCount: 1
-  fullnameOverride: ""
   image:
     registry: "ghcr.io"
     # -- Name of the docker image
@@ -314,7 +312,6 @@ country-risk-backend:
 #########################
 
 postgres:
-  fullnameOverride: ""
   enabled: true
   auth:
     database: vas
@@ -324,7 +321,6 @@ postgres:
 # PG Admin configuration     #
 #########################
 pgadmin4:
-  fullnameOverride: ""
   # -- Should pgadmin4 be enabled or not
   enabled: false
   env:
