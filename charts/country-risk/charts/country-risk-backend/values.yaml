@@ -1,4 +1,5 @@
-###############################################################
+################################################################################
+# Copyright (c) 2022,2023 BMW Group AG
 # Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
@@ -15,19 +16,18 @@
 # under the License.
 #
 # SPDX-License-Identifier: Apache-2.0
-###############################################################
+################################################################################
 
 # Default values for vas.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-# -- Number of replicas of a Kubernetes deployment
 replicaCount: 1
 
 image:
   registry: "ghcr.io"
   # -- Name of the docker image
-  name: "catenax-ng/tx-vas-country-risk-frontend"
+  name: "catenax-ng/tx-vas-country-risk-backend"
   pullPolicy: Always
   # -- Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -37,12 +37,12 @@ certificate:
   host: "localhost"
 
 # -- Name of the backend service
-appName: vas-country-risk-frontend
+appName: vas-country-risk-backend
 
 # -- List of secrets to be used
-imagePullSecrets: [ ]
+imagePullSecrets: []
 # -- Annotations to be added to the running pod
-podAnnotations: { }
+podAnnotations: {}
 
 # -- Configuration for security-related options of the running pod
 podSecurityContext:
@@ -61,7 +61,7 @@ securityContext:
   # -- Specifies whether the process inside the container should run as a non-root user
   runAsNonRoot: true
   # -- Specifies the user ID that the process inside the container should run
-  runAsUser: 101
+  runAsUser: 10001
   # -- Specifies the group ID that the process inside the container should run
   runAsGroup: 3000
   # -- Capabilities that the process inside the container should have
@@ -80,19 +80,12 @@ service:
 autoscaling:
   enabled: false
 
-
-
 ingress:
+  # -- Class name
+  className: ""
   # -- Ingress enabled or not
   enabled: false
-  # -- Class name
-  className: nginx
-  annotations:
-    # -- HTTP traffic should be redirected to HTTPS
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    # -- Ingress controller should pass SSL traffic directly to the backend pods
-    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-
+  annotations: {}
 
 # Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
 # @url: https://cloud.google.com/blog/products/containers-kubernetes/kubernetes-best-practices-resource-requests-and-limits
@@ -107,10 +100,10 @@ resources:
     memory: 1Gi
 
 # -- Node placement constraints
-nodeSelector: { }
+nodeSelector: {}
 
 # -- Pod toleration constraints
-tolerations: [ ]
+tolerations: []
 
 # Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
 # @url: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity
@@ -133,29 +126,44 @@ affinity:
 livenessProbe:
   failureThreshold: 3
   # -- Number of seconds to wait before performing the first liveness probe
-  initialDelaySeconds: 10
+  initialDelaySeconds: 60
   # -- Number of seconds to wait between consecutive probes
-  periodSeconds: 1000
+  periodSeconds: 10
   # -- Number of consecutive successful probes before a pod is considered healthy
   successThreshold: 1
   # -- Number of seconds after which a liveness probe times out
-  timeoutSeconds: 1000
+  timeoutSeconds: 1
+  # -- HTTP endpoint
+  path: /management/health/liveness
+  # -- Port used
+  port: 8080
 # -- Determine when a pod is ready to start accepting requests
 readinessProbe:
   failureThreshold: 3
-  initialDelaySeconds: 10
-  periodSeconds: 1000
+  initialDelaySeconds: 60
+  periodSeconds: 10
   successThreshold: 1
-  timeoutSeconds: 1000
+  timeoutSeconds: 1
+  path: /management/health/readiness
+  port: 8080
 
 # -- Defines the client secret and client ID
 applicationSecret:
-  enabled: false
+  # -- Value that specifies whether the application secret should be used
+  enabled: true
+  # -- String value that represents the client secret
+  clientSecret: "" #
+  # -- String value that represents the client ID
+  clientId: ""  #
 
 configmap:
   # Specifies whether a configmap should be created
   create: true
-
+  data:
+    # -- Which profile should be activated for the application
+    spring_profiles_active: 'dev'
+    # -- Security configurations for the application
+    security_enabled: 'false'
 
 elastic:
   # -- Should elastic be enabled or not
@@ -165,4 +173,20 @@ elastic:
     tls:
       # -- Encryption for the REST requests made to the Elastic cluster
       restEncryption: false
+
+postgres:
+  enabled: true
+  auth:
+    database: vas
+    username: vas
+    password: ""
+
+
+pgadmin4:
+  # -- Should pgadmin4 be enabled or not
+  enabled: false
+  env:
+    # -- Email used on the Env environment
+    email: ""
+    password: ""
 

@@ -71,7 +71,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           # Path to Docker image
-          image-ref: "ghcr.io/catenax-ng/product-vas-country-risk-frontend:main"
+          image-ref: "ghcr.io/catenax-ng/tx-vas-country-risk-frontend:main"
           format: "sarif"
           output: "trivy-results2.sarif"
           exit-code: "1"

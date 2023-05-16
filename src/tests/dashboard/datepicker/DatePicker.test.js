@@ -48,6 +48,5 @@ test("DatePicker Test", async () => {
 
   const picker = screen.getByText("Select a Year");
 
-  expect(picker).toBeInTheDocument();
-
+  expect(picker).toBeInTheDocument(); 
 });

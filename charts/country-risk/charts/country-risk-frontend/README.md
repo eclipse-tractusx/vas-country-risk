@@ -10,7 +10,8 @@ This Helm Chart deploys the Country Risk Frontend service to a Kubernetes enviro
 In an existing Kubernetes cluster the application can be deployed with the following command:
 
 ```bash
-helm install release_name ./charts/country-risk-frontend-charts --namespace your_namespace
+helm repo add tractusx-dev https://eclipse-tractusx.github.io/charts/dev
+helm install release_name tractusx-dev/country-risk-frontend --namespace <your_namespace>
 ```
 
 This will install a new release of the Country Risk in the given namespace.
@@ -22,7 +23,7 @@ You can configure your own ingress to access the app or use something like port 
 By giving your own values file you can configure the Helm deployment of the Country Risk freely:
 
 ```bash
-helm install release_name ./charts/country-risk-frontend-charts --namespace your_namespace -f ./path/to/your/values.yaml
+helm install release_name tractusx-dev/country-risk-frontend --namespace <your_namespace> -f ./path/to/your/values.yaml
 ```
 
 In the following sections you can have a look at the most important configuration options.

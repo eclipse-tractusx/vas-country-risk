@@ -1,4 +1,5 @@
 ###############################################################
+# Copyright (c) 2022,2023 BMW Group AG
 # Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
@@ -16,28 +17,26 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
-
-springProfiles:
-  - int
-
-
-appName: country-risk-frontend
-environment: int
-
-  
-ingress:
-  host: catenax-vas-int.demo.catena-x.net
-  enabled: true
-
-certificate:
-  host: "country-risk-dashboard.int.demo.catena-x.net"
-
-configmap:
-  # Specifies whether a configmap should be created or not
-  data:
-    REACT_APP_AUTH_URL: 'https://centralidp.int.demo.catena-x.net/auth'
-    REACT_APP_COUNTRY_RISK_API: 'https://vas-country-risk-backend.int.demo.catena-x.net'
-    REACT_APP_PORTAL_FRONTEND: 'https://portal.int.demo.catena-x.net'
-    REACT_APP_PORTAL_BACKEND: 'https://portal-backend.int.demo.catena-x.net'
-
-
+apiVersion: v2
+name: country-risk
+type: application
+version: 1.0.0
+description: A Helm chart for deploying the Country Risk service
+home: https://github.com/eclipse-tractusx/vas-country-risk-frontend
+sources:
+  - https://github.com/eclipse-tractusx/vas-country-risk-frontend
+  - https://github.com/eclipse-tractusx/vas-country-risk-backend
+dependencies:
+- name: postgresql
+  version: 11.*.*
+  repository: https://charts.bitnami.com/bitnami
+  alias: postgres
+  condition: postgres.enabled
+- condition: pgadmin4.enabled
+  name: pgadmin4
+  repository: https://helm.runix.net
+  version: 1.x.x
+- name: country-risk-backend
+  version: 3.0.0
+- name: country-risk-frontend
+  version: 3.0.0

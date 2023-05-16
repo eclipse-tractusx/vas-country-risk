@@ -21,12 +21,6 @@ B
 .conf/nginx.conf,1\b\1b7d3f43ac3f65995537f164c511c094fd46fcba
 g
 7src/components/dashboard/CountryPicker/CountryPicker.js,9\e\9e64c56a3d55d4c4bff840610045dad14026a967
-K
-.github/workflows/build.yml,f\e\fe77d5d1439f26e353a42bbd38dece2467ff6558
-P
- .github/workflows/sonarcloud.yml,0\7\077a84aad902191fd63fd374880221279f02a65d
 :
 
 AUTHORS.md,a\2\a2b261d0119ad783ac285fbc4f699e96fc0b7e2f
-]
--charts/country-risk-frontend-charts/README.md,1\3\13fac6809f5f81eb63578cb1c8eaac14b20c6702

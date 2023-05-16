@@ -4,6 +4,32 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.1.2] -  2023-05-09
+
+### Changed
+- Changed sonar token on properties
+- Bumped version of Webpack to latest (5.80.0)
+- Bumped version of Web-vitals to 3.1.1
+- Changed Arc42 and User Guide documentation
+- Changed react simple maps d3-color and d3-zoom top fix vulnerability 
+- Changed react scripts nth-check top fix vulnerability 
+- Changed transformation on jest to update modules when test runs
+- Updated DEPENDENCIES file
+- Change structure of helms charts
+
+### Fixes
+- Fixed copyright header in all charts
+- Fixed useEffect of getAllDates on DatePicker with an error catcher 
+- Fixed owner on dockerfile permissions
+- Fixed DEPENDENCIES file with newly scanned dependencies version
+
+### Added
+- Added .tractusx metafile defining leading repository
+- Added new images on docs folder
+- Add git helm chart test work flow
+- New Umbrella Helm Chart added
+
 ## [1.1.1] - 2023-03-02
 
 ### Changed
