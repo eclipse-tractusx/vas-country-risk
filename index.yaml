@@ -1,5 +1,35 @@
 apiVersion: v1
 entries:
+  country-risk:
+  - apiVersion: v2
+    created: "2023-05-16T15:28:42.962990396Z"
+    dependencies:
+    - alias: postgres
+      condition: postgres.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.*.*
+    - condition: pgadmin4.enabled
+      name: pgadmin4
+      repository: https://helm.runix.net
+      version: 1.x.x
+    - name: country-risk-backend
+      repository: ""
+      version: 3.0.0
+    - name: country-risk-frontend
+      repository: ""
+      version: 3.0.0
+    description: A Helm chart for deploying the Country Risk service
+    digest: d3747d3300c46ea68497ea239088a0d2814f721e107780ec6b5d16a249b6bf70
+    home: https://github.com/eclipse-tractusx/vas-country-risk-frontend
+    name: country-risk
+    sources:
+    - https://github.com/eclipse-tractusx/vas-country-risk-frontend
+    - https://github.com/eclipse-tractusx/vas-country-risk-backend
+    type: application
+    urls:
+    - https://github.com/eclipse-tractusx/vas-country-risk-frontend/releases/download/country-risk-1.0.0/country-risk-1.0.0.tgz
+    version: 1.0.0
   country-risk-frontend:
   - apiVersion: v2
     appVersion: 1.1.1
@@ -42,4 +72,4 @@ entries:
     urls:
     - https://github.com/eclipse-tractusx/vas-country-risk-frontend/releases/download/vas-frontend-2.0.0/vas-frontend-2.0.0.tgz
     version: 2.0.0
-generated: "2023-03-06T15:30:55.152813126Z"
+generated: "2023-05-16T15:28:42.963021296Z"
