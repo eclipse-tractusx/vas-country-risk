@@ -316,6 +316,7 @@ postgres:
   auth:
     database: vas
     username: vas
+    password: ""
 
 #########################
 # PG Admin configuration     #
@@ -326,3 +327,4 @@ pgadmin4:
   env:
     # -- Email used on the Env environment
     email: vas@default.net
+    password: ""
