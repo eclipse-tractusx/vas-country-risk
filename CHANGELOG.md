@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Issue where roles could be undefined, causing an error when calling the includes method.
 
+### Changed
+- Changed client id for country risk app registered on portal
+
 ## [1.1.2] -  2023-05-17
 
 ### Changed

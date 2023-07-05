@@ -54,6 +54,10 @@ export const getClientId = () => "Cl2-CX-Portal";
 
 export const getCountryRiskClientId = () => "Cl16-CX-CRisk";
 
+export const getCountryRiskAppId = () => "app374";
+
+export const getBpdmId = () => "Cl7-CX-BPDM";
+
 export const getClientIdSemantic = () => "Cl3-CX-Semantic";
 
 export const getClientIdDigitalTwin = () => "Cl4-CX-DigitalTwin";
@@ -68,7 +72,9 @@ const EnvironmentService = {
   getClientIdSemantic,
   getClientIdDigitalTwin,
   getCountryRiskClientId,
+  getCountryRiskAppId,
   getCountryRiskApi,
+  getBpdmId,
 };
 
 export default EnvironmentService;
