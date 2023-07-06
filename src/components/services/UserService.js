@@ -41,7 +41,7 @@ const keycloakConfig = {
 const keycloakConfigCountryRisk = {
   url: getCentralIdp(),
   realm: "CX-Central",
-  clientId: getCountryRiskAppId(),
+  clientId: getCountryRiskClientId(),
 };
 
 const keycloakConfigBpdm = {
