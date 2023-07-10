@@ -33,6 +33,8 @@ Source:
 
 For more information and documentation, please refer to [documentation](https://github.com/eclipse-tractusx/vas-country-risk-frontend/tree/main/docs).
 
+For topics and information discussion, please refer to [Eclipse Country Risk Room](https://chat.eclipse.org/#/room/#tools.tractusx-country-risk:matrix.eclipse.org)
+
 ## Demo environments
 
 There are two demo environments provided by Catena-X:
