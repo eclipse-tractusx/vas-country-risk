@@ -1,0 +1,120 @@
+.left-map-container-print {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+  }
+
+  .map {
+    background-color: #E0F5FE;
+    border: 1px solid rgb(0, 0, 0);
+    margin: 10px;
+  }
+  
+  .value-container {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid rgb(0, 0, 0);
+    margin: 10px;
+  }
+  
+  .left-value {
+    margin-left: 20px;
+    font-size: 30px;
+    font-weight: bold;
+  }
+  
+  .right-value {
+    margin-right: 20px;
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  //Sliders SCSS
+
+  .slider-green {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    margin-left: 20px;
+
+    .MuiSlider-colorPrimary {
+        color: green;
+      }
+  }
+
+  .slider-yellow {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    margin-right: 20px;
+    margin-left: 20px;
+
+    .MuiSlider-colorPrimary {
+        color: yellow;
+      }
+  }
+
+  .slider-red {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 30px;
+    margin-right: 20px;
+    margin-left: 20px;
+
+    .MuiSlider-colorPrimary {
+        color: red;
+      }
+  }
+  
+  .slider-value-left {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 30px;
+  }
+  
+  .slider-value-right {
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 30px;
+  }
+
+  .custom-world-map {
+    margin-bottom: 20px;
+  }
+  
+  .table-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  
+  .ratings-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  
+    th {
+      background-color: #b2bfbc;
+      padding: 12px 16px;
+      font-weight: bold;
+      text-align: left;
+      font-size: 20px;
+      border: 1px solid #000000;
+    }
+  
+    td {
+      padding: 12px 16px;
+      font-weight: bold;
+      border: 1px solid #000000;
+    }
+  
+    tbody tr:last-child td {
+      border: 1px solid #000000;
+    }
+  }
+  

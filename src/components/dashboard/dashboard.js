@@ -31,6 +31,8 @@ import RangeSlider from "./RangeSlider/RangeSlider";
 import Reports from "./Reports/Reports";
 import GatePicker from "./GatePicker/GatePicker";
 
+import PrintMap from "./PrintMap/PrintMap";
+
 const Dashboard = () => {
   const [ratings, setRatings] = useState("");
 
@@ -53,6 +55,13 @@ const Dashboard = () => {
   return (
     <div className="wrapper">
       <div className="main-content">
+      <div className="hidden-div">
+        <PrintMap              
+          getRatings={ratings}
+          years={years}
+          weight={weight}>
+        </PrintMap>
+      </div>
         <div className="maps-content ">
           <div className="left-map">
             <LeftMap
@@ -60,6 +69,7 @@ const Dashboard = () => {
               years={years}
               weight={weight}
             ></LeftMap>
+            
           </div>
           <div className="right-map">
             <RightMap
@@ -107,3 +117,5 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+
