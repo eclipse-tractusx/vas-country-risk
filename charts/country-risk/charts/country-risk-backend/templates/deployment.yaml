@@ -67,16 +67,16 @@ spec:
                 secretKeyRef:
                   name:  {{ include "vas.postgres.name" . }}
                   key: password
-            - name: VAS_KEYCLOAKCLIENTID
-              valueFrom:
-                secretKeyRef:
-                  name: {{ include "vas.applicationSecret.name" . }}
-                  key: keycloakClientSecret
-            - name: VAS_KEYCLOAKCLIENTSECRET
+            - name: VAS_KEYCLOAK_CLIENTID
               valueFrom:
                 secretKeyRef:
                   name: {{ include "vas.applicationSecret.name" . }}
                   key: keycloakClientId
+            - name: VAS_KEYCLOAK_CLIENTSECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "vas.applicationSecret.name" . }}
+                  key: keycloakClientSecret
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
