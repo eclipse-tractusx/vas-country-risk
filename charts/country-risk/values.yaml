@@ -297,6 +297,10 @@ country-risk-backend:
       spring_profiles_active: 'dev'
       # -- Security configurations for the application
       security_enabled: 'false'
+      # -- Endpoints for BPDM output gate
+      application_partnersPoolUrl_bpdmAddressUrl: http://localhost:8080/api/catena/output/addresses/search?
+      application_partnersPoolUrl_bpdmSiteUrl: http://localhost:8080/api/catena/output/sites/search?
+      application_partnersPoolUrl_bpdmLegalUrl: http://localhost:8080/api/catena/output/legal-entities/search?
 
   elastic:
     # -- Should elastic be enabled or not

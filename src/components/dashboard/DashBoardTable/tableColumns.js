@@ -1,45 +1,53 @@
 /********************************************************************************
-* Copyright (c) 2022,2023 BMW Group AG 
-* Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
-*
-* See the NOTICE file(s) distributed with this work for additional
-* information regarding copyright ownership.
-*
-* This program and the accompanying materials are made available under the
-* terms of the Apache License, Version 2.0 which is available at
-* https://www.apache.org/licenses/LICENSE-2.0.
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-* WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-* License for the specific language governing permissions and limitations
-* under the License.
-*
-* SPDX-License-Identifier: Apache-2.0
-********************************************************************************/
+ * Copyright (c) 2022,2023 BMW Group AG
+ * Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+ *
+ * See the NOTICE file(s) distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Apache License, Version 2.0 which is available at
+ * https://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ ********************************************************************************/
 import clsx from "clsx";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { IconButton } from "cx-portal-shared-components";
 import { capitalize } from "@mui/material";
-export const columns = (ranges, onDetailClick) => {
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import CancelIcon from "@mui/icons-material/Cancel";
+export const columns = (ranges, onDetailClick, roles) => {
+
   const hiddenColumns = ["street", "houseNumber", "zipCode"];
+  const hasReadCustomersRole =
+    roles && Array.isArray(roles) ? roles.includes("read_customers") : false;
+  const hasReadSuppliersRole =
+    roles && Array.isArray(roles) ? roles.includes("read_suppliers") : false;
+
   return [
     {
       description: "Business Partner Number",
       field: "bpn",
-      flex: 2,
+      flex: 1.5,
       headerName: "Business Partner Number",
     },
     {
       description: "Legal Name",
       field: "legalName",
-      flex: 2,
+      flex: 1.5,
       headerName: "Legal Name",
     },
     ...hiddenColumns.map((field) => ({
       description: field,
       field,
-      flex: 2,
+      flex: 1.5,
       headerName: capitalize(field),
       hide: true,
     })),
@@ -59,7 +67,7 @@ export const columns = (ranges, onDetailClick) => {
       description: "Score",
       field: "score",
       headerName: "Score",
-      flex: 1,
+      flex: 1.5,
       cellClassName: (params) =>
         clsx("super-app", {
           minColor: params.value < ranges[1][0],
@@ -71,7 +79,7 @@ export const columns = (ranges, onDetailClick) => {
     {
       description: "Rating",
       field: "rating",
-      flex: 2,
+      flex: 1.5,
       headerName: "Rating",
       cellClassName: (params) =>
         clsx("super-app", {
@@ -79,9 +87,35 @@ export const columns = (ranges, onDetailClick) => {
         }),
     },
     {
+      description: "Supplier",
+      field: "supplier",
+      flex: 1.5,
+      headerName: "Supplier",
+      hide: !hasReadSuppliersRole,
+      renderCell: (params) =>
+        params.value ? (
+          <CheckCircleIcon style={{ color: "green" }} />
+        ) : (
+          <CancelIcon style={{ color: "red" }} />
+        ),
+    },
+    {
+      description: "Customer",
+      field: "customer",
+      flex: 1.5,
+      headerName: "Customer",
+      hide: !hasReadCustomersRole,
+      renderCell: (params) =>
+        params.value ? (
+          <CheckCircleIcon style={{ color: "green" }} />
+        ) : (
+          <CancelIcon style={{ color: "red" }} />
+        ),
+    },
+    {
       description: "Detail",
       field: "detail",
-      flex: 2,
+      flex: 1.5,
       headerName: "Detail",
       renderCell: ({ row }) => (
         <IconButton

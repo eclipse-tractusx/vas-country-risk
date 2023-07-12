@@ -17,8 +17,10 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-const LOCAL_SERVICES_FRONTEND = window.ENV?.REACT_APP_PORTAL_FRONTEND?.valueOf();
-const REACT_APP_COUNTRY_RISK_API = window.ENV?.REACT_APP_COUNTRY_RISK_API?.valueOf();
+const LOCAL_SERVICES_FRONTEND =
+  window.ENV?.REACT_APP_PORTAL_FRONTEND?.valueOf();
+const REACT_APP_COUNTRY_RISK_API =
+  window.ENV?.REACT_APP_COUNTRY_RISK_API?.valueOf();
 const LOCAL_SERVICES_BACKEND = window.ENV?.REACT_APP_PORTAL_BACKEND?.valueOf();
 const LOCAL_SERVICES_CENTRALIDP = window.ENV?.REACT_APP_AUTH_URL?.valueOf();
 export const getHostname = () => window.location.hostname;
@@ -37,21 +39,24 @@ export const getCentralIdp = () => {
   return LOCAL_SERVICES_CENTRALIDP;
 };
 
-
 export const getPortalLink = () => {
- return  LOCAL_SERVICES_FRONTEND
+  return LOCAL_SERVICES_FRONTEND;
 };
 export const getCountryRiskApi = () => {
- return  REACT_APP_COUNTRY_RISK_API
+  return REACT_APP_COUNTRY_RISK_API;
 };
 
 export const getLogoutLink = () => {
-  return LOCAL_SERVICES_FRONTEND+"/logout"
+  return LOCAL_SERVICES_FRONTEND + "/logout";
 };
 
 export const getClientId = () => "Cl2-CX-Portal";
 
 export const getCountryRiskClientId = () => "Cl16-CX-CRisk";
+
+export const getCountryRiskAppId = () => "app374";
+
+export const getBpdmId = () => "Cl7-CX-BPDM";
 
 export const getClientIdSemantic = () => "Cl3-CX-Semantic";
 
@@ -67,7 +72,9 @@ const EnvironmentService = {
   getClientIdSemantic,
   getClientIdDigitalTwin,
   getCountryRiskClientId,
+  getCountryRiskAppId,
   getCountryRiskApi,
+  getBpdmId,
 };
 
 export default EnvironmentService;
