@@ -34,7 +34,7 @@ const PrintMap = (ratings) => {
     <div className=".left-map-container-print " id="printElement">
       <div className="value-container">
         <div className="left-value">Year: {ratings.years}</div>
-        <div className="right-value"> Company: {gates.gateName !== undefined ? gates.gateName : "Select a Gate"}
+        <div className="right-value">Company: {gates.gateName !== undefined ? gates.gateName : "Select a Gate"}
         </div>
       </div>
       <div className="map">
@@ -48,35 +48,37 @@ const PrintMap = (ratings) => {
           maxMapHeight={600}
         ></CustomWorldMap>
       </div>
-      <div className="slider-green">
-        <div className="slider-value-left">{ranges[2][0]}</div>
-        <Slider
-          value={ranges[2]}
-          valueLabelDisplay="auto"
-          aria-labelledby="range-slider"
-          disableSwap
-        />
-        <div className="slider-value-right">{ranges[2][1]}</div>
-      </div>
-      <div className="slider-yellow">
-        <div className="slider-value-left">{ranges[1][0]}</div>
-        <Slider
-          value={ranges[1]}
-          valueLabelDisplay="auto"
-          aria-labelledby="range-slider"
-          disableSwap
-        />
-        <div className="slider-value-right">{ranges[1][1]}</div>
-      </div>
-      <div className="slider-red">
-        <div className="slider-value-left">{ranges[0][0]}</div>
-        <Slider
-          value={ranges[0]}
-          valueLabelDisplay="auto"
-          aria-labelledby="range-slider"
-          disableSwap
-        />
-        <div className="slider-value-right">{ranges[0][1]}</div>
+      <div className="sliderbox">
+        <div className="slider-green">
+          <div className="slider-value-left">{ranges[2][0]}</div>
+          <Slider
+            value={ranges[2]}
+            valueLabelDisplay="auto"
+            aria-labelledby="range-slider"
+            disableSwap
+          />
+          <div className="slider-value-right">{ranges[2][1]}</div>
+        </div>
+        <div className="slider-yellow">
+          <div className="slider-value-left">{ranges[1][0]}</div>
+          <Slider
+            value={ranges[1]}
+            valueLabelDisplay="auto"
+            aria-labelledby="range-slider"
+            disableSwap
+          />
+          <div className="slider-value-right">{ranges[1][1]}</div>
+        </div>
+        <div className="slider-red">
+          <div className="slider-value-left">{ranges[0][0]}</div>
+          <Slider
+            value={ranges[0]}
+            valueLabelDisplay="auto"
+            aria-labelledby="range-slider"
+            disableSwap
+          />
+          <div className="slider-value-right">{ranges[0][1]}</div>
+        </div>
       </div>
       <div className="table-container">
         <table className="ratings-table">

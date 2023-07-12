@@ -8,15 +8,17 @@
 
   .map {
     background-color: #E0F5FE;
-    border: 1px solid rgb(0, 0, 0);
+    box-shadow: 0 3px 15px rgba(60, 60, 60, 0.2);
     margin: 10px;
   }
-  
+
+  //Top values Bar
   .value-container {
     display: flex;
     justify-content: space-between;
     border: 1px solid rgb(0, 0, 0);
     margin: 10px;
+    background-color: #e2e6e7;
   }
   
   .left-value {
@@ -32,6 +34,10 @@
   }
 
   //Sliders SCSS
+  .sliderbox {
+    box-shadow: 0 3px 15px rgba(60, 60, 60, 0.2);
+    margin: 1%;
+  }
 
   .slider-green {
     display: flex;
@@ -97,9 +103,10 @@
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(60, 60, 60, 0.2);
   
     th {
-      background-color: #b2bfbc;
+      background-color: #e2e6e7;
       padding: 12px 16px;
       font-weight: bold;
       text-align: left;
@@ -110,6 +117,7 @@
     td {
       padding: 12px 16px;
       font-weight: bold;
+      font-size: 18px;
       border: 1px solid #000000;
     }
   
