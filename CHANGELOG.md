@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Role-based column visibility in tables. 'Supplier' and 'Customer' columns are now hidden or shown based on user roles.
 - Asynchronous fetching of roles to ensure they are available before rendering the table.
+- Added new vars on the backend charts to pass auth url as dynamic 
 
 ### Fixed
 - Issue where roles could be undefined, causing an error when calling the includes method.
