@@ -168,6 +168,7 @@ configmap:
     application_partnersPoolUrl_bpdmAddressUrl: http://localhost:8080/api/catena/output/addresses/search?
     application_partnersPoolUrl_bpdmSiteUrl: http://localhost:8080/api/catena/output/sites/search?
     application_partnersPoolUrl_bpdmLegalUrl: http://localhost:8080/api/catena/output/legal-entities/search?
+    vas_auth_url: http://localhost:8081
 
 elastic:
   # -- Should elastic be enabled or not
