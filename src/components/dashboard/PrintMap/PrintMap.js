@@ -24,17 +24,25 @@ import "./styles.scss";
 import { RangesContext } from "../../../contexts/ranges";
 import { GatesContext } from "../../../contexts/gates";
 import Slider from "@mui/material/Slider";
+import { ThreeDRotation } from "@mui/icons-material";
 
 const PrintMap = (ratings) => {
   const { gates, updateGate } = useContext(GatesContext);
 
   const { ranges, updateRanges } = useContext(RangesContext);
 
+  const currentDate = new Date();
+  const day = currentDate.getDate().toString().padStart(2, "0");
+  const month = (currentDate.getMonth() + 1).toString().padStart(2, "0");
+  const year = currentDate.getFullYear().toString();
+  const formattedDate = `${day}/${month}/${year}`;
+
   return (
     <div className=".left-map-container-print " id="printElement">
+        <div className="value-title">Country Risk Dashboard - {formattedDate}</div>
       <div className="value-container">
         <div className="left-value">Year: {ratings.years}</div>
-        <div className="right-value">Company: {gates.gateName !== undefined ? gates.gateName : "Select a Gate"}
+        <div className="right-value">Gate: {gates.gateName !== undefined ? gates.gateName : "Select a Gate"}
         </div>
       </div>
       <div className="map">
@@ -84,8 +92,8 @@ const PrintMap = (ratings) => {
         <table className="ratings-table">
           <thead>
             <tr>
-              <th>Ratings</th>
-              <th>Weight</th>
+              <th className="data-cell">Ratings</th>
+              <th className="weight-cell">Weight</th>
             </tr>
           </thead>
           <tbody>
