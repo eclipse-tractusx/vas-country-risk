@@ -1,0 +1,170 @@
+/********************************************************************************
+* Copyright (c) 2022,2023 BMW Group AG 
+* Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+*
+* See the NOTICE file(s) distributed with this work for additional
+* information regarding copyright ownership.
+*
+* This program and the accompanying materials are made available under the
+* terms of the Apache License, Version 2.0 which is available at
+* https://www.apache.org/licenses/LICENSE-2.0.
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+* WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+* License for the specific language governing permissions and limitations
+* under the License.
+*
+* SPDX-License-Identifier: Apache-2.0
+********************************************************************************/
+
+.left-map-container-print {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+  }
+
+  //Header
+  .value-title {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 25px;
+    margin-top: 1%;
+  }
+
+  //Map
+  .map {
+    background-color: #E0F5FE;
+    box-shadow: 0 3px 15px rgba(60, 60, 60, 0.2);
+    margin: 10px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+  }
+
+  //Top values Bar
+  .value-container {
+    display: flex;
+    border-radius: 20px;
+    justify-content: space-between;
+    box-shadow: 0 1px 15px rgba(60, 60, 60, 0.2);
+    margin: 10px;
+    background-color: #e2e6e7;
+  }
+  
+  .left-value {
+    margin-left: 20px;
+    font-size: 30px;
+    font-weight: bold;
+  }
+  
+  .right-value {
+    margin-right: 20px;
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  //Sliders SCSS
+  .sliderbox {
+    box-shadow: 0 3px 15px rgba(60, 60, 60, 0.2);
+    width: 50%;
+    border-radius: 20px;
+    margin: 0 auto; /* Center the slider box horizontally */
+    background-color: white;
+  }
+
+  .slider-green {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    margin-left: 20px;
+    
+    .MuiSlider-colorPrimary {
+        color: green;
+      }
+  }
+
+  .slider-yellow {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    margin-right: 20px;
+    margin-left: 20px;
+
+    .MuiSlider-colorPrimary {
+        color: yellow;
+      }
+  }
+
+  .slider-red {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 30px;
+    margin-right: 20px;
+    margin-left: 20px;
+
+    .MuiSlider-colorPrimary {
+        color: red;
+      }
+  }
+  
+  .slider-value-left {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 30px;
+  }
+  
+  .slider-value-right {
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 30px;
+  }
+
+  //Table
+  .table-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 2%;
+  }
+  
+  .ratings-table {
+    width: 55%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(60, 60, 60, 0.2);
+    border-radius: 20px;
+  
+    .data-cell {
+        background-color: #e2e6e7;
+        padding: 12px 16px;
+        font-weight: bold;
+        text-align: left;
+        font-size: 20px;
+        border-top-left-radius: 20px;
+      }
+  
+    .weight-cell {
+        background-color: #e2e6e7;
+        padding: 12px 16px;
+        font-weight: bold;
+        text-align: left;
+        font-size: 20px;
+        width: 10%;
+        border-top-right-radius: 20px;
+    }
+
+    td {
+        padding: 12px 16px;
+        font-weight: bold;
+        font-size: 18px;
+        position: relative;
+      }
+      
+  }
+  

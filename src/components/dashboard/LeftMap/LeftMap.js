@@ -32,6 +32,7 @@ import { Box } from "@mui/material";
 import { toPng } from "html-to-image";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import CloseIcon from "@mui/icons-material/Close";
+import { jsPDF } from "jspdf";
 
 const LeftMap = (ratings) => {
   const [expandMap, setExpandMap] = useState(false);
@@ -41,17 +42,46 @@ const LeftMap = (ratings) => {
   };
 
   const printMap = () => {
-    const link = document.getElementById("idCustomWorldMap");
+    const link = document.getElementById("printElement");
     toPng(link)
       .then((res) => {
         const img = new Image();
         img.src = res;
-        var link = document.createElement("a");
-        link.download = "worldMap.png";
-        link.href = res;
-        link.click();
+  
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          const context = canvas.getContext("2d");
+  
+          // Set canvas dimensions to match the image size
+          canvas.width = img.width;
+          canvas.height = img.height;
+  
+          // Draw white background
+          context.fillStyle = "#ffffff";
+          context.fillRect(0, 0, canvas.width, canvas.height);
+  
+          // Draw the image on the canvas
+          context.drawImage(img, 0, 0);
+  
+          const finalDataUrl = canvas.toDataURL("image/png");
+
+          const componentWidth = img.width
+          const componentHeight = img.height
+      
+          const orientation = componentWidth >= componentHeight ? 'l' : 'p'
+
+          const pdf = new jsPDF({orientation, unit: 'px'});
+
+          pdf.internal.pageSize.width = componentWidth
+          pdf.internal.pageSize.height = componentHeight
+
+          pdf.addImage(finalDataUrl, 'PNG', 0, 0, componentWidth, componentHeight);
+          pdf.save("worldmap.pdf");  
+        };
       })
-      .catch((error) => error);
+      .catch((error) => {
+        console.error("Error generating image:", error);
+      });
   };
 
   return (
