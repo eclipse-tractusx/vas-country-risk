@@ -1,9 +1,9 @@
 product: "Country Risk"
-leadingRepository: "https://github.com/eclipse-tractusx/vas-country-risk-frontend"
+leadingRepository: "https://github.com/eclipse-tractusx/vas-country-risk"
 repositories:
-  - name: "vas-country-risk-frontend"
+  - name: "vas-country-risk"
     usage: "frontend code for the country risk application"
-    url: "https://github.com/eclipse-tractusx/vas-country-risk-frontend"
+    url: "https://github.com/eclipse-tractusx/vas-country-risk"
   - name: "vas-country-risk-backend"
     usage: "backend code for the country risk application"
     url: "https://github.com/eclipse-tractusx/vas-country-risk-backend"
