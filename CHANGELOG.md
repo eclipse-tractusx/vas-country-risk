@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.2.0] - tbr
+## [1.2.0] - 2023-09-28
 
 ### Added
 - Role-based column visibility in tables. 'Supplier' and 'Customer' columns are now hidden or shown based on user roles.
@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Issue where roles could be undefined, causing an error when calling the includes method.
+- Fixed logic for role validation when client token is not found
 
 ### Changed
 - Changed client id for country risk app registered on portal
