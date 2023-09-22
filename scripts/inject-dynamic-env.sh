@@ -21,11 +21,13 @@ custom_env_vars_REACT_APP_AUTH_URL='REACT_APP_AUTH_URL:"'$REACT_APP_AUTH_URL'"'
 custom_env_vars_REACT_APP_COUNTRY_RISK_API='REACT_APP_COUNTRY_RISK_API:"'$REACT_APP_COUNTRY_RISK_API'"'
 custom_env_vars_REACT_APP_PORTAL_FRONTEND='REACT_APP_PORTAL_FRONTEND:"'$REACT_APP_PORTAL_FRONTEND'"'
 custom_env_vars_REACT_APP_PORTAL_BACKEND='REACT_APP_PORTAL_BACKEND:"'$REACT_APP_PORTAL_BACKEND'"'
+custom_env_vars_REACT_APP_COUNTRY_RISK_CLIENT='REACT_APP_COUNTRY_RISK_CLIENT:"'$REACT_APP_COUNTRY_RISK_CLIENT'"'
 
 REACT_APP_AUTH_URL_anchor='REACT_APP_AUTH_URL:"http://localhost:8080/auth"'
 REACT_APP_COUNTRY_RISK_API_anchor='REACT_APP_COUNTRY_RISK_API:"http://localhost:8080"'
 REACT_APP_PORTAL_FRONTEND_anchor='REACT_APP_PORTAL_FRONTEND:"http://localhost:8080"'
 REACT_APP_PORTAL_BACKEND_anchor='REACT_APP_PORTAL_BACKEND:"http://localhost:8080"'
+REACT_APP_COUNTRY_RISK_CLIENT_anchor='REACT_APP_COUNTRY_RISK_CLIENT:""'
 
 index_html_reference=`cat /usr/share/nginx/html/index.html.reference`
 
@@ -33,6 +35,7 @@ index_html=$(sed -r 's%'$REACT_APP_AUTH_URL_anchor'%'$custom_env_vars_REACT_APP_
 index_html=$(sed -r 's%'$REACT_APP_COUNTRY_RISK_API_anchor'%'$custom_env_vars_REACT_APP_COUNTRY_RISK_API'%g' <<< "$index_html")
 index_html=$(sed -r 's%'$REACT_APP_PORTAL_FRONTEND_anchor'%'$custom_env_vars_REACT_APP_PORTAL_FRONTEND'%g' <<< "$index_html")
 index_html=$(sed -r 's%'$REACT_APP_PORTAL_BACKEND_anchor'%'$custom_env_vars_REACT_APP_PORTAL_BACKEND'%g' <<< "$index_html")
+index_html=$(sed -r 's%'$REACT_APP_COUNTRY_RISK_CLIENT_anchor'%'$custom_env_vars_REACT_APP_COUNTRY_RISK_CLIENT'%g' <<< "$index_html")
 
 echo "$index_html"
 echo "$index_html" > /usr/share/nginx/html/index.html
