@@ -23,6 +23,9 @@ const REACT_APP_COUNTRY_RISK_API =
   window.ENV?.REACT_APP_COUNTRY_RISK_API?.valueOf();
 const LOCAL_SERVICES_BACKEND = window.ENV?.REACT_APP_PORTAL_BACKEND?.valueOf();
 const LOCAL_SERVICES_CENTRALIDP = window.ENV?.REACT_APP_AUTH_URL?.valueOf();
+const LOCAL_COUNTRY_RISK_CLIENT_ID =
+  window.ENV?.REACT_APP_COUNTRY_RISK_CLIENT?.valueOf();
+
 export const getHostname = () => window.location.hostname;
 
 export const isLocal = () => getHostname() === "localhost";
@@ -50,11 +53,13 @@ export const getLogoutLink = () => {
   return LOCAL_SERVICES_FRONTEND + "/logout";
 };
 
+export const getCountryRiskAppId = () => {
+  return LOCAL_COUNTRY_RISK_CLIENT_ID;
+};
+
 export const getClientId = () => "Cl2-CX-Portal";
 
 export const getCountryRiskClientId = () => "Cl16-CX-CRisk";
-
-export const getCountryRiskAppId = () => "app374";
 
 export const getBpdmId = () => "Cl7-CX-BPDM";
 
