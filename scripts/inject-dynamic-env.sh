@@ -27,7 +27,7 @@ REACT_APP_AUTH_URL_anchor='REACT_APP_AUTH_URL:"http://localhost:8080/auth"'
 REACT_APP_COUNTRY_RISK_API_anchor='REACT_APP_COUNTRY_RISK_API:"http://localhost:8080"'
 REACT_APP_PORTAL_FRONTEND_anchor='REACT_APP_PORTAL_FRONTEND:"http://localhost:8080"'
 REACT_APP_PORTAL_BACKEND_anchor='REACT_APP_PORTAL_BACKEND:"http://localhost:8080"'
-REACT_APP_COUNTRY_RISK_CLIENT_anchor='REACT_APP_COUNTRY_RISK_CLIENT:""'
+REACT_APP_COUNTRY_RISK_CLIENT_anchor='REACT_APP_COUNTRY_RISK_CLIENT:"country_risk_client"'
 
 index_html_reference=`cat /usr/share/nginx/html/index.html.reference`
 

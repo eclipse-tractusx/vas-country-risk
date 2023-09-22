@@ -106,11 +106,24 @@ const getTenant = () => KC.tokenParsed?.tenant;
 // TODO: add a more sustainable logic for role management with multiple clients
 // not sustainable because client roles need to be unique across all clients
 const getRoles = () => {
-  const rolesCountryRisk =
-    KC.tokenParsed?.resource_access[keycloakConfigCountryRisk.clientId]
-      ?.roles || [];
-  const rolesBpdm =
-    KC.tokenParsed?.resource_access[keycloakConfigBpdm.clientId]?.roles || [];
+  // Initialize empty arrays for roles
+  let rolesCountryRisk = [];
+  let rolesBpdm = [];
+
+  // Safely extract roles from the token
+  const resourceAccess = KC.tokenParsed?.resource_access || {};
+
+  // Check if roles exist for CountryRisk client and assign them
+  if (resourceAccess.hasOwnProperty(keycloakConfigCountryRisk.clientId)) {
+    rolesCountryRisk = resourceAccess[keycloakConfigCountryRisk.clientId].roles;
+  }
+
+  // Check if roles exist for Bpdm client and assign them
+  if (resourceAccess.hasOwnProperty(keycloakConfigBpdm.clientId)) {
+    rolesBpdm = resourceAccess[keycloakConfigBpdm.clientId].roles;
+  }
+
+  // Concatenate and return roles
   return rolesCountryRisk.concat(rolesBpdm);
 };
 
