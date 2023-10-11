@@ -24,12 +24,11 @@ import { capitalize } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
 export const columns = (ranges, onDetailClick, roles) => {
-
   const hiddenColumns = ["street", "houseNumber", "zipCode"];
   const hasReadCustomersRole =
-    roles && Array.isArray(roles) ? roles.includes("read_customers") : false;
+    roles && Array.isArray(roles) ? roles.includes("Customer") : false;
   const hasReadSuppliersRole =
-    roles && Array.isArray(roles) ? roles.includes("read_suppliers") : false;
+    roles && Array.isArray(roles) ? roles.includes("Supplier") : false;
 
   return [
     {

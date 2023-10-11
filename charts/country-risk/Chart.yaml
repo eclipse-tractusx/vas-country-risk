@@ -20,7 +20,7 @@
 apiVersion: v2
 name: country-risk
 type: application
-version: 1.0.0
+version: 1.1.0
 description: A Helm chart for deploying the Country Risk service
 home: https://github.com/eclipse-tractusx/vas-country-risk-frontend
 sources:
@@ -37,6 +37,6 @@ dependencies:
   repository: https://helm.runix.net
   version: 1.x.x
 - name: country-risk-backend
-  version: 3.0.0
+  version: 3.0.1
 - name: country-risk-frontend
-  version: 3.0.0
+  version: 3.0.1

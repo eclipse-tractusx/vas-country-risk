@@ -11,8 +11,6 @@ c
 3src/components/dashboard/ProgressBar/ProgressBar.js,6\7\67d295badc748915bf1a6efeea38b9c58f514818
 \
 ,src/components/dashboard/Ratings/styles.scss,4\d\4de8d3bfe1c9d5b916a3562a19e3ab2a3f10325f
-V
-&src/components/services/UserService.js,4\3\43b64a74751ee9053b0052baa95dab17ca3aba2b
 B
 src/index-dev.scss,2\1\2141da40a2e04f68f12e4fcdcc340d14a126d224
 B
@@ -24,3 +22,9 @@ g
 :
 
 AUTHORS.md,a\2\a2b261d0119ad783ac285fbc4f699e96fc0b7e2f
+O
+charts/country-risk/values.yaml,d\f\dfd8927926db4939f1420a87cf1eb4c3af6a3b0b
+B
+docs/User-Guide.md,b\f\bf6845072684d0fabe6f6c75b14ea44b6ec136b7
+K
+docs/Arc42-Documentation.md,7\8\78886f8c4fd104c8647d1e81bfe3a52495e3ddee
