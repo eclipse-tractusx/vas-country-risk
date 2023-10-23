@@ -345,7 +345,7 @@ This endpoint is used for retrieving an the current user ranges. The values retr
 
 ![template](../docs/Images/getUsersFromCompany.png)
 
-In this endpoint, we can consult the users of our company. 
+In this endpoint, we can consult the users of our company.
 Our company is automatically extracted from the authentication token, thus avoiding filters.
 It is used when we intend to share a report for example.
 

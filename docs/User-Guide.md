@@ -7,11 +7,11 @@ In this Section we are describing how you can gain Access to the Dashboard
 2.	Your Company needs to setup everything for the Connection with our Application: This can be found with the BPDM 'Create a Gate'  
       And needs to be subscribed to the service
 
-![Portal](../docs/User-Guide-Images/image2023-1-16_10-55-20.png)
+![Portal](../docs/User-Guide-Images/add_app.png)
 
 3. Your Accounts needs to have one of the two Roles currently available
 
-![App](../docs/User-Guide-Images/image2023-1-16_10-54-3.png)
+![App](../docs/User-Guide-Images/main_page.png)
 
 
 After the Previous steps are finished the way to the Dashboard is very simple:
@@ -26,7 +26,7 @@ After the Previous steps are finished the way to the Dashboard is very simple:
 
 Choose the Login Option you want and its setup.
 
-![Input](../docs/User-Guide-Images/image2023-1-16_11-1-17.png)
+![Input](../docs/User-Guide-Images/login_board.png)
 
 5. After the Login you will be directed to the Dashboard
 
