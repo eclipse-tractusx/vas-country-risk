@@ -277,7 +277,7 @@ For this component, it is necessary to call three different APIs. The APIs used 
 
 # Interfaces
 
-Please Check Swagger Doku
+Please Check Swagger Documentation
 https://vas-country-risk-backend.dev.demo.catena-x.net/swagger-ui/index.html#/
 
 
@@ -345,7 +345,7 @@ This endpoint is used for retrieving an the current user ranges. The values retr
 
 ![template](../docs/Images/getUsersFromCompany.png)
 
-In this endpoint, we can consult the users of our company.
+In this endpoint, we can consult the users of our company. 
 Our company is automatically extracted from the authentication token, thus avoiding filters.
 It is used when we intend to share a report for example.
 
@@ -414,7 +414,7 @@ This endpoint is used to delete an rating created by the user. It is used in the
 
 ## Sharing Controller
 
-![scoreforEachBpn](../docs/Images/scoreforEachBpn.PNG)
+![scoreforEachBpn](../docs/Images/scoreforEachBpn.png)
 
 In this endpoint the User can request a Mapping of Business Partners to a specific Rating. As parameters it is needed an Rating and BPNs array and also the company of he user.
 
@@ -442,17 +442,19 @@ In this endpoint it is possible for the user to request Information about which 
 
 The first step to connect the Dashboard to a company specific "Gate" is setting up a Company Group.
 
-![addcompanygroup](../docs/Configuration-of-Gates/config-of-gates-01.png)
-
-- company_name: Insert the Name of the requesting Company
-- company_group_id: Set a numeric value counting up from the beginning 1 per company
+![addcompanygroup](../docs/Configuration-of-Gates/configofgates03.png)
 
 we create a company group for the Case that a sharing Company has multiple "Gates" to which can be connected.
+
 
 ### Setting up Company
 To be able to connect to a company specific Gate first the Company has to be inserted into the t_company table and connected to a company group:
 
-![addcompany](../docs/Configuration-of-Gates/config-of-gates-02.png)
+![addcompany](../docs/Configuration-of-Gates/configofgates02.png)
+
+- company_name: Insert the Name of the requesting Company
+- company_group_id: Set a numeric value counting up from the beginning 1 per company
+
 
 After the company has been added to the Table the next step is to set a "Gate" for this company.
 
@@ -461,7 +463,7 @@ After the company has been added to the Table the next step is to set a "Gate" f
 
 To set the "Gate" Link the Administrator has to insert the following Information into the table t_company_group_gates
 
-![addGate](../docs/Configuration-of-Gates/config-of-gates-01.png)
+![addGate](../docs/Configuration-of-Gates/configofgates01.png)
 
 - gate_name: can be given freely preferably connected to name of the company
 - company_gate_value: Direct Link to "Gate" developed by the BPDM Team
