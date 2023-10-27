@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Changed arq42 documentation to be updated to current application
+- Switched the shell interpreter from `bash` to `sh` in our scripts to enhance portability and reduce dependencies. 
+
 
 ## [1.2.0] - 2023-10-11
 
