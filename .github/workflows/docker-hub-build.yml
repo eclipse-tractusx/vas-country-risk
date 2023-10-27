@@ -16,7 +16,7 @@ on:
 
 env:
   IMAGE_NAMESPACE: "tractusx"
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: "vas-country-risk"
 
 jobs:
   docker:
