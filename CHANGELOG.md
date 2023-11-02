@@ -5,10 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.2.1] - tbr
+## [1.2.1] - [Unreleased]
 
 ### Changed
-- Changed arq42 documentation to be updated to current application
+- Updated arc42 documentation to align with the updated Country Risk application.
 - Switched the shell interpreter from `bash` to `sh` in our scripts to enhance portability and reduce dependencies. 
 
 
