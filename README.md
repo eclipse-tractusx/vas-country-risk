@@ -59,3 +59,14 @@ to install the application.
 After that the application should be run with
 the `npm start` command. 
 This will run the application on the following URL: [http://localhost:3000](http://localhost:3000)
+
+
+## Notice for Docker image
+
+Bellow you can find the information regarding Docker Notice for this application.
+
+* [Vas Country Risk](./DOCKER_NOTICE.md)
+## License
+
+Distributed under the Apache 2.0 License.
+See [LICENSE](./LICENSE) for more information.
