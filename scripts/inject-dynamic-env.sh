@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 ###############################################################
 # Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
 #
@@ -31,11 +31,11 @@ REACT_APP_COUNTRY_RISK_CLIENT_anchor='REACT_APP_COUNTRY_RISK_CLIENT:"country_ris
 
 index_html_reference=`cat /usr/share/nginx/html/index.html.reference`
 
-index_html=$(sed -r 's%'$REACT_APP_AUTH_URL_anchor'%'$custom_env_vars_REACT_APP_AUTH_URL'%g' <<< "$index_html_reference")
-index_html=$(sed -r 's%'$REACT_APP_COUNTRY_RISK_API_anchor'%'$custom_env_vars_REACT_APP_COUNTRY_RISK_API'%g' <<< "$index_html")
-index_html=$(sed -r 's%'$REACT_APP_PORTAL_FRONTEND_anchor'%'$custom_env_vars_REACT_APP_PORTAL_FRONTEND'%g' <<< "$index_html")
-index_html=$(sed -r 's%'$REACT_APP_PORTAL_BACKEND_anchor'%'$custom_env_vars_REACT_APP_PORTAL_BACKEND'%g' <<< "$index_html")
-index_html=$(sed -r 's%'$REACT_APP_COUNTRY_RISK_CLIENT_anchor'%'$custom_env_vars_REACT_APP_COUNTRY_RISK_CLIENT'%g' <<< "$index_html")
+index_html=$(echo "$index_html_reference" | sed -r 's%'$REACT_APP_AUTH_URL_anchor'%'$custom_env_vars_REACT_APP_AUTH_URL'%g')
+index_html=$(echo "$index_html" | sed -r 's%'$REACT_APP_COUNTRY_RISK_API_anchor'%'$custom_env_vars_REACT_APP_COUNTRY_RISK_API'%g')
+index_html=$(echo "$index_html" | sed -r 's%'$REACT_APP_PORTAL_FRONTEND_anchor'%'$custom_env_vars_REACT_APP_PORTAL_FRONTEND'%g')
+index_html=$(echo "$index_html" | sed -r 's%'$REACT_APP_PORTAL_BACKEND_anchor'%'$custom_env_vars_REACT_APP_PORTAL_BACKEND'%g')
+index_html=$(echo "$index_html" | sed -r 's%'$REACT_APP_COUNTRY_RISK_CLIENT_anchor'%'$custom_env_vars_REACT_APP_COUNTRY_RISK_CLIENT'%g')
 
 echo "$index_html"
 echo "$index_html" > /usr/share/nginx/html/index.html

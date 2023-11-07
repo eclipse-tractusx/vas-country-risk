@@ -24,7 +24,3 @@ g
 AUTHORS.md,a\2\a2b261d0119ad783ac285fbc4f699e96fc0b7e2f
 O
 charts/country-risk/values.yaml,d\f\dfd8927926db4939f1420a87cf1eb4c3af6a3b0b
-B
-docs/User-Guide.md,b\f\bf6845072684d0fabe6f6c75b14ea44b6ec136b7
-K
-docs/Arc42-Documentation.md,7\8\78886f8c4fd104c8647d1e81bfe3a52495e3ddee

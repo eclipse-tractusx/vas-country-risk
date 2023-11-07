@@ -19,7 +19,7 @@
 #*******************************************************************************
 
 # Base image
-FROM node:18-alpine AS compile-image
+FROM node:20-alpine AS compile-image
 
 # Set work directory
 WORKDIR /app
@@ -67,9 +67,8 @@ COPY ./scripts/inject-dynamic-env.sh /docker-entrypoint.d/00-inject-dynamic-env.
 
 RUN chmod +x /docker-entrypoint.d/00-inject-dynamic-env.sh
 
-# Install bash and update vulnerable packages
-RUN apk update && \
-    apk add --no-cache bash
+# Update vulnerable packages
+RUN apk update
 
 # Change ownership and switch back to nginx user
 RUN chown -R 101:101 /usr/share/nginx/html/
