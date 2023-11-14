@@ -23,10 +23,15 @@ import  { getCountryRiskApi } from "./EnvironmentService"
 
 // Actions
 export function getAll(ratingsArray, years, token, customerUser, gates) {
+  const ratingsParam = Array.isArray(ratingsArray)
+    ? ratingsArray.map((rating) => JSON.stringify(rating))
+    : [];
+
   return axios
-    .get(getCountryRiskApi() +process.env.REACT_APP_DASHBOARD_URL, {
+    .get(getCountryRiskApi() + process.env.REACT_APP_DASHBOARD_URL, {
       params: {
-        ratings: ratingsArray,
+        // Use the serialized and encoded ratingsParam
+        "ratings[]": ratingsParam,
         year: years,
         name: customerUser.name,
         email: customerUser.email,
@@ -46,10 +51,15 @@ export function getWorldMapInfo(
   customerUser,
   gates
 ) {
+  const ratingsParam = Array.isArray(ratingsArray)
+    ? ratingsArray.map((rating) => JSON.stringify(rating))
+    : [];
+
   return axios
-    .get(getCountryRiskApi()+ process.env.REACT_APP_DASHBOARD_WOLRD_MAP_URL, {
+    .get(getCountryRiskApi() + process.env.REACT_APP_DASHBOARD_WOLRD_MAP_URL, {
       params: {
-        ratings: ratingsArray,
+        // Use the serialized and encoded ratingsParam
+        "ratings[]": ratingsParam,
         year: years,
         name: customerUser.name,
         email: customerUser.email,

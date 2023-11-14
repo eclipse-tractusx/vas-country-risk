@@ -19,7 +19,7 @@
 ********************************************************************************/
 import { render, act, fireEvent, screen } from "@testing-library/react";
 import { test } from "@jest/globals";
-import "@testing-library/jest-dom/extend-expect";
+import '@testing-library/jest-dom';
 import Ratings from "../../../components/dashboard/Ratings/Ratings";
 import { RatesProvider } from "../../../contexts/rates";
 import { ReportProvider } from "../../../contexts/reports";

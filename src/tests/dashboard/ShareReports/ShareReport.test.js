@@ -19,7 +19,7 @@
 ********************************************************************************/
 import { render, act, fireEvent, screen } from "@testing-library/react";
 import { test } from "@jest/globals";
-import "@testing-library/jest-dom/extend-expect";
+import '@testing-library/jest-dom';
 import ShareReport from "../../../components/dashboard/ShareReport/ShareReport";
 import { ReportProvider } from "../../../contexts/reports";
 import { getUserFromCompany } from "../../../components/services/company-api";

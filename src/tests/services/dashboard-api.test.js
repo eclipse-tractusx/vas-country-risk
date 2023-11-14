@@ -28,10 +28,6 @@ import mockAxios from "jest-mock-axios";
 jest.mock("axios");
 
 describe("getAll", () => {
-  afterEach(() => {
-    mockAxios.reset();
-  });
-
   it("should get all info for table", async () => {
     const token = "123456";
     const customerUser = {

@@ -24,7 +24,7 @@ import { getCountryRiskApi } from "./EnvironmentService";
 //Get Reports By User
 export function getReportsByCompanyUser(token, customerUser) {
   return axios
-    .get(getCountryRiskApi()+process.env.REACT_APP_GET_REPORTS_BY_USER, {
+    .get(getCountryRiskApi() + process.env.REACT_APP_GET_REPORTS_BY_USER, {
       params: {
         name: customerUser.name,
         email: customerUser.email,
@@ -38,19 +38,22 @@ export function getReportsByCompanyUser(token, customerUser) {
 
 export function getReportValuesByReport(token, report, customerUser) {
   return axios
-    .get(getCountryRiskApi()+process.env.REACT_APP_GET_REPORT_VALUES_BY_REPORT, {
-      params: {
-        reportName: report.reportName || "",
-        companyUserName: report.companyUserName || "",
-        company: report.company || "",
-        type: report.type || "",
-        id: report.id || "",
-        name: customerUser.name,
-        email: customerUser.email,
-        companyName: customerUser.companyName,
-      },
-      headers: { Authorization: `Bearer ${token}` },
-    })
+    .get(
+      getCountryRiskApi() + process.env.REACT_APP_GET_REPORT_VALUES_BY_REPORT,
+      {
+        params: {
+          reportName: report.reportName || "",
+          companyUserName: report.companyUserName || "",
+          company: report.company || "",
+          type: report.type || "",
+          id: report.id || "",
+          name: customerUser.name,
+          email: customerUser.email,
+          companyName: customerUser.companyName,
+        },
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    )
     .then((res) => res.data)
     .catch((err) => []);
 }
@@ -105,7 +108,10 @@ export function updateReports(token, customerUser, report) {
 export function deleteReport(token, customerUser, reportId) {
   return axios({
     method: "delete",
-    url:getCountryRiskApi()+ process.env.REACT_APP_DELETE_REPORTS + `/${reportId}`,
+    url:
+      getCountryRiskApi() +
+      process.env.REACT_APP_DELETE_REPORTS +
+      `/${reportId}`,
     params: {
       name: customerUser.name,
       email: customerUser.email,
