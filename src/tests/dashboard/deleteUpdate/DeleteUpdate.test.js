@@ -19,7 +19,7 @@
 ********************************************************************************/
 import { render, screen, act, fireEvent } from "@testing-library/react";
 import { test } from "@jest/globals";
-import "@testing-library/jest-dom/extend-expect";
+import '@testing-library/jest-dom';
 import DeleteUpdateComponent from "../../../components/dashboard/DeleteUpdateComponent/DeleteUpdateComponent";
 import { ReportProvider } from "../../../contexts/reports";
 import { DeleteOrUpdate } from "../../../components/model/DeleteOrUpdate";

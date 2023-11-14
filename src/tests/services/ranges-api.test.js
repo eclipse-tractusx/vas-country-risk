@@ -25,10 +25,6 @@ import mockAxios from "jest-mock-axios";
 jest.mock("axios");
 
 describe("getAllRanges", () => {
-  afterEach(() => {
-    mockAxios.reset();
-  });
-
   it("Gest All ranges for user", async () => {
     const token = "123456";
     const customerUser = {

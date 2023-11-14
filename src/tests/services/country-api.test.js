@@ -29,10 +29,6 @@ import mockAxios from "jest-mock-axios";
 jest.mock("axios");
 
 describe("getCountryByUser", () => {
-  afterEach(() => {
-    mockAxios.reset();
-  });
-
   it("should fetch countries successfully", async () => {
     const token = "123456";
     const customerUser = {

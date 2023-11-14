@@ -54,7 +54,9 @@ export const getLogoutLink = () => {
 };
 
 export const getCountryRiskAppId = () => {
-  return LOCAL_COUNTRY_RISK_CLIENT_ID;
+  return LOCAL_COUNTRY_RISK_CLIENT_ID
+    ? LOCAL_COUNTRY_RISK_CLIENT_ID
+    : "country_risk_client";
 };
 
 export const getClientId = () => "Cl2-CX-Portal";

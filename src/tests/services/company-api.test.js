@@ -18,19 +18,13 @@
 * SPDX-License-Identifier: Apache-2.0
 ********************************************************************************/
 import axios from "axios";
-import {
-    getUserFromCompany,
-} from "../../components/services/company-api";
+import { getUserFromCompany } from "../../components/services/company-api";
 
 import mockAxios from "jest-mock-axios";
 
 jest.mock("axios");
 
 describe("getUserFromCompany", () => {
-  afterEach(() => {
-    mockAxios.reset();
-  });
-
   it("should get all dates", async () => {
     const token = "123456";
     const customerUser = {
@@ -39,16 +33,16 @@ describe("getUserFromCompany", () => {
       companyName: "Doe Inc.",
     };
     const expectedResponse = [
-    {
+      {
         name: "Test User CX Admin",
         email: "cxadmin@cx.com",
         companyName: "CX-Test-Access",
-     },
-     {
+      },
+      {
         name: "Test User CX User",
         email: "cxuser@cx.com",
         companyName: "CX-Test-Access",
-     }
+      },
     ];
 
     axios.get.mockResolvedValueOnce(JSON.stringify({ data: expectedResponse }));
