@@ -48,7 +48,7 @@ RUN npm install --ignore-scripts
 RUN npm run build
 
 # Base image for the final stage
-FROM nginxinc/nginx-unprivileged:stable-alpine
+FROM nginxinc/nginx-unprivileged:alpine
 
 # Copy Nginx configuration file
 COPY .conf/nginx.conf /etc/nginx/conf.d/default.conf
@@ -67,8 +67,6 @@ COPY ./scripts/inject-dynamic-env.sh /docker-entrypoint.d/00-inject-dynamic-env.
 
 RUN chmod +x /docker-entrypoint.d/00-inject-dynamic-env.sh
 
-# Update vulnerable packages
-RUN apk update
 
 # Change ownership and switch back to nginx user
 RUN chown -R 101:101 /usr/share/nginx/html/
