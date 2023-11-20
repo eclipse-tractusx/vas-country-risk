@@ -3,7 +3,7 @@ name: Trivy Docker Image Analysis
 on:
   push:
     branches:
-      - fix/trivy_findings
+      - main
   # Trigger manually
   workflow_dispatch:
 
