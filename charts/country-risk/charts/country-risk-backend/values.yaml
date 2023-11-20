@@ -64,6 +64,9 @@ securityContext:
   runAsUser: 10001
   # -- Specifies the group ID that the process inside the container should run
   runAsGroup: 3000
+  # -- Specifies Seccomp profile
+  seccompProfile:
+    type: RuntimeDefault
   # -- Capabilities that the process inside the container should have
   capabilities:
     drop:
