@@ -88,57 +88,57 @@ This way you are able to overwrite any configuration property of the `.env` file
 
 # country-risk-frontend
 
-![Version: 2.0.7](https://img.shields.io/badge/Version-2.0.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 3.0.3](https://img.shields.io/badge/Version-3.0.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.2.1](https://img.shields.io/badge/AppVersion-1.2.1-informational?style=flat-square)
 
 A Helm chart for deploying the Country Risk service
 
 ## Values
 
-| Key | Type | Default                                                      | Description |
-|-----|------|--------------------------------------------------------------|-------------|
+| Key | Type | Default                                               | Description |
+|-----|------|-------------------------------------------------------|-------------|
 | affinity..podAffinityTerm.labelSelector.matchExpressions[0] | object | `{"key":"app.kubernetes.io/name","operator":"DoesNotExist"}` | Match Pod rules |
-| affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[0].podAffinityTerm.topologyKey | string | `"kubernetes.io/hostname"`                                   | Key that is used to determine the topology of the cluster |
-| affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[0].weight | int | `100`                                                        |  |
-| appName | string | `"vas-country-risk-frontend"`                                | Name of the backend service |
-| applicationSecret | object | `{"enabled":false}`                                          | Defines the client secret and client ID |
-| autoscaling | object | `{"enabled":false}`                                          | Specifies whether autoscaling should be enabled for the pod |
-| certificate.host | string | `"localhost"`                                                | Hostname for the certificate |
-| configmap.create | bool | `true`                                                       |  |
-| elastic.enabled | bool | `false`                                                      | Should elastic be enabled or not |
-| elastic.security.tls | object | `{"restEncryption":false}`                                   | Information about the transport layer security (TLS) |
-| elastic.security.tls.restEncryption | bool | `false`                                                      | Encryption for the REST requests made to the Elastic cluster |
-| image.name | string | `"catenax-ng/tx-vas-country-risk-frontend"`                  | Name of the docker image |
-| image.pullPolicy | string | `"Always"`                                                   |  |
-| image.registry | string | `"ghcr.io"`                                                  |  |
-| image.tag | string | `""`                                                         | Overrides the image tag whose default is the chart appVersion. |
-| imagePullSecrets | list | `[]`                                                         | List of secrets to be used |
-| ingress.annotations."nginx.ingress.kubernetes.io/force-ssl-redirect" | string | `"true"`                                                     | HTTP traffic should be redirected to HTTPS |
-| ingress.annotations."nginx.ingress.kubernetes.io/ssl-passthrough" | string | `"true"`                                                     | Ingress controller should pass SSL traffic directly to the backend pods |
-| ingress.className | string | `"nginx"`                                                    | Class name |
-| ingress.enabled | bool | `false`                                                      | Ingress enabled or not |
-| livenessProbe | object | `{"failureThreshold":3,"initialDelaySeconds":10,...}`        | Determines if a pod is still alive or not |
-| livenessProbe.initialDelaySeconds | int | `10`                                                         | Number of seconds to wait before performing the first liveness probe |
-| livenessProbe.periodSeconds | int | `1000`                                                       | Number of seconds to wait between consecutive probes |
-| livenessProbe.successThreshold | int | `1`                                                          | Number of consecutive successful probes before a pod is considered healthy |
-| livenessProbe.timeoutSeconds | int | `1000`                                                       | Number of seconds after which a liveness probe times out |
-| nodeSelector | object | `{}`                                                         | Node placement constraints |
-| podAnnotations | object | `{}`                                                         | Annotations to be added to the running pod |
-| podSecurityContext | object | `{"fsGroup":2000}`                                           | Configuration for security-related options of the running pod |
-| podSecurityContext.fsGroup | int | `2000`                                                       | Set the file system group ID for all containers in the pod |
-| readinessProbe | object | `{"failureThreshold":3,"initialDelaySeconds":10,...}`        | Determine when a pod is ready to start accepting requests |
-| replicaCount | int | `1`                                                          | Number of replicas of a Kubernetes deployment |
-| resources.limits | object | `{"cpu":"800m","memory":"2Gi"}`                              | Maximum amount of resources that the deployment should be able to consume |
-| resources.requests | object | `{"cpu":"300m","memory":"1Gi"}`                              | Minimum amount of resources that the deployment should be guaranteed to receive |
-| securityContext.allowPrivilegeEscalation | bool | `false`                                                      | Specifies if processes running inside the container can gain more privileges than its initial user |
-| securityContext.capabilities | object | `{"drop":["ALL"]}`                                           | Capabilities that the process inside the container should have |
-| securityContext.runAsGroup | int | `3000`                                                       | Specifies the group ID that the process inside the container should run |
-| securityContext.runAsNonRoot | bool | `true`                                                       | Specifies whether the process inside the container should run as a non-root user |
-| securityContext.runAsUser | int | `10001`                                                      | Specifies the user ID that the process inside the container should run |
-| service | object | `{"port":8080,"type":"ClusterIP"}`                           | Service that should be created for the pod |
-| service.port | int | `8080`                                                       | Service port |
-| service.type | string | `"ClusterIP"`                                                | Type of service to be used |
-| springProfiles[0] | string | `"dev"`                                                      |  |
-| tolerations | list | `[]`                                                         | Pod toleration constraints |
+| affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[0].podAffinityTerm.topologyKey | string | `"kubernetes.io/hostname"`                            | Key that is used to determine the topology of the cluster |
+| affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[0].weight | int | `100`                                                 |  |
+| appName | string | `"vas-country-risk-frontend"`                         | Name of the backend service |
+| applicationSecret | object | `{"enabled":false}`                                   | Defines the client secret and client ID |
+| autoscaling | object | `{"enabled":false}`                                   | Specifies whether autoscaling should be enabled for the pod |
+| certificate.host | string | `"localhost"`                                         | Hostname for the certificate |
+| configmap.create | bool | `true`                                                |  |
+| elastic.enabled | bool | `false`                                               | Should elastic be enabled or not |
+| elastic.security.tls | object | `{"restEncryption":false}`                            | Information about the transport layer security (TLS) |
+| elastic.security.tls.restEncryption | bool | `false`                                               | Encryption for the REST requests made to the Elastic cluster |
+| image.name | string | `"vas-country-risk"`                  | Name of the docker image |
+| image.pullPolicy | string | `"Always"`                                            |  |
+| image.registry | string | `"tractusx"`                                           |  |
+| image.tag | string | `""`                                                  | Overrides the image tag whose default is the chart appVersion. |
+| imagePullSecrets | list | `[]`                                                  | List of secrets to be used |
+| ingress.annotations."nginx.ingress.kubernetes.io/force-ssl-redirect" | string | `"true"`                                              | HTTP traffic should be redirected to HTTPS |
+| ingress.annotations."nginx.ingress.kubernetes.io/ssl-passthrough" | string | `"true"`                                              | Ingress controller should pass SSL traffic directly to the backend pods |
+| ingress.className | string | `"nginx"`                                             | Class name |
+| ingress.enabled | bool | `false`                                               | Ingress enabled or not |
+| livenessProbe | object | `{"failureThreshold":3,"initialDelaySeconds":10,...}` | Determines if a pod is still alive or not |
+| livenessProbe.initialDelaySeconds | int | `10`                                                  | Number of seconds to wait before performing the first liveness probe |
+| livenessProbe.periodSeconds | int | `1000`                                                | Number of seconds to wait between consecutive probes |
+| livenessProbe.successThreshold | int | `1`                                                   | Number of consecutive successful probes before a pod is considered healthy |
+| livenessProbe.timeoutSeconds | int | `1000`                                                | Number of seconds after which a liveness probe times out |
+| nodeSelector | object | `{}`                                                  | Node placement constraints |
+| podAnnotations | object | `{}`                                                  | Annotations to be added to the running pod |
+| podSecurityContext | object | `{"fsGroup":2000}`                                    | Configuration for security-related options of the running pod |
+| podSecurityContext.fsGroup | int | `2000`                                                | Set the file system group ID for all containers in the pod |
+| readinessProbe | object | `{"failureThreshold":3,"initialDelaySeconds":10,...}` | Determine when a pod is ready to start accepting requests |
+| replicaCount | int | `1`                                                   | Number of replicas of a Kubernetes deployment |
+| resources.limits | object | `{"cpu":"800m","memory":"2Gi"}`                       | Maximum amount of resources that the deployment should be able to consume |
+| resources.requests | object | `{"cpu":"300m","memory":"1Gi"}`                       | Minimum amount of resources that the deployment should be guaranteed to receive |
+| securityContext.allowPrivilegeEscalation | bool | `false`                                               | Specifies if processes running inside the container can gain more privileges than its initial user |
+| securityContext.capabilities | object | `{"drop":["ALL"]}`                                    | Capabilities that the process inside the container should have |
+| securityContext.runAsGroup | int | `3000`                                                | Specifies the group ID that the process inside the container should run |
+| securityContext.runAsNonRoot | bool | `true`                                                | Specifies whether the process inside the container should run as a non-root user |
+| securityContext.runAsUser | int | `10001`                                               | Specifies the user ID that the process inside the container should run |
+| service | object | `{"port":8080,"type":"ClusterIP"}`                    | Service that should be created for the pod |
+| service.port | int | `8080`                                                | Service port |
+| service.type | string | `"ClusterIP"`                                         | Type of service to be used |
+| springProfiles[0] | string | `"dev"`                                               |  |
+| tolerations | list | `[]`                                                  | Pod toleration constraints |
 
 ----------------------------------------------
 Autogenerated from chart metadata using [helm-docs v1.11.0](https://github.com/norwoodj/helm-docs/releases/v1.11.0)

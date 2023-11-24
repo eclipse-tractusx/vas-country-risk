@@ -25,9 +25,9 @@
 replicaCount: 1
 
 image:
-  registry: "ghcr.io"
+  registry: "tractusx"
   # -- Name of the docker image
-  name: "catenax-ng/tx-vas-country-risk-backend"
+  name: "vas-country-risk-backend"
   pullPolicy: Always
   # -- Overrides the image tag whose default is the chart appVersion.
   tag: ""

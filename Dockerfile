@@ -31,6 +31,8 @@ COPY public ./public
 COPY --chown=node:node .env .
 COPY src ./src
 
+COPY LICENSE NOTICE.md DEPENDENCIES SECURITY.md /app/dist/
+
 # Set permissions
 RUN chown -R node:node /app && \
     chmod -R u+rwx,g+rx,o-rwx /app
