@@ -28,7 +28,7 @@ import {
   updateReports,
   deleteReport,
 } from "../../../components/services/reports-api";
-import "@testing-library/jest-dom/extend-expect";
+import '@testing-library/jest-dom';
 import { RatesProvider } from "../../../contexts/rates";
 import { CountryProvider } from "../../../contexts/country";
 import { CompanyUserProvider } from "../../../contexts/companyuser";

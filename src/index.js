@@ -38,14 +38,14 @@ else {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 if(hostname==="localhost"){
   root.render(
-  <React.StrictMode>
-    <SharedCssBaseline />
-    <SharedThemeProvider>
-      <App />
-    </SharedThemeProvider>
-  </React.StrictMode>
+    <React.StrictMode>
+      <SharedCssBaseline />
+      <SharedThemeProvider>
+        <App />
+      </SharedThemeProvider>
+    </React.StrictMode>
   );
-}else{
+} else {
   UserService.init((user) => {
     root.render(
       <React.StrictMode>
@@ -59,4 +59,3 @@ if(hostname==="localhost"){
     );
   });
 }
-

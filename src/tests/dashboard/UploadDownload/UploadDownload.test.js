@@ -19,7 +19,7 @@
  ********************************************************************************/
 import { render, act, fireEvent, screen, within } from "@testing-library/react";
 import { test } from "@jest/globals";
-import "@testing-library/jest-dom/extend-expect";
+import '@testing-library/jest-dom';
 import { CompanyUserProvider } from "../../../contexts/companyuser";
 import { downloadSampleCsvFile } from "../../../components/services/files-api";
 import UploadDownloadZone from "../../../components/dashboard/UploadDownloadZone/UploadDownloadZone";

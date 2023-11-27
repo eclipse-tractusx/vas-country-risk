@@ -18,19 +18,13 @@
 * SPDX-License-Identifier: Apache-2.0
 ********************************************************************************/
 import axios from "axios";
-import {
-    getBpns,
-} from "../../components/services/bpns-api";
+import { getBpns } from "../../components/services/bpns-api";
 
 import mockAxios from "jest-mock-axios";
 
 jest.mock("axios");
 
 describe("getAllDates", () => {
-  afterEach(() => {
-    mockAxios.reset();
-  });
-
   it("should get all bpns", async () => {
     const token = "123456";
     const customerUser = {
@@ -39,18 +33,17 @@ describe("getAllDates", () => {
       companyName: "Doe Inc.",
     };
     const expectedResponse = {
-        id: 1,
-        bpn: "67-188-3753",
-        legalName: "Hane-VonRueden",
-        street: "Morrow",
-        houseNumber: "830",
-        zipCode: "62200",
-        city: "Niutang",
-        country: "China",
-        longitude: "119.900272",
-        latitude: "31.731975"
+      id: 1,
+      bpn: "67-188-3753",
+      legalName: "Hane-VonRueden",
+      street: "Morrow",
+      houseNumber: "830",
+      zipCode: "62200",
+      city: "Niutang",
+      country: "China",
+      longitude: "119.900272",
+      latitude: "31.731975",
     };
-    
 
     axios.get.mockResolvedValueOnce(JSON.stringify({ data: expectedResponse }));
 

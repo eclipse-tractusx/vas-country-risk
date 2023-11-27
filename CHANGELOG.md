@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated arc42 documentation to align with the updated Country Risk application.
 - Switched the shell interpreter from `bash` to `sh` in our scripts to enhance portability and reduce dependencies.
 - Upgrade node version on Dockerfile
+- Upgrade outdated libs
+- Upgrade correction for vulnerability find on Veracode for Axios lib
 
 ## [1.2.0] - 2023-10-11
 

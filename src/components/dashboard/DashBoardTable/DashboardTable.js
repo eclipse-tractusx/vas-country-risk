@@ -25,13 +25,10 @@ import { Dialog, Table } from "cx-portal-shared-components";
 import "./styles.scss";
 import { columns } from "./tableColumns";
 import { RangesContext } from "../../../contexts/ranges";
-import { RatesContext } from "../../../contexts/rates";
 import { CountryContext } from "../../../contexts/country";
 import UserService from "../../services/UserService";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { GatesContext } from "../../../contexts/gates";
-import { capitalize } from "@mui/material";
-import { DetailGrid } from "../DetailGrid/DetailGrid";
 import DetailDialog from "../DetailDialog/DetailDialog";
 
 const DashboardTable = (ratings, years) => {
@@ -126,8 +123,8 @@ const DashboardTable = (ratings, years) => {
   }, [ratings.getRatings, ratings.years, ratings.weight, gates]);
 
   useEffect(() => {
-    setTableColumns(columns(ranges, openDetailGridFunction, roles)); // Add this line
-  }, [roles]);
+    setTableColumns(columns(ranges, openDetailGridFunction, roles));
+  }, [roles, ranges]);
 
   return (
     <>

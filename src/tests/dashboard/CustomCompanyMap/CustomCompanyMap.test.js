@@ -25,7 +25,7 @@ import {
   screen,
 } from "@testing-library/react";
 import { test } from "@jest/globals";
-import "@testing-library/jest-dom/extend-expect";
+import '@testing-library/jest-dom';
 import { RangesProvider } from "../../../contexts/ranges";
 import { ReportProvider } from "../../../contexts/reports";
 import { CompanyUserProvider } from "../../../contexts/companyuser";

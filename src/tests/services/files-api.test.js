@@ -18,19 +18,13 @@
 * SPDX-License-Identifier: Apache-2.0
 ********************************************************************************/
 import axios from "axios";
-import {
-    downloadSampleCsvFile,
-} from "../../components/services/files-api";
+import { downloadSampleCsvFile } from "../../components/services/files-api";
 
 import mockAxios from "jest-mock-axios";
 
 jest.mock("axios");
 
 describe("downloadSampleCsvFile", () => {
-  afterEach(() => {
-    mockAxios.reset();
-  });
-
   it("Download csv file template", async () => {
     const token = "123456";
     const customerUser = {

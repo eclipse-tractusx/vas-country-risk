@@ -18,19 +18,13 @@
 * SPDX-License-Identifier: Apache-2.0
 ********************************************************************************/
 import axios from "axios";
-import {
-    getAllDates,
-} from "../../components/services/dateform-api";
+import { getAllDates } from "../../components/services/dateform-api";
 
 import mockAxios from "jest-mock-axios";
 
 jest.mock("axios");
 
 describe("getAllDates", () => {
-  afterEach(() => {
-    mockAxios.reset();
-  });
-
   it("should get all dates", async () => {
     const token = "123456";
     const customerUser = {

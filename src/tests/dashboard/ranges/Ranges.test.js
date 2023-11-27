@@ -24,7 +24,7 @@ import {
   getAllRanges,
   sendValues,
 } from "../../../components/services/ranges-api";
-import "@testing-library/jest-dom/extend-expect";
+import '@testing-library/jest-dom';
 import { RangesProvider } from "../../../contexts/ranges";
 import { ReportProvider } from "../../../contexts/reports";
 import userEvent from "@testing-library/user-event";

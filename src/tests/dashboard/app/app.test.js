@@ -19,7 +19,7 @@
  ********************************************************************************/
 import { render, act } from "@testing-library/react";
 import { test } from "@jest/globals";
-import "@testing-library/jest-dom/extend-expect";
+import '@testing-library/jest-dom';
 import App from "../../../App";
 import { RatesProvider } from "../../../contexts/rates";
 import { RangesProvider } from "../../../contexts/ranges";
