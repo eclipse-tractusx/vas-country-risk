@@ -72,7 +72,7 @@ jobs:
           ct install --charts charts/country-risk \
             --helm-extra-set-args "\
             --set country-risk-frontend.image.tag=latest \
-            --set country-risk-backend.image.tag=latest
+            --set country-risk-backend.image.tag=latest"
         if: github.event_name != 'pull_request' || steps.list-changed.outputs.changed == 'true'
         # Upgrade the released chart version with the locally available chart
         # default value for event_name != workflow_dispatch
