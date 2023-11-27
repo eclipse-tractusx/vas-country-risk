@@ -10,7 +10,8 @@ on:
   pull_request:
     paths:
       - 'charts/country-risk/**'
-
+  workflow_dispatch:
+  # Trigger manually
 jobs:
   lint-test:
     runs-on: ubuntu-latest
