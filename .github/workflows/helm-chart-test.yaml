@@ -40,12 +40,6 @@ jobs:
           # default value for event_name != workflow_dispatch
           node_image: ${{ github.event.inputs.node_image || 'kindest/node:v1.27.3' }}
 
-      - name: Build image
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          push: true
-          tags: kind-registry:5000/country-risk:testing
 
       - name: Set up Helm
         uses: azure/setup-helm@v3
@@ -75,10 +69,14 @@ jobs:
         run: |
           helm repo add bitnami https://charts.bitnami.com/bitnami
           helm repo add pgadmin4 https://helm.runix.net
-          ct install --charts charts/country-risk  --helm-extra-set-args "--set=image.tag=testing --set=image.repository=kind-registry:5000/country-risk:testing"
+          ct install --charts charts/country-risk \
+            --helm-extra-set-args "\
+            --set country-risk-frontend.image.tag=latest \
+            --set country-risk-backend.image.tag=latest
         if: github.event_name != 'pull_request' || steps.list-changed.outputs.changed == 'true'
         # Upgrade the released chart version with the locally available chart
         # default value for event_name != workflow_dispatch
+
       - name: Run helm upgrade
         run: |
           helm repo add pgadmin4 https://helm.runix.net
