@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade node version on Dockerfile
 - Upgrade outdated libs
 - Upgrade correction for vulnerability find on Veracode for Axios lib
+- Increase of the Chart version in the chart.yaml file to version: 3.0.3, version incremented from 1.1.0 to 3.0.3 due to the lack of updates that accompanied the subcharts updates.
+  Version released with compatibility and tracking of the referred subcharts.
 
 ## [1.2.0] - 2023-10-11
 
