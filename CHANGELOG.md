@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.2.1] - [Unreleased]
+## [1.2.1] - 2023-11-28
 
 ### Changed
 - Updated arc42 documentation to align with the updated Country Risk application.
@@ -21,9 +21,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Role-based column visibility in tables. 'Supplier' and 'Customer' columns are now hidden or shown based on user roles.
 - Asynchronous fetching of roles to ensure they are available before rendering the table.
-- Added new vars on the backend charts to pass auth url as dynamic 
+- Added new vars on the backend charts to pass auth url as dynamic
 - Added ability for user to export PDF file in world map dialog view with different information (Ranges, Ratings, Year, Gate)
-- Added Eclipse Room to ReadMe documentation 
+- Added Eclipse Room to ReadMe documentation
 
 ### Fixed
 - Issue where roles could be undefined, causing an error when calling the includes method.
@@ -39,15 +39,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bumped version of Webpack to latest (5.80.0)
 - Bumped version of Web-vitals to 3.1.1
 - Changed Arc42 and User Guide documentation
-- Changed react simple maps d3-color and d3-zoom top fix vulnerability 
-- Changed react scripts nth-check top fix vulnerability 
+- Changed react simple maps d3-color and d3-zoom top fix vulnerability
+- Changed react scripts nth-check top fix vulnerability
 - Changed transformation on jest to update modules when test runs
 - Updated DEPENDENCIES file
 - Change structure of helms charts
 
 ### Fixes
 - Fixed copyright header in all charts
-- Fixed useEffect of getAllDates on DatePicker with an error catcher 
+- Fixed useEffect of getAllDates on DatePicker with an error catcher
 - Fixed owner on dockerfile permissions
 - Fixed DEPENDENCIES file with newly scanned dependencies version
 
@@ -61,7 +61,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Changed file scripts/inject-dynamic-env.sh adding more dynamic vars into application
-- Changed value  .securityContext.runAsUser   on values.yaml to run in the container as the same privileged user created on the dockerfile 
+- Changed value  .securityContext.runAsUser   on values.yaml to run in the container as the same privileged user created on the dockerfile
 - Changed copy command on docker file to a more clean sintaxis combining cp command with chwon command
 
 ### Removed
