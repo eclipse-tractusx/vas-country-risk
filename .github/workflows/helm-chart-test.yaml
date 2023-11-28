@@ -82,7 +82,7 @@ jobs:
           helm repo add pgadmin4 https://helm.runix.net
           helm repo add bitnami https://charts.bitnami.com/bitnami
           helm repo add tractusx-dev https://eclipse-tractusx.github.io/charts/dev
-          helm install country-risk tractusx-dev/country-risk --version ${{ github.event.inputs.upgrade_from  }}
+          helm install country-risk tractusx-dev/country-risk --version ${{ github.event.inputs.upgrade_from || '1.1.0' }}
           helm dependency update charts/country-risk
           helm upgrade country-risk charts/country-risk
         if: github.event_name != 'pull_request' || steps.list-changed.outputs.changed == 'true'

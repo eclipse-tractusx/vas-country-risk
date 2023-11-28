@@ -22,14 +22,6 @@
 country-risk-frontend:
   replicaCount: 1
 
-  image:
-    registry: "tractusx"
-    # -- Name of the docker image
-    name: "vas-country-risk"
-    pullPolicy: Always
-    # -- Overrides the image tag whose default is the chart appVersion.
-    tag: ""
-
   certificate:
     # -- Hostname for the certificate
     host: "frontend.countryrisk.example.net"
@@ -154,13 +146,6 @@ country-risk-frontend:
 country-risk-backend:
 
   replicaCount: 1
-  image:
-    registry: "tractusx"
-    # -- Name of the docker image
-    name: "vas-country-risk-backend"
-    pullPolicy: Always
-    # -- Overrides the image tag whose default is the chart appVersion.
-    tag: ""
 
   certificate:
     # -- Hostname for the certificate
