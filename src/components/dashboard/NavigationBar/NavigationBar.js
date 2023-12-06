@@ -55,13 +55,14 @@ const NavigationBar = () => {
         open={open}
         onClose={openDialog}
       >
-        <DialogHelpContent openDialog={openDialog}/>
+        <DialogHelpContent openDialog={openDialog} />
       </Dialog>
 
       <MainNavigation
         items={[
           {
             title: "Country Risk Dashboard",
+            href: "/",
           },
         ]}
       >

@@ -17,6 +17,11 @@ on:
 env:
   IMAGE_NAMESPACE: "tractusx"
   IMAGE_NAME: "vas-country-risk"
+  # variables needed for scripts/legal-notice.sh
+  SERVER_URL: "${{ github.server_url }}"
+  REPOSITORY: "${{ github.repository }}"
+  REF_NAME: "${{ github.ref_name }}"
+
 
 jobs:
   docker:
@@ -27,6 +32,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Add content to Legal Notice
+        run: npm run build:legal-notice
 
       # Create SemVer or ref tags dependent of trigger event
       - name: Docker meta

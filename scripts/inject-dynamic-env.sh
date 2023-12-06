@@ -1,6 +1,7 @@
 #!/bin/sh
-###############################################################
-# Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+################################################################################
+# Copyright (c) 2022,2023 BMW Group AG
+# Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
@@ -16,7 +17,7 @@
 # under the License.
 #
 # SPDX-License-Identifier: Apache-2.0
-###############################################################
+################################################################################
 custom_env_vars_REACT_APP_AUTH_URL='REACT_APP_AUTH_URL:"'$REACT_APP_AUTH_URL'"'
 custom_env_vars_REACT_APP_COUNTRY_RISK_API='REACT_APP_COUNTRY_RISK_API:"'$REACT_APP_COUNTRY_RISK_API'"'
 custom_env_vars_REACT_APP_PORTAL_FRONTEND='REACT_APP_PORTAL_FRONTEND:"'$REACT_APP_PORTAL_FRONTEND'"'
@@ -25,7 +26,7 @@ custom_env_vars_REACT_APP_COUNTRY_RISK_CLIENT='REACT_APP_COUNTRY_RISK_CLIENT:"'$
 
 REACT_APP_AUTH_URL_anchor='REACT_APP_AUTH_URL:"http://localhost:8080/auth"'
 REACT_APP_COUNTRY_RISK_API_anchor='REACT_APP_COUNTRY_RISK_API:"http://localhost:8080"'
-REACT_APP_PORTAL_FRONTEND_anchor='REACT_APP_PORTAL_FRONTEND:"http://localhost:8080"'
+REACT_APP_PORTAL_FRONTEND_anchor='REACT_APP_PORTAL_FRONTEND:"http://localhost:3000"'
 REACT_APP_PORTAL_BACKEND_anchor='REACT_APP_PORTAL_BACKEND:"http://localhost:8080"'
 REACT_APP_COUNTRY_RISK_CLIENT_anchor='REACT_APP_COUNTRY_RISK_CLIENT:"country_risk_client"'
 
