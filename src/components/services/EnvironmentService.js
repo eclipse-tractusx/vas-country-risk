@@ -53,6 +53,10 @@ export const getLogoutLink = () => {
   return LOCAL_SERVICES_FRONTEND + "/logout";
 };
 
+export const getAboutLink = () => {
+  return LOCAL_SERVICES_FRONTEND + "/about";
+};
+
 export const getCountryRiskAppId = () => {
   return LOCAL_COUNTRY_RISK_CLIENT_ID
     ? LOCAL_COUNTRY_RISK_CLIENT_ID

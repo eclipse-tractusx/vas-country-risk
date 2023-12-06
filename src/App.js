@@ -20,7 +20,6 @@
 import Dashboard from "./components/dashboard/dashboard";
 import "./App.scss";
 import { RatesProvider } from "./contexts/rates";
-import { Footer } from "./components/dashboard/Footer/Footer";
 import { RangesProvider } from "./contexts/ranges";
 import { CountryProvider } from "./contexts/country";
 import { CompanyUserProvider } from "./contexts/companyuser";
@@ -28,6 +27,11 @@ import { ReportProvider } from "./contexts/reports";
 import { ReloadProvider } from "./contexts/refresh";
 import { GatesProvider } from "./contexts/gates";
 import NavigationBar from "./components/dashboard/NavigationBar/NavigationBar";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AboutPage from "./components/dashboard/AboutCard/AboutPage";
+import { FooterPortal } from "./components/dashboard/Footer/FooterPortal";
+
 function App() {
   return (
     <>
@@ -38,13 +42,18 @@ function App() {
               <CompanyUserProvider>
                 <ReportProvider>
                   <ReloadProvider>
-                    <div className="navbar">
-                      <NavigationBar />
-                    </div>
-                    <div className="App">
-                      <Dashboard />
-                      <Footer />
-                    </div>
+                    <Router>
+                      <div className="navbar">
+                        <NavigationBar />
+                      </div>
+                      <div className="App">
+                        <Routes>
+                          <Route path="/" element={<Dashboard />} />
+                          <Route path="/about" element={<AboutPage />} />
+                        </Routes>
+                        <FooterPortal />
+                      </div>
+                    </Router>
                   </ReloadProvider>
                 </ReportProvider>
               </CompanyUserProvider>

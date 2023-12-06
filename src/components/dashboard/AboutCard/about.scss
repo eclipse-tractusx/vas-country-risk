@@ -1,0 +1,74 @@
+/********************************************************************************
+* Copyright (c) 2022,2023 BMW Group AG 
+* Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+*
+* See the NOTICE file(s) distributed with this work for additional
+* information regarding copyright ownership.
+*
+* This program and the accompanying materials are made available under the
+* terms of the Apache License, Version 2.0 which is available at
+* https://www.apache.org/licenses/LICENSE-2.0.
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+* WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+* License for the specific language governing permissions and limitations
+* under the License.
+*
+* SPDX-License-Identifier: Apache-2.0
+********************************************************************************/
+
+.AboutPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 100;
+  font-size: small;
+
+  // AboutCard styling
+  .AboutCardContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 2rem;
+    max-width: 800px;
+    font-size: 24px;
+    .css-101tu3u {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      max-width: 800px;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      width: 100%;
+      font-size: 24px;
+    }
+    .css-gtorsz {
+      margin: 0px;
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      font-size: 24px;
+      font-weight: 400;
+
+      line-height: 1.167;
+      letter-spacing: 0em;
+      padding-right: 10px;
+      text-transform: uppercase;
+    }
+
+    .css-i7tjim-MuiTypography-root {
+      margin: 0px;
+      font-family: LibreFranklin-SemiBold, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      font-size: 24px;
+    }
+  }
+}
