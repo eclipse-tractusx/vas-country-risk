@@ -20,7 +20,7 @@
 apiVersion: v2
 name: country-risk
 type: application
-version: 3.0.6
+version: 3.0.7
 appVersion: "1.2.1"
 description: A Helm chart for deploying the Country Risk service
 home: https://github.com/eclipse-tractusx/vas-country-risk-frontend
@@ -29,7 +29,7 @@ sources:
   - https://github.com/eclipse-tractusx/vas-country-risk-backend
 dependencies:
 - name: postgresql
-  version: 11.*.*
+  version: 12.*.*
   repository: https://charts.bitnami.com/bitnami
   alias: postgres
   condition: postgres.enabled
