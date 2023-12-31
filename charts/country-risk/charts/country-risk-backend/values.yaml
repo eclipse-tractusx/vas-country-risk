@@ -158,6 +158,16 @@ applicationSecret:
   clientSecret: "" #
   # -- String value that represents the client ID
   clientId: ""  #
+  # -- String value that represents the client secret gate app
+  gateClientSecret: "" #
+  # -- String value that represents the client ID gate app
+  gateClientId: ""  #
+  # -- String value that represents the client secret for pool app
+  poolClientSecret: "" #
+  # -- String value that represents the client ID for pool app
+  poolClientId: ""  #
+  # -- String value that represents the api key to Use Edc endpoints
+  edcApiKey: ""  #
 
 configmap:
   # Specifies whether a configmap should be created
@@ -168,10 +178,17 @@ configmap:
     # -- Security configurations for the application
     security_enabled: 'false'
     # -- Endpoints for BPDM output gate
-    application_partnersPoolUrl_bpdmAddressUrl: http://localhost:8080/api/catena/output/addresses/search?
-    application_partnersPoolUrl_bpdmSiteUrl: http://localhost:8080/api/catena/output/sites/search?
-    application_partnersPoolUrl_bpdmLegalUrl: http://localhost:8080/api/catena/output/legal-entities/search?
-    vas_auth_url: http://localhost:8081
+    application_bpdm_addressUrl: 'http://localhost:8080/api/catena/output/addresses/search?'
+    application_bpdm_siteUrl: 'http://localhost:8080/api/catena/output/sites/search?'
+    application_bpdm_legalUrl: 'http://localhost:8080/api/catena/output/legal-entities/search?'
+    application_bpdm_genericUrl: 'http://localhost:8080/api/catena/output/generic/search?'
+    application_bpdm_consumerManagementUrl: 'http://localhost:8080/consumerManagementUrl?'
+    application_bpdm_gateProviderProtocolUrl: 'http://localhost:8080/gateProviderProtocolUrl?'
+    application_bpdm_gateProviderId: 'BPNL0000000XXX'
+    application_bpdm_policyBpn: 'BPNL0000000XXX'
+    application_bpdm_apiKey: 'XXXXXXXXXX'
+    application_edc_enabled: 'false'
+    vas_auth_url: 'http://localhost:8081'
 
 elastic:
   # -- Should elastic be enabled or not
