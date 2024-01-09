@@ -17,22 +17,31 @@
 *
 * SPDX-License-Identifier: Apache-2.0
 ********************************************************************************/
+
+@media (max-width: 1000px) {
+  body {
+    overflow-y: scroll;
+  }
+}
 .upload-content {
   display: flex;
   justify-content: space-evenly;
-  width: 100%;
 }
 
 .First-Dialog {
-  height: 100% !important;;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
   min-width: 250px;
+  overflow-y: auto;
+
+  .css-1sep8xo-MuiDialog-container {
+    height: fit-content;
+  }
 
   .Dialog-Expand-Div {
-    text-align: center;
-    background-color: #FFFFFF;
+    text-align: left;
+    background-color: #ffffff;
     border-radius: 39px !important;
 
     .form-year {
@@ -40,12 +49,13 @@
     }
 
     .inputrating {
-      margin-top: 5%;
+      margin-top: 2%;
     }
 
     .FirstLabel {
       margin-left: auto;
       margin-right: auto;
+      text-align: center;
     }
 
     .SecondLabel {
@@ -56,7 +66,7 @@
     .CheckBox-Div {
       margin-top: 1%;
       width: auto;
-
+      text-align: center;
       .CheckBox-Div-Radio {
         display: inline;
       }
@@ -74,7 +84,7 @@
 
   .Second-Expand-Div {
     text-align: center;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     border-radius: 39px !important;
 
     .btn-close-upload-second {

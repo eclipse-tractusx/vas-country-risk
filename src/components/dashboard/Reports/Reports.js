@@ -23,12 +23,14 @@ import Dialog from "@mui/material/Dialog";
 import FormLabel from "@mui/material/FormLabel";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import { Alert, DialogContent } from "@catena-x/portal-shared-components";
+
 import {
+  DialogActions,
+  Dropzone,
+  DialogHeader,
   Button,
   Input,
-  DialogActions,
-  DialogContent,
-  DialogHeader,
 } from "cx-portal-shared-components";
 import {
   getReportsByCompanyUser,
@@ -46,7 +48,7 @@ import { CountryContext } from "../../../contexts/country";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { ReportContext } from "../../../contexts/reports";
 import { Report } from "../../model/Report";
-import Alert from "@mui/material/Alert";
+
 import { ReloadContext } from "../../../contexts/refresh";
 import CloseIcon from "@mui/icons-material/Close";
 import Collapse from "@mui/material/Collapse";
@@ -212,7 +214,7 @@ const Reports = () => {
     setSeverity("");
     setSeverityMessage("");
     setOpen(!open);
-    setErrorTrigger(true);
+    setErrorTrigger(false);
     setValueDialogTextField(null);
 
     const customSelection = prefixIds.find(
@@ -497,11 +499,19 @@ const Reports = () => {
         />
       </Dialog>
 
-      <Dialog open={open} onClose={closeDialogs} className="Dialog-Expand">
-        <DialogHeader
-          title="Save new Report"
-          intro="Create a new report according the select values"
-        />
+      <Dialog
+        maxWidth="sm"
+        open={open}
+        onClose={closeDialogs}
+        className="Dialog-Expand"
+      >
+        <div className="dialog-header">
+          <DialogHeader
+            className="dialog-header"
+            title="Save new Report"
+            intro="Create a new report according the select values"
+          />
+        </div>
         <div className="Dialog-Expand-Div">
           <FormLabel className="FirstLabel" component="legend">
             Select availability
@@ -527,23 +537,26 @@ const Reports = () => {
               />
             </RadioGroup>
           </div>
-
-          <FormLabel className="SecondLabel" component="legend">
-            Please input the name of the Report
-          </FormLabel>
-
-          <Input
-            data-testid="inputReportName"
-            className="input-report"
-            error={errorTrigger}
-            //helperText={"ERROR"}
-            placeholder="Max 32 Characters"
-            size={"small"}
-            onChange={handleInputReportChange}
-          ></Input>
-          <Alert severity={severity}>
-            <span>{severityMessage}</span>
-          </Alert>
+          <div className="input-report">
+            <Input
+              label={
+                <>
+                  {"Report name"}
+                  <span style={{ color: "red" }}> *</span>
+                </>
+              }
+              data-testid="inputReportName"
+              className=""
+              error={errorTrigger}
+              //helperText={"ERROR"}
+              placeholder="Report name"
+              size={"small"}
+              onChange={handleInputReportChange}
+            ></Input>
+            <Alert severity={severity}>
+              <span>{severityMessage}</span>
+            </Alert>
+          </div>
         </div>
 
         <DialogActions>

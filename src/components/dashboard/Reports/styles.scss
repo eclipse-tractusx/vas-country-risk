@@ -67,24 +67,26 @@
 
 .Dialog-Expand {
   height: 100% !important;
-  width: 30%;
+  //width: fit-content !important;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  min-width: 250px;
+  min-width: 100% !important;
+
+  .dialog-header {
+  }
 
   .Dialog-Expand-Div {
-    text-align: center;
-    background-color: #FFFFFF;
-
-    .FirstLabel {
-      margin-left: auto;
-      margin-right: auto;
+    .secondLabel {
+      text-align: left;
+      margin-bottom: 0.5rem;
     }
 
-    .SecondLabel {
-      margin-left: auto;
-      margin-right: auto;
+    .input-report {
+      flex-direction: column;
+      display: flex;
+      text-align: left;
+      border: hidden !important;
     }
 
     .CheckBox-Div {
@@ -94,13 +96,6 @@
       .CheckBox-Div-Radio {
         display: inline;
       }
-    }
-
-    .input-report {
-      margin-top: 1%;
-      margin-left: 10%;
-      margin-right: 10%;
-      border: 1px solid #000;
     }
 
     .btn-close {
@@ -122,5 +117,3 @@
     min-width: 250px;
   }
 }
-
-
