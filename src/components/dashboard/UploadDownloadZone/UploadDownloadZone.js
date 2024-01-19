@@ -18,16 +18,21 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 import React, { useState, useContext, useEffect } from "react";
-import "./styles.scss";
+import "./dialog-upload.scss";
+
 import {
-  Button,
-  Dropzone,
-  Input,
   Alert,
   DialogHeader,
   DialogContent,
+} from "@catena-x/portal-shared-components";
+
+import {
   DialogActions,
+  Dropzone,
+  Button,
+  Input,
 } from "cx-portal-shared-components";
+
 import Dialog from "@mui/material/Dialog";
 import UserService from "../../services/UserService";
 import FormLabel from "@mui/material/FormLabel";
@@ -73,7 +78,7 @@ const UploadDownloadZone = () => {
   const [date, setDate] = useState("");
 
   //Const for triggering error on Dialog Text Field
-  const [errorTrigger, setErrorTrigger] = React.useState(true);
+  const [errorTrigger, setErrorTrigger] = React.useState(false);
 
   //Validates if next button is active
   const [validateSave, setValidateSave] = useState(true);
@@ -106,7 +111,7 @@ const UploadDownloadZone = () => {
   const openDialog = () => {
     setOpen(!open);
     setValidateSave(true);
-    setErrorTrigger(true);
+    setErrorTrigger(false);
   };
 
   const saveRatingName = (event) => {
@@ -133,7 +138,7 @@ const UploadDownloadZone = () => {
     subtitle: "userUpload.subtitle",
     accept: "text/csv,application/vnd.ms-excel",
     getUploadParams: () => ({
-      url: getCountryRiskApi() +process.env.REACT_APP_UPLOAD_FILE,
+      url: getCountryRiskApi() + process.env.REACT_APP_UPLOAD_FILE,
 
       fields: {
         name: companyUser.name,
@@ -206,13 +211,8 @@ const UploadDownloadZone = () => {
         Upload Rating
       </Button>
 
-      <Dialog
-        open={open}
-        onClose={closeDialogs}
-        maxWidth="lg"
-        className="First-Dialog"
-      >
-        <DialogHeader title="Upload an Rating" />
+      <Dialog open={open} onClose={closeDialogs} className="First-Dialog">
+        <DialogHeader title="Upload a Rating" />
         <DialogContent className="content-expand">
           <div className="Dialog-Expand-Div">
             <FormLabel className="FirstLabel" component="legend">
@@ -264,8 +264,13 @@ const UploadDownloadZone = () => {
             </div>
             <div className="inputrating">
               <Input
+                label={
+                  <>
+                    {"Please write your rating name"}
+                    <span style={{ color: "red" }}> *</span>
+                  </>
+                }
                 data-testid="inputelement"
-                label="Please write your rating name"
                 placeholder="Insert the Rating Name"
                 size={"small"}
                 error={errorTrigger}
