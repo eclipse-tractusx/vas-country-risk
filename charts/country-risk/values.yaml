@@ -274,11 +274,11 @@ country-risk-backend:
     # -- String value that represents the client ID
     clientId: ""  #
     # -- String value that represents the client secret gate app
-    gateClientSecret: "" #
+    gateClientSecret: ""  #
     # -- String value that represents the client ID gate app
     gateClientId: ""  #
     # -- String value that represents the client secret for pool app
-    poolClientSecret: "" #
+    poolClientSecret: ""  #
     # -- String value that represents the client ID for pool app
     poolClientId: ""  #
     # -- String value that represents the api key to Use Edc endpoints
