@@ -77,6 +77,31 @@ spec:
                 secretKeyRef:
                   name: {{ include "vas.applicationSecret.name" . }}
                   key: keycloakClientSecret
+            - name: VAS_GATECLIENT_CLIENTID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "vas.applicationSecret.name" . }}
+                  key: gateKeycloakClientId
+            - name: VAS_GATECLIENT_CLIENTSECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "vas.applicationSecret.name" . }}
+                  key: gateKeycloakClientSecret
+            - name: VAS_POOLCLIENT_CLIENTID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "vas.applicationSecret.name" . }}
+                  key: poolKeycloakClientId
+            - name: VAS_POOLCLIENT_CLIENTSECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "vas.applicationSecret.name" . }}
+                  key: poolKeycloakClientSecret
+            - name: APPLICATION_BPDM_APIKEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "vas.applicationSecret.name" . }}
+                  key: edcApiKey
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
