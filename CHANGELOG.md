@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.3.1] - [unreleased]
 
 ### Fix
-- Update dependency on vulnerability for @adobe/css-tools
+- Update dependency on vulnerability for @adobe/css-tools and axios
 - Fix styles on Save Reports and Upload Ratings
 
 ### Changed
