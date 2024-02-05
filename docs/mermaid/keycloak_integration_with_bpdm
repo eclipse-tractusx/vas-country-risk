@@ -1,0 +1,14 @@
+sequenceDiagram
+    participant Country Risk EDC Consumer
+    participant BPDM EDC
+    participant OpenIDConnect Server
+    participant BPDM Gate
+
+    autonumber
+    Country Risk EDC Consumer -->> BPDM EDC: Request Provider for Api With OAuth2
+    BPDM EDC -->>OpenIDConnect Server: Send Client Credentials
+    OpenIDConnect Server-->> BPDM EDC: Respond OAuth2 Token
+    BPDM EDC -->> BPDM Gate: Send Request with OAuth2 Token in Authorization Header
+    BPDM Gate -->> OpenIDConnect Server: Validate Token
+    OpenIDConnect Server -->> BPDM Gate: Confirms validity of Token
+    BPDM Gate -->> BPDM Gate: Check "resource_access" section of OAuth Token

@@ -122,7 +122,6 @@ Ignoring country risk factors can lead to damaging consequences like:
 - Lack of transparency
 - Theft (due to the perception of a lax attitude)
 
-
 ##### Types of Risk in International Business
 
 There are many factors to consider, but those factors can largely be categorized as economic, political and social factors.
@@ -194,11 +193,41 @@ Control Risk Political Stability Forecast 2021 - (e.g., uncertainties in jurisdi
 Euler Hermes Country Risk Ratings (189 Countries, Economic Risk, Business Environmental Risk, Political Risk, Commercial Risk, Financing Risk)
 Dun & Bradstreet, Country Risk ( http://www.dnbcountryrisk.com/, 14 Scores)
 
+## System Scope and EDC Integration
+
+![EDC Integration](Images/StandardisedDataExchangeWithEdc.png)
+
+**EDC Operator**
+* The diagram above shows two EDCs on Operator side. This is only for visualization purpose. On the prespective that both Country Risk and Gate are on the Operator Side.
+* The other EDC Systems will work the same way with auth and flow if the connection its from other Operator
+
+## Keycloak Authentication & Autorization Flow
+
+![Keycloak](Images/keyckloak.png)
+
+### Handling Country Risk
+
+The handling of country risk within our system is managed by the Country Risk Application. 
+
+It involves assessing and consuming data from the Country Risk EDC Consumer, which obtains necessary data from the EDC Gate Provider. 
+
+This process ensures that the data related to country risk is accurate and up-to-date. The Country Risk Application doesn't filter the data; instead, it relies on the Gate service to validate user permissions and deliver the correct set of data based on the user's role and access rights.
+
+### Data EDC Handling 
+
+The security of data and ensuring that companies only access the data they are permitted to see is achieved through a robust authentication and authorization flow provided by Keycloak. 
+
+When a company requests data, the Gate service validates the OAuth2 token provided in the request. 
+
+This token contains the roles and permissions associated with the client user. By checking the "resource_access" section of the OAuth2 token, the Gate service ensures that a company can only access data for which it has the correct credentials. 
+
+Additionally, the EDC Discovery Service can be employed to manage service endpoints and their associated access policies, enhancing the control over which data each company can discover and access.
+
 
 ## Business Context
 
 
-## Technical Context
+### Technical Context
 
 ![Technical Building](../docs/Images/image2022-10-26_18-42-52.png)
 
