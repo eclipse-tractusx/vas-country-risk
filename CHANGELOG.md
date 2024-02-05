@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update dependency on vulnerability for @adobe/css-tools
 - Fix styles on Save Reports and Upload Ratings
 
+### Changed
+- Updated arc42 documentation to align with the EDC updated Country Risk application.
+
 ## [1.3.0] - 2023-12-06
 
 ### Added 
