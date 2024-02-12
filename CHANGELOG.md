@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fix
 - Update dependency on vulnerability for @adobe/css-tools and axios
 - Fix styles on Save Reports and Upload Ratings
+- Fix roles that are shown on Table info
 
 ### Changed
 - Updated arc42 documentation to align with the EDC updated Country Risk application.

@@ -26,9 +26,13 @@ import CancelIcon from "@mui/icons-material/Cancel";
 export const columns = (ranges, onDetailClick, roles) => {
   const hiddenColumns = ["street", "houseNumber", "zipCode"];
   const hasReadCustomersRole =
-    roles && Array.isArray(roles) ? roles.includes("Customer") : false;
+    roles && Array.isArray(roles)
+      ? roles.some((role) => role.toLowerCase() === "customer".toLowerCase())
+      : false;
   const hasReadSuppliersRole =
-    roles && Array.isArray(roles) ? roles.includes("Supplier") : false;
+    roles && Array.isArray(roles)
+      ? roles.some((role) => role.toLowerCase() === "supplier".toLowerCase())
+      : false;
 
   return [
     {
