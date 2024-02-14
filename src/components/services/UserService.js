@@ -55,6 +55,10 @@ const keycloakConfigBpdm = {
 
 const KC = new Keycloak(keycloakConfigCountryRisk);
 
+var hasAcess = false;
+
+const getHasAcess = () => hasAcess;
+
 const init = (onAuthenticatedCallback) => {
   KC.init({
     onLoad: "login-required",
@@ -62,10 +66,26 @@ const init = (onAuthenticatedCallback) => {
       window.location.origin + "/silent-check-sso.html",
     pkceMethod: "S256",
   }).then((authenticated) => {
-    if (authenticated) {
-      info(`${getUsername()} authenticated`);
+    const resourceAccess = KC.tokenParsed?.resource_access || {};
+
+    const hasClientAccess = resourceAccess.hasOwnProperty(
+      keycloakConfigCountryRisk.clientId
+    );
+
+    if (
+      authenticated &&
+      Object.keys(resourceAccess).length > 0 &&
+      hasClientAccess
+    ) {
+      info("authenticated with access");
+      hasAcess = true;
+      onAuthenticatedCallback(getLoggedUser());
+    } else if (authenticated) {
+      info("authenticated without sufficient access");
+      hasAcess = false;
       onAuthenticatedCallback(getLoggedUser());
     } else {
+      info("User not authenticated, initiating login");
       doLogin();
     }
   });
@@ -143,6 +163,7 @@ const getLoggedUser = () => ({
   isAdmin: isAdmin(),
   token: getToken(),
   parsedToken: getParsedToken(),
+  access: getHasAcess(),
 });
 
 const UserService = {

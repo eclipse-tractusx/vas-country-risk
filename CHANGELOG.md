@@ -11,9 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update dependency on vulnerability for @adobe/css-tools and axios
 - Fix styles on Save Reports and Upload Ratings
 - Fix roles that are shown on Table info
+- Fix finding for entering country risk if user is not subscribed
 
 ### Changed
 - Updated arc42 documentation to align with the EDC updated Country Risk application.
+
+### Added
+- Added Error Page for when user is with right credentials but not subscribed to the App
+
 
 ## [1.3.0] - 2023-12-06
 
