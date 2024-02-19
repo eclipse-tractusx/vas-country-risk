@@ -11,13 +11,13 @@ This project is a Frontend web application for the value added services project 
 Clone the source locally:
 
 ```sh
-git clone "URL-OF-PROJECT"
-cd product-vas-country-risk-frontend
+git clone https://github.com/eclipse-tractusx/vas-country-risk.git
+cd vas-country-risk
 ```
 
 To run with the APIs of the local backend part of the project, you need to change the APIs URLs on the .env file!
 
-Do the following command `npm install @emotion/react  @emotion/styled  @mui/icons-material@5.10.6  @mui/material@5.10.7 react-simple-maps cx-portal-shared-components react-scripts` 
+Do the following command `npm install` 
 to install the application. 
 
 After that the application should be run with

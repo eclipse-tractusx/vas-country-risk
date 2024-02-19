@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Updated arc42 documentation to align with the EDC updated Country Risk application.
+- Update Readme.md and Install.md 
 
 ### Added
 - Added Error Page for when user is with right credentials but not subscribed to the App
