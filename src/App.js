@@ -31,6 +31,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AboutPage from "./components/dashboard/AboutCard/AboutPage";
 import { FooterPortal } from "./components/dashboard/Footer/FooterPortal";
+import ErrorPageCR from "./components/dashboard/ErrorPage/ErrorPageCR";
 
 function App() {
   return (
@@ -42,18 +43,17 @@ function App() {
               <CompanyUserProvider>
                 <ReportProvider>
                   <ReloadProvider>
-                    <Router>
-                      <div className="navbar">
-                        <NavigationBar />
-                      </div>
-                      <div className="App">
-                        <Routes>
-                          <Route path="/" element={<Dashboard />} />
-                          <Route path="/about" element={<AboutPage />} />
-                        </Routes>
-                        <FooterPortal />
-                      </div>
-                    </Router>
+                    <div className="navbar">
+                      <NavigationBar />
+                    </div>
+                    <div className="App">
+                      <Routes>
+                        <Route path="/" element={<Dashboard />} />
+                        <Route path="/about" element={<AboutPage />} />
+                        <Route path="/error" element={<ErrorPageCR />} />
+                      </Routes>
+                      <FooterPortal />
+                    </div>
                   </ReloadProvider>
                 </ReportProvider>
               </CompanyUserProvider>

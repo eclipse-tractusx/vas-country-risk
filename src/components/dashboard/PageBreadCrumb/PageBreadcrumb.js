@@ -32,7 +32,7 @@ function isParamsEmpty(params) {
   return true;
 }
 
-export const PageBreadcrumb = () => {
+export const PageBreadcrumb = ({ title }) => {
   const navigate = useNavigate();
   const params = useParams();
   const location = useLocation();
@@ -54,7 +54,7 @@ export const PageBreadcrumb = () => {
   }, [location, params]);
 
   const getCrumbTitle = (crumb) => {
-    return "About";
+    return title;
   };
 
   const breadcrumbs = () => {

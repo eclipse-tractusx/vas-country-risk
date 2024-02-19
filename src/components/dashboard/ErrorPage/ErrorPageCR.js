@@ -23,17 +23,40 @@ import legalJson from "../../../legal-notice.json";
 import { Link } from "@mui/icons-material";
 import { Breadcrumb, Typography } from "@catena-x/portal-shared-components";
 import { PageBreadcrumb } from "../PageBreadCrumb/PageBreadcrumb";
-import "./about.scss";
+import "./error.scss";
+import { ErrorPage } from "@catena-x/portal-shared-components";
+import { FooterPortal } from "../Footer/FooterPortal";
+import NavigationBar from "../NavigationBar/NavigationBar";
+import { useNavigate } from "react-router-dom";
+import { getPortalLink } from "../../services/EnvironmentService";
+const ErrorPageCR = () => {
+  const navigate = useNavigate();
 
-export default function AboutPage() {
   return (
-    <div className="AboutPage">
-      <PageHeader title="About" topPage={false} headerHeight={200}>
-        <PageBreadcrumb title={"About"} style background="rgb(223, 228, 234)" />
+    <div className="Error">
+      <NavigationBar />
+      <PageHeader title="Error" topPage={false} headerHeight={200}>
+
       </PageHeader>
-      <div className="AboutCardContainer">
-        <AboutCard className="AboutCard" {...legalJson} />
-      </div>
+      <ErrorPage
+        additionalDescription="Please contact your admin."
+        color="gray"
+        description="The server encountered an internal error or misconfiguration and was unable to complete your request."
+        header="401 (Unauthorized)"
+        homeButtonTitle="Homepage"
+        hasNavigation={false}
+        onHomeClick={() => {
+          window.location.href = getPortalLink() + "/appmarketplace";
+        }}
+        onReloadClick={() => {
+          navigate("/");
+        }}
+        reloadButtonTitle="Reload Page"
+        title="Oops, Something went wrong, subscribe to Country Risk App not found."
+      />
+      <FooterPortal></FooterPortal>
     </div>
   );
-}
+};
+
+export default ErrorPageCR;

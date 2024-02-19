@@ -17,23 +17,22 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
+import React, { useState, useEffect } from "react";
+import App from "../../../App";
+import ErrorPageCR from "../ErrorPage/ErrorPageCR";
 
-import { AboutCard, PageHeader } from "@catena-x/portal-shared-components";
-import legalJson from "../../../legal-notice.json";
-import { Link } from "@mui/icons-material";
-import { Breadcrumb, Typography } from "@catena-x/portal-shared-components";
-import { PageBreadcrumb } from "../PageBreadCrumb/PageBreadcrumb";
-import "./about.scss";
+const RootComponent = ({ user }) => {
+  const [shouldShowErrorPage, setShouldShowErrorPage] = useState(false);
 
-export default function AboutPage() {
-  return (
-    <div className="AboutPage">
-      <PageHeader title="About" topPage={false} headerHeight={200}>
-        <PageBreadcrumb title={"About"} style background="rgb(223, 228, 234)" />
-      </PageHeader>
-      <div className="AboutCardContainer">
-        <AboutCard className="AboutCard" {...legalJson} />
-      </div>
-    </div>
-  );
-}
+  useEffect(() => {
+    if (user.access) {
+      setShouldShowErrorPage(false);
+    } else {
+      setShouldShowErrorPage(true);
+    }
+  }, [user]);
+
+  return shouldShowErrorPage ? <ErrorPageCR /> : <App />;
+};
+
+export default RootComponent;

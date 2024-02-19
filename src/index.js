@@ -19,8 +19,7 @@
  ********************************************************************************/
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
-import { Provider } from "react-redux";
+
 import {
   SharedThemeProvider,
   SharedCssBaseline,
@@ -28,6 +27,8 @@ import {
 import UserService from "./components/services/UserService";
 import { getHostname } from "./components/services/EnvironmentService";
 
+import RootComponent from "./components/dashboard/RootComponent/RootComponent";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 const hostname = getHostname();
 if (hostname.includes("country-risk-dashboard.dev")) import("./index-dev.scss");
 if (hostname.includes("country-risk-dashboard.int")) import("./index-int.scss");
@@ -36,26 +37,18 @@ else {
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-if(hostname==="localhost"){
+
+UserService.init((user) => {
   root.render(
     <React.StrictMode>
-      <SharedCssBaseline />
+      {" "}
+      <SharedCssBaseline />{" "}
       <SharedThemeProvider>
-        <App />
-      </SharedThemeProvider>
+        {" "}
+        <Router>
+          <RootComponent user={user} />{" "}
+        </Router>
+      </SharedThemeProvider>{" "}
     </React.StrictMode>
   );
-} else {
-  UserService.init((user) => {
-    root.render(
-      <React.StrictMode>
-        {" "}
-        <SharedCssBaseline />{" "}
-        <SharedThemeProvider>
-          {" "}
-          <App />{" "}
-        </SharedThemeProvider>{" "}
-      </React.StrictMode>
-    );
-  });
-}
+});
