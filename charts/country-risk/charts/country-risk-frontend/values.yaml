@@ -99,7 +99,7 @@ resources:
   # -- Maximum amount of resources that the deployment should be able to consume
   limits:
     cpu: 800m
-    memory: 2Gi
+    memory: 1Gi
   # -- Minimum amount of resources that the deployment should be guaranteed to receive
   requests:
     cpu: 300m
