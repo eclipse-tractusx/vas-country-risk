@@ -28,15 +28,15 @@ SPDX-License-Identifier: Apache-2.0
 
 The project maintains the following source code repositories:
 
-* https://github.com/eclipse-tractusx/vas-country-risk-frontend
+* https://github.com/eclipse-tractusx/vas-country-risk
+* https://github.com/eclipse-tractusx/vas-country-risk-backend
 
 
 ## Third-party Content
 
 This project leverages the following third party content.
 
-See DEPENDENCIES file.
-
+See [DEPENDENCIES](https://github.com/eclipse-tractusx/vas-country-risk/blob/main/DEPENDENCIES) file.
 ## Cryptography
 
 Content may contain encryption software. The country in which you are currently
