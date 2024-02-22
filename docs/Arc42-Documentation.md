@@ -249,7 +249,37 @@ This components Diagram represents the possible actions to be done by the user w
 
 Each box represents a feature and each arrow between features represents its dependencies, as is the case of the world map that needs a rating selected to be filled in with the available colors.
 
-![InterfaceDisplay](../docs/Images/diagram_compenent.png)
+```mermaid
+classDiagram
+class CompanyUserUI {
+<<component>>
+}
+class WorldMapView {
+<<component>>
+}
+class AvailableRatings {
+<<component>>
+}
+class AvailableRanges {
+<<component>>
+}
+class BPNTable {
+<<component>>
+}
+class CountryPicker {
+<<component>>
+}
+class CompanyView {
+<<component>>
+}
+
+    CompanyUserUI --|> WorldMapView : Interface
+    CompanyUserUI --|> AvailableRatings : Interface
+    CompanyUserUI --|> AvailableRanges : Interface
+    CompanyUserUI --|> BPNTable : Interface
+    CompanyUserUI --|> CountryPicker : Interface
+    CompanyUserUI --|> CompanyView : Interface
+```
 
 #### World Map View
 
@@ -257,7 +287,29 @@ Each box represents a feature and each arrow between features represents its dep
 
 For this component, it is necessary to call three different APIs that allow mapping the Map and painting based on the score obtained from each country.
 
-![WorldMapAPI](../docs/Images/image2022-10-10_17-4-35.png)
+```mermaid
+classDiagram
+    class WorldMapView {
+        <<component>>
+    }
+    class GetWorldMap {
+        <<component>>
+        +API()
+    }
+    class GetBusinessPartnersCountrys {
+        <<component>>
+        +API()
+    }
+    class GetBusinessPartnersOfUserCompanys {
+        <<component>>
+        +API()
+    }
+
+    WorldMapView --|> GetWorldMap : Api
+    WorldMapView --|> GetBusinessPartnersCountrys : Api
+    WorldMapView --|> GetBusinessPartnersOfUserCompanys : Api
+
+```
 
 For each of these APIs we can consult its input and output in the APIs section.
 ##### Sample result
@@ -272,7 +324,19 @@ For this component, it is necessary to call just one API that gets the Ratings a
 
 Some Ratings may be available globally by user or by the company they belong to but for more details we will address in the functionalities section.
 
-![RatingAPI](../docs/Images/image2022-10-10_17-17-20.png)
+```mermaid
+classDiagram
+    class AvailableRatings {
+        <<component>>
+    }
+    class GetRatingsByYear {
+        <<component>>
+        +API()
+    }
+
+    AvailableRatings --|> GetRatingsByYear : Api
+
+```
 
 #### Ranges
 
@@ -280,7 +344,24 @@ Some Ratings may be available globally by user or by the company they belong to 
 
 For this component we have a call to two APIs, one that allows searching for a user's ranges, if any, and another that allows saving them if the user wants to for the next validation of the Map.
 
-![RangesAPI](../docs/Images/image2022-10-10_17-33-9.png)
+```mermaid
+classDiagram
+    class AvailableRanges {
+        <<component>>
+    }
+    class SaveRangesOfTheUser {
+        <<component>>
+        +API()
+    }
+    class GetRangesOfTheUser {
+        <<component>>
+        +API()
+    }
+
+    AvailableRanges --|> SaveRangesOfTheUser : Api
+    AvailableRanges --|> GetRangesOfTheUser : Api
+
+```
 
 #### Business Partners Table
 
@@ -290,7 +371,19 @@ For this component, it is necessary to call just one API that gets the informati
 
 It is necessary for the user to select one or more ratings for this table to be fully initialized, more details in the functionalities section.
 
-![TableAPI](../docs/Images/image2022-10-10_17-42-14.png)
+```mermaid
+classDiagram
+    class BPNTable {
+        <<component>>
+    }
+    class GetTableInfo {
+        <<component>>
+        +API()
+    }
+
+    BPNTable --|> GetTableInfo : Api
+
+```
 
 ##### Sample Result
 
@@ -302,7 +395,19 @@ It is necessary for the user to select one or more ratings for this table to be 
 
 In this component, we call one API to populate the dropdown menu with a selection of countries. The API used is the getBpnCountries and as explained in the APIs and Swagger section, it retrieves all the countries that are associated to the Business partners.
 
-![PickerAPi](../docs/Images/image2022-10-11_9-13-22.png)
+```mermaid
+classDiagram
+    class CountryPicker {
+        <<component>>
+    }
+    class GetCountriesByISO2 {
+        <<component>>
+        +API()
+    }
+
+    CountryPicker --|> GetCountriesByISO2 : API
+
+```
 
 #### Company View
 
@@ -310,7 +415,29 @@ In this component, we call one API to populate the dropdown menu with a selectio
 
 For this component, it is necessary to call three different APIs. The APIs used are the getBpnCountries, getCountryFilterByISO2 and getTableInfo.  With the data that we get from this APIs, and also with the value from the selected country in the country picker component, we can present on the map the markers for the Business Partners of the selected country with some information associated to the markers.
 
-![CompanyViewAPI](../docs/Images/image2022-10-11_9-12-26.png)
+```mermaid
+classDiagram
+    class CompanyView {
+        <<component>>
+    }
+    class GetCountriesByUser {
+        <<component>>
+        +API()
+    }
+    class GetCountriesByISO2 {
+        <<component>>
+        +API()
+    }
+    class GetTableInfo {
+        <<component>>
+        +API()
+    }
+
+    CompanyView --|> GetCountriesByUser : API
+    CompanyView --|> GetCountriesByISO2 : API
+    CompanyView --|> GetTableInfo : API
+
+```
 
 # Interfaces
 
@@ -537,13 +664,65 @@ To maintain those 2 Github locations we mainly develop in the CatenaX-ng Github.
 
 To contribute to the development please follow these Branching guidelines in the CatenaX-ng environment.
 
-![Branching](../docs/Images/image2023-1-15_21-49-22.png)
+```mermaid
+flowchart LR
+    dev["dev"] -->|For Each new Feature a new Branch is created| feature_branch["BPDMP-481-UnitTests\nNaming Scheme:\nUser Story Number- Short Description"]
+    feature_branch -->|After successful testing the Branch is migrated Back in to the dev Branch| dev
+    dev -->|Release| release["Release 3.0.0\nFor Each Release a new Image is created to have the possibility of a rollback"]
+    
+    subgraph Frontend_and_Backend_Environment["Frontend and Backend Environment"]
+    dev
+    end
+
+```
 
 # Sequence Diagram
 
 #### Endpoint: /dashboard/getTableInfo
 
-![getDashboardTableinfo](../docs/Images/DashBoardResource_getAllDashBoardTable.jpg)
+```mermaid
+sequenceDiagram
+    participant ActorUser as "Actor User"
+    participant DashBoardResource as "DashBoard Resource"
+    participant DashboardService as "Dashboard Service"
+    participant WorldMapAndTableLogicService as "WorldMap and Table Logic Service"
+    participant ExternalBusinessPartnersLogicService as "External Business Partners Logic Service"
+    participant DataSourceValueService as "Data Source Value Service"
+    participant DataSourceValueRepository as "Data Source Value Repository"
+
+    ActorUser->>+DashBoardResource: 1: getAllDashBoardTable()
+    DashBoardResource->>+DashboardService: 1.1: getTableInfo()
+    DashboardService->>+WorldMapAndTableLogicService: 1.1.1: getTableInfo()
+    
+    WorldMapAndTableLogicService->>+ExternalBusinessPartnersLogicService: 1.1.1.1: getExternalBusinessPartners(companyUser)
+    ExternalBusinessPartnersLogicService-->>-WorldMapAndTableLogicService: 1.1.1.1: Return Business Partners
+    
+    WorldMapAndTableLogicService->>+ExternalBusinessPartnersLogicService: 1.1.1.2: getExternalPartnersCountry(companyUser)
+    ExternalBusinessPartnersLogicService-->>-WorldMapAndTableLogicService: 1.1.1.2: Return Countries
+    
+    WorldMapAndTableLogicService->>+DataSourceValueService: 1.1.1.3: findByRatingAndCountryAndScoreGreaterThanAndYear(countryList, dataSources, year)
+    DataSourceValueService->>+DataSourceValueRepository: 1.1.1.3.1: Query DB
+    DataSourceValueRepository-->>-DataSourceValueService: 1.1.1.3.1: Return Query Results
+    DataSourceValueService-->>-WorldMapAndTableLogicService: 1.1.1.3: Return Data
+    
+    WorldMapAndTableLogicService->>WorldMapAndTableLogicService: 1.1.1.4: forEach (setWeight)
+    WorldMapAndTableLogicService->>+WorldMapAndTableLogicService: 1.1.1.5: mapBusinessPartnerToDashboard(businessPartnerDTOS, dataDTOS, ratingDTOS)
+    
+    loop For Each Business Partner 
+        WorldMapAndTableLogicService->>WorldMapAndTableLogicService: 1.1.1.5.1: Create DashboardTableDTO
+        WorldMapAndTableLogicService->>WorldMapAndTableLogicService: 1.1.1.5.2: Associate Business Partners
+    end
+    
+    loop For Each Business Partner 
+        WorldMapAndTableLogicService->>WorldMapAndTableLogicService: 1.1.1.5.3.1: Calculate Final Score
+        WorldMapAndTableLogicService->>WorldMapAndTableLogicService: 1.1.1.5.3.2: Concatenate Ratings
+    end
+    
+    WorldMapAndTableLogicService-->>+DashboardService: 1.1.1: Return DashboardTableDTO
+    DashboardService-->>-DashBoardResource: 1.1: Return DashboardTableDTO
+    DashBoardResource-->>-ActorUser: 1: Display DashboardTableDTO
+
+```
 
 In the DashBoardResource we invoke the method getTableInfo, that is inside the DashboardService.
 
@@ -564,7 +743,39 @@ After that, in the 1.1.1.5.3 method, inside a for iteration, firstly it filters 
 
 #### Endpoint: /dashboard/getWorldMap
 
-![getWorldMap](../docs/Images/DashBoardResource_getDashBoardWorldMap.png.png)
+```mermaid
+sequenceDiagram
+    participant ActorUser 
+    participant DashBoardResource 
+    participant DashboardService 
+    participant WorldMapAndTableLogicService 
+    participant DataSourceValueService 
+    participant DataSourceValueRepository 
+    participant MethodUtils 
+
+    ActorUser->>+DashBoardResource: 1: getDashBoardWorldMap(user, year, ratings)
+    DashBoardResource->>+DashboardService: 1.1: getWorldMapInfo()
+    DashboardService->>+WorldMapAndTableLogicService: 1.1.1: getWorldMapInfo()
+    
+    WorldMapAndTableLogicService->>+DataSourceValueService: 1.1.1.1: findByRatingAndScoreGreaterThanAndYear()
+    DataSourceValueService->>+DataSourceValueRepository: 1.1.1.1.1: findByRatingAndScoreGreaterThanAndYear()
+    DataSourceValueRepository-->>-DataSourceValueService: 1.1.1.1.1: Return Results
+    DataSourceValueService-->>-WorldMapAndTableLogicService: 1.1.1.1: Return Results
+
+    WorldMapAndTableLogicService->>WorldMapAndTableLogicService: 1.1.2: Assign Weights (Lambda Expression)
+
+    WorldMapAndTableLogicService->>+WorldMapAndTableLogicService: 1.1.3: mapDataSourcesToWorldMap()
+    WorldMapAndTableLogicService->>+MethodUtils: 1.1.3.1: distinctByKey()
+    MethodUtils-->>-WorldMapAndTableLogicService: 1.1.3.1: Return Unique Countries
+    WorldMapAndTableLogicService->>WorldMapAndTableLogicService: 1.1.3.2: Calculate Final Score
+    WorldMapAndTableLogicService->>+MethodUtils: 1.1.3.2.1: formatFloatToDecimals()
+    MethodUtils-->>-WorldMapAndTableLogicService: 1.1.3.2.1: Return Formatted Score
+    
+    WorldMapAndTableLogicService-->>-DashboardService: 1.1.1: Return Mapped Data
+    DashboardService-->>-DashBoardResource: 1.1: Return WorldMap Info
+    DashBoardResource-->>-ActorUser: 1: Display WorldMap
+
+```
 
 This Get Dashboard World endpoint is the entry point for populating the World Map.
 
@@ -589,7 +800,27 @@ Score: Country → Germany , Score = ( 36 from CPI Rating * 0.4 % ) +  50 from B
 
 #### Endpoint: /dashboard/allYears
 
-![getAllYears](../docs/Images/DashBoardResource_getYears.png)
+```mermaid
+sequenceDiagram
+    participant ActorUser 
+    participant DashBoardResource 
+    participant DashboardService 
+    participant DataSourceLogicService 
+    participant DataSourceService 
+    participant DataSourceRepository 
+
+    ActorUser->>+DashBoardResource: 1: getYears()
+    DashBoardResource->>+DashboardService: 1.1: getYearsOfUserRatings()
+    DashboardService->>+DataSourceLogicService: 1.1.1: findRatingsByCompanyUser()
+    DataSourceLogicService->>+DataSourceService: 1.1.1.1: findRatingByUser()
+    DataSourceService->>+DataSourceRepository: 1.1.1.1.1: findByCompanyUserNameAndCompanyUserEmailAndCompanyUserCompanyOrType()
+    DataSourceRepository-->>-DataSourceService: 1.1.1.1.1: Return Ratings
+    DataSourceService-->>-DataSourceLogicService: 1.1.1.1: Return Ratings
+    DataSourceLogicService-->>-DashboardService: 1.1.1: Return Ratings
+    DashboardService-->>-DashBoardResource: 1.1: Return Years
+    DashBoardResource-->>-ActorUser: 1: Display Years
+
+```
 
 This endpoint returns all possible years based on the ratings this user can view.
 So in the UI we have a bar with the years in which, when changing, the user can see the various ratings for each selected year.
@@ -599,7 +830,32 @@ We have only one important method which is the findRatingsByCompanyUser which ba
 
 #### Endpoint: /dashboard/ratingsByYear
 
-![getRatings](../docs/Images/DashBoardResource_ratingsByYear.png)
+```mermaid
+sequenceDiagram
+    participant ActorUser
+    participant DashBoardResource 
+    participant DashboardService 
+    participant DataSourceLogicService 
+    participant DataSourceService 
+    participant DataSourceRepository 
+
+    ActorUser->>+DashBoardResource: 1: ratingsByYear(year)
+    DashBoardResource->>+DashboardService: 1.1: findRatingsByYearAndCompanyUser(year, companyUser)
+    DashboardService->>+DataSourceLogicService: 1.1.1: findRatingsByYearAndCompanyUser(year, companyUser)
+    
+    DataSourceLogicService->>+DataSourceService: 1.1.1.1: findRatingsByYearAndTypeGlobal(year)
+    DataSourceService-->>-DataSourceLogicService: 1.1.1.1: Return Global Ratings
+    
+    DataSourceLogicService->>+DataSourceService: 1.1.1.2: findRatingByYearAndUser(year, user)
+    DataSourceService->>+DataSourceRepository: 1.1.1.2.1: findByYearPublishedAndCompanyUserNameAndCompanyUserEmailAndCompanyUserCompanyAndType(year, userName, userEmail, companyType)
+    DataSourceRepository-->>-DataSourceService: 1.1.1.2.1: Return User Specific Ratings
+    DataSourceService-->>-DataSourceLogicService: 1.1.1.2: Return User Specific Ratings
+    
+    DataSourceLogicService-->>-DashboardService: 1.1.1: Return All Ratings
+    DashboardService-->>-DashBoardResource: 1.1: Return All Ratings
+    DashBoardResource-->>-ActorUser: 1: Display Ratings
+
+```
 
 This endpoint, as mentioned above, receives the selected year and returns the available ratings for this user based on the year.
 
@@ -610,14 +866,50 @@ On findRatingsByYearAndCompanyUser we need to call two methods, findRatingsByYea
 
 #### Endpoint: /dashboard/getTemplate
 
-![getTemplate](../docs/Images/image2022-10-13_16-45-20.jpg)
+```mermaid
+sequenceDiagram
+    participant ActorUser 
+    participant DashBoardResource 
+
+    ActorUser->>+DashBoardResource: 1: getTemplate()
+    DashBoardResource-->>-ActorUser: Return Template
+```
 
 This method just implements the download of a template so that users can fill and upload their own ratings.
 
 
 #### Endpoint: /dashboard/uploadCsv
 
-![UploadCSV](../docs/Images/DashBoardResource_uploadFile.png)
+```mermaid
+sequenceDiagram
+    participant ActorUser 
+    participant DashBoardResource 
+    participant DashboardService 
+    participant CompanyUserLogicService 
+    participant CompanyUserService 
+    participant CompanyUserRepository
+    participant UploadAndDownloadLogicService
+    participant DataSourceService
+    participant DataSourceValueService 
+    participant DataSourceLogicService 
+
+    ActorUser->>+DashBoardResource: 1: uploadFile(ratingName, user)
+    DashBoardResource->>+DashboardService: 1.1: saveCsv(file)
+    DashboardService->>+CompanyUserLogicService: 1.1.1: getOrCreate(user)
+    CompanyUserLogicService->>+CompanyUserService: 1.1.1.1: findByNameEmailAndCompany(user)
+    CompanyUserService->>+CompanyUserRepository: 1.1.1.1.1: findByNameAndEmailAndCompany()
+    CompanyUserRepository-->>-CompanyUserService: 1.1.1.1.1: Return User
+    CompanyUserService-->>-CompanyUserLogicService: 1.1.1.1: User
+    CompanyUserLogicService-->>-DashboardService: 1.1.1: User
+    DashboardService->>+UploadAndDownloadLogicService: 1.1.2: saveCsv(file, user)
+    UploadAndDownloadLogicService->>UploadAndDownloadLogicService: 1.1.2.1: Read and Validate Line
+    UploadAndDownloadLogicService-->>-DashboardService: 1.1.2: Save Completed
+    DashboardService->>+DataSourceLogicService: 1.1.3: invalidateAllCache()
+    DataSourceLogicService-->>-DashboardService: 1.1.3: Cache Invalidated
+    DashboardService-->>-DashBoardResource: 1.1: Completed
+    DashBoardResource-->>-ActorUser: 1: Upload Finished
+
+```
 
 This method is used to upload new ratings, it receives the name of the rating and the user who uploaded it as a parameter.
 
@@ -632,7 +924,27 @@ Each line must contain the Continent of the Country, the name that may vary depe
 
 #### Endpoint: /dashboard/getUserRanges
 
-![getRanges](../docs/Images/DashBoardResource_userRanges.png)
+```mermaid
+sequenceDiagram
+    participant ActorUser
+    participant DashBoardResource 
+    participant DashboardService 
+    participant RangeLogicService 
+    participant RangeService
+    participant RangeRepository 
+
+    ActorUser->>+DashBoardResource: 1: userRanges()
+    DashBoardResource->>+DashboardService: 1.1: getUserRangesOrDefault()
+    DashboardService->>+RangeLogicService: 1.1.1: getUserRangesOrDefault()
+    RangeLogicService->>+RangeService: 1.1.1.1: getUserRanges()
+    RangeService->>+RangeRepository: 1.1.1.1.1: findByCompanyUserNameAndCompanyUserEmailAndCompanyUserCompany()
+    RangeRepository-->>-RangeService: 1.1.1.1.1: Return Ranges or Default Values
+    RangeService-->>-RangeLogicService: 1.1.1.1: Ranges
+    RangeLogicService-->>-DashboardService: 1.1.1: Return Ranges
+    DashboardService-->>-DashBoardResource: 1.1: Display Ranges
+    DashBoardResource-->>-ActorUser: 1: Ranges Retrieved
+
+```
 
 This endpoint is simple, it only validates if the user already has saved ranges or uses default values, these ranges are used to define the range of each color in the UI, which then defines how each country will be painted based on its score.
 
@@ -664,7 +976,20 @@ After that, the List of CountryDTO's id returned all the way through to the Dash
 
 #### Endpoint: /dashboard/getCompanyBpns
 
-![getCompanyBPN](../docs/Images/DashBoardResource_getCompanyBpns.jpg)
+```mermaid
+sequenceDiagram
+    participant ActorUser 
+    participant DashBoardResource 
+    participant DashboardService 
+    participant ExternalBusinessPartnersLogicService
+
+    ActorUser->>+DashBoardResource: 1: getCompanyBpns()
+    DashBoardResource->>+DashboardService: 1.1: getExternalBusinessPartners()
+    DashboardService->>+ExternalBusinessPartnersLogicService: 1.1.1: getExternalBusinessPartners()
+    ExternalBusinessPartnersLogicService-->>-DashboardService: 1.1.1: Return Business Partners
+    DashboardService-->>-DashBoardResource: 1.1: Return Business Partners
+    DashBoardResource-->>-ActorUser: 1: Display Business Partners
+```
 
 This endpoint retrieves all the Business partners associated to a company. In the DashboardResource we invoke the getExternalBusinessPartners method, in which we send through an CompanyUser (1.1).
 
@@ -675,7 +1000,36 @@ In the end, after the data is retrieved, this data is returned as a List of Buss
 
 #### Endpoint: /dashboard/getBpnCountrys
 
-![getBPNCountry](../docs/Images/DashBoardResource_getBpnCountrys.jpg)
+```mermaid
+sequenceDiagram
+    participant ActorUser 
+    participant DashBoardResource 
+    participant DashboardService 
+    participant CountryLogicService 
+    participant ExternalBusinessPartnersLogicService 
+    participant CountryService 
+    participant CountryRepository 
+    participant EntityMapper 
+
+    ActorUser->>+DashBoardResource: 1: getBpnCountries()
+    DashBoardResource->>+DashboardService: 1.1: getCountryByAssociatedBPtoUser(CompanyUser)
+    DashboardService->>+CountryLogicService: 1.1.1: getAssociatedCountries(CompanyUser)
+    
+    CountryLogicService->>+ExternalBusinessPartnersLogicService: 1.1.1.1: getExternalPartnersCountry(CompanyUser)
+    ExternalBusinessPartnersLogicService-->>-CountryLogicService: 1.1.1.1: Return List<String> of Countries
+    
+    CountryLogicService->>+CountryService: 1.1.1.2: findByCountryIn(List<String>)
+    CountryService->>+CountryRepository: 1.1.1.2.1: findByCountryIn(List<String>)
+    CountryRepository-->>-CountryService: 1.1.1.2.1: Return List<Country>
+    CountryService->>+EntityMapper: 1.1.1.2.2: toDto(List<Country>)
+    EntityMapper-->>-CountryService: 1.1.1.2.2: Return List<CountryDTO>
+    
+    CountryService-->>-CountryLogicService: 1.1.1.2: Return List<CountryDTO>
+    CountryLogicService-->>-DashboardService: 1.1.1: Return List<CountryDTO>
+    DashboardService-->>-DashBoardResource: 1.1: Return List<CountryDTO>
+    DashBoardResource-->>-ActorUser: 1: Display Countries
+
+```
 
 This endpoint retrieves all the countries that are associated to the Business partners.  In the DashboardResource we invoke the getCountryByAssociatedBPtoUser (1.1) method, in which we send through an CompanyUser.
 
@@ -688,7 +1042,45 @@ The method findByCountryIn (1.1.1.2) we pass the returned List of String of the 
 
 #### Endpoint: /dashboard/saveUserRanges
 
-![saveRanges](../docs/Images/DashBoardResource_saveRanges.jpg)
+```mermaid
+sequenceDiagram
+    participant ActorUser 
+    participant DashBoardResource 
+    participant DashboardService 
+    participant CompanyUserLogicService 
+    participant CompanyUserService 
+    participant CompanyUserRepository 
+    participant RangeLogicService 
+    participant RangeService 
+    participant RangeRepository 
+    participant RangeMapper 
+    participant ResponseMessage 
+
+    ActorUser->>+DashBoardResource: 1: saveRanges(List<RangeDTO>, CompanyUser)
+    DashBoardResource->>+DashboardService: 1.1: saveRanges(List<RangeDTO>, CompanyUser)
+    DashboardService->>+CompanyUserLogicService: 1.1.1: getOrCreate(CompanyUser)
+    CompanyUserLogicService->>+CompanyUserService: 1.1.1.1: findByNameEmailAndCompany(CompanyUser)
+    CompanyUserService->>+CompanyUserRepository: 1.1.1.1.1: findByNameEmailAndCompany(CompanyUser)
+    CompanyUserRepository-->>-CompanyUserService: 1.1.1.1.1: Return CompanyUser
+    CompanyUserService-->>-CompanyUserLogicService: 1.1.1.1: Return CompanyUser
+    CompanyUserLogicService-->>-DashboardService: 1.1.1: Return CompanyUser
+    DashboardService->>+RangeLogicService: 1.1.2: saveRanges(List<RangeDTO>, CompanyUser)
+    RangeLogicService->>+RangeService: 1.1.2.1: getUserRanges(CompanyUser)
+    RangeService->>+RangeRepository: 1.1.2.1.1: findByCompanyUser(CompanyUser)
+    RangeRepository-->>-RangeService: 1.1.2.1.1: Return List<Range>
+    RangeService-->>-RangeLogicService: 1.1.2.1: Return List<Range>
+    RangeLogicService->>RangeLogicService: 1.1.2.2: Check and Save Ranges
+    RangeLogicService->>+RangeMapper: 1.1.2.2.1: toDto(Range)
+    RangeMapper-->>-RangeLogicService: 1.1.2.2.1: Return RangeDTO
+    RangeLogicService->>RangeLogicService: 1.1.2.3: Update Ranges
+    RangeLogicService->>+RangeService: 1.1.2.3.1: setValueForRange(RangeDTO)
+    RangeService-->>-RangeLogicService: 1.1.2.3.1: Updated RangeDTO
+    RangeLogicService-->>-DashboardService: 1.1.2: Return List<RangeDTO>
+    DashboardService->>ResponseMessage: 1.2: createResponse(List<RangeDTO>)
+    DashboardService-->>-DashBoardResource: 1.1: Return ResponseMessage
+    DashBoardResource-->>-ActorUser: 1: Display ResponseMessage
+
+```
 
 In this endpoint, it is received as a parameter a List of RangeDTO that contain three different values affect to three different "Types" (Max, Between and Min) and a CompanyUser.
 
@@ -705,7 +1097,39 @@ If the range already exists, in 1.1.2.3 an ForEach iteration is made where the R
 
 #### Endpoint: /dashboard/getReportsByCompanyUser
 
-![getReport](../docs/Images/DashBoardResource_getReportsByCompanyUser.jpg)
+```mermaid
+sequenceDiagram
+    participant ActorUser 
+    participant DashBoardResource 
+    participant DashboardService 
+    participant ReportLogicService 
+    participant ReportService 
+    participant ReportRepository 
+    participant EntityMapper 
+
+    ActorUser->>+DashBoardResource: 1: getReportsByCompanyUser(CompanyUser)
+    DashBoardResource->>+DashboardService: 1.1: getReportsByCompanyUser(CompanyUser)
+    DashboardService->>+ReportLogicService: 1.1.1: getCompanyReports(CompanyUser.companyName, 'Company')
+    ReportLogicService->>+ReportService: 1.1.1.1: findByCompanyAndType(CompanyUser.companyName, 'Company')
+    ReportService->>+ReportRepository: 1.1.1.1.1: findByCompanyAndType(CompanyUser.companyName, 'Company')
+    ReportRepository-->>-ReportService: 1.1.1.1.1: Return Reports
+    ReportService->>+EntityMapper: 1.1.1.1.2: toDto(List<Report>)
+    EntityMapper-->>-ReportService: 1.1.1.1.2: Return List<ReportDTO>
+    ReportService-->>-ReportLogicService: 1.1.1.1: Return List<ReportDTO>
+
+    DashboardService->>+ReportLogicService: 1.1.2: getReportsForCompanyUser(CompanyUser.name, CompanyUser.companyName, 'Custom')
+    ReportLogicService->>+ReportService: 1.1.2.1: findByCompanyUserNameAndCompanyAndType(CompanyUser.name, CompanyUser.companyName, 'Custom')
+    ReportService->>+ReportRepository: 1.1.2.1.1: findByCompanyUserNameAndCompanyAndType(CompanyUser.name, CompanyUser.companyName, 'Custom')
+    ReportRepository-->>-ReportService: 1.1.2.1.1: Return Reports
+    ReportService->>+EntityMapper: 1.1.2.1.2: toDto(List<Report>)
+    EntityMapper-->>-ReportService: 1.1.2.1.2: Return List<ReportDTO>
+    ReportService-->>-ReportLogicService: 1.1.2.1: Return List<ReportDTO>
+
+    ReportLogicService->>ReportLogicService: Combine List<ReportDTO>
+    ReportLogicService-->>-DashboardService: 1.1: Return Combined List<ReportDTO>
+    DashboardService-->>-DashBoardResource: 1.1: Return Combined List<ReportDTO>
+    DashBoardResource-->>-ActorUser: 1: Display Reports
+```
 
 In this endpoint, it is received as a parameter only the CompanyUser. It is used to return an list of ReportDTO related to the CompanyUser parameter received.
 
@@ -720,7 +1144,35 @@ After that, this lists are joined into a biggest ReportDTO List, that then is re
 
 #### Endpoint: /dashboard/saveReports
 
-![saveReport](../docs/Images/image2023-1-11_9-40-3.jpg)
+```mermaid
+sequenceDiagram
+    participant ActorUser 
+    participant DashBoardResource 
+    participant DashboardService 
+    participant CompanyUserLogicService 
+    participant CompanyUserService 
+    participant ReportLogicService 
+    participant ReportService 
+    participant ResponseMessage 
+
+    ActorUser->>+DashBoardResource: 1: saveReport(CompanyUser, ReportDTO)
+    DashBoardResource->>+DashboardService: 1.1: saveReport(CompanyUser, ReportDTO)
+    DashboardService->>+CompanyUserLogicService: 1.1.1: getOrCreate(CompanyUser)
+    CompanyUserLogicService->>+CompanyUserService: 1.1.1.1: findByNameEmailAndCompany(CompanyUser)
+    CompanyUserService-->>-CompanyUserLogicService: User found or created
+    CompanyUserLogicService-->>-DashboardService: CompanyUserDTO
+    DashboardService->>+ReportLogicService: 1.1.2: saveReport(CompanyUserDTO, ReportDTO)
+    
+    ReportLogicService->>+ReportService: 1.1.2.1: Check and process ReportDTO
+    ReportService-->>-ReportLogicService: Report processed
+
+    ReportLogicService-->>-DashboardService: Return result
+    DashboardService->>+ResponseMessage: 1.2: createResponse()
+    ResponseMessage-->>-DashboardService: ResponseMessage created
+    DashboardService-->>-DashBoardResource: ResponseMessage
+    DashBoardResource-->>-ActorUser: Display Response
+
+```
 
 In this endpoint, it is received as a parameter the CompanyUser and an ReportDTO that will be saved. It is used to save an ReportDTO related to the CompanyUser parameter received.
 
@@ -739,7 +1191,47 @@ If the report would been duplicated, an Http Bad Request status would be shown, 
 
 #### Endpoint: /dashboard/shareReports
 
-![shareReports](../docs/Images/image2023-1-11_9-48-39.jpg)
+```mermaid
+sequenceDiagram
+    participant ActorUser 
+    participant DashBoardResource 
+    participant DashboardService 
+    participant CompanyUserService 
+    participant CompanyUserRepository 
+    participant ReportLogicService 
+    participant ReportService
+    participant ReportRepository 
+    participant EntityMapper 
+    participant ResponseMessage 
+
+    ActorUser->>+DashBoardResource: 1: shareReport(CompanyUser, ReportDTO)
+    DashBoardResource->>+DashboardService: 1.1: shareReport(CompanyUser, ReportDTO)
+    DashboardService->>+CompanyUserService: 1.1.1: findByNameEmailAndCompany(ReportDTO.name, ReportDTO.email, ReportDTO.company)
+    CompanyUserService->>+CompanyUserRepository: 1.1.1.1: findByNameEmailAndCompany(ReportDTO)
+    alt User exists
+        CompanyUserRepository-->>-CompanyUserService: CompanyUserDTO
+        CompanyUserService-->>-DashboardService: CompanyUserDTO
+        DashboardService->>+ReportLogicService: 1.1.2: saveReport(CompanyUserDTO, ReportDTO)
+        ReportLogicService->>+ReportService: 1.1.2.1: Check Report ID and Save
+        alt Report ID does not exist
+            ReportService->>ReportRepository: 1.1.2.1.6: save(ReportDTO)
+            ReportRepository-->>ReportService: Report saved
+            ReportService->>ReportService: 1.1.2.1.6.1: Check and Save ReportValues
+            loop Each ReportValue
+                ReportService->>ReportService: 1.1.2.1.6.1.x: save(ReportValue)
+            end
+            ReportService-->>-ReportLogicService: ReportValues saved
+        else Report ID exists
+            ReportLogicService->>ResponseMessage: 1.1.2.2: Http Bad Request (Duplicated)
+        end
+        ReportLogicService-->>-DashboardService: Process Completed
+    else User does not exist
+        CompanyUserRepository-->>ResponseMessage: 1.1.1.2: Http Not Found
+    end
+    DashboardService-->>-DashBoardResource: Response
+    DashBoardResource-->>-ActorUser: Display Response
+
+```
 
 In this endpoint, it is received as a parameter the CompanyUser and an ReportDTO that will be used to be shared. It is used to share an ReportDTO related to the CompanyUser parameter received.
 
@@ -758,7 +1250,53 @@ If the report would been duplicated, an Http Bad Request status would be shown, 
 
 #### Endpoint: /dashboard/updateReports
 
-![updateReports](../docs/Images/image2023-1-11_9-49-15.jpg)
+```mermaid
+sequenceDiagram
+    participant ActorUser 
+    participant DashBoardResource 
+    participant DashboardService 
+    participant CompanyUserLogicService 
+    participant ReportLogicService 
+    participant ReportService 
+    participant ReportRepository 
+    participant ReportValueService 
+    participant ResponseMessage
+
+    ActorUser->>DashBoardResource: 1: updateReport(CompanyUser, ReportDTO)
+    DashBoardResource->>DashboardService: 1.1: updateReport(CompanyUser, ReportDTO)
+    DashboardService->>CompanyUserLogicService: 1.1.1: getOrCreate(CompanyUser)
+    CompanyUserLogicService-->>DashboardService: CompanyUserDTO
+    DashboardService->>ReportLogicService: 1.1.2: saveReport(CompanyUserDTO, ReportDTO)
+
+    alt If ReportDTO has ID
+        ReportLogicService->>ReportService: 1.1.2.1: Update Report
+        ReportService->>ReportRepository: 1.1.2.1.1: findOne(ReportDTO.id)
+        alt If Report not found
+            ReportRepository-->>ReportService: Not Found
+            ReportService-->>ReportLogicService: Http Not Found
+        else Report found
+            ReportRepository-->>ReportService: Found Report
+            ReportService->>ReportService: 1.1.2.1.3: validatePermissionToChangeReport(CompanyUserDTO, ReportDTO)
+            alt If validation fails
+                ReportService-->>ReportLogicService: Http Unauthorized
+            else Validation succeeds
+                ReportService-->>ReportLogicService: Permission Granted
+                ReportLogicService->>ReportValueService: 1.1.2.1.4: Update Report Values
+                ReportValueService-->>ReportLogicService: Report Values Updated
+            end
+        end
+        ReportLogicService-->>DashboardService: Report Processing Complete
+    else No ID present
+        ReportLogicService->>ReportService: Create New Report
+        ReportService-->>ReportLogicService: New Report Created
+    end
+
+    DashboardService->>ResponseMessage: 1.2: createResponse()
+    ResponseMessage-->>DashboardService: Response Created
+    DashboardService-->>DashBoardResource: ResponseMessage
+    DashBoardResource-->>ActorUser: Display Response
+
+```
 
 In this endpoint, it is received as a parameter the CompanyUser and an ReportDTO that will be used to be updated. It is used to update an ReportDTO related to the CompanyUser parameter received.
 
@@ -777,18 +1315,80 @@ After this an Http no content alert is shown, as a sign that the request has bee
 
 #### Endpoint: /dashboard/getReportsValueByReport
 
-![getValueReport](../docs/Images/image2023-1-11_13-23-10.jpg)
+```mermaid
+sequenceDiagram
+    participant ActorUser 
+    participant DashBoardResource 
+    participant DashboardService 
+    participant ReportLogicService 
+    participant ReportValuesService 
+    participant EntityMapper 
+    participant ReportValuesRepository 
+
+    ActorUser->>+DashBoardResource: 1: getReportsValueByReport(CompanyUser, ReportDTO)
+    DashBoardResource->>+DashboardService: 1.1: getReportValues(ReportDTO)
+    
+    alt If ReportDTO is not null
+        DashboardService->>+ReportLogicService: 1.1.1: getReportValues(ReportDTO)
+        ReportLogicService->>+ReportValuesService: 1.1.1.1: findByReport(ReportDTO)
+        ReportValuesService->>+ReportValuesRepository: 1.1.1.1.1: findByReport(ReportDTO)
+        ReportValuesRepository-->>-ReportValuesService: List<ReportValue>
+        ReportValuesService->>+EntityMapper: 1.1.1.1.1.1: toDto(List<ReportValue>)
+        EntityMapper-->>-ReportValuesService: List<ReportValuesDTO>
+        ReportValuesService-->>-ReportLogicService: List<ReportValuesDTO>
+        ReportLogicService-->>-DashboardService: List<ReportValuesDTO>
+        DashboardService-->>-DashBoardResource: List<ReportValuesDTO>
+    else If ReportDTO is null
+        DashboardService-->>DashBoardResource: Empty List<ReportValuesDTO>
+    end
+
+    DashBoardResource-->>-ActorUser: Display ReportValues
+
+```
 
 In this endpoint, it is received as a parameter the CompanyUser and an ReportDTO. It is used to return an list of ReportValuesDTO related to the CompanyUser and RepotDTO parameters received.
 
 The method 1.1 that is inside the dashboardService class, the 1.1.1 getReportValues is used to firstly do a verification if the ReportDTO parameter is null, in which case an empty ArrayList is returned, otherwise the 1.1.1.1 findByReport method is done to retrieved the data (ReportValuesDTO) associated with the ReportDTO.
 
-After this, an List of ReportValuesDTO is returned in the main class (DashBoardResouce).
+After this, an List of ReportValuesDTO is returned in the main class (DashBoardResource).
 
 
 #### Endpoint: /dashboard/getAllUserBPDMGates
 
-![getBPDMGates](../docs/Images/image2023-1-11_9-49-32.jpg)
+```mermaid
+sequenceDiagram
+    participant ActorUser 
+    participant DashBoardResource 
+    participant DashboardService 
+    participant CompanyGatesLogicService 
+    participant CompanyService 
+    participant CompanyRepository 
+    participant CompanyMapperImpl 
+    participant CompanyDTO 
+    participant CompanyGatesService 
+    participant CompanyGatesRepository 
+    participant EntityMapper 
+
+    ActorUser->>+DashBoardResource: 1: getAllUserBPDMGates(CompanyUser)
+    DashBoardResource->>+DashboardService: 1.1: getGatesForCompanyUser(CompanyUser)
+    DashboardService->>+CompanyGatesLogicService: 1.1.1: getGatesForCompanyUser(CompanyUser)
+    CompanyGatesLogicService->>+CompanyService: 1.1.1.1: getCompanyByCompanyName(CompanyUser.companyName)
+    CompanyService->>+CompanyRepository: 1.1.1.1.1: findByCompanyName(CompanyUser.companyName)
+    CompanyRepository-->>-CompanyService: Company
+    CompanyService->>+CompanyMapperImpl: 1.1.1.1.1.2: toDto(Company)
+    CompanyMapperImpl-->>-CompanyService: CompanyDTO
+    CompanyService-->>-CompanyGatesLogicService: CompanyDTO
+    CompanyGatesLogicService->>+CompanyGatesService: 1.1.1.2: findByCompanyGroup(CompanyDTO.groupId)
+    CompanyGatesService->>+CompanyGatesRepository: 1.1.1.2.1: findByCompanyGroup(CompanyDTO.groupId)
+    CompanyGatesRepository-->>-CompanyGatesService: List<CompanyGate>
+    CompanyGatesService->>+EntityMapper: 1.1.1.2.2: toDto(List<CompanyGate>)
+    EntityMapper-->>-CompanyGatesService: List<CompanyGatesDTO>
+    CompanyGatesService-->>-CompanyGatesLogicService: List<CompanyGatesDTO>
+    CompanyGatesLogicService-->>-DashboardService: List<CompanyGatesDTO>
+    DashboardService-->>-DashBoardResource: List<CompanyGatesDTO>
+    DashBoardResource-->>-ActorUser: Display CompanyGatesDTOs
+
+```
 
 In this endpoint, it is received as a parameter the CompanyUser. It is used to return an list of CompanyGatesDTO related to the CompanyUser.
 
@@ -799,7 +1399,36 @@ After this, an List of CompanyGatesDTOS is returned in the main class (DashBoard
 
 #### Endpoint: /sharing/getAllRatingsForCompany
 
-![getAllRatingsforCompany](../docs/Images/image2023-1-11_9-58-31.jpg)
+```mermaid
+sequenceDiagram
+    participant ActorUser 
+    participant DashBoardResource 
+    participant DashboardService 
+    participant DataSourceLogicService 
+    participant DataSourceService 
+    participant DataSourceRepository 
+    participant EntityMapper 
+
+    ActorUser->>+DashBoardResource: 1: getAllRatingsForCompany(CompanyUser, Year)
+    DashBoardResource->>+DashboardService: 1.1: findRatingsByYearAndCompanyUserCompany(CompanyUser, Year)
+    DashboardService->>+DataSourceLogicService: 1.1.1: findRatingsByYearAndTypeGlobal(Year)
+    DataSourceLogicService->>+DataSourceService: 1.1.1.1: findRatingsByYearPublishedAndType(Year, 'Global')
+    DataSourceService->>+DataSourceRepository: 1.1.1.1.1: findByYearPublishedAndType(Year, 'Global')
+    DataSourceRepository-->>-DataSourceService: List<DataSource>
+    DataSourceService->>+EntityMapper: 1.1.1.1.2: toDto(List<DataSource>)
+    EntityMapper-->>-DataSourceService: List<DataSourceDTO>
+    DataSourceService-->>-DataSourceLogicService: List<DataSourceDTO>
+    DataSourceLogicService->>+DataSourceService: 1.1.1.2: findByYearPublishedAndCompanyUserCompanyNameAndType(Year, CompanyUser.companyName, 'Company')
+    DataSourceService->>+DataSourceRepository: 1.1.1.2.1: findByYearPublishedAndCompanyUserCompanyNameAndType(Year, CompanyUser.companyName, 'Company')
+    DataSourceRepository-->>-DataSourceService: List<DataSource>
+    DataSourceService->>+EntityMapper: 1.1.1.2.2: toDto(List<DataSource>)
+    EntityMapper-->>-DataSourceService: List<DataSourceDTO>
+    DataSourceService-->>-DataSourceLogicService: List<DataSourceDTO>
+    DataSourceLogicService-->>-DashboardService: Combined List<DataSourceDTO>
+    DashboardService-->>-DashBoardResource: Combined List<DataSourceDTO>
+    DashBoardResource-->>-ActorUser: Display DataSources
+
+```
 
 In this endpoint, it is received as a parameter the CompanyUser and a Integer Year. It is used to return an list of DataSourceDTO related to the CompanyUser and inserted year.
 
@@ -812,7 +1441,47 @@ After this, both lists are join onto one and returned in the main class as an Li
 
 #### Endpoint: /sharing/getAllRatingsScoresForEachBpn
 
-![getRatingsScore](../docs/Images/image2023-1-11_9-58-28.jpg)
+```mermaid
+sequenceDiagram
+    participant ActorUser 
+    participant DashBoardResource 
+    participant DashboardService 
+    participant ShareLogicService 
+    participant ExternalBusinessPartnersLogicService 
+    participant DataSourceValueService 
+    participant DataSourceValueRepository 
+    participant ShareDTO 
+    participant ShareRatingDTO 
+
+    ActorUser->>+DashBoardResource: 1: getAllRatingsScoresForEachBpn(CompanyUser, dataSource, businessPartner)
+    DashBoardResource->>+DashboardService: 1.1: findRatingsScoresForEachBpn(CompanyUser, dataSource, businessPartner)
+    DashboardService->>+ShareLogicService: 1.1.1: findRatingsScoresForEachBpn
+    ShareLogicService->>+ExternalBusinessPartnersLogicService: 1.1.1.1: getExternalBusinessPartners
+    ExternalBusinessPartnersLogicService-->>-ShareLogicService: List<BusinessPartnerDTO>
+    
+    loop For each BusinessPartner
+        ShareLogicService->>ShareLogicService: Add country to BusinessPartnerDTO
+    end
+    
+    ShareLogicService->>ShareLogicService: 1.1.1.3: Create List of Countries from BusinessPartnerDTO
+    ShareLogicService->>ShareLogicService: 1.1.1.4: Create List of Data Source Names from DataSourceDTO
+    
+    loop For each DataSource
+        ShareLogicService->>+DataSourceValueService: 1.1.1.3.1: findRatingAndCountryAndScoreGreaterThanAndYear
+        DataSourceValueService->>+DataSourceValueRepository: 1.1.1.3.1.1: findByRatingAndCountryAndScoreGreaterThanAndYear
+        DataSourceValueRepository-->>-DataSourceValueService: List<DataDTO>
+        DataSourceValueService-->>-ShareLogicService: List<DataDTO>
+    end
+    
+    loop For each ShareDTO
+        ShareLogicService->>ShareLogicService: 1.1.1.5: Map DataDTO to ShareDTO
+    end
+    
+    ShareLogicService-->>-DashboardService: List<ShareDTO>
+    DashboardService-->>-DashBoardResource: List<ShareDTO>
+    DashBoardResource-->>-ActorUser: Display ShareDTOs
+
+```
 
 In this endpoint, it is received as a parameter the CompanyUser an dataSource object and a businessPartner object. It is used to return an list of ShareDTO(Mapped ratings to the business partners) related to the parameters inserted.
 
@@ -826,12 +1495,61 @@ Then, an List of String that will get the name of the Data Sources will also be 
 
 With this, the DataSource parameter will be iterated with the for each clause, and an List of DataDTO will be filled according with the method 1.1.1.3.1.1, using as parameter both DataSource names and countries String list.
 
-Finnaly, the mapping will be done for each ShareDTO, that then will return inside of an List.
+Finally, the mapping will be done for each ShareDTO, that then will return inside of an List.
 
 
 #### Endpoint: /dashboard/deleteReport/{id}
 
-![deleteReport](../docs/Images/image2023-1-11_9-58-36.jpg)
+```mermaid
+sequenceDiagram
+    participant ActorUser 
+    participant DashBoardResource 
+    participant DashboardService 
+    participant ReportLogicService 
+    participant ReportService 
+    participant ReportValuesService 
+    participant ReportValuesRepository 
+
+    ActorUser->>DashBoardResource: 1: deleteReport(CompanyUser, id)
+    DashBoardResource->>DashboardService: 1.1: deleteReportFromUserById(CompanyUser, id)
+    DashboardService->>ReportLogicService: 1.1.1: deleteReportById(id)
+    
+    ReportLogicService->>ReportService: 1.1.1.1: findOne(id)
+    ReportService->>ReportValuesRepository: 1.1.1.1.1: findById(id)
+    alt If Report not found
+        ReportValuesRepository-->>ReportService: Not Found
+        ReportService-->>ReportLogicService: Not Found
+        ReportLogicService-->>DashboardService: Not Found
+        DashboardService-->>DashBoardResource: Not Found
+        DashBoardResource-->>ActorUser: Http Not Found
+    else Report found
+        ReportValuesRepository-->>ReportService: ReportEntity
+        ReportService-->>ReportLogicService: ReportEntity
+        
+        ReportLogicService->>ReportLogicService: 1.1.1.3: validatePermissionToChangeReport(CompanyUser, ReportEntity)
+        alt If User has permission
+            ReportLogicService->>ReportValuesService: 1.1.1.4: findByReport(ReportEntity)
+            ReportValuesService->>ReportValuesRepository: 1.1.1.4.1: findByReport(ReportEntity)
+            ReportValuesRepository-->>ReportValuesService: List<ReportValues>
+            ReportValuesService-->>ReportLogicService: List<ReportValuesDTO>
+            
+            loop For each ReportValue
+                ReportLogicService->>ReportValuesRepository: 1.1.1.5: delete(ReportValue)
+                ReportValuesRepository-->>ReportLogicService: Delete success
+            end
+            ReportLogicService->>ReportValuesRepository: 1.1.1.6: delete(ReportEntity)
+            ReportValuesRepository-->>ReportLogicService: Delete success
+            ReportLogicService-->>DashboardService: Delete success
+            DashboardService-->>DashBoardResource: Delete success
+            DashBoardResource-->>ActorUser: Http No Content
+        else If User does not have permission
+            ReportLogicService-->>DashboardService: Unauthorized
+            DashboardService-->>DashBoardResource: Unauthorized
+            DashBoardResource-->>ActorUser: Http Unauthorized
+        end
+    end
+
+```
 
 This endpoint receives and CompanyUser and also an Long variable which is the id. It is used to delete an Report.
 
@@ -848,7 +1566,58 @@ After this, in the main class DashBoardResource, and Http no content is presente
 
 #### Endpoint: /dashboard/deleteRating/{id}
 
-![deleteRating](../docs/Images/image2023-1-11_9-58-39.jpg)
+```mermaid
+sequenceDiagram
+    participant ActorUser 
+    participant DashBoardResource 
+    participant DashboardService 
+    participant DataSourceLogicService 
+    participant DataSourceService 
+    participant DataSourceMapper 
+    participant DataSourceValueService 
+    participant EntityMapper 
+    participant DataSourceValueRepository 
+
+    ActorUser->>DashBoardResource: 1: deleteRating(CompanyUser, id)
+    DashBoardResource->>DashboardService: 1.1: deleteRatingFromUserById(CompanyUser, id)
+    DashboardService->>DataSourceLogicService: 1.1.1: deleteDataSourceById(id)
+    
+    DataSourceLogicService->>DataSourceService: 1.1.1.1: findOne(id)
+    DataSourceService->>DataSourceValueRepository: 1.1.1.1.1: findById(id)
+    alt If DataSource not found
+        DataSourceValueRepository-->>DataSourceService: Not Found
+        DataSourceService-->>DataSourceLogicService: Not Found
+        DataSourceLogicService-->>DashboardService: Not Found
+        DashboardService-->>DashBoardResource: Not Found
+        DashBoardResource-->>ActorUser: Http Not Found
+    else DataSource found
+        DataSourceValueRepository-->>DataSourceService: DataSourceEntity
+        DataSourceService-->>DataSourceLogicService: DataSourceEntity
+        
+        DataSourceLogicService->>DataSourceLogicService: 1.1.1.2: validatePermissionToChangeDataSource(CompanyUser, DataSourceEntity)
+        alt If User has permission
+            DataSourceLogicService->>DataSourceValueService: 1.1.1.3: findByDataSource(DataSourceEntity)
+            DataSourceValueService->>DataSourceValueRepository: 1.1.1.3.1: findByDataSource(DataSourceEntity)
+            DataSourceValueRepository-->>DataSourceValueService: List<DataSourceValue>
+            DataSourceValueService-->>DataSourceLogicService: List<DataSourceValueDTO>
+            
+            loop For each DataSourceValue
+                DataSourceLogicService->>DataSourceValueRepository: 1.1.1.4: delete(DataSourceValue)
+                DataSourceValueRepository-->>DataSourceLogicService: Delete success
+            end
+            DataSourceLogicService->>DataSourceValueRepository: 1.1.1.5: delete(DataSourceEntity)
+            DataSourceValueRepository-->>DataSourceLogicService: Delete success
+            DataSourceLogicService-->>DashboardService: Delete success
+            DashboardService-->>DashBoardResource: Delete success
+            DashBoardResource-->>ActorUser: Http No Content
+        else If User does not have permission
+            DataSourceLogicService-->>DashboardService: Unauthorized
+            DashboardService-->>DashBoardResource: Unauthorized
+            DashBoardResource-->>ActorUser: Http Unauthorized
+        end
+    end
+
+```
 
 This endpoint receives and CompanyUser and also an Long variable which is the id. It is used to delete an Rating.
 
@@ -865,7 +1634,30 @@ After this, in the main class DashBoardResource, and Http no content is presente
 
 #### Endpoint: /dashboard/getUserFromCompany
 
-![getCompany](../docs/Images/image2023-1-11_9-58-21.jpg)
+```mermaid
+sequenceDiagram
+    participant ActorUser 
+    participant DashBoardResource 
+    participant DashboardService 
+    participant CompanyLogicService 
+    participant CompanyUserService
+    participant CompanyUserRepository 
+    participant EntityMapper 
+
+    ActorUser->>+DashBoardResource: 1: getUserFromCompany(CompanyUser)
+    DashBoardResource->>+DashboardService: 1.1: getUsersFromCompany(CompanyUser)
+    DashboardService->>+CompanyLogicService: 1.1.1: getUsersFromCompany(CompanyUser)
+    CompanyLogicService->>+CompanyUserService: 1.1.1.1: findAllUserFromCompany(CompanyUser.companyName)
+    CompanyUserService->>+CompanyUserRepository: 1.1.1.1.1: findByCompanyName(CompanyUser.companyName)
+    CompanyUserRepository-->>-CompanyUserService: List<CompanyUserEntity>
+    CompanyUserService->>+EntityMapper: 1.1.1.1.2: toDto(List<CompanyUserEntity>)
+    EntityMapper-->>-CompanyUserService: List<CompanyUserDTO>
+    CompanyUserService-->>-CompanyLogicService: List<CompanyUserDTO>
+    CompanyLogicService-->>-DashboardService: List<CompanyUserDTO>
+    DashboardService-->>-DashBoardResource: List<CompanyUserDTO>
+    DashBoardResource-->>-ActorUser: Display CompanyUsers
+
+```
 
 This endpoint receives as an parameter an CompanyUser. It is used to retrieve an List of CompanyUserDto from an company.
 
