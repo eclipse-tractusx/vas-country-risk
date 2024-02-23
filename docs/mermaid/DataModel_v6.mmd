@@ -1,0 +1,99 @@
+classDiagram
+%%CompanyUser
+    class CompanyUser {
+        name: String+
+        email: String+
+        company: String+
+    }
+%%Country
+    class Country {
+        country: String+
+        iso2: String
+        iso3: String
+        continent: String
+    }
+%%DataSource
+    class DataSource {
+        dataSourceName: String+
+        type: Type+
+        yearPublished: Integer+
+        fileName: String
+        createDate: Instant
+    }
+%%Range
+    class Range {
+        range: RangeType+
+        value: Integer+
+        description: String
+    }
+%%File
+    class File {
+        fileName: String+
+        content: Blob
+        createDate: Instant
+        createdBy: String
+        version: Float
+    }
+
+%%Region
+    class Region {
+        name: String+
+        type: Type
+        description: String
+    }
+%% Report
+    class Report {
+        reportName: String
+        companyUserName: String
+        company: String
+        type: Type
+        createDate: Instant
+        createdBy: String
+    }
+%% DataSourceValue
+    class DataSourceValue {
+        country: String+
+        iso2: String
+        iso3: String
+        continent: String
+        score: Float
+    }
+%% RangeType
+    class RangeType {
+        enum
+        MAX()
+        Between()
+        Min()
+    }
+%% Type
+    class Type {
+        enum
+        Global()
+        Company()
+        Custom()
+    }
+%% RegionValue
+    class RegionValue {
+        country String
+        iso2 String
+        iso3 String
+        continent String
+    }
+%% ReportValues
+    class ReportValues {
+        name String
+        value String
+    }
+
+%% Relations
+    CompanyUser --o DataSource
+    CompanyUser --o Range
+    CompanyUser "1" --o "1..*" File
+    CompanyUser --o Region
+    DataSource --o DataSourceValue
+    DataSource ..o "1..*" Type
+    Range ..> RangeType
+    Region ..> Type
+    Region --o "1..*" RegionValue
+    Report ..> Type
+    Report --o "1..*" ReportValues
