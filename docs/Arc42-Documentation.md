@@ -99,7 +99,59 @@ It will determine what columns we will see on the Table.
 
 # System Scope and Context
 
-![System Scope](../docs/Images/StandardisedDataExchange.png)
+```mermaid
+graph LR
+    style CatenaXPortal fill:#ffb,stroke:#333,stroke-width:2px
+    style CountryRiskApplication fill:#ffb,stroke:#333,stroke-width:2px
+    style ExternalPartners fill:#ffb,stroke:#333,stroke-width:2px
+    style BPDM fill:#ffb,stroke:#333,stroke-width:2px
+    style Users fill:#bfb,stroke:#333,stroke-width:1px
+    style Gate fill:#bfb,stroke:#333,stroke-width:1px
+
+    subgraph CatenaXPortal["Catena-X Portal"]
+        KeycloakServer["Keycloak Server User Management"]
+    end
+    
+    subgraph CountryRiskApplication["Country Risk Application"]
+        ReactJSFrontEnd["ReactJS Front-end"]
+        JavaBackEnd["Java Back-end"]
+        PostgreSQLDatabase["PostgreSQL Database"]
+        DashboardController["Dashboard Controller"]
+    end
+
+    subgraph ExternalPartners["External Partners"]
+        Systems["Systems"]
+        subgraph Users["Users"]
+            User["User"]
+            AdminUser["Admin User"]
+            OtherRoles["Other Roles"]
+        end
+    end
+
+    subgraph BPDM["BPDM"]
+        Pool["Pool"]
+        subgraph Gate["Gate"]
+            SharingMemberGate1["Sharing Member Gate"]
+            SharingMemberGate2["Sharing Member Gate"]
+            SharingMemberGate3["Sharing Member Gate"]
+        end
+    end
+
+    CountryRiskApplication -->|Keycloak API auth| CatenaXPortal
+    Users -->|Login to Portal| CatenaXPortal
+    Users -->|Login to Dashboard| CountryRiskApplication
+    Users -->|Interact with Dashboard| CountryRiskApplication
+    ExternalPartners --> DashboardController
+    ReactJSFrontEnd --> DashboardController
+    DashboardController --> JavaBackEnd
+    JavaBackEnd --> PostgreSQLDatabase
+    Users -->|Request BP Data| BPDM
+    DashboardController -->|Get Sharing Member BP Data| Gate
+    SharingMemberGate1 --> Pool
+    SharingMemberGate2 --> Pool
+    SharingMemberGate3 --> Pool
+
+```
 
 
 #### Example Data Sources
@@ -195,7 +247,28 @@ Dun & Bradstreet, Country Risk ( http://www.dnbcountryrisk.com/, 14 Scores)
 
 ## System Scope and EDC Integration
 
-![EDC Integration](Images/StandardisedDataExchangeWithEdc.png)
+```mermaid
+graph TD
+    %% Scenario 1: Data Provision
+    subgraph S1["Scenario 1: Data Provision"]
+        OtherEDCSystems[("Other EDC Systems")]:::otherStyle -->|consumes data from| EDCProviderCR[("Country Risk EDC Provider")]:::providerStyle
+        EDCProviderCR -->|requests data from| CRApp[("Country Risk Application")]:::appStyle
+    end
+
+    %% Scenario 2: Data Consumption
+    subgraph S2["Scenario 2: Data Consumption"]
+        CRApp2[("Country Risk Application")]:::appStyle -->|consumes data from| EDCC[("Country Risk EDC Consumer")]:::consumerStyle
+        EDCC -->|requests data from| EDCGateProvider[("EDC Gate Provider")]:::gateStyle
+        EDCGateProvider -->|requests data from| BPDM[("BPDM Application")]:::bpdmStyle
+    end
+
+    classDef appStyle fill:#ffcccc,stroke:#333,stroke-width:4px;
+    classDef providerStyle fill:#ccffcc,stroke:#333,stroke-width:4px;
+    classDef consumerStyle fill:#ccccff,stroke:#333,stroke-width:4px;
+    classDef otherStyle fill:#fff0b3,stroke:#333,stroke-width:4px;
+    classDef gateStyle fill:#f0b3ff,stroke:#333,stroke-width:4px;
+    classDef bpdmStyle fill:#ffffb3,stroke:#333,stroke-width:4px;
+```
 
 **EDC Operator**
 * The diagram above shows two EDCs on Operator side. This is only for visualization purpose. On the prespective that both Country Risk and Gate are on the Operator Side.
@@ -203,7 +276,22 @@ Dun & Bradstreet, Country Risk ( http://www.dnbcountryrisk.com/, 14 Scores)
 
 ## Keycloak Authentication & Autorization Flow
 
-![Keycloak](Images/keyckloak.png)
+```mermaid
+sequenceDiagram
+    participant Country Risk EDC Consumer
+    participant BPDM EDC
+    participant OpenIDConnect Server
+    participant BPDM Gate
+
+    autonumber
+    Country Risk EDC Consumer -->> BPDM EDC: Request Provider for Api With OAuth2
+    BPDM EDC -->>OpenIDConnect Server: Send Client Credentials
+    OpenIDConnect Server-->> BPDM EDC: Respond OAuth2 Token
+    BPDM EDC -->> BPDM Gate: Send Request with OAuth2 Token in Authorization Header
+    BPDM Gate -->> OpenIDConnect Server: Validate Token
+    OpenIDConnect Server -->> BPDM Gate: Confirms validity of Token
+    BPDM Gate -->> BPDM Gate: Check "resource_access" section of OAuth Token
+```
 
 ### Handling Country Risk
 
@@ -640,7 +728,108 @@ To set the "Gate" Link the Administrator has to insert the following Information
 
 For all the planned use cases, a database was defined where we tried to optimize the relationships and the reuse of dynamic tables to the maximum to avoid extensive links and fields.
 
-![Database](../docs/Images/DataModel_v6.png)
+```mermaid
+classDiagram
+%%CompanyUser
+    class CompanyUser {
+        name: String+
+        email: String+
+        company: String+
+    }
+%%Country
+    class Country {
+        country: String+
+        iso2: String
+        iso3: String
+        continent: String
+    }
+%%DataSource
+    class DataSource {
+        dataSourceName: String+
+        type: Type+
+        yearPublished: Integer+
+        fileName: String
+        createDate: Instant
+    }
+%%Range
+    class Range {
+        range: RangeType+
+        value: Integer+
+        description: String
+    }
+%%File
+    class File {
+        fileName: String+
+        content: Blob
+        createDate: Instant
+        createdBy: String
+        version: Float
+    }
+
+%%Region
+    class Region {
+        name: String+
+        type: Type
+        description: String
+    }
+%% Report
+    class Report {
+        reportName: String
+        companyUserName: String
+        company: String
+        type: Type
+        createDate: Instant
+        createdBy: String
+    }
+%% DataSourceValue
+    class DataSourceValue {
+        country: String+
+        iso2: String
+        iso3: String
+        continent: String
+        score: Float
+    }
+%% RangeType
+    class RangeType {
+        enum
+        MAX()
+        Between()
+        Min()
+    }
+%% Type
+    class Type {
+        enum
+        Global()
+        Company()
+        Custom()
+    }
+%% RegionValue
+    class RegionValue {
+        country String
+        iso2 String
+        iso3 String
+        continent String
+    }
+%% ReportValues
+    class ReportValues {
+        name String
+        value String
+    }
+
+%% Relations
+    CompanyUser --o DataSource
+    CompanyUser --o Range
+    CompanyUser "1" --o "1..*" File
+    CompanyUser --o Region
+    DataSource --o DataSourceValue
+    DataSource ..o "1..*" Type
+    Range ..> RangeType
+    Region ..> Type
+    Region --o "1..*" RegionValue
+    Report ..> Type
+    Report --o "1..*" ReportValues
+
+```
 
 Entities:
 
@@ -959,7 +1148,34 @@ Max → 51-100 that represents red color
 
 #### Endpoint: /dashboard/getCountryFilterByISO2
 
-![filterIso2](../docs/Images/DashBoardResource_getCompanyBpns.jpg)
+```mermaid
+sequenceDiagram
+    participant ActorUser 
+    participant DashBoardResource 
+    participant DashboardService 
+    participant CountryLogicService 
+    participant ExternalBusinessPartnersLogicService 
+    participant CompanyUserDTO 
+    participant BusinessPartnersDTO 
+    participant CountryDTO 
+
+    ActorUser->>+DashBoardResource: 1: getCountries(CompanyUser)
+    DashBoardResource->>+DashboardService: 1.1: getCountries(CompanyUser)
+    DashboardService->>+CountryLogicService: 1.1.1: getCountryFilterByISO2(CompanyUser)
+    
+    CountryLogicService->>+CountryLogicService: 1.1.1.1: findAll()
+    CountryLogicService->>CountryLogicService: 1.1.1.2: distinctByISO2()
+    loop For Each CountryDTO
+        CountryLogicService->>+ExternalBusinessPartnersLogicService: 1.1.1.3: getTotalBpnByCountry(CountryDTO, CompanyUserDTO)
+        ExternalBusinessPartnersLogicService->>+ExternalBusinessPartnersLogicService: 1.1.1.3.1: getExternalBusinessPartners(CompanyUserDTO)
+        ExternalBusinessPartnersLogicService-->>-CountryLogicService: List<BusinessPartnersDTO>
+        CountryLogicService->>CountryLogicService: 1.1.1.3: setTotalBpn(List<BusinessPartnersDTO>)
+    end
+    CountryLogicService-->>-DashboardService: List<CountryDTO>
+    DashboardService-->>-DashBoardResource: List<CountryDTO>
+    DashBoardResource-->>-ActorUser: Display Countries
+
+```
 
 This endpoint retrieves all the Countries ordered by their ISO2 code. As a parameter it receives an CompanyUser object.
 
