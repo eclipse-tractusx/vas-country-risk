@@ -1,0 +1,29 @@
+classDiagram
+class CompanyUserUI {
+<<component>>
+}
+class WorldMapView {
+<<component>>
+}
+class AvailableRatings {
+<<component>>
+}
+class AvailableRanges {
+<<component>>
+}
+class BPNTable {
+<<component>>
+}
+class CountryPicker {
+<<component>>
+}
+class CompanyView {
+<<component>>
+}
+
+    CompanyUserUI --|> WorldMapView : Interface
+    CompanyUserUI --|> AvailableRatings : Interface
+    CompanyUserUI --|> AvailableRanges : Interface
+    CompanyUserUI --|> BPNTable : Interface
+    CompanyUserUI --|> CountryPicker : Interface
+    CompanyUserUI --|> CompanyView : Interface
