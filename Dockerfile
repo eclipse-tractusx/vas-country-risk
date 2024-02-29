@@ -19,7 +19,7 @@
 #*******************************************************************************
 
 # Base image
-FROM node:20-alpine AS compile-image
+FROM node:21-alpine AS compile-image
 
 # Set work directory
 WORKDIR /app
