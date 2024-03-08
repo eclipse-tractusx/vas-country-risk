@@ -21,7 +21,9 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
 import { getAll } from "../../services/dashboard-api";
 
-import { Dialog, Table } from "cx-portal-shared-components";
+import { Dialog } from "cx-portal-shared-components";
+import { Table } from "@catena-x/portal-shared-components";
+import { Table as Table1 } from "cx-portal-shared-components";
 import "./styles.scss";
 import { columns } from "./tableColumns";
 import { RangesContext } from "../../../contexts/ranges";
@@ -132,28 +134,29 @@ const DashboardTable = (ratings, years) => {
         <Table
           className="table"
           columns={tableColumns}
-          rowsCount={data.length}
-          rows={data}
-          pageSize={15}
-          rowHeight={50}
-          headerHeight={40}
-          autoHeight={true}
           checkboxSelection
+          disableColumnFilter
+          disableColumnMenu
+          disableColumnSelector
+          disableDensitySelector
+          disableSelectionOnClick
           columnBuffer={columns().length}
-          disableColumnMenu={true} //Remove Filtering
+          noRowsMsg="No rows"
+          onSearch={fetchData}
           getRowClassName={(params) => `${params.row.status}`}
           onSelectionModelChange={(ids) => {
             const selectedIds = new Set(ids);
             const selectedRows = data.filter((row) => selectedIds.has(row.id));
             setSelectedRows(selectedRows);
           }}
-          toolbar={{
-            buttonLabel: "Export to csv",
-            onButtonClick: exportCsv,
-            onSearch: fetchData,
-            title: "Number of Filtered Business Partners:",
-          }}
-        ></Table>
+          rowHeight={50}
+          rows={data}
+          searchPlaceholder="Search by username"
+          title="Number of Filtered Business Partners:"
+          toolbarVariant="basic"
+          onButtonClick={exportCsv}
+          buttonLabel="Export to csv"
+        />
       </div>
       <Dialog open={openDetailGrid} onClose={onCloseDetailGridFunction}>
         <DetailDialog

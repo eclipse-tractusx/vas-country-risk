@@ -23,11 +23,13 @@ import Dialog from "@mui/material/Dialog";
 import FormLabel from "@mui/material/FormLabel";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import { Alert, DialogContent } from "@catena-x/portal-shared-components";
+import { Alert } from "@catena-x/portal-shared-components";
+import Tooltip from "@mui/material/Tooltip";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { PageSnackbar } from "@catena-x/portal-shared-components";
 
 import {
   DialogActions,
-  Dropzone,
   DialogHeader,
   Button,
   Input,
@@ -35,8 +37,6 @@ import {
 import {
   getReportsByCompanyUser,
   saveReports,
-  deleteReport,
-  updateReports,
 } from "../../services/reports-api";
 import UserService from "../../services/UserService";
 import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
@@ -48,18 +48,12 @@ import { CountryContext } from "../../../contexts/country";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { ReportContext } from "../../../contexts/reports";
 import { Report } from "../../model/Report";
-
 import { ReloadContext } from "../../../contexts/refresh";
-import CloseIcon from "@mui/icons-material/Close";
-import Collapse from "@mui/material/Collapse";
-
-import { IconButton } from "cx-portal-shared-components";
 import DeleteIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import ShareReport from "../ShareReport/ShareReport";
 import DeleteUpdateComponent from "../DeleteUpdateComponent/DeleteUpdateComponent";
-
 import { DeleteOrUpdate } from "../../model/DeleteOrUpdate";
 
 const Reports = () => {
@@ -100,7 +94,6 @@ const Reports = () => {
 
   //Alert trigger consts Delete/Save
   const [severityAlert, setSeverityAlert] = useState("");
-  const [severityMessageAlert, setSeverityMessageAlert] = useState("");
 
   //Gets Current Roles for the User
   const role = companyUser.roles;
@@ -189,7 +182,6 @@ const Reports = () => {
           if (res.status === 200) {
             setOpenAlert(true);
             setSeverityAlert("success");
-            setSeverityMessageAlert("Report saved sucessfully!");
           }
         })
         .catch((response) => {
@@ -289,33 +281,23 @@ const Reports = () => {
       setOpenWarning(true);
     };
 
-  const validateUpdateDeleteResponseCode = (
-    code,
-    successMessage,
-    errorMessage
-  ) => {
+  const validateUpdateDeleteResponseCode = (code) => {
     if (code.status === 204) {
       setOpenAlert(true);
       setSeverityAlert("success");
-      setSeverityMessageAlert(successMessage);
+
       timerFunction();
     } else if (code === 401) {
       setOpenAlert(true);
       setSeverityAlert("error");
-      setSeverityMessageAlert(errorMessage);
+
       timerFunction();
     } else if (code === 500 || code === 400) {
       setOpenAlert(true);
       setSeverityAlert("error");
-      setSeverityMessageAlert("Wrong Request Type!");
+
       timerFunction();
     }
-  };
-
-  const hideAlert = () => {
-    setSeverityAlert("");
-    setSeverityMessageAlert("");
-    setOpenAlert(!openAlert);
   };
 
   const columnsUser = [
@@ -411,11 +393,9 @@ const Reports = () => {
     if (timer) {
       clearTimeout(timer);
     }
-
     setTimer(
       setTimeout(() => {
         setSeverityAlert("");
-        setSeverityMessageAlert("");
         setOpenAlert(false);
       }, 4000)
     );
@@ -423,25 +403,6 @@ const Reports = () => {
 
   return (
     <div className="reportdiv">
-      <div className="alertDialog">
-        <Collapse in={openAlert}>
-          <Alert
-            action={
-              <IconButton
-                aria-label="close"
-                color="inherit"
-                size="small"
-                onClick={hideAlert}
-              >
-                <CloseIcon fontSize="inherit" />
-              </IconButton>
-            }
-            severity={severityAlert}
-          >
-            <span>{severityMessageAlert}</span>
-          </Alert>
-        </Collapse>
-      </div>
       <div className="reports-header">
         <TextField
           InputProps={{
@@ -515,7 +476,15 @@ const Reports = () => {
         <div className="Dialog-Expand-Div">
           <FormLabel className="FirstLabel" component="legend">
             Select availability
+            <Tooltip title="You need 'Company Admin' permissions to make this report available for the company.">
+              <InfoOutlinedIcon
+                fontSize="small"
+                color="primary"
+                style={{ marginLeft: 4 }}
+              />
+            </Tooltip>
           </FormLabel>
+
           <div className="CheckBox-Div">
             <RadioGroup
               value={valueType}
@@ -586,6 +555,14 @@ const Reports = () => {
           closeDialogsDeleteAndUpdate={closeDialogsDeleteAndUpdate}
         ></ShareReport>
       </Dialog>
+      <PageSnackbar
+        autoClose={false}
+        open={severityAlert}
+        severity="success"
+        title={"Success"}
+        description={"Report Saved sucessfully"}
+        showIcon={true}
+      ></PageSnackbar>
     </div>
   );
 };

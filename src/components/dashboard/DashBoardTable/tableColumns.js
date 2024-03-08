@@ -38,13 +38,13 @@ export const columns = (ranges, onDetailClick, roles) => {
     {
       description: "Business Partner Number",
       field: "bpn",
-      flex: 1.5,
+      flex: 2,
       headerName: "Business Partner Number",
     },
     {
       description: "Legal Name",
       field: "legalName",
-      flex: 1.5,
+      flex: 2,
       headerName: "Legal Name",
     },
     ...hiddenColumns.map((field) => ({
@@ -57,20 +57,20 @@ export const columns = (ranges, onDetailClick, roles) => {
     {
       description: "Country",
       field: "country",
-      flex: 1.5,
+      flex: 1,
       headerName: "Country",
     },
     {
       description: "City",
       field: "city",
-      flex: 1.5,
+      flex: 1.2,
       headerName: "City",
     },
     {
       description: "Score",
       field: "score",
       headerName: "Score",
-      flex: 1.5,
+      flex: 1,
       cellClassName: (params) =>
         clsx("super-app", {
           minColor: params.value < ranges[1][0],
@@ -82,7 +82,7 @@ export const columns = (ranges, onDetailClick, roles) => {
     {
       description: "Rating",
       field: "rating",
-      flex: 1.5,
+      flex: 1,
       headerName: "Rating",
       cellClassName: (params) =>
         clsx("super-app", {
@@ -92,7 +92,7 @@ export const columns = (ranges, onDetailClick, roles) => {
     {
       description: "Supplier",
       field: "supplier",
-      flex: 1.5,
+      flex: 1.2,
       headerName: "Supplier",
       hide: !hasReadSuppliersRole,
       renderCell: (params) =>
@@ -105,7 +105,7 @@ export const columns = (ranges, onDetailClick, roles) => {
     {
       description: "Customer",
       field: "customer",
-      flex: 1.5,
+      flex: 1.2,
       headerName: "Customer",
       hide: !hasReadCustomersRole,
       renderCell: (params) =>
