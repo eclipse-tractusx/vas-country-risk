@@ -24,14 +24,10 @@ import {
   Alert,
   DialogHeader,
   DialogContent,
+  Input,
 } from "@catena-x/portal-shared-components";
 
-import {
-  DialogActions,
-  Dropzone,
-  Button,
-  Input,
-} from "cx-portal-shared-components";
+import { DialogActions, Dropzone, Button } from "cx-portal-shared-components";
 
 import Dialog from "@mui/material/Dialog";
 import UserService from "../../services/UserService";

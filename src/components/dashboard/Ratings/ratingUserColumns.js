@@ -17,7 +17,7 @@
 *
 * SPDX-License-Identifier: Apache-2.0
 ********************************************************************************/
-import { IconButton } from "cx-portal-shared-components";
+import { IconButton } from "@catena-x/portal-shared-components";
 import DeleteIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import { GridActionsCellItem } from "@mui/x-data-grid";
 import { useCallback } from "react";

@@ -8,7 +8,6 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "5.10.6",
-    "@mui/x-data-grid": "5.17.26",
     "@mui/types": "7.2.5",
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "14.1.0",
@@ -87,7 +86,6 @@
       "postcss": "^8.4.35"
     },
     "eslint": "8.32.0",
-    "react-router-dom": "6.14.1",
     "keycloak-js": "20.0.5",
     "@mui/icons-material": "5.10.6",
     "@mui/material": "5.10.7",
@@ -96,8 +94,7 @@
       "@mui/types": "7.2.5",
       "@mui/system": {
         "@mui/types": "7.2.5"
-      },
-      "@mui/x-data-grid": "6.18.4"
+      }
     },
     "i18next": "22.5.1"
   },

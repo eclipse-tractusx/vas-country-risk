@@ -303,7 +303,6 @@ const Ratings = ({
       <Alert severity={severity}>
         <span>{severityMessage}</span>
       </Alert>
-
       <Dialog
         className="warning"
         aria-labelledby="customized-dialog-title"

@@ -21,9 +21,8 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
 import { getAll } from "../../services/dashboard-api";
 
-import { Dialog } from "cx-portal-shared-components";
+import { Dialog } from "@catena-x/portal-shared-components";
 import { Table } from "@catena-x/portal-shared-components";
-import { Table as Table1 } from "cx-portal-shared-components";
 import "./styles.scss";
 import { columns } from "./tableColumns";
 import { RangesContext } from "../../../contexts/ranges";
@@ -33,7 +32,7 @@ import { CompanyUserContext } from "../../../contexts/companyuser";
 import { GatesContext } from "../../../contexts/gates";
 import DetailDialog from "../DetailDialog/DetailDialog";
 
-const DashboardTable = (ratings, years) => {
+const DashboardTable2 = (ratings, years) => {
   //Data Fetch
   const [data, setData] = useState([]);
   const [globalData, setGlobalData] = useState([]);
@@ -46,6 +45,7 @@ const DashboardTable = (ratings, years) => {
   const [openDetailGrid, setOpenDetailGrid] = useState(false);
   const [selectedDetailRow, setSelectedDetailRow] = useState([]);
   const [tableColumns, setTableColumns] = useState([]);
+  const [expr, setExpr] = useState("");
   const openDetailGridFunction = (row) => {
     setOpenDetailGrid(true);
     setSelectedDetailRow([row]);
@@ -57,6 +57,7 @@ const DashboardTable = (ratings, years) => {
 
   const fetchData = (expr) => {
     const lexpr = expr.toLowerCase();
+    setExpr(expr);
     getAll(
       ratings.getRatings,
       ratings.years,
@@ -78,7 +79,6 @@ const DashboardTable = (ratings, years) => {
   const exportCsv = () => {
     const newArray = [];
     let csvContent = "data:text/csv;charset=utf-8,\uFEFF";
-
     newArray.push(Object.keys(selectedRows[0]));
     const values = selectedRows.map((row) => Object.values(row));
     [...newArray, ...values].forEach(function (rowArray) {
@@ -134,28 +134,24 @@ const DashboardTable = (ratings, years) => {
         <Table
           className="table"
           columns={tableColumns}
+          rowsCount={data.length}
           checkboxSelection
-          disableColumnFilter
-          disableColumnMenu
-          disableColumnSelector
-          disableDensitySelector
-          disableSelectionOnClick
-          columnBuffer={columns().length}
-          noRowsMsg="No rows"
-          onSearch={fetchData}
-          getRowClassName={(params) => `${params.row.status}`}
-          onSelectionModelChange={(ids) => {
+          columnHeadersBackgroundColor="rgb(233, 233, 233);"
+          rows={data}
+          pageSize={15}
+          rowHeight={50}
+          headerHeight={40}
+          onRowSelectionModelChange={(ids) => {
             const selectedIds = new Set(ids);
             const selectedRows = data.filter((row) => selectedIds.has(row.id));
             setSelectedRows(selectedRows);
           }}
-          rowHeight={50}
-          rows={data}
-          searchPlaceholder="Search by username"
+          buttonLabel="Export to csv"
+          onButtonClick={exportCsv}
+          onSearch={fetchData}
+          searchExpr={expr}
           title="Number of Filtered Business Partners:"
           toolbarVariant="basic"
-          onButtonClick={exportCsv}
-          buttonLabel="Export to csv"
         />
       </div>
       <Dialog open={openDetailGrid} onClose={onCloseDetailGridFunction}>
@@ -168,4 +164,4 @@ const DashboardTable = (ratings, years) => {
   );
 };
 
-export default DashboardTable;
+export default DashboardTable2;

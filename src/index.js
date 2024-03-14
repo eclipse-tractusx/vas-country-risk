@@ -23,7 +23,9 @@ import ReactDOM from "react-dom/client";
 import {
   SharedThemeProvider,
   SharedCssBaseline,
-} from "cx-portal-shared-components";
+} from "@catena-x/portal-shared-components";
+//} from "cx-portal-shared-components";
+
 import UserService from "./components/services/UserService";
 import { getHostname } from "./components/services/EnvironmentService";
 
@@ -42,7 +44,6 @@ UserService.init((user) => {
   root.render(
     <React.StrictMode>
       {" "}
-      <SharedCssBaseline />{" "}
       <SharedThemeProvider>
         {" "}
         <Router>

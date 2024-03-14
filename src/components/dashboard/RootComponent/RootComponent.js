@@ -28,7 +28,7 @@ const RootComponent = ({ user }) => {
     if (user.access) {
       setShouldShowErrorPage(false);
     } else {
-      setShouldShowErrorPage(false);
+      setShouldShowErrorPage(true);
     }
   }, [user]);
 

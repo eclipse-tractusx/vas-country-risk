@@ -19,21 +19,22 @@
  ********************************************************************************/
 import React, { useState, useEffect, useContext } from "react";
 import "./styles.scss";
-import Dialog from "@mui/material/Dialog";
+
 import FormLabel from "@mui/material/FormLabel";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import { Alert } from "@catena-x/portal-shared-components";
 import Tooltip from "@mui/material/Tooltip";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import { PageSnackbar } from "@catena-x/portal-shared-components";
 
 import {
+  Alert,
+  Button,
   DialogActions,
   DialogHeader,
-  Button,
   Input,
-} from "cx-portal-shared-components";
+  PageSnackbar,
+  Dialog,
+} from "@catena-x/portal-shared-components";
 import {
   getReportsByCompanyUser,
   saveReports,
@@ -102,6 +103,8 @@ const Reports = () => {
   const [severityMessage, setSeverityMessage] = useState("");
   const [reportType, setReportType] = useState(false);
   const [editDeleteShareActive, setEditDeleteShareActive] = useState(true);
+  const [snackBarMessage, setSnackBarMessage] = useState("");
+  const [snackBarMessageTitle, setSnackBarMessageTitle] = useState("");
 
   //Open Error/Sucess Dialog
   const [openAlert, setOpenAlert] = React.useState(false);
@@ -182,6 +185,9 @@ const Reports = () => {
           if (res.status === 200) {
             setOpenAlert(true);
             setSeverityAlert("success");
+            setSeverity("success");
+            setSnackBarMessageTitle("Success");
+            setSnackBarMessage("Report Saved Successfully");
           }
         })
         .catch((response) => {
@@ -202,6 +208,7 @@ const Reports = () => {
     setSeverity("warning");
     setSeverityMessage("Custom Rating Selected");
   };
+
   const openDialog = () => {
     setSeverity("");
     setSeverityMessage("");
@@ -281,21 +288,33 @@ const Reports = () => {
       setOpenWarning(true);
     };
 
-  const validateUpdateDeleteResponseCode = (code) => {
+  const validateUpdateDeleteResponseCode = (
+    code,
+    successMessage,
+    errorMessage
+  ) => {
+    setSnackBarMessage();
+    console.log("code", code);
     if (code.status === 204) {
       setOpenAlert(true);
       setSeverityAlert("success");
-
       timerFunction();
+      setSnackBarMessage(successMessage);
+      setSeverity("success");
+      setSnackBarMessageTitle("Success");
     } else if (code === 401) {
       setOpenAlert(true);
       setSeverityAlert("error");
-
       timerFunction();
+      setSnackBarMessage(errorMessage);
+      setSeverity("error");
+      setSnackBarMessageTitle("Error");
     } else if (code === 500 || code === 400) {
       setOpenAlert(true);
       setSeverityAlert("error");
-
+      setSnackBarMessage(errorMessage);
+      setSeverity("error");
+      setSnackBarMessageTitle("Error");
       timerFunction();
     }
   };
@@ -343,7 +362,11 @@ const Reports = () => {
       width: 50,
       getActions: (params) => [
         <GridActionsCellItem
-          icon={<SaveOutlinedIcon />}
+          icon={
+            <SaveOutlinedIcon
+              color={editDeleteShareActive ? "disabled" : "primary"}
+            />
+          }
           label="Save"
           onClick={onClickActionDeleteUpdate(
             params.id,
@@ -352,6 +375,7 @@ const Reports = () => {
           )}
           disabled={editDeleteShareActive}
           data-testid={"saveIcon"}
+          color="primary"
         />,
       ],
     },
@@ -361,7 +385,11 @@ const Reports = () => {
       width: 50,
       getActions: (params) => [
         <GridActionsCellItem
-          icon={<DeleteIcon />}
+          icon={
+            <DeleteIcon
+              color={editDeleteShareActive ? "disabled" : "primary"}
+            />
+          }
           label="Delete"
           onClick={onClickActionDeleteUpdate(
             params.id,
@@ -379,7 +407,11 @@ const Reports = () => {
       width: 50,
       getActions: (params) => [
         <GridActionsCellItem
-          icon={<ShareOutlinedIcon />}
+          icon={
+            <ShareOutlinedIcon
+              color={editDeleteShareActive ? "disabled" : "primary"}
+            />
+          }
           label="Share"
           onClick={onClickShare(params.id)}
           disabled={editDeleteShareActive}
@@ -461,7 +493,7 @@ const Reports = () => {
       </Dialog>
 
       <Dialog
-        maxWidth="sm"
+        maxWidth="md"
         open={open}
         onClose={closeDialogs}
         className="Dialog-Expand"
@@ -558,9 +590,9 @@ const Reports = () => {
       <PageSnackbar
         autoClose={false}
         open={severityAlert}
-        severity="success"
-        title={"Success"}
-        description={"Report Saved sucessfully"}
+        severity={severity}
+        title={snackBarMessageTitle}
+        description={snackBarMessage}
         showIcon={true}
       ></PageSnackbar>
     </div>

@@ -19,7 +19,7 @@
  ********************************************************************************/
 import clsx from "clsx";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { IconButton } from "cx-portal-shared-components";
+import { IconButton } from "@catena-x/portal-shared-components";
 import { capitalize } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -38,7 +38,7 @@ export const columns = (ranges, onDetailClick, roles) => {
     {
       description: "Business Partner Number",
       field: "bpn",
-      flex: 2,
+      flex: 2.5,
       headerName: "Business Partner Number",
     },
     {
@@ -47,30 +47,23 @@ export const columns = (ranges, onDetailClick, roles) => {
       flex: 2,
       headerName: "Legal Name",
     },
-    ...hiddenColumns.map((field) => ({
-      description: field,
-      field,
-      flex: 1.5,
-      headerName: capitalize(field),
-      hide: true,
-    })),
     {
       description: "Country",
       field: "country",
-      flex: 1,
+      flex: 1.4,
       headerName: "Country",
     },
     {
       description: "City",
       field: "city",
-      flex: 1.2,
+      flex: 1.4,
       headerName: "City",
     },
     {
       description: "Score",
       field: "score",
       headerName: "Score",
-      flex: 1,
+      flex: 1.2,
       cellClassName: (params) =>
         clsx("super-app", {
           minColor: params.value < ranges[1][0],
@@ -82,7 +75,7 @@ export const columns = (ranges, onDetailClick, roles) => {
     {
       description: "Rating",
       field: "rating",
-      flex: 1,
+      flex: 1.5,
       headerName: "Rating",
       cellClassName: (params) =>
         clsx("super-app", {
@@ -92,7 +85,7 @@ export const columns = (ranges, onDetailClick, roles) => {
     {
       description: "Supplier",
       field: "supplier",
-      flex: 1.2,
+      flex: 1.5,
       headerName: "Supplier",
       hide: !hasReadSuppliersRole,
       renderCell: (params) =>
@@ -105,7 +98,7 @@ export const columns = (ranges, onDetailClick, roles) => {
     {
       description: "Customer",
       field: "customer",
-      flex: 1.2,
+      flex: 1.6,
       headerName: "Customer",
       hide: !hasReadCustomersRole,
       renderCell: (params) =>
