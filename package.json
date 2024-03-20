@@ -75,7 +75,7 @@
     "sass": "^1.69.5",
     "@adobe/css-tools": ">=4.3.2",
     "follow-redirects": ">=1.15.4",
-    "postcss": "^8.4.31"
+    "postcss": "^8.4.38"
   },
   "overrides": {
     "react-simple-maps": {
