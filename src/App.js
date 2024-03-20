@@ -32,6 +32,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AboutPage from "./components/dashboard/AboutCard/AboutPage";
 import { FooterPortal } from "./components/dashboard/Footer/FooterPortal";
 import ErrorPageCR from "./components/dashboard/ErrorPage/ErrorPageCR";
+import SignOut from "./components/dashboard/SignOut";
+import NegotiationPage from "./components/dashboard/NegotiationPage/NegotiationPage";
 
 function App() {
   return (
@@ -51,6 +53,11 @@ function App() {
                         <Route path="/" element={<Dashboard />} />
                         <Route path="/about" element={<AboutPage />} />
                         <Route path="/error" element={<ErrorPageCR />} />
+                        <Route path="/logout" element={<SignOut />} />
+                        <Route
+                          path="/negotiation"
+                          element={<NegotiationPage />}
+                        />
                       </Routes>
                       <FooterPortal />
                     </div>

@@ -1,14 +1,14 @@
 {
   "name": "dashboard-app",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "license": "Apache-2.0",
   "private": true,
   "dependencies": {
-    "@catena-x/portal-shared-components": "2.1.30",
+    "react-dropzone": "^14.2.3",
+    "@catena-x/portal-shared-components": "^2.1.40",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "5.10.6",
-    "@mui/x-data-grid": "5.17.26",
     "@mui/types": "7.2.5",
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "14.1.0",
@@ -31,9 +31,7 @@
     "react-simple-maps": "^3.0.0",
     "react-svg-worldmap": "^2.0.0-alpha.16",
     "react-test-renderer": "^18.2.0",
-    "react-tooltip": "4.2.21",
-    "web-vitals": "^3.5.0",
-    "webpack": "5.89.0"
+    "react-tooltip": "4.2.21"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -71,11 +69,8 @@
     "@babel/preset-env": "^7.23.3",
     "@babel/preset-react": "^7.23.3",
     "babel-jest": "^29.7.0",
-    "jsdom": "22.0.0",
-    "sass": "^1.69.5",
-    "@adobe/css-tools": ">=4.3.2",
     "follow-redirects": ">=1.15.4",
-    "postcss": "^8.4.38"
+    "postcss": "^8.4.31"
   },
   "overrides": {
     "react-simple-maps": {
@@ -89,7 +84,6 @@
       "postcss": "^8.4.31"
     },
     "eslint": "8.32.0",
-    "react-router-dom": "6.14.1",
     "keycloak-js": "20.0.5",
     "@mui/icons-material": "5.10.6",
     "@mui/material": "5.10.7",
@@ -98,8 +92,7 @@
       "@mui/types": "7.2.5",
       "@mui/system": {
         "@mui/types": "7.2.5"
-      },
-      "@mui/x-data-grid": "6.18.4"
+      }
     },
     "i18next": "22.5.1"
   },
