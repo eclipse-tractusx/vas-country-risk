@@ -24,8 +24,10 @@ import {
   UserMenu,
   UserNav,
   LanguageSwitch,
-} from "cx-portal-shared-components";
+} from "@catena-x/portal-shared-components";
+import LogoutIcon from "@mui/icons-material/Logout";
 import UserService from "../../../services/UserService";
+import SignOut from "../../SignOut/index";
 import "./UserInfo.scss";
 import {
   getLogoutLink,
@@ -45,8 +47,6 @@ export const UserInfo = () => {
   };
 
   const logoutHref = getLogoutLink();
-
-  const aboutHref = getAboutLink();
 
   return (
     <div className="UserInfo">
@@ -69,17 +69,6 @@ export const UserInfo = () => {
             },
           ]}
         />
-
-        {/*<LanguageSwitch
-          current="en"
-          languages={[
-            {
-              key: "en",
-              name: "ENG",
-            },
-          ]}
-          onChange={function noRefCheck() {}}
-        />*/}
       </UserMenu>
     </div>
   );
