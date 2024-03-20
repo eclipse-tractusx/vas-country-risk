@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {
     "react-dropzone": "^14.2.3",
-    "@catena-x/portal-shared-components": "2.1.40",
+    "@catena-x/portal-shared-components": "^2.1.40",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "5.10.6",
@@ -70,7 +70,7 @@
     "@babel/preset-react": "^7.23.3",
     "babel-jest": "^29.7.0",
     "follow-redirects": ">=1.15.4",
-    "postcss": "^8.4.38"
+    "postcss": "^8.4.31"
   },
   "overrides": {
     "react-simple-maps": {
@@ -81,7 +81,7 @@
       "@svgr/webpack": "7.0.0"
     },
     "resolve-url-loader": {
-      "postcss": "^8.4.38"
+      "postcss": "^8.4.31"
     },
     "eslint": "8.32.0",
     "keycloak-js": "20.0.5",
