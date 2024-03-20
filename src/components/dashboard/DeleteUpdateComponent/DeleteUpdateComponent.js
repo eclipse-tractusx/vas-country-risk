@@ -25,7 +25,7 @@ import {
   DialogHeader,
   DialogContent,
   DialogActions,
-} from "cx-portal-shared-components";
+} from "@catena-x/portal-shared-components";
 import { updateReports, deleteReport } from "../../services/reports-api";
 import UserService from "../../services/UserService";
 import { Report } from "../../model/Report";
@@ -127,12 +127,13 @@ const DeleteUpdateComponent = ({
   };
 
   return (
-    <div className="Dialog-Expand-Div">
+    <div className="dialog-for-update-and-delete">
       <DialogHeader
+        className="dialog-header-up-delete"
         title={deleteUpdateData.operation}
         intro={deleteUpdateData.doubleCheckMessage}
       />
-      <DialogActions>
+      <DialogActions className="dialog-action-up-delete">
         <Button className="btn-no" variant="outlined" onClick={closeDialog}>
           No
         </Button>

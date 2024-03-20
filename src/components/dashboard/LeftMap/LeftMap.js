@@ -24,7 +24,7 @@ import {
   IconButton,
   Button,
   DialogHeader,
-} from "cx-portal-shared-components";
+} from "@catena-x/portal-shared-components";
 import "./styles.scss";
 import CustomWorldMap from "../CustomWorld/CustomWorldMap";
 import OpenWithIcon from "@mui/icons-material/ZoomIn";
@@ -119,7 +119,7 @@ const LeftMap = (ratings) => {
                     minMapWidth={0}
                     maxMapWidth={800}
                     minMapHeight={0}
-                    maxMapHeight={600}
+                    maxMapHeight={700}
                   ></CustomWorldMap>
                 </div>
                 <div className="progress-bar">
