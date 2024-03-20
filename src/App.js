@@ -32,6 +32,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AboutPage from "./components/dashboard/AboutCard/AboutPage";
 import { FooterPortal } from "./components/dashboard/Footer/FooterPortal";
 import ErrorPageCR from "./components/dashboard/ErrorPage/ErrorPageCR";
+import SignOut from "./components/dashboard/SignOut";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
                         <Route path="/" element={<Dashboard />} />
                         <Route path="/about" element={<AboutPage />} />
                         <Route path="/error" element={<ErrorPageCR />} />
+                        <Route path="/logout" element={<SignOut />} />
                       </Routes>
                       <FooterPortal />
                     </div>

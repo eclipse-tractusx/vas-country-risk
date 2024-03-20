@@ -43,9 +43,9 @@
       padding: 10px;
 
       .left-map {
+        flex-direction: column;
         align-items: center;
         display: flex;
-        flex-direction: column;
         border-radius: 20px;
         margin-right: auto;
         margin-left: auto;
@@ -53,6 +53,8 @@
         background-color: rgba(20, 177, 245, 0.132);
       }
       .right-map {
+        flex-direction: column;
+        align-items: center;
         border-radius: 20px;
         margin-right: auto;
         margin-left: auto;
