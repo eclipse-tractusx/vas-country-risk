@@ -21,19 +21,18 @@ import React, { useState, useContext, useEffect } from "react";
 import "./dialog-upload.scss";
 
 import {
-  Alert,
   DialogHeader,
   DialogContent,
-} from "@catena-x/portal-shared-components";
-
-import {
-  DialogActions,
-  Dropzone,
-  Button,
   Input,
-} from "cx-portal-shared-components";
+  Button,
+  Dialog,
+  DialogActions,
+  DropArea,
+  PageSnackbar,
+} from "@catena-x/portal-shared-components";
+import Tooltip from "@mui/material/Tooltip";
 
-import Dialog from "@mui/material/Dialog";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import UserService from "../../services/UserService";
 import FormLabel from "@mui/material/FormLabel";
 import Radio from "@mui/material/Radio";
@@ -48,6 +47,7 @@ import { downloadSampleCsvFile } from "../../services/files-api";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { ReloadContext } from "../../../contexts/refresh";
 import { getCountryRiskApi } from "../../services/EnvironmentService";
+import { Dropzone } from "cx-portal-shared-components";
 
 const UploadDownloadZone = () => {
   //Upload Button Handlers
@@ -56,7 +56,9 @@ const UploadDownloadZone = () => {
   const [autoUp, setAutoUp] = useState(false);
 
   const [severity, setSeverity] = useState("");
-  const [severityMessage, setSeverityMessage] = useState("");
+  const [snackBarMessage, setSnackBarMessage] = useState("");
+  const [snackBarMessageTitle, setSnackBarMessageTitle] = useState("");
+  const [openSnackBar, setOpenSnackBar] = useState(false);
   const { companyUser } = useContext(CompanyUserContext);
   const { reload, updateReload } = useContext(ReloadContext);
 
@@ -102,10 +104,12 @@ const UploadDownloadZone = () => {
   };
 
   const closeDialogs = () => {
+    setOpenSnackBar(false);
     setOpen(false);
     setAutoUp(false);
     setValidateSave(true);
-    setSeverityMessage("");
+    setSnackBarMessage("");
+    setSnackBarMessageTitle("");
     setSeverity("");
   };
   const openDialog = () => {
@@ -116,7 +120,7 @@ const UploadDownloadZone = () => {
 
   const saveRatingName = (event) => {
     setSeverity("");
-    setSeverityMessage("");
+
     if (event.target.value.length > 32 || event.target.value.length === 0) {
       setErrorTrigger(true);
       setOpenRatingName(null);
@@ -156,25 +160,30 @@ const UploadDownloadZone = () => {
     onChangeStatus: ({ meta }, file, status, allFiles) => {
       if (status[0].xhr) {
         if (status[0].xhr.status === 200) {
-          setSeverity("info");
-          setSeverityMessage("Your rating has been uploaded");
+          setOpenSnackBar(true);
+          setSeverity("success");
           updateReload(!reload);
+          setSnackBarMessage("Your rating has been uploaded");
+          setSnackBarMessageTitle("Success");
         } else if (meta.status === "error_upload") {
           if (status[0].xhr.status === 400) {
+            setOpenSnackBar(true);
             setSeverity("error");
-            setSeverityMessage(
+            setSnackBarMessage(
               "Rating name already exists. Please chose a different name"
             );
+            setSnackBarMessageTitle("Error");
           } else if (status[0].xhr.status === 406) {
+            setOpenSnackBar(true);
             setSeverity("error");
-            setSeverityMessage("Invalid Rating please check all the fields");
+            setSnackBarMessage("Invalid Rating please check all the fields");
+            setSnackBarMessageTitle("Error");
           } else {
+            setOpenSnackBar(true);
             setSeverity("error");
-            setSeverityMessage("Unexpected error");
           }
         } else if (meta.status === "exception_upload") {
           setSeverity("error");
-          setSeverityMessage("Unexpected error");
         }
       }
     },
@@ -211,12 +220,24 @@ const UploadDownloadZone = () => {
         Upload Rating
       </Button>
 
-      <Dialog open={open} onClose={closeDialogs} className="First-Dialog">
+      <Dialog
+        open={open}
+        onClose={closeDialogs}
+        className="First-Dialog"
+        maxWidth="md"
+      >
         <DialogHeader title="Upload a Rating" />
         <DialogContent className="content-expand">
           <div className="Dialog-Expand-Div">
             <FormLabel className="FirstLabel" component="legend">
               Select availability
+              <Tooltip title="You need 'Company Admin' permissions to make this report available for the company.">
+                <InfoOutlinedIcon
+                  fontSize="small"
+                  color="primary"
+                  style={{ marginLeft: 4 }}
+                />
+              </Tooltip>
             </FormLabel>
             <div className="CheckBox-Div">
               <RadioGroup
@@ -304,10 +325,6 @@ const UploadDownloadZone = () => {
         />
         <div className="Second-Expand-Div">
           <DialogContent>
-            <Alert severity={severity}>
-              <span>{severityMessage}</span>
-            </Alert>
-
             <Dropzone
               data-testid="dropzonetest"
               accept={dropzoneProps.accept}
@@ -340,6 +357,15 @@ const UploadDownloadZone = () => {
       >
         Download Template
       </Button>
+
+      <PageSnackbar
+        autoClose={true}
+        open={openSnackBar}
+        severity={severity}
+        title={snackBarMessageTitle}
+        description={snackBarMessage}
+        showIcon={true}
+      ></PageSnackbar>
     </div>
   );
 };

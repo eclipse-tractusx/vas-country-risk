@@ -24,7 +24,9 @@ import {
   UserMenu,
   UserNav,
   LanguageSwitch,
-} from "cx-portal-shared-components";
+} from "@catena-x/portal-shared-components";
+
+
 import UserService from "../../../services/UserService";
 import "./UserInfo.scss";
 import {
