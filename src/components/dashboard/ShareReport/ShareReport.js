@@ -25,13 +25,12 @@ import {
   DialogActions,
   DialogContent,
   DialogHeader,
-} from "cx-portal-shared-components";
+  Button,
+  Dialog,
+} from "@catena-x/portal-shared-components";
 import { getUserFromCompany } from "../../services/company-api";
 import { CompanyUserContext } from "../../../contexts/companyuser";
-import { Button } from "cx-portal-shared-components";
 import UserService from "../../services/UserService";
-
-import { Dialog } from "cx-portal-shared-components";
 import DeleteUpdateComponent from "../DeleteUpdateComponent/DeleteUpdateComponent";
 
 const ShareReport = ({ closeDialogs, closeDialogsDeleteAndUpdate }) => {
@@ -54,7 +53,6 @@ const ShareReport = ({ closeDialogs, closeDialogsDeleteAndUpdate }) => {
           return eachEmail;
         }
       });
-
       setEmailsData(filterEmailData);
     });
   }, []);
@@ -78,26 +76,24 @@ const ShareReport = ({ closeDialogs, closeDialogsDeleteAndUpdate }) => {
     <div className="shareReportComponent">
       <Box className="box-select">
         <DialogHeader
-        className="dialogHeader" 
-        title="Share an Report"
-        intro="Select here the persons which to share the reports"/>
+          className="dialogHeader"
+          title="Share a Report"
+          intro="Select here the persons which to share the reports"
+        />
         <DialogContent>
           <MultiSelectList
-            className="multibox-select"
-            clearText="clear"
-            filterOptionsArgs={{}}
-            helperText="Helper"
-            keyTitle="email"
-            items={emailsData}
             label="Share Report"
-            margin="dense"
-            noOptionsText="No Options"
-            notItemsText="not items selected"
-            onAddItem={onItemChange}
+            className="multibox-select"
             placeholder="Enter Person email (type min 2 character)"
-            tagSize="medium"
-            variant="filled"
-            popperHeight={0}
+            items={emailsData}
+            keyTitle="email"
+            onAddItem={onItemChange}
+            noOptionsText="No Email Available"
+            notItemsText="No Email Selected"
+            buttonAddMore="Add"
+            tagSize="large"
+            margin="none"
+            value={"Enter Person email (type min 2 character)"}
           />
         </DialogContent>
         <DialogActions>
@@ -114,12 +110,13 @@ const ShareReport = ({ closeDialogs, closeDialogsDeleteAndUpdate }) => {
         </DialogActions>
       </Box>
       <Dialog
+        maxWidth="md"
         className="share-double-check-warning"
         aria-labelledby="customized-dialog-title"
         open={openWarning}
         onClose={closeDialogs}
       >
-        <div className="Teste">
+        <div>
           {" "}
           <DeleteUpdateComponent
             deleteUpdateData={selectedItems}

@@ -19,7 +19,7 @@
  ********************************************************************************/
 import React, { useState, useContext, useEffect, useRef } from "react";
 import "./styles.scss";
-import Dialog from "@mui/material/Dialog";
+
 import {
   Table,
   Button,
@@ -27,7 +27,10 @@ import {
   DialogHeader,
   DialogContent,
   DialogActions,
-} from "cx-portal-shared-components";
+  Dialog,
+  PageSnackbar,
+} from "@catena-x/portal-shared-components";
+
 import Alert from "@mui/material/Alert";
 import { RatesContext } from "../../../contexts/rates";
 import {
@@ -62,8 +65,10 @@ const Ratings = ({
   const [sumTotalEffect, setSumTotalEffect] = useState(-1);
 
   const [severity, setSeverity] = useState("");
-  const [severityMessage, setSeverityMessage] = useState("");
-
+  const [setSeverityMessage] = useState("");
+  const [snackBarMessage, setSnackBarMessage] = useState("");
+  const [snackBarMessageTitle, setSnackBarMessageTitle] = useState("");
+  const [openSnackBar, setOpenSnackBar] = useState(false);
   //Delete Warning
   const [severityDelete, setSeverityDelete] = useState("");
   const [severityMessageDelete, setSeverityMessageDelete] = useState("");
@@ -193,29 +198,31 @@ const Ratings = ({
   const closeDialogsAndDelete = () => {
     deleteRating(UserService.getToken(), companyUser, deleteID)
       .then((code) => {
+        setOpenSnackBar(true);
         updateReload(!reload);
         if (code.status === 204) {
-          setOpenAlert(true);
-          setSeverityDelete("success");
-          setSeverityMessageDelete("Rating delete sucessfully!");
+          setSnackBarMessageTitle("Success");
+          setSnackBarMessage("Rating delete sucessfully!");
+          setSeverity("success");
         }
       })
       .catch((err) => {
+        setOpenSnackBar(true);
         if (err.response.data.status === 401) {
-          setOpenAlert(true);
-          setSeverityDelete("error");
-          setSeverityMessageDelete(
+          setSnackBarMessageTitle("Error");
+          setSnackBarMessage(
             "You do not have the permission to deleted this rating!"
           );
+          setSeverity("error");
         }
         if (err.response.data.status === 500) {
-          setOpenAlert(true);
-          setSeverityDelete("error");
-          setSeverityMessageDelete("Wrong Request Type!");
+          setSnackBarMessageTitle("Error");
+          setSnackBarMessage("Wrong Request Type!");
+          setSeverity("error");
         }
       });
+    setOpenSnackBar(false);
     setOpenWarning(!openWarning);
-    timerFunction();
   };
 
   const hideAlert = () => {
@@ -265,44 +272,44 @@ const Ratings = ({
         </Collapse>
       </div>
       <Table
-        data-testid="tabletestid"
+        onButtonClick={ExpandTable}
         className="rating-table-content"
         columns={columnsUser(rates, onClickDelete)}
         rows={tableRatings}
         rowsCount={tableRatings.length}
-        pageSize={5}
+        checkboxSelection
+        columnHeadersBackgroundColor="rgb(233, 233, 233)"
+        pagination={true}
+        initialState={{
+          pagination: {
+            paginationModel: {
+              pageSize: 5,
+            },
+          },
+        }}
+        pageSizeOptions={[5]}
         rowHeight={50}
         headerHeight={40}
-        autoHeight={true}
-        checkboxSelection
-        disableSelectionOnClick
-        disableColumnMenu={true}
-        selectionModel={prefixIds.map((r) => r.id)}
-        experimentalFeatures={{ newEditingApi: true }}
-        isCellEditable={handleEdit} // this works
-        onEditCellPropsChange={onEditCellPropsChange} // this works
-        onCellEditCommit={validateInput}
-        columnBuffer={columnsUser().length}
-        onSelectionModelChange={(ids) => {
+        onRowSelectionModelChange={(ids) => {
+          // Updated selection model change handler
           const selectedIds = new Set(ids);
           const selectedRows = tableRatings.filter((row) =>
             selectedIds.has(row.id)
           );
-          //pass ratings selected to top component
+
           selectedRows.open = prefixIds.open;
           setRatings(selectedRows);
           updatePrefixIds(selectedRows);
         }}
-        toolbar={{
-          buttonLabel: "Show More Ratings",
-          onButtonClick: ExpandTable,
-          title: "Ratings",
-        }}
-        hideFooter={tableRatings.length > 5 ? false : true}
-      ></Table>
-      <Alert severity={severity}>
-        <span>{severityMessage}</span>
-      </Alert>
+        buttonLabel="Show More Ratings"
+        title="Ratings"
+        toolbarVariant="basic"
+        experimentalFeatures={{ newEditingApi: true }}
+        isCellEditable={handleEdit}
+        onEditCellPropsChange={onEditCellPropsChange}
+        onCellEditCommit={validateInput}
+        hideFooter={tableRatings.length <= 5}
+      />
 
       <Dialog
         className="warning"
@@ -341,6 +348,7 @@ const Ratings = ({
         aria-labelledby="customized-dialog-title"
         open={open}
         onClose={openDialog}
+        maxWidth="md"
       >
         <div className="closeButton">
           <IconButton variant="primary">
@@ -364,27 +372,35 @@ const Ratings = ({
             rowHeight={50}
             headerHeight={40}
             autoHeight={true}
+            initialState={{
+              pagination: {
+                paginationModel: {
+                  pageSize: 10,
+                },
+              },
+            }}
+            pageSizeOptions={[10]}
             checkboxSelection
             disableColumnMenu={true}
-            selectionModel={prefixIds.map((r) => r.id)}
-            experimentalFeatures={{ newEditingApi: true }}
-            isCellEditable={handleEdit} // this works
-            onEditCellPropsChange={onEditCellPropsChange} // this works
-            onSelectionModelChange={(ids) => {
+            columnHeadersBackgroundColor="rgb(233, 233, 233)"
+            onRowSelectionModelChange={(ids) => {
+              // Updated to the latest selection model event handler name
               const selectedIds = new Set(ids);
               const selectedRows = tableRatings.filter((row) =>
                 selectedIds.has(row.id)
               );
-              //pass ratings selected to top component
               selectedRows.open = prefixIds.open;
               setRatings(selectedRows);
               updatePrefixIds(selectedRows);
             }}
-            toolbar={{
-              title: "Ratings",
-            }}
-            hideFooter={tableRatings.length > 5 ? false : true}
-          ></Table>
+            title="Ratings"
+            toolbarVariant="basic"
+            experimentalFeatures={{ newEditingApi: true }}
+            isCellEditable={handleEdit}
+            onEditCellPropsChange={onEditCellPropsChange}
+            hideFooter={tableRatings.length <= 5}
+          />
+
           <DialogActions>
             <Button
               variant="outlined"
@@ -397,6 +413,14 @@ const Ratings = ({
           </DialogActions>
         </div>
       </Dialog>
+      <PageSnackbar
+        autoClose={true}
+        open={openSnackBar}
+        severity={severity}
+        title={snackBarMessageTitle}
+        description={snackBarMessage}
+        showIcon={true}
+      ></PageSnackbar>
     </div>
   );
 };

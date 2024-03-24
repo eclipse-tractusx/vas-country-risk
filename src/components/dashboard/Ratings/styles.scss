@@ -26,6 +26,7 @@
 
   .rating-table-content {
     margin-top: 2%;
+    margin-bottom: 2%;
     height: 80%;
     //border: 1px solid #000;
     //border-radius: 0;
@@ -35,7 +36,8 @@
 }
 
 .dialog-table-expand-style {
-  height: 100% !important;
+  border-radius: 15px !important;
+  //height: 100% !important;
 
   .closeButton {
     text-align: right;
@@ -47,12 +49,13 @@
     text-align: center;
     margin-top: -7%;
   }
-  
 
   .rating-div-table-expand-style {
     -ms-overflow-style: none;
     //height: 1200px;
+    border-radius: 15px !important;
     .table-expand-style {
+      border-radius: 15px !important;
       display: flex;
       width: 95%;
       margin-left: auto;
@@ -63,16 +66,15 @@
       font-size: 12px;
     }
 
-    .closeBtnDialog{
+    .closeBtnDialog {
       margin-top: 3%;
       text-align: center;
-      background-color: #EDF0F4;
+      background-color: #edf0f4;
 
-      .btn-close-dialog{
+      .btn-close-dialog {
         margin: 1%;
       }
     }
-
   }
 }
 
@@ -86,14 +88,14 @@
 
   .Dialog-Expand-Div {
     text-align: center;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     border-radius: 39px !important;
 
     .warning-header {
       margin-left: auto;
       margin-right: auto;
 
-      .btn-no{
+      .btn-no {
         margin-right: 5%;
       }
     }

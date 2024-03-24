@@ -24,7 +24,7 @@ import {
   IconButton,
   Button,
   DialogHeader,
-} from "cx-portal-shared-components";
+} from "@catena-x/portal-shared-components";
 import "./styles.scss";
 import OpenWithIcon from "@mui/icons-material/ZoomIn";
 import { Box } from "@mui/material";

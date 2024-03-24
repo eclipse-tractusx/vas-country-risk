@@ -21,7 +21,8 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
 import { getAll } from "../../services/dashboard-api";
 
-import { Dialog, Table } from "cx-portal-shared-components";
+import { Dialog } from "@catena-x/portal-shared-components";
+import { Table } from "@catena-x/portal-shared-components";
 import "./styles.scss";
 import { columns } from "./tableColumns";
 import { RangesContext } from "../../../contexts/ranges";
@@ -31,7 +32,7 @@ import { CompanyUserContext } from "../../../contexts/companyuser";
 import { GatesContext } from "../../../contexts/gates";
 import DetailDialog from "../DetailDialog/DetailDialog";
 
-const DashboardTable = (ratings, years) => {
+const DashboardTable2 = (ratings, years) => {
   //Data Fetch
   const [data, setData] = useState([]);
   const [globalData, setGlobalData] = useState([]);
@@ -44,6 +45,7 @@ const DashboardTable = (ratings, years) => {
   const [openDetailGrid, setOpenDetailGrid] = useState(false);
   const [selectedDetailRow, setSelectedDetailRow] = useState([]);
   const [tableColumns, setTableColumns] = useState([]);
+  const [expr, setExpr] = useState("");
   const openDetailGridFunction = (row) => {
     setOpenDetailGrid(true);
     setSelectedDetailRow([row]);
@@ -55,6 +57,7 @@ const DashboardTable = (ratings, years) => {
 
   const fetchData = (expr) => {
     const lexpr = expr.toLowerCase();
+    setExpr(expr);
     getAll(
       ratings.getRatings,
       ratings.years,
@@ -76,7 +79,6 @@ const DashboardTable = (ratings, years) => {
   const exportCsv = () => {
     const newArray = [];
     let csvContent = "data:text/csv;charset=utf-8,\uFEFF";
-
     newArray.push(Object.keys(selectedRows[0]));
     const values = selectedRows.map((row) => Object.values(row));
     [...newArray, ...values].forEach(function (rowArray) {
@@ -133,27 +135,24 @@ const DashboardTable = (ratings, years) => {
           className="table"
           columns={tableColumns}
           rowsCount={data.length}
+          checkboxSelection
+          columnHeadersBackgroundColor="rgb(233, 233, 233);"
           rows={data}
           pageSize={15}
           rowHeight={50}
           headerHeight={40}
-          autoHeight={true}
-          checkboxSelection
-          columnBuffer={columns().length}
-          disableColumnMenu={true} //Remove Filtering
-          getRowClassName={(params) => `${params.row.status}`}
-          onSelectionModelChange={(ids) => {
+          onRowSelectionModelChange={(ids) => {
             const selectedIds = new Set(ids);
             const selectedRows = data.filter((row) => selectedIds.has(row.id));
             setSelectedRows(selectedRows);
           }}
-          toolbar={{
-            buttonLabel: "Export to csv",
-            onButtonClick: exportCsv,
-            onSearch: fetchData,
-            title: "Number of Filtered Business Partners:",
-          }}
-        ></Table>
+          buttonLabel="Export to csv"
+          onButtonClick={exportCsv}
+          onSearch={fetchData}
+          searchExpr={expr}
+          title="Number of Filtered Business Partners:"
+          toolbarVariant="basic"
+        />
       </div>
       <Dialog open={openDetailGrid} onClose={onCloseDetailGridFunction}>
         <DetailDialog
@@ -165,4 +164,4 @@ const DashboardTable = (ratings, years) => {
   );
 };
 
-export default DashboardTable;
+export default DashboardTable2;

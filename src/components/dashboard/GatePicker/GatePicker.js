@@ -51,8 +51,8 @@ const GatePicker = () => {
 
   return (
     <Box>
-      <FormControl fullWidth variant="filled" color="primary">
-        <InputLabel id="demo-simple-select-label">Select a Gate</InputLabel>
+      <InputLabel id="demo-simple-select-label">Select a Gate</InputLabel>
+      <FormControl fullWidth hiddenLabel="true" variant="filled" color="primary">
         <Select value={gate} onChange={handleChange} label="Gate" data-testid="selectGate">
           {AllGates && Array.isArray(AllGates)
             ? AllGates.map((item) => {

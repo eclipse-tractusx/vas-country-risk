@@ -77,8 +77,8 @@ const DatePicker = ({ passYearSelected }) => {
 
   return (
     <Box>
-      <FormControl fullWidth variant="filled">
-        <InputLabel id="demo-simple-select-label">Select a Year</InputLabel>
+      <InputLabel id="demo-simple-select-label">Select a Year</InputLabel>
+      <FormControl fullWidth hiddenLabel="true" variant="filled">
         <Select value={date} onChange={handleChange} label="Year">
           {AllDate && Array.isArray(AllDate)
             ? AllDate.map((item) => {

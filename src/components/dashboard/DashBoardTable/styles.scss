@@ -18,15 +18,9 @@
 * SPDX-License-Identifier: Apache-2.0
 ********************************************************************************/
 .dashboard-table-style {
-  height: inherit !important;
-  display: flex;
   .table {
-    display: flex;
-    flex-direction: column;
-    width: 100% !important;
     background-color: white;
     font-size: 10px !important;
-    height: 100% !important;
     .maxColor {
       background-color: green;
     }

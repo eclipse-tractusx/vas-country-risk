@@ -50,19 +50,27 @@
     height: 100% !important;
     display: flex;
     width: 100%;
-    //border: 3px solid #000;
     font-size: 12px;
     text-align: center;
     background-color: white;
+    border-radius: 10px; /* Example: rounded corners with a radius of 10px */
+    .css-yrdy0g-MuiDataGrid-columnHeaderRow {
+      background-color: rgb(233, 233, 233);
+    }
   }
 }
 
-.warning-header {
-  margin: 2%;
+.warning {
+  width: fit-content !important;
+}
 
-  .btn-no {
-    margin-right: 5%;
-  }
+.share-dialog-expand {
+  height: 100%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 250px;
+  width: fit-content !important;
 }
 
 .Dialog-Expand {
@@ -106,14 +114,5 @@
     .btn-save {
       margin-bottom: 5%;
     }
-  }
-
-  .share-dialog-expand {
-    height: 100%;
-    width: 50%;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    min-width: 250px;
   }
 }

@@ -19,20 +19,16 @@
  ********************************************************************************/
 import {
   MainNavigation,
-  Logo,
-  DialogHeader,
-  DialogContent,
-  DialogActions,
-  CardHorizontal,
-} from "cx-portal-shared-components";
+  Button,
+  Dialog,
+} from "@catena-x/portal-shared-components";
 import React, { useContext } from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+
 import IconButton from "@mui/material/IconButton";
 import LogoSVG from "../../../resources/cxlogo.svg";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { getPortalLink } from "../../services/EnvironmentService";
-import Dialog from "@mui/material/Dialog";
 import "./styles.scss";
 import CloseIcon from "@mui/icons-material/Close";
 import { UserInfo } from "./UserInformation/UserInfo";

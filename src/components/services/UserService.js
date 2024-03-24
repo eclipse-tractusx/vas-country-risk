@@ -24,9 +24,6 @@ import { ROLES } from "../../types/Constants";
 import {
   getCentralIdp,
   getClientId,
-  getClientIdSemantic,
-  getClientIdDigitalTwin,
-  getCountryRiskClientId,
   getBpdmId,
   getCountryRiskAppId,
 } from "./EnvironmentService";
