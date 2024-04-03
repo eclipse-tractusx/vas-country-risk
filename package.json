@@ -4,6 +4,7 @@
   "license": "Apache-2.0",
   "private": true,
   "dependencies": {
+    "react-dropzone": "^14.2.3",
     "@catena-x/portal-shared-components": "2.1.40",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",

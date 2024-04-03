@@ -27,7 +27,6 @@ import {
   Button,
   Dialog,
   DialogActions,
-  DropArea,
   PageSnackbar,
 } from "@catena-x/portal-shared-components";
 import Tooltip from "@mui/material/Tooltip";
@@ -46,8 +45,9 @@ import MenuItem from "@mui/material/MenuItem";
 import { downloadSampleCsvFile } from "../../services/files-api";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { ReloadContext } from "../../../contexts/refresh";
-import { getCountryRiskApi } from "../../services/EnvironmentService";
-import { Dropzone } from "cx-portal-shared-components";
+import { Dropzone } from "./dropzoneComponent";
+
+import { uploadCsvFile } from "../../services/upload-api";
 
 const UploadDownloadZone = () => {
   //Upload Button Handlers
@@ -137,65 +137,6 @@ const UploadDownloadZone = () => {
     setType(event.target.value);
   };
 
-  const dropzoneProps = {
-    title: "userUpload.title",
-    subtitle: "userUpload.subtitle",
-    accept: "text/csv,application/vnd.ms-excel",
-    getUploadParams: () => ({
-      url: getCountryRiskApi() + process.env.REACT_APP_UPLOAD_FILE,
-
-      fields: {
-        name: companyUser.name,
-        email: companyUser.email,
-        companyName: companyUser.companyName,
-      },
-      headers: {
-        ratingName: openRatingName || "defaultName",
-        Authorization: `Bearer ${UserService.getToken()}`,
-        year: date,
-        type: valueType,
-      },
-    }),
-
-    onChangeStatus: ({ meta }, file, status, allFiles) => {
-      if (status[0].xhr) {
-        if (status[0].xhr.status === 200) {
-          setOpenSnackBar(true);
-          setSeverity("success");
-          updateReload(!reload);
-          setSnackBarMessage("Your rating has been uploaded");
-          setSnackBarMessageTitle("Success");
-        } else if (meta.status === "error_upload") {
-          if (status[0].xhr.status === 400) {
-            setOpenSnackBar(true);
-            setSeverity("error");
-            setSnackBarMessage(
-              "Rating name already exists. Please chose a different name"
-            );
-            setSnackBarMessageTitle("Error");
-          } else if (status[0].xhr.status === 406) {
-            setOpenSnackBar(true);
-            setSeverity("error");
-            setSnackBarMessage("Invalid Rating please check all the fields");
-            setSnackBarMessageTitle("Error");
-          } else {
-            setOpenSnackBar(true);
-            setSeverity("error");
-          }
-        } else if (meta.status === "exception_upload") {
-          setSeverity("error");
-        }
-      }
-    },
-    errorStatus: [
-      "error_upload_params",
-      "exception_upload",
-      "error_upload",
-      "aborted",
-      "ready",
-    ],
-  };
-
   const downloadTemplate = () => {
     setDisable(true);
 
@@ -214,6 +155,44 @@ const UploadDownloadZone = () => {
     });
   };
 
+  //Upload CSV
+  const triggerUploadCsv = (file) =>  {
+    
+    if(file[0]) {
+    uploadCsvFile(file[0], (openRatingName || "defaultName"), date, valueType, companyUser)
+    .then((res) => {
+      if (res.status === 200) {
+        setOpenSnackBar(true);
+        setSeverity("success");
+        updateReload(!reload);
+        setSnackBarMessage("Your rating has been uploaded");
+        setSnackBarMessageTitle("Success");
+      }
+    })
+    .catch((response) => {
+      if (response.response.status === 400) {
+        setOpenSnackBar(true);
+        setSeverity("error");
+        setSnackBarMessage(
+          "Rating name already exists. Please chose a different name"
+        );
+        setSnackBarMessageTitle("Error");
+      }
+      else if (response.response.status === 406) {
+        setOpenSnackBar(true);
+        setSeverity("error");
+        setSnackBarMessage("Invalid Rating please check all the fields");
+        setSnackBarMessageTitle("Error");
+      } else {
+        setOpenSnackBar(true);
+        setSeverity("error");
+        setSnackBarMessage("Error inserting the file");
+        setSnackBarMessageTitle("Error");
+      }
+    });
+  }
+  }
+  
   return (
     <div className="upload-content">
       <Button size="small" onClick={openDialog}>
@@ -326,14 +305,13 @@ const UploadDownloadZone = () => {
         <div className="Second-Expand-Div">
           <DialogContent>
             <Dropzone
+              onChange={triggerUploadCsv}
+              acceptFormat={{
+                'application/csv': ['.csv'],
+              }}
+              maxFilesToUpload={1}
+              maxFileSize={819200}
               data-testid="dropzonetest"
-              accept={dropzoneProps.accept}
-              statusText={dropzoneProps.statusText}
-              errorStatus={dropzoneProps.errorStatus}
-              getUploadParams={dropzoneProps.getUploadParams}
-              onChangeStatus={dropzoneProps.onChangeStatus}
-              multiple={false}
-              maxFiles={1}
             />
           </DialogContent>
           <DialogActions>
