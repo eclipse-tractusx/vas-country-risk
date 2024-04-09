@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql, mariadb"/>
+    <property name="clobType" value="longvarchar" dbms="h2"/>
+    <property name="clobType" value="clob" dbms="mysql, oracle, mssql, mariadb, postgresql"/>
+    <property name="uuidType" value="uuid" dbms="h2, postgresql"/>
+    <property name="datetimeType" value="datetime(6)" dbms="mysql, mariadb"/>
+    <property name="datetimeType" value="datetime" dbms="oracle, mssql, postgresql, h2"/>
+
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220712103600_added_entity_CompanyUser.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220712103601_added_entity_Range.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220712103602_added_entity_DataSource.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220712103603_added_entity_DataSourceValue.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220712103604_added_entity_Region.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220712103605_added_entity_RegionValue.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220712103606_added_entity_Country.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220729101052_added_entity_File.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221007154554_added_entity_Report.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221007154555_added_entity_ReportValues.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221115160706_added_entity_Company.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221116164443_added_entity_CompanyGroup.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221115160707_added_entity_CompanyGates.xml" relativeToChangelogFile="false"/>
+    <!-- -needle-liquibase-add-changelog -  will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20220712103601_added_entity_constraints_Range.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220712103602_added_entity_constraints_DataSource.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220712103603_added_entity_constraints_DataSourceValue.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220712103604_added_entity_constraints_Region.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220712103605_added_entity_constraints_RegionValue.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220729101052_added_entity_constraints_File.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221007154555_added_entity_constraints_ReportValues.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221115160706_added_entity_constraints_Company.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221115160707_added_entity_constraints_CompanyGates.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220712103600_added_entity_constraints_CompanyUser.xml" relativeToChangelogFile="false"/>
+
+
+    <!-- Bottom script doesnt work on H2 database -->
+    <include file="config/liquibase/changelog/20220913101053_ratings_name_trigger.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220913101053_report_name_trigger.xml" relativeToChangelogFile="false"/>
+    <!-- -needle-liquibase-add-constraints-changelog -  will add liquibase constraints changelogs here -->
+    <!-- -needle-liquibase-add-incremental-changelog -  will add incremental liquibase changelogs here -->
+</databaseChangeLog>

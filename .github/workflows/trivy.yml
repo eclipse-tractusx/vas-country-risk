@@ -1,22 +1,12 @@
 name: "Trivy Stable"
 
 on:
-  push:
-    branches:
-      - main
-      - dev
-    paths:
-      - 'src/**'
-      - 'package.json'
-      - 'Dockerfile'
-  schedule:
-    # Once a day
-    - cron: "0 0 * * *"
   workflow_dispatch:
   # Trigger manually
 
 jobs:
-  analyze-config:
+  analyze-frontend:
+    name: Analyze frontend
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -25,24 +15,24 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
       - name: Run Trivy vulnerability scanner in repo mode
-        uses: aquasecurity/trivy-action@0.19.0
+        uses: aquasecurity/trivy-action@2b6a709cf9c4025c5438138008beaddbb02086f0 # v0.14.0
         with:
-          scan-type: "config"
-          hide-progress: false
+          image-ref: "tractusx/vas-country-risk:latest"
           format: "sarif"
-          output: "trivy-results1.sarif"
+          output: "trivy-results-1.sarif"
           vuln-type: "os,library"
 
       - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@66b90a5db151a8042fa97405c6cf843bbe433f7b # v2.227
         if: always()
         with:
-          sarif_file: "trivy-results1.sarif"
+          sarif_file: "trivy-results-1.sarif"
 
-  analyze-product-vas-country-risk-frontend:
+  analyze-backend:
+    name: Analyze backend
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -50,27 +40,16 @@ jobs:
       security-events: write
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      # It's also possible to scan your private registry with Trivy's built-in image scan.
-      # All you have to do is set ENV vars.
-      # Docker Hub needs TRIVY_USERNAME and TRIVY_PASSWORD.
-      # You don't need to set ENV vars when downloading from a public repository.
-      # For public images, no ENV vars must be set.
+      # Pull image from Docker Hub and run Trivy vulnerability scanner
       - name: Run Trivy vulnerability scanner
-        if: always()
-        uses: aquasecurity/trivy-action@0.19.0
+        uses: aquasecurity/trivy-action@2b6a709cf9c4025c5438138008beaddbb02086f0 # v0.14.0
         with:
-          # Path to Docker image
-          image-ref: "tractusx/vas-country-risk:latest"
+          image-ref: "tractusx/vas-country-risk-backend:latest"
           format: "sarif"
-          output: "trivy-results2.sarif"
-          exit-code: "1"
-          severity: "CRITICAL,HIGH"
+          output: "trivy-results-2.sarif"
+          vuln-type: "os,library"
 
       - name: Upload Trivy scan results to GitHub Security tab
-        if: always()
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@66b90a5db151a8042fa97405c6cf843bbe433f7b # v2.227
         with:
-          sarif_file: "trivy-results2.sarif"
+          sarif_file: "trivy-results-2.sarif"

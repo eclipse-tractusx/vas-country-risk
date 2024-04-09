@@ -36,7 +36,7 @@ The project maintains the following source code repositories:
 
 This project leverages the following third party content.
 
-See [DEPENDENCIES](https://github.com/eclipse-tractusx/vas-country-risk/blob/main/DEPENDENCIES) file.
+See [DEPENDENCIES FRONTEND](https://github.com/eclipse-tractusx/vas-country-risk/blob/main/frontend/DEPENDENCIES) file.
 ## Cryptography
 
 Content may contain encryption software. The country in which you are currently

@@ -1,6 +1,6 @@
 ###############################################################
-# Copyright (c) 2022,2024 BMW Group AG
-# Copyright (c) 2022,2024 Contributors to the Eclipse Foundation
+# Copyright (c) 2022,2023 BMW Group AG
+# Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
@@ -19,12 +19,21 @@
 ###############################################################
 
 
-country-risk-frontend:
+countryRiskFrontend:
+  # -- Number of replicas of a Kubernetes deployment
   replicaCount: 1
+
+  image:
+    registry: "tractusx"
+    # -- Name of the docker image
+    name: "vas-country-risk"
+    pullPolicy: Always
+    # -- Overrides the image tag whose default is the chart appVersion.
+    tag: ""
 
   certificate:
     # -- Hostname for the certificate
-    host: "frontend.countryrisk.example.net"
+    host: "localhost"
 
   # -- Name of the backend service
   appName: vas-country-risk-frontend
@@ -39,6 +48,10 @@ country-risk-frontend:
     # -- Set the file system group ID for all containers in the pod
     fsGroup: 2000
 
+  # Spring profiles under which the application should run
+  springProfiles:
+    - dev
+
   # Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
   # @url: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   securityContext:
@@ -50,6 +63,9 @@ country-risk-frontend:
     runAsUser: 101
     # -- Specifies the group ID that the process inside the container should run
     runAsGroup: 3000
+    # -- Specifies Seccomp profile
+    seccompProfile:
+      type: RuntimeDefault
     # -- Capabilities that the process inside the container should have
     capabilities:
       drop:
@@ -69,8 +85,10 @@ country-risk-frontend:
   ingress:
     # -- Ingress enabled or not
     enabled: false
-    className: ""
+    # -- Class name
+    className:
     annotations: {}
+
 
   # Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
   # @url: https://cloud.google.com/blog/products/containers-kubernetes/kubernetes-best-practices-resource-requests-and-limits
@@ -78,7 +96,7 @@ country-risk-frontend:
     # -- Maximum amount of resources that the deployment should be able to consume
     limits:
       cpu: 800m
-      memory: 1Gi
+      memory: 2Gi
     # -- Minimum amount of resources that the deployment should be guaranteed to receive
     requests:
       cpu: 300m
@@ -99,7 +117,7 @@ country-risk-frontend:
           podAffinityTerm:
             labelSelector:
               matchExpressions:
-                  # -- Match Pod rules
+                # -- Match Pod rules
                 - key: app.kubernetes.io/name
                   operator: DoesNotExist
             # -- Key that is used to determine the topology of the cluster
@@ -134,6 +152,7 @@ country-risk-frontend:
     # Specifies whether a configmap should be created
     create: true
 
+
   elastic:
     # -- Should elastic be enabled or not
     enabled: false
@@ -143,13 +162,20 @@ country-risk-frontend:
         # -- Encryption for the REST requests made to the Elastic cluster
         restEncryption: false
 
-country-risk-backend:
-
+countryRiskBackend:
   replicaCount: 1
+
+  image:
+    registry: "tractusx"
+    # -- Name of the docker image
+    name: "vas-country-risk-backend"
+    pullPolicy: Always
+    # -- Overrides the image tag whose default is the chart appVersion.
+    tag: ""
 
   certificate:
     # -- Hostname for the certificate
-    host: "backend.countryrisk.example.net"
+    host: "localhost"
 
   # -- Name of the backend service
   appName: vas-country-risk-backend
@@ -164,6 +190,10 @@ country-risk-backend:
     # -- Set the file system group ID for all containers in the pod
     fsGroup: 2000
 
+  # Spring profiles under which the application should run
+  springProfiles:
+    - dev
+
   # Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
   # @url: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
   securityContext:
@@ -175,6 +205,9 @@ country-risk-backend:
     runAsUser: 10001
     # -- Specifies the group ID that the process inside the container should run
     runAsGroup: 3000
+    # -- Specifies Seccomp profile
+    seccompProfile:
+      type: RuntimeDefault
     # -- Capabilities that the process inside the container should have
     capabilities:
       drop:
@@ -192,18 +225,11 @@ country-risk-backend:
     enabled: false
 
   ingress:
+    # -- Class name
+    className: ""
     # -- Ingress enabled or not
     enabled: false
-    className: ""
     annotations: {}
-
-    # -- Class name (Example)
-    # className: nginx
-    # annotations:
-      # -- HTTP traffic should be redirected to HTTPS
-      # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-      # -- Ingress controller should pass SSL traffic directly to the backend pods
-      # nginx.ingress.kubernetes.io/ssl-passthrough: "true"
 
   # Following Catena-X Helm Best Practices @url: https://catenax-ng.github.io/docs/kubernetes-basics/helm
   # @url: https://cloud.google.com/blog/products/containers-kubernetes/kubernetes-best-practices-resource-requests-and-limits
@@ -211,7 +237,7 @@ country-risk-backend:
     # -- Maximum amount of resources that the deployment should be able to consume
     limits:
       cpu: 800m
-      memory: 1Gi
+      memory: 2Gi
     # -- Minimum amount of resources that the deployment should be guaranteed to receive
     requests:
       cpu: 300m
@@ -232,7 +258,7 @@ country-risk-backend:
           podAffinityTerm:
             labelSelector:
               matchExpressions:
-                  # -- Match Pod rules
+                # -- Match Pod rules
                 - key: app.kubernetes.io/name
                   operator: DoesNotExist
             # -- Key that is used to determine the topology of the cluster
@@ -242,9 +268,9 @@ country-risk-backend:
   # @url: https://github.com/helm/charts/blob/master/stable/nginx-ingress/values.yaml#L210
   # -- Determines if a pod is still alive or not
   livenessProbe:
-    failureThreshold: 5
+    failureThreshold: 3
     # -- Number of seconds to wait before performing the first liveness probe
-    initialDelaySeconds: 120
+    initialDelaySeconds: 60
     # -- Number of seconds to wait between consecutive probes
     periodSeconds: 10
     # -- Number of consecutive successful probes before a pod is considered healthy
@@ -293,18 +319,16 @@ country-risk-backend:
       # -- Security configurations for the application
       security_enabled: 'false'
       # -- Endpoints for BPDM output gate
-      application_bpdm_addressUrl: 'http://localhost:8080/api/catena/output/addresses/search?'
-      application_bpdm_siteUrl: 'http://localhost:8080/api/catena/output/sites/search?'
-      application_bpdm_legalUrl: 'http://localhost:8080/api/catena/output/legal-entities/search?'
-      application_bpdm_genericUrl: 'http://localhost:8080/api/catena/output/generic/search?'
-      application_bpdm_consumerManagementUrl: 'http://localhost:8080/consumerManagementUrl?'
-      application_bpdm_gateProviderProtocolUrl: 'http://localhost:8080/gateProviderProtocolUrl?'
-      application_bpdm_gateProviderId: 'BPNL0000000XXX'
-      application_bpdm_policyBpn: 'BPNL0000000XXX'
-      application_bpdm_apiKey: 'XXXXXXXXXX'
+      application_bpdm_addressUrl: http://localhost:8080/api/catena/output/addresses/search?
+      application_bpdm_siteUrl: http://localhost:8080/api/catena/output/sites/search?
+      application_bpdm_legalUrl: http://localhost:8080/api/catena/output/legal-entities/search?
+      application_bpdm_genericUrl: http://localhost:8080/api/catena/output/generic/search?
+      application_bpdm_consumerManagementUrl: http://localhost:8080/consumerManagementUrl?
+      application_bpdm_gateProviderProtocolUrl: http://localhost:8080/gateProviderProtocolUrl?
+      application_bpdm_gateProviderId: BPNL0000000XXX
+      application_bpdm_policyBpn: BPNL0000000XXX
       application_edc_enabled: 'false'
-      vas_auth_url: 'http://localhost:8081'
-
+      vas_auth_url: http://localhost:8081
 
   elastic:
     # -- Should elastic be enabled or not
@@ -315,10 +339,6 @@ country-risk-backend:
         # -- Encryption for the REST requests made to the Elastic cluster
         restEncryption: false
 
-#########################
-# Postgres configuration     #
-#########################
-
 postgres:
   enabled: true
   auth:
@@ -326,13 +346,11 @@ postgres:
     username: vas
     password: ""
 
-#########################
-# PG Admin configuration     #
-#########################
+
 pgadmin4:
   # -- Should pgadmin4 be enabled or not
   enabled: false
   env:
-    # -- Email used on the Env environment approiate email needs to be setter on the envs
+    # -- Email used on the Env environment
     email: ""
     password: ""

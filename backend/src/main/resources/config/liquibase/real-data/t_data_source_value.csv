@@ -1,0 +1,4337 @@
+country;iso_3;iso_2;continent;score;data_source_id
+Afghanistan;AFG;AF;World;16.0;1
+Afghanistan;AFG;AF;World;19.0;2
+Afghanistan;AFG;AF;World;-1.0;3
+Afghanistan;AFG;AF;World;-1.0;4
+Afghanistan;AFG;AF;World;25.0;5
+Afghanistan;AFG;AF;World;-1.0;6
+Afghanistan;AFG;AF;World;-1.0;7
+Afghanistan;AFG;AF;World;10.0;8
+Afghanistan;AFG;AF;World;-1.0;9
+Afghanistan;AFG;AF;World;-1.0;10
+Afghanistan;AFG;AF;World;-1.0;11
+Afghanistan;AFG;AF;World;12.0;12
+Afghanistan;AFG;AF;World;18.0;13
+Afghanistan;AFG;AF;World;-1.0;14
+Afghanistan;AFG;AF;World;14.0;15
+Afghanistan;AFG;AF;World;-1.0;16
+Afghanistan;AFG;AF;World;19.3;17
+Åland;ALA;AX;World;-1.0;1
+Åland;ALA;AX;World;-1.0;2
+Åland;ALA;AX;World;-1.0;3
+Åland;ALA;AX;World;-1.0;4
+Åland;ALA;AX;World;-1.0;5
+Åland;ALA;AX;World;-1.0;6
+Åland;ALA;AX;World;-1.0;7
+Åland;ALA;AX;World;-1.0;8
+Åland;ALA;AX;World;-1.0;9
+Åland;ALA;AX;World;-1.0;10
+Åland;ALA;AX;World;-1.0;11
+Åland;ALA;AX;World;-1.0;12
+Åland;ALA;AX;World;-1.0;13
+Åland;ALA;AX;World;-1.0;14
+Åland;ALA;AX;World;-1.0;15
+Åland;ALA;AX;World;-1.0;16
+Åland;ALA;AX;World;-1.0;17
+Albania;ALB;AL;World;35.0;1
+Albania;ALB;AL;World;36.0;2
+Albania;ALB;AL;World;-1.0;3
+Albania;ALB;AL;World;-1.0;4
+Albania;ALB;AL;World;41.0;5
+Albania;ALB;AL;World;37.0;6
+Albania;ALB;AL;World;42.0;7
+Albania;ALB;AL;World;35.0;8
+Albania;ALB;AL;World;-1.0;9
+Albania;ALB;AL;World;-1.0;10
+Albania;ALB;AL;World;39.0;11
+Albania;ALB;AL;World;25.0;12
+Albania;ALB;AL;World;-1.0;13
+Albania;ALB;AL;World;32.0;14
+Albania;ALB;AL;World;30.0;15
+Albania;ALB;AL;World;43.8;16
+Albania;ALB;AL;World;44.1;17
+Algeria;DZA;DZ;World;33.0;1
+Algeria;DZA;DZ;World;36.0;2
+Algeria;DZA;DZ;World;-1.0;3
+Algeria;DZA;DZ;World;-1.0;4
+Algeria;DZA;DZ;World;37.0;5
+Algeria;DZA;DZ;World;37.0;6
+Algeria;DZA;DZ;World;-1.0;7
+Algeria;DZA;DZ;World;35.0;8
+Algeria;DZA;DZ;World;-1.0;9
+Algeria;DZA;DZ;World;-1.0;10
+Algeria;DZA;DZ;World;30.0;11
+Algeria;DZA;DZ;World;26.0;12
+Algeria;DZA;DZ;World;-1.0;13
+Algeria;DZA;DZ;World;32.0;14
+Algeria;DZA;DZ;World;36.0;15
+Algeria;DZA;DZ;World;-1.0;16
+Algeria;DZA;DZ;World;33.5;17
+Amerikanisch Samoa;ASM;AS;World;-1.0;1
+Amerikanisch Samoa;ASM;AS;World;-1.0;2
+Amerikanisch Samoa;ASM;AS;World;-1.0;3
+Amerikanisch Samoa;ASM;AS;World;-1.0;4
+Amerikanisch Samoa;ASM;AS;World;-1.0;5
+Amerikanisch Samoa;ASM;AS;World;-1.0;6
+Amerikanisch Samoa;ASM;AS;World;-1.0;7
+Amerikanisch Samoa;ASM;AS;World;-1.0;8
+Amerikanisch Samoa;ASM;AS;World;-1.0;9
+Amerikanisch Samoa;ASM;AS;World;-1.0;10
+Amerikanisch Samoa;ASM;AS;World;-1.0;11
+Amerikanisch Samoa;ASM;AS;World;-1.0;12
+Amerikanisch Samoa;ASM;AS;World;-1.0;13
+Amerikanisch Samoa;ASM;AS;World;-1.0;14
+Amerikanisch Samoa;ASM;AS;World;-1.0;15
+Amerikanisch Samoa;ASM;AS;World;-1.0;16
+Amerikanisch Samoa;ASM;AS;World;-1.0;17
+Andorra;AND;AD;World;-1.0;1
+Andorra;AND;AD;World;-1.0;2
+Andorra;AND;AD;World;-1.0;3
+Andorra;AND;AD;World;-1.0;4
+Andorra;AND;AD;World;-1.0;5
+Andorra;AND;AD;World;-1.0;6
+Andorra;AND;AD;World;-1.0;7
+Andorra;AND;AD;World;-1.0;8
+Andorra;AND;AD;World;-1.0;9
+Andorra;AND;AD;World;-1.0;10
+Andorra;AND;AD;World;-1.0;11
+Andorra;AND;AD;World;-1.0;12
+Andorra;AND;AD;World;-1.0;13
+Andorra;AND;AD;World;-1.0;14
+Andorra;AND;AD;World;-1.0;15
+Andorra;AND;AD;World;73.7;16
+Andorra;AND;AD;World;72.7;17
+Angola;AGO;AO;World;29.0;1
+Angola;AGO;AO;World;27.0;2
+Angola;AGO;AO;World;-1.0;3
+Angola;AGO;AO;World;-1.0;4
+Angola;AGO;AO;World;33.0;5
+Angola;AGO;AO;World;20.0;6
+Angola;AGO;AO;World;-1.0;7
+Angola;AGO;AO;World;35.0;8
+Angola;AGO;AO;World;-1.0;9
+Angola;AGO;AO;World;-1.0;10
+Angola;AGO;AO;World;33.0;11
+Angola;AGO;AO;World;33.0;12
+Angola;AGO;AO;World;-1.0;13
+Angola;AGO;AO;World;23.0;14
+Angola;AGO;AO;World;28.0;15
+Angola;AGO;AO;World;-1.0;16
+Angola;AGO;AO;World;30.7;17
+Anguilla;AIA;AI;World;-1.0;1
+Anguilla;AIA;AI;World;-1.0;2
+Anguilla;AIA;AI;World;-1.0;3
+Anguilla;AIA;AI;World;-1.0;4
+Anguilla;AIA;AI;World;-1.0;5
+Anguilla;AIA;AI;World;-1.0;6
+Anguilla;AIA;AI;World;-1.0;7
+Anguilla;AIA;AI;World;-1.0;8
+Anguilla;AIA;AI;World;-1.0;9
+Anguilla;AIA;AI;World;-1.0;10
+Anguilla;AIA;AI;World;-1.0;11
+Anguilla;AIA;AI;World;-1.0;12
+Anguilla;AIA;AI;World;-1.0;13
+Anguilla;AIA;AI;World;-1.0;14
+Anguilla;AIA;AI;World;-1.0;15
+Anguilla;AIA;AI;World;-1.0;16
+Anguilla;AIA;AI;World;-1.0;17
+Antarktis;ATA;AQ;World;-1.0;1
+Antarktis;ATA;AQ;World;-1.0;2
+Antarktis;ATA;AQ;World;-1.0;3
+Antarktis;ATA;AQ;World;-1.0;4
+Antarktis;ATA;AQ;World;-1.0;5
+Antarktis;ATA;AQ;World;-1.0;6
+Antarktis;ATA;AQ;World;-1.0;7
+Antarktis;ATA;AQ;World;-1.0;8
+Antarktis;ATA;AQ;World;-1.0;9
+Antarktis;ATA;AQ;World;-1.0;10
+Antarktis;ATA;AQ;World;-1.0;11
+Antarktis;ATA;AQ;World;-1.0;12
+Antarktis;ATA;AQ;World;-1.0;13
+Antarktis;ATA;AQ;World;-1.0;14
+Antarktis;ATA;AQ;World;-1.0;15
+Antarktis;ATA;AQ;World;-1.0;16
+Antarktis;ATA;AQ;World;-1.0;17
+Antigua and Barbuda;ATG;AG;World;-1.0;1
+Antigua and Barbuda;ATG;AG;World;-1.0;2
+Antigua and Barbuda;ATG;AG;World;-1.0;3
+Antigua and Barbuda;ATG;AG;World;-1.0;4
+Antigua and Barbuda;ATG;AG;World;-1.0;5
+Antigua and Barbuda;ATG;AG;World;-1.0;6
+Antigua and Barbuda;ATG;AG;World;-1.0;7
+Antigua and Barbuda;ATG;AG;World;-1.0;8
+Antigua and Barbuda;ATG;AG;World;-1.0;9
+Antigua and Barbuda;ATG;AG;World;-1.0;10
+Antigua and Barbuda;ATG;AG;World;-1.0;11
+Antigua and Barbuda;ATG;AG;World;-1.0;12
+Antigua and Barbuda;ATG;AG;World;-1.0;13
+Antigua and Barbuda;ATG;AG;World;-1.0;14
+Antigua and Barbuda;ATG;AG;World;-1.0;15
+Antigua and Barbuda;ATG;AG;World;51.5;16
+Antigua and Barbuda;ATG;AG;World;50.2;17
+Argentina;ARG;AR;World;38.0;1
+Argentina;ARG;AR;World;42.0;2
+Argentina;ARG;AR;World;-1.0;3
+Argentina;ARG;AR;World;-1.0;4
+Argentina;ARG;AR;World;49.0;5
+Argentina;ARG;AR;World;37.0;6
+Argentina;ARG;AR;World;-1.0;7
+Argentina;ARG;AR;World;35.0;8
+Argentina;ARG;AR;World;22.0;9
+Argentina;ARG;AR;World;-1.0;10
+Argentina;ARG;AR;World;39.0;11
+Argentina;ARG;AR;World;49.0;12
+Argentina;ARG;AR;World;-1.0;13
+Argentina;ARG;AR;World;30.0;14
+Argentina;ARG;AR;World;45.0;15
+Argentina;ARG;AR;World;-1.0;16
+Argentina;ARG;AR;World;50.2;17
+Armenia;ARM;AM;World;49.0;1
+Armenia;ARM;AM;World;49.0;2
+Armenia;ARM;AM;World;-1.0;3
+Armenia;ARM;AM;World;-1.0;4
+Armenia;ARM;AM;World;45.0;5
+Armenia;ARM;AM;World;-1.0;6
+Armenia;ARM;AM;World;44.0;7
+Armenia;ARM;AM;World;47.0;8
+Armenia;ARM;AM;World;-1.0;9
+Armenia;ARM;AM;World;-1.0;10
+Armenia;ARM;AM;World;32.0;11
+Armenia;ARM;AM;World;59.0;12
+Armenia;ARM;AM;World;-1.0;13
+Armenia;ARM;AM;World;66.0;14
+Armenia;ARM;AM;World;-1.0;15
+Armenia;ARM;AM;World;54.7;16
+Armenia;ARM;AM;World;51.0;17
+Aruba;ABW;AW;World;-1.0;1
+Aruba;ABW;AW;World;-1.0;2
+Aruba;ABW;AW;World;-1.0;3
+Aruba;ABW;AW;World;-1.0;4
+Aruba;ABW;AW;World;-1.0;5
+Aruba;ABW;AW;World;-1.0;6
+Aruba;ABW;AW;World;-1.0;7
+Aruba;ABW;AW;World;-1.0;8
+Aruba;ABW;AW;World;-1.0;9
+Aruba;ABW;AW;World;-1.0;10
+Aruba;ABW;AW;World;-1.0;11
+Aruba;ABW;AW;World;-1.0;12
+Aruba;ABW;AW;World;-1.0;13
+Aruba;ABW;AW;World;-1.0;14
+Aruba;ABW;AW;World;-1.0;15
+Aruba;ABW;AW;World;-1.0;16
+Aruba;ABW;AW;World;47.6;17
+Australia;AUS;AU;World;73.0;1
+Australia;AUS;AU;World;77.0;2
+Australia;AUS;AU;World;-1.0;3
+Australia;AUS;AU;World;70.0;4
+Australia;AUS;AU;World;-1.0;5
+Australia;AUS;AU;World;72.0;6
+Australia;AUS;AU;World;-1.0;7
+Australia;AUS;AU;World;71.0;8
+Australia;AUS;AU;World;54.0;9
+Australia;AUS;AU;World;86.0;10
+Australia;AUS;AU;World;76.0;11
+Australia;AUS;AU;World;77.0;12
+Australia;AUS;AU;World;-1.0;13
+Australia;AUS;AU;World;76.0;14
+Australia;AUS;AU;World;77.0;15
+Australia;AUS;AU;World;63.5;16
+Australia;AUS;AU;World;62.6;17
+Austria;AUT;AT;World;74.0;1
+Austria;AUT;AT;World;76.0;2
+Austria;AUT;AT;World;-1.0;3
+Austria;AUT;AT;World;79.0;4
+Austria;AUT;AT;World;-1.0;5
+Austria;AUT;AT;World;72.0;6
+Austria;AUT;AT;World;-1.0;7
+Austria;AUT;AT;World;71.0;8
+Austria;AUT;AT;World;68.0;9
+Austria;AUT;AT;World;-1.0;10
+Austria;AUT;AT;World;76.0;11
+Austria;AUT;AT;World;74.0;12
+Austria;AUT;AT;World;-1.0;13
+Austria;AUT;AT;World;76.0;14
+Austria;AUT;AT;World;77.0;15
+Austria;AUT;AT;World;56.8;16
+Austria;AUT;AT;World;57.1;17
+Azerbaijan;AZE;AZ;World;30.0;1
+Azerbaijan;AZE;AZ;World;30.0;2
+Azerbaijan;AZE;AZ;World;-1.0;3
+Azerbaijan;AZE;AZ;World;-1.0;4
+Azerbaijan;AZE;AZ;World;29.0;5
+Azerbaijan;AZE;AZ;World;20.0;6
+Azerbaijan;AZE;AZ;World;21.0;7
+Azerbaijan;AZE;AZ;World;35.0;8
+Azerbaijan;AZE;AZ;World;-1.0;9
+Azerbaijan;AZE;AZ;World;-1.0;10
+Azerbaijan;AZE;AZ;World;24.0;11
+Azerbaijan;AZE;AZ;World;11.0;12
+Azerbaijan;AZE;AZ;World;-1.0;13
+Azerbaijan;AZE;AZ;World;74.0;14
+Azerbaijan;AZE;AZ;World;-1.0;15
+Azerbaijan;AZE;AZ;World;-1.0;16
+Azerbaijan;AZE;AZ;World;48.6;17
+Bahamas;BHS;BS;World;64.0;1
+Bahamas;BHS;BS;World;63.0;2
+Bahamas;BHS;BS;World;-1.0;3
+Bahamas;BHS;BS;World;-1.0;4
+Bahamas;BHS;BS;World;-1.0;5
+Bahamas;BHS;BS;World;-1.0;6
+Bahamas;BHS;BS;World;-1.0;7
+Bahamas;BHS;BS;World;59.0;8
+Bahamas;BHS;BS;World;-1.0;9
+Bahamas;BHS;BS;World;-1.0;10
+Bahamas;BHS;BS;World;76.0;11
+Bahamas;BHS;BS;World;-1.0;12
+Bahamas;BHS;BS;World;-1.0;13
+Bahamas;BHS;BS;World;-1.0;14
+Bahamas;BHS;BS;World;56.0;15
+Bahamas;BHS;BS;World;36.4;16
+Bahamas;BHS;BS;World;36.7;17
+Bahrain;BHR;BH;World;42.0;1
+Bahrain;BHR;BH;World;42.0;2
+Bahrain;BHR;BH;World;-1.0;3
+Bahrain;BHR;BH;World;-1.0;4
+Bahrain;BHR;BH;World;33.0;5
+Bahrain;BHR;BH;World;37.0;6
+Bahrain;BHR;BH;World;-1.0;7
+Bahrain;BHR;BH;World;35.0;8
+Bahrain;BHR;BH;World;-1.0;9
+Bahrain;BHR;BH;World;-1.0;10
+Bahrain;BHR;BH;World;45.0;11
+Bahrain;BHR;BH;World;29.0;12
+Bahrain;BHR;BH;World;-1.0;13
+Bahrain;BHR;BH;World;74.0;14
+Bahrain;BHR;BH;World;-1.0;15
+Bahrain;BHR;BH;World;56.0;16
+Bahrain;BHR;BH;World;56.8;17
+Bangladesh;BGD;BD;World;26.0;1
+Bangladesh;BGD;BD;World;26.0;2
+Bangladesh;BGD;BD;World;-1.0;3
+Bangladesh;BGD;BD;World;-1.0;4
+Bangladesh;BGD;BD;World;25.0;5
+Bangladesh;BGD;BD;World;20.0;6
+Bangladesh;BGD;BD;World;-1.0;7
+Bangladesh;BGD;BD;World;22.0;8
+Bangladesh;BGD;BD;World;-1.0;9
+Bangladesh;BGD;BD;World;-1.0;10
+Bangladesh;BGD;BD;World;41.0;11
+Bangladesh;BGD;BD;World;15.0;12
+Bangladesh;BGD;BD;World;27.0;13
+Bangladesh;BGD;BD;World;29.0;14
+Bangladesh;BGD;BD;World;25.0;15
+Bangladesh;BGD;BD;World;42.6;16
+Bangladesh;BGD;BD;World;42.2;17
+Barbados;BRB;BB;World;65.0;1
+Barbados;BRB;BB;World;64.0;2
+Barbados;BRB;BB;World;-1.0;3
+Barbados;BRB;BB;World;-1.0;4
+Barbados;BRB;BB;World;-1.0;5
+Barbados;BRB;BB;World;-1.0;6
+Barbados;BRB;BB;World;-1.0;7
+Barbados;BRB;BB;World;71.0;8
+Barbados;BRB;BB;World;-1.0;9
+Barbados;BRB;BB;World;-1.0;10
+Barbados;BRB;BB;World;-1.0;11
+Barbados;BRB;BB;World;71.0;12
+Barbados;BRB;BB;World;-1.0;13
+Barbados;BRB;BB;World;57.0;14
+Barbados;BRB;BB;World;62.0;15
+Barbados;BRB;BB;World;42.8;16
+Barbados;BRB;BB;World;42.3;17
+Belarus;BLR;BY;World;41.0;1
+Belarus;BLR;BY;World;47.0;2
+Belarus;BLR;BY;World;-1.0;3
+Belarus;BLR;BY;World;-1.0;4
+Belarus;BLR;BY;World;33.0;5
+Belarus;BLR;BY;World;37.0;6
+Belarus;BLR;BY;World;30.0;7
+Belarus;BLR;BY;World;47.0;8
+Belarus;BLR;BY;World;-1.0;9
+Belarus;BLR;BY;World;-1.0;10
+Belarus;BLR;BY;World;29.0;11
+Belarus;BLR;BY;World;51.0;12
+Belarus;BLR;BY;World;-1.0;13
+Belarus;BLR;BY;World;50.0;14
+Belarus;BLR;BY;World;54.0;15
+Belarus;BLR;BY;World;50.6;16
+Belarus;BLR;BY;World;61.1;17
+Belgium;BEL;BE;World;73.0;1
+Belgium;BEL;BE;World;76.0;2
+Belgium;BEL;BE;World;-1.0;3
+Belgium;BEL;BE;World;79.0;4
+Belgium;BEL;BE;World;-1.0;5
+Belgium;BEL;BE;World;72.0;6
+Belgium;BEL;BE;World;-1.0;7
+Belgium;BEL;BE;World;71.0;8
+Belgium;BEL;BE;World;73.0;9
+Belgium;BEL;BE;World;-1.0;10
+Belgium;BEL;BE;World;76.0;11
+Belgium;BEL;BE;World;77.0;12
+Belgium;BEL;BE;World;-1.0;13
+Belgium;BEL;BE;World;59.0;14
+Belgium;BEL;BE;World;77.0;15
+Belgium;BEL;BE;World;61.6;16
+Belgium;BEL;BE;World;44.6;17
+Belize;BLZ;BZ;World;-1.0;1
+Belize;BLZ;BZ;World;-1.0;2
+Belize;BLZ;BZ;World;-1.0;3
+Belize;BLZ;BZ;World;-1.0;4
+Belize;BLZ;BZ;World;-1.0;5
+Belize;BLZ;BZ;World;-1.0;6
+Belize;BLZ;BZ;World;-1.0;7
+Belize;BLZ;BZ;World;-1.0;8
+Belize;BLZ;BZ;World;-1.0;9
+Belize;BLZ;BZ;World;-1.0;10
+Belize;BLZ;BZ;World;-1.0;11
+Belize;BLZ;BZ;World;-1.0;12
+Belize;BLZ;BZ;World;-1.0;13
+Belize;BLZ;BZ;World;-1.0;14
+Belize;BLZ;BZ;World;-1.0;15
+Belize;BLZ;BZ;World;-1.0;16
+Belize;BLZ;BZ;World;32.4;17
+Benin;BEN;BJ;World;42.0;1
+Benin;BEN;BJ;World;41.0;2
+Benin;BEN;BJ;World;39.0;3
+Benin;BEN;BJ;World;-1.0;4
+Benin;BEN;BJ;World;41.0;5
+Benin;BEN;BJ;World;-1.0;6
+Benin;BEN;BJ;World;-1.0;7
+Benin;BEN;BJ;World;35.0;8
+Benin;BEN;BJ;World;-1.0;9
+Benin;BEN;BJ;World;-1.0;10
+Benin;BEN;BJ;World;-1.0;11
+Benin;BEN;BJ;World;60.0;12
+Benin;BEN;BJ;World;43.0;13
+Benin;BEN;BJ;World;41.0;14
+Benin;BEN;BJ;World;34.0;15
+Benin;BEN;BJ;World;-1.0;16
+Benin;BEN;BJ;World;51.8;17
+Bermuda;BMU;BM;World;-1.0;1
+Bermuda;BMU;BM;World;-1.0;2
+Bermuda;BMU;BM;World;-1.0;3
+Bermuda;BMU;BM;World;-1.0;4
+Bermuda;BMU;BM;World;-1.0;5
+Bermuda;BMU;BM;World;-1.0;6
+Bermuda;BMU;BM;World;-1.0;7
+Bermuda;BMU;BM;World;-1.0;8
+Bermuda;BMU;BM;World;-1.0;9
+Bermuda;BMU;BM;World;-1.0;10
+Bermuda;BMU;BM;World;-1.0;11
+Bermuda;BMU;BM;World;-1.0;12
+Bermuda;BMU;BM;World;-1.0;13
+Bermuda;BMU;BM;World;-1.0;14
+Bermuda;BMU;BM;World;-1.0;15
+Bermuda;BMU;BM;World;53.5;16
+Bermuda;BMU;BM;World;-1.0;17
+Bhutan;BTN;BT;World;68.0;1
+Bhutan;BTN;BT;World;68.0;2
+Bhutan;BTN;BT;World;-1.0;3
+Bhutan;BTN;BT;World;-1.0;4
+Bhutan;BTN;BT;World;69.0;5
+Bhutan;BTN;BT;World;-1.0;6
+Bhutan;BTN;BT;World;-1.0;7
+Bhutan;BTN;BT;World;71.0;8
+Bhutan;BTN;BT;World;-1.0;9
+Bhutan;BTN;BT;World;-1.0;10
+Bhutan;BTN;BT;World;-1.0;11
+Bhutan;BTN;BT;World;71.0;12
+Bhutan;BTN;BT;World;60.0;13
+Bhutan;BTN;BT;World;-1.0;14
+Bhutan;BTN;BT;World;-1.0;15
+Bhutan;BTN;BT;World;38.6;16
+Bhutan;BTN;BT;World;-1.0;17
+Bolivia;BOL;BO;World;30.0;1
+Bolivia;BOL;BO;World;31.0;2
+Bolivia;BOL;BO;World;-1.0;3
+Bolivia;BOL;BO;World;-1.0;4
+Bolivia;BOL;BO;World;37.0;5
+Bolivia;BOL;BO;World;37.0;6
+Bolivia;BOL;BO;World;-1.0;7
+Bolivia;BOL;BO;World;35.0;8
+Bolivia;BOL;BO;World;-1.0;9
+Bolivia;BOL;BO;World;-1.0;10
+Bolivia;BOL;BO;World;30.0;11
+Bolivia;BOL;BO;World;30.0;12
+Bolivia;BOL;BO;World;-1.0;13
+Bolivia;BOL;BO;World;23.0;14
+Bolivia;BOL;BO;World;21.0;15
+Bolivia;BOL;BO;World;-1.0;16
+Bolivia;BOL;BO;World;39.0;17
+Bonaire, Sint Eustatius und Saba;BES;BQ;World;-1.0;1
+Bonaire, Sint Eustatius und Saba;BES;BQ;World;-1.0;2
+Bonaire, Sint Eustatius und Saba;BES;BQ;World;-1.0;3
+Bonaire, Sint Eustatius und Saba;BES;BQ;World;-1.0;4
+Bonaire, Sint Eustatius und Saba;BES;BQ;World;-1.0;5
+Bonaire, Sint Eustatius und Saba;BES;BQ;World;-1.0;6
+Bonaire, Sint Eustatius und Saba;BES;BQ;World;-1.0;7
+Bonaire, Sint Eustatius und Saba;BES;BQ;World;-1.0;8
+Bonaire, Sint Eustatius und Saba;BES;BQ;World;-1.0;9
+Bonaire, Sint Eustatius und Saba;BES;BQ;World;-1.0;10
+Bonaire, Sint Eustatius und Saba;BES;BQ;World;-1.0;11
+Bonaire, Sint Eustatius und Saba;BES;BQ;World;-1.0;12
+Bonaire, Sint Eustatius und Saba;BES;BQ;World;-1.0;13
+Bonaire, Sint Eustatius und Saba;BES;BQ;World;-1.0;14
+Bonaire, Sint Eustatius und Saba;BES;BQ;World;-1.0;15
+Bonaire, Sint Eustatius und Saba;BES;BQ;World;-1.0;16
+Bonaire, Sint Eustatius und Saba;BES;BQ;World;-1.0;17
+Bosnia and Herzegovina;BIH;BA;World;35.0;1
+Bosnia and Herzegovina;BIH;BA;World;35.0;2
+Bosnia and Herzegovina;BIH;BA;World;-1.0;3
+Bosnia and Herzegovina;BIH;BA;World;-1.0;4
+Bosnia and Herzegovina;BIH;BA;World;37.0;5
+Bosnia and Herzegovina;BIH;BA;World;37.0;6
+Bosnia and Herzegovina;BIH;BA;World;44.0;7
+Bosnia and Herzegovina;BIH;BA;World;35.0;8
+Bosnia and Herzegovina;BIH;BA;World;-1.0;9
+Bosnia and Herzegovina;BIH;BA;World;-1.0;10
+Bosnia and Herzegovina;BIH;BA;World;-1.0;11
+Bosnia and Herzegovina;BIH;BA;World;25.0;12
+Bosnia and Herzegovina;BIH;BA;World;-1.0;13
+Bosnia and Herzegovina;BIH;BA;World;27.0;14
+Bosnia and Herzegovina;BIH;BA;World;37.0;15
+Bosnia and Herzegovina;BIH;BA;World;-1.0;16
+Bosnia and Herzegovina;BIH;BA;World;44.7;17
+Botswana;BWA;BW;World;55.0;1
+Botswana;BWA;BW;World;60.0;2
+Botswana;BWA;BW;World;-1.0;3
+Botswana;BWA;BW;World;-1.0;4
+Botswana;BWA;BW;World;57.0;5
+Botswana;BWA;BW;World;72.0;6
+Botswana;BWA;BW;World;-1.0;7
+Botswana;BWA;BW;World;59.0;8
+Botswana;BWA;BW;World;32.0;9
+Botswana;BWA;BW;World;-1.0;10
+Botswana;BWA;BW;World;51.0;11
+Botswana;BWA;BW;World;72.0;12
+Botswana;BWA;BW;World;-1.0;13
+Botswana;BWA;BW;World;40.0;14
+Botswana;BWA;BW;World;54.0;15
+Botswana;BWA;BW;World;52.3;16
+Botswana;BWA;BW;World;50.4;17
+Bouvetinsel;BVT;BV;World;-1.0;1
+Bouvetinsel;BVT;BV;World;-1.0;2
+Bouvetinsel;BVT;BV;World;-1.0;3
+Bouvetinsel;BVT;BV;World;-1.0;4
+Bouvetinsel;BVT;BV;World;-1.0;5
+Bouvetinsel;BVT;BV;World;-1.0;6
+Bouvetinsel;BVT;BV;World;-1.0;7
+Bouvetinsel;BVT;BV;World;-1.0;8
+Bouvetinsel;BVT;BV;World;-1.0;9
+Bouvetinsel;BVT;BV;World;-1.0;10
+Bouvetinsel;BVT;BV;World;-1.0;11
+Bouvetinsel;BVT;BV;World;-1.0;12
+Bouvetinsel;BVT;BV;World;-1.0;13
+Bouvetinsel;BVT;BV;World;-1.0;14
+Bouvetinsel;BVT;BV;World;-1.0;15
+Bouvetinsel;BVT;BV;World;-1.0;16
+Bouvetinsel;BVT;BV;World;-1.0;17
+Brazil;BRA;BR;World;38.0;1
+Brazil;BRA;BR;World;38.0;2
+Brazil;BRA;BR;World;-1.0;3
+Brazil;BRA;BR;World;-1.0;4
+Brazil;BRA;BR;World;53.0;5
+Brazil;BRA;BR;World;37.0;6
+Brazil;BRA;BR;World;-1.0;7
+Brazil;BRA;BR;World;35.0;8
+Brazil;BRA;BR;World;35.0;9
+Brazil;BRA;BR;World;-1.0;10
+Brazil;BRA;BR;World;32.0;11
+Brazil;BRA;BR;World;43.0;12
+Brazil;BRA;BR;World;-1.0;13
+Brazil;BRA;BR;World;31.0;14
+Brazil;BRA;BR;World;36.0;15
+Brazil;BRA;BR;World;-1.0;16
+Brazil;BRA;BR;World;50.7;17
+British Territory in Pacific Ocean;IOT;IO;World;-1.0;1
+British Territory in Pacific Ocean;IOT;IO;World;-1.0;2
+British Territory in Pacific Ocean;IOT;IO;World;-1.0;3
+British Territory in Pacific Ocean;IOT;IO;World;-1.0;4
+British Territory in Pacific Ocean;IOT;IO;World;-1.0;5
+British Territory in Pacific Ocean;IOT;IO;World;-1.0;6
+British Territory in Pacific Ocean;IOT;IO;World;-1.0;7
+British Territory in Pacific Ocean;IOT;IO;World;-1.0;8
+British Territory in Pacific Ocean;IOT;IO;World;-1.0;9
+British Territory in Pacific Ocean;IOT;IO;World;-1.0;10
+British Territory in Pacific Ocean;IOT;IO;World;-1.0;11
+British Territory in Pacific Ocean;IOT;IO;World;-1.0;12
+British Territory in Pacific Ocean;IOT;IO;World;-1.0;13
+British Territory in Pacific Ocean;IOT;IO;World;-1.0;14
+British Territory in Pacific Ocean;IOT;IO;World;-1.0;15
+British Territory in Pacific Ocean;IOT;IO;World;-1.0;16
+British Territory in Pacific Ocean;IOT;IO;World;-1.0;17
+British Virgin Islands;VGB;VG;World;-1.0;1
+British Virgin Islands;VGB;VG;World;-1.0;2
+British Virgin Islands;VGB;VG;World;-1.0;3
+British Virgin Islands;VGB;VG;World;-1.0;4
+British Virgin Islands;VGB;VG;World;-1.0;5
+British Virgin Islands;VGB;VG;World;-1.0;6
+British Virgin Islands;VGB;VG;World;-1.0;7
+British Virgin Islands;VGB;VG;World;-1.0;8
+British Virgin Islands;VGB;VG;World;-1.0;9
+British Virgin Islands;VGB;VG;World;-1.0;10
+British Virgin Islands;VGB;VG;World;-1.0;11
+British Virgin Islands;VGB;VG;World;-1.0;12
+British Virgin Islands;VGB;VG;World;-1.0;13
+British Virgin Islands;VGB;VG;World;-1.0;14
+British Virgin Islands;VGB;VG;World;-1.0;15
+British Virgin Islands;VGB;VG;World;-1.0;16
+British Virgin Islands;VGB;VG;World;-1.0;17
+Brunei;BRN;BN;World;-1.0;1
+Brunei;BRN;BN;World;60.0;2
+Brunei;BRN;BN;World;-1.0;3
+Brunei;BRN;BN;World;-1.0;4
+Brunei;BRN;BN;World;-1.0;5
+Brunei;BRN;BN;World;-1.0;6
+Brunei;BRN;BN;World;-1.0;7
+Brunei;BRN;BN;World;-1.0;8
+Brunei;BRN;BN;World;-1.0;9
+Brunei;BRN;BN;World;-1.0;10
+Brunei;BRN;BN;World;-1.0;11
+Brunei;BRN;BN;World;-1.0;12
+Brunei;BRN;BN;World;-1.0;13
+Brunei;BRN;BN;World;-1.0;14
+Brunei;BRN;BN;World;-1.0;15
+Brunei;BRN;BN;World;-1.0;16
+Brunei;BRN;BN;World;-1.0;17
+Bulgaria;BGR;BG;World;42.0;1
+Bulgaria;BGR;BG;World;44.0;2
+Bulgaria;BGR;BG;World;-1.0;3
+Bulgaria;BGR;BG;World;44.0;4
+Bulgaria;BGR;BG;World;53.0;5
+Bulgaria;BGR;BG;World;37.0;6
+Bulgaria;BGR;BG;World;53.0;7
+Bulgaria;BGR;BG;World;35.0;8
+Bulgaria;BGR;BG;World;34.0;9
+Bulgaria;BGR;BG;World;-1.0;10
+Bulgaria;BGR;BG;World;48.0;11
+Bulgaria;BGR;BG;World;38.0;12
+Bulgaria;BGR;BG;World;-1.0;13
+Bulgaria;BGR;BG;World;39.0;14
+Bulgaria;BGR;BG;World;36.0;15
+Bulgaria;BGR;BG;World;-1.0;16
+Bulgaria;BGR;BG;World;69.8;17
+Burkina Faso;BFA;BF;World;42.0;1
+Burkina Faso;BFA;BF;World;40.0;2
+Burkina Faso;BFA;BF;World;44.0;3
+Burkina Faso;BFA;BF;World;-1.0;4
+Burkina Faso;BFA;BF;World;33.0;5
+Burkina Faso;BFA;BF;World;-1.0;6
+Burkina Faso;BFA;BF;World;-1.0;7
+Burkina Faso;BFA;BF;World;47.0;8
+Burkina Faso;BFA;BF;World;-1.0;9
+Burkina Faso;BFA;BF;World;-1.0;10
+Burkina Faso;BFA;BF;World;41.0;11
+Burkina Faso;BFA;BF;World;46.0;12
+Burkina Faso;BFA;BF;World;43.0;13
+Burkina Faso;BFA;BF;World;-1.0;14
+Burkina Faso;BFA;BF;World;36.0;15
+Burkina Faso;BFA;BF;World;33.3;16
+Burkina Faso;BFA;BF;World;-1.0;17
+Burundi;BDI;BI;World;19.0;1
+Burundi;BDI;BI;World;19.0;2
+Burundi;BDI;BI;World;14.0;3
+Burundi;BDI;BI;World;-1.0;4
+Burundi;BDI;BI;World;13.0;5
+Burundi;BDI;BI;World;-1.0;6
+Burundi;BDI;BI;World;-1.0;7
+Burundi;BDI;BI;World;22.0;8
+Burundi;BDI;BI;World;-1.0;9
+Burundi;BDI;BI;World;-1.0;10
+Burundi;BDI;BI;World;-1.0;11
+Burundi;BDI;BI;World;14.0;12
+Burundi;BDI;BI;World;10.0;13
+Burundi;BDI;BI;World;38.0;14
+Burundi;BDI;BI;World;-1.0;15
+Burundi;BDI;BI;World;-1.0;16
+Burundi;BDI;BI;World;-1.0;17
+Cabo Verde;CPV;CV;World;58.0;1
+Cabo Verde;CPV;CV;World;58.0;2
+Cabo Verde;CPV;CV;World;-1.0;3
+Cabo Verde;CPV;CV;World;-1.0;4
+Cabo Verde;CPV;CV;World;-1.0;5
+Cabo Verde;CPV;CV;World;-1.0;6
+Cabo Verde;CPV;CV;World;-1.0;7
+Cabo Verde;CPV;CV;World;59.0;8
+Cabo Verde;CPV;CV;World;-1.0;9
+Cabo Verde;CPV;CV;World;-1.0;10
+Cabo Verde;CPV;CV;World;-1.0;11
+Cabo Verde;CPV;CV;World;64.0;12
+Cabo Verde;CPV;CV;World;60.0;13
+Cabo Verde;CPV;CV;World;48.0;14
+Cabo Verde;CPV;CV;World;-1.0;15
+Cabo Verde;CPV;CV;World;36.1;16
+Cabo Verde;CPV;CV;World;35.7;17
+Cambodia;KHM;KH;World;23.0;1
+Cambodia;KHM;KH;World;21.0;2
+Cambodia;KHM;KH;World;-1.0;3
+Cambodia;KHM;KH;World;-1.0;4
+Cambodia;KHM;KH;World;13.0;5
+Cambodia;KHM;KH;World;20.0;6
+Cambodia;KHM;KH;World;-1.0;7
+Cambodia;KHM;KH;World;35.0;8
+Cambodia;KHM;KH;World;-1.0;9
+Cambodia;KHM;KH;World;36.0;10
+Cambodia;KHM;KH;World;-1.0;11
+Cambodia;KHM;KH;World;15.0;12
+Cambodia;KHM;KH;World;10.0;13
+Cambodia;KHM;KH;World;42.0;14
+Cambodia;KHM;KH;World;13.0;15
+Cambodia;KHM;KH;World;29.7;16
+Cambodia;KHM;KH;World;29.9;17
+Cameroon;CMR;CM;World;27.0;1
+Cameroon;CMR;CM;World;25.0;2
+Cameroon;CMR;CM;World;34.0;3
+Cameroon;CMR;CM;World;-1.0;4
+Cameroon;CMR;CM;World;29.0;5
+Cameroon;CMR;CM;World;20.0;6
+Cameroon;CMR;CM;World;-1.0;7
+Cameroon;CMR;CM;World;35.0;8
+Cameroon;CMR;CM;World;-1.0;9
+Cameroon;CMR;CM;World;-1.0;10
+Cameroon;CMR;CM;World;24.0;11
+Cameroon;CMR;CM;World;17.0;12
+Cameroon;CMR;CM;World;35.0;13
+Cameroon;CMR;CM;World;28.0;14
+Cameroon;CMR;CM;World;19.0;15
+Cameroon;CMR;CM;World;-1.0;16
+Cameroon;CMR;CM;World;-1.0;17
+Canada;CAN;CA;World;74.0;1
+Canada;CAN;CA;World;77.0;2
+Canada;CAN;CA;World;-1.0;3
+Canada;CAN;CA;World;79.0;4
+Canada;CAN;CA;World;-1.0;5
+Canada;CAN;CA;World;90.0;6
+Canada;CAN;CA;World;-1.0;7
+Canada;CAN;CA;World;71.0;8
+Canada;CAN;CA;World;70.0;9
+Canada;CAN;CA;World;-1.0;10
+Canada;CAN;CA;World;76.0;11
+Canada;CAN;CA;World;77.0;12
+Canada;CAN;CA;World;-1.0;13
+Canada;CAN;CA;World;54.0;14
+Canada;CAN;CA;World;78.0;15
+Canada;CAN;CA;World;54.3;16
+Canada;CAN;CA;World;54.2;17
+Cayman Islands;CYM;KY;World;-1.0;1
+Cayman Islands;CYM;KY;World;-1.0;2
+Cayman Islands;CYM;KY;World;-1.0;3
+Cayman Islands;CYM;KY;World;-1.0;4
+Cayman Islands;CYM;KY;World;-1.0;5
+Cayman Islands;CYM;KY;World;-1.0;6
+Cayman Islands;CYM;KY;World;-1.0;7
+Cayman Islands;CYM;KY;World;-1.0;8
+Cayman Islands;CYM;KY;World;-1.0;9
+Cayman Islands;CYM;KY;World;-1.0;10
+Cayman Islands;CYM;KY;World;-1.0;11
+Cayman Islands;CYM;KY;World;-1.0;12
+Cayman Islands;CYM;KY;World;-1.0;13
+Cayman Islands;CYM;KY;World;-1.0;14
+Cayman Islands;CYM;KY;World;-1.0;15
+Cayman Islands;CYM;KY;World;24.4;16
+Cayman Islands;CYM;KY;World;24.5;17
+Central African Republic;CAF;CF;World;24.0;1
+Central African Republic;CAF;CF;World;26.0;2
+Central African Republic;CAF;CF;World;24.0;3
+Central African Republic;CAF;CF;World;-1.0;4
+Central African Republic;CAF;CF;World;25.0;5
+Central African Republic;CAF;CF;World;-1.0;6
+Central African Republic;CAF;CF;World;-1.0;7
+Central African Republic;CAF;CF;World;22.0;8
+Central African Republic;CAF;CF;World;-1.0;9
+Central African Republic;CAF;CF;World;-1.0;10
+Central African Republic;CAF;CF;World;-1.0;11
+Central African Republic;CAF;CF;World;20.0;12
+Central African Republic;CAF;CF;World;27.0;13
+Central African Republic;CAF;CF;World;-1.0;14
+Central African Republic;CAF;CF;World;-1.0;15
+Central African Republic;CAF;CF;World;-1.0;16
+Central African Republic;CAF;CF;World;-1.0;17
+Chad;TCD;TD;World;20.0;1
+Chad;TCD;TD;World;21.0;2
+Chad;TCD;TD;World;24.0;3
+Chad;TCD;TD;World;-1.0;4
+Chad;TCD;TD;World;21.0;5
+Chad;TCD;TD;World;-1.0;6
+Chad;TCD;TD;World;-1.0;7
+Chad;TCD;TD;World;22.0;8
+Chad;TCD;TD;World;-1.0;9
+Chad;TCD;TD;World;-1.0;10
+Chad;TCD;TD;World;-1.0;11
+Chad;TCD;TD;World;11.0;12
+Chad;TCD;TD;World;27.0;13
+Chad;TCD;TD;World;14.0;14
+Chad;TCD;TD;World;-1.0;15
+Chad;TCD;TD;World;-1.0;16
+Chad;TCD;TD;World;-1.0;17
+Chile;CHL;CL;World;67.0;1
+Chile;CHL;CL;World;67.0;2
+Chile;CHL;CL;World;-1.0;3
+Chile;CHL;CL;World;62.0;4
+Chile;CHL;CL;World;77.0;5
+Chile;CHL;CL;World;72.0;6
+Chile;CHL;CL;World;-1.0;7
+Chile;CHL;CL;World;71.0;8
+Chile;CHL;CL;World;56.0;9
+Chile;CHL;CL;World;-1.0;10
+Chile;CHL;CL;World;65.0;11
+Chile;CHL;CL;World;75.0;12
+Chile;CHL;CL;World;-1.0;13
+Chile;CHL;CL;World;62.0;14
+Chile;CHL;CL;World;65.0;15
+Chile;CHL;CL;World;-1.0;16
+Chile;CHL;CL;World;62.7;17
+China;CHN;CN;World;45.0;1
+China;CHN;CN;World;42.0;2
+China;CHN;CN;World;-1.0;3
+China;CHN;CN;World;-1.0;4
+China;CHN;CN;World;41.0;5
+China;CHN;CN;World;37.0;6
+China;CHN;CN;World;-1.0;7
+China;CHN;CN;World;47.0;8
+China;CHN;CN;World;57.0;9
+China;CHN;CN;World;40.0;10
+China;CHN;CN;World;32.0;11
+China;CHN;CN;World;51.0;12
+China;CHN;CN;World;-1.0;13
+China;CHN;CN;World;59.0;14
+China;CHN;CN;World;39.0;15
+China;CHN;CN;World;34.0;16
+China;CHN;CN;World;33.4;17
+Christmas Island;CXR;CX;World;-1.0;1
+Christmas Island;CXR;CX;World;-1.0;2
+Christmas Island;CXR;CX;World;-1.0;3
+Christmas Island;CXR;CX;World;-1.0;4
+Christmas Island;CXR;CX;World;-1.0;5
+Christmas Island;CXR;CX;World;-1.0;6
+Christmas Island;CXR;CX;World;-1.0;7
+Christmas Island;CXR;CX;World;-1.0;8
+Christmas Island;CXR;CX;World;-1.0;9
+Christmas Island;CXR;CX;World;-1.0;10
+Christmas Island;CXR;CX;World;-1.0;11
+Christmas Island;CXR;CX;World;-1.0;12
+Christmas Island;CXR;CX;World;-1.0;13
+Christmas Island;CXR;CX;World;-1.0;14
+Christmas Island;CXR;CX;World;-1.0;15
+Christmas Island;CXR;CX;World;-1.0;16
+Christmas Island;CXR;CX;World;-1.0;17
+Coconut Islands;CCK;CC;World;-1.0;1
+Coconut Islands;CCK;CC;World;-1.0;2
+Coconut Islands;CCK;CC;World;-1.0;3
+Coconut Islands;CCK;CC;World;-1.0;4
+Coconut Islands;CCK;CC;World;-1.0;5
+Coconut Islands;CCK;CC;World;-1.0;6
+Coconut Islands;CCK;CC;World;-1.0;7
+Coconut Islands;CCK;CC;World;-1.0;8
+Coconut Islands;CCK;CC;World;-1.0;9
+Coconut Islands;CCK;CC;World;-1.0;10
+Coconut Islands;CCK;CC;World;-1.0;11
+Coconut Islands;CCK;CC;World;-1.0;12
+Coconut Islands;CCK;CC;World;-1.0;13
+Coconut Islands;CCK;CC;World;-1.0;14
+Coconut Islands;CCK;CC;World;-1.0;15
+Coconut Islands;CCK;CC;World;-1.0;16
+Coconut Islands;CCK;CC;World;-1.0;17
+Colombia;COL;CO;World;39.0;1
+Colombia;COL;CO;World;39.0;2
+Colombia;COL;CO;World;-1.0;3
+Colombia;COL;CO;World;-1.0;4
+Colombia;COL;CO;World;45.0;5
+Colombia;COL;CO;World;37.0;6
+Colombia;COL;CO;World;-1.0;7
+Colombia;COL;CO;World;47.0;8
+Colombia;COL;CO;World;30.0;9
+Colombia;COL;CO;World;-1.0;10
+Colombia;COL;CO;World;39.0;11
+Colombia;COL;CO;World;47.0;12
+Colombia;COL;CO;World;-1.0;13
+Colombia;COL;CO;World;33.0;14
+Colombia;COL;CO;World;36.0;15
+Colombia;COL;CO;World;54.6;16
+Colombia;COL;CO;World;54.7;17
+Comoros;COM;KM;World;20.0;1
+Comoros;COM;KM;World;21.0;2
+Comoros;COM;KM;World;4.0;3
+Comoros;COM;KM;World;-1.0;4
+Comoros;COM;KM;World;-1.0;5
+Comoros;COM;KM;World;-1.0;6
+Comoros;COM;KM;World;-1.0;7
+Comoros;COM;KM;World;35.0;8
+Comoros;COM;KM;World;-1.0;9
+Comoros;COM;KM;World;-1.0;10
+Comoros;COM;KM;World;-1.0;11
+Comoros;COM;KM;World;16.0;12
+Comoros;COM;KM;World;27.0;13
+Comoros;COM;KM;World;-1.0;14
+Comoros;COM;KM;World;-1.0;15
+Comoros;COM;KM;World;-1.0;16
+Comoros;COM;KM;World;-1.0;17
+Congo Republic;COG;CG;World;21.0;1
+Congo Republic;COG;CG;World;19.0;2
+Congo Republic;COG;CG;World;-1.0;3
+Congo Republic;COG;CG;World;-1.0;4
+Congo Republic;COG;CG;World;21.0;5
+Congo Republic;COG;CG;World;20.0;6
+Congo Republic;COG;CG;World;-1.0;7
+Congo Republic;COG;CG;World;22.0;8
+Congo Republic;COG;CG;World;-1.0;9
+Congo Republic;COG;CG;World;-1.0;10
+Congo Republic;COG;CG;World;16.0;11
+Congo Republic;COG;CG;World;20.0;12
+Congo Republic;COG;CG;World;18.0;13
+Congo Republic;COG;CG;World;-1.0;14
+Congo Republic;COG;CG;World;33.0;15
+Congo Republic;COG;CG;World;17.5;16
+Congo Republic;COG;CG;World;-1.0;17
+Cook Island;COK;CK;World;-1.0;1
+Cook Island;COK;CK;World;-1.0;2
+Cook Island;COK;CK;World;-1.0;3
+Cook Island;COK;CK;World;-1.0;4
+Cook Island;COK;CK;World;-1.0;5
+Cook Island;COK;CK;World;-1.0;6
+Cook Island;COK;CK;World;-1.0;7
+Cook Island;COK;CK;World;-1.0;8
+Cook Island;COK;CK;World;-1.0;9
+Cook Island;COK;CK;World;-1.0;10
+Cook Island;COK;CK;World;-1.0;11
+Cook Island;COK;CK;World;-1.0;12
+Cook Island;COK;CK;World;-1.0;13
+Cook Island;COK;CK;World;-1.0;14
+Cook Island;COK;CK;World;-1.0;15
+Cook Island;COK;CK;World;69.7;16
+Cook Island;COK;CK;World;69.7;17
+Costa Rica;CRI;CR;World;58.0;1
+Costa Rica;CRI;CR;World;57.0;2
+Costa Rica;CRI;CR;World;-1.0;3
+Costa Rica;CRI;CR;World;-1.0;4
+Costa Rica;CRI;CR;World;69.0;5
+Costa Rica;CRI;CR;World;55.0;6
+Costa Rica;CRI;CR;World;-1.0;7
+Costa Rica;CRI;CR;World;59.0;8
+Costa Rica;CRI;CR;World;-1.0;9
+Costa Rica;CRI;CR;World;-1.0;10
+Costa Rica;CRI;CR;World;41.0;11
+Costa Rica;CRI;CR;World;65.0;12
+Costa Rica;CRI;CR;World;-1.0;13
+Costa Rica;CRI;CR;World;54.0;14
+Costa Rica;CRI;CR;World;62.0;15
+Costa Rica;CRI;CR;World;53.6;16
+Costa Rica;CRI;CR;World;53.4;17
+Cote d'Ivoire;CIV;CI;World;36.0;1
+Cote d'Ivoire;CIV;CI;World;36.0;2
+Cote d'Ivoire;CIV;CI;World;39.0;3
+Cote d'Ivoire;CIV;CI;World;-1.0;4
+Cote d'Ivoire;CIV;CI;World;25.0;5
+Cote d'Ivoire;CIV;CI;World;37.0;6
+Cote d'Ivoire;CIV;CI;World;-1.0;7
+Cote d'Ivoire;CIV;CI;World;47.0;8
+Cote d'Ivoire;CIV;CI;World;-1.0;9
+Cote d'Ivoire;CIV;CI;World;-1.0;10
+Cote d'Ivoire;CIV;CI;World;32.0;11
+Cote d'Ivoire;CIV;CI;World;36.0;12
+Cote d'Ivoire;CIV;CI;World;43.0;13
+Cote d'Ivoire;CIV;CI;World;35.0;14
+Cote d'Ivoire;CIV;CI;World;26.0;15
+Cote d'Ivoire;CIV;CI;World;-1.0;16
+Cote d'Ivoire;CIV;CI;World;33.2;17
+Croatia;HRV;HR;World;47.0;1
+Croatia;HRV;HR;World;47.0;2
+Croatia;HRV;HR;World;-1.0;3
+Croatia;HRV;HR;World;44.0;4
+Croatia;HRV;HR;World;53.0;5
+Croatia;HRV;HR;World;55.0;6
+Croatia;HRV;HR;World;53.0;7
+Croatia;HRV;HR;World;47.0;8
+Croatia;HRV;HR;World;28.0;9
+Croatia;HRV;HR;World;-1.0;10
+Croatia;HRV;HR;World;50.0;11
+Croatia;HRV;HR;World;56.0;12
+Croatia;HRV;HR;World;-1.0;13
+Croatia;HRV;HR;World;30.0;14
+Croatia;HRV;HR;World;50.0;15
+Croatia;HRV;HR;World;-1.0;16
+Croatia;HRV;HR;World;61.5;17
+Cuba;CUB;CU;World;46.0;1
+Cuba;CUB;CU;World;47.0;2
+Cuba;CUB;CU;World;-1.0;3
+Cuba;CUB;CU;World;-1.0;4
+Cuba;CUB;CU;World;41.0;5
+Cuba;CUB;CU;World;55.0;6
+Cuba;CUB;CU;World;-1.0;7
+Cuba;CUB;CU;World;35.0;8
+Cuba;CUB;CU;World;-1.0;9
+Cuba;CUB;CU;World;-1.0;10
+Cuba;CUB;CU;World;53.0;11
+Cuba;CUB;CU;World;47.0;12
+Cuba;CUB;CU;World;-1.0;13
+Cuba;CUB;CU;World;-1.0;14
+Cuba;CUB;CU;World;-1.0;15
+Cuba;CUB;CU;World;43.5;16
+Cuba;CUB;CU;World;-1.0;17
+Curacao;CUW;CW;World;-1.0;1
+Curacao;CUW;CW;World;-1.0;2
+Curacao;CUW;CW;World;-1.0;3
+Curacao;CUW;CW;World;-1.0;4
+Curacao;CUW;CW;World;-1.0;5
+Curacao;CUW;CW;World;-1.0;6
+Curacao;CUW;CW;World;-1.0;7
+Curacao;CUW;CW;World;-1.0;8
+Curacao;CUW;CW;World;-1.0;9
+Curacao;CUW;CW;World;-1.0;10
+Curacao;CUW;CW;World;-1.0;11
+Curacao;CUW;CW;World;-1.0;12
+Curacao;CUW;CW;World;-1.0;13
+Curacao;CUW;CW;World;-1.0;14
+Curacao;CUW;CW;World;-1.0;15
+Curacao;CUW;CW;World;-1.0;16
+Curacao;CUW;CW;World;-1.0;17
+Cyprus;CYP;CY;World;53.0;1
+Cyprus;CYP;CY;World;57.0;2
+Cyprus;CYP;CY;World;-1.0;3
+Cyprus;CYP;CY;World;35.0;4
+Cyprus;CYP;CY;World;-1.0;5
+Cyprus;CYP;CY;World;55.0;6
+Cyprus;CYP;CY;World;-1.0;7
+Cyprus;CYP;CY;World;47.0;8
+Cyprus;CYP;CY;World;42.0;9
+Cyprus;CYP;CY;World;-1.0;10
+Cyprus;CYP;CY;World;56.0;11
+Cyprus;CYP;CY;World;68.0;12
+Cyprus;CYP;CY;World;-1.0;13
+Cyprus;CYP;CY;World;60.0;14
+Cyprus;CYP;CY;World;64.0;15
+Cyprus;CYP;CY;World;51.5;16
+Cyprus;CYP;CY;World;52.9;17
+Czechia;CZE;CZ;World;54.0;1
+Czechia;CZE;CZ;World;54.0;2
+Czechia;CZE;CZ;World;-1.0;3
+Czechia;CZE;CZ;World;44.0;4
+Czechia;CZE;CZ;World;57.0;5
+Czechia;CZE;CZ;World;55.0;6
+Czechia;CZE;CZ;World;62.0;7
+Czechia;CZE;CZ;World;59.0;8
+Czechia;CZE;CZ;World;41.0;9
+Czechia;CZE;CZ;World;-1.0;10
+Czechia;CZE;CZ;World;50.0;11
+Czechia;CZE;CZ;World;62.0;12
+Czechia;CZE;CZ;World;-1.0;13
+Czechia;CZE;CZ;World;45.0;14
+Czechia;CZE;CZ;World;61.0;15
+Czechia;CZE;CZ;World;58.2;16
+Czechia;CZE;CZ;World;58.0;17
+Democratic Republic of the Congo;COD;CD;World;19.0;1
+Democratic Republic of the Congo;COD;CD;World;18.0;2
+Democratic Republic of the Congo;COD;CD;World;27.0;3
+Democratic Republic of the Congo;COD;CD;World;-1.0;4
+Democratic Republic of the Congo;COD;CD;World;25.0;5
+Democratic Republic of the Congo;COD;CD;World;20.0;6
+Democratic Republic of the Congo;COD;CD;World;-1.0;7
+Democratic Republic of the Congo;COD;CD;World;22.0;8
+Democratic Republic of the Congo;COD;CD;World;-1.0;9
+Democratic Republic of the Congo;COD;CD;World;-1.0;10
+Democratic Republic of the Congo;COD;CD;World;20.0;11
+Democratic Republic of the Congo;COD;CD;World;13.0;12
+Democratic Republic of the Congo;COD;CD;World;18.0;13
+Democratic Republic of the Congo;COD;CD;World;13.0;14
+Democratic Republic of the Congo;COD;CD;World;12.0;15
+Democratic Republic of the Congo;COD;CD;World;-1.0;16
+Democratic Republic of the Congo;COD;CD;World;-1.0;17
+Denmark;DNK;DK;World;88.0;1
+Denmark;DNK;DK;World;88.0;2
+Denmark;DNK;DK;World;-1.0;3
+Denmark;DNK;DK;World;97.0;4
+Denmark;DNK;DK;World;-1.0;5
+Denmark;DNK;DK;World;90.0;6
+Denmark;DNK;DK;World;-1.0;7
+Denmark;DNK;DK;World;83.0;8
+Denmark;DNK;DK;World;93.0;9
+Denmark;DNK;DK;World;-1.0;10
+Denmark;DNK;DK;World;100.0;11
+Denmark;DNK;DK;World;79.0;12
+Denmark;DNK;DK;World;-1.0;13
+Denmark;DNK;DK;World;78.0;14
+Denmark;DNK;DK;World;87.0;15
+Denmark;DNK;DK;World;66.4;16
+Denmark;DNK;DK;World;66.4;17
+Djibouti;DJI;DJ;World;30.0;1
+Djibouti;DJI;DJ;World;27.0;2
+Djibouti;DJI;DJ;World;27.0;3
+Djibouti;DJI;DJ;World;-1.0;4
+Djibouti;DJI;DJ;World;25.0;5
+Djibouti;DJI;DJ;World;-1.0;6
+Djibouti;DJI;DJ;World;-1.0;7
+Djibouti;DJI;DJ;World;35.0;8
+Djibouti;DJI;DJ;World;-1.0;9
+Djibouti;DJI;DJ;World;-1.0;10
+Djibouti;DJI;DJ;World;-1.0;11
+Djibouti;DJI;DJ;World;30.0;12
+Djibouti;DJI;DJ;World;35.0;13
+Djibouti;DJI;DJ;World;-1.0;14
+Djibouti;DJI;DJ;World;-1.0;15
+Djibouti;DJI;DJ;World;-1.0;16
+Djibouti;DJI;DJ;World;62.1;17
+Dominica;DMA;DM;World;55.0;1
+Dominica;DMA;DM;World;55.0;2
+Dominica;DMA;DM;World;-1.0;3
+Dominica;DMA;DM;World;-1.0;4
+Dominica;DMA;DM;World;-1.0;5
+Dominica;DMA;DM;World;-1.0;6
+Dominica;DMA;DM;World;-1.0;7
+Dominica;DMA;DM;World;59.0;8
+Dominica;DMA;DM;World;-1.0;9
+Dominica;DMA;DM;World;-1.0;10
+Dominica;DMA;DM;World;-1.0;11
+Dominica;DMA;DM;World;-1.0;12
+Dominica;DMA;DM;World;52.0;13
+Dominica;DMA;DM;World;-1.0;14
+Dominica;DMA;DM;World;54.0;15
+Dominica;DMA;DM;World;-1.0;16
+Dominica;DMA;DM;World;-1.0;17
+Dominican Republic;DOM;DO;World;30.0;1
+Dominican Republic;DOM;DO;World;28.0;2
+Dominican Republic;DOM;DO;World;-1.0;3
+Dominican Republic;DOM;DO;World;-1.0;4
+Dominican Republic;DOM;DO;World;29.0;5
+Dominican Republic;DOM;DO;World;37.0;6
+Dominican Republic;DOM;DO;World;-1.0;7
+Dominican Republic;DOM;DO;World;22.0;8
+Dominican Republic;DOM;DO;World;-1.0;9
+Dominican Republic;DOM;DO;World;-1.0;10
+Dominican Republic;DOM;DO;World;30.0;11
+Dominican Republic;DOM;DO;World;30.0;12
+Dominican Republic;DOM;DO;World;-1.0;13
+Dominican Republic;DOM;DO;World;29.0;14
+Dominican Republic;DOM;DO;World;30.0;15
+Dominican Republic;DOM;DO;World;53.8;16
+Dominican Republic;DOM;DO;World;50.5;17
+East Timor;TLS;TL;World;-1.0;1
+East Timor;TLS;TL;World;-1.0;2
+East Timor;TLS;TL;World;-1.0;3
+East Timor;TLS;TL;World;-1.0;4
+East Timor;TLS;TL;World;-1.0;5
+East Timor;TLS;TL;World;-1.0;6
+East Timor;TLS;TL;World;-1.0;7
+East Timor;TLS;TL;World;-1.0;8
+East Timor;TLS;TL;World;-1.0;9
+East Timor;TLS;TL;World;-1.0;10
+East Timor;TLS;TL;World;-1.0;11
+East Timor;TLS;TL;World;-1.0;12
+East Timor;TLS;TL;World;-1.0;13
+East Timor;TLS;TL;World;-1.0;14
+East Timor;TLS;TL;World;-1.0;15
+East Timor;TLS;TL;World;-1.0;16
+East Timor;TLS;TL;World;-1.0;17
+Ecuador;ECU;EC;World;36.0;1
+Ecuador;ECU;EC;World;39.0;2
+Ecuador;ECU;EC;World;-1.0;3
+Ecuador;ECU;EC;World;-1.0;4
+Ecuador;ECU;EC;World;45.0;5
+Ecuador;ECU;EC;World;37.0;6
+Ecuador;ECU;EC;World;-1.0;7
+Ecuador;ECU;EC;World;35.0;8
+Ecuador;ECU;EC;World;-1.0;9
+Ecuador;ECU;EC;World;-1.0;10
+Ecuador;ECU;EC;World;41.0;11
+Ecuador;ECU;EC;World;36.0;12
+Ecuador;ECU;EC;World;-1.0;13
+Ecuador;ECU;EC;World;26.0;14
+Ecuador;ECU;EC;World;33.0;15
+Ecuador;ECU;EC;World;-1.0;16
+Ecuador;ECU;EC;World;52.0;17
+Egypt;EGY;EG;World;33.0;1
+Egypt;EGY;EG;World;33.0;2
+Egypt;EGY;EG;World;-1.0;3
+Egypt;EGY;EG;World;-1.0;4
+Egypt;EGY;EG;World;25.0;5
+Egypt;EGY;EG;World;37.0;6
+Egypt;EGY;EG;World;-1.0;7
+Egypt;EGY;EG;World;22.0;8
+Egypt;EGY;EG;World;-1.0;9
+Egypt;EGY;EG;World;-1.0;10
+Egypt;EGY;EG;World;32.0;11
+Egypt;EGY;EG;World;23.0;12
+Egypt;EGY;EG;World;-1.0;13
+Egypt;EGY;EG;World;66.0;14
+Egypt;EGY;EG;World;27.0;15
+Egypt;EGY;EG;World;49.1;16
+Egypt;EGY;EG;World;51.3;17
+El Salvador;SLV;SV;World;34.0;1
+El Salvador;SLV;SV;World;36.0;2
+El Salvador;SLV;SV;World;-1.0;3
+El Salvador;SLV;SV;World;-1.0;4
+El Salvador;SLV;SV;World;45.0;5
+El Salvador;SLV;SV;World;37.0;6
+El Salvador;SLV;SV;World;-1.0;7
+El Salvador;SLV;SV;World;35.0;8
+El Salvador;SLV;SV;World;-1.0;9
+El Salvador;SLV;SV;World;-1.0;10
+El Salvador;SLV;SV;World;34.0;11
+El Salvador;SLV;SV;World;26.0;12
+El Salvador;SLV;SV;World;-1.0;13
+El Salvador;SLV;SV;World;29.0;14
+El Salvador;SLV;SV;World;34.0;15
+El Salvador;SLV;SV;World;-1.0;16
+El Salvador;SLV;SV;World;52.3;17
+Equatorial Guinea;GNQ;GQ;World;17.0;1
+Equatorial Guinea;GNQ;GQ;World;16.0;2
+Equatorial Guinea;GNQ;GQ;World;-1.0;3
+Equatorial Guinea;GNQ;GQ;World;-1.0;4
+Equatorial Guinea;GNQ;GQ;World;9.0;5
+Equatorial Guinea;GNQ;GQ;World;20.0;6
+Equatorial Guinea;GNQ;GQ;World;-1.0;7
+Equatorial Guinea;GNQ;GQ;World;22.0;8
+Equatorial Guinea;GNQ;GQ;World;-1.0;9
+Equatorial Guinea;GNQ;GQ;World;-1.0;10
+Equatorial Guinea;GNQ;GQ;World;-1.0;11
+Equatorial Guinea;GNQ;GQ;World;16.0;12
+Equatorial Guinea;GNQ;GQ;World;-1.0;13
+Equatorial Guinea;GNQ;GQ;World;-1.0;14
+Equatorial Guinea;GNQ;GQ;World;-1.0;15
+Equatorial Guinea;GNQ;GQ;World;-1.0;16
+Equatorial Guinea;GNQ;GQ;World;-1.0;17
+Eritrea;ERI;ER;World;22.0;1
+Eritrea;ERI;ER;World;21.0;2
+Eritrea;ERI;ER;World;4.0;3
+Eritrea;ERI;ER;World;-1.0;4
+Eritrea;ERI;ER;World;13.0;5
+Eritrea;ERI;ER;World;-1.0;6
+Eritrea;ERI;ER;World;-1.0;7
+Eritrea;ERI;ER;World;35.0;8
+Eritrea;ERI;ER;World;-1.0;9
+Eritrea;ERI;ER;World;-1.0;10
+Eritrea;ERI;ER;World;-1.0;11
+Eritrea;ERI;ER;World;34.0;12
+Eritrea;ERI;ER;World;27.0;13
+Eritrea;ERI;ER;World;-1.0;14
+Eritrea;ERI;ER;World;-1.0;15
+Eritrea;ERI;ER;World;-1.0;16
+Eritrea;ERI;ER;World;-1.0;17
+Estonia;EST;EE;World;74.0;1
+Estonia;EST;EE;World;75.0;2
+Estonia;EST;EE;World;-1.0;3
+Estonia;EST;EE;World;88.0;4
+Estonia;EST;EE;World;77.0;5
+Estonia;EST;EE;World;72.0;6
+Estonia;EST;EE;World;71.0;7
+Estonia;EST;EE;World;71.0;8
+Estonia;EST;EE;World;70.0;9
+Estonia;EST;EE;World;-1.0;10
+Estonia;EST;EE;World;67.0;11
+Estonia;EST;EE;World;75.0;12
+Estonia;EST;EE;World;-1.0;13
+Estonia;EST;EE;World;78.0;14
+Estonia;EST;EE;World;74.0;15
+Estonia;EST;EE;World;-1.0;16
+Estonia;EST;EE;World;77.4;17
+Eswatini;SWZ;SZ;World;32.0;1
+Eswatini;SWZ;SZ;World;33.0;2
+Eswatini;SWZ;SZ;World;-1.0;3
+Eswatini;SWZ;SZ;World;-1.0;4
+Eswatini;SWZ;SZ;World;17.0;5
+Eswatini;SWZ;SZ;World;-1.0;6
+Eswatini;SWZ;SZ;World;-1.0;7
+Eswatini;SWZ;SZ;World;35.0;8
+Eswatini;SWZ;SZ;World;-1.0;9
+Eswatini;SWZ;SZ;World;-1.0;10
+Eswatini;SWZ;SZ;World;-1.0;11
+Eswatini;SWZ;SZ;World;43.0;12
+Eswatini;SWZ;SZ;World;-1.0;13
+Eswatini;SWZ;SZ;World;-1.0;14
+Eswatini;SWZ;SZ;World;-1.0;15
+Eswatini;SWZ;SZ;World;-1.0;16
+Eswatini;SWZ;SZ;World;-1.0;17
+Ethiopia;ETH;ET;World;39.0;1
+Ethiopia;ETH;ET;World;38.0;2
+Ethiopia;ETH;ET;World;44.0;3
+Ethiopia;ETH;ET;World;-1.0;4
+Ethiopia;ETH;ET;World;33.0;5
+Ethiopia;ETH;ET;World;37.0;6
+Ethiopia;ETH;ET;World;-1.0;7
+Ethiopia;ETH;ET;World;47.0;8
+Ethiopia;ETH;ET;World;-1.0;9
+Ethiopia;ETH;ET;World;-1.0;10
+Ethiopia;ETH;ET;World;40.0;11
+Ethiopia;ETH;ET;World;45.0;12
+Ethiopia;ETH;ET;World;35.0;13
+Ethiopia;ETH;ET;World;-1.0;14
+Ethiopia;ETH;ET;World;35.0;15
+Ethiopia;ETH;ET;World;33.3;16
+Ethiopia;ETH;ET;World;-1.0;17
+Falklands;FLK;FK;World;-1.0;1
+Falklands;FLK;FK;World;-1.0;2
+Falklands;FLK;FK;World;-1.0;3
+Falklands;FLK;FK;World;-1.0;4
+Falklands;FLK;FK;World;-1.0;5
+Falklands;FLK;FK;World;-1.0;6
+Falklands;FLK;FK;World;-1.0;7
+Falklands;FLK;FK;World;-1.0;8
+Falklands;FLK;FK;World;-1.0;9
+Falklands;FLK;FK;World;-1.0;10
+Falklands;FLK;FK;World;-1.0;11
+Falklands;FLK;FK;World;-1.0;12
+Falklands;FLK;FK;World;-1.0;13
+Falklands;FLK;FK;World;-1.0;14
+Falklands;FLK;FK;World;-1.0;15
+Falklands;FLK;FK;World;-1.0;16
+Falklands;FLK;FK;World;-1.0;17
+Färöer islands;FRO;FO;World;-1.0;1
+Färöer islands;FRO;FO;World;85.0;2
+Färöer islands;FRO;FO;World;-1.0;3
+Färöer islands;FRO;FO;World;-1.0;4
+Färöer islands;FRO;FO;World;-1.0;5
+Färöer islands;FRO;FO;World;-1.0;6
+Färöer islands;FRO;FO;World;-1.0;7
+Färöer islands;FRO;FO;World;-1.0;8
+Färöer islands;FRO;FO;World;-1.0;9
+Färöer islands;FRO;FO;World;-1.0;10
+Färöer islands;FRO;FO;World;-1.0;11
+Färöer islands;FRO;FO;World;-1.0;12
+Färöer islands;FRO;FO;World;-1.0;13
+Färöer islands;FRO;FO;World;-1.0;14
+Färöer islands;FRO;FO;World;-1.0;15
+Färöer islands;FRO;FO;World;-1.0;16
+Färöer islands;FRO;FO;World;-1.0;17
+Fiji;FJI;FJ;World;55.0;1
+Fiji;FJI;FJ;World;69.0;2
+Fiji;FJI;FJ;World;-1.0;3
+Fiji;FJI;FJ;World;-1.0;4
+Fiji;FJI;FJ;World;-1.0;5
+Fiji;FJI;FJ;World;-1.0;6
+Fiji;FJI;FJ;World;-1.0;7
+Fiji;FJI;FJ;World;59.0;8
+Fiji;FJI;FJ;World;-1.0;9
+Fiji;FJI;FJ;World;-1.0;10
+Fiji;FJI;FJ;World;-1.0;11
+Fiji;FJI;FJ;World;62.0;12
+Fiji;FJI;FJ;World;43.0;13
+Fiji;FJI;FJ;World;-1.0;14
+Fiji;FJI;FJ;World;-1.0;15
+Fiji;FJI;FJ;World;45.4;16
+Fiji;FJI;FJ;World;-1.0;17
+Finland;FIN;FI;World;88.0;1
+Finland;FIN;FI;World;-1.0;2
+Finland;FIN;FI;World;-1.0;3
+Finland;FIN;FI;World;88.0;4
+Finland;FIN;FI;World;-1.0;5
+Finland;FIN;FI;World;90.0;6
+Finland;FIN;FI;World;-1.0;7
+Finland;FIN;FI;World;83.0;8
+Finland;FIN;FI;World;94.0;9
+Finland;FIN;FI;World;-1.0;10
+Finland;FIN;FI;World;93.0;11
+Finland;FIN;FI;World;77.0;12
+Finland;FIN;FI;World;-1.0;13
+Finland;FIN;FI;World;91.0;14
+Finland;FIN;FI;World;87.0;15
+Finland;FIN;FI;World;70.4;16
+Finland;FIN;FI;World;71.3;17
+France;FRA;FR;World;71.0;1
+France;FRA;FR;World;-1.0;2
+France;FRA;FR;World;-1.0;3
+France;FRA;FR;World;70.0;4
+France;FRA;FR;World;-1.0;5
+France;FRA;FR;World;72.0;6
+France;FRA;FR;World;-1.0;7
+France;FRA;FR;World;59.0;8
+France;FRA;FR;World;74.0;9
+France;FRA;FR;World;-1.0;10
+France;FRA;FR;World;67.0;11
+France;FRA;FR;World;75.0;12
+France;FRA;FR;World;-1.0;13
+France;FRA;FR;World;77.0;14
+France;FRA;FR;World;69.0;15
+France;FRA;FR;World;-1.0;16
+France;FRA;FR;World;61.7;17
+French Guyana;GUF;GF;World;-1.0;1
+French Guyana;GUF;GF;World;-1.0;2
+French Guyana;GUF;GF;World;-1.0;3
+French Guyana;GUF;GF;World;-1.0;4
+French Guyana;GUF;GF;World;-1.0;5
+French Guyana;GUF;GF;World;-1.0;6
+French Guyana;GUF;GF;World;-1.0;7
+French Guyana;GUF;GF;World;-1.0;8
+French Guyana;GUF;GF;World;-1.0;9
+French Guyana;GUF;GF;World;-1.0;10
+French Guyana;GUF;GF;World;-1.0;11
+French Guyana;GUF;GF;World;-1.0;12
+French Guyana;GUF;GF;World;-1.0;13
+French Guyana;GUF;GF;World;-1.0;14
+French Guyana;GUF;GF;World;-1.0;15
+French Guyana;GUF;GF;World;-1.0;16
+French Guyana;GUF;GF;World;-1.0;17
+French Polynesia;PYF;PF;World;-1.0;1
+French Polynesia;PYF;PF;World;-1.0;2
+French Polynesia;PYF;PF;World;-1.0;3
+French Polynesia;PYF;PF;World;-1.0;4
+French Polynesia;PYF;PF;World;-1.0;5
+French Polynesia;PYF;PF;World;-1.0;6
+French Polynesia;PYF;PF;World;-1.0;7
+French Polynesia;PYF;PF;World;-1.0;8
+French Polynesia;PYF;PF;World;-1.0;9
+French Polynesia;PYF;PF;World;-1.0;10
+French Polynesia;PYF;PF;World;-1.0;11
+French Polynesia;PYF;PF;World;-1.0;12
+French Polynesia;PYF;PF;World;-1.0;13
+French Polynesia;PYF;PF;World;-1.0;14
+French Polynesia;PYF;PF;World;-1.0;15
+French Polynesia;PYF;PF;World;-1.0;16
+French Polynesia;PYF;PF;World;-1.0;17
+French Southern and Antarctic Lands;ATF;TF;World;-1.0;1
+French Southern and Antarctic Lands;ATF;TF;World;-1.0;2
+French Southern and Antarctic Lands;ATF;TF;World;-1.0;3
+French Southern and Antarctic Lands;ATF;TF;World;-1.0;4
+French Southern and Antarctic Lands;ATF;TF;World;-1.0;5
+French Southern and Antarctic Lands;ATF;TF;World;-1.0;6
+French Southern and Antarctic Lands;ATF;TF;World;-1.0;7
+French Southern and Antarctic Lands;ATF;TF;World;-1.0;8
+French Southern and Antarctic Lands;ATF;TF;World;-1.0;9
+French Southern and Antarctic Lands;ATF;TF;World;-1.0;10
+French Southern and Antarctic Lands;ATF;TF;World;-1.0;11
+French Southern and Antarctic Lands;ATF;TF;World;-1.0;12
+French Southern and Antarctic Lands;ATF;TF;World;-1.0;13
+French Southern and Antarctic Lands;ATF;TF;World;-1.0;14
+French Southern and Antarctic Lands;ATF;TF;World;-1.0;15
+French Southern and Antarctic Lands;ATF;TF;World;-1.0;16
+French Southern and Antarctic Lands;ATF;TF;World;-1.0;17
+Gabon;GAB;GA;World;31.0;1
+Gabon;GAB;GA;World;30.0;2
+Gabon;GAB;GA;World;-1.0;3
+Gabon;GAB;GA;World;-1.0;4
+Gabon;GAB;GA;World;29.0;5
+Gabon;GAB;GA;World;37.0;6
+Gabon;GAB;GA;World;-1.0;7
+Gabon;GAB;GA;World;35.0;8
+Gabon;GAB;GA;World;-1.0;9
+Gabon;GAB;GA;World;-1.0;10
+Gabon;GAB;GA;World;32.0;11
+Gabon;GAB;GA;World;20.0;12
+Gabon;GAB;GA;World;-1.0;13
+Gabon;GAB;GA;World;-1.0;14
+Gabon;GAB;GA;World;-1.0;15
+Gabon;GAB;GA;World;-1.0;16
+Gabon;GAB;GA;World;-1.0;17
+Gambia;GMB;GM;World;37.0;1
+Gambia;GMB;GM;World;37.0;2
+Gambia;GMB;GM;World;16.0;3
+Gambia;GMB;GM;World;-1.0;4
+Gambia;GMB;GM;World;25.0;5
+Gambia;GMB;GM;World;-1.0;6
+Gambia;GMB;GM;World;-1.0;7
+Gambia;GMB;GM;World;47.0;8
+Gambia;GMB;GM;World;-1.0;9
+Gambia;GMB;GM;World;-1.0;10
+Gambia;GMB;GM;World;41.0;11
+Gambia;GMB;GM;World;56.0;12
+Gambia;GMB;GM;World;27.0;13
+Gambia;GMB;GM;World;54.0;14
+Gambia;GMB;GM;World;29.0;15
+Gambia;GMB;GM;World;-1.0;16
+Gambia;GMB;GM;World;48.1;17
+Georgia;GEO;GE;World;55.0;1
+Georgia;GEO;GE;World;56.0;2
+Georgia;GEO;GE;World;-1.0;3
+Georgia;GEO;GE;World;-1.0;4
+Georgia;GEO;GE;World;45.0;5
+Georgia;GEO;GE;World;-1.0;6
+Georgia;GEO;GE;World;50.0;7
+Georgia;GEO;GE;World;47.0;8
+Georgia;GEO;GE;World;-1.0;9
+Georgia;GEO;GE;World;-1.0;10
+Georgia;GEO;GE;World;-1.0;11
+Georgia;GEO;GE;World;69.0;12
+Georgia;GEO;GE;World;-1.0;13
+Georgia;GEO;GE;World;60.0;14
+Georgia;GEO;GE;World;58.0;15
+Georgia;GEO;GE;World;52.8;16
+Georgia;GEO;GE;World;55.6;17
+Germany;DEU;DE;World;80.0;1
+Germany;DEU;DE;World;80.0;2
+Germany;DEU;DE;World;-1.0;3
+Germany;DEU;DE;World;79.0;4
+Germany;DEU;DE;World;-1.0;5
+Germany;DEU;DE;World;90.0;6
+Germany;DEU;DE;World;-1.0;7
+Germany;DEU;DE;World;83.0;8
+Germany;DEU;DE;World;80.0;9
+Germany;DEU;DE;World;-1.0;10
+Germany;DEU;DE;World;85.0;11
+Germany;DEU;DE;World;77.0;12
+Germany;DEU;DE;World;-1.0;13
+Germany;DEU;DE;World;63.0;14
+Germany;DEU;DE;World;80.0;15
+Germany;DEU;DE;World;-1.0;16
+Germany;DEU;DE;World;56.7;17
+Ghana;GHA;GH;World;43.0;1
+Ghana;GHA;GH;World;43.0;2
+Ghana;GHA;GH;World;49.0;3
+Ghana;GHA;GH;World;-1.0;4
+Ghana;GHA;GH;World;41.0;5
+Ghana;GHA;GH;World;55.0;6
+Ghana;GHA;GH;World;-1.0;7
+Ghana;GHA;GH;World;47.0;8
+Ghana;GHA;GH;World;-1.0;9
+Ghana;GHA;GH;World;-1.0;10
+Ghana;GHA;GH;World;50.0;11
+Ghana;GHA;GH;World;34.0;12
+Ghana;GHA;GH;World;43.0;13
+Ghana;GHA;GH;World;34.0;14
+Ghana;GHA;GH;World;33.0;15
+Ghana;GHA;GH;World;52.2;16
+Ghana;GHA;GH;World;52.1;17
+Gibraltar;GIB;GI;World;-1.0;1
+Gibraltar;GIB;GI;World;-1.0;2
+Gibraltar;GIB;GI;World;-1.0;3
+Gibraltar;GIB;GI;World;-1.0;4
+Gibraltar;GIB;GI;World;-1.0;5
+Gibraltar;GIB;GI;World;-1.0;6
+Gibraltar;GIB;GI;World;-1.0;7
+Gibraltar;GIB;GI;World;-1.0;8
+Gibraltar;GIB;GI;World;-1.0;9
+Gibraltar;GIB;GI;World;-1.0;10
+Gibraltar;GIB;GI;World;-1.0;11
+Gibraltar;GIB;GI;World;-1.0;12
+Gibraltar;GIB;GI;World;-1.0;13
+Gibraltar;GIB;GI;World;-1.0;14
+Gibraltar;GIB;GI;World;-1.0;15
+Gibraltar;GIB;GI;World;-1.0;16
+Gibraltar;GIB;GI;World;-1.0;17
+Greece;GRC;GR;World;49.0;1
+Greece;GRC;GR;World;50.0;2
+Greece;GRC;GR;World;-1.0;3
+Greece;GRC;GR;World;53.0;4
+Greece;GRC;GR;World;-1.0;5
+Greece;GRC;GR;World;37.0;6
+Greece;GRC;GR;World;-1.0;7
+Greece;GRC;GR;World;47.0;8
+Greece;GRC;GR;World;54.0;9
+Greece;GRC;GR;World;-1.0;10
+Greece;GRC;GR;World;41.0;11
+Greece;GRC;GR;World;59.0;12
+Greece;GRC;GR;World;-1.0;13
+Greece;GRC;GR;World;48.0;14
+Greece;GRC;GR;World;52.0;15
+Greece;GRC;GR;World;64.3;16
+Greece;GRC;GR;World;63.6;17
+Greenland;GRL;GL;World;-1.0;1
+Greenland;GRL;GL;World;53.0;2
+Greenland;GRL;GL;World;-1.0;3
+Greenland;GRL;GL;World;-1.0;4
+Greenland;GRL;GL;World;-1.0;5
+Greenland;GRL;GL;World;-1.0;6
+Greenland;GRL;GL;World;-1.0;7
+Greenland;GRL;GL;World;-1.0;8
+Greenland;GRL;GL;World;-1.0;9
+Greenland;GRL;GL;World;-1.0;10
+Greenland;GRL;GL;World;-1.0;11
+Greenland;GRL;GL;World;-1.0;12
+Greenland;GRL;GL;World;-1.0;13
+Greenland;GRL;GL;World;-1.0;14
+Greenland;GRL;GL;World;-1.0;15
+Greenland;GRL;GL;World;-1.0;16
+Greenland;GRL;GL;World;-1.0;17
+Grenada;GRD;GD;World;53.0;1
+Grenada;GRD;GD;World;-1.0;2
+Grenada;GRD;GD;World;-1.0;3
+Grenada;GRD;GD;World;-1.0;4
+Grenada;GRD;GD;World;-1.0;5
+Grenada;GRD;GD;World;-1.0;6
+Grenada;GRD;GD;World;-1.0;7
+Grenada;GRD;GD;World;47.0;8
+Grenada;GRD;GD;World;-1.0;9
+Grenada;GRD;GD;World;-1.0;10
+Grenada;GRD;GD;World;-1.0;11
+Grenada;GRD;GD;World;-1.0;12
+Grenada;GRD;GD;World;52.0;13
+Grenada;GRD;GD;World;-1.0;14
+Grenada;GRD;GD;World;62.0;15
+Grenada;GRD;GD;World;-1.0;16
+Grenada;GRD;GD;World;59.7;17
+Guadeloupe;GLP;GP;World;-1.0;1
+Guadeloupe;GLP;GP;World;-1.0;2
+Guadeloupe;GLP;GP;World;-1.0;3
+Guadeloupe;GLP;GP;World;-1.0;4
+Guadeloupe;GLP;GP;World;-1.0;5
+Guadeloupe;GLP;GP;World;-1.0;6
+Guadeloupe;GLP;GP;World;-1.0;7
+Guadeloupe;GLP;GP;World;-1.0;8
+Guadeloupe;GLP;GP;World;-1.0;9
+Guadeloupe;GLP;GP;World;-1.0;10
+Guadeloupe;GLP;GP;World;-1.0;11
+Guadeloupe;GLP;GP;World;-1.0;12
+Guadeloupe;GLP;GP;World;-1.0;13
+Guadeloupe;GLP;GP;World;-1.0;14
+Guadeloupe;GLP;GP;World;-1.0;15
+Guadeloupe;GLP;GP;World;-1.0;16
+Guadeloupe;GLP;GP;World;-1.0;17
+Guam;GUM;GU;World;-1.0;1
+Guam;GUM;GU;World;-1.0;2
+Guam;GUM;GU;World;-1.0;3
+Guam;GUM;GU;World;-1.0;4
+Guam;GUM;GU;World;-1.0;5
+Guam;GUM;GU;World;-1.0;6
+Guam;GUM;GU;World;-1.0;7
+Guam;GUM;GU;World;-1.0;8
+Guam;GUM;GU;World;-1.0;9
+Guam;GUM;GU;World;-1.0;10
+Guam;GUM;GU;World;-1.0;11
+Guam;GUM;GU;World;-1.0;12
+Guam;GUM;GU;World;-1.0;13
+Guam;GUM;GU;World;-1.0;14
+Guam;GUM;GU;World;-1.0;15
+Guam;GUM;GU;World;-1.0;16
+Guam;GUM;GU;World;-1.0;17
+Guatemala;GTM;GT;World;25.0;1
+Guatemala;GTM;GT;World;25.0;2
+Guatemala;GTM;GT;World;-1.0;3
+Guatemala;GTM;GT;World;-1.0;4
+Guatemala;GTM;GT;World;21.0;5
+Guatemala;GTM;GT;World;20.0;6
+Guatemala;GTM;GT;World;-1.0;7
+Guatemala;GTM;GT;World;22.0;8
+Guatemala;GTM;GT;World;-1.0;9
+Guatemala;GTM;GT;World;-1.0;10
+Guatemala;GTM;GT;World;30.0;11
+Guatemala;GTM;GT;World;25.0;12
+Guatemala;GTM;GT;World;-1.0;13
+Guatemala;GTM;GT;World;31.0;14
+Guatemala;GTM;GT;World;26.0;15
+Guatemala;GTM;GT;World;49.8;16
+Guatemala;GTM;GT;World;50.0;17
+Guernsey;GGY;GG;World;-1.0;1
+Guernsey;GGY;GG;World;-1.0;2
+Guernsey;GGY;GG;World;-1.0;3
+Guernsey;GGY;GG;World;-1.0;4
+Guernsey;GGY;GG;World;-1.0;5
+Guernsey;GGY;GG;World;-1.0;6
+Guernsey;GGY;GG;World;-1.0;7
+Guernsey;GGY;GG;World;-1.0;8
+Guernsey;GGY;GG;World;-1.0;9
+Guernsey;GGY;GG;World;-1.0;10
+Guernsey;GGY;GG;World;-1.0;11
+Guernsey;GGY;GG;World;-1.0;12
+Guernsey;GGY;GG;World;-1.0;13
+Guernsey;GGY;GG;World;-1.0;14
+Guernsey;GGY;GG;World;-1.0;15
+Guernsey;GGY;GG;World;-1.0;16
+Guernsey;GGY;GG;World;46.9;17
+Guinea;GIN;GN;World;25.0;1
+Guinea;GIN;GN;World;28.0;2
+Guinea;GIN;GN;World;27.0;3
+Guinea;GIN;GN;World;-1.0;4
+Guinea;GIN;GN;World;29.0;5
+Guinea;GIN;GN;World;-1.0;6
+Guinea;GIN;GN;World;-1.0;7
+Guinea;GIN;GN;World;35.0;8
+Guinea;GIN;GN;World;-1.0;9
+Guinea;GIN;GN;World;-1.0;10
+Guinea;GIN;GN;World;24.0;11
+Guinea;GIN;GN;World;20.0;12
+Guinea;GIN;GN;World;27.0;13
+Guinea;GIN;GN;World;18.0;14
+Guinea;GIN;GN;World;19.0;15
+Guinea;GIN;GN;World;-1.0;16
+Guinea;GIN;GN;World;19.4;17
+Guinea Bissau;GNB;GW;World;21.0;1
+Guinea Bissau;GNB;GW;World;19.0;2
+Guinea Bissau;GNB;GW;World;14.0;3
+Guinea Bissau;GNB;GW;World;-1.0;4
+Guinea Bissau;GNB;GW;World;29.0;5
+Guinea Bissau;GNB;GW;World;-1.0;6
+Guinea Bissau;GNB;GW;World;-1.0;7
+Guinea Bissau;GNB;GW;World;22.0;8
+Guinea Bissau;GNB;GW;World;-1.0;9
+Guinea Bissau;GNB;GW;World;-1.0;10
+Guinea Bissau;GNB;GW;World;32.0;11
+Guinea Bissau;GNB;GW;World;18.0;12
+Guinea Bissau;GNB;GW;World;10.0;13
+Guinea Bissau;GNB;GW;World;-1.0;14
+Guinea Bissau;GNB;GW;World;-1.0;15
+Guinea Bissau;GNB;GW;World;-1.0;16
+Guinea Bissau;GNB;GW;World;45.5;17
+Guyana;GUY;GY;World;39.0;1
+Guyana;GUY;GY;World;41.0;2
+Guyana;GUY;GY;World;-1.0;3
+Guyana;GUY;GY;World;-1.0;4
+Guyana;GUY;GY;World;-1.0;5
+Guyana;GUY;GY;World;-1.0;6
+Guyana;GUY;GY;World;-1.0;7
+Guyana;GUY;GY;World;35.0;8
+Guyana;GUY;GY;World;-1.0;9
+Guyana;GUY;GY;World;-1.0;10
+Guyana;GUY;GY;World;41.0;11
+Guyana;GUY;GY;World;49.0;12
+Guyana;GUY;GY;World;35.0;13
+Guyana;GUY;GY;World;-1.0;14
+Guyana;GUY;GY;World;36.0;15
+Guyana;GUY;GY;World;-1.0;16
+Guyana;GUY;GY;World;51.1;17
+Haiti;HTI;HT;World;20.0;1
+Haiti;HTI;HT;World;18.0;2
+Haiti;HTI;HT;World;-1.0;3
+Haiti;HTI;HT;World;-1.0;4
+Haiti;HTI;HT;World;17.0;5
+Haiti;HTI;HT;World;-1.0;6
+Haiti;HTI;HT;World;-1.0;7
+Haiti;HTI;HT;World;22.0;8
+Haiti;HTI;HT;World;-1.0;9
+Haiti;HTI;HT;World;-1.0;10
+Haiti;HTI;HT;World;22.0;11
+Haiti;HTI;HT;World;17.0;12
+Haiti;HTI;HT;World;18.0;13
+Haiti;HTI;HT;World;-1.0;14
+Haiti;HTI;HT;World;21.0;15
+Haiti;HTI;HT;World;16.1;16
+Haiti;HTI;HT;World;51.1;17
+Heard and MCDonald Islands;HMD;HM;World;-1.0;1
+Heard and MCDonald Islands;HMD;HM;World;-1.0;2
+Heard and MCDonald Islands;HMD;HM;World;-1.0;3
+Heard and MCDonald Islands;HMD;HM;World;-1.0;4
+Heard and MCDonald Islands;HMD;HM;World;-1.0;5
+Heard and MCDonald Islands;HMD;HM;World;-1.0;6
+Heard and MCDonald Islands;HMD;HM;World;-1.0;7
+Heard and MCDonald Islands;HMD;HM;World;-1.0;8
+Heard and MCDonald Islands;HMD;HM;World;-1.0;9
+Heard and MCDonald Islands;HMD;HM;World;-1.0;10
+Heard and MCDonald Islands;HMD;HM;World;-1.0;11
+Heard and MCDonald Islands;HMD;HM;World;-1.0;12
+Heard and MCDonald Islands;HMD;HM;World;-1.0;13
+Heard and MCDonald Islands;HMD;HM;World;-1.0;14
+Heard and MCDonald Islands;HMD;HM;World;-1.0;15
+Heard and MCDonald Islands;HMD;HM;World;-1.0;16
+Heard and MCDonald Islands;HMD;HM;World;-1.0;17
+Honduras;HND;HN;World;23.0;1
+Honduras;HND;HN;World;24.0;2
+Honduras;HND;HN;World;-1.0;3
+Honduras;HND;HN;World;-1.0;4
+Honduras;HND;HN;World;21.0;5
+Honduras;HND;HN;World;20.0;6
+Honduras;HND;HN;World;-1.0;7
+Honduras;HND;HN;World;22.0;8
+Honduras;HND;HN;World;-1.0;9
+Honduras;HND;HN;World;-1.0;10
+Honduras;HND;HN;World;30.0;11
+Honduras;HND;HN;World;20.0;12
+Honduras;HND;HN;World;27.0;13
+Honduras;HND;HN;World;21.0;14
+Honduras;HND;HN;World;21.0;15
+Honduras;HND;HN;World;45.8;16
+Honduras;HND;HN;World;-1.0;17
+Hong Kong;HKG;HK;World;76.0;1
+Hong Kong;HKG;HK;World;77.0;2
+Hong Kong;HKG;HK;World;-1.0;3
+Hong Kong;HKG;HK;World;-1.0;4
+Hong Kong;HKG;HK;World;-1.0;5
+Hong Kong;HKG;HK;World;90.0;6
+Hong Kong;HKG;HK;World;-1.0;7
+Hong Kong;HKG;HK;World;71.0;8
+Hong Kong;HKG;HK;World;84.0;9
+Hong Kong;HKG;HK;World;68.0;10
+Hong Kong;HKG;HK;World;69.0;11
+Hong Kong;HKG;HK;World;72.0;12
+Hong Kong;HKG;HK;World;-1.0;13
+Hong Kong;HKG;HK;World;83.0;14
+Hong Kong;HKG;HK;World;75.0;15
+Hong Kong;HKG;HK;World;49.0;16
+Hong Kong;HKG;HK;World;-1.0;17
+Hungary;HUN;HU;World;43.0;1
+Hungary;HUN;HU;World;44.0;2
+Hungary;HUN;HU;World;-1.0;3
+Hungary;HUN;HU;World;35.0;4
+Hungary;HUN;HU;World;37.0;5
+Hungary;HUN;HU;World;55.0;6
+Hungary;HUN;HU;World;42.0;7
+Hungary;HUN;HU;World;59.0;8
+Hungary;HUN;HU;World;38.0;9
+Hungary;HUN;HU;World;-1.0;10
+Hungary;HUN;HU;World;48.0;11
+Hungary;HUN;HU;World;43.0;12
+Hungary;HUN;HU;World;-1.0;13
+Hungary;HUN;HU;World;36.0;14
+Hungary;HUN;HU;World;39.0;15
+Hungary;HUN;HU;World;50.6;16
+Hungary;HUN;HU;World;-1.0;17
+Iceland;ISL;IS;World;74.0;1
+Iceland;ISL;IS;World;75.0;2
+Iceland;ISL;IS;World;-1.0;3
+Iceland;ISL;IS;World;44.0;4
+Iceland;ISL;IS;World;-1.0;5
+Iceland;ISL;IS;World;72.0;6
+Iceland;ISL;IS;World;-1.0;7
+Iceland;ISL;IS;World;83.0;8
+Iceland;ISL;IS;World;82.0;9
+Iceland;ISL;IS;World;-1.0;10
+Iceland;ISL;IS;World;76.0;11
+Iceland;ISL;IS;World;78.0;12
+Iceland;ISL;IS;World;-1.0;13
+Iceland;ISL;IS;World;82.0;14
+Iceland;ISL;IS;World;-1.0;15
+Iceland;ISL;IS;World;59.4;16
+Iceland;ISL;IS;World;58.5;17
+India;IND;IN;World;40.0;1
+India;IND;IN;World;40.0;2
+India;IND;IN;World;-1.0;3
+India;IND;IN;World;-1.0;4
+India;IND;IN;World;45.0;5
+India;IND;IN;World;37.0;6
+India;IND;IN;World;-1.0;7
+India;IND;IN;World;47.0;8
+India;IND;IN;World;46.0;9
+India;IND;IN;World;31.0;10
+India;IND;IN;World;41.0;11
+India;IND;IN;World;46.0;12
+India;IND;IN;World;-1.0;13
+India;IND;IN;World;40.0;14
+India;IND;IN;World;31.0;15
+India;IND;IN;World;-1.0;16
+India;IND;IN;World;49.5;17
+Indonesia;IDN;ID;World;38.0;1
+Indonesia;IDN;ID;World;37.0;2
+Indonesia;IDN;ID;World;-1.0;3
+Indonesia;IDN;ID;World;-1.0;4
+Indonesia;IDN;ID;World;33.0;5
+Indonesia;IDN;ID;World;37.0;6
+Indonesia;IDN;ID;World;-1.0;7
+Indonesia;IDN;ID;World;47.0;8
+Indonesia;IDN;ID;World;44.0;9
+Indonesia;IDN;ID;World;32.0;10
+Indonesia;IDN;ID;World;48.0;11
+Indonesia;IDN;ID;World;22.0;12
+Indonesia;IDN;ID;World;-1.0;13
+Indonesia;IDN;ID;World;53.0;14
+Indonesia;IDN;ID;World;23.0;15
+Indonesia;IDN;ID;World;54.2;16
+Indonesia;IDN;ID;World;54.8;17
+Iran;IRN;IR;World;25.0;1
+Iran;IRN;IR;World;25.0;2
+Iran;IRN;IR;World;-1.0;3
+Iran;IRN;IR;World;-1.0;4
+Iran;IRN;IR;World;13.0;5
+Iran;IRN;IR;World;20.0;6
+Iran;IRN;IR;World;-1.0;7
+Iran;IRN;IR;World;35.0;8
+Iran;IRN;IR;World;-1.0;9
+Iran;IRN;IR;World;-1.0;10
+Iran;IRN;IR;World;24.0;11
+Iran;IRN;IR;World;20.0;12
+Iran;IRN;IR;World;-1.0;13
+Iran;IRN;IR;World;29.0;14
+Iran;IRN;IR;World;36.0;15
+Iran;IRN;IR;World;-1.0;16
+Iran;IRN;IR;World;-1.0;17
+Iraq;IRQ;IQ;World;23.0;1
+Iraq;IRQ;IQ;World;21.0;2
+Iraq;IRQ;IQ;World;-1.0;3
+Iraq;IRQ;IQ;World;-1.0;4
+Iraq;IRQ;IQ;World;37.0;5
+Iraq;IRQ;IQ;World;20.0;6
+Iraq;IRQ;IQ;World;-1.0;7
+Iraq;IRQ;IQ;World;10.0;8
+Iraq;IRQ;IQ;World;-1.0;9
+Iraq;IRQ;IQ;World;-1.0;10
+Iraq;IRQ;IQ;World;32.0;11
+Iraq;IRQ;IQ;World;17.0;12
+Iraq;IRQ;IQ;World;-1.0;13
+Iraq;IRQ;IQ;World;-1.0;14
+Iraq;IRQ;IQ;World;-1.0;15
+Iraq;IRQ;IQ;World;-1.0;16
+Iraq;IRQ;IQ;World;-1.0;17
+Ireland;IRL;IE;World;74.0;1
+Ireland;IRL;IE;World;72.0;2
+Ireland;IRL;IE;World;-1.0;3
+Ireland;IRL;IE;World;70.0;4
+Ireland;IRL;IE;World;-1.0;5
+Ireland;IRL;IE;World;72.0;6
+Ireland;IRL;IE;World;-1.0;7
+Ireland;IRL;IE;World;71.0;8
+Ireland;IRL;IE;World;72.0;9
+Ireland;IRL;IE;World;-1.0;10
+Ireland;IRL;IE;World;76.0;11
+Ireland;IRL;IE;World;76.0;12
+Ireland;IRL;IE;World;-1.0;13
+Ireland;IRL;IE;World;77.0;14
+Ireland;IRL;IE;World;78.0;15
+Ireland;IRL;IE;World;56.5;16
+Ireland;IRL;IE;World;56.4;17
+Isle of Man;IMN;IM;World;-1.0;1
+Isle of Man;IMN;IM;World;-1.0;2
+Isle of Man;IMN;IM;World;-1.0;3
+Isle of Man;IMN;IM;World;-1.0;4
+Isle of Man;IMN;IM;World;-1.0;5
+Isle of Man;IMN;IM;World;-1.0;6
+Isle of Man;IMN;IM;World;-1.0;7
+Isle of Man;IMN;IM;World;-1.0;8
+Isle of Man;IMN;IM;World;-1.0;9
+Isle of Man;IMN;IM;World;-1.0;10
+Isle of Man;IMN;IM;World;-1.0;11
+Isle of Man;IMN;IM;World;-1.0;12
+Isle of Man;IMN;IM;World;-1.0;13
+Isle of Man;IMN;IM;World;-1.0;14
+Isle of Man;IMN;IM;World;-1.0;15
+Isle of Man;IMN;IM;World;-1.0;16
+Isle of Man;IMN;IM;World;-1.0;17
+Israel;ISR;IL;World;59.0;1
+Israel;ISR;IL;World;60.0;2
+Israel;ISR;IL;World;-1.0;3
+Israel;ISR;IL;World;62.0;4
+Israel;ISR;IL;World;-1.0;5
+Israel;ISR;IL;World;55.0;6
+Israel;ISR;IL;World;-1.0;7
+Israel;ISR;IL;World;59.0;8
+Israel;ISR;IL;World;50.0;9
+Israel;ISR;IL;World;-1.0;10
+Israel;ISR;IL;World;50.0;11
+Israel;ISR;IL;World;69.0;12
+Israel;ISR;IL;World;-1.0;13
+Israel;ISR;IL;World;68.0;14
+Israel;ISR;IL;World;-1.0;15
+Israel;ISR;IL;World;62.7;16
+Israel;ISR;IL;World;64.8;17
+Italy;ITA;IT;World;56.0;1
+Italy;ITA;IT;World;53.0;2
+Italy;ITA;IT;World;-1.0;3
+Italy;ITA;IT;World;62.0;4
+Italy;ITA;IT;World;-1.0;5
+Italy;ITA;IT;World;55.0;6
+Italy;ITA;IT;World;-1.0;7
+Italy;ITA;IT;World;59.0;8
+Italy;ITA;IT;World;46.0;9
+Italy;ITA;IT;World;-1.0;10
+Italy;ITA;IT;World;50.0;11
+Italy;ITA;IT;World;66.0;12
+Italy;ITA;IT;World;-1.0;13
+Italy;ITA;IT;World;54.0;14
+Italy;ITA;IT;World;60.0;15
+Italy;ITA;IT;World;55.3;16
+Italy;ITA;IT;World;54.9;17
+Jamaica;JAM;JM;World;44.0;1
+Jamaica;JAM;JM;World;44.0;2
+Jamaica;JAM;JM;World;-1.0;3
+Jamaica;JAM;JM;World;-1.0;4
+Jamaica;JAM;JM;World;37.0;5
+Jamaica;JAM;JM;World;37.0;6
+Jamaica;JAM;JM;World;-1.0;7
+Jamaica;JAM;JM;World;35.0;8
+Jamaica;JAM;JM;World;-1.0;9
+Jamaica;JAM;JM;World;-1.0;10
+Jamaica;JAM;JM;World;41.0;11
+Jamaica;JAM;JM;World;66.0;12
+Jamaica;JAM;JM;World;-1.0;13
+Jamaica;JAM;JM;World;-1.0;14
+Jamaica;JAM;JM;World;48.0;15
+Jamaica;JAM;JM;World;43.3;16
+Jamaica;JAM;JM;World;41.1;17
+Japan;JPN;JP;World;73.0;1
+Japan;JPN;JP;World;74.0;2
+Japan;JPN;JP;World;-1.0;3
+Japan;JPN;JP;World;53.0;4
+Japan;JPN;JP;World;-1.0;5
+Japan;JPN;JP;World;72.0;6
+Japan;JPN;JP;World;-1.0;7
+Japan;JPN;JP;World;71.0;8
+Japan;JPN;JP;World;70.0;9
+Japan;JPN;JP;World;80.0;10
+Japan;JPN;JP;World;67.0;11
+Japan;JPN;JP;World;72.0;12
+Japan;JPN;JP;World;-1.0;13
+Japan;JPN;JP;World;93.0;14
+Japan;JPN;JP;World;80.0;15
+Japan;JPN;JP;World;51.1;16
+Japan;JPN;JP;World;49.4;17
+Jersey;JEY;JE;World;-1.0;1
+Jersey;JEY;JE;World;-1.0;2
+Jersey;JEY;JE;World;-1.0;3
+Jersey;JEY;JE;World;-1.0;4
+Jersey;JEY;JE;World;-1.0;5
+Jersey;JEY;JE;World;-1.0;6
+Jersey;JEY;JE;World;-1.0;7
+Jersey;JEY;JE;World;-1.0;8
+Jersey;JEY;JE;World;-1.0;9
+Jersey;JEY;JE;World;-1.0;10
+Jersey;JEY;JE;World;-1.0;11
+Jersey;JEY;JE;World;-1.0;12
+Jersey;JEY;JE;World;-1.0;13
+Jersey;JEY;JE;World;-1.0;14
+Jersey;JEY;JE;World;-1.0;15
+Jersey;JEY;JE;World;-1.0;16
+Jersey;JEY;JE;World;-1.0;17
+Jordan;JOR;JO;World;49.0;1
+Jordan;JOR;JO;World;49.0;2
+Jordan;JOR;JO;World;-1.0;3
+Jordan;JOR;JO;World;-1.0;4
+Jordan;JOR;JO;World;33.0;5
+Jordan;JOR;JO;World;55.0;6
+Jordan;JOR;JO;World;-1.0;7
+Jordan;JOR;JO;World;35.0;8
+Jordan;JOR;JO;World;63.0;9
+Jordan;JOR;JO;World;-1.0;10
+Jordan;JOR;JO;World;46.0;11
+Jordan;JOR;JO;World;43.0;12
+Jordan;JOR;JO;World;-1.0;13
+Jordan;JOR;JO;World;63.0;14
+Jordan;JOR;JO;World;52.0;15
+Jordan;JOR;JO;World;45.0;16
+Jordan;JOR;JO;World;41.4;17
+Kazakhstan;KAZ;KZ;World;37.0;1
+Kazakhstan;KAZ;KZ;World;38.0;2
+Kazakhstan;KAZ;KZ;World;-1.0;3
+Kazakhstan;KAZ;KZ;World;-1.0;4
+Kazakhstan;KAZ;KZ;World;33.0;5
+Kazakhstan;KAZ;KZ;World;20.0;6
+Kazakhstan;KAZ;KZ;World;24.0;7
+Kazakhstan;KAZ;KZ;World;35.0;8
+Kazakhstan;KAZ;KZ;World;66.0;9
+Kazakhstan;KAZ;KZ;World;-1.0;10
+Kazakhstan;KAZ;KZ;World;64.0;11
+Kazakhstan;KAZ;KZ;World;19.0;12
+Kazakhstan;KAZ;KZ;World;-1.0;13
+Kazakhstan;KAZ;KZ;World;33.0;14
+Kazakhstan;KAZ;KZ;World;38.0;15
+Kazakhstan;KAZ;KZ;World;-1.0;16
+Kazakhstan;KAZ;KZ;World;50.1;17
+Kenya;KEN;KE;World;30.0;1
+Kenya;KEN;KE;World;31.0;2
+Kenya;KEN;KE;World;32.0;3
+Kenya;KEN;KE;World;-1.0;4
+Kenya;KEN;KE;World;33.0;5
+Kenya;KEN;KE;World;20.0;6
+Kenya;KEN;KE;World;-1.0;7
+Kenya;KEN;KE;World;35.0;8
+Kenya;KEN;KE;World;-1.0;9
+Kenya;KEN;KE;World;-1.0;10
+Kenya;KEN;KE;World;41.0;11
+Kenya;KEN;KE;World;28.0;12
+Kenya;KEN;KE;World;35.0;13
+Kenya;KEN;KE;World;25.0;14
+Kenya;KEN;KE;World;22.0;15
+Kenya;KEN;KE;World;-1.0;16
+Kenya;KEN;KE;World;29.1;17
+Kiribati;KIR;KI;World;-1.0;1
+Kiribati;KIR;KI;World;-1.0;2
+Kiribati;KIR;KI;World;-1.0;3
+Kiribati;KIR;KI;World;-1.0;4
+Kiribati;KIR;KI;World;-1.0;5
+Kiribati;KIR;KI;World;-1.0;6
+Kiribati;KIR;KI;World;-1.0;7
+Kiribati;KIR;KI;World;-1.0;8
+Kiribati;KIR;KI;World;-1.0;9
+Kiribati;KIR;KI;World;-1.0;10
+Kiribati;KIR;KI;World;-1.0;11
+Kiribati;KIR;KI;World;-1.0;12
+Kiribati;KIR;KI;World;-1.0;13
+Kiribati;KIR;KI;World;-1.0;14
+Kiribati;KIR;KI;World;-1.0;15
+Kiribati;KIR;KI;World;-1.0;16
+Kiribati;KIR;KI;World;-1.0;17
+Korea, North;PRK;KP;World;16.0;1
+Korea, North;PRK;KP;World;18.0;2
+Korea, North;PRK;KP;World;-1.0;3
+Korea, North;PRK;KP;World;-1.0;4
+Korea, North;PRK;KP;World;13.0;5
+Korea, North;PRK;KP;World;-1.0;6
+Korea, North;PRK;KP;World;-1.0;7
+Korea, North;PRK;KP;World;10.0;8
+Korea, North;PRK;KP;World;-1.0;9
+Korea, North;PRK;KP;World;-1.0;10
+Korea, North;PRK;KP;World;15.0;11
+Korea, North;PRK;KP;World;24.0;12
+Korea, North;PRK;KP;World;-1.0;13
+Korea, North;PRK;KP;World;-1.0;14
+Korea, North;PRK;KP;World;-1.0;15
+Korea, North;PRK;KP;World;-1.0;16
+Korea, North;PRK;KP;World;-1.0;17
+Korea, South;KOR;KR;World;62.0;1
+Korea, South;KOR;KR;World;61.0;2
+Korea, South;KOR;KR;World;-1.0;3
+Korea, South;KOR;KR;World;70.0;4
+Korea, South;KOR;KR;World;61.0;5
+Korea, South;KOR;KR;World;55.0;6
+Korea, South;KOR;KR;World;-1.0;7
+Korea, South;KOR;KR;World;59.0;8
+Korea, South;KOR;KR;World;53.0;9
+Korea, South;KOR;KR;World;54.0;10
+Korea, South;KOR;KR;World;67.0;11
+Korea, South;KOR;KR;World;71.0;12
+Korea, South;KOR;KR;World;-1.0;13
+Korea, South;KOR;KR;World;61.0;14
+Korea, South;KOR;KR;World;71.0;15
+Korea, South;KOR;KR;World;54.7;16
+Korea, South;KOR;KR;World;54.9;17
+Kosovo;KSV;XK;World;39.0;1
+Kosovo;KSV;XK;World;36.0;2
+Kosovo;KSV;XK;World;-1.0;3
+Kosovo;KSV;XK;World;-1.0;4
+Kosovo;KSV;XK;World;37.0;5
+Kosovo;KSV;XK;World;-1.0;6
+Kosovo;KSV;XK;World;36.0;7
+Kosovo;KSV;XK;World;35.0;8
+Kosovo;KSV;XK;World;-1.0;9
+Kosovo;KSV;XK;World;-1.0;10
+Kosovo;KSV;XK;World;-1.0;11
+Kosovo;KSV;XK;World;54.0;12
+Kosovo;KSV;XK;World;35.0;13
+Kosovo;KSV;XK;World;-1.0;14
+Kosovo;KSV;XK;World;36.0;15
+Kosovo;KSV;XK;World;-1.0;16
+Kosovo;KSV;XK;World;-1.0;17
+Kuwait;KWT;KW;World;43.0;1
+Kuwait;KWT;KW;World;42.0;2
+Kuwait;KWT;KW;World;-1.0;3
+Kuwait;KWT;KW;World;-1.0;4
+Kuwait;KWT;KW;World;45.0;5
+Kuwait;KWT;KW;World;37.0;6
+Kuwait;KWT;KW;World;-1.0;7
+Kuwait;KWT;KW;World;35.0;8
+Kuwait;KWT;KW;World;-1.0;9
+Kuwait;KWT;KW;World;-1.0;10
+Kuwait;KWT;KW;World;41.0;11
+Kuwait;KWT;KW;World;45.0;12
+Kuwait;KWT;KW;World;-1.0;13
+Kuwait;KWT;KW;World;53.0;14
+Kuwait;KWT;KW;World;-1.0;15
+Kuwait;KWT;KW;World;-1.0;16
+Kuwait;KWT;KW;World;-1.0;17
+Kyrgyzstan;KGZ;KG;World;27.0;1
+Kyrgyzstan;KGZ;KG;World;31.0;2
+Kyrgyzstan;KGZ;KG;World;-1.0;3
+Kyrgyzstan;KGZ;KG;World;-1.0;4
+Kyrgyzstan;KGZ;KG;World;29.0;5
+Kyrgyzstan;KGZ;KG;World;-1.0;6
+Kyrgyzstan;KGZ;KG;World;27.0;7
+Kyrgyzstan;KGZ;KG;World;22.0;8
+Kyrgyzstan;KGZ;KG;World;-1.0;9
+Kyrgyzstan;KGZ;KG;World;-1.0;10
+Kyrgyzstan;KGZ;KG;World;-1.0;11
+Kyrgyzstan;KGZ;KG;World;23.0;12
+Kyrgyzstan;KGZ;KG;World;35.0;13
+Kyrgyzstan;KGZ;KG;World;30.0;14
+Kyrgyzstan;KGZ;KG;World;26.0;15
+Kyrgyzstan;KGZ;KG;World;40.1;16
+Kyrgyzstan;KGZ;KG;World;37.7;17
+Laos;LAO;LA;World;30.0;1
+Laos;LAO;LA;World;29.0;2
+Laos;LAO;LA;World;-1.0;3
+Laos;LAO;LA;World;-1.0;4
+Laos;LAO;LA;World;21.0;5
+Laos;LAO;LA;World;-1.0;6
+Laos;LAO;LA;World;-1.0;7
+Laos;LAO;LA;World;35.0;8
+Laos;LAO;LA;World;-1.0;9
+Laos;LAO;LA;World;-1.0;10
+Laos;LAO;LA;World;-1.0;11
+Laos;LAO;LA;World;25.0;12
+Laos;LAO;LA;World;27.0;13
+Laos;LAO;LA;World;43.0;14
+Laos;LAO;LA;World;-1.0;15
+Laos;LAO;LA;World;-1.0;16
+Laos;LAO;LA;World;22.8;17
+Latvia;LVA;LV;World;59.0;1
+Latvia;LVA;LV;World;57.0;2
+Latvia;LVA;LV;World;-1.0;3
+Latvia;LVA;LV;World;70.0;4
+Latvia;LVA;LV;World;61.0;5
+Latvia;LVA;LV;World;55.0;6
+Latvia;LVA;LV;World;62.0;7
+Latvia;LVA;LV;World;59.0;8
+Latvia;LVA;LV;World;53.0;9
+Latvia;LVA;LV;World;-1.0;10
+Latvia;LVA;LV;World;41.0;11
+Latvia;LVA;LV;World;69.0;12
+Latvia;LVA;LV;World;-1.0;13
+Latvia;LVA;LV;World;59.0;14
+Latvia;LVA;LV;World;63.0;15
+Latvia;LVA;LV;World;54.9;16
+Latvia;LVA;LV;World;54.8;17
+Lebanon;LBN;LB;World;24.0;1
+Lebanon;LBN;LB;World;25.0;2
+Lebanon;LBN;LB;World;-1.0;3
+Lebanon;LBN;LB;World;-1.0;4
+Lebanon;LBN;LB;World;21.0;5
+Lebanon;LBN;LB;World;20.0;6
+Lebanon;LBN;LB;World;-1.0;7
+Lebanon;LBN;LB;World;22.0;8
+Lebanon;LBN;LB;World;-1.0;9
+Lebanon;LBN;LB;World;-1.0;10
+Lebanon;LBN;LB;World;24.0;11
+Lebanon;LBN;LB;World;25.0;12
+Lebanon;LBN;LB;World;-1.0;13
+Lebanon;LBN;LB;World;26.0;14
+Lebanon;LBN;LB;World;27.0;15
+Lebanon;LBN;LB;World;-1.0;16
+Lebanon;LBN;LB;World;47.7;17
+Lesotho;LSO;LS;World;38.0;1
+Lesotho;LSO;LS;World;41.0;2
+Lesotho;LSO;LS;World;24.0;3
+Lesotho;LSO;LS;World;-1.0;4
+Lesotho;LSO;LS;World;37.0;5
+Lesotho;LSO;LS;World;-1.0;6
+Lesotho;LSO;LS;World;-1.0;7
+Lesotho;LSO;LS;World;59.0;8
+Lesotho;LSO;LS;World;-1.0;9
+Lesotho;LSO;LS;World;-1.0;10
+Lesotho;LSO;LS;World;-1.0;11
+Lesotho;LSO;LS;World;46.0;12
+Lesotho;LSO;LS;World;35.0;13
+Lesotho;LSO;LS;World;27.0;14
+Lesotho;LSO;LS;World;-1.0;15
+Lesotho;LSO;LS;World;-1.0;16
+Lesotho;LSO;LS;World;-1.0;17
+Liberia;LBR;LR;World;29.0;1
+Liberia;LBR;LR;World;28.0;2
+Liberia;LBR;LR;World;34.0;3
+Liberia;LBR;LR;World;-1.0;4
+Liberia;LBR;LR;World;29.0;5
+Liberia;LBR;LR;World;-1.0;6
+Liberia;LBR;LR;World;-1.0;7
+Liberia;LBR;LR;World;22.0;8
+Liberia;LBR;LR;World;-1.0;9
+Liberia;LBR;LR;World;-1.0;10
+Liberia;LBR;LR;World;40.0;11
+Liberia;LBR;LR;World;22.0;12
+Liberia;LBR;LR;World;27.0;13
+Liberia;LBR;LR;World;37.0;14
+Liberia;LBR;LR;World;20.0;15
+Liberia;LBR;LR;World;-1.0;16
+Liberia;LBR;LR;World;38.4;17
+Libya;LBY;LY;World;17.0;1
+Libya;LBY;LY;World;17.0;2
+Libya;LBY;LY;World;-1.0;3
+Libya;LBY;LY;World;-1.0;4
+Libya;LBY;LY;World;21.0;5
+Libya;LBY;LY;World;20.0;6
+Libya;LBY;LY;World;-1.0;7
+Libya;LBY;LY;World;10.0;8
+Libya;LBY;LY;World;-1.0;9
+Libya;LBY;LY;World;-1.0;10
+Libya;LBY;LY;World;15.0;11
+Libya;LBY;LY;World;21.0;12
+Libya;LBY;LY;World;-1.0;13
+Libya;LBY;LY;World;-1.0;14
+Libya;LBY;LY;World;-1.0;15
+Libya;LBY;LY;World;-1.0;16
+Libya;LBY;LY;World;-1.0;17
+Liechtenstein;LIE;LI;World;-1.0;1
+Liechtenstein;LIE;LI;World;-1.0;2
+Liechtenstein;LIE;LI;World;-1.0;3
+Liechtenstein;LIE;LI;World;-1.0;4
+Liechtenstein;LIE;LI;World;-1.0;5
+Liechtenstein;LIE;LI;World;-1.0;6
+Liechtenstein;LIE;LI;World;-1.0;7
+Liechtenstein;LIE;LI;World;-1.0;8
+Liechtenstein;LIE;LI;World;-1.0;9
+Liechtenstein;LIE;LI;World;-1.0;10
+Liechtenstein;LIE;LI;World;-1.0;11
+Liechtenstein;LIE;LI;World;-1.0;12
+Liechtenstein;LIE;LI;World;-1.0;13
+Liechtenstein;LIE;LI;World;-1.0;14
+Liechtenstein;LIE;LI;World;-1.0;15
+Liechtenstein;LIE;LI;World;-1.0;16
+Liechtenstein;LIE;LI;World;65.8;17
+Lithuania;LTU;LT;World;61.0;1
+Lithuania;LTU;LT;World;60.0;2
+Lithuania;LTU;LT;World;-1.0;3
+Lithuania;LTU;LT;World;62.0;4
+Lithuania;LTU;LT;World;73.0;5
+Lithuania;LTU;LT;World;55.0;6
+Lithuania;LTU;LT;World;62.0;7
+Lithuania;LTU;LT;World;59.0;8
+Lithuania;LTU;LT;World;53.0;9
+Lithuania;LTU;LT;World;-1.0;10
+Lithuania;LTU;LT;World;50.0;11
+Lithuania;LTU;LT;World;71.0;12
+Lithuania;LTU;LT;World;-1.0;13
+Lithuania;LTU;LT;World;60.0;14
+Lithuania;LTU;LT;World;66.0;15
+Lithuania;LTU;LT;World;65.9;16
+Lithuania;LTU;LT;World;-1.0;17
+Luxembourg;LUX;LU;World;81.0;1
+Luxembourg;LUX;LU;World;80.0;2
+Luxembourg;LUX;LU;World;-1.0;3
+Luxembourg;LUX;LU;World;79.0;4
+Luxembourg;LUX;LU;World;-1.0;5
+Luxembourg;LUX;LU;World;72.0;6
+Luxembourg;LUX;LU;World;-1.0;7
+Luxembourg;LUX;LU;World;83.0;8
+Luxembourg;LUX;LU;World;83.0;9
+Luxembourg;LUX;LU;World;-1.0;10
+Luxembourg;LUX;LU;World;85.0;11
+Luxembourg;LUX;LU;World;77.0;12
+Luxembourg;LUX;LU;World;-1.0;13
+Luxembourg;LUX;LU;World;83.0;14
+Luxembourg;LUX;LU;World;82.0;15
+Luxembourg;LUX;LU;World;-1.0;16
+Luxembourg;LUX;LU;World;53.6;17
+Macao;MAC;MO;World;-1.0;1
+Macao;MAC;MO;World;-1.0;2
+Macao;MAC;MO;World;-1.0;3
+Macao;MAC;MO;World;-1.0;4
+Macao;MAC;MO;World;-1.0;5
+Macao;MAC;MO;World;-1.0;6
+Macao;MAC;MO;World;-1.0;7
+Macao;MAC;MO;World;-1.0;8
+Macao;MAC;MO;World;-1.0;9
+Macao;MAC;MO;World;-1.0;10
+Macao;MAC;MO;World;-1.0;11
+Macao;MAC;MO;World;-1.0;12
+Macao;MAC;MO;World;-1.0;13
+Macao;MAC;MO;World;-1.0;14
+Macao;MAC;MO;World;-1.0;15
+Macao;MAC;MO;World;41.7;16
+Macao;MAC;MO;World;43.7;17
+Macedonia;MKD;MK;World;-1.0;1
+Macedonia;MKD;MK;World;-1.0;2
+Macedonia;MKD;MK;World;-1.0;3
+Macedonia;MKD;MK;World;-1.0;4
+Macedonia;MKD;MK;World;-1.0;5
+Macedonia;MKD;MK;World;-1.0;6
+Macedonia;MKD;MK;World;-1.0;7
+Macedonia;MKD;MK;World;-1.0;8
+Macedonia;MKD;MK;World;-1.0;9
+Macedonia;MKD;MK;World;-1.0;10
+Macedonia;MKD;MK;World;-1.0;11
+Macedonia;MKD;MK;World;-1.0;12
+Macedonia;MKD;MK;World;-1.0;13
+Macedonia;MKD;MK;World;-1.0;14
+Macedonia;MKD;MK;World;-1.0;15
+Macedonia;MKD;MK;World;-1.0;16
+Macedonia;MKD;MK;World;61.1;17
+Madagascar;MDG;MG;World;26.0;1
+Madagascar;MDG;MG;World;25.0;2
+Madagascar;MDG;MG;World;24.0;3
+Madagascar;MDG;MG;World;-1.0;4
+Madagascar;MDG;MG;World;33.0;5
+Madagascar;MDG;MG;World;-1.0;6
+Madagascar;MDG;MG;World;-1.0;7
+Madagascar;MDG;MG;World;35.0;8
+Madagascar;MDG;MG;World;-1.0;9
+Madagascar;MDG;MG;World;-1.0;10
+Madagascar;MDG;MG;World;24.0;11
+Madagascar;MDG;MG;World;20.0;12
+Madagascar;MDG;MG;World;27.0;13
+Madagascar;MDG;MG;World;-1.0;14
+Madagascar;MDG;MG;World;18.0;15
+Madagascar;MDG;MG;World;27.0;16
+Madagascar;MDG;MG;World;-1.0;17
+Malawi;MWI;MW;World;35.0;1
+Malawi;MWI;MW;World;30.0;2
+Malawi;MWI;MW;World;37.0;3
+Malawi;MWI;MW;World;-1.0;4
+Malawi;MWI;MW;World;37.0;5
+Malawi;MWI;MW;World;20.0;6
+Malawi;MWI;MW;World;-1.0;7
+Malawi;MWI;MW;World;47.0;8
+Malawi;MWI;MW;World;-1.0;9
+Malawi;MWI;MW;World;-1.0;10
+Malawi;MWI;MW;World;48.0;11
+Malawi;MWI;MW;World;30.0;12
+Malawi;MWI;MW;World;35.0;13
+Malawi;MWI;MW;World;28.0;14
+Malawi;MWI;MW;World;36.0;15
+Malawi;MWI;MW;World;43.2;16
+Malawi;MWI;MW;World;-1.0;17
+Malaysia;MYS;MY;World;48.0;1
+Malaysia;MYS;MY;World;51.0;2
+Malaysia;MYS;MY;World;-1.0;3
+Malaysia;MYS;MY;World;-1.0;4
+Malaysia;MYS;MY;World;49.0;5
+Malaysia;MYS;MY;World;55.0;6
+Malaysia;MYS;MY;World;-1.0;7
+Malaysia;MYS;MY;World;59.0;8
+Malaysia;MYS;MY;World;43.0;9
+Malaysia;MYS;MY;World;38.0;10
+Malaysia;MYS;MY;World;41.0;11
+Malaysia;MYS;MY;World;49.0;12
+Malaysia;MYS;MY;World;-1.0;13
+Malaysia;MYS;MY;World;54.0;14
+Malaysia;MYS;MY;World;48.0;15
+Malaysia;MYS;MY;World;46.3;16
+Malaysia;MYS;MY;World;48.4;17
+Maldives;MDV;MV;World;40.0;1
+Maldives;MDV;MV;World;43.0;2
+Maldives;MDV;MV;World;-1.0;3
+Maldives;MDV;MV;World;-1.0;4
+Maldives;MDV;MV;World;-1.0;5
+Maldives;MDV;MV;World;-1.0;6
+Maldives;MDV;MV;World;-1.0;7
+Maldives;MDV;MV;World;35.0;8
+Maldives;MDV;MV;World;-1.0;9
+Maldives;MDV;MV;World;-1.0;10
+Maldives;MDV;MV;World;-1.0;11
+Maldives;MDV;MV;World;49.0;12
+Maldives;MDV;MV;World;35.0;13
+Maldives;MDV;MV;World;-1.0;14
+Maldives;MDV;MV;World;-1.0;15
+Maldives;MDV;MV;World;-1.0;16
+Maldives;MDV;MV;World;-1.0;17
+Mali;MLI;ML;World;29.0;1
+Mali;MLI;ML;World;30.0;2
+Mali;MLI;ML;World;37.0;3
+Mali;MLI;ML;World;-1.0;4
+Mali;MLI;ML;World;33.0;5
+Mali;MLI;ML;World;-1.0;6
+Mali;MLI;ML;World;-1.0;7
+Mali;MLI;ML;World;35.0;8
+Mali;MLI;ML;World;-1.0;9
+Mali;MLI;ML;World;-1.0;10
+Mali;MLI;ML;World;32.0;11
+Mali;MLI;ML;World;24.0;12
+Mali;MLI;ML;World;27.0;13
+Mali;MLI;ML;World;23.0;14
+Mali;MLI;ML;World;19.0;15
+Mali;MLI;ML;World;27.3;16
+Mali;MLI;ML;World;-1.0;17
+Malta;MLT;MT;World;54.0;1
+Malta;MLT;MT;World;53.0;2
+Malta;MLT;MT;World;-1.0;3
+Malta;MLT;MT;World;53.0;4
+Malta;MLT;MT;World;-1.0;5
+Malta;MLT;MT;World;55.0;6
+Malta;MLT;MT;World;-1.0;7
+Malta;MLT;MT;World;47.0;8
+Malta;MLT;MT;World;-1.0;9
+Malta;MLT;MT;World;-1.0;10
+Malta;MLT;MT;World;48.0;11
+Malta;MLT;MT;World;65.0;12
+Malta;MLT;MT;World;-1.0;13
+Malta;MLT;MT;World;51.0;14
+Malta;MLT;MT;World;59.0;15
+Malta;MLT;MT;World;46.5;16
+Malta;MLT;MT;World;46.1;17
+Marshall Islands;MHL;MH;World;-1.0;1
+Marshall Islands;MHL;MH;World;-1.0;2
+Marshall Islands;MHL;MH;World;-1.0;3
+Marshall Islands;MHL;MH;World;-1.0;4
+Marshall Islands;MHL;MH;World;-1.0;5
+Marshall Islands;MHL;MH;World;-1.0;6
+Marshall Islands;MHL;MH;World;-1.0;7
+Marshall Islands;MHL;MH;World;-1.0;8
+Marshall Islands;MHL;MH;World;-1.0;9
+Marshall Islands;MHL;MH;World;-1.0;10
+Marshall Islands;MHL;MH;World;-1.0;11
+Marshall Islands;MHL;MH;World;-1.0;12
+Marshall Islands;MHL;MH;World;-1.0;13
+Marshall Islands;MHL;MH;World;-1.0;14
+Marshall Islands;MHL;MH;World;-1.0;15
+Marshall Islands;MHL;MH;World;-1.0;16
+Marshall Islands;MHL;MH;World;45.2;17
+Martinique;MTQ;MQ;World;-1.0;1
+Martinique;MTQ;MQ;World;-1.0;2
+Martinique;MTQ;MQ;World;-1.0;3
+Martinique;MTQ;MQ;World;-1.0;4
+Martinique;MTQ;MQ;World;-1.0;5
+Martinique;MTQ;MQ;World;-1.0;6
+Martinique;MTQ;MQ;World;-1.0;7
+Martinique;MTQ;MQ;World;-1.0;8
+Martinique;MTQ;MQ;World;-1.0;9
+Martinique;MTQ;MQ;World;-1.0;10
+Martinique;MTQ;MQ;World;-1.0;11
+Martinique;MTQ;MQ;World;-1.0;12
+Martinique;MTQ;MQ;World;-1.0;13
+Martinique;MTQ;MQ;World;-1.0;14
+Martinique;MTQ;MQ;World;-1.0;15
+Martinique;MTQ;MQ;World;-1.0;16
+Martinique;MTQ;MQ;World;-1.0;17
+Mauritania;MRT;MR;World;28.0;1
+Mauritania;MRT;MR;World;-1.0;2
+Mauritania;MRT;MR;World;27.0;3
+Mauritania;MRT;MR;World;-1.0;4
+Mauritania;MRT;MR;World;33.0;5
+Mauritania;MRT;MR;World;-1.0;6
+Mauritania;MRT;MR;World;-1.0;7
+Mauritania;MRT;MR;World;35.0;8
+Mauritania;MRT;MR;World;-1.0;9
+Mauritania;MRT;MR;World;-1.0;10
+Mauritania;MRT;MR;World;-1.0;11
+Mauritania;MRT;MR;World;17.0;12
+Mauritania;MRT;MR;World;35.0;13
+Mauritania;MRT;MR;World;22.0;14
+Mauritania;MRT;MR;World;27.0;15
+Mauritania;MRT;MR;World;19.7;16
+Mauritania;MRT;MR;World;-1.0;17
+Mauritius;MUS;MU;World;54.0;1
+Mauritius;MUS;MU;World;29.0;2
+Mauritius;MUS;MU;World;-1.0;3
+Mauritius;MUS;MU;World;-1.0;4
+Mauritius;MUS;MU;World;49.0;5
+Mauritius;MUS;MU;World;55.0;6
+Mauritius;MUS;MU;World;-1.0;7
+Mauritius;MUS;MU;World;59.0;8
+Mauritius;MUS;MU;World;-1.0;9
+Mauritius;MUS;MU;World;-1.0;10
+Mauritius;MUS;MU;World;-1.0;11
+Mauritius;MUS;MU;World;50.0;12
+Mauritius;MUS;MU;World;-1.0;13
+Mauritius;MUS;MU;World;61.0;14
+Mauritius;MUS;MU;World;50.0;15
+Mauritius;MUS;MU;World;47.8;16
+Mauritius;MUS;MU;World;47.6;17
+Mayotte;MYT;YT;World;-1.0;1
+Mayotte;MYT;YT;World;53.0;2
+Mayotte;MYT;YT;World;-1.0;3
+Mayotte;MYT;YT;World;-1.0;4
+Mayotte;MYT;YT;World;-1.0;5
+Mayotte;MYT;YT;World;-1.0;6
+Mayotte;MYT;YT;World;-1.0;7
+Mayotte;MYT;YT;World;-1.0;8
+Mayotte;MYT;YT;World;-1.0;9
+Mayotte;MYT;YT;World;-1.0;10
+Mayotte;MYT;YT;World;-1.0;11
+Mayotte;MYT;YT;World;-1.0;12
+Mayotte;MYT;YT;World;-1.0;13
+Mayotte;MYT;YT;World;-1.0;14
+Mayotte;MYT;YT;World;-1.0;15
+Mayotte;MYT;YT;World;-1.0;16
+Mayotte;MYT;YT;World;-1.0;17
+Mexico;MEX;MX;World;31.0;1
+Mexico;MEX;MX;World;31.0;2
+Mexico;MEX;MX;World;-1.0;3
+Mexico;MEX;MX;World;44.0;4
+Mexico;MEX;MX;World;29.0;5
+Mexico;MEX;MX;World;37.0;6
+Mexico;MEX;MX;World;-1.0;7
+Mexico;MEX;MX;World;22.0;8
+Mexico;MEX;MX;World;32.0;9
+Mexico;MEX;MX;World;-1.0;10
+Mexico;MEX;MX;World;24.0;11
+Mexico;MEX;MX;World;36.0;12
+Mexico;MEX;MX;World;-1.0;13
+Mexico;MEX;MX;World;31.0;14
+Mexico;MEX;MX;World;22.0;15
+Mexico;MEX;MX;World;50.1;16
+Mexico;MEX;MX;World;49.0;17
+Mikronesien;FSM;FM;World;-1.0;1
+Mikronesien;FSM;FM;World;-1.0;2
+Mikronesien;FSM;FM;World;-1.0;3
+Mikronesien;FSM;FM;World;-1.0;4
+Mikronesien;FSM;FM;World;-1.0;5
+Mikronesien;FSM;FM;World;-1.0;6
+Mikronesien;FSM;FM;World;-1.0;7
+Mikronesien;FSM;FM;World;-1.0;8
+Mikronesien;FSM;FM;World;-1.0;9
+Mikronesien;FSM;FM;World;-1.0;10
+Mikronesien;FSM;FM;World;-1.0;11
+Mikronesien;FSM;FM;World;-1.0;12
+Mikronesien;FSM;FM;World;-1.0;13
+Mikronesien;FSM;FM;World;-1.0;14
+Mikronesien;FSM;FM;World;-1.0;15
+Mikronesien;FSM;FM;World;-1.0;16
+Mikronesien;FSM;FM;World;-1.0;17
+Moldova;MDA;MD;World;36.0;1
+Moldova;MDA;MD;World;34.0;2
+Moldova;MDA;MD;World;-1.0;3
+Moldova;MDA;MD;World;-1.0;4
+Moldova;MDA;MD;World;33.0;5
+Moldova;MDA;MD;World;37.0;6
+Moldova;MDA;MD;World;36.0;7
+Moldova;MDA;MD;World;47.0;8
+Moldova;MDA;MD;World;-1.0;9
+Moldova;MDA;MD;World;-1.0;10
+Moldova;MDA;MD;World;32.0;11
+Moldova;MDA;MD;World;33.0;12
+Moldova;MDA;MD;World;-1.0;13
+Moldova;MDA;MD;World;-1.0;14
+Moldova;MDA;MD;World;34.0;15
+Moldova;MDA;MD;World;51.2;16
+Moldova;MDA;MD;World;49.6;17
+Monaco;MCO;MC;World;-1.0;1
+Monaco;MCO;MC;World;-1.0;2
+Monaco;MCO;MC;World;-1.0;3
+Monaco;MCO;MC;World;-1.0;4
+Monaco;MCO;MC;World;-1.0;5
+Monaco;MCO;MC;World;-1.0;6
+Monaco;MCO;MC;World;-1.0;7
+Monaco;MCO;MC;World;-1.0;8
+Monaco;MCO;MC;World;-1.0;9
+Monaco;MCO;MC;World;-1.0;10
+Monaco;MCO;MC;World;-1.0;11
+Monaco;MCO;MC;World;-1.0;12
+Monaco;MCO;MC;World;-1.0;13
+Monaco;MCO;MC;World;-1.0;14
+Monaco;MCO;MC;World;-1.0;15
+Monaco;MCO;MC;World;-1.0;16
+Monaco;MCO;MC;World;-1.0;17
+Mongolia;MNG;MN;World;35.0;1
+Mongolia;MNG;MN;World;35.0;2
+Mongolia;MNG;MN;World;-1.0;3
+Mongolia;MNG;MN;World;-1.0;4
+Mongolia;MNG;MN;World;37.0;5
+Mongolia;MNG;MN;World;37.0;6
+Mongolia;MNG;MN;World;-1.0;7
+Mongolia;MNG;MN;World;35.0;8
+Mongolia;MNG;MN;World;29.0;9
+Mongolia;MNG;MN;World;-1.0;10
+Mongolia;MNG;MN;World;37.0;11
+Mongolia;MNG;MN;World;34.0;12
+Mongolia;MNG;MN;World;-1.0;13
+Mongolia;MNG;MN;World;34.0;14
+Mongolia;MNG;MN;World;35.0;15
+Mongolia;MNG;MN;World;40.1;16
+Mongolia;MNG;MN;World;38.6;17
+Montenegro;MNE;ME;World;46.0;1
+Montenegro;MNE;ME;World;45.0;2
+Montenegro;MNE;ME;World;-1.0;3
+Montenegro;MNE;ME;World;-1.0;4
+Montenegro;MNE;ME;World;53.0;5
+Montenegro;MNE;ME;World;-1.0;6
+Montenegro;MNE;ME;World;44.0;7
+Montenegro;MNE;ME;World;47.0;8
+Montenegro;MNE;ME;World;-1.0;9
+Montenegro;MNE;ME;World;-1.0;10
+Montenegro;MNE;ME;World;-1.0;11
+Montenegro;MNE;ME;World;38.0;12
+Montenegro;MNE;ME;World;-1.0;13
+Montenegro;MNE;ME;World;50.0;14
+Montenegro;MNE;ME;World;-1.0;15
+Montenegro;MNE;ME;World;-1.0;16
+Montenegro;MNE;ME;World;63.4;17
+Montserrat;MSR;MS;World;-1.0;1
+Montserrat;MSR;MS;World;-1.0;2
+Montserrat;MSR;MS;World;-1.0;3
+Montserrat;MSR;MS;World;-1.0;4
+Montserrat;MSR;MS;World;-1.0;5
+Montserrat;MSR;MS;World;-1.0;6
+Montserrat;MSR;MS;World;-1.0;7
+Montserrat;MSR;MS;World;-1.0;8
+Montserrat;MSR;MS;World;-1.0;9
+Montserrat;MSR;MS;World;-1.0;10
+Montserrat;MSR;MS;World;-1.0;11
+Montserrat;MSR;MS;World;-1.0;12
+Montserrat;MSR;MS;World;-1.0;13
+Montserrat;MSR;MS;World;-1.0;14
+Montserrat;MSR;MS;World;-1.0;15
+Montserrat;MSR;MS;World;-1.0;16
+Montserrat;MSR;MS;World;-1.0;17
+Morocco;MAR;MA;World;39.0;1
+Morocco;MAR;MA;World;40.0;2
+Morocco;MAR;MA;World;-1.0;3
+Morocco;MAR;MA;World;-1.0;4
+Morocco;MAR;MA;World;29.0;5
+Morocco;MAR;MA;World;37.0;6
+Morocco;MAR;MA;World;-1.0;7
+Morocco;MAR;MA;World;35.0;8
+Morocco;MAR;MA;World;-1.0;9
+Morocco;MAR;MA;World;-1.0;10
+Morocco;MAR;MA;World;50.0;11
+Morocco;MAR;MA;World;47.0;12
+Morocco;MAR;MA;World;-1.0;13
+Morocco;MAR;MA;World;-1.0;14
+Morocco;MAR;MA;World;36.0;15
+Morocco;MAR;MA;World;47.8;16
+Morocco;MAR;MA;World;45.6;17
+Mozambique;MOZ;MZ;World;26.0;1
+Mozambique;MOZ;MZ;World;25.0;2
+Mozambique;MOZ;MZ;World;14.0;3
+Mozambique;MOZ;MZ;World;-1.0;4
+Mozambique;MOZ;MZ;World;25.0;5
+Mozambique;MOZ;MZ;World;20.0;6
+Mozambique;MOZ;MZ;World;-1.0;7
+Mozambique;MOZ;MZ;World;35.0;8
+Mozambique;MOZ;MZ;World;-1.0;9
+Mozambique;MOZ;MZ;World;-1.0;10
+Mozambique;MOZ;MZ;World;32.0;11
+Mozambique;MOZ;MZ;World;39.0;12
+Mozambique;MOZ;MZ;World;18.0;13
+Mozambique;MOZ;MZ;World;-1.0;14
+Mozambique;MOZ;MZ;World;26.0;15
+Mozambique;MOZ;MZ;World;23.9;16
+Mozambique;MOZ;MZ;World;22.8;17
+Myanmar;MMR;MM;World;28.0;1
+Myanmar;MMR;MM;World;28.0;2
+Myanmar;MMR;MM;World;-1.0;3
+Myanmar;MMR;MM;World;-1.0;4
+Myanmar;MMR;MM;World;25.0;5
+Myanmar;MMR;MM;World;20.0;6
+Myanmar;MMR;MM;World;-1.0;7
+Myanmar;MMR;MM;World;22.0;8
+Myanmar;MMR;MM;World;-1.0;9
+Myanmar;MMR;MM;World;-1.0;10
+Myanmar;MMR;MM;World;31.0;11
+Myanmar;MMR;MM;World;51.0;12
+Myanmar;MMR;MM;World;27.0;13
+Myanmar;MMR;MM;World;-1.0;14
+Myanmar;MMR;MM;World;24.0;15
+Myanmar;MMR;MM;World;22.7;16
+Myanmar;MMR;MM;World;22.4;17
+Namibia;NAM;NA;World;49.0;1
+Namibia;NAM;NA;World;51.0;2
+Namibia;NAM;NA;World;-1.0;3
+Namibia;NAM;NA;World;-1.0;4
+Namibia;NAM;NA;World;33.0;5
+Namibia;NAM;NA;World;55.0;6
+Namibia;NAM;NA;World;-1.0;7
+Namibia;NAM;NA;World;59.0;8
+Namibia;NAM;NA;World;-1.0;9
+Namibia;NAM;NA;World;-1.0;10
+Namibia;NAM;NA;World;50.0;11
+Namibia;NAM;NA;World;60.0;12
+Namibia;NAM;NA;World;-1.0;13
+Namibia;NAM;NA;World;42.0;14
+Namibia;NAM;NA;World;46.0;15
+Namibia;NAM;NA;World;-1.0;16
+Namibia;NAM;NA;World;-1.0;17
+Nauru;NRU;NR;World;-1.0;1
+Nauru;NRU;NR;World;-1.0;2
+Nauru;NRU;NR;World;-1.0;3
+Nauru;NRU;NR;World;-1.0;4
+Nauru;NRU;NR;World;-1.0;5
+Nauru;NRU;NR;World;-1.0;6
+Nauru;NRU;NR;World;-1.0;7
+Nauru;NRU;NR;World;-1.0;8
+Nauru;NRU;NR;World;-1.0;9
+Nauru;NRU;NR;World;-1.0;10
+Nauru;NRU;NR;World;-1.0;11
+Nauru;NRU;NR;World;-1.0;12
+Nauru;NRU;NR;World;-1.0;13
+Nauru;NRU;NR;World;-1.0;14
+Nauru;NRU;NR;World;-1.0;15
+Nauru;NRU;NR;World;-1.0;16
+Nauru;NRU;NR;World;-1.0;17
+Nepal;NPL;NP;World;33.0;1
+Nepal;NPL;NP;World;33.0;2
+Nepal;NPL;NP;World;-1.0;3
+Nepal;NPL;NP;World;-1.0;4
+Nepal;NPL;NP;World;33.0;5
+Nepal;NPL;NP;World;-1.0;6
+Nepal;NPL;NP;World;-1.0;7
+Nepal;NPL;NP;World;35.0;8
+Nepal;NPL;NP;World;-1.0;9
+Nepal;NPL;NP;World;-1.0;10
+Nepal;NPL;NP;World;-1.0;11
+Nepal;NPL;NP;World;30.0;12
+Nepal;NPL;NP;World;35.0;13
+Nepal;NPL;NP;World;34.0;14
+Nepal;NPL;NP;World;32.0;15
+Nepal;NPL;NP;World;-1.0;16
+Nepal;NPL;NP;World;-1.0;17
+Netherlands;NLD;NL;World;82.0;1
+Netherlands;NLD;NL;World;82.0;2
+Netherlands;NLD;NL;World;-1.0;3
+Netherlands;NLD;NL;World;70.0;4
+Netherlands;NLD;NL;World;-1.0;5
+Netherlands;NLD;NL;World;90.0;6
+Netherlands;NLD;NL;World;-1.0;7
+Netherlands;NLD;NL;World;83.0;8
+Netherlands;NLD;NL;World;86.0;9
+Netherlands;NLD;NL;World;-1.0;10
+Netherlands;NLD;NL;World;85.0;11
+Netherlands;NLD;NL;World;77.0;12
+Netherlands;NLD;NL;World;-1.0;13
+Netherlands;NLD;NL;World;79.0;14
+Netherlands;NLD;NL;World;82.0;15
+Netherlands;NLD;NL;World;-1.0;16
+Netherlands;NLD;NL;World;55.4;17
+Antilles;ANT;AN;World;-1.0;1
+Antilles;ANT;AN;World;-1.0;2
+Antilles;ANT;AN;World;-1.0;3
+Antilles;ANT;AN;World;-1.0;4
+Antilles;ANT;AN;World;-1.0;5
+Antilles;ANT;AN;World;-1.0;6
+Antilles;ANT;AN;World;-1.0;7
+Antilles;ANT;AN;World;-1.0;8
+Antilles;ANT;AN;World;-1.0;9
+Antilles;ANT;AN;World;-1.0;10
+Antilles;ANT;AN;World;-1.0;11
+Antilles;ANT;AN;World;-1.0;12
+Antilles;ANT;AN;World;-1.0;13
+Antilles;ANT;AN;World;-1.0;14
+Antilles;ANT;AN;World;-1.0;15
+Antilles;ANT;AN;World;-1.0;16
+Antilles;ANT;AN;World;-1.0;17
+Neucaledonien;NCL;NC;World;-1.0;1
+Neucaledonien;NCL;NC;World;-1.0;2
+Neucaledonien;NCL;NC;World;-1.0;3
+Neucaledonien;NCL;NC;World;-1.0;4
+Neucaledonien;NCL;NC;World;-1.0;5
+Neucaledonien;NCL;NC;World;-1.0;6
+Neucaledonien;NCL;NC;World;-1.0;7
+Neucaledonien;NCL;NC;World;-1.0;8
+Neucaledonien;NCL;NC;World;-1.0;9
+Neucaledonien;NCL;NC;World;-1.0;10
+Neucaledonien;NCL;NC;World;-1.0;11
+Neucaledonien;NCL;NC;World;-1.0;12
+Neucaledonien;NCL;NC;World;-1.0;13
+Neucaledonien;NCL;NC;World;-1.0;14
+Neucaledonien;NCL;NC;World;-1.0;15
+Neucaledonien;NCL;NC;World;-1.0;16
+Neucaledonien;NCL;NC;World;-1.0;17
+New Zealand;NZL;NZ;World;88.0;1
+New Zealand;NZL;NZ;World;88.0;2
+New Zealand;NZL;NZ;World;-1.0;3
+New Zealand;NZL;NZ;World;97.0;4
+New Zealand;NZL;NZ;World;-1.0;5
+New Zealand;NZL;NZ;World;90.0;6
+New Zealand;NZL;NZ;World;-1.0;7
+New Zealand;NZL;NZ;World;83.0;8
+New Zealand;NZL;NZ;World;91.0;9
+New Zealand;NZL;NZ;World;-1.0;10
+New Zealand;NZL;NZ;World;93.0;11
+New Zealand;NZL;NZ;World;78.0;12
+New Zealand;NZL;NZ;World;-1.0;13
+New Zealand;NZL;NZ;World;85.0;14
+New Zealand;NZL;NZ;World;83.0;15
+New Zealand;NZL;NZ;World;65.7;16
+New Zealand;NZL;NZ;World;68.6;17
+Northern Mariana Islands;MNP;MP;World;-1.0;1
+Northern Mariana Islands;MNP;MP;World;-1.0;2
+Northern Mariana Islands;MNP;MP;World;-1.0;3
+Northern Mariana Islands;MNP;MP;World;-1.0;4
+Northern Mariana Islands;MNP;MP;World;-1.0;5
+Northern Mariana Islands;MNP;MP;World;-1.0;6
+Northern Mariana Islands;MNP;MP;World;-1.0;7
+Northern Mariana Islands;MNP;MP;World;-1.0;8
+Northern Mariana Islands;MNP;MP;World;-1.0;9
+Northern Mariana Islands;MNP;MP;World;-1.0;10
+Northern Mariana Islands;MNP;MP;World;-1.0;11
+Northern Mariana Islands;MNP;MP;World;-1.0;12
+Northern Mariana Islands;MNP;MP;World;-1.0;13
+Northern Mariana Islands;MNP;MP;World;-1.0;14
+Northern Mariana Islands;MNP;MP;World;-1.0;15
+Northern Mariana Islands;MNP;MP;World;-1.0;16
+Northern Mariana Islands;MNP;MP;World;-1.0;17
+Nicaragua;NIC;NI;World;20.0;1
+Nicaragua;NIC;NI;World;22.0;2
+Nicaragua;NIC;NI;World;-1.0;3
+Nicaragua;NIC;NI;World;-1.0;4
+Nicaragua;NIC;NI;World;17.0;5
+Nicaragua;NIC;NI;World;20.0;6
+Nicaragua;NIC;NI;World;-1.0;7
+Nicaragua;NIC;NI;World;22.0;8
+Nicaragua;NIC;NI;World;-1.0;9
+Nicaragua;NIC;NI;World;-1.0;10
+Nicaragua;NIC;NI;World;22.0;11
+Nicaragua;NIC;NI;World;12.0;12
+Nicaragua;NIC;NI;World;27.0;13
+Nicaragua;NIC;NI;World;21.0;14
+Nicaragua;NIC;NI;World;19.0;15
+Nicaragua;NIC;NI;World;33.5;16
+Nicaragua;NIC;NI;World;33.1;17
+Niger;NER;NE;World;31.0;1
+Niger;NER;NE;World;32.0;2
+Niger;NER;NE;World;37.0;3
+Niger;NER;NE;World;-1.0;4
+Niger;NER;NE;World;25.0;5
+Niger;NER;NE;World;-1.0;6
+Niger;NER;NE;World;-1.0;7
+Niger;NER;NE;World;35.0;8
+Niger;NER;NE;World;-1.0;9
+Niger;NER;NE;World;-1.0;10
+Niger;NER;NE;World;24.0;11
+Niger;NER;NE;World;31.0;12
+Niger;NER;NE;World;35.0;13
+Niger;NER;NE;World;-1.0;14
+Niger;NER;NE;World;30.0;15
+Niger;NER;NE;World;-1.0;16
+Niger;NER;NE;World;-1.0;17
+Nigeria;NGA;NG;World;24.0;1
+Nigeria;NGA;NG;World;25.0;2
+Nigeria;NGA;NG;World;-1.0;3
+Nigeria;NGA;NG;World;-1.0;4
+Nigeria;NGA;NG;World;33.0;5
+Nigeria;NGA;NG;World;20.0;6
+Nigeria;NGA;NG;World;-1.0;7
+Nigeria;NGA;NG;World;22.0;8
+Nigeria;NGA;NG;World;-1.0;9
+Nigeria;NGA;NG;World;-1.0;10
+Nigeria;NGA;NG;World;24.0;11
+Nigeria;NGA;NG;World;14.0;12
+Nigeria;NGA;NG;World;35.0;13
+Nigeria;NGA;NG;World;22.0;14
+Nigeria;NGA;NG;World;23.0;15
+Nigeria;NGA;NG;World;-1.0;16
+Nigeria;NGA;NG;World;32.2;17
+Niue;NIU;NU;World;-1.0;1
+Niue;NIU;NU;World;-1.0;2
+Niue;NIU;NU;World;-1.0;3
+Niue;NIU;NU;World;-1.0;4
+Niue;NIU;NU;World;-1.0;5
+Niue;NIU;NU;World;-1.0;6
+Niue;NIU;NU;World;-1.0;7
+Niue;NIU;NU;World;-1.0;8
+Niue;NIU;NU;World;-1.0;9
+Niue;NIU;NU;World;-1.0;10
+Niue;NIU;NU;World;-1.0;11
+Niue;NIU;NU;World;-1.0;12
+Niue;NIU;NU;World;-1.0;13
+Niue;NIU;NU;World;-1.0;14
+Niue;NIU;NU;World;-1.0;15
+Niue;NIU;NU;World;-1.0;16
+Niue;NIU;NU;World;-1.0;17
+Norfolk Island;NFK;NF;World;-1.0;1
+Norfolk Island;NFK;NF;World;-1.0;2
+Norfolk Island;NFK;NF;World;-1.0;3
+Norfolk Island;NFK;NF;World;-1.0;4
+Norfolk Island;NFK;NF;World;-1.0;5
+Norfolk Island;NFK;NF;World;-1.0;6
+Norfolk Island;NFK;NF;World;-1.0;7
+Norfolk Island;NFK;NF;World;-1.0;8
+Norfolk Island;NFK;NF;World;-1.0;9
+Norfolk Island;NFK;NF;World;-1.0;10
+Norfolk Island;NFK;NF;World;-1.0;11
+Norfolk Island;NFK;NF;World;-1.0;12
+Norfolk Island;NFK;NF;World;-1.0;13
+Norfolk Island;NFK;NF;World;-1.0;14
+Norfolk Island;NFK;NF;World;-1.0;15
+Norfolk Island;NFK;NF;World;-1.0;16
+Norfolk Island;NFK;NF;World;-1.0;17
+North Macedonia;MKD;MK;World;39.0;1
+North Macedonia;MKD;MK;World;35.0;2
+North Macedonia;MKD;MK;World;-1.0;3
+North Macedonia;MKD;MK;World;-1.0;4
+North Macedonia;MKD;MK;World;45.0;5
+North Macedonia;MKD;MK;World;37.0;6
+North Macedonia;MKD;MK;World;47.0;7
+North Macedonia;MKD;MK;World;35.0;8
+North Macedonia;MKD;MK;World;-1.0;9
+North Macedonia;MKD;MK;World;-1.0;10
+North Macedonia;MKD;MK;World;-1.0;11
+North Macedonia;MKD;MK;World;30.0;12
+North Macedonia;MKD;MK;World;-1.0;13
+North Macedonia;MKD;MK;World;35.0;14
+North Macedonia;MKD;MK;World;41.0;15
+North Macedonia;MKD;MK;World;-1.0;16
+North Macedonia;MKD;MK;World;-1.0;17
+Norway;NOR;NO;World;85.0;1
+Norway;NOR;NO;World;84.0;2
+Norway;NOR;NO;World;-1.0;3
+Norway;NOR;NO;World;88.0;4
+Norway;NOR;NO;World;-1.0;5
+Norway;NOR;NO;World;90.0;6
+Norway;NOR;NO;World;-1.0;7
+Norway;NOR;NO;World;83.0;8
+Norway;NOR;NO;World;81.0;9
+Norway;NOR;NO;World;-1.0;10
+Norway;NOR;NO;World;85.0;11
+Norway;NOR;NO;World;78.0;12
+Norway;NOR;NO;World;-1.0;13
+Norway;NOR;NO;World;-1.0;14
+Norway;NOR;NO;World;87.0;15
+Norway;NOR;NO;World;67.5;16
+Norway;NOR;NO;World;69.1;17
+Oman;OMN;OM;World;52.0;1
+Oman;OMN;OM;World;54.0;2
+Oman;OMN;OM;World;-1.0;3
+Oman;OMN;OM;World;-1.0;4
+Oman;OMN;OM;World;25.0;5
+Oman;OMN;OM;World;37.0;6
+Oman;OMN;OM;World;-1.0;7
+Oman;OMN;OM;World;47.0;8
+Oman;OMN;OM;World;-1.0;9
+Oman;OMN;OM;World;-1.0;10
+Oman;OMN;OM;World;50.0;11
+Oman;OMN;OM;World;61.0;12
+Oman;OMN;OM;World;-1.0;13
+Oman;OMN;OM;World;91.0;14
+Oman;OMN;OM;World;-1.0;15
+Oman;OMN;OM;World;-1.0;16
+Oman;OMN;OM;World;-1.0;17
+Pakistan;PAK;PK;World;28.0;1
+Pakistan;PAK;PK;World;31.0;2
+Pakistan;PAK;PK;World;-1.0;3
+Pakistan;PAK;PK;World;-1.0;4
+Pakistan;PAK;PK;World;21.0;5
+Pakistan;PAK;PK;World;20.0;6
+Pakistan;PAK;PK;World;-1.0;7
+Pakistan;PAK;PK;World;35.0;8
+Pakistan;PAK;PK;World;-1.0;9
+Pakistan;PAK;PK;World;-1.0;10
+Pakistan;PAK;PK;World;32.0;11
+Pakistan;PAK;PK;World;20.0;12
+Pakistan;PAK;PK;World;35.0;13
+Pakistan;PAK;PK;World;41.0;14
+Pakistan;PAK;PK;World;25.0;15
+Pakistan;PAK;PK;World;41.0;16
+Pakistan;PAK;PK;World;37.9;17
+Palau;PLW;PW;World;-1.0;1
+Palau;PLW;PW;World;-1.0;2
+Palau;PLW;PW;World;-1.0;3
+Palau;PLW;PW;World;-1.0;4
+Palau;PLW;PW;World;-1.0;5
+Palau;PLW;PW;World;-1.0;6
+Palau;PLW;PW;World;-1.0;7
+Palau;PLW;PW;World;-1.0;8
+Palau;PLW;PW;World;-1.0;9
+Palau;PLW;PW;World;-1.0;10
+Palau;PLW;PW;World;-1.0;11
+Palau;PLW;PW;World;-1.0;12
+Palau;PLW;PW;World;-1.0;13
+Palau;PLW;PW;World;-1.0;14
+Palau;PLW;PW;World;-1.0;15
+Palau;PLW;PW;World;39.3;16
+Palau;PLW;PW;World;-1.0;17
+Palastenian Territory;SE;PS;World;-1.0;1
+Palastenian Territory;SE;PS;World;-1.0;2
+Palastenian Territory;SE;PS;World;-1.0;3
+Palastenian Territory;SE;PS;World;-1.0;4
+Palastenian Territory;SE;PS;World;-1.0;5
+Palastenian Territory;SE;PS;World;-1.0;6
+Palastenian Territory;SE;PS;World;-1.0;7
+Palastenian Territory;SE;PS;World;-1.0;8
+Palastenian Territory;SE;PS;World;-1.0;9
+Palastenian Territory;SE;PS;World;-1.0;10
+Palastenian Territory;SE;PS;World;-1.0;11
+Palastenian Territory;SE;PS;World;-1.0;12
+Palastenian Territory;SE;PS;World;-1.0;13
+Palastenian Territory;SE;PS;World;-1.0;14
+Palastenian Territory;SE;PS;World;-1.0;15
+Palastenian Territory;SE;PS;World;-1.0;16
+Palastenian Territory;SE;PS;World;-1.0;17
+Panama;PAN;PA;World;36.0;1
+Panama;PAN;PA;World;35.0;2
+Panama;PAN;PA;World;-1.0;3
+Panama;PAN;PA;World;-1.0;4
+Panama;PAN;PA;World;33.0;5
+Panama;PAN;PA;World;37.0;6
+Panama;PAN;PA;World;-1.0;7
+Panama;PAN;PA;World;35.0;8
+Panama;PAN;PA;World;-1.0;9
+Panama;PAN;PA;World;-1.0;10
+Panama;PAN;PA;World;32.0;11
+Panama;PAN;PA;World;43.0;12
+Panama;PAN;PA;World;-1.0;13
+Panama;PAN;PA;World;40.0;14
+Panama;PAN;PA;World;35.0;15
+Panama;PAN;PA;World;41.0;16
+Panama;PAN;PA;World;41.4;17
+Papua New Guinea;PNG;PG;World;31.0;1
+Papua New Guinea;PNG;PG;World;27.0;2
+Papua New Guinea;PNG;PG;World;-1.0;3
+Papua New Guinea;PNG;PG;World;-1.0;4
+Papua New Guinea;PNG;PG;World;33.0;5
+Papua New Guinea;PNG;PG;World;20.0;6
+Papua New Guinea;PNG;PG;World;-1.0;7
+Papua New Guinea;PNG;PG;World;35.0;8
+Papua New Guinea;PNG;PG;World;-1.0;9
+Papua New Guinea;PNG;PG;World;-1.0;10
+Papua New Guinea;PNG;PG;World;41.0;11
+Papua New Guinea;PNG;PG;World;30.0;12
+Papua New Guinea;PNG;PG;World;27.0;13
+Papua New Guinea;PNG;PG;World;-1.0;14
+Papua New Guinea;PNG;PG;World;-1.0;15
+Papua New Guinea;PNG;PG;World;-1.0;16
+Papua New Guinea;PNG;PG;World;-1.0;17
+Paraguay;PRY;PY;World;30.0;1
+Paraguay;PRY;PY;World;28.0;2
+Paraguay;PRY;PY;World;-1.0;3
+Paraguay;PRY;PY;World;-1.0;4
+Paraguay;PRY;PY;World;33.0;5
+Paraguay;PRY;PY;World;37.0;6
+Paraguay;PRY;PY;World;-1.0;7
+Paraguay;PRY;PY;World;22.0;8
+Paraguay;PRY;PY;World;-1.0;9
+Paraguay;PRY;PY;World;-1.0;10
+Paraguay;PRY;PY;World;32.0;11
+Paraguay;PRY;PY;World;24.0;12
+Paraguay;PRY;PY;World;-1.0;13
+Paraguay;PRY;PY;World;31.0;14
+Paraguay;PRY;PY;World;28.0;15
+Paraguay;PRY;PY;World;-1.0;16
+Paraguay;PRY;PY;World;36.5;17
+Peru;PER;PE;World;36.0;1
+Peru;PER;PE;World;38.0;2
+Peru;PER;PE;World;-1.0;3
+Peru;PER;PE;World;-1.0;4
+Peru;PER;PE;World;49.0;5
+Peru;PER;PE;World;37.0;6
+Peru;PER;PE;World;-1.0;7
+Peru;PER;PE;World;35.0;8
+Peru;PER;PE;World;25.0;9
+Peru;PER;PE;World;-1.0;10
+Peru;PER;PE;World;45.0;11
+Peru;PER;PE;World;38.0;12
+Peru;PER;PE;World;-1.0;13
+Peru;PER;PE;World;29.0;14
+Peru;PER;PE;World;30.0;15
+Peru;PER;PE;World;56.0;16
+Peru;PER;PE;World;55.7;17
+Philippines;PHL;PH;World;33.0;1
+Philippines;PHL;PH;World;34.0;2
+Philippines;PHL;PH;World;-1.0;3
+Philippines;PHL;PH;World;-1.0;4
+Philippines;PHL;PH;World;33.0;5
+Philippines;PHL;PH;World;37.0;6
+Philippines;PHL;PH;World;-1.0;7
+Philippines;PHL;PH;World;35.0;8
+Philippines;PHL;PH;World;30.0;9
+Philippines;PHL;PH;World;38.0;10
+Philippines;PHL;PH;World;41.0;11
+Philippines;PHL;PH;World;29.0;12
+Philippines;PHL;PH;World;-1.0;13
+Philippines;PHL;PH;World;32.0;14
+Philippines;PHL;PH;World;26.0;15
+Philippines;PHL;PH;World;43.4;16
+Philippines;PHL;PH;World;44.3;17
+Pitcairn Islands;PCN;PN;World;-1.0;1
+Pitcairn Islands;PCN;PN;World;-1.0;2
+Pitcairn Islands;PCN;PN;World;-1.0;3
+Pitcairn Islands;PCN;PN;World;-1.0;4
+Pitcairn Islands;PCN;PN;World;-1.0;5
+Pitcairn Islands;PCN;PN;World;-1.0;6
+Pitcairn Islands;PCN;PN;World;-1.0;7
+Pitcairn Islands;PCN;PN;World;-1.0;8
+Pitcairn Islands;PCN;PN;World;-1.0;9
+Pitcairn Islands;PCN;PN;World;-1.0;10
+Pitcairn Islands;PCN;PN;World;-1.0;11
+Pitcairn Islands;PCN;PN;World;-1.0;12
+Pitcairn Islands;PCN;PN;World;-1.0;13
+Pitcairn Islands;PCN;PN;World;-1.0;14
+Pitcairn Islands;PCN;PN;World;-1.0;15
+Pitcairn Islands;PCN;PN;World;-1.0;16
+Pitcairn Islands;PCN;PN;World;-1.0;17
+Poland;POL;PL;World;56.0;1
+Poland;POL;PL;World;56.0;2
+Poland;POL;PL;World;-1.0;3
+Poland;POL;PL;World;44.0;4
+Poland;POL;PL;World;57.0;5
+Poland;POL;PL;World;55.0;6
+Poland;POL;PL;World;56.0;7
+Poland;POL;PL;World;59.0;8
+Poland;POL;PL;World;51.0;9
+Poland;POL;PL;World;-1.0;10
+Poland;POL;PL;World;48.0;11
+Poland;POL;PL;World;70.0;12
+Poland;POL;PL;World;-1.0;13
+Poland;POL;PL;World;52.0;14
+Poland;POL;PL;World;64.0;15
+Poland;POL;PL;World;-1.0;16
+Poland;POL;PL;World;57.4;17
+Portugal;PRT;PT;World;62.0;1
+Portugal;PRT;PT;World;61.0;2
+Portugal;PRT;PT;World;-1.0;3
+Portugal;PRT;PT;World;70.0;4
+Portugal;PRT;PT;World;-1.0;5
+Portugal;PRT;PT;World;55.0;6
+Portugal;PRT;PT;World;-1.0;7
+Portugal;PRT;PT;World;59.0;8
+Portugal;PRT;PT;World;47.0;9
+Portugal;PRT;PT;World;-1.0;10
+Portugal;PRT;PT;World;67.0;11
+Portugal;PRT;PT;World;69.0;12
+Portugal;PRT;PT;World;-1.0;13
+Portugal;PRT;PT;World;60.0;14
+Portugal;PRT;PT;World;67.0;15
+Portugal;PRT;PT;World;62.5;16
+Portugal;PRT;PT;World;64.3;17
+Puerto Rico;PRI;PR;World;-1.0;1
+Puerto Rico;PRI;PR;World;-1.0;2
+Puerto Rico;PRI;PR;World;-1.0;3
+Puerto Rico;PRI;PR;World;-1.0;4
+Puerto Rico;PRI;PR;World;-1.0;5
+Puerto Rico;PRI;PR;World;-1.0;6
+Puerto Rico;PRI;PR;World;-1.0;7
+Puerto Rico;PRI;PR;World;-1.0;8
+Puerto Rico;PRI;PR;World;-1.0;9
+Puerto Rico;PRI;PR;World;-1.0;10
+Puerto Rico;PRI;PR;World;-1.0;11
+Puerto Rico;PRI;PR;World;-1.0;12
+Puerto Rico;PRI;PR;World;-1.0;13
+Puerto Rico;PRI;PR;World;-1.0;14
+Puerto Rico;PRI;PR;World;-1.0;15
+Puerto Rico;PRI;PR;World;-1.0;16
+Puerto Rico;PRI;PR;World;-1.0;17
+Qatar;QAT;QA;World;63.0;1
+Qatar;QAT;QA;World;63.0;2
+Qatar;QAT;QA;World;-1.0;3
+Qatar;QAT;QA;World;-1.0;4
+Qatar;QAT;QA;World;41.0;5
+Qatar;QAT;QA;World;72.0;6
+Qatar;QAT;QA;World;-1.0;7
+Qatar;QAT;QA;World;47.0;8
+Qatar;QAT;QA;World;84.0;9
+Qatar;QAT;QA;World;-1.0;10
+Qatar;QAT;QA;World;59.0;11
+Qatar;QAT;QA;World;50.0;12
+Qatar;QAT;QA;World;-1.0;13
+Qatar;QAT;QA;World;88.0;14
+Qatar;QAT;QA;World;-1.0;15
+Qatar;QAT;QA;World;-1.0;16
+Qatar;QAT;QA;World;42.2;17
+Réunion;REU;RE;World;-1.0;1
+Réunion;REU;RE;World;-1.0;2
+Réunion;REU;RE;World;-1.0;3
+Réunion;REU;RE;World;-1.0;4
+Réunion;REU;RE;World;-1.0;5
+Réunion;REU;RE;World;-1.0;6
+Réunion;REU;RE;World;-1.0;7
+Réunion;REU;RE;World;-1.0;8
+Réunion;REU;RE;World;-1.0;9
+Réunion;REU;RE;World;-1.0;10
+Réunion;REU;RE;World;-1.0;11
+Réunion;REU;RE;World;-1.0;12
+Réunion;REU;RE;World;-1.0;13
+Réunion;REU;RE;World;-1.0;14
+Réunion;REU;RE;World;-1.0;15
+Réunion;REU;RE;World;-1.0;16
+Réunion;REU;RE;World;-1.0;17
+Romania;ROU;RO;World;45.0;1
+Romania;ROU;RO;World;44.0;2
+Romania;ROU;RO;World;-1.0;3
+Romania;ROU;RO;World;44.0;4
+Romania;ROU;RO;World;53.0;5
+Romania;ROU;RO;World;37.0;6
+Romania;ROU;RO;World;56.0;7
+Romania;ROU;RO;World;47.0;8
+Romania;ROU;RO;World;38.0;9
+Romania;ROU;RO;World;-1.0;10
+Romania;ROU;RO;World;41.0;11
+Romania;ROU;RO;World;46.0;12
+Romania;ROU;RO;World;-1.0;13
+Romania;ROU;RO;World;39.0;14
+Romania;ROU;RO;World;48.0;15
+Romania;ROU;RO;World;-1.0;16
+Romania;ROU;RO;World;53.0;17
+Russia;RUS;RU;World;29.0;1
+Russia;RUS;RU;World;30.0;2
+Russia;RUS;RU;World;-1.0;3
+Russia;RUS;RU;World;-1.0;4
+Russia;RUS;RU;World;25.0;5
+Russia;RUS;RU;World;20.0;6
+Russia;RUS;RU;World;24.0;7
+Russia;RUS;RU;World;35.0;8
+Russia;RUS;RU;World;39.0;9
+Russia;RUS;RU;World;-1.0;10
+Russia;RUS;RU;World;24.0;11
+Russia;RUS;RU;World;25.0;12
+Russia;RUS;RU;World;-1.0;13
+Russia;RUS;RU;World;40.0;14
+Russia;RUS;RU;World;33.0;15
+Russia;RUS;RU;World;46.1;16
+Russia;RUS;RU;World;45.9;17
+Rwanda;RWA;RW;World;53.0;1
+Rwanda;RWA;RW;World;54.0;2
+Rwanda;RWA;RW;World;49.0;3
+Rwanda;RWA;RW;World;-1.0;4
+Rwanda;RWA;RW;World;37.0;5
+Rwanda;RWA;RW;World;-1.0;6
+Rwanda;RWA;RW;World;-1.0;7
+Rwanda;RWA;RW;World;59.0;8
+Rwanda;RWA;RW;World;-1.0;9
+Rwanda;RWA;RW;World;-1.0;10
+Rwanda;RWA;RW;World;-1.0;11
+Rwanda;RWA;RW;World;49.0;12
+Rwanda;RWA;RW;World;43.0;13
+Rwanda;RWA;RW;World;79.0;14
+Rwanda;RWA;RW;World;57.0;15
+Rwanda;RWA;RW;World;-1.0;16
+Rwanda;RWA;RW;World;-1.0;17
+Saint-Barthélemy;BLM;BL;World;-1.0;1
+Saint-Barthélemy;BLM;BL;World;-1.0;2
+Saint-Barthélemy;BLM;BL;World;-1.0;3
+Saint-Barthélemy;BLM;BL;World;-1.0;4
+Saint-Barthélemy;BLM;BL;World;-1.0;5
+Saint-Barthélemy;BLM;BL;World;-1.0;6
+Saint-Barthélemy;BLM;BL;World;-1.0;7
+Saint-Barthélemy;BLM;BL;World;-1.0;8
+Saint-Barthélemy;BLM;BL;World;-1.0;9
+Saint-Barthélemy;BLM;BL;World;-1.0;10
+Saint-Barthélemy;BLM;BL;World;-1.0;11
+Saint-Barthélemy;BLM;BL;World;-1.0;12
+Saint-Barthélemy;BLM;BL;World;-1.0;13
+Saint-Barthélemy;BLM;BL;World;-1.0;14
+Saint-Barthélemy;BLM;BL;World;-1.0;15
+Saint-Barthélemy;BLM;BL;World;-1.0;16
+Saint-Barthélemy;BLM;BL;World;-1.0;17
+St. Helena;SHN;SH;World;-1.0;1
+St. Helena;SHN;SH;World;-1.0;2
+St. Helena;SHN;SH;World;-1.0;3
+St. Helena;SHN;SH;World;-1.0;4
+St. Helena;SHN;SH;World;-1.0;5
+St. Helena;SHN;SH;World;-1.0;6
+St. Helena;SHN;SH;World;-1.0;7
+St. Helena;SHN;SH;World;-1.0;8
+St. Helena;SHN;SH;World;-1.0;9
+St. Helena;SHN;SH;World;-1.0;10
+St. Helena;SHN;SH;World;-1.0;11
+St. Helena;SHN;SH;World;-1.0;12
+St. Helena;SHN;SH;World;-1.0;13
+St. Helena;SHN;SH;World;-1.0;14
+St. Helena;SHN;SH;World;-1.0;15
+St. Helena;SHN;SH;World;-1.0;16
+St. Helena;SHN;SH;World;-1.0;17
+St. Kitts and Nevis;KNA;KN;World;-1.0;1
+St. Kitts and Nevis;KNA;KN;World;-1.0;2
+St. Kitts and Nevis;KNA;KN;World;-1.0;3
+St. Kitts and Nevis;KNA;KN;World;-1.0;4
+St. Kitts and Nevis;KNA;KN;World;-1.0;5
+St. Kitts and Nevis;KNA;KN;World;-1.0;6
+St. Kitts and Nevis;KNA;KN;World;-1.0;7
+St. Kitts and Nevis;KNA;KN;World;-1.0;8
+St. Kitts and Nevis;KNA;KN;World;-1.0;9
+St. Kitts and Nevis;KNA;KN;World;-1.0;10
+St. Kitts and Nevis;KNA;KN;World;-1.0;11
+St. Kitts and Nevis;KNA;KN;World;-1.0;12
+St. Kitts and Nevis;KNA;KN;World;-1.0;13
+St. Kitts and Nevis;KNA;KN;World;-1.0;14
+St. Kitts and Nevis;KNA;KN;World;-1.0;15
+St. Kitts and Nevis;KNA;KN;World;-1.0;16
+St. Kitts and Nevis;KNA;KN;World;-1.0;17
+Saint Lucia;LCA;LC;World;56.0;1
+Saint Lucia;LCA;LC;World;56.0;2
+Saint Lucia;LCA;LC;World;-1.0;3
+Saint Lucia;LCA;LC;World;-1.0;4
+Saint Lucia;LCA;LC;World;-1.0;5
+Saint Lucia;LCA;LC;World;-1.0;6
+Saint Lucia;LCA;LC;World;-1.0;7
+Saint Lucia;LCA;LC;World;47.0;8
+Saint Lucia;LCA;LC;World;-1.0;9
+Saint Lucia;LCA;LC;World;-1.0;10
+Saint Lucia;LCA;LC;World;-1.0;11
+Saint Lucia;LCA;LC;World;-1.0;12
+Saint Lucia;LCA;LC;World;60.0;13
+Saint Lucia;LCA;LC;World;-1.0;14
+Saint Lucia;LCA;LC;World;60.0;15
+Saint Lucia;LCA;LC;World;48.9;16
+Saint Lucia;LCA;LC;World;58.4;17
+Saint Martin;MAF;MF;World;-1.0;1
+Saint Martin;MAF;MF;World;-1.0;2
+Saint Martin;MAF;MF;World;-1.0;3
+Saint Martin;MAF;MF;World;-1.0;4
+Saint Martin;MAF;MF;World;-1.0;5
+Saint Martin;MAF;MF;World;-1.0;6
+Saint Martin;MAF;MF;World;-1.0;7
+Saint Martin;MAF;MF;World;-1.0;8
+Saint Martin;MAF;MF;World;-1.0;9
+Saint Martin;MAF;MF;World;-1.0;10
+Saint Martin;MAF;MF;World;-1.0;11
+Saint Martin;MAF;MF;World;-1.0;12
+Saint Martin;MAF;MF;World;-1.0;13
+Saint Martin;MAF;MF;World;-1.0;14
+Saint Martin;MAF;MF;World;-1.0;15
+Saint Martin;MAF;MF;World;-1.0;16
+Saint Martin;MAF;MF;World;-1.0;17
+Saint-Pierre and Miquelon;SPM;PM;World;-1.0;1
+Saint-Pierre and Miquelon;SPM;PM;World;-1.0;2
+Saint-Pierre and Miquelon;SPM;PM;World;-1.0;3
+Saint-Pierre and Miquelon;SPM;PM;World;-1.0;4
+Saint-Pierre and Miquelon;SPM;PM;World;-1.0;5
+Saint-Pierre and Miquelon;SPM;PM;World;-1.0;6
+Saint-Pierre and Miquelon;SPM;PM;World;-1.0;7
+Saint-Pierre and Miquelon;SPM;PM;World;-1.0;8
+Saint-Pierre and Miquelon;SPM;PM;World;-1.0;9
+Saint-Pierre and Miquelon;SPM;PM;World;-1.0;10
+Saint-Pierre and Miquelon;SPM;PM;World;-1.0;11
+Saint-Pierre and Miquelon;SPM;PM;World;-1.0;12
+Saint-Pierre and Miquelon;SPM;PM;World;-1.0;13
+Saint-Pierre and Miquelon;SPM;PM;World;-1.0;14
+Saint-Pierre and Miquelon;SPM;PM;World;-1.0;15
+Saint-Pierre and Miquelon;SPM;PM;World;-1.0;16
+Saint-Pierre and Miquelon;SPM;PM;World;-1.0;17
+Saint Vincent and the Grenadines;VCT;VC;World;59.0;1
+Saint Vincent and the Grenadines;VCT;VC;World;59.0;2
+Saint Vincent and the Grenadines;VCT;VC;World;-1.0;3
+Saint Vincent and the Grenadines;VCT;VC;World;-1.0;4
+Saint Vincent and the Grenadines;VCT;VC;World;-1.0;5
+Saint Vincent and the Grenadines;VCT;VC;World;-1.0;6
+Saint Vincent and the Grenadines;VCT;VC;World;-1.0;7
+Saint Vincent and the Grenadines;VCT;VC;World;59.0;8
+Saint Vincent and the Grenadines;VCT;VC;World;-1.0;9
+Saint Vincent and the Grenadines;VCT;VC;World;-1.0;10
+Saint Vincent and the Grenadines;VCT;VC;World;-1.0;11
+Saint Vincent and the Grenadines;VCT;VC;World;-1.0;12
+Saint Vincent and the Grenadines;VCT;VC;World;52.0;13
+Saint Vincent and the Grenadines;VCT;VC;World;-1.0;14
+Saint Vincent and the Grenadines;VCT;VC;World;65.0;15
+Saint Vincent and the Grenadines;VCT;VC;World;-1.0;16
+Saint Vincent and the Grenadines;VCT;VC;World;56.2;17
+Samoa;WSM;WS;World;-1.0;1
+Samoa;WSM;WS;World;-1.0;2
+Samoa;WSM;WS;World;-1.0;3
+Samoa;WSM;WS;World;-1.0;4
+Samoa;WSM;WS;World;-1.0;5
+Samoa;WSM;WS;World;-1.0;6
+Samoa;WSM;WS;World;-1.0;7
+Samoa;WSM;WS;World;-1.0;8
+Samoa;WSM;WS;World;-1.0;9
+Samoa;WSM;WS;World;-1.0;10
+Samoa;WSM;WS;World;-1.0;11
+Samoa;WSM;WS;World;-1.0;12
+Samoa;WSM;WS;World;-1.0;13
+Samoa;WSM;WS;World;-1.0;14
+Samoa;WSM;WS;World;-1.0;15
+Samoa;WSM;WS;World;47.8;16
+Samoa;WSM;WS;World;48.2;17
+San Marino;SMR;SM;World;-1.0;1
+San Marino;SMR;SM;World;-1.0;2
+San Marino;SMR;SM;World;-1.0;3
+San Marino;SMR;SM;World;-1.0;4
+San Marino;SMR;SM;World;-1.0;5
+San Marino;SMR;SM;World;-1.0;6
+San Marino;SMR;SM;World;-1.0;7
+San Marino;SMR;SM;World;-1.0;8
+San Marino;SMR;SM;World;-1.0;9
+San Marino;SMR;SM;World;-1.0;10
+San Marino;SMR;SM;World;-1.0;11
+San Marino;SMR;SM;World;-1.0;12
+San Marino;SMR;SM;World;-1.0;13
+San Marino;SMR;SM;World;-1.0;14
+San Marino;SMR;SM;World;-1.0;15
+San Marino;SMR;SM;World;66.8;16
+San Marino;SMR;SM;World;-1.0;17
+Sao Tome and Principe;STP;ST;World;45.0;1
+Sao Tome and Principe;STP;ST;World;47.0;2
+Sao Tome and Principe;STP;ST;World;32.0;3
+Sao Tome and Principe;STP;ST;World;-1.0;4
+Sao Tome and Principe;STP;ST;World;-1.0;5
+Sao Tome and Principe;STP;ST;World;-1.0;6
+Sao Tome and Principe;STP;ST;World;-1.0;7
+Sao Tome and Principe;STP;ST;World;47.0;8
+Sao Tome and Principe;STP;ST;World;-1.0;9
+Sao Tome and Principe;STP;ST;World;-1.0;10
+Sao Tome and Principe;STP;ST;World;-1.0;11
+Sao Tome and Principe;STP;ST;World;59.0;12
+Sao Tome and Principe;STP;ST;World;43.0;13
+Sao Tome and Principe;STP;ST;World;-1.0;14
+Sao Tome and Principe;STP;ST;World;-1.0;15
+Sao Tome and Principe;STP;ST;World;-1.0;16
+Sao Tome and Principe;STP;ST;World;-1.0;17
+Saudi Arabia;SAU;SA;World;53.0;1
+Saudi Arabia;SAU;SA;World;53.0;2
+Saudi Arabia;SAU;SA;World;-1.0;3
+Saudi Arabia;SAU;SA;World;-1.0;4
+Saudi Arabia;SAU;SA;World;33.0;5
+Saudi Arabia;SAU;SA;World;55.0;6
+Saudi Arabia;SAU;SA;World;-1.0;7
+Saudi Arabia;SAU;SA;World;35.0;8
+Saudi Arabia;SAU;SA;World;67.0;9
+Saudi Arabia;SAU;SA;World;-1.0;10
+Saudi Arabia;SAU;SA;World;59.0;11
+Saudi Arabia;SAU;SA;World;50.0;12
+Saudi Arabia;SAU;SA;World;-1.0;13
+Saudi Arabia;SAU;SA;World;76.0;14
+Saudi Arabia;SAU;SA;World;-1.0;15
+Saudi Arabia;SAU;SA;World;49.8;16
+Saudi Arabia;SAU;SA;World;47.7;17
+Senegal;SEN;SN;World;43.0;1
+Senegal;SEN;SN;World;45.0;2
+Senegal;SEN;SN;World;42.0;3
+Senegal;SEN;SN;World;-1.0;4
+Senegal;SEN;SN;World;37.0;5
+Senegal;SEN;SN;World;55.0;6
+Senegal;SEN;SN;World;-1.0;7
+Senegal;SEN;SN;World;47.0;8
+Senegal;SEN;SN;World;-1.0;9
+Senegal;SEN;SN;World;-1.0;10
+Senegal;SEN;SN;World;32.0;11
+Senegal;SEN;SN;World;51.0;12
+Senegal;SEN;SN;World;43.0;13
+Senegal;SEN;SN;World;37.0;14
+Senegal;SEN;SN;World;44.0;15
+Senegal;SEN;SN;World;28.5;16
+Senegal;SEN;SN;World;28.0;17
+Serbia;SRB;RS;World;38.0;1
+Serbia;SRB;RS;World;38.0;2
+Serbia;SRB;RS;World;-1.0;3
+Serbia;SRB;RS;World;-1.0;4
+Serbia;SRB;RS;World;37.0;5
+Serbia;SRB;RS;World;37.0;6
+Serbia;SRB;RS;World;50.0;7
+Serbia;SRB;RS;World;35.0;8
+Serbia;SRB;RS;World;-1.0;9
+Serbia;SRB;RS;World;-1.0;10
+Serbia;SRB;RS;World;32.0;11
+Serbia;SRB;RS;World;33.0;12
+Serbia;SRB;RS;World;-1.0;13
+Serbia;SRB;RS;World;44.0;14
+Serbia;SRB;RS;World;34.0;15
+Serbia;SRB;RS;World;46.3;16
+Serbia;SRB;RS;World;46.3;17
+Serbia and Montenegro;SCG;CS;World;-1.0;1
+Serbia and Montenegro;SCG;CS;World;-1.0;2
+Serbia and Montenegro;SCG;CS;World;-1.0;3
+Serbia and Montenegro;SCG;CS;World;-1.0;4
+Serbia and Montenegro;SCG;CS;World;-1.0;5
+Serbia and Montenegro;SCG;CS;World;-1.0;6
+Serbia and Montenegro;SCG;CS;World;-1.0;7
+Serbia and Montenegro;SCG;CS;World;-1.0;8
+Serbia and Montenegro;SCG;CS;World;-1.0;9
+Serbia and Montenegro;SCG;CS;World;-1.0;10
+Serbia and Montenegro;SCG;CS;World;-1.0;11
+Serbia and Montenegro;SCG;CS;World;-1.0;12
+Serbia and Montenegro;SCG;CS;World;-1.0;13
+Serbia and Montenegro;SCG;CS;World;-1.0;14
+Serbia and Montenegro;SCG;CS;World;-1.0;15
+Serbia and Montenegro;SCG;CS;World;-1.0;16
+Serbia and Montenegro;SCG;CS;World;-1.0;17
+Seychelles;SYC;SC;World;70.0;1
+Seychelles;SYC;SC;World;66.0;2
+Seychelles;SYC;SC;World;-1.0;3
+Seychelles;SYC;SC;World;-1.0;4
+Seychelles;SYC;SC;World;-1.0;5
+Seychelles;SYC;SC;World;72.0;6
+Seychelles;SYC;SC;World;-1.0;7
+Seychelles;SYC;SC;World;71.0;8
+Seychelles;SYC;SC;World;-1.0;9
+Seychelles;SYC;SC;World;-1.0;10
+Seychelles;SYC;SC;World;-1.0;11
+Seychelles;SYC;SC;World;67.0;12
+Seychelles;SYC;SC;World;-1.0;13
+Seychelles;SYC;SC;World;-1.0;14
+Seychelles;SYC;SC;World;-1.0;15
+Seychelles;SYC;SC;World;48.1;16
+Seychelles;SYC;SC;World;45.1;17
+Sierra Leone;SLE;SL;World;34.0;1
+Sierra Leone;SLE;SL;World;33.0;2
+Sierra Leone;SLE;SL;World;34.0;3
+Sierra Leone;SLE;SL;World;-1.0;4
+Sierra Leone;SLE;SL;World;37.0;5
+Sierra Leone;SLE;SL;World;20.0;6
+Sierra Leone;SLE;SL;World;-1.0;7
+Sierra Leone;SLE;SL;World;47.0;8
+Sierra Leone;SLE;SL;World;-1.0;9
+Sierra Leone;SLE;SL;World;-1.0;10
+Sierra Leone;SLE;SL;World;50.0;11
+Sierra Leone;SLE;SL;World;33.0;12
+Sierra Leone;SLE;SL;World;35.0;13
+Sierra Leone;SLE;SL;World;28.0;14
+Sierra Leone;SLE;SL;World;26.0;15
+Sierra Leone;SLE;SL;World;-1.0;16
+Sierra Leone;SLE;SL;World;25.8;17
+Singapore;SGP;SG;World;85.0;1
+Singapore;SGP;SG;World;85.0;2
+Singapore;SGP;SG;World;-1.0;3
+Singapore;SGP;SG;World;-1.0;4
+Singapore;SGP;SG;World;73.0;5
+Singapore;SGP;SG;World;90.0;6
+Singapore;SGP;SG;World;-1.0;7
+Singapore;SGP;SG;World;83.0;8
+Singapore;SGP;SG;World;87.0;9
+Singapore;SGP;SG;World;91.0;10
+Singapore;SGP;SG;World;85.0;11
+Singapore;SGP;SG;World;78.0;12
+Singapore;SGP;SG;World;-1.0;13
+Singapore;SGP;SG;World;91.0;14
+Singapore;SGP;SG;World;84.0;15
+Singapore;SGP;SG;World;54.5;16
+Singapore;SGP;SG;World;55.4;17
+Sint Maarten;SXM;SX;World;-1.0;1
+Sint Maarten;SXM;SX;World;-1.0;2
+Sint Maarten;SXM;SX;World;-1.0;3
+Sint Maarten;SXM;SX;World;-1.0;4
+Sint Maarten;SXM;SX;World;-1.0;5
+Sint Maarten;SXM;SX;World;-1.0;6
+Sint Maarten;SXM;SX;World;-1.0;7
+Sint Maarten;SXM;SX;World;-1.0;8
+Sint Maarten;SXM;SX;World;-1.0;9
+Sint Maarten;SXM;SX;World;-1.0;10
+Sint Maarten;SXM;SX;World;-1.0;11
+Sint Maarten;SXM;SX;World;-1.0;12
+Sint Maarten;SXM;SX;World;-1.0;13
+Sint Maarten;SXM;SX;World;-1.0;14
+Sint Maarten;SXM;SX;World;-1.0;15
+Sint Maarten;SXM;SX;World;-1.0;16
+Sint Maarten;SXM;SX;World;-1.0;17
+Slovakia;SVK;SK;World;52.0;1
+Slovakia;SVK;SK;World;49.0;2
+Slovakia;SVK;SK;World;-1.0;3
+Slovakia;SVK;SK;World;44.0;4
+Slovakia;SVK;SK;World;61.0;5
+Slovakia;SVK;SK;World;55.0;6
+Slovakia;SVK;SK;World;59.0;7
+Slovakia;SVK;SK;World;71.0;8
+Slovakia;SVK;SK;World;38.0;9
+Slovakia;SVK;SK;World;-1.0;10
+Slovakia;SVK;SK;World;54.0;11
+Slovakia;SVK;SK;World;62.0;12
+Slovakia;SVK;SK;World;-1.0;13
+Slovakia;SVK;SK;World;29.0;14
+Slovakia;SVK;SK;World;45.0;15
+Slovakia;SVK;SK;World;57.3;16
+Slovakia;SVK;SK;World;61.5;17
+Slovenia;SVN;SI;World;57.0;1
+Slovenia;SVN;SI;World;60.0;2
+Slovenia;SVN;SI;World;-1.0;3
+Slovenia;SVN;SI;World;53.0;4
+Slovenia;SVN;SI;World;61.0;5
+Slovenia;SVN;SI;World;55.0;6
+Slovenia;SVN;SI;World;71.0;7
+Slovenia;SVN;SI;World;59.0;8
+Slovenia;SVN;SI;World;48.0;9
+Slovenia;SVN;SI;World;-1.0;10
+Slovenia;SVN;SI;World;56.0;11
+Slovenia;SVN;SI;World;54.0;12
+Slovenia;SVN;SI;World;-1.0;13
+Slovenia;SVN;SI;World;51.0;14
+Slovenia;SVN;SI;World;59.0;15
+Slovenia;SVN;SI;World;68.0;16
+Slovenia;SVN;SI;World;67.5;17
+Solomon Islands;SLB;SB;World;43.0;1
+Solomon Islands;SLB;SB;World;42.0;2
+Solomon Islands;SLB;SB;World;-1.0;3
+Solomon Islands;SLB;SB;World;-1.0;4
+Solomon Islands;SLB;SB;World;-1.0;5
+Solomon Islands;SLB;SB;World;-1.0;6
+Solomon Islands;SLB;SB;World;-1.0;7
+Solomon Islands;SLB;SB;World;59.0;8
+Solomon Islands;SLB;SB;World;-1.0;9
+Solomon Islands;SLB;SB;World;-1.0;10
+Solomon Islands;SLB;SB;World;-1.0;11
+Solomon Islands;SLB;SB;World;35.0;12
+Solomon Islands;SLB;SB;World;35.0;13
+Solomon Islands;SLB;SB;World;-1.0;14
+Solomon Islands;SLB;SB;World;-1.0;15
+Solomon Islands;SLB;SB;World;33.6;16
+Solomon Islands;SLB;SB;World;-1.0;17
+Somalia;SOM;SO;World;13.0;1
+Somalia;SOM;SO;World;12.0;2
+Somalia;SOM;SO;World;11.0;3
+Somalia;SOM;SO;World;-1.0;4
+Somalia;SOM;SO;World;9.0;5
+Somalia;SOM;SO;World;-1.0;6
+Somalia;SOM;SO;World;-1.0;7
+Somalia;SOM;SO;World;22.0;8
+Somalia;SOM;SO;World;-1.0;9
+Somalia;SOM;SO;World;-1.0;10
+Somalia;SOM;SO;World;6.0;11
+Somalia;SOM;SO;World;12.0;12
+Somalia;SOM;SO;World;18.0;13
+Somalia;SOM;SO;World;-1.0;14
+Somalia;SOM;SO;World;-1.0;15
+Somalia;SOM;SO;World;-1.0;16
+Somalia;SOM;SO;World;-1.0;17
+South Africa;ZAF;ZA;World;44.0;1
+South Africa;ZAF;ZA;World;44.0;2
+South Africa;ZAF;ZA;World;-1.0;3
+South Africa;ZAF;ZA;World;-1.0;4
+South Africa;ZAF;ZA;World;49.0;5
+South Africa;ZAF;ZA;World;55.0;6
+South Africa;ZAF;ZA;World;-1.0;7
+South Africa;ZAF;ZA;World;47.0;8
+South Africa;ZAF;ZA;World;24.0;9
+South Africa;ZAF;ZA;World;-1.0;10
+South Africa;ZAF;ZA;World;49.0;11
+South Africa;ZAF;ZA;World;51.0;12
+South Africa;ZAF;ZA;World;-1.0;13
+South Africa;ZAF;ZA;World;32.0;14
+South Africa;ZAF;ZA;World;43.0;15
+South Africa;ZAF;ZA;World;-1.0;16
+South Africa;ZAF;ZA;World;52.6;17
+South Georgia and South Sandwich Islands;SGS;GS;World;-1.0;1
+South Georgia and South Sandwich Islands;SGS;GS;World;-1.0;2
+South Georgia and South Sandwich Islands;SGS;GS;World;-1.0;3
+South Georgia and South Sandwich Islands;SGS;GS;World;-1.0;4
+South Georgia and South Sandwich Islands;SGS;GS;World;-1.0;5
+South Georgia and South Sandwich Islands;SGS;GS;World;-1.0;6
+South Georgia and South Sandwich Islands;SGS;GS;World;-1.0;7
+South Georgia and South Sandwich Islands;SGS;GS;World;-1.0;8
+South Georgia and South Sandwich Islands;SGS;GS;World;-1.0;9
+South Georgia and South Sandwich Islands;SGS;GS;World;-1.0;10
+South Georgia and South Sandwich Islands;SGS;GS;World;-1.0;11
+South Georgia and South Sandwich Islands;SGS;GS;World;-1.0;12
+South Georgia and South Sandwich Islands;SGS;GS;World;-1.0;13
+South Georgia and South Sandwich Islands;SGS;GS;World;-1.0;14
+South Georgia and South Sandwich Islands;SGS;GS;World;-1.0;15
+South Georgia and South Sandwich Islands;SGS;GS;World;-1.0;16
+South Georgia and South Sandwich Islands;SGS;GS;World;-1.0;17
+South Sudan;SSD;SS;World;11.0;1
+South Sudan;SSD;SS;World;12.0;2
+South Sudan;SSD;SS;World;11.0;3
+South Sudan;SSD;SS;World;-1.0;4
+South Sudan;SSD;SS;World;13.0;5
+South Sudan;SSD;SS;World;-1.0;6
+South Sudan;SSD;SS;World;-1.0;7
+South Sudan;SSD;SS;World;10.0;8
+South Sudan;SSD;SS;World;-1.0;9
+South Sudan;SSD;SS;World;-1.0;10
+South Sudan;SSD;SS;World;-1.0;11
+South Sudan;SSD;SS;World;11.0;12
+South Sudan;SSD;SS;World;10.0;13
+South Sudan;SSD;SS;World;-1.0;14
+South Sudan;SSD;SS;World;-1.0;15
+South Sudan;SSD;SS;World;-1.0;16
+South Sudan;SSD;SS;World;-1.0;17
+Spain;ESP;ES;World;61.0;1
+Spain;ESP;ES;World;62.0;2
+Spain;ESP;ES;World;-1.0;3
+Spain;ESP;ES;World;70.0;4
+Spain;ESP;ES;World;-1.0;5
+Spain;ESP;ES;World;55.0;6
+Spain;ESP;ES;World;-1.0;7
+Spain;ESP;ES;World;47.0;8
+Spain;ESP;ES;World;55.0;9
+Spain;ESP;ES;World;-1.0;10
+Spain;ESP;ES;World;59.0;11
+Spain;ESP;ES;World;76.0;12
+Spain;ESP;ES;World;-1.0;13
+Spain;ESP;ES;World;59.0;14
+Spain;ESP;ES;World;71.0;15
+Spain;ESP;ES;World;65.1;16
+Spain;ESP;ES;World;64.4;17
+Sri Lanka;LKA;LK;World;37.0;1
+Sri Lanka;LKA;LK;World;38.0;2
+Sri Lanka;LKA;LK;World;-1.0;3
+Sri Lanka;LKA;LK;World;-1.0;4
+Sri Lanka;LKA;LK;World;37.0;5
+Sri Lanka;LKA;LK;World;37.0;6
+Sri Lanka;LKA;LK;World;-1.0;7
+Sri Lanka;LKA;LK;World;35.0;8
+Sri Lanka;LKA;LK;World;-1.0;9
+Sri Lanka;LKA;LK;World;-1.0;10
+Sri Lanka;LKA;LK;World;32.0;11
+Sri Lanka;LKA;LK;World;38.0;12
+Sri Lanka;LKA;LK;World;-1.0;13
+Sri Lanka;LKA;LK;World;44.0;14
+Sri Lanka;LKA;LK;World;36.0;15
+Sri Lanka;LKA;LK;World;35.9;16
+Sri Lanka;LKA;LK;World;35.8;17
+Sudan;SDN;SD;World;20.0;1
+Sudan;SDN;SD;World;16.0;2
+Sudan;SDN;SD;World;14.0;3
+Sudan;SDN;SD;World;-1.0;4
+Sudan;SDN;SD;World;17.0;5
+Sudan;SDN;SD;World;20.0;6
+Sudan;SDN;SD;World;-1.0;7
+Sudan;SDN;SD;World;22.0;8
+Sudan;SDN;SD;World;-1.0;9
+Sudan;SDN;SD;World;-1.0;10
+Sudan;SDN;SD;World;6.0;11
+Sudan;SDN;SD;World;37.0;12
+Sudan;SDN;SD;World;10.0;13
+Sudan;SDN;SD;World;-1.0;14
+Sudan;SDN;SD;World;33.0;15
+Sudan;SDN;SD;World;-1.0;16
+Sudan;SDN;SD;World;-1.0;17
+Suriname;SUR;SR;World;39.0;1
+Suriname;SUR;SR;World;38.0;2
+Suriname;SUR;SR;World;-1.0;3
+Suriname;SUR;SR;World;-1.0;4
+Suriname;SUR;SR;World;-1.0;5
+Suriname;SUR;SR;World;-1.0;6
+Suriname;SUR;SR;World;-1.0;7
+Suriname;SUR;SR;World;35.0;8
+Suriname;SUR;SR;World;-1.0;9
+Suriname;SUR;SR;World;-1.0;10
+Suriname;SUR;SR;World;32.0;11
+Suriname;SUR;SR;World;54.0;12
+Suriname;SUR;SR;World;-1.0;13
+Suriname;SUR;SR;World;-1.0;14
+Suriname;SUR;SR;World;35.0;15
+Suriname;SUR;SR;World;-1.0;16
+Suriname;SUR;SR;World;-1.0;17
+Svalbard and Jan Mayen;SJM;SJ;World;-1.0;1
+Svalbard and Jan Mayen;SJM;SJ;World;-1.0;2
+Svalbard and Jan Mayen;SJM;SJ;World;-1.0;3
+Svalbard and Jan Mayen;SJM;SJ;World;-1.0;4
+Svalbard and Jan Mayen;SJM;SJ;World;-1.0;5
+Svalbard and Jan Mayen;SJM;SJ;World;-1.0;6
+Svalbard and Jan Mayen;SJM;SJ;World;-1.0;7
+Svalbard and Jan Mayen;SJM;SJ;World;-1.0;8
+Svalbard and Jan Mayen;SJM;SJ;World;-1.0;9
+Svalbard and Jan Mayen;SJM;SJ;World;-1.0;10
+Svalbard and Jan Mayen;SJM;SJ;World;-1.0;11
+Svalbard and Jan Mayen;SJM;SJ;World;-1.0;12
+Svalbard and Jan Mayen;SJM;SJ;World;-1.0;13
+Svalbard and Jan Mayen;SJM;SJ;World;-1.0;14
+Svalbard and Jan Mayen;SJM;SJ;World;-1.0;15
+Svalbard and Jan Mayen;SJM;SJ;World;-1.0;16
+Svalbard and Jan Mayen;SJM;SJ;World;-1.0;17
+Swaziland;SWZ;SZ;World;-1.0;1
+Swaziland;SWZ;SZ;World;-1.0;2
+Swaziland;SWZ;SZ;World;-1.0;3
+Swaziland;SWZ;SZ;World;-1.0;4
+Swaziland;SWZ;SZ;World;-1.0;5
+Swaziland;SWZ;SZ;World;-1.0;6
+Swaziland;SWZ;SZ;World;-1.0;7
+Swaziland;SWZ;SZ;World;-1.0;8
+Swaziland;SWZ;SZ;World;-1.0;9
+Swaziland;SWZ;SZ;World;-1.0;10
+Swaziland;SWZ;SZ;World;-1.0;11
+Swaziland;SWZ;SZ;World;-1.0;12
+Swaziland;SWZ;SZ;World;-1.0;13
+Swaziland;SWZ;SZ;World;-1.0;14
+Swaziland;SWZ;SZ;World;-1.0;15
+Swaziland;SWZ;SZ;World;-1.0;16
+Swaziland;SWZ;SZ;World;-1.0;17
+Sweden;SWE;SE;World;85.0;1
+Sweden;SWE;SE;World;85.0;2
+Sweden;SWE;SE;World;-1.0;3
+Sweden;SWE;SE;World;88.0;4
+Sweden;SWE;SE;World;-1.0;5
+Sweden;SWE;SE;World;90.0;6
+Sweden;SWE;SE;World;-1.0;7
+Sweden;SWE;SE;World;83.0;8
+Sweden;SWE;SE;World;83.0;9
+Sweden;SWE;SE;World;-1.0;10
+Sweden;SWE;SE;World;93.0;11
+Sweden;SWE;SE;World;78.0;12
+Sweden;SWE;SE;World;-1.0;13
+Sweden;SWE;SE;World;78.0;14
+Sweden;SWE;SE;World;87.0;15
+Sweden;SWE;SE;World;67.4;16
+Sweden;SWE;SE;World;67.8;17
+Switzerland;CHE;CH;World;84.0;1
+Switzerland;CHE;CH;World;85.0;2
+Switzerland;CHE;CH;World;-1.0;3
+Switzerland;CHE;CH;World;88.0;4
+Switzerland;CHE;CH;World;-1.0;5
+Switzerland;CHE;CH;World;90.0;6
+Switzerland;CHE;CH;World;-1.0;7
+Switzerland;CHE;CH;World;83.0;8
+Switzerland;CHE;CH;World;86.0;9
+Switzerland;CHE;CH;World;-1.0;10
+Switzerland;CHE;CH;World;85.0;11
+Switzerland;CHE;CH;World;77.0;12
+Switzerland;CHE;CH;World;-1.0;13
+Switzerland;CHE;CH;World;82.0;14
+Switzerland;CHE;CH;World;-1.0;15
+Switzerland;CHE;CH;World;52.1;16
+Switzerland;CHE;CH;World;53.6;17
+Syria;SYR;SY;World;13.0;1
+Syria;SYR;SY;World;14.0;2
+Syria;SYR;SY;World;-1.0;3
+Syria;SYR;SY;World;-1.0;4
+Syria;SYR;SY;World;9.0;5
+Syria;SYR;SY;World;20.0;6
+Syria;SYR;SY;World;-1.0;7
+Syria;SYR;SY;World;10.0;8
+Syria;SYR;SY;World;-1.0;9
+Syria;SYR;SY;World;-1.0;10
+Syria;SYR;SY;World;15.0;11
+Syria;SYR;SY;World;12.0;12
+Syria;SYR;SY;World;-1.0;13
+Syria;SYR;SY;World;-1.0;14
+Syria;SYR;SY;World;-1.0;15
+Syria;SYR;SY;World;-1.0;16
+Syria;SYR;SY;World;-1.0;17
+Taiwan;TWN;TW;World;68.0;1
+Taiwan;TWN;TW;World;65.0;2
+Taiwan;TWN;TW;World;-1.0;3
+Taiwan;TWN;TW;World;-1.0;4
+Taiwan;TWN;TW;World;77.0;5
+Taiwan;TWN;TW;World;72.0;6
+Taiwan;TWN;TW;World;-1.0;7
+Taiwan;TWN;TW;World;71.0;8
+Taiwan;TWN;TW;World;68.0;9
+Taiwan;TWN;TW;World;56.0;10
+Taiwan;TWN;TW;World;59.0;11
+Taiwan;TWN;TW;World;65.0;12
+Taiwan;TWN;TW;World;-1.0;13
+Taiwan;TWN;TW;World;79.0;14
+Taiwan;TWN;TW;World;-1.0;15
+Taiwan;TWN;TW;World;57.1;16
+Taiwan;TWN;TW;World;57.9;17
+Tajikistan;TJK;TJ;World;25.0;1
+Tajikistan;TJK;TJ;World;25.0;2
+Tajikistan;TJK;TJ;World;-1.0;3
+Tajikistan;TJK;TJ;World;-1.0;4
+Tajikistan;TJK;TJ;World;17.0;5
+Tajikistan;TJK;TJ;World;-1.0;6
+Tajikistan;TJK;TJ;World;21.0;7
+Tajikistan;TJK;TJ;World;22.0;8
+Tajikistan;TJK;TJ;World;-1.0;9
+Tajikistan;TJK;TJ;World;-1.0;10
+Tajikistan;TJK;TJ;World;-1.0;11
+Tajikistan;TJK;TJ;World;19.0;12
+Tajikistan;TJK;TJ;World;18.0;13
+Tajikistan;TJK;TJ;World;50.0;14
+Tajikistan;TJK;TJ;World;-1.0;15
+Tajikistan;TJK;TJ;World;41.3;16
+Tajikistan;TJK;TJ;World;40.8;17
+Tanzania;TZA;TZ;World;39.0;1
+Tanzania;TZA;TZ;World;38.0;2
+Tanzania;TZA;TZ;World;39.0;3
+Tanzania;TZA;TZ;World;-1.0;4
+Tanzania;TZA;TZ;World;37.0;5
+Tanzania;TZA;TZ;World;37.0;6
+Tanzania;TZA;TZ;World;-1.0;7
+Tanzania;TZA;TZ;World;35.0;8
+Tanzania;TZA;TZ;World;-1.0;9
+Tanzania;TZA;TZ;World;-1.0;10
+Tanzania;TZA;TZ;World;32.0;11
+Tanzania;TZA;TZ;World;51.0;12
+Tanzania;TZA;TZ;World;35.0;13
+Tanzania;TZA;TZ;World;52.0;14
+Tanzania;TZA;TZ;World;34.0;15
+Tanzania;TZA;TZ;World;38.8;16
+Tanzania;TZA;TZ;World;37.1;17
+Thailand;THA;TH;World;35.0;1
+Thailand;THA;TH;World;36.0;2
+Thailand;THA;TH;World;-1.0;3
+Thailand;THA;TH;World;-1.0;4
+Thailand;THA;TH;World;37.0;5
+Thailand;THA;TH;World;37.0;6
+Thailand;THA;TH;World;-1.0;7
+Thailand;THA;TH;World;35.0;8
+Thailand;THA;TH;World;39.0;9
+Thailand;THA;TH;World;36.0;10
+Thailand;THA;TH;World;32.0;11
+Thailand;THA;TH;World;26.0;12
+Thailand;THA;TH;World;-1.0;13
+Thailand;THA;TH;World;42.0;14
+Thailand;THA;TH;World;35.0;15
+Thailand;THA;TH;World;39.5;16
+Thailand;THA;TH;World;40.9;17
+Timor-Leste;TLS;TL;World;41.0;1
+Timor-Leste;TLS;TL;World;40.0;2
+Timor-Leste;TLS;TL;World;-1.0;3
+Timor-Leste;TLS;TL;World;-1.0;4
+Timor-Leste;TLS;TL;World;41.0;5
+Timor-Leste;TLS;TL;World;-1.0;6
+Timor-Leste;TLS;TL;World;-1.0;7
+Timor-Leste;TLS;TL;World;35.0;8
+Timor-Leste;TLS;TL;World;-1.0;9
+Timor-Leste;TLS;TL;World;-1.0;10
+Timor-Leste;TLS;TL;World;-1.0;11
+Timor-Leste;TLS;TL;World;53.0;12
+Timor-Leste;TLS;TL;World;35.0;13
+Timor-Leste;TLS;TL;World;-1.0;14
+Timor-Leste;TLS;TL;World;-1.0;15
+Timor-Leste;TLS;TL;World;-1.0;16
+Timor-Leste;TLS;TL;World;-1.0;17
+Togo;TGO;TG;World;30.0;1
+Togo;TGO;TG;World;29.0;2
+Togo;TGO;TG;World;27.0;3
+Togo;TGO;TG;World;-1.0;4
+Togo;TGO;TG;World;25.0;5
+Togo;TGO;TG;World;-1.0;6
+Togo;TGO;TG;World;-1.0;7
+Togo;TGO;TG;World;35.0;8
+Togo;TGO;TG;World;-1.0;9
+Togo;TGO;TG;World;-1.0;10
+Togo;TGO;TG;World;32.0;11
+Togo;TGO;TG;World;20.0;12
+Togo;TGO;TG;World;35.0;13
+Togo;TGO;TG;World;-1.0;14
+Togo;TGO;TG;World;36.0;15
+Togo;TGO;TG;World;-1.0;16
+Togo;TGO;TG;World;-1.0;17
+Tokelau;TKL;TK;World;-1.0;1
+Tokelau;TKL;TK;World;-1.0;2
+Tokelau;TKL;TK;World;-1.0;3
+Tokelau;TKL;TK;World;-1.0;4
+Tokelau;TKL;TK;World;-1.0;5
+Tokelau;TKL;TK;World;-1.0;6
+Tokelau;TKL;TK;World;-1.0;7
+Tokelau;TKL;TK;World;-1.0;8
+Tokelau;TKL;TK;World;-1.0;9
+Tokelau;TKL;TK;World;-1.0;10
+Tokelau;TKL;TK;World;-1.0;11
+Tokelau;TKL;TK;World;-1.0;12
+Tokelau;TKL;TK;World;-1.0;13
+Tokelau;TKL;TK;World;-1.0;14
+Tokelau;TKL;TK;World;-1.0;15
+Tokelau;TKL;TK;World;-1.0;16
+Tokelau;TKL;TK;World;-1.0;17
+Tonga;TON;TO;World;-1.0;1
+Tonga;TON;TO;World;-1.0;2
+Tonga;TON;TO;World;-1.0;3
+Tonga;TON;TO;World;-1.0;4
+Tonga;TON;TO;World;-1.0;5
+Tonga;TON;TO;World;-1.0;6
+Tonga;TON;TO;World;-1.0;7
+Tonga;TON;TO;World;-1.0;8
+Tonga;TON;TO;World;-1.0;9
+Tonga;TON;TO;World;-1.0;10
+Tonga;TON;TO;World;-1.0;11
+Tonga;TON;TO;World;-1.0;12
+Tonga;TON;TO;World;-1.0;13
+Tonga;TON;TO;World;-1.0;14
+Tonga;TON;TO;World;-1.0;15
+Tonga;TON;TO;World;-1.0;16
+Tonga;TON;TO;World;-1.0;17
+Trinidad and Tobago;TTO;TT;World;41.0;1
+Trinidad and Tobago;TTO;TT;World;40.0;2
+Trinidad and Tobago;TTO;TT;World;-1.0;3
+Trinidad and Tobago;TTO;TT;World;-1.0;4
+Trinidad and Tobago;TTO;TT;World;41.0;5
+Trinidad and Tobago;TTO;TT;World;37.0;6
+Trinidad and Tobago;TTO;TT;World;-1.0;7
+Trinidad and Tobago;TTO;TT;World;35.0;8
+Trinidad and Tobago;TTO;TT;World;-1.0;9
+Trinidad and Tobago;TTO;TT;World;-1.0;10
+Trinidad and Tobago;TTO;TT;World;32.0;11
+Trinidad and Tobago;TTO;TT;World;72.0;12
+Trinidad and Tobago;TTO;TT;World;-1.0;13
+Trinidad and Tobago;TTO;TT;World;34.0;14
+Trinidad and Tobago;TTO;TT;World;40.0;15
+Trinidad and Tobago;TTO;TT;World;52.5;16
+Trinidad and Tobago;TTO;TT;World;53.5;17
+Tunisia;TUN;TN;World;44.0;1
+Tunisia;TUN;TN;World;44.0;2
+Tunisia;TUN;TN;World;-1.0;3
+Tunisia;TUN;TN;World;-1.0;4
+Tunisia;TUN;TN;World;37.0;5
+Tunisia;TUN;TN;World;37.0;6
+Tunisia;TUN;TN;World;-1.0;7
+Tunisia;TUN;TN;World;47.0;8
+Tunisia;TUN;TN;World;-1.0;9
+Tunisia;TUN;TN;World;-1.0;10
+Tunisia;TUN;TN;World;48.0;11
+Tunisia;TUN;TN;World;54.0;12
+Tunisia;TUN;TN;World;-1.0;13
+Tunisia;TUN;TN;World;47.0;14
+Tunisia;TUN;TN;World;36.0;15
+Tunisia;TUN;TN;World;49.0;16
+Tunisia;TUN;TN;World;47.0;17
+Turkey;TUR;TR;World;38.0;1
+Turkey;TUR;TR;World;40.0;2
+Turkey;TUR;TR;World;-1.0;3
+Turkey;TUR;TR;World;26.0;4
+Turkey;TUR;TR;World;37.0;5
+Turkey;TUR;TR;World;37.0;6
+Turkey;TUR;TR;World;-1.0;7
+Turkey;TUR;TR;World;47.0;8
+Turkey;TUR;TR;World;42.0;9
+Turkey;TUR;TR;World;-1.0;10
+Turkey;TUR;TR;World;37.0;11
+Turkey;TUR;TR;World;24.0;12
+Turkey;TUR;TR;World;-1.0;13
+Turkey;TUR;TR;World;61.0;14
+Turkey;TUR;TR;World;36.0;15
+Turkey;TUR;TR;World;44.0;16
+Turkey;TUR;TR;World;43.4;17
+Turkmenistan;TKM;TM;World;19.0;1
+Turkmenistan;TKM;TM;World;19.0;2
+Turkmenistan;TKM;TM;World;-1.0;3
+Turkmenistan;TKM;TM;World;-1.0;4
+Turkmenistan;TKM;TM;World;17.0;5
+Turkmenistan;TKM;TM;World;20.0;6
+Turkmenistan;TKM;TM;World;21.0;7
+Turkmenistan;TKM;TM;World;22.0;8
+Turkmenistan;TKM;TM;World;-1.0;9
+Turkmenistan;TKM;TM;World;-1.0;10
+Turkmenistan;TKM;TM;World;-1.0;11
+Turkmenistan;TKM;TM;World;15.0;12
+Turkmenistan;TKM;TM;World;-1.0;13
+Turkmenistan;TKM;TM;World;-1.0;14
+Turkmenistan;TKM;TM;World;-1.0;15
+Turkmenistan;TKM;TM;World;-1.0;16
+Turkmenistan;TKM;TM;World;-1.0;17
+Turks and Caicos Islands;TCA;TC;World;-1.0;1
+Turks and Caicos Islands;TCA;TC;World;-1.0;2
+Turks and Caicos Islands;TCA;TC;World;-1.0;3
+Turks and Caicos Islands;TCA;TC;World;-1.0;4
+Turks and Caicos Islands;TCA;TC;World;-1.0;5
+Turks and Caicos Islands;TCA;TC;World;-1.0;6
+Turks and Caicos Islands;TCA;TC;World;-1.0;7
+Turks and Caicos Islands;TCA;TC;World;-1.0;8
+Turks and Caicos Islands;TCA;TC;World;-1.0;9
+Turks and Caicos Islands;TCA;TC;World;-1.0;10
+Turks and Caicos Islands;TCA;TC;World;-1.0;11
+Turks and Caicos Islands;TCA;TC;World;-1.0;12
+Turks and Caicos Islands;TCA;TC;World;-1.0;13
+Turks and Caicos Islands;TCA;TC;World;-1.0;14
+Turks and Caicos Islands;TCA;TC;World;-1.0;15
+Turks and Caicos Islands;TCA;TC;World;47.5;16
+Turks and Caicos Islands;TCA;TC;World;47.4;17
+Tuvalu;TUV;TV;World;-1.0;1
+Tuvalu;TUV;TV;World;-1.0;2
+Tuvalu;TUV;TV;World;-1.0;3
+Tuvalu;TUV;TV;World;-1.0;4
+Tuvalu;TUV;TV;World;-1.0;5
+Tuvalu;TUV;TV;World;-1.0;6
+Tuvalu;TUV;TV;World;-1.0;7
+Tuvalu;TUV;TV;World;-1.0;8
+Tuvalu;TUV;TV;World;-1.0;9
+Tuvalu;TUV;TV;World;-1.0;10
+Tuvalu;TUV;TV;World;-1.0;11
+Tuvalu;TUV;TV;World;-1.0;12
+Tuvalu;TUV;TV;World;-1.0;13
+Tuvalu;TUV;TV;World;-1.0;14
+Tuvalu;TUV;TV;World;-1.0;15
+Tuvalu;TUV;TV;World;-1.0;16
+Tuvalu;TUV;TV;World;-1.0;17
+Uganda;UGA;UG;World;27.0;1
+Uganda;UGA;UG;World;27.0;2
+Uganda;UGA;UG;World;24.0;3
+Uganda;UGA;UG;World;-1.0;4
+Uganda;UGA;UG;World;33.0;5
+Uganda;UGA;UG;World;37.0;6
+Uganda;UGA;UG;World;-1.0;7
+Uganda;UGA;UG;World;22.0;8
+Uganda;UGA;UG;World;-1.0;9
+Uganda;UGA;UG;World;-1.0;10
+Uganda;UGA;UG;World;25.0;11
+Uganda;UGA;UG;World;23.0;12
+Uganda;UGA;UG;World;27.0;13
+Uganda;UGA;UG;World;32.0;14
+Uganda;UGA;UG;World;17.0;15
+Uganda;UGA;UG;World;29.2;16
+Uganda;UGA;UG;World;48.6;17
+Ukraine;UKR;UA;World;32.0;1
+Ukraine;UKR;UA;World;33.0;2
+Ukraine;UKR;UA;World;-1.0;3
+Ukraine;UKR;UA;World;-1.0;4
+Ukraine;UKR;UA;World;37.0;5
+Ukraine;UKR;UA;World;20.0;6
+Ukraine;UKR;UA;World;36.0;7
+Ukraine;UKR;UA;World;35.0;8
+Ukraine;UKR;UA;World;31.0;9
+Ukraine;UKR;UA;World;-1.0;10
+Ukraine;UKR;UA;World;43.0;11
+Ukraine;UKR;UA;World;30.0;12
+Ukraine;UKR;UA;World;-1.0;13
+Ukraine;UKR;UA;World;26.0;14
+Ukraine;UKR;UA;World;33.0;15
+Ukraine;UKR;UA;World;48.9;16
+Ukraine;UKR;UA;World;42.1;17
+United Arab Emirates;ARE;AE;World;69.0;1
+United Arab Emirates;ARE;AE;World;71.0;2
+United Arab Emirates;ARE;AE;World;-1.0;3
+United Arab Emirates;ARE;AE;World;-1.0;4
+United Arab Emirates;ARE;AE;World;57.0;5
+United Arab Emirates;ARE;AE;World;72.0;6
+United Arab Emirates;ARE;AE;World;-1.0;7
+United Arab Emirates;ARE;AE;World;47.0;8
+United Arab Emirates;ARE;AE;World;83.0;9
+United Arab Emirates;ARE;AE;World;-1.0;10
+United Arab Emirates;ARE;AE;World;64.0;11
+United Arab Emirates;ARE;AE;World;72.0;12
+United Arab Emirates;ARE;AE;World;-1.0;13
+United Arab Emirates;ARE;AE;World;84.0;14
+United Arab Emirates;ARE;AE;World;75.0;15
+United Arab Emirates;ARE;AE;World;41.9;16
+United Arab Emirates;ARE;AE;World;60.8;17
+United Kingdom;GBR;GB;World;78.0;1
+United Kingdom;GBR;GB;World;77.0;2
+United Kingdom;GBR;GB;World;-1.0;3
+United Kingdom;GBR;GB;World;79.0;4
+United Kingdom;GBR;GB;World;-1.0;5
+United Kingdom;GBR;GB;World;90.0;6
+United Kingdom;GBR;GB;World;-1.0;7
+United Kingdom;GBR;GB;World;71.0;8
+United Kingdom;GBR;GB;World;73.0;9
+United Kingdom;GBR;GB;World;-1.0;10
+United Kingdom;GBR;GB;World;85.0;11
+United Kingdom;GBR;GB;World;75.0;12
+United Kingdom;GBR;GB;World;-1.0;13
+United Kingdom;GBR;GB;World;76.0;14
+United Kingdom;GBR;GB;World;80.0;15
+United Kingdom;GBR;GB;World;60.5;16
+United Kingdom;GBR;GB;World;55.2;17
+United States of America;USA;US;World;67.0;1
+United States of America;USA;US;World;67.0;2
+United States of America;USA;US;World;-1.0;3
+United States of America;USA;US;World;62.0;4
+United States of America;USA;US;World;-1.0;5
+United States of America;USA;US;World;90.0;6
+United States of America;USA;US;World;-1.0;7
+United States of America;USA;US;World;71.0;8
+United States of America;USA;US;World;69.0;9
+United States of America;USA;US;World;50.0;10
+United States of America;USA;US;World;67.0;11
+United States of America;USA;US;World;72.0;12
+United States of America;USA;US;World;-1.0;13
+United States of America;USA;US;World;54.0;14
+United States of America;USA;US;World;71.0;15
+United States of America;USA;US;World;55.0;16
+United States of America;USA;US;World;-1.0;17
+United States Minor Outlying Islands;UMI;UM;World;-1.0;1
+United States Minor Outlying Islands;UMI;UM;World;-1.0;2
+United States Minor Outlying Islands;UMI;UM;World;-1.0;3
+United States Minor Outlying Islands;UMI;UM;World;-1.0;4
+United States Minor Outlying Islands;UMI;UM;World;-1.0;5
+United States Minor Outlying Islands;UMI;UM;World;-1.0;6
+United States Minor Outlying Islands;UMI;UM;World;-1.0;7
+United States Minor Outlying Islands;UMI;UM;World;-1.0;8
+United States Minor Outlying Islands;UMI;UM;World;-1.0;9
+United States Minor Outlying Islands;UMI;UM;World;-1.0;10
+United States Minor Outlying Islands;UMI;UM;World;-1.0;11
+United States Minor Outlying Islands;UMI;UM;World;-1.0;12
+United States Minor Outlying Islands;UMI;UM;World;-1.0;13
+United States Minor Outlying Islands;UMI;UM;World;-1.0;14
+United States Minor Outlying Islands;UMI;UM;World;-1.0;15
+United States Minor Outlying Islands;UMI;UM;World;-1.0;16
+United States Minor Outlying Islands;UMI;UM;World;-1.0;17
+United States Virgin Islands;VIR;VI;World;-1.0;1
+United States Virgin Islands;VIR;VI;World;-1.0;2
+United States Virgin Islands;VIR;VI;World;-1.0;3
+United States Virgin Islands;VIR;VI;World;-1.0;4
+United States Virgin Islands;VIR;VI;World;-1.0;5
+United States Virgin Islands;VIR;VI;World;-1.0;6
+United States Virgin Islands;VIR;VI;World;-1.0;7
+United States Virgin Islands;VIR;VI;World;-1.0;8
+United States Virgin Islands;VIR;VI;World;-1.0;9
+United States Virgin Islands;VIR;VI;World;-1.0;10
+United States Virgin Islands;VIR;VI;World;-1.0;11
+United States Virgin Islands;VIR;VI;World;-1.0;12
+United States Virgin Islands;VIR;VI;World;-1.0;13
+United States Virgin Islands;VIR;VI;World;-1.0;14
+United States Virgin Islands;VIR;VI;World;-1.0;15
+United States Virgin Islands;VIR;VI;World;-1.0;16
+United States Virgin Islands;VIR;VI;World;-1.0;17
+Uruguay;URY;UY;World;73.0;1
+Uruguay;URY;UY;World;71.0;2
+Uruguay;URY;UY;World;-1.0;3
+Uruguay;URY;UY;World;-1.0;4
+Uruguay;URY;UY;World;77.0;5
+Uruguay;URY;UY;World;72.0;6
+Uruguay;URY;UY;World;-1.0;7
+Uruguay;URY;UY;World;71.0;8
+Uruguay;URY;UY;World;-1.0;9
+Uruguay;URY;UY;World;-1.0;10
+Uruguay;URY;UY;World;76.0;11
+Uruguay;URY;UY;World;75.0;12
+Uruguay;URY;UY;World;-1.0;13
+Uruguay;URY;UY;World;72.0;14
+Uruguay;URY;UY;World;71.0;15
+Uruguay;URY;UY;World;61.2;16
+Uruguay;URY;UY;World;61.5;17
+Uzbekistan;UZB;UZ;World;28.0;1
+Uzbekistan;UZB;UZ;World;26.0;2
+Uzbekistan;UZB;UZ;World;-1.0;3
+Uzbekistan;UZB;UZ;World;-1.0;4
+Uzbekistan;UZB;UZ;World;29.0;5
+Uzbekistan;UZB;UZ;World;20.0;6
+Uzbekistan;UZB;UZ;World;24.0;7
+Uzbekistan;UZB;UZ;World;35.0;8
+Uzbekistan;UZB;UZ;World;-1.0;9
+Uzbekistan;UZB;UZ;World;-1.0;10
+Uzbekistan;UZB;UZ;World;-1.0;11
+Uzbekistan;UZB;UZ;World;26.0;12
+Uzbekistan;UZB;UZ;World;27.0;13
+Uzbekistan;UZB;UZ;World;-1.0;14
+Uzbekistan;UZB;UZ;World;36.0;15
+Uzbekistan;UZB;UZ;World;-1.0;16
+Uzbekistan;UZB;UZ;World;43.8;17
+Vanuatu;VUT;VU;World;45.0;1
+Vanuatu;VUT;VU;World;43.0;2
+Vanuatu;VUT;VU;World;-1.0;3
+Vanuatu;VUT;VU;World;-1.0;4
+Vanuatu;VUT;VU;World;-1.0;5
+Vanuatu;VUT;VU;World;-1.0;6
+Vanuatu;VUT;VU;World;-1.0;7
+Vanuatu;VUT;VU;World;47.0;8
+Vanuatu;VUT;VU;World;-1.0;9
+Vanuatu;VUT;VU;World;-1.0;10
+Vanuatu;VUT;VU;World;-1.0;11
+Vanuatu;VUT;VU;World;52.0;12
+Vanuatu;VUT;VU;World;35.0;13
+Vanuatu;VUT;VU;World;-1.0;14
+Vanuatu;VUT;VU;World;-1.0;15
+Vanuatu;VUT;VU;World;47.7;16
+Vanuatu;VUT;VU;World;48.0;17
+Vatikanstadt;VAT;VA;World;-1.0;1
+Vatikanstadt;VAT;VA;World;-1.0;2
+Vatikanstadt;VAT;VA;World;-1.0;3
+Vatikanstadt;VAT;VA;World;-1.0;4
+Vatikanstadt;VAT;VA;World;-1.0;5
+Vatikanstadt;VAT;VA;World;-1.0;6
+Vatikanstadt;VAT;VA;World;-1.0;7
+Vatikanstadt;VAT;VA;World;-1.0;8
+Vatikanstadt;VAT;VA;World;-1.0;9
+Vatikanstadt;VAT;VA;World;-1.0;10
+Vatikanstadt;VAT;VA;World;-1.0;11
+Vatikanstadt;VAT;VA;World;-1.0;12
+Vatikanstadt;VAT;VA;World;-1.0;13
+Vatikanstadt;VAT;VA;World;-1.0;14
+Vatikanstadt;VAT;VA;World;-1.0;15
+Vatikanstadt;VAT;VA;World;-1.0;16
+Vatikanstadt;VAT;VA;World;-1.0;17
+Venezuela;VEN;VE;World;14.0;1
+Venezuela;VEN;VE;World;15.0;2
+Venezuela;VEN;VE;World;-1.0;3
+Venezuela;VEN;VE;World;-1.0;4
+Venezuela;VEN;VE;World;9.0;5
+Venezuela;VEN;VE;World;20.0;6
+Venezuela;VEN;VE;World;-1.0;7
+Venezuela;VEN;VE;World;10.0;8
+Venezuela;VEN;VE;World;20.0;9
+Venezuela;VEN;VE;World;-1.0;10
+Venezuela;VEN;VE;World;15.0;11
+Venezuela;VEN;VE;World;12.0;12
+Venezuela;VEN;VE;World;-1.0;13
+Venezuela;VEN;VE;World;13.0;14
+Venezuela;VEN;VE;World;10.0;15
+Venezuela;VEN;VE;World;-1.0;16
+Venezuela;VEN;VE;World;35.3;17
+Vietnam;VNM;VN;World;39.0;1
+Vietnam;VNM;VN;World;36.0;2
+Vietnam;VNM;VN;World;-1.0;3
+Vietnam;VNM;VN;World;-1.0;4
+Vietnam;VNM;VN;World;37.0;5
+Vietnam;VNM;VN;World;37.0;6
+Vietnam;VNM;VN;World;-1.0;7
+Vietnam;VNM;VN;World;47.0;8
+Vietnam;VNM;VN;World;-1.0;9
+Vietnam;VNM;VN;World;38.0;10
+Vietnam;VNM;VN;World;41.0;11
+Vietnam;VNM;VN;World;39.0;12
+Vietnam;VNM;VN;World;-1.0;13
+Vietnam;VNM;VN;World;39.0;14
+Vietnam;VNM;VN;World;35.0;15
+Vietnam;VNM;VN;World;-1.0;16
+Vietnam;VNM;VN;World;30.5;17
+Wallis and Futuna;WLF;WF;World;-1.0;1
+Wallis and Futuna;WLF;WF;World;-1.0;2
+Wallis and Futuna;WLF;WF;World;-1.0;3
+Wallis and Futuna;WLF;WF;World;-1.0;4
+Wallis and Futuna;WLF;WF;World;-1.0;5
+Wallis and Futuna;WLF;WF;World;-1.0;6
+Wallis and Futuna;WLF;WF;World;-1.0;7
+Wallis and Futuna;WLF;WF;World;-1.0;8
+Wallis and Futuna;WLF;WF;World;-1.0;9
+Wallis and Futuna;WLF;WF;World;-1.0;10
+Wallis and Futuna;WLF;WF;World;-1.0;11
+Wallis and Futuna;WLF;WF;World;-1.0;12
+Wallis and Futuna;WLF;WF;World;-1.0;13
+Wallis and Futuna;WLF;WF;World;-1.0;14
+Wallis and Futuna;WLF;WF;World;-1.0;15
+Wallis and Futuna;WLF;WF;World;-1.0;16
+Wallis and Futuna;WLF;WF;World;-1.0;17
+Westsahara;ESH;EH;World;-1.0;1
+Westsahara;ESH;EH;World;-1.0;2
+Westsahara;ESH;EH;World;-1.0;3
+Westsahara;ESH;EH;World;-1.0;4
+Westsahara;ESH;EH;World;-1.0;5
+Westsahara;ESH;EH;World;-1.0;6
+Westsahara;ESH;EH;World;-1.0;7
+Westsahara;ESH;EH;World;-1.0;8
+Westsahara;ESH;EH;World;-1.0;9
+Westsahara;ESH;EH;World;-1.0;10
+Westsahara;ESH;EH;World;-1.0;11
+Westsahara;ESH;EH;World;-1.0;12
+Westsahara;ESH;EH;World;-1.0;13
+Westsahara;ESH;EH;World;-1.0;14
+Westsahara;ESH;EH;World;-1.0;15
+Westsahara;ESH;EH;World;-1.0;16
+Westsahara;ESH;EH;World;-1.0;17
+Yemen;YEM;YE;World;16.0;1
+Yemen;YEM;YE;World;15.0;2
+Yemen;YEM;YE;World;-1.0;3
+Yemen;YEM;YE;World;-1.0;4
+Yemen;YEM;YE;World;13.0;5
+Yemen;YEM;YE;World;20.0;6
+Yemen;YEM;YE;World;-1.0;7
+Yemen;YEM;YE;World;10.0;8
+Yemen;YEM;YE;World;-1.0;9
+Yemen;YEM;YE;World;-1.0;10
+Yemen;YEM;YE;World;15.0;11
+Yemen;YEM;YE;World;12.0;12
+Yemen;YEM;YE;World;10.0;13
+Yemen;YEM;YE;World;34.0;14
+Yemen;YEM;YE;World;-1.0;15
+Yemen;YEM;YE;World;-1.0;16
+Yemen;YEM;YE;World;29.7;17
+Zambia;ZMB;ZM;World;33.0;1
+Zambia;ZMB;ZM;World;33.0;2
+Zambia;ZMB;ZM;World;34.0;3
+Zambia;ZMB;ZM;World;-1.0;4
+Zambia;ZMB;ZM;World;21.0;5
+Zambia;ZMB;ZM;World;37.0;6
+Zambia;ZMB;ZM;World;-1.0;7
+Zambia;ZMB;ZM;World;35.0;8
+Zambia;ZMB;ZM;World;-1.0;9
+Zambia;ZMB;ZM;World;-1.0;10
+Zambia;ZMB;ZM;World;32.0;11
+Zambia;ZMB;ZM;World;49.0;12
+Zambia;ZMB;ZM;World;27.0;13
+Zambia;ZMB;ZM;World;23.0;14
+Zambia;ZMB;ZM;World;35.0;15
+Zambia;ZMB;ZM;World;40.7;16
+Zambia;ZMB;ZM;World;-1.0;17
+Zimbabwe;ZWE;ZW;World;23.0;1
+Zimbabwe;ZWE;ZW;World;24.0;2
+Zimbabwe;ZWE;ZW;World;19.0;3
+Zimbabwe;ZWE;ZW;World;-1.0;4
+Zimbabwe;ZWE;ZW;World;21.0;5
+Zimbabwe;ZWE;ZW;World;37.0;6
+Zimbabwe;ZWE;ZW;World;-1.0;7
+Zimbabwe;ZWE;ZW;World;22.0;8
+Zimbabwe;ZWE;ZW;World;-1.0;9
+Zimbabwe;ZWE;ZW;World;-1.0;10
+Zimbabwe;ZWE;ZW;World;15.0;11
+Zimbabwe;ZWE;ZW;World;21.0;12
+Zimbabwe;ZWE;ZW;World;27.0;13
+Zimbabwe;ZWE;ZW;World;-1.0;14
+Zimbabwe;ZWE;ZW;World;25.0;15
+Zimbabwe;ZWE;ZW;World;33.1;16
+Zimbabwe;ZWE;ZW;World;35.6;17
+
