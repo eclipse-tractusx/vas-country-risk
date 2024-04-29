@@ -31,7 +31,7 @@
     "react-simple-maps": "^3.0.0",
     "react-svg-worldmap": "^2.0.0-alpha.16",
     "react-test-renderer": "^18.2.0",
-    "react-tooltip": "4.2.21",
+    "react-tooltip": "5.26.4",
     "web-vitals": "^3.5.0",
     "webpack": "5.89.0"
   },
