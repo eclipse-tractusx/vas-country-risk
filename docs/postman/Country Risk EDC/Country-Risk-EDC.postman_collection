@@ -1,0 +1,889 @@
+{
+	"info": {
+		"_postman_id": "375c1284-bb44-4711-bef2-2192c1e42039",
+		"name": "EDC 7",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29921765"
+	},
+	"item": [
+		{
+			"name": "Setup Country Risk Provider",
+			"item": [
+				{
+					"name": "Assets",
+					"item": [
+						{
+							"name": "Create Asset",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{X-API-KEY}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"@context\": {\r\n        \"dct\": \"https://purl.org/dc/terms/\",\r\n        \"cx-taxo\": \"https://w3id.org/catenax/taxonomy#\",\r\n        \"cx-common\": \"https://w3id.org/catenax/ontology/common#\",\r\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n    },\r\n    \"@type\": \"Asset\",\r\n    \"@id\": \"{{ASSET_GET_CR_SHARING_RATINGS_FOR_EACH_BPN}}\",\r\n    \"properties\": {\r\n        \"description\": \"GET Sharing States ({{COUNTRY_RISK_BACKEND_URL}}/swagger-ui/index.html#/Sharing Controller/getAllRatingsScoresForEachBpn)\",\r\n        \"company\": \"{{PROVIDER_ID}}\",\r\n        \"dct:type\": {\r\n            \"@id\": \"cx-taxo:ContryRisk\"\r\n        },\r\n        \"dct:subject\": {\r\n            \"@id\": \"cx-taxo:FullAccessCountryRiskSharingForVASUser\"\r\n        },\r\n        \"dct:description\": \"Grants unrestricted access to business partner data for the Data Consumer of the Country Risk Dashboard and Sharing API. This includes data identified via BPN and enriched from the pool. It allows the use of risk categorizations from various indices within the data consumer's company. Data usage is covered by the framework agreement for the gate.\",\r\n        \"cx-common:version\": \"2.0.0\"\r\n    },\r\n    \"dataAddress\": {\r\n        \"@type\": \"DataAddress\",\r\n        \"type\": \"HttpData\",\r\n        \"baseUrl\": \"{{COUNTRY_RISK_BACKEND_URL}}{{COUNTRY_RISK_SHARING_PATH}}\",\r\n        \"oauth2:tokenUrl\": \"{{ASSET_TOKEN_URL}}\",\r\n        \"oauth2:clientId\": \"{{ASSET_CLIENT_ID}}\",\r\n        \"oauth2:clientSecretKey\": \"{{ASSET_CLIENT_SECRET}}\",\r\n        \"proxyQueryParams\": \"true\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{PROVIDER_URL}}/management/v3/assets",
+									"host": [
+										"{{PROVIDER_URL}}"
+									],
+									"path": [
+										"management",
+										"v3",
+										"assets"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Asset",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{X-API-KEY}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{PROVIDER_URL}}/management/v3/assets/{{ASSET_COUNTRY_RISK_SHARING_APIS}}",
+									"host": [
+										"{{PROVIDER_URL}}"
+									],
+									"path": [
+										"management",
+										"v3",
+										"assets",
+										"{{ASSET_COUNTRY_RISK_SHARING_APIS}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Asset",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{X-API-KEY}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{PROVIDER_URL}}/management/v3/assets/{{ASSET_GET_CR_SHARING_RATINGS_FOR_EACH_BPN}}",
+									"host": [
+										"{{PROVIDER_URL}}"
+									],
+									"path": [
+										"management",
+										"v3",
+										"assets",
+										"{{ASSET_GET_CR_SHARING_RATINGS_FOR_EACH_BPN}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Policy",
+					"item": [
+						{
+							"name": "Create Policy",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{X-API-KEY}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"@context\": {\r\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n    },\r\n    \"@id\": \"{{POLICY_ID}}\",\r\n    \"policy\": {\r\n        \"@context\": \"http://www.w3.org/ns/odrl.jsonld\",\r\n        \"@type\": \"Set\",\r\n        \"odrl:permission\": [\r\n            {\r\n                \"odrl:action\": \"USE\",\r\n                \"odrl:constraint\": {\r\n                    \"@type\": \"LogicalConstraint\",\r\n                    \"odrl:or\": [\r\n                        {\r\n                            \"@type\": \"Constraint\",\r\n                            \"odrl:leftOperand\": \"BusinessPartnerNumber\",\r\n                            \"odrl:operator\": {\r\n                                \"@id\": \"odrl:eq\"\r\n                            },\r\n                            \"odrl:rightOperand\": \"{{BPNL_SHARING_MEMBER}}\"\r\n                        }\r\n                    ]\r\n                }\r\n            }\r\n        ]\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{PROVIDER_URL}}/management/v2/policydefinitions",
+									"host": [
+										"{{PROVIDER_URL}}"
+									],
+									"path": [
+										"management",
+										"v2",
+										"policydefinitions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Policy",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{X-API-KEY}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{PROVIDER_URL}}/management/v2/policydefinitions/{{POLICY_ID}}",
+									"host": [
+										"{{PROVIDER_URL}}"
+									],
+									"path": [
+										"management",
+										"v2",
+										"policydefinitions",
+										"{{POLICY_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Policy",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{X-API-KEY}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{PROVIDER_URL}}/management/v2/policydefinitions/{{POLICY_ID}}",
+									"host": [
+										"{{PROVIDER_URL}}"
+									],
+									"path": [
+										"management",
+										"v2",
+										"policydefinitions",
+										"{{POLICY_ID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Contract",
+					"item": [
+						{
+							"name": "Create Contract",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{X-API-KEY}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"@context\": {\r\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n    },\r\n    \"@id\": \"{{CONTRACT_ID}}\",\r\n    \"@type\": \"ContractDefinition\",\r\n    \"accessPolicyId\": \"{{POLICY_ID}}\",\r\n    \"contractPolicyId\": \"{{CONTRACT_ID}}\",\r\n    \"assetsSelector\": {\r\n        \"@type\": \"CriterionDto\",\r\n        \"operandLeft\": \"{{EDC_NAMESPACE}}id\",\r\n        \"operator\": \"in\",\r\n        \"operandRight\": [\r\n            \"{{ASSET_COUNTRY_RISK_SHARING_APIS}}\"\r\n        ]\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{PROVIDER_URL}}/management/v2/contractdefinitions",
+									"host": [
+										"{{PROVIDER_URL}}"
+									],
+									"path": [
+										"management",
+										"v2",
+										"contractdefinitions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Contract",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{X-API-KEY}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{PROVIDER_URL}}/management/v2/contractdefinitions/{{CONTRACT_ID}}",
+									"host": [
+										"{{PROVIDER_URL}}"
+									],
+									"path": [
+										"management",
+										"v2",
+										"contractdefinitions",
+										"{{CONTRACT_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Contracts",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{X-API-KEY}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"@context\": {\r\n    \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n  },\r\n  \"@type\": \"QuerySpec\",\r\n  \"offset\": 5,\r\n  \"limit\": 10,\r\n  \"sortOrder\": \"DESC\",\r\n  \"sortField\": \"fieldName\",\r\n  \"filterExpression\": []\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{PROVIDER_URL}}/management/v2/contractdefinitions/{{CONTRACT_ID}}",
+									"host": [
+										"{{PROVIDER_URL}}"
+									],
+									"path": [
+										"management",
+										"v2",
+										"contractdefinitions",
+										"{{CONTRACT_ID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Negotiate Country Risk Provider",
+			"item": [
+				{
+					"name": "Query Catalog",
+					"item": [
+						{
+							"name": "Query Catalog",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{X-API-KEY}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"@context\": {\r\n    \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n  },\r\n  \"@type\": \"CatalogRequest\",\r\n  \"counterPartyAddress\": \"{{PROVIDER_URL_DSP}}\",\r\n  \"counterPartyId\": \"{{PROVIDER_ID}}\",\r\n  \"protocol\": \"dataspace-protocol-http\",\r\n  \"querySpec\": {\r\n    \"offset\": 0,\r\n    \"limit\": 50,\r\n    \"sortOrder\": \"DESC\",\r\n    \"sortField\": \"fieldName\",\r\n    \"filterExpression\": []\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{CONSUMER_URL}}/management/v2/catalog/request",
+									"host": [
+										"{{CONSUMER_URL}}"
+									],
+									"path": [
+										"management",
+										"v2",
+										"catalog",
+										"request"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Negotiate",
+					"item": [
+						{
+							"name": "Query EDRs for Asset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"let responseJson = pm.response.json();",
+											"let lastNegotiatedTransferProcessId = \"\";",
+											"let latestExpirationDate = 0;",
+											"",
+											"if (Array.isArray(responseJson)) {",
+											"    responseJson.forEach(function (item) {",
+											"        // Checking for the \"NEGOTIATED\" state and existence of \"tx:expirationDate\"",
+											"        if (item[\"tx:edrState\"] === \"NEGOTIATED\" && item.hasOwnProperty(\"tx:expirationDate\")) {",
+											"            let currentExpirationDate = item[\"tx:expirationDate\"];",
+											"            // Update if this item's expirationDate is more recent",
+											"            if (currentExpirationDate > latestExpirationDate) {",
+											"                latestExpirationDate = currentExpirationDate;",
+											"                // Correct property access for transferProcessId",
+											"                lastNegotiatedTransferProcessId = item[\"transferProcessId\"];",
+											"            }",
+											"        }",
+											"    });",
+											"}",
+											"",
+											"// Log and set the environment variable only if we found a valid ID",
+											"if (lastNegotiatedTransferProcessId) {",
+											"    pm.collectionVariables.set(\"lastNegotiatedTransferProcessId\", lastNegotiatedTransferProcessId);",
+											"    console.log(\"Last Negotiated Transfer Process ID:\", lastNegotiatedTransferProcessId);",
+											"} else {",
+											"    console.log(\"No negotiated transfer process ID found in the latest entry.\");",
+											"}",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{CONSUMER_URL}}/management/edrs?assetId={{ASSET_COUNTRY_RISK_SHARING_APIS}}",
+									"host": [
+										"{{CONSUMER_URL}}"
+									],
+									"path": [
+										"management",
+										"edrs"
+									],
+									"query": [
+										{
+											"key": "assetId",
+											"value": "{{ASSET_COUNTRY_RISK_SHARING_APIS}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Initiate EDR Negotation Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"// Parse the JSON response",
+											"let responseJson = pm.response.json();",
+											"",
+											"// Extract the \"@id\" value",
+											"let negotiationId = responseJson[\"@id\"];",
+											"",
+											"// Check if negotiationId is not undefined or empty",
+											"if (negotiationId) {",
+											"    // Save negotiationId as an environment variable",
+											"    pm.collectionVariables.set(\"negotiationId\", negotiationId);",
+											"    console.log(\"Negotiation ID saved:\", negotiationId);",
+											"} else {",
+											"    console.log(\"Negotiation ID not found in the response.\");",
+											"}",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"@context\": {\n\t\t\"odrl\": \"http://www.w3.org/ns/odrl/2/\"\n\t},\n\t\"@type\": \"NegotiationInitiateRequestDto\",\n\t\"counterPartyAddress\": \"{{PROVIDER_URL}}\",\n\t\"protocol\": \"dataspace-protocol-http\",\n\t\"counterPartyId\": \"{{PROVIDER_ID}}\",\n\t\"providerId\": \"{{PROVIDER_ID}}\",\n\t\"offer\": {\n\t\t\"offerId\": \"{{OFFER_ID_COUNTRY_RISK_SHARING_APIS}}\",\n\t\t\"assetId\": \"{{ASSET_COUNTRY_RISK_SHARING_APIS}}\",\n\t\t\"policy\": {\n\t\t\t\"@type\": \"odrl:Set\",\n\t\t\t\"odrl:permission\": {\n\t\t\t\t\"odrl:target\": \"{{ASSET_COUNTRY_RISK_SHARING_APIS}}\",\n\t\t\t\t\"odrl:action\": {\n\t\t\t\t\t\"odrl:type\": \"USE\"\n\t\t\t\t},\n\t\t\t\t\"odrl:constraint\": {\n\t\t\t\t\t\"odrl:or\": {\n\t\t\t\t\t\t\"odrl:leftOperand\": \"BusinessPartnerNumber\",\n\t\t\t\t\t\t\"odrl:operator\": {\n                            \"@id\": \"odrl:eq\"\n                        },\n\t\t\t\t\t\t\"odrl:rightOperand\": \"{{POLICY_BPN}}\"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"odrl:prohibition\": [],\n\t\t\t\"odrl:obligation\": [],\n\t\t\t\"odrl:target\": \"{{ASSET_COUNTRY_RISK_SHARING_APIS}}\"\n\t\t}\n\t}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{CONSUMER_URL}}/management/edrs",
+									"host": [
+										"{{CONSUMER_URL}}"
+									],
+									"path": [
+										"management",
+										"edrs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Contract Negotation by EDR ID Copy 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"// Parse the JSON response",
+											"let responseJson = pm.response.json();",
+											"",
+											"// Extract the \"contractAgreementId\" value",
+											"let contractAgreementId = responseJson[\"contractAgreementId\"];",
+											"",
+											"// Check if contractAgreementId is not undefined or empty",
+											"if (contractAgreementId) {",
+											"    // Save contractAgreementId as an environment variable",
+											"    pm.collectionVariables.set(\"contractAgreementId\", contractAgreementId);",
+											"    console.log(\"Contract Agreement ID saved:\", contractAgreementId);",
+											"} else {",
+											"    console.log(\"Contract Agreement ID not found in the response.\");",
+											"}",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{CONSUMER_URL}}/management/v2/contractnegotiations/{{negotiationId}}",
+									"host": [
+										"{{CONSUMER_URL}}"
+									],
+									"path": [
+										"management",
+										"v2",
+										"contractnegotiations",
+										"{{negotiationId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get TransferProcess ID by agreement ID Copy 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"// Parse the JSON response",
+											"let responseJson = pm.response.json();",
+											"",
+											"// Initialize a variable to store the transferProcessId",
+											"let transferProcessId = \"\";",
+											"",
+											"// Loop through the response array to find an entry with \"NEGOTIATED\" state",
+											"responseJson.forEach(function(item) {",
+											"    if (item[\"@type\"] === \"tx:EndpointDataReferenceEntry\" && item[\"tx:edrState\"] === \"NEGOTIATED\") {",
+											"        // If a negotiated entry is found, save its transferProcessId",
+											"        transferProcessId = item[\"transferProcessId\"];",
+											"        // Optional: Break the loop if only the first \"NEGOTIATED\" entry is needed",
+											"        return false; // Note: This will not actually break the forEach loop in JavaScript. Use for...of loop if breaking is necessary.",
+											"    }",
+											"});",
+											"",
+											"// Check if a transferProcessId was found and save it as an environment variable",
+											"if (transferProcessId !== \"\") {",
+											"    pm.collectionVariables.set(\"transferProcessId\", transferProcessId);",
+											"    console.log(\"Transfer Process ID saved:\", transferProcessId);",
+											"} else {",
+											"    console.log(\"No negotiated transfer process ID found.\");",
+											"}",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{CONSUMER_URL}}/management/edrs?agreementId={{contractAgreementId}}",
+									"host": [
+										"{{CONSUMER_URL}}"
+									],
+									"path": [
+										"management",
+										"edrs"
+									],
+									"query": [
+										{
+											"key": "agreementId",
+											"value": "{{contractAgreementId}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get EDR by tp ID Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"// Parse the JSON response",
+											"var responseBody = pm.response.json();",
+											"",
+											"// Check if the response contains the \"edc:authCode\" property",
+											"if (responseBody.hasOwnProperty(\"authCode\")) {",
+											"    // Get the value of \"edc:authCode\"",
+											"    var authCode = responseBody[\"authCode\"];",
+											"",
+											"    // Set the collection variable with the value of \"edc:authCode\"",
+											"    pm.collectionVariables.set(\"AUTH_CODE\", authCode);",
+											"",
+											"    // Log the value to the Postman console",
+											"    console.log(\"authCode: \" + authCode);",
+											"} else {",
+											"    console.log(\"Response does not contain 'edc:authCode' property.\");",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{CONSUMER_URL}}/management/edrs/{{lastNegotiatedTransferProcessId}}",
+									"host": [
+										"{{CONSUMER_URL}}"
+									],
+									"path": [
+										"management",
+										"edrs",
+										"{{lastNegotiatedTransferProcessId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Execute Requests",
+					"item": [
+						{
+							"name": "Public Api GetAllRatingsScoresForEachBpn",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "{{AUTH_CODE}}",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{COUNTRY_RISK_PUBLIC_URL}}/getAllRatingsScoresForEachBpn?datasource[]={\n  \"dataSourceName\": \"CPI Rating 2021\",\n  \"yearPublished\": 2021\n}&bpns[]={\n  \"bpn\": \"BPN-0001\",\n  \"country\": \"ES\"\n}&name=John&email=John@email.com&companyName=TestCompany",
+									"host": [
+										"{{COUNTRY_RISK_PUBLIC_URL}}"
+									],
+									"path": [
+										"getAllRatingsScoresForEachBpn"
+									],
+									"query": [
+										{
+											"key": "datasource[]",
+											"value": "{\n  \"dataSourceName\": \"CPI Rating 2021\",\n  \"yearPublished\": 2021\n}"
+										},
+										{
+											"key": "bpns[]",
+											"value": "{\n  \"bpn\": \"BPN-0001\",\n  \"country\": \"ES\"\n}"
+										},
+										{
+											"key": "name",
+											"value": "John"
+										},
+										{
+											"key": "email",
+											"value": "John@email.com"
+										},
+										{
+											"key": "companyName",
+											"value": "TestCompany"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Public Api GetAllRatingsForCompany",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "{{AUTH_CODE}}",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "Authorization",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{COUNTRY_RISK_PUBLIC_URL}}/getAllRatingsForCompany?year=2021&name=John&email=John@email.com&companyName=TestCompany",
+									"host": [
+										"{{COUNTRY_RISK_PUBLIC_URL}}"
+									],
+									"path": [
+										"getAllRatingsForCompany"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2021"
+										},
+										{
+											"key": "name",
+											"value": "John"
+										},
+										{
+											"key": "email",
+											"value": "John@email.com"
+										},
+										{
+											"key": "companyName",
+											"value": "TestCompany"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "PROVIDER_URL",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "ASSET_COUNTRY_RISK_SHARING_APIS",
+			"value": "GET_COUNTRY_RISK_SHARING_APIS",
+			"type": "string"
+		},
+		{
+			"key": "COUNTRY_RISK_BACKEND_URL",
+			"value": "https://vas-country-risk-backend.int.demo.catena-x.net",
+			"type": "string"
+		},
+		{
+			"key": "COMPANY_ID",
+			"value": "BPNL00000007RF54",
+			"type": "string"
+		},
+		{
+			"key": "ASSET_TOKEN_URL",
+			"value": "https://centralidp.int.demo.catena-x.net/auth/realms/CX-Central/protocol/openid-connect/token",
+			"type": "string"
+		},
+		{
+			"key": "ASSET_CLIENT_ID",
+			"value": "sa121",
+			"type": "string"
+		},
+		{
+			"key": "ASSET_CLIENT_SECRET",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "X-API-KEY",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "POLICY_ID",
+			"value": "COUNTRY_RISK_POLICY",
+			"type": "string"
+		},
+		{
+			"key": "BPNL_SHARING_MEMBER",
+			"value": "BPNLX01",
+			"type": "string"
+		},
+		{
+			"key": "PROVIDER_URL_DSP",
+			"value": "https://country-risk-edc-provider.int.demo.catena-x.net/api/v1/dsp",
+			"type": "string"
+		},
+		{
+			"key": "PROVIDER_ID",
+			"value": "BPNLX02",
+			"type": "string"
+		},
+		{
+			"key": "CONTRACT_ID",
+			"value": "COUNTRY_RISK_CONTRACT"
+		},
+		{
+			"key": "EDC_NAMESPACE",
+			"value": "https://w3id.org/edc/v0.0.1/ns/",
+			"type": "string"
+		},
+		{
+			"key": "CONSUMER_URL",
+			"value": "http://localhost:8081",
+			"type": "string"
+		},
+		{
+			"key": "COUNTRY_RISK_SHARING_PATH",
+			"value": "/api/sharing",
+			"type": "string"
+		},
+		{
+			"key": "negotiationId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "contractAgreementId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "lastNegotiatedTransferProcessId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "COUNTRY_RISK_PUBLIC_URL",
+			"value": "https://country-risk-edc-provider.int.demo.catena-x.net/api/public",
+			"type": "string"
+		},
+		{
+			"key": "AUTH_CODE",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "OFFER_ID_COUNTRY_RISK_SHARING_APIS",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

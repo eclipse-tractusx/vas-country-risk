@@ -1,22 +1,17 @@
 version: 2
+
 updates:
-    # Maintain dependencies for Maven
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: "maven"
+    directory: "/backend/"
     schedule:
       interval: "daily"
-    # open-pull-requests-limit: 5
 
-    # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "npm"
+    directory: "/frontend/"
+    schedule:
+      interval: "daily"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
-    # open-pull-requests-limit: 5
-
-    # Maintain dependencies for Docker
-  - package-ecosystem: "docker"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    # open-pull-requests-limit: 5

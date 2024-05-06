@@ -1,0 +1,76 @@
+###############################################################
+# Copyright (c) 2022,2023 Contributors to the Eclipse Foundation
+#
+# See the NOTICE file(s) distributed with this work for additional
+# information regarding copyright ownership.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Apache License, Version 2.0 which is available at
+# https://www.apache.org/licenses/LICENSE-2.0.
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+###############################################################
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "vas.frontend.fullname" . }}
+  labels:
+    {{- include "vas.frontend.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.countryRiskFrontend.autoscaling.enabled }}
+  replicas: {{ .Values.countryRiskFrontend.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "vas.frontend.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.countryRiskFrontend.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "vas.frontend.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.countryRiskFrontend.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      # @url: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server
+      automountServiceAccountToken: false
+      securityContext:
+        {{- toYaml .Values.countryRiskFrontend.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.countryRiskFrontend.securityContext | nindent 12 }}
+          image: {{ .Values.countryRiskFrontend.image.registry }}/{{ .Values.countryRiskFrontend.image.name }}:{{ default .Chart.AppVersion .Values.countryRiskFrontend.image.tag }}
+          imagePullPolicy: {{ .Values.countryRiskFrontend.image.pullPolicy }}
+          envFrom:
+            - configMapRef:
+                name: config-frontend
+          ports:
+            - name: http
+              containerPort: {{ .Values.countryRiskFrontend.service.port }}
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.countryRiskFrontend.resources | nindent 12 }}
+      {{- with .Values.countryRiskFrontend.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.countryRiskFrontend.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.countryRiskFrontend.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

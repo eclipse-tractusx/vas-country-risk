@@ -4,8 +4,8 @@
 
 This Helm Chart deploys the Country Risk application to a Kubernetes environment. It consists of:
 
-* [vas-country-risk-frontend](https://github.com/eclipse-tractusx/vas-country-risk-frontend)
-* [vas-country-risk-backend](https://github.com/eclipse-tractusx/vas-country-risk-backend)
+* [vas-country-risk/frontend](https://github.com/eclipse-tractusx/vas-country-risk/frontend)
+* [vas-country-risk/backend](https://github.com/eclipse-tractusx/vas-country-risk/backend)
 
 ## Prerequisites
 
@@ -90,7 +90,7 @@ This way you are able to overwrite any configuration property of the `.env` file
 
 # country-risk
 
-![Version: 3.0.3](https://img.shields.io/badge/Version-3.0.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.2.1](https://img.shields.io/badge/AppVersion-1.2.1-informational?style=flat-square)
+![Version: 3.0.3](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.0](https://img.shields.io/badge/AppVersion-2.0.0-informational?style=flat-square)
 
 A Helm chart for deploying the Country Risk service
 
@@ -98,8 +98,8 @@ A Helm chart for deploying the Country Risk service
 
 ## Source Code
 
-* <https://github.com/eclipse-tractusx/vas-country-risk-frontend>
-* <https://github.com/eclipse-tractusx/vas-country-risk-backend>
+* <https://github.com/eclipse-tractusx/vas-country-risk/frontend>
+* <https://github.com/eclipse-tractusx/vas-country-risk/backend>
 
 ## Requirements
 
@@ -176,7 +176,7 @@ A Helm chart for deploying the Country Risk service
 | postgres.service.type | string | `"ClusterIP"`                                                                                                                                                  | Type of service to be used |
 | readinessProbe | object | `{"failureThreshold":3,"initialDelaySeconds":60,"path":"/management/health/readiness","periodSeconds":10,"port":8080,"successThreshold":1,"timeoutSeconds":1}` | Determine when a pod is ready to start accepting requests |
 | replicaCount | int | `1`                                                                                                                                                            | Number of replicas of a Kubernetes deployment |
-| resources.limits | object | `{"cpu":"800m","memory":"1Gi"}`                                                                                                                                | Maximum amount of resources that the deployment should be able to consume |
+| resources.limits | object | `{"cpu":"800m","memory":"2Gi"}`                                                                                                                                | Maximum amount of resources that the deployment should be able to consume |
 | resources.requests | object | `{"cpu":"300m","memory":"1Gi"}`                                                                                                                                | Minimum amount of resources that the deployment should be guaranteed to receive |
 | securityContext.allowPrivilegeEscalation | bool | `false`                                                                                                                                                        | Specifies if processes running inside the container can gain more privileges than its initial user |
 | securityContext.capabilities | object | `{"drop":["ALL"]}`                                                                                                                                             | Capabilities that the process inside the container should have |
