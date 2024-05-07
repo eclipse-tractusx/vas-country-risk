@@ -18,48 +18,28 @@
 * SPDX-License-Identifier: Apache-2.0
 ********************************************************************************/
 .shareReportComponent {
-  height: 100% !important;
-  width: 100%;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  min-width: 250px;
-  background-color: #FFFFFF;
-  border-radius: 39px !important;
-
   .box-select {
+    .dialogHeader {
+      // Style for the dialog header
+    }
 
     .multibox-select {
-      margin-top: 5%;
-      margin-left: 10%;
-      margin-right: 10%;
+      // Style for the MultiSelectList component
+    }
+
+    .MuiDialogContent-root {
     }
   }
 
-  .btn-div {
-    margin-top: 4%;
-    margin-bottom: 1%;
+  .btn-close {
+  }
 
-    .btn-close {
-      margin-right: 2%;
+  .btn-save {
+  }
+
+  .share-double-check-warning {
+    // Style for the warning dialog
+    .Teste {
     }
   }
 }
-
-.share-double-check-warning {
-
-  .Teste {
-    height: 235px !important;
-    width: auto;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    min-width: 250px;
-    background-color: #edf0f4;
-    border-radius: 20px !important;
-    border: 2px solid #000;
-  }
-
-}
-
-

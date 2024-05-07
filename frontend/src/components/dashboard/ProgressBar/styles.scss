@@ -20,14 +20,18 @@
 .bar {
   margin-bottom: 4%;
   width: 10%;
+
   .textValueScore {
+    display: flex;
     text-align: center;
     font-size: 15px;
     margin-left: 110px;
   }
+
   .progress-bar {
     display: flex;
     align-items: center;
+
     .textValue {
       width: 45px;
       text-align: center;
@@ -35,17 +39,20 @@
       margin-right: 2%;
       margin-left: 2%;
     }
+
     .barContainer {
       flex: 1;
       height: 8px;
       background: #dfdfe7;
       border-radius: 12px;
       overflow: hidden; /* Crucial part */
+
       .filler {
         transition: "width 2s ease-i-out";
         height: inherit;
         border-radius: inherit;
         overflow: hidden;
+
         .fillerBackground {
           height: inherit;
           transition: "width 2s ease-i-out";
