@@ -29,7 +29,7 @@ COPY package.json .
 COPY --chown=node:node package-lock.json .
 COPY public ./public
 COPY --chown=node:node .env .
-COPY src ./src
+COPY frontend/src ./src
 
 COPY LICENSE NOTICE.md DEPENDENCIES SECURITY.md /app/dist/
 
