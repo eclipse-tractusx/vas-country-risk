@@ -4,6 +4,28 @@ All notable changes to this project (both backend and frontend) will be document
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - [unreleased]
+
+### Frontend
+
+#### Added
+- Create `NegotiationPage` component to provide a user interface for triggering negotiations, displaying negotiation statuses, and managing catalog items.
+- Implement `fetchCatalogItems` and `triggerNegotiation` service functions to interact with backend endpoints for retrieving catalog items and initiating negotiations.
+- Introduce dynamic status icons in the negotiation table to reflect the real-time status of each negotiation, enhancing user feedback and interaction.
+- Added SnackBar for Report Table and Ratings for error and success messages
+
+
+### Changed
+- Update `UserInfo` component to conditionally display the negotiation page link in the user menu based on user roles, enhancing role-based access control.
+- Modify the negotiation initiation process to reset item statuses to "Pending" before sending requests, providing clearer feedback on ongoing negotiations.
+- Refine error handling in the negotiation process to alert users of failures and log errors for debugging purposes.
+
+### Fixed
+- Resolve visual feedback issue where status icons would not reset to default state after re-initiating negotiations.
+- Update Report and Table components from catena-x lib
+- Configure css with new update components
+
+
 ## [1.3.2] - [2024-04-17]
 
 ### Backend

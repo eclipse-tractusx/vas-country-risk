@@ -18,43 +18,28 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import DeleteIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import { GridActionsCellItem } from "@mui/x-data-grid";
+import axios from "axios";
+import { getCountryRiskApi } from "./EnvironmentService";
+import UserService from "./UserService";
 
-export const columnsUser = (rates, onClickDelete) => [
-  {
-    description: "Rating",
-    field: "dataSourceName",
-    flex: 3,
-    headerName: "Rating",
-  },
-  {
-    description: "Weigthing (%)",
-    field: "weight",
-    flex: 2,
-    headerName: "Weigthing (%)",
-    editable: true,
-    valueGetter: (params) => {
-      const x = rates.find((x) => x.id === params.id);
+// Uploads a CSV file to the server.
+export function uploadCsvFile(file, ratingName, year, type, customerUser) {
+  const url = getCountryRiskApi() + process.env.REACT_APP_UPLOAD_FILE;
+  const formData = new FormData();
+  formData.append("file", file);
 
-      if (x !== undefined && Object.hasOwn(x, "weight")) {
-        return x.weight;
-      } else {
-        return 0;
-      }
+  return axios.post(url, formData, {
+    params: {
+      name: customerUser.name,
+      email: customerUser.email,
+      companyName: customerUser.companyName,
     },
-  },
-  {
-    field: "actions",
-    type: "actions",
-    width: 100,
-    getActions: (params) => [
-      <GridActionsCellItem
-        data-testid={"deleteRatingIcon"}
-        icon={<DeleteIcon />}
-        label="Delete"
-        onClick={onClickDelete(params.id)}
-      />,
-    ],
-  },
-];
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${UserService.getToken()}`,
+      ratingName: ratingName,
+      year: year,
+      type: type,
+    },
+  });
+}

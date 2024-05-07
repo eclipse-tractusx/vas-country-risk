@@ -50,7 +50,11 @@ export const getCountryRiskApi = () => {
 };
 
 export const getLogoutLink = () => {
-  return LOCAL_SERVICES_FRONTEND + "/logout";
+  return document.location.origin + "/logout";
+};
+
+export const getNegotiationLink = () => {
+  return document.location.origin + "/negotiation";
 };
 
 export const getAboutLink = () => {

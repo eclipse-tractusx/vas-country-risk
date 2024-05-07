@@ -18,23 +18,25 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useRef, useState } from "react";
+import { useState, useRef, useContext } from "react";
 import {
   UserAvatar,
   UserMenu,
   UserNav,
   LanguageSwitch,
-} from "cx-portal-shared-components";
+} from "@catena-x/portal-shared-components";
 import UserService from "../../../services/UserService";
 import "./UserInfo.scss";
 import {
   getLogoutLink,
-  getAboutLink,
+  getNegotiationLink,
 } from "../../../services/EnvironmentService";
+import { CompanyUserContext } from "../../../../contexts/companyuser";
 
 export const UserInfo = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const wrapperRef = useRef(null);
+  const { companyUser } = useContext(CompanyUserContext);
 
   const openCloseMenu = () => setMenuOpen((prevVal) => !prevVal);
 
@@ -46,7 +48,27 @@ export const UserInfo = () => {
 
   const logoutHref = getLogoutLink();
 
-  const aboutHref = getAboutLink();
+  // Dynamically construct menu items based on user roles
+  let menuItems = [
+    {
+      href: logoutHref,
+      title: "Logout",
+    },
+  ];
+
+  // Add negotiation link for users with Negotiator or Admin roles
+  if (
+    companyUser.roles.includes("Negotiator") ||
+    companyUser.roles.includes("Admin")
+  ) {
+    menuItems = [
+      {
+        href: getNegotiationLink(),
+        title: "Negotiation",
+      },
+      ...menuItems,
+    ];
+  }
 
   return (
     <div className="UserInfo">
@@ -60,27 +82,10 @@ export const UserInfo = () => {
         userRole={UserService.getCompany()}
         onClickAway={onClickAway}
       >
-        <UserNav
-          divider
-          items={[
-            {
-              href: logoutHref,
-              title: "Logout",
-            },
-          ]}
-        />
-
-        {/*<LanguageSwitch
-          current="en"
-          languages={[
-            {
-              key: "en",
-              name: "ENG",
-            },
-          ]}
-          onChange={function noRefCheck() {}}
-        />*/}
+        <UserNav divider items={menuItems} />
       </UserMenu>
     </div>
   );
 };
+
+export default UserInfo;
