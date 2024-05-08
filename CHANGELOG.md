@@ -14,16 +14,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Introduce dynamic status icons in the negotiation table to reflect the real-time status of each negotiation, enhancing user feedback and interaction.
 - Added SnackBar for Report Table and Ratings for error and success messages
 
-
-### Changed
+#### Changed
 - Update `UserInfo` component to conditionally display the negotiation page link in the user menu based on user roles, enhancing role-based access control.
 - Modify the negotiation initiation process to reset item statuses to "Pending" before sending requests, providing clearer feedback on ongoing negotiations.
 - Refine error handling in the negotiation process to alert users of failures and log errors for debugging purposes.
 
-### Fixed
+#### Fixes
 - Resolve visual feedback issue where status icons would not reset to default state after re-initiating negotiations.
 - Update Report and Table components from catena-x lib
 - Configure css with new update components
+
+### Backend
+
+#### Added
+- Implement `triggerNegotiation` function in `NegotiationServiceLogic` to handle sequential negotiation requests with external services, enhancing the negotiation process with error handling and response transformation.
+- Introduce new DTOs (`NegotiationRequestDTO`, `NegotiationResponseDTO`, `EDRResponseDTO`) to streamline the handling of negotiation data and responses.
+- Add utility functions in `EdcEndpointsMappingUtils` for parsing and extracting specific fields from JSON responses, improving data extraction reliability and code maintainability.
+
+#### Changed
+- Modify `executeSequentialNegotiationRequests` logic to include additional steps in the negotiation process, ensuring the correct sequence of requests and proper handling of intermediate responses.
+- Update error handling across the negotiation process to log detailed error messages and fallback values, improving debugging and reliability.
+- Refactor `createNegotiationRequestBody` to dynamically generate request bodies based on input parameters, enhancing flexibility and readability.
+
+#### Fixes
+- Address issue with incorrect extraction of `transferProcessId` by adjusting JSON path in `extractTransferProcessId` function.
+
+
 
 
 ## [1.3.2] - [2024-04-17]
