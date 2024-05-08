@@ -31,6 +31,7 @@ import UserService from "../../services/UserService";
 import { CompanyUserContext } from "../../../contexts/companyuser";
 import { GatesContext } from "../../../contexts/gates";
 import DetailDialog from "../DetailDialog/DetailDialog";
+import { countries } from "country-data";
 
 const DashboardTable2 = (ratings, years) => {
   //Data Fetch
@@ -100,7 +101,10 @@ const DashboardTable2 = (ratings, years) => {
     if (countryS !== "none") {
       const array = [];
       globalData.forEach((gd) => {
-        if (gd.country === countryS.country) {
+        const countryFullName = countries[gd.country]
+          ? countries[gd.country].name
+          : "";
+        if (countryFullName === countryS.country) {
           array.push(gd);
         }
       });
