@@ -26,16 +26,16 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Create SemVer or ref tags dependent of trigger event
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
           images: |
             ${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}
-          # Automatically prepare image tags; See action docs for more examples. 
+          # Automatically prepare image tags; See action docs for more examples.
           # semver patter will generate tags like these for example :1 :1.2 :1.2.3
           tags: |
             type=ref,event=branch
@@ -53,20 +53,22 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
       - name: Build and push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5.3.0
         with:
           context: .
-          # Build image for verification purposes on every trigger event. Only push if event is not a PR
+          file: ./backend/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: |
+            ${{ steps.meta.outputs.tags }},
+            ${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}:latest
           labels: ${{ steps.meta.outputs.labels }}
 
 
       # https://github.com/peter-evans/dockerhub-description
-      # Important step to push image description to DockerHub 
+      # Important step to push image description to DockerHub
       - name: Update Docker Hub description
         if: github.event_name != 'pull_request'
-        uses: peter-evans/dockerhub-description@v3
+        uses: peter-evans/dockerhub-description@v4
         with:
           # readme-filepath defaults to toplevel README.md, Only necessary if you have a dedicated file with your 'Notice for docker images'
           readme-filepath: ./backend/DOCKER_NOTICE.md
