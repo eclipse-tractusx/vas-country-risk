@@ -33,10 +33,19 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
 
 const NegotiationPage = () => {
-  const { companyUser } = useContext(CompanyUserContext);
+  const { companyUser, setCompanyUser } = useContext(CompanyUserContext);
   const navigate = useNavigate();
   const [catalogItems, setCatalogItems] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
+  const [cleanedRoles, setCleanedRoles] = useState([]);
+
+  useEffect(() => {
+    // Clean up roles by trimming whitespace
+    if (companyUser && companyUser.roles) {
+      const cleanedRoles = companyUser.roles.map((role) => role.trim());
+      setCleanedRoles(cleanedRoles);
+    }
+  }, [companyUser]);
 
   useEffect(() => {
     // Fetch catalog items from the API
@@ -111,6 +120,7 @@ const NegotiationPage = () => {
     const negotiationRequest = selectedItems.map((item) => ({
       id: item.id,
       offerId: item.offerId,
+      usagePurpose: item.usagePurpose,
     }));
 
     try {
@@ -146,8 +156,13 @@ const NegotiationPage = () => {
 
   // Check if the user has permission to initiate negotiations
   const userCanNegotiate =
-    companyUser.roles.includes("Negotiator") ||
-    companyUser.roles.includes("Admin"); // Adjust the role check as necessary
+    cleanedRoles.includes("Negotiator") ||
+    cleanedRoles.includes("Admin") ||
+    cleanedRoles.includes("Company Admin"); // Adjust the role check as necessary
+
+  console.log("cleanedRoles", cleanedRoles);
+  console.log("companyUser", companyUser);
+  console.log("userCanNegotiate", userCanNegotiate);
 
   return (
     <div className="negotiation-page">
