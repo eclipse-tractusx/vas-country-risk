@@ -29,7 +29,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
+import reactor.util.retry.Retry;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.function.Function;
 
@@ -48,7 +50,7 @@ public class InvokeService {
         this.gateWebClient = gateWebClient;
     }
 
-    public <T> Mono<List<T>> executeRequest(String clientType,String url, HttpMethod httpMethod, HttpEntity<?> httpEntity, Class<T> responseType, Function<String, List<T>> mappingFunction) {
+    public <T> Mono<List<T>> executeRequest(String clientType, String url, HttpMethod httpMethod, HttpEntity<?> httpEntity, Class<T> responseType, Function<String, List<T>> mappingFunction) {
         WebClient webClient = getWebClient(clientType);
         return webClient.method(httpMethod)
                 .uri(url)
@@ -60,6 +62,11 @@ public class InvokeService {
                 .onErrorResume(e -> {
                     log.error("error url {} message {}", url, e.getMessage());
                     throw new RuntimeException(e.getMessage());
+                })
+                .retryWhen(Retry.fixedDelay(3, Duration.ofSeconds(5))) // tenta 3 vezes com um intervalo de 5 segundos
+                .onErrorResume(e -> {
+                    log.error("Persistent error after retries: {} {}", url, e.getMessage());
+                    return Mono.error(new RuntimeException("Failed after retries", e));
                 });
     }
 
@@ -75,6 +82,11 @@ public class InvokeService {
                 .onErrorResume(e -> {
                     log.error("error url {} message {}", url, e.getMessage());
                     throw new RuntimeException(e.getMessage());
+                })
+                .retryWhen(Retry.fixedDelay(3, Duration.ofSeconds(2)))
+                .onErrorResume(e -> {
+                    log.error("Persistent error after retries: {} {}", url, e.getMessage());
+                    return Mono.error(new RuntimeException("Failed after retries", e));
                 });
     }
 
@@ -130,6 +142,11 @@ public class InvokeService {
                 .onErrorResume(e -> {
                     log.error("error url {} message {}", url, e.getMessage());
                     throw new RuntimeException(e.getMessage());
+                })
+                .retryWhen(Retry.fixedDelay(3, Duration.ofSeconds(5))) // tenta 3 vezes com um intervalo de 5 segundos
+                .onErrorResume(e -> {
+                    log.error("Persistent error after retries: {} {}", url, e.getMessage());
+                    return Mono.error(new RuntimeException("Failed after retries", e));
                 });
     }
 }

@@ -78,7 +78,7 @@ public class NegotiationServiceLogic {
 
         List<NegotiationResponseDTO> responses = Flux.fromIterable(negotiationItems)
                 .flatMap(dto ->
-                        executeSequentialNegotiationRequests(dto.getId(), dto.getOfferId())
+                        executeSequentialNegotiationRequests(dto)
                                 .map(response -> new NegotiationResponseDTO(dto.getId(), dto.getOfferId(), gateProviderProtocolUrl, "Success", response.getAuthCode(), response.getEndpoint()))
                                 .onErrorResume(e -> Mono.just(new NegotiationResponseDTO(dto.getId(), dto.getOfferId(), gateProviderProtocolUrl, "Error", null, null)))
                 ).collectList().block();
@@ -93,41 +93,32 @@ public class NegotiationServiceLogic {
         return negotiationCache;
     }
 
-    public Mono<EDRResponseDTO> executeSequentialNegotiationRequests(String assetId, String offerId) {
+    public Mono<EDRResponseDTO> executeSequentialNegotiationRequests(NegotiationRequestDTO negotiationRequestDTO) {
 
-        if (offerId == null) {
+        if (negotiationRequestDTO.getOfferId() == null) {
             log.error("Offer ID is missing");
             return Mono.error(new RuntimeException("Asset ID or Offer ID is missing"));
         }
 
-        return retrieveEDRsData(assetId)
-                .flatMap(lastNegotiatedTransferProcessId -> {
-                    if (lastNegotiatedTransferProcessId.isEmpty()) {
-                        log.info("No negotiated transfer process ID found");
-                        log.info("Initiating Negotiation");
-                        return sendNegotiationInitiateRequest(offerId, assetId)
-                                .delayElement(Duration.ofSeconds(3))
-                                .flatMap(this::executeGetRequestForNegotiationDetails) // Returns contractAgreementId
-                                .delayElement(Duration.ofSeconds(3))
-                                .flatMap(this::executeGetRequestWithAgreementId) // Returns transferProcessId
-                                .delayElement(Duration.ofSeconds(3))
-                                .flatMap(this::getAuthCodeAndEndpoint); // Returns authCode and endpoint
 
-                    } else {
-                        log.debug("Found negotiated transfer process ID");
-                        return getAuthCodeAndEndpoint(lastNegotiatedTransferProcessId);
-                    }
-                });
+        return sendNegotiationInitiateRequest(negotiationRequestDTO)
+                .delayElement(Duration.ofSeconds(6))
+                .flatMap(this::executeGetRequestForNegotiationDetails)
+                .delayElement(Duration.ofSeconds(4))
+                .flatMap(this::executeTransferProcessRequestWithAgreementId)
+                .delayElement(Duration.ofSeconds(4))
+                .flatMap(this::getAuthCodeAndEndpoint);
+
+
     }
 
 
-    public Mono<String> sendNegotiationInitiateRequest(String offerId, String assetId) {
+    public Mono<String> sendNegotiationInitiateRequest(NegotiationRequestDTO negotiationItem) {
         HttpHeaders headers = createHttpHeaders();
-        Map<String, Object> requestBody = createNegotiationRequestBody(offerId, assetId);
+        Map<String, Object> requestBody = createNegotiationRequestBody(negotiationItem);
         HttpEntity<Map<String, Object>> httpEntity = new HttpEntity<>(requestBody, headers);
 
-        // Log the URL, Headers, and Body
-        String url = consumerManagementUrl + "/edrs";
+        String url = consumerManagementUrl + "/v2/edrs";
         log.debug("Sending POST request to URL: " + url);
         log.debug("Request Headers: " + headers.toString());
         log.debug("Request Body: " + requestBody.toString());
@@ -136,7 +127,7 @@ public class NegotiationServiceLogic {
     }
 
     public Mono<EDRResponseDTO> getAuthCodeAndEndpoint(String transferProcessId) {
-        return executeGetRequest(consumerManagementUrl + "/edrs/" + transferProcessId, EdcEndpointsMappingUtils::getAuthCodeAndEndpoint);
+        return executeGetRequest(consumerManagementUrl + "/v2/edrs/" + transferProcessId + "/dataaddress?auto_refresh=true", EdcEndpointsMappingUtils::extractAuthenticationDetails);
     }
 
     @CacheEvict(value = "vas-bpdm-negotiation", allEntries = true)
@@ -155,53 +146,69 @@ public class NegotiationServiceLogic {
                 .doOnError(error -> log.error("Failed to retrieve contract negotiation details", error));
     }
 
-    public Mono<String> executeGetRequestWithAgreementId(String contractAgreementId) {
-        String url = consumerManagementUrl + "/edrs?agreementId=" + contractAgreementId;
+    public Mono<String> executeTransferProcessRequestWithAgreementId(String contractAgreementId) {
+        String url = consumerManagementUrl + "/v2/edrs/request";
         HttpHeaders headers = createHttpHeaders();
+
+        Map<String, Object> filter = new HashMap<>();
+        filter.put("operandLeft", "agreementId");
+        filter.put("operator", "=");
+        filter.put("operandRight", contractAgreementId);
+
         Map<String, Object> requestBody = new HashMap<>();
+        requestBody.put("@context", Map.of("@vocab", "https://w3id.org/edc/v0.0.1/ns/"));
+        requestBody.put("@type", "QuerySpec");
+        requestBody.put("offset", 0);
+        requestBody.put("limit", 1);
+        requestBody.put("filterExpression", List.of(filter));
+
         HttpEntity<Map<String, Object>> httpEntity = new HttpEntity<>(requestBody, headers);
 
-        return invokeService.executeRequest("default", url, HttpMethod.GET, httpEntity, EdcEndpointsMappingUtils::extractTransferProcessId)
+        return invokeService.executeRequest("default", url, HttpMethod.POST, httpEntity, EdcEndpointsMappingUtils::extractTransferProcessId)
                 .doOnError(error -> log.error("Failed to make request with agreement ID: {}", contractAgreementId, error));
     }
 
 
-    public Map<String, Object> createNegotiationRequestBody(String offerId, String assetId) {
+    public Map<String, Object> createNegotiationRequestBody(NegotiationRequestDTO negotiationItem) {
         Map<String, Object> body = new HashMap<>();
-        body.put("@context", Collections.singletonMap("odrl", "http://www.w3.org/ns/odrl/2/"));
-        body.put("@type", "NegotiationInitiateRequestDto");
-        body.put("counterPartyAddress", gateProviderProtocolUrl);
-        body.put("protocol", "dataspace-protocol-http");
-        body.put("counterPartyId", gateProviderId);
-        body.put("providerId", gateProviderId);
+        List<Object> context = List.of(
+                "https://w3id.org/tractusx/policy/v1.0.0",
+                "http://www.w3.org/ns/odrl.jsonld",
+                Collections.singletonMap("edc", "https://w3id.org/edc/v0.0.1/ns/")
+        );
 
-        Map<String, Object> offer = new HashMap<>();
-        offer.put("offerId", offerId);
-        offer.put("assetId", assetId);
+        body.put("@context", context);
+        body.put("@type", "ContractRequest");
+        body.put("edc:counterPartyAddress", gateProviderProtocolUrl);
+        body.put("edc:protocol", "dataspace-protocol-http");
+        body.put("edc:counterPartyId", gateProviderId);
 
         Map<String, Object> policy = new HashMap<>();
-        policy.put("@type", "odrl:Set");
+        policy.put("@id", negotiationItem.getOfferId());
+        policy.put("@type", "Offer");
 
         Map<String, Object> permission = new HashMap<>();
-        permission.put("odrl:target", assetId);
-        permission.put("odrl:action", Collections.singletonMap("odrl:type", "USE"));
+        permission.put("action", "use");
 
-        Map<String, Object> constraint = new HashMap<>();
-        Map<String, Object> orConstraint = new HashMap<>();
-        orConstraint.put("odrl:leftOperand", "BusinessPartnerNumber");
-        orConstraint.put("odrl:operator", Collections.singletonMap("@id", "odrl:eq"));
-        orConstraint.put("odrl:rightOperand", policyBpn); // Use the specific business partner number here
-        constraint.put("odrl:or", orConstraint);
+        Map<String, Object> constraintAnd = new HashMap<>();
+        Map<String, Object> leftConstraint = new HashMap<>();
+        leftConstraint.put("leftOperand", "FrameworkAgreement");
+        leftConstraint.put("operator", "eq");
+        leftConstraint.put("rightOperand", "businessPartner:1.0");
 
-        permission.put("odrl:constraint", constraint);
-        policy.put("odrl:permission", permission);
+        Map<String, Object> rightConstraint = new HashMap<>();
+        rightConstraint.put("leftOperand", "UsagePurpose");
+        rightConstraint.put("operator", "eq");
+        rightConstraint.put("rightOperand", negotiationItem.getUsagePurpose());
 
-        policy.put("odrl:prohibition", Collections.emptyList());
-        policy.put("odrl:obligation", Collections.emptyList());
-        policy.put("odrl:target", assetId);
+        constraintAnd.put("and", List.of(leftConstraint, rightConstraint));
+        permission.put("constraint", constraintAnd);
+        policy.put("permission", Collections.singletonList(permission));
+        policy.put("target", negotiationItem.getId());
+        policy.put("assigner", gateProviderId);
 
-        offer.put("policy", policy);
-        body.put("offer", offer);
+        body.put("edc:policy", policy);
+
         return body;
     }
 

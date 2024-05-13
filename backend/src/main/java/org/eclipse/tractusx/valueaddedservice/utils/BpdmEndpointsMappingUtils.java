@@ -75,10 +75,12 @@ public class BpdmEndpointsMappingUtils {
 
 
     public static void setBusinessPartnerRoles(BusinessPartnerDTO businessPartnerDTO, String bpn, Map<String, Collection<BusinessPartnerRole>> bpnRolesMap) {
-        Collection<BusinessPartnerRole> roles = bpnRolesMap.get(bpn);
-        if (roles != null) {
-            businessPartnerDTO.setSupplier(roles.contains(BusinessPartnerRole.SUPPLIER));
-            businessPartnerDTO.setCustomer(roles.contains(BusinessPartnerRole.CUSTOMER));
+        if (bpnRolesMap != null) {
+            Collection<BusinessPartnerRole> roles = bpnRolesMap.get(bpn);
+            if (roles != null) {
+                businessPartnerDTO.setSupplier(roles.contains(BusinessPartnerRole.SUPPLIER));
+                businessPartnerDTO.setCustomer(roles.contains(BusinessPartnerRole.CUSTOMER));
+            }
         }
     }
 
@@ -91,7 +93,7 @@ public class BpdmEndpointsMappingUtils {
             businessPartnerDTO.setCity(alternativeAddress.getCity());
             businessPartnerDTO.setCountry(alternativeAddress.getCountry());
             businessPartnerDTO.setZipCode(alternativeAddress.getPostalCode());
-            // Assumindo que a alternativa também tem coordenadas geográficas
+
             if (alternativeAddress.getGeographicCoordinates() != null) {
                 GateGeoCoordinateDto coordinates = alternativeAddress.getGeographicCoordinates();
                 businessPartnerDTO.setLatitude(String.valueOf(coordinates.getLatitude()));

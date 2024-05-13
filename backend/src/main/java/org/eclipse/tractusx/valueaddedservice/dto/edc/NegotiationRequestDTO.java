@@ -36,4 +36,7 @@ public class NegotiationRequestDTO {
     @Schema(description = "Identifier of the offer associated with the catalog item", example = "offer123", required = true)
     private String offerId;
 
+    @Schema(description = "Specific usage purpose or partner category", example = "cx.bpdm.pool:1")
+    private String usagePurpose;
+
 }

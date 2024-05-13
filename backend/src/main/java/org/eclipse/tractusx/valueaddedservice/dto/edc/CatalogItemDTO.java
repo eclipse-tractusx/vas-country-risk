@@ -44,5 +44,9 @@ public class CatalogItemDTO {
 
     @Schema(description = "Description of the catalog item", example = "Grants the Catena-X Member read access to the Pool API...")
     private String description;
+
+    @Schema(description = "Specific usage purpose or partner category", example = "cx.bpdm.pool:1")
+    private String usagePurpose;
 }
+
 
