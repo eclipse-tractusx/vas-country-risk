@@ -56,10 +56,12 @@ export const UserInfo = () => {
     },
   ];
 
+  const cleanedRoles = companyUser.roles.map((role) => role.trim());
   // Add negotiation link for users with Negotiator or Admin roles
   if (
-    companyUser.roles.includes("Negotiator") ||
-    companyUser.roles.includes("Admin")
+    cleanedRoles.includes("Negotiator") ||
+    cleanedRoles.includes("Admin") ||
+    cleanedRoles.includes("Company Admin")
   ) {
     menuItems = [
       {
@@ -87,5 +89,3 @@ export const UserInfo = () => {
     </div>
   );
 };
-
-export default UserInfo;
