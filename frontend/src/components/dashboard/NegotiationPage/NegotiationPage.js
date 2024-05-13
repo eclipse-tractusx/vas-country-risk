@@ -111,6 +111,7 @@ const NegotiationPage = () => {
     const negotiationRequest = selectedItems.map((item) => ({
       id: item.id,
       offerId: item.offerId,
+      usagePurpose: item.usagePurpose,
     }));
 
     try {
