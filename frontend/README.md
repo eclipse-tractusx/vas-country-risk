@@ -21,13 +21,12 @@ For more information and documentation, please refer to [documentation](https://
 
 For topics and information discussion, please refer to [Eclipse Country Risk Room](https://chat.eclipse.org/#/room/#tools.tractusx-country-risk:matrix.eclipse.org)
 
-## Demo environments
+## Components
 
-There are two demo environments provided by Catena-X:
+This URL is used to reuse components already developed by the Portal team.
 
-* INT: https://country-risk-dashboard.int.demo.catena-x.net/
-* DEV: https://country-risk-dashboard.dev.demo.catena-x.net/
-* Components: https://portal.dev.demo.catena-x.net/_storybook/
+* [portal-shared-components](https://github.com/eclipse-tractusx/portal-shared-components): https://eclipse-tractusx.github.io/portal-shared-components
+
 # Getting Started and How to run locally 
 
 You can follow our installation guides to install and run our application:

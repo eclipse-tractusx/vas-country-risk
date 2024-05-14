@@ -2,9 +2,7 @@
 
 This project is a Frontend web application for the value added services project written in React.JS
 
-* INT: https://country-risk-dashboard.int.demo.catena-x.net/
-* DEV: https://country-risk-dashboard.dev.demo.catena-x.net/
-* Components: https://portal.dev.demo.catena-x.net/_storybook/
+* Components: https://eclipse-tractusx.github.io/portal-shared-components
 
 # Getting Started and How to run locally
 
