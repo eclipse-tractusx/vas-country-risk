@@ -160,10 +160,6 @@ const NegotiationPage = () => {
     cleanedRoles.includes("Admin") ||
     cleanedRoles.includes("Company Admin"); // Adjust the role check as necessary
 
-  console.log("cleanedRoles", cleanedRoles);
-  console.log("companyUser", companyUser);
-  console.log("userCanNegotiate", userCanNegotiate);
-
   return (
     <div className="negotiation-page">
       {userCanNegotiate ? (
