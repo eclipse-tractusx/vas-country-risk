@@ -18,13 +18,6 @@ Table of content:
 This project in mainly used as a microservice for the Value Added Service Frontend project. It feeds information from
 an database and also from other CatenaX microservices
 
-## Running environments
-
-| Environment | Link                                                    |
-|-------------|---------------------------------------------------------|
-| Dev         | https://vas-country-risk-backend.dev.demo.catena-x.net/ |
-| Int         | https://vas-country-risk-backend.int.demo.catena-x.net/ |
-
 ## Getting started
 
 ### Prerequisites

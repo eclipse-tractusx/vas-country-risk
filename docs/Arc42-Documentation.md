@@ -530,7 +530,7 @@ classDiagram
 # Interfaces
 
 Please Check Swagger Documentation
-https://vas-country-risk-backend.dev.demo.catena-x.net/swagger-ui/index.html#/
+https://${hostname}:${port}/swagger-ui/index.html#/
 
 
 ### Endpoint explanation:

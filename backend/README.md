@@ -35,12 +35,6 @@ Source:
 * [temurin-build](https://github.com/adoptium/temurin-build)
 * [temurin docker repo info](https://github.com/docker-library/repo-info/tree/master/repos/eclipse-temurin)
 
-## Running environments
-
-| Environment | Link                                                    |
-|-------------|---------------------------------------------------------|
-| Dev         | https://vas-country-risk-backend.dev.demo.catena-x.net/ |
-| Int         | https://vas-country-risk-backend.int.demo.catena-x.net/ |
 
 ## Helm chart
 
