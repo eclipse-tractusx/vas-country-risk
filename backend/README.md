@@ -71,7 +71,7 @@ The project is mainly configured to use Postgres as a Database. For this, you ne
 directory and run the following command `docker compose up`. This will mount the database using the docker compose file
 in the project. The connection configurations for this database are in the application-local.yml.
 
-See [Installation guide](https://github.com/eclipse-tractusx/vas-country-risk-backend/blob/main/backend/INSTALL.md)
+See [Installation guide](https://github.com/eclipse-tractusx/vas-country-risk/blob/main/backend/INSTALL.md)
 
 ## Project Structure
 
