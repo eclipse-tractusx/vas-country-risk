@@ -27,7 +27,7 @@ countryRiskFrontend:
     registry: "tractusx"
     # -- Name of the docker image
     name: "vas-country-risk"
-    pullPolicy: Always
+    pullPolicy: IfNotPresent
     # -- Overrides the image tag whose default is the chart appVersion.
     tag: ""
 
@@ -169,7 +169,7 @@ countryRiskBackend:
     registry: "tractusx"
     # -- Name of the docker image
     name: "vas-country-risk-backend"
-    pullPolicy: Always
+    pullPolicy: IfNotPresent
     # -- Overrides the image tag whose default is the chart appVersion.
     tag: ""
 
