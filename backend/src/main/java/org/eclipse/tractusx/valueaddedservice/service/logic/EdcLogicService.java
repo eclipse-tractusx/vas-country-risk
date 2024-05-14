@@ -57,6 +57,9 @@ public class EdcLogicService {
     @Value("${application.bpdm.apiKey}")
     private String apiKey;
 
+    @Value("${application.bpdm.gateProviderId}")
+    private String gateProviderId;
+
     @Autowired
     private EdcProperties edcProperties;
 
@@ -64,12 +67,11 @@ public class EdcLogicService {
     ObjectMapper objectMapper;
 
 
-
-    public Mono<String> sendFinalRequest(NegotiationResponseDTO edrResponse, Object body)  {
+    public Mono<String> sendFinalRequest(NegotiationResponseDTO edrResponse, Object body,String path) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.set("Authorization", edrResponse.getAuthCode());
-        return executePostRequest(edrResponse.getEndpoint(), body, headers, response -> response);
+        return executePostRequest(edrResponse.getEndpoint()+path, body, headers, response -> response);
     }
 
 
@@ -83,13 +85,13 @@ public class EdcLogicService {
         log.debug("Request Body: " + requestBody);
 
 
-        return invokeService.executeRequest("default",consumerManagementUrl + "/v2/catalog/request/", HttpMethod.POST, httpEntity, this::mapResponseFromQueryCatalog).block();
+        return invokeService.executeRequest("default", consumerManagementUrl + "/v2/catalog/request/", HttpMethod.POST, httpEntity, this::mapResponseFromQueryCatalog).block();
     }
 
     // Helper methods
     private <T> Mono<T> executePostRequest(String url, Object body, HttpHeaders headers, Function<String, T> responseMapper) {
         HttpEntity<Object> httpEntity = new HttpEntity<>(body, headers);
-        return invokeService.executeRequest("default",url, HttpMethod.POST, httpEntity, responseMapper);
+        return invokeService.executeRequest("default", url, HttpMethod.POST, httpEntity, responseMapper);
     }
 
     private HttpHeaders createHttpHeaders() {
@@ -101,22 +103,32 @@ public class EdcLogicService {
 
     private Map<String, Object> createCatalogRequestBody() {
         Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("@context", new HashMap<>());
-        requestBody.put("protocol", "dataspace-protocol-http");
-        requestBody.put("providerUrl", gateProviderProtocolUrl);
 
+        // Definindo @context
+        Map<String, String> context = new HashMap<>();
+        context.put("@vocab", "https://w3id.org/edc/v0.0.1/ns/");
+        requestBody.put("@context", context);
+
+        // Adicionando @type
+        requestBody.put("@type", "CatalogRequest");
+
+        // Adicionando counterPartyAddress e counterPartyId
+        requestBody.put("counterPartyAddress", gateProviderProtocolUrl);  // Use a variável correta para o URL
+        requestBody.put("counterPartyId", gateProviderId);  // Adicione uma variável ou valor fixo para o ID
+
+        // Protocolo
+        requestBody.put("protocol", "dataspace-protocol-http");
+
+        // querySpec conforme definido no JSON
         Map<String, Object> querySpec = new HashMap<>();
         querySpec.put("offset", 0);
-        querySpec.put("limit", 100);
-        querySpec.put("filter", "");
-
-        Map<String, Integer> range = new HashMap<>();
-        range.put("from", 0);
-        range.put("to", 100);
-        querySpec.put("range", range);
-        querySpec.put("criterion", "");
+        querySpec.put("limit", 50); // ajuste conforme necessário
+        querySpec.put("sortOrder", "DESC");
+        querySpec.put("sortField", "fieldName");
+        querySpec.put("filterExpression", new ArrayList<>()); // Lista vazia como no JSON original
 
         requestBody.put("querySpec", querySpec);
+
         return requestBody;
     }
 
@@ -129,35 +141,46 @@ public class EdcLogicService {
             JsonNode datasets = responseJson.path("dcat:dataset");
 
             if (datasets.isArray()) {
-                datasets.forEach(dataset -> {
-                    String type = dataset.path("dct:type").asText().replace("cx-taxo:", "");
+                for (JsonNode dataset : datasets) {
+                    String fullType = dataset.path("https://purl.org/dc/terms/type").asText();
+                    String type = fullType.replace("cx-taxo:", "");
                     if (edcProperties.getProviders().contains(type)) {
-                        catalogItems.add(processDatasetAndCreateDTO(dataset));
+                        catalogItems.add(processDatasetAndCreateDTO(dataset, type));
                     }
-                });
-            } else if (!datasets.isMissingNode()) {
-                String type = datasets.path("dct:type").asText().replace("cx-taxo:", "");
-                if (edcProperties.getProviders().contains(type)) {
-                    catalogItems.add(processDatasetAndCreateDTO(datasets));
                 }
             }
         } catch (IOException e) {
-            log.error("Error parsing response JSON: {}", e.getMessage());
+            log.error("Error parsing response JSON: " + e.getMessage());
         }
 
         return catalogItems;
     }
 
-    private CatalogItemDTO processDatasetAndCreateDTO(JsonNode dataset) {
+    private CatalogItemDTO processDatasetAndCreateDTO(JsonNode dataset, String provider) {
         String id = dataset.get("@id").asText();
         String offerId = dataset.path("odrl:hasPolicy").get("@id").asText();
-        String subject = dataset.path("dct:subject").asText().replace("cx-taxo:","");
-        String description = dataset.path("dct:description").asText();
-        String provider = dataset.path("dct:type").asText().replace("cx-taxo:","");
+        String subject = dataset.path("https://purl.org/dc/terms/subject").asText();
+        String description = dataset.path("https://purl.org/dc/terms/description").asText();
 
-        return new CatalogItemDTO(id, offerId, provider, subject, description);
+        // Buscar dinamicamente a restrição de "UsagePurpose"
+        JsonNode constraints = dataset.path("odrl:hasPolicy")
+                .path("odrl:permission")
+                .path("odrl:constraint")
+                .path("odrl:and");
+        String usagePurpose = "";
+
+        if (constraints.isArray()) {
+            for (JsonNode constraint : constraints) {
+                String leftOperand = constraint.path("odrl:leftOperand").asText();
+                if ("https://w3id.org/catenax/policy/UsagePurpose".equals(leftOperand)) {
+                    usagePurpose = constraint.path("odrl:rightOperand").asText();
+                    break;
+                }
+            }
+        }
+
+        return new CatalogItemDTO(id, offerId, provider, subject, description, usagePurpose);
     }
-
 
 
 

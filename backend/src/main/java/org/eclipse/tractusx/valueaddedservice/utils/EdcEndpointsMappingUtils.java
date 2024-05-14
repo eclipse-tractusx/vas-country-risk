@@ -104,42 +104,57 @@ public class EdcEndpointsMappingUtils {
     public static String extractTransferProcessId(String jsonResponse) {
         ObjectMapper objectMapper = new ObjectMapper();
         String transferProcessId = "";
+
         try {
             JsonNode rootNode = objectMapper.readTree(jsonResponse);
-            if (rootNode.isArray() && !rootNode.isEmpty()) {
-                // Assuming you want the transferProcessId from the first object in the array
-                JsonNode firstItem = rootNode.get(0);
-                if (firstItem != null && firstItem.has("transferProcessId")) {
-                    transferProcessId =  firstItem.get("transferProcessId").asText("");
+            // Handle both array and single object JSON responses
+            if (rootNode.isArray()) {
+                // Check for non-empty array
+                for (JsonNode item : rootNode) {
+                    if (item.has("transferProcessId")) {
+                        transferProcessId = item.get("transferProcessId").asText("");
+                        break; // Break after finding the first valid transferProcessId
+                    }
                 }
+            } else if (rootNode.has("transferProcessId")) {
+                // Handle single object JSON
+                transferProcessId = rootNode.get("transferProcessId").asText("");
             }
         } catch (IOException e) {
-            log.error("Error parsing transfer process ID from JSON: {}", e.getMessage());
-            throw new RuntimeException("Error extracting transfer process ID");
+            log.error("Error parsing JSON response: {}", e.getMessage());
+            throw new RuntimeException("Error extracting transfer process ID from JSON", e);
         }
 
-        isEmpty(transferProcessId,"extractTransferProcessId",jsonResponse);
+        // Check if the transferProcessId was found
+        if (transferProcessId.isEmpty()) {
+            log.error("No transferProcessId found in JSON response");
+            throw new IllegalStateException("No transferProcessId found in JSON response");
+        }
+
         return transferProcessId;
     }
 
 
-    public static EDRResponseDTO getAuthCodeAndEndpoint(String jsonResponse) {
+    public static EDRResponseDTO extractAuthenticationDetails(String jsonResponse) {
         ObjectMapper objectMapper = new ObjectMapper();
+        EDRResponseDTO response = new EDRResponseDTO();
+
         try {
             JsonNode rootNode = objectMapper.readTree(jsonResponse);
-            EDRResponseDTO response = new EDRResponseDTO();
-            if (rootNode.has("authCode")) {
-                response.setAuthCode(rootNode.get("authCode").asText());
+
+            // Check if the root node is the object and extract data directly
+            if (rootNode.has("authorization")) {
+                response.setAuthCode(rootNode.get("authorization").asText());
             }
             if (rootNode.has("endpoint")) {
                 response.setEndpoint(rootNode.get("endpoint").asText());
             }
-            return response;
         } catch (IOException e) {
-            log.error("Error parsing JSON: {}", e.getMessage());
-            throw new RuntimeException("Error Getting authCode or Endpoint");
+            log.error("Error parsing JSON for authentication details: {}", e.getMessage());
+            throw new RuntimeException("Error extracting authentication details from JSON", e);
         }
 
+        return response;
     }
 
     private static void isEmpty(String extractMessage, String operation, String json){

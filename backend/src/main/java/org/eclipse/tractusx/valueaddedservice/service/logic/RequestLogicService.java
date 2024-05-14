@@ -93,7 +93,7 @@ public class RequestLogicService {
         List<BusinessPartnerDTO> finalDtoList = new ArrayList<>();
 
         // Check for the presence of required keys in the negotiationResponseDTOS map
-        List<String> requiredKeys = Arrays.asList("POST_GENERIC_OUTPUT_SEARCH", "POST_BPL_POOL_SEARCH", "POST_BPS_POOL_SEARCH", "POST_BPA_POOL_SEARCH");
+        List<String> requiredKeys = Arrays.asList("27832ff3-11d7-45c9-9b95-fbaadd43db8a", "d53c760d-ae97-450b-8a49-7007b42cc645");
         for (String key : requiredKeys) {
             if (!negotiationResponseDTOS.containsKey(key)) {
                 log.error("Missing required negotiation response DTO for key: {}", key);
@@ -103,29 +103,31 @@ public class RequestLogicService {
 
         log.info("Sequential requests enabled. Starting process to fetch external business partners from generic.");
 
-        String genericEndPointResponse = edcLogicService.sendFinalRequest(negotiationResponseDTOS.get("POST_GENERIC_OUTPUT_SEARCH"), Collections.emptyList()).block();
+        String genericEndPointResponse = edcLogicService.sendFinalRequest(negotiationResponseDTOS.get("d53c760d-ae97-450b-8a49-7007b42cc645"), Collections.emptyList(),"/output/business-partners/search?page=0&size=100").block();
         Map<AddressType, Map<String, Collection<BusinessPartnerRole>>> map = processBusinessPartners(JsonMappingUtils.mapContentToListOfBusinessPartnerOutputDto(genericEndPointResponse));
         log.info("Processed business partners from generic endpoint");
 
         log.info("Starting process to fetch external business partners from legal entity on pool.");
         List<String> bpnlList = getBpnsByAddressType(map, AddressType.LegalAddress);
-        String bpnl = edcLogicService.sendFinalRequest(negotiationResponseDTOS.get("POST_BPL_POOL_SEARCH"), bpnlList).block();
+        Map<String, List<String>> legalEntityBody = new HashMap<>();
+        legalEntityBody.put("bpnLs", bpnlList);
+        String bpnl = edcLogicService.sendFinalRequest(negotiationResponseDTOS.get("27832ff3-11d7-45c9-9b95-fbaadd43db8a"), legalEntityBody,"/members/legal-entities/search?page=0&size=100").block();
         List<PoolLegalEntityDto> poolLegalEntityDtos = JsonMappingUtils.mapToListOfPoolLegalEntityDto(bpnl);
         log.info("Processed business partners from legal entity on pool, list size {}", poolLegalEntityDtos.size());
 
         log.info("Starting process to fetch external business partners from site on pool.");
         List<String> bpnsList = getBpnsByAddressType(map, AddressType.SiteMainAddress);
         Map<String, List<String>> sitesBody = new HashMap<>();
-        sitesBody.put("sites", bpnsList);
-        String bpns = edcLogicService.sendFinalRequest(negotiationResponseDTOS.get("POST_BPS_POOL_SEARCH"), sitesBody).block();
+        sitesBody.put("siteBpns", bpnsList);
+        String bpns = edcLogicService.sendFinalRequest(negotiationResponseDTOS.get("27832ff3-11d7-45c9-9b95-fbaadd43db8a"), sitesBody,"/members/sites/search?page=0&size=100").block();
         List<PoolSiteDto> poolSiteDtoList = JsonMappingUtils.mapJsonToListOfPoolSiteDto(bpns);
         List<String> bpnaList = getBpnsByAddressType(map, AddressType.AdditionalAddress);
         log.info("Processed business partners from site on pool, list size {}", poolSiteDtoList.size());
 
         log.info("Starting process to fetch external business partners from address on pool.");
         Map<String, List<String>> addressesBody = new HashMap<>();
-        addressesBody.put("addresses", bpnaList);
-        String bpna = edcLogicService.sendFinalRequest(negotiationResponseDTOS.get("POST_BPA_POOL_SEARCH"), addressesBody).block();
+        addressesBody.put("addressBpns", bpnaList);
+        String bpna = edcLogicService.sendFinalRequest(negotiationResponseDTOS.get("27832ff3-11d7-45c9-9b95-fbaadd43db8a"), addressesBody,"/members/addresses/search?page=0&size=10").block();
         List<PoolAddressDto> poolAddressDtos = JsonMappingUtils.mapJsonToListOfPoolAddressDto(bpna);
         log.info("Processed business partners from address on pool, list size {}", poolAddressDtos.size());
 
