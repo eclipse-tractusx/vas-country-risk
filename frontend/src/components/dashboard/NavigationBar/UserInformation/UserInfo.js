@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState, useRef, useContext } from "react";
+import { useState, useRef, useContext, useEffect } from "react";
 import {
   UserAvatar,
   UserMenu,
@@ -36,7 +36,16 @@ import { CompanyUserContext } from "../../../../contexts/companyuser";
 export const UserInfo = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const wrapperRef = useRef(null);
-  const { companyUser } = useContext(CompanyUserContext);
+  const { companyUser, setCompanyUser } = useContext(CompanyUserContext);
+  const [cleanedRoles, setCleanedRoles] = useState([]);
+
+  useEffect(() => {
+    // Clean up roles by trimming whitespace
+    if (companyUser && companyUser.roles) {
+      const cleanedRoles = companyUser.roles.map((role) => role.trim());
+      setCleanedRoles(cleanedRoles);
+    }
+  }, [companyUser]);
 
   const openCloseMenu = () => setMenuOpen((prevVal) => !prevVal);
 
@@ -56,7 +65,6 @@ export const UserInfo = () => {
     },
   ];
 
-  const cleanedRoles = companyUser.roles.map((role) => role.trim());
   // Add negotiation link for users with Negotiator or Admin roles
   if (
     cleanedRoles.includes("Negotiator") ||
@@ -89,3 +97,5 @@ export const UserInfo = () => {
     </div>
   );
 };
+
+export default UserInfo;
