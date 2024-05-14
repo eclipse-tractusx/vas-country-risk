@@ -1,0 +1,2329 @@
+{
+	"info": {
+		"_postman_id": "375c1284-bb44-4711-bef2-2192c1e42039",
+		"name": "EDC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29921765"
+	},
+	"item": [
+		{
+			"name": "Country Risk",
+			"item": [
+				{
+					"name": "Setup Country Risk Provider",
+					"item": [
+						{
+							"name": "Assets",
+							"item": [
+								{
+									"name": "Try Dynamic Asset",
+									"item": [
+										{
+											"name": "Create Asset",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "x-api-key",
+														"value": "{{X-API-KEY}}"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"@context\": {\r\n        \"dct\": \"https://purl.org/dc/terms/\",\r\n        \"cx-taxo\": \"https://w3id.org/catenax/taxonomy#\",\r\n        \"cx-common\": \"https://w3id.org/catenax/ontology/common#\",\r\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n    },\r\n    \"@type\": \"Asset\",\r\n    \"@id\": \"{{ASSET_COUNTRY_RISK_SHARING_APIS}}\",\r\n    \"properties\": {\r\n        \"description\": \"GET Sharing States ({{COUNTRY_RISK_BACKEND_URL}}/swagger-ui/index.html#/Sharing Controller/getAllRatingsScoresForEachBpn)\",\r\n        \"company\": \"{{PROVIDER_ID}}\",\r\n        \"dct:type\": {\r\n            \"@id\": \"cx-taxo:ContryRisk\"\r\n        },\r\n        \"dct:subject\": {\r\n            \"@id\": \"cx-taxo:FullAccessCountryRiskSharingForVASUser\"\r\n        },\r\n        \"dct:description\": \"Grants unrestricted access to business partner data for the Data Consumer of the Country Risk Dashboard and Sharing API. This includes data identified via BPN and enriched from the pool. It allows the use of risk categorizations from various indices within the data consumer's company. Data usage is covered by the framework agreement for the gate.\",\r\n        \"cx-common:version\": \"2.0.0\"\r\n    },\r\n    \"dataAddress\": {\r\n        \"@type\": \"DataAddress\",\r\n        \"type\": \"HttpData\",\r\n        \"baseUrl\": \"{{COUNTRY_RISK_BACKEND_URL}}{{COUNTRY_RISK_SHARING_PATH}}\",\r\n        \"oauth2:tokenUrl\": \"{{ASSET_TOKEN_URL}}\",\r\n        \"oauth2:clientId\": \"{{ASSET_CLIENT_ID}}\",\r\n        \"oauth2:clientSecretKey\": \"{{ASSET_CLIENT_SECRET}}\",\r\n        \"proxyPath\": \"true\",\r\n        \"proxyQueryParams\": \"true\"\r\n    }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{PROVIDER_URL}}/management/v3/assets",
+													"host": [
+														"{{PROVIDER_URL}}"
+													],
+													"path": [
+														"management",
+														"v3",
+														"assets"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Delete Asset",
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "x-api-key",
+														"value": "{{X-API-KEY}}",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{PROVIDER_URL}}/management/v3/assets/{{ASSET_COUNTRY_RISK_SHARING_APIS}}",
+													"host": [
+														"{{PROVIDER_URL}}"
+													],
+													"path": [
+														"management",
+														"v3",
+														"assets",
+														"{{ASSET_COUNTRY_RISK_SHARING_APIS}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Get Asset",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "x-api-key",
+														"value": "{{X-API-KEY}}",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{PROVIDER_URL}}/management/v3/assets/{{ASSET_COUNTRY_RISK_SHARING_APIS}}",
+													"host": [
+														"{{PROVIDER_URL}}"
+													],
+													"path": [
+														"management",
+														"v3",
+														"assets",
+														"{{ASSET_COUNTRY_RISK_SHARING_APIS}}"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Policy",
+							"item": [
+								{
+									"name": "Create Policy",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"@context\": {\r\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n    },\r\n    \"@id\": \"{{POLICY_ID}}\",\r\n    \"policy\": {\r\n        \"@context\": \"http://www.w3.org/ns/odrl.jsonld\",\r\n        \"@type\": \"Set\",\r\n        \"odrl:permission\": [\r\n            {\r\n                \"odrl:action\": \"USE\",\r\n                \"odrl:constraint\": {\r\n                    \"@type\": \"LogicalConstraint\",\r\n                    \"odrl:or\": [\r\n                        {\r\n                            \"@type\": \"Constraint\",\r\n                            \"odrl:leftOperand\": \"BusinessPartnerNumber\",\r\n                            \"odrl:operator\": {\r\n                                \"@id\": \"odrl:eq\"\r\n                            },\r\n                            \"odrl:rightOperand\": \"{{BPNL_SHARING_MEMBER}}\"\r\n                        }\r\n                    ]\r\n                }\r\n            }\r\n        ]\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{PROVIDER_URL}}/management/v2/policydefinitions",
+											"host": [
+												"{{PROVIDER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"policydefinitions"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Policy Framework",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"@context\": [\r\n        \"https://w3id.org/tractusx/policy/v1.0.0\",\r\n        \"http://www.w3.org/ns/odrl.jsonld\",\r\n        {\r\n            \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n        }\r\n    ],\r\n    \"@type\": \"PolicyDefinitionRequestDto\",\r\n    \"@id\": \"{{POLICY_ID}}\",\r\n    \"policy\": {\r\n        \"@type\": \"Set\",\r\n        \"profile\": \"profile2405\",\r\n        \"permission\": [\r\n            {\r\n                \"action\": \"use\",\r\n                \"constraint\": {\r\n                    \"and\": [\r\n                        {\r\n                            \"leftOperand\": \"FrameworkAgreement.businesspartner\",\r\n                            \"operator\": \"eq\",\r\n                            \"rightOperand\": \"active\"\r\n                        },\r\n                        {\r\n                            \"leftOperand\": \"UsagePurpose\",\r\n                            \"operator\": \"eq\",\r\n                            \"rightOperand\": \"\"\r\n                        }\r\n                    ]\r\n                }\r\n            }\r\n        ]\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{PROVIDER_URL}}/management/v2/policydefinitions",
+											"host": [
+												"{{PROVIDER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"policydefinitions"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Policy",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{PROVIDER_URL}}/management/v2/policydefinitions/{{POLICY_ID}}",
+											"host": [
+												"{{PROVIDER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"policydefinitions",
+												"{{POLICY_ID}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get All Policy",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"@context\": {\r\n    \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n  },\r\n  \"@type\": \"QuerySpec\",\r\n  \"offset\": 0,\r\n  \"limit\": 10,\r\n  \"sortOrder\": \"DESC\",\r\n  \"filterExpression\": []\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{PROVIDER_URL}}/management/v2/policydefinitions/request",
+											"host": [
+												"{{PROVIDER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"policydefinitions",
+												"request"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Policy",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{PROVIDER_URL}}/management/v2/policydefinitions/{{POLICY_ID}}",
+											"host": [
+												"{{PROVIDER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"policydefinitions",
+												"{{POLICY_ID}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Contract",
+							"item": [
+								{
+									"name": "Create Contract",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"@context\": {\r\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n    },\r\n    \"@id\": \"{{CONTRACT_ID}}\",\r\n    \"@type\": \"ContractDefinition\",\r\n    \"accessPolicyId\": \"{{POLICY_ID}}\",\r\n    \"contractPolicyId\": \"{{POLICY_ID}}\",\r\n    \"assetsSelector\": {\r\n        \"@type\": \"CriterionDto\",\r\n        \"operandLeft\": \"{{EDC_NAMESPACE}}id\",\r\n        \"operator\": \"in\",\r\n        \"operandRight\": [\r\n            \"{{ASSET_COUNTRY_RISK_SHARING_APIS}}\"\r\n        ]\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{PROVIDER_URL}}/management/v2/contractdefinitions",
+											"host": [
+												"{{PROVIDER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"contractdefinitions"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get All Contract Agreements",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"@context\": {\r\n    \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n  },\r\n  \"@type\": \"QuerySpec\",\r\n  \"offset\": 0,\r\n  \"limit\": 10,\r\n  \"sortOrder\": \"DESC\",\r\n  \"filterExpression\": []\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{PROVIDER_URL}}/management/v2/contractagreements/request",
+											"host": [
+												"{{PROVIDER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"contractagreements",
+												"request"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Contract",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{PROVIDER_URL}}/management/v2/contractdefinitions/{{CONTRACT_ID}}",
+											"host": [
+												"{{PROVIDER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"contractdefinitions",
+												"{{CONTRACT_ID}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Contracts",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"@context\": {\r\n    \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n  },\r\n  \"@type\": \"QuerySpec\",\r\n  \"offset\": 5,\r\n  \"limit\": 10,\r\n  \"sortOrder\": \"DESC\",\r\n  \"sortField\": \"fieldName\",\r\n  \"filterExpression\": []\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{PROVIDER_URL}}/management/v2/contractdefinitions/{{CONTRACT_ID}}",
+											"host": [
+												"{{PROVIDER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"contractdefinitions",
+												"{{CONTRACT_ID}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Negotiate Country Risk Provider",
+					"item": [
+						{
+							"name": "Query Catalog",
+							"item": [
+								{
+									"name": "Query Catalog",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"@context\": {\r\n    \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n  },\r\n  \"@type\": \"CatalogRequest\",\r\n  \"counterPartyAddress\": \"{{PROVIDER_URL_DSP}}\",\r\n  \"counterPartyId\": \"{{PROVIDER_ID}}\",\r\n  \"protocol\": \"dataspace-protocol-http\",\r\n  \"querySpec\": {\r\n    \"offset\": 0,\r\n    \"limit\": 50,\r\n    \"sortOrder\": \"DESC\",\r\n    \"sortField\": \"fieldName\",\r\n    \"filterExpression\": []\r\n  }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{CONSUMER_URL}}/management/v2/catalog/request",
+											"host": [
+												"{{CONSUMER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"catalog",
+												"request"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Negotiate",
+							"item": [
+								{
+									"name": "Initiate EDR Negotation",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"// Parse the JSON response",
+													"let responseJson = pm.response.json();",
+													"",
+													"// Extract the \"@id\" value",
+													"let negotiationId = responseJson[\"@id\"];",
+													"",
+													"// Check if negotiationId is not undefined or empty",
+													"if (negotiationId) {",
+													"    // Save negotiationId as an environment variable",
+													"    pm.collectionVariables.set(\"negotiationId\", negotiationId);",
+													"    console.log(\"Negotiation ID saved:\", negotiationId);",
+													"} else {",
+													"    console.log(\"Negotiation ID not found in the response.\");",
+													"}",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"@context\": {\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\",\n        \"odrl\": \"http://www.w3.org/ns/odrl/2/\"\n    },\n    \"@type\": \"ContractRequest\",\n    \"counterPartyAddress\": \"{{PROVIDER_URL_DSP}}\",\n    \"protocol\": \"dataspace-protocol-http\",\n    \"counterPartyId\": \"{{PROVIDER_ID}}\",\n    \"policy\": {\n        \"@id\": \"OFFERID\",\n        \"@type\": \"odrl:Offer\",\n        \"@context\": \"http://www.w3.org/ns/odrl.jsonld\",\n        \"odrl:permission\": {\n            \"odrl:target\": \"{{ASSET_COUNTRY_RISK_SHARING_APIS}}\",\n            \"odrl:action\": {\n                \"odrl:type\": \"USE\"\n            },\n            \"odrl:constraint\": {\n                \"odrl:or\": {\n                    \"odrl:leftOperand\": \"BusinessPartnerNumber\",\n                    \"odrl:operator\": {\n                        \"@id\": \"odrl:eq\"\n                    },\n                    \"odrl:rightOperand\": \"{{BPNL_SHARING_MEMBER}}\"\n                }\n            }\n        },\n        \"odrl:prohibition\": [],\n        \"odrl:obligation\": [],\n        \"odrl:target\": {\n            \"@id\": \"{{ASSET_COUNTRY_RISK_SHARING_APIS}}\"\n        },\n        \"assigner\": \"{{PROVIDER_ID}}\"\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{CONSUMER_URL}}/management/v2/edrs",
+											"host": [
+												"{{CONSUMER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"edrs"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Initiate EDR Negotation Framework Policy",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"// Parse the JSON response",
+													"let responseJson = pm.response.json();",
+													"",
+													"// Extract the \"@id\" value",
+													"let negotiationId = responseJson[\"@id\"];",
+													"",
+													"// Check if negotiationId is not undefined or empty",
+													"if (negotiationId) {",
+													"    // Save negotiationId as an environment variable",
+													"    pm.collectionVariables.set(\"negotiationId\", negotiationId);",
+													"    console.log(\"Negotiation ID saved:\", negotiationId);",
+													"} else {",
+													"    console.log(\"Negotiation ID not found in the response.\");",
+													"}",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"@context\": [\n        \"https://w3id.org/tractusx/policy/v1.0.0\",\n        \"http://www.w3.org/ns/odrl.jsonld\",\n        {\n            \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\",\n            \"cx-policy\": \"https://w3id.org/catenax/policy/\"\n        }\n    ],\n    \"@type\": \"ContractRequest\",\n    \"counterPartyAddress\": \"{{PROVIDER_URL_DSP}}\",\n    \"protocol\": \"dataspace-protocol-http\",\n    \"counterPartyId\": \"{{PROVIDER_ID}}\",\n    \"policy\": {\n        \"@id\": \"OFFERID\",\n        \"@type\": \"Offer\",\n        \"permission\": [\n            {\n                \"target\": \"{{ASSET_COUNTRY_RISK_SHARING_APIS}}\",\n                \"action\": \"use\",\n                \"constraint\": {\n                    \"and\": [\n                        {\n                            \"leftOperand\": \"cx-policy:FrameworkAgreement\",\n                            \"operator\": \"eq\",\n                            \"rightOperand\": \"businessPartner:1.0\"\n                        },\n                        {\n                            \"leftOperand\": \"UsagePurpose\",\n                            \"operator\": \"eq\",\n                            \"rightOperand\": \"\"\n                        }\n                    ]\n                }\n            }\n        ],\n        \"target\": \"{{ASSET_COUNTRY_RISK_SHARING_APIS}}\",\n        \"assigner\": \"{{PROVIDER_ID}}\"\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{CONSUMER_URL}}/management/v2/edrs",
+											"host": [
+												"{{CONSUMER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"edrs"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GET Contract Negotation By Id",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"// Parse the JSON response",
+													"let responseJson = pm.response.json();",
+													"",
+													"// Extract the \"contractAgreementId\" value",
+													"let contractAgreementId = responseJson[\"contractAgreementId\"];",
+													"",
+													"// Check if contractAgreementId is not undefined or empty",
+													"if (contractAgreementId) {",
+													"    // Save contractAgreementId as an environment variable",
+													"    pm.collectionVariables.set(\"contractAgreementId\", contractAgreementId);",
+													"    console.log(\"Contract Agreement ID saved:\", contractAgreementId);",
+													"} else {",
+													"    console.log(\"Contract Agreement ID not found in the response.\");",
+													"}",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{CONSUMER_URL}}/management/v2/contractnegotiations/{{negotiationId}}",
+											"host": [
+												"{{CONSUMER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"contractnegotiations",
+												"{{negotiationId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get TransferProcess ID by agreement ID",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Test that the response status code is 200",
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"// Parse the JSON response",
+													"let responseJson = pm.response.json();",
+													"",
+													"// Extract the ID from the response and store it in a variable",
+													"let transferProcessId = responseJson[\"@id\"];",
+													"",
+													"// Log the extracted ID to ensure it's correct",
+													"console.log(\"Extracted Transfer Process ID:\", transferProcessId);",
+													"",
+													"// Save the transferProcessId as an environment variable if it exists",
+													"if (transferProcessId) {",
+													"    pm.collectionVariables.set(\"transferProcessId\", transferProcessId);",
+													"    console.log(\"Transfer Process ID saved:\", transferProcessId);",
+													"} else {",
+													"    console.log(\"No transfer process ID found.\");",
+													"}",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"@context\": {\r\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n    },\r\n    \"assetId\": \"0435bb8b-22d7-4f79-a50f-93611db92bc9\",\r\n    \"counterPartyAddress\": \"{{PROVIDER_URL_DSP}}\",\r\n    \"connectorId\": \"{{PROVIDER_ID}}\",\r\n    \"contractId\": \"{{contractAgreementId}}\",\r\n    \"transferType\": \"HttpData-PULL\",\r\n    \"dataDestination\": {\r\n        \"type\": \"HttpProxy\"\r\n    },\r\n    \"privateProperties\": {\r\n        \"receiverHttpEndpoint\": \"{{BACKEND_SERVICE}}\"\r\n    },\r\n    \"protocol\": \"dataspace-protocol-http\",\r\n    \"callbackAddresses\":{\r\n        \"events\": [\r\n            \"transfer.process.started\"\r\n        ],\r\n        \"uri\": \"http://mock-util-service:80/edr-log\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{CONSUMER_URL}}/management/v2/transferprocesses",
+											"host": [
+												"{{CONSUMER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"transferprocesses"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get EDR by ContractAgreementID",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"var responseJson = pm.response.json();",
+													"var transferProcessId = responseJson[0][\"transferProcessId\"];",
+													"pm.collectionVariables.set(\"transferProcessId\", transferProcessId);"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"@context\": {\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\n    },\n    \"@type\": \"QuerySpec\",\n    \"offset\": 0,\n    \"limit\": 1,\n    \"filterExpression\": [\n        {\n            \"operandLeft\": \"agreementId\",\n            \"operator\": \"=\",\n            \"operandRight\": \"{{contractAgreementId}}\"\n        }\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{CONSUMER_URL}}/management/v2/edrs/request",
+											"host": [
+												"{{CONSUMER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"edrs",
+												"request"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get EDR by TransferProcessID",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Test that the response status code is 200",
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"// Ensure 'responseBody' is declared only once. Use 'let' or 'var' based on your need.",
+													"let resBody = pm.response.json();",
+													"",
+													"// Check if the response contains the \"authorization\" property",
+													"if (resBody.hasOwnProperty(\"authorization\")) {",
+													"    // Get the value of \"authorization\"",
+													"    let authCode = resBody[\"authorization\"];",
+													"",
+													"    // Set the collection variable with the value of \"authorization\"",
+													"    pm.collectionVariables.set(\"AUTH_CODE\", authCode);",
+													"",
+													"    // Log the value to the Postman console",
+													"    console.log(\"Authorization Code saved:\", authCode);",
+													"} else {",
+													"    console.log(\"Response does not contain 'authorization' property.\");",
+													"}",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}"
+											}
+										],
+										"url": {
+											"raw": "{{CONSUMER_URL}}/management/v2/edrs/{{transferProcessId}}/dataaddress?auto_refresh=true",
+											"host": [
+												"{{CONSUMER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"edrs",
+												"{{transferProcessId}}",
+												"dataaddress"
+											],
+											"query": [
+												{
+													"key": "auto_refresh",
+													"value": "true"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Refresh Token",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "grant_type",
+												"value": "refresh_token"
+											},
+											{
+												"key": "refresh_token",
+												"value": ""
+											},
+											{
+												"key": "client_id",
+												"value": "client_id"
+											},
+											{
+												"key": "client_secret",
+												"value": "client_secret"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "grant_type",
+													"value": "refresh_token",
+													"type": "text"
+												},
+												{
+													"key": "refresh_token",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "client_id",
+													"value": "client_id",
+													"type": "text"
+												},
+												{
+													"key": "client_secret",
+													"value": "client_secret",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "https://edc-country-risk-provider-hostname/api/public/token?grant_type=refresh_token&refresh_token=&client_id",
+											"protocol": "https",
+											"host": [
+												"country-risk-edc-provider",
+												"int",
+												"demo",
+												"catena-x",
+												"net"
+											],
+											"path": [
+												"api",
+												"public",
+												"token"
+											],
+											"query": [
+												{
+													"key": "grant_type",
+													"value": "refresh_token"
+												},
+												{
+													"key": "refresh_token",
+													"value": "refresh_token"
+												},
+												{
+													"key": "client_id",
+													"value": "client_id"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Execute Requests",
+							"item": [
+								{
+									"name": "Public Api GetAllRatingsScoresForEachBpn",
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "value",
+													"value": "{{AUTH_CODE}}",
+													"type": "string"
+												},
+												{
+													"key": "key",
+													"value": "Authorization",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{COUNTRY_RISK_PUBLIC_URL}}/getAllRatingsScoresForEachBpn?datasource[]={\n  \"dataSourceName\": \"CPI Rating 2021\",\n  \"yearPublished\": 2021\n}&bpns[]={\n  \"bpn\": \"BPN-0001\",\n  \"country\": \"ES\"\n}&name=John&email=John@email.com&companyName=TestCompany",
+											"host": [
+												"{{COUNTRY_RISK_PUBLIC_URL}}"
+											],
+											"path": [
+												"getAllRatingsScoresForEachBpn"
+											],
+											"query": [
+												{
+													"key": "datasource[]",
+													"value": "{\n  \"dataSourceName\": \"CPI Rating 2021\",\n  \"yearPublished\": 2021\n}"
+												},
+												{
+													"key": "bpns[]",
+													"value": "{\n  \"bpn\": \"BPN-0001\",\n  \"country\": \"ES\"\n}"
+												},
+												{
+													"key": "name",
+													"value": "John"
+												},
+												{
+													"key": "email",
+													"value": "John@email.com"
+												},
+												{
+													"key": "companyName",
+													"value": "TestCompany"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Public Api GetAllRatingsForCompany",
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "value",
+													"value": "{{AUTH_CODE}}",
+													"type": "string"
+												},
+												{
+													"key": "key",
+													"value": "Authorization",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{COUNTRY_RISK_PUBLIC_URL}}/getAllRatingsForCompany?year=2021&name=John&email=John@email.com&companyName=TestCompany",
+											"host": [
+												"{{COUNTRY_RISK_PUBLIC_URL}}"
+											],
+											"path": [
+												"getAllRatingsForCompany"
+											],
+											"query": [
+												{
+													"key": "year",
+													"value": "2021"
+												},
+												{
+													"key": "name",
+													"value": "John"
+												},
+												{
+													"key": "email",
+													"value": "John@email.com"
+												},
+												{
+													"key": "companyName",
+													"value": "TestCompany"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "BPDM",
+			"item": [
+				{
+					"name": "Check Setups",
+					"item": [
+						{
+							"name": "Assets",
+							"item": [
+								{
+									"name": "Get Asset",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"@context\": {\r\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n    },\r\n    \"@type\": \"QuerySpec\",\r\n    \"offset\": 0,\r\n    \"limit\": 10,\r\n    \"sortOrder\": \"DESC\",\r\n    \"sortField\": \"fieldName\",\r\n    \"filterExpression\": []\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{PROVIDER_URL}}/management/v3/assets/request",
+											"host": [
+												"{{PROVIDER_URL}}"
+											],
+											"path": [
+												"management",
+												"v3",
+												"assets",
+												"request"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Policy",
+							"item": [
+								{
+									"name": "Get Policy",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"@context\": {\r\n    \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n  },\r\n  \"@type\": \"QuerySpec\",\r\n  \"offset\": 0,\r\n  \"limit\": 10,\r\n  \"sortOrder\": \"DESC\",\r\n  \"filterExpression\": []\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BPDM_PROVIDER_URL}}/management/v2/policydefinitions/request",
+											"host": [
+												"{{BPDM_PROVIDER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"policydefinitions",
+												"request"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Contracts",
+							"item": [
+								{
+									"name": "Get Contracts",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"@context\": {\r\n    \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n  },\r\n  \"@type\": \"QuerySpec\",\r\n  \"offset\": 0,\r\n  \"limit\": 10,\r\n  \"sortOrder\": \"DESC\",\r\n  \"filterExpression\": []\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BPDM_PROVIDER_URL}}/management/v2/contractdefinitions/request",
+											"host": [
+												"{{BPDM_PROVIDER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"contractdefinitions",
+												"request"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Contract",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"@context\": {\r\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n    },\r\n    \"@id\": \"country-risk-test-to-bpdm4\",\r\n    \"@type\": \"ContractDefinition\",\r\n    \"accessPolicyId\": \"{{POLICY_ID}}\",\r\n    \"contractPolicyId\": \"{{POLICY_ID}}\",\r\n    \"assetsSelector\": {\r\n        \"@type\": \"CriterionDto\",\r\n        \"operandLeft\": \"{{EDC_NAMESPACE}}id\",\r\n        \"operator\": \"in\",\r\n        \"operandRight\": [\r\n            \"ASSETS NEEDEED\"\r\n        ]\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{BPDM_PROVIDER_URL}}/management/v2/contractdefinitions",
+											"host": [
+												"{{BPDM_PROVIDER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"contractdefinitions"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Negotiate Country Risk to BPDM Provider",
+					"item": [
+						{
+							"name": "Query Catalog",
+							"item": [
+								{
+									"name": "Query Catalog",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"@context\": {\r\n    \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n  },\r\n  \"@type\": \"CatalogRequest\",\r\n  \"counterPartyAddress\": \"{{BPDM_PROVIDER_URL_DSP}}\",\r\n  \"counterPartyId\": \"{{PROVIDER_ID}}\",\r\n  \"protocol\": \"dataspace-protocol-http\",\r\n  \"querySpec\": {\r\n    \"offset\": 0,\r\n    \"limit\": 50,\r\n    \"sortOrder\": \"DESC\",\r\n    \"sortField\": \"fieldName\",\r\n    \"filterExpression\": []\r\n  }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{CONSUMER_URL}}/management/v2/catalog/request",
+											"host": [
+												"{{CONSUMER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"catalog",
+												"request"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Select Offer",
+							"item": [
+								{
+									"name": "Select Pool Member Read Access",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"var responseJson = pm.response.json();",
+													"var offerId = responseJson[\"dcat:dataset\"][\"odrl:hasPolicy\"][\"@id\"];",
+													"var assetId = responseJson[\"dcat:dataset\"][\"id\"];",
+													"pm.collectionVariables.set(\"OFFER\", offerId);",
+													"pm.collectionVariables.set(\"SELECTED_ASSET\", assetId)",
+													"pm.collectionVariables.set(\"SELECTED_PURPOSE\", \"\")"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"@context\": {\r\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n    },\r\n    \"@type\": \"CatalogRequest\",\r\n    \"counterPartyAddress\": \"{{BPDM_PROVIDER_URL_DSP}}\",\r\n    \"counterPartyId\": \"{{PROVIDER_ID}}\",\r\n    \"protocol\": \"dataspace-protocol-http\",\r\n    \"querySpec\": {\r\n        \"offset\": 0,\r\n        \"limit\": 1,\r\n        \"filterExpression\": [\r\n            {\r\n                \"operandLeft\": \"https://purl.org/dc/terms/subject\",\r\n                \"operator\": \"=\",\r\n                \"operandRight\": \"cx-taxo:ReadAccessPoolForCatenaXMember\"\r\n            },\r\n            {\r\n                \"operandLeft\": \"https://w3id.org/catenax/ontology/common/version\",\r\n                \"operator\": \"=\",\r\n                \"operandRight\": \"6.0\"\r\n            }\r\n        ]\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{CONSUMER_URL}}/management/v2/catalog/request",
+											"host": [
+												"{{CONSUMER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"catalog",
+												"request"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Select Gate Output Read Access",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"var responseJson = pm.response.json();",
+													"var offerId = responseJson[\"dcat:dataset\"][\"odrl:hasPolicy\"][\"@id\"];",
+													"var assetId = responseJson[\"dcat:dataset\"][\"id\"];",
+													"pm.collectionVariables.set(\"OFFER\", offerId);",
+													"pm.collectionVariables.set(\"SELECTED_ASSET\", assetId)",
+													"pm.collectionVariables.set(\"SELECTED_PURPOSE\", \"cx.bpdm.gate.download:1\")"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"@context\": {\r\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n    },\r\n    \"@type\": \"CatalogRequest\",\r\n    \"counterPartyAddress\": \"{{BPDM_PROVIDER_URL_DSP}}\",\r\n    \"counterPartyId\": \"{{PROVIDER_ID}}\",\r\n    \"protocol\": \"dataspace-protocol-http\",\r\n    \"querySpec\": {\r\n        \"offset\": 0,\r\n        \"limit\": 1,\r\n        \"filterExpression\": [\r\n            {\r\n                \"operandLeft\": \"https://purl.org/dc/terms/subject\",\r\n                \"operator\": \"=\",\r\n                \"operandRight\": \"cx-taxo:ReadAccessGateOutputForSharingMember\"\r\n            },\r\n            {\r\n                \"operandLeft\": \"https://w3id.org/catenax/ontology/common/version\",\r\n                \"operator\": \"=\",\r\n                \"operandRight\": \"6.0\"\r\n            },\r\n            {\r\n                \"operandLeft\": \"https://w3id.org/edc/v0.0.1/ns/BusinessPartnerNumber\",\r\n                \"operator\": \"=\",\r\n                \"operandRight\": \"{{BPNL_SHARING_MEMBER}}\"\r\n            }\r\n        ]\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{CONSUMER_URL}}/management/v2/catalog/request",
+											"host": [
+												"{{CONSUMER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"catalog",
+												"request"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Negotiate",
+							"item": [
+								{
+									"name": "Initiate EDR Negotation",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"// Parse the JSON response",
+													"let responseJson = pm.response.json();",
+													"",
+													"// Extract the \"@id\" value",
+													"let negotiationId = responseJson[\"@id\"];",
+													"",
+													"// Check if negotiationId is not undefined or empty",
+													"if (negotiationId) {",
+													"    // Save negotiationId as an environment variable",
+													"    pm.collectionVariables.set(\"negotiationId\", negotiationId);",
+													"    console.log(\"Negotiation ID saved:\", negotiationId);",
+													"} else {",
+													"    console.log(\"Negotiation ID not found in the response.\");",
+													"}",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"@context\": [\n        \"https://w3id.org/tractusx/policy/v1.0.0\",\n        \"http://www.w3.org/ns/odrl.jsonld\",\n        {\n            \"edc\": \"https://w3id.org/edc/v0.0.1/ns/\"\n        }\n    ],\n    \"@type\": \"ContractRequest\",\n    \"edc:counterPartyAddress\": \"{{BPDM_PROVIDER_URL_DSP}}\",\n    \"edc:protocol\": \"dataspace-protocol-http\",\n    \"edc:counterPartyId\": \"{{PROVIDER_ID}}\",\n    \"edc:policy\": {\n        \"@id\": \"{{OFFER}}\",\n        \"@type\": \"Offer\",\n        \"permission\": [\n            {\n                \"action\": \"use\",\n                \"constraint\": {\n                    \"and\": [\n                        {\n                            \"leftOperand\": \"FrameworkAgreement\",\n                            \"operator\": \"eq\",\n                            \"rightOperand\": \"businessPartner:1.0\"\n                        },\n                        {\n                            \"leftOperand\": \"UsagePurpose\",\n                            \"operator\": \"eq\",\n                            \"rightOperand\": \"{{SELECTED_PURPOSE}}\"\n                        }\n                    ]\n                }\n            }\n        ],\n        \"target\": \"{{SELECTED_ASSET}}\",\n        \"assigner\": \"{{PROVIDER_ID}}\"\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{CONSUMER_URL}}/management/v2/edrs",
+											"host": [
+												"{{CONSUMER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"edrs"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GET Contract Negotation By Id",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"// Parse the JSON response",
+													"let responseJson = pm.response.json();",
+													"",
+													"// Extract the \"contractAgreementId\" value",
+													"let contractAgreementId = responseJson[\"contractAgreementId\"];",
+													"",
+													"// Check if contractAgreementId is not undefined or empty",
+													"if (contractAgreementId) {",
+													"    // Save contractAgreementId as an environment variable",
+													"    pm.collectionVariables.set(\"contractAgreementId\", contractAgreementId);",
+													"    console.log(\"Contract Agreement ID saved:\", contractAgreementId);",
+													"} else {",
+													"    console.log(\"Contract Agreement ID not found in the response.\");",
+													"}",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{CONSUMER_URL}}/management/v2/contractnegotiations/{{negotiationId}}",
+											"host": [
+												"{{CONSUMER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"contractnegotiations",
+												"{{negotiationId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get EDR by agreement ID",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"var responseJson = pm.response.json();",
+													"var transferProcessId = responseJson[0][\"transferProcessId\"];",
+													"pm.collectionVariables.set(\"transferProcessId\", transferProcessId);"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"@context\": {\r\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n    },\r\n    \"@type\": \"QuerySpec\",\r\n    \"offset\": 0,\r\n    \"limit\": 1,\r\n    \"filterExpression\": [\r\n        {\r\n            \"operandLeft\": \"agreementId\",\r\n            \"operator\": \"=\",\r\n            \"operandRight\": \"{{contractAgreementId}}\"\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{CONSUMER_URL}}/management/v2/edrs/request",
+											"host": [
+												"{{CONSUMER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"edrs",
+												"request"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Authorization",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"var responseJson = pm.response.json();",
+													"var transferToken = responseJson[\"authorization\"];",
+													"pm.collectionVariables.set(\"TRANSFER_TOKEN\", transferToken);"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "{{X-API-KEY}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{CONSUMER_URL}}/management/v2/edrs/{{transferProcessId}}/dataaddress?auto_refresh=true",
+											"host": [
+												"{{CONSUMER_URL}}"
+											],
+											"path": [
+												"management",
+												"v2",
+												"edrs",
+												"{{transferProcessId}}",
+												"dataaddress"
+											],
+											"query": [
+												{
+													"key": "auto_refresh",
+													"value": "true"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Execute Requests",
+							"item": [
+								{
+									"name": "Gate",
+									"item": [
+										{
+											"name": "/output/business-partners/search",
+											"request": {
+												"auth": {
+													"type": "apikey",
+													"apikey": [
+														{
+															"key": "value",
+															"value": "{{TRANSFER_TOKEN}}",
+															"type": "string"
+														},
+														{
+															"key": "key",
+															"value": "Authorization",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "[\n\n]",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{BPDM_PROVIDER_URL}}/api/public/output/business-partners/search?page=0&size=100",
+													"host": [
+														"{{BPDM_PROVIDER_URL}}"
+													],
+													"path": [
+														"api",
+														"public",
+														"output",
+														"business-partners",
+														"search"
+													],
+													"query": [
+														{
+															"key": "page",
+															"value": "0",
+															"description": "Number of page to get results from"
+														},
+														{
+															"key": "size",
+															"value": "100",
+															"description": "Size of each page"
+														}
+													]
+												},
+												"description": "Get page of business partners output data filtered by a collection of external IDs. An empty external ID list will return a paginated list of all business partners."
+											},
+											"response": [
+												{
+													"name": "The requested page of business partners",
+													"originalRequest": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/output/business-partners/search?page=0&size=10",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"output",
+																"business-partners",
+																"search"
+															],
+															"query": [
+																{
+																	"key": "page",
+																	"value": "0",
+																	"description": "Number of page to get results from"
+																},
+																{
+																	"key": "size",
+																	"value": "10",
+																	"description": "Size of each page"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"content\": [\n    {\n      \"address\": {\n        \"addressBpn\": \"<string>\",\n        \"alternativePostalAddress\": {\n          \"geographicCoordinates\": {\n            \"latitude\": \"<float>\",\n            \"longitude\": \"<float>\",\n            \"altitude\": \"<float>\"\n          },\n          \"country\": \"ZA\",\n          \"administrativeAreaLevel1\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"city\": \"<string>\",\n          \"deliveryServiceType\": \"PRIVATE_BAG\",\n          \"deliveryServiceQualifier\": \"<string>\",\n          \"deliveryServiceNumber\": \"<string>\"\n        },\n        \"confidenceCriteria\": {\n          \"checkedByExternalDataSource\": \"<boolean>\",\n          \"confidenceLevel\": \"<integer>\",\n          \"lastConfidenceCheckAt\": \"<dateTime>\",\n          \"nextConfidenceCheckAt\": \"<dateTime>\",\n          \"numberOfSharingMembers\": \"<integer>\",\n          \"sharedByOwner\": \"<boolean>\"\n        },\n        \"physicalPostalAddress\": {\n          \"geographicCoordinates\": {\n            \"latitude\": \"<float>\",\n            \"longitude\": \"<float>\",\n            \"altitude\": \"<float>\"\n          },\n          \"country\": \"EA\",\n          \"administrativeAreaLevel1\": \"<string>\",\n          \"administrativeAreaLevel2\": \"<string>\",\n          \"administrativeAreaLevel3\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"city\": \"<string>\",\n          \"district\": \"<string>\",\n          \"street\": {\n            \"namePrefix\": \"<string>\",\n            \"additionalNamePrefix\": \"<string>\",\n            \"name\": \"<string>\",\n            \"nameSuffix\": \"<string>\",\n            \"additionalNameSuffix\": \"<string>\",\n            \"houseNumber\": \"<string>\",\n            \"houseNumberSupplement\": \"<string>\",\n            \"milestone\": \"<string>\",\n            \"direction\": \"<string>\"\n          },\n          \"companyPostalCode\": \"<string>\",\n          \"industrialZone\": \"<string>\",\n          \"building\": \"<string>\",\n          \"floor\": \"<string>\",\n          \"door\": \"<string>\"\n        },\n        \"states\": [\n          {\n            \"validFrom\": \"<dateTime>\",\n            \"validTo\": \"<dateTime>\",\n            \"type\": \"INACTIVE\"\n          },\n          {\n            \"validFrom\": \"<dateTime>\",\n            \"validTo\": \"<dateTime>\",\n            \"type\": \"ACTIVE\"\n          }\n        ],\n        \"name\": \"<string>\",\n        \"addressType\": \"SiteMainAddress\"\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"externalId\": \"<string>\",\n      \"identifiers\": [\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\",\n          \"issuingBody\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\",\n          \"issuingBody\": \"<string>\"\n        }\n      ],\n      \"isOwnCompanyData\": \"<boolean>\",\n      \"legalEntity\": {\n        \"confidenceCriteria\": {\n          \"checkedByExternalDataSource\": \"<boolean>\",\n          \"confidenceLevel\": \"<integer>\",\n          \"lastConfidenceCheckAt\": \"<dateTime>\",\n          \"nextConfidenceCheckAt\": \"<dateTime>\",\n          \"numberOfSharingMembers\": \"<integer>\",\n          \"sharedByOwner\": \"<boolean>\"\n        },\n        \"legalEntityBpn\": \"<string>\",\n        \"states\": [\n          {\n            \"validFrom\": \"<dateTime>\",\n            \"validTo\": \"<dateTime>\",\n            \"type\": \"ACTIVE\"\n          },\n          {\n            \"validFrom\": \"<dateTime>\",\n            \"validTo\": \"<dateTime>\",\n            \"type\": \"INACTIVE\"\n          }\n        ],\n        \"legalName\": \"<string>\",\n        \"shortName\": \"<string>\",\n        \"legalForm\": \"<string>\"\n      },\n      \"nameParts\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"roles\": [\n        \"ONE_TIME_SUPPLIER\",\n        \"ONE_TIME_CUSTOMER\"\n      ],\n      \"states\": [\n        {\n          \"validFrom\": \"<dateTime>\",\n          \"validTo\": \"<dateTime>\",\n          \"type\": \"INACTIVE\"\n        },\n        {\n          \"validFrom\": \"<dateTime>\",\n          \"validTo\": \"<dateTime>\",\n          \"type\": \"ACTIVE\"\n        }\n      ],\n      \"updatedAt\": \"<dateTime>\",\n      \"site\": {\n        \"confidenceCriteria\": {\n          \"checkedByExternalDataSource\": \"<boolean>\",\n          \"confidenceLevel\": \"<integer>\",\n          \"lastConfidenceCheckAt\": \"<dateTime>\",\n          \"nextConfidenceCheckAt\": \"<dateTime>\",\n          \"numberOfSharingMembers\": \"<integer>\",\n          \"sharedByOwner\": \"<boolean>\"\n        },\n        \"siteBpn\": \"<string>\",\n        \"states\": [\n          {\n            \"validFrom\": \"<dateTime>\",\n            \"validTo\": \"<dateTime>\",\n            \"type\": \"INACTIVE\"\n          },\n          {\n            \"validFrom\": \"<dateTime>\",\n            \"validTo\": \"<dateTime>\",\n            \"type\": \"ACTIVE\"\n          }\n        ],\n        \"name\": \"<string>\"\n      }\n    },\n    {\n      \"address\": {\n        \"addressBpn\": \"<string>\",\n        \"alternativePostalAddress\": {\n          \"geographicCoordinates\": {\n            \"latitude\": \"<float>\",\n            \"longitude\": \"<float>\",\n            \"altitude\": \"<float>\"\n          },\n          \"country\": \"JM\",\n          \"administrativeAreaLevel1\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"city\": \"<string>\",\n          \"deliveryServiceType\": \"PO_BOX\",\n          \"deliveryServiceQualifier\": \"<string>\",\n          \"deliveryServiceNumber\": \"<string>\"\n        },\n        \"confidenceCriteria\": {\n          \"checkedByExternalDataSource\": \"<boolean>\",\n          \"confidenceLevel\": \"<integer>\",\n          \"lastConfidenceCheckAt\": \"<dateTime>\",\n          \"nextConfidenceCheckAt\": \"<dateTime>\",\n          \"numberOfSharingMembers\": \"<integer>\",\n          \"sharedByOwner\": \"<boolean>\"\n        },\n        \"physicalPostalAddress\": {\n          \"geographicCoordinates\": {\n            \"latitude\": \"<float>\",\n            \"longitude\": \"<float>\",\n            \"altitude\": \"<float>\"\n          },\n          \"country\": \"KE\",\n          \"administrativeAreaLevel1\": \"<string>\",\n          \"administrativeAreaLevel2\": \"<string>\",\n          \"administrativeAreaLevel3\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"city\": \"<string>\",\n          \"district\": \"<string>\",\n          \"street\": {\n            \"namePrefix\": \"<string>\",\n            \"additionalNamePrefix\": \"<string>\",\n            \"name\": \"<string>\",\n            \"nameSuffix\": \"<string>\",\n            \"additionalNameSuffix\": \"<string>\",\n            \"houseNumber\": \"<string>\",\n            \"houseNumberSupplement\": \"<string>\",\n            \"milestone\": \"<string>\",\n            \"direction\": \"<string>\"\n          },\n          \"companyPostalCode\": \"<string>\",\n          \"industrialZone\": \"<string>\",\n          \"building\": \"<string>\",\n          \"floor\": \"<string>\",\n          \"door\": \"<string>\"\n        },\n        \"states\": [\n          {\n            \"validFrom\": \"<dateTime>\",\n            \"validTo\": \"<dateTime>\",\n            \"type\": \"INACTIVE\"\n          },\n          {\n            \"validFrom\": \"<dateTime>\",\n            \"validTo\": \"<dateTime>\",\n            \"type\": \"INACTIVE\"\n          }\n        ],\n        \"name\": \"<string>\",\n        \"addressType\": \"LegalAndSiteMainAddress\"\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"externalId\": \"<string>\",\n      \"identifiers\": [\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\",\n          \"issuingBody\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\",\n          \"issuingBody\": \"<string>\"\n        }\n      ],\n      \"isOwnCompanyData\": \"<boolean>\",\n      \"legalEntity\": {\n        \"confidenceCriteria\": {\n          \"checkedByExternalDataSource\": \"<boolean>\",\n          \"confidenceLevel\": \"<integer>\",\n          \"lastConfidenceCheckAt\": \"<dateTime>\",\n          \"nextConfidenceCheckAt\": \"<dateTime>\",\n          \"numberOfSharingMembers\": \"<integer>\",\n          \"sharedByOwner\": \"<boolean>\"\n        },\n        \"legalEntityBpn\": \"<string>\",\n        \"states\": [\n          {\n            \"validFrom\": \"<dateTime>\",\n            \"validTo\": \"<dateTime>\",\n            \"type\": \"INACTIVE\"\n          },\n          {\n            \"validFrom\": \"<dateTime>\",\n            \"validTo\": \"<dateTime>\",\n            \"type\": \"INACTIVE\"\n          }\n        ],\n        \"legalName\": \"<string>\",\n        \"shortName\": \"<string>\",\n        \"legalForm\": \"<string>\"\n      },\n      \"nameParts\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"roles\": [\n        \"SUPPLIER\",\n        \"ONE_TIME_SUPPLIER\"\n      ],\n      \"states\": [\n        {\n          \"validFrom\": \"<dateTime>\",\n          \"validTo\": \"<dateTime>\",\n          \"type\": \"ACTIVE\"\n        },\n        {\n          \"validFrom\": \"<dateTime>\",\n          \"validTo\": \"<dateTime>\",\n          \"type\": \"ACTIVE\"\n        }\n      ],\n      \"updatedAt\": \"<dateTime>\",\n      \"site\": {\n        \"confidenceCriteria\": {\n          \"checkedByExternalDataSource\": \"<boolean>\",\n          \"confidenceLevel\": \"<integer>\",\n          \"lastConfidenceCheckAt\": \"<dateTime>\",\n          \"nextConfidenceCheckAt\": \"<dateTime>\",\n          \"numberOfSharingMembers\": \"<integer>\",\n          \"sharedByOwner\": \"<boolean>\"\n        },\n        \"siteBpn\": \"<string>\",\n        \"states\": [\n          {\n            \"validFrom\": \"<dateTime>\",\n            \"validTo\": \"<dateTime>\",\n            \"type\": \"ACTIVE\"\n          },\n          {\n            \"validFrom\": \"<dateTime>\",\n            \"validTo\": \"<dateTime>\",\n            \"type\": \"ACTIVE\"\n          }\n        ],\n        \"name\": \"<string>\"\n      }\n    }\n  ],\n  \"contentSize\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"totalElements\": \"<long>\",\n  \"totalPages\": \"<integer>\"\n}"
+												},
+												{
+													"name": "On malformed pagination request",
+													"originalRequest": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/output/business-partners/search?page=0&size=10",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"output",
+																"business-partners",
+																"search"
+															],
+															"query": [
+																{
+																	"key": "page",
+																	"value": "0",
+																	"description": "Number of page to get results from"
+																},
+																{
+																	"key": "size",
+																	"value": "10",
+																	"description": "Size of each page"
+																}
+															]
+														}
+													},
+													"status": "Bad Request",
+													"code": 400,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "Pool",
+									"item": [
+										{
+											"name": "/members/legal-entities/search",
+											"request": {
+												"auth": {
+													"type": "apikey",
+													"apikey": [
+														{
+															"key": "value",
+															"value": "{{TRANSFER_TOKEN}}",
+															"type": "string"
+														},
+														{
+															"key": "key",
+															"value": "Authorization",
+															"type": "string"
+														}
+													]
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"bpnLs\": [\n\n  ],\n  \"legalName\": \"\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{BPDM_PROVIDER_URL}}/api/public/members/legal-entities/search?page=0&size=10",
+													"host": [
+														"{{BPDM_PROVIDER_URL}}"
+													],
+													"path": [
+														"api",
+														"public",
+														"members",
+														"legal-entities",
+														"search"
+													],
+													"query": [
+														{
+															"key": "page",
+															"value": "0",
+															"description": "Number of page to get results from"
+														},
+														{
+															"key": "size",
+															"value": "10",
+															"description": "Size of each page"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"bpnLs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"legalName\": \"<string>\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/members/legal-entities/search?page=0&size=10",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"members",
+																"legal-entities",
+																"search"
+															],
+															"query": [
+																{
+																	"key": "page",
+																	"value": "0",
+																	"description": "Number of page to get results from"
+																},
+																{
+																	"key": "size",
+																	"value": "10",
+																	"description": "Size of each page"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"content\": [\n    {\n      \"bpnl\": \"<string>\",\n      \"confidenceCriteria\": {\n        \"checkedByExternalDataSource\": \"<boolean>\",\n        \"confidenceLevel\": \"<integer>\",\n        \"lastConfidenceCheckAt\": \"<dateTime>\",\n        \"nextConfidenceCheckAt\": \"<dateTime>\",\n        \"numberOfSharingMembers\": \"<integer>\",\n        \"sharedByOwner\": \"<boolean>\"\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"currentness\": \"<dateTime>\",\n      \"identifiers\": [\n        {\n          \"type\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"<string>\"\n          },\n          \"value\": \"<string>\",\n          \"issuingBody\": \"<string>\"\n        },\n        {\n          \"type\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"<string>\"\n          },\n          \"value\": \"<string>\",\n          \"issuingBody\": \"<string>\"\n        }\n      ],\n      \"isCatenaXMemberData\": \"<boolean>\",\n      \"legalAddress\": {\n        \"bpna\": \"<string>\",\n        \"confidenceCriteria\": {\n          \"checkedByExternalDataSource\": \"<boolean>\",\n          \"confidenceLevel\": \"<integer>\",\n          \"lastConfidenceCheckAt\": \"<dateTime>\",\n          \"nextConfidenceCheckAt\": \"<dateTime>\",\n          \"numberOfSharingMembers\": \"<integer>\",\n          \"sharedByOwner\": \"<boolean>\"\n        },\n        \"createdAt\": \"<dateTime>\",\n        \"identifiers\": [\n          {\n            \"type\": {\n              \"name\": \"<string>\",\n              \"technicalKey\": \"<string>\"\n            },\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": {\n              \"name\": \"<string>\",\n              \"technicalKey\": \"<string>\"\n            },\n            \"value\": \"<string>\"\n          }\n        ],\n        \"isCatenaXMemberData\": \"<boolean>\",\n        \"physicalPostalAddress\": {\n          \"city\": \"<string>\",\n          \"country\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"AT\"\n          },\n          \"geographicCoordinates\": {\n            \"latitude\": \"<float>\",\n            \"longitude\": \"<float>\",\n            \"altitude\": \"<float>\"\n          },\n          \"administrativeAreaLevel1\": {\n            \"countryCode\": \"KH\",\n            \"regionCode\": \"<string>\",\n            \"regionName\": \"<string>\"\n          },\n          \"administrativeAreaLevel2\": \"<string>\",\n          \"administrativeAreaLevel3\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"district\": \"<string>\",\n          \"street\": {\n            \"name\": \"<string>\",\n            \"houseNumber\": \"<string>\",\n            \"houseNumberSupplement\": \"<string>\",\n            \"milestone\": \"<string>\",\n            \"direction\": \"<string>\",\n            \"namePrefix\": \"<string>\",\n            \"additionalNamePrefix\": \"<string>\",\n            \"nameSuffix\": \"<string>\",\n            \"additionalNameSuffix\": \"<string>\"\n          },\n          \"companyPostalCode\": \"<string>\",\n          \"industrialZone\": \"<string>\",\n          \"building\": \"<string>\",\n          \"floor\": \"<string>\",\n          \"door\": \"<string>\"\n        },\n        \"states\": [\n          {\n            \"type\": {\n              \"name\": \"<string>\",\n              \"technicalKey\": \"INACTIVE\"\n            },\n            \"validFrom\": \"<dateTime>\",\n            \"validTo\": \"<dateTime>\"\n          },\n          {\n            \"type\": {\n              \"name\": \"<string>\",\n              \"technicalKey\": \"ACTIVE\"\n            },\n            \"validFrom\": \"<dateTime>\",\n            \"validTo\": \"<dateTime>\"\n          }\n        ],\n        \"updatedAt\": \"<dateTime>\",\n        \"name\": \"<string>\",\n        \"alternativePostalAddress\": {\n          \"city\": \"<string>\",\n          \"country\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"RW\"\n          },\n          \"deliveryServiceNumber\": \"<string>\",\n          \"deliveryServiceType\": \"PO_BOX\",\n          \"geographicCoordinates\": {\n            \"latitude\": \"<float>\",\n            \"longitude\": \"<float>\",\n            \"altitude\": \"<float>\"\n          },\n          \"administrativeAreaLevel1\": {\n            \"countryCode\": \"QA\",\n            \"regionCode\": \"<string>\",\n            \"regionName\": \"<string>\"\n          },\n          \"postalCode\": \"<string>\",\n          \"deliveryServiceQualifier\": \"<string>\"\n        },\n        \"bpnLegalEntity\": \"<string>\",\n        \"bpnSite\": \"<string>\",\n        \"addressType\": \"LegalAddress\"\n      },\n      \"legalName\": \"<string>\",\n      \"relations\": [\n        {\n          \"endBpnl\": \"<string>\",\n          \"startBpnl\": \"<string>\",\n          \"type\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"CX_LEGAL_PREDECESSOR_OF\"\n          },\n          \"validFrom\": \"<dateTime>\",\n          \"validTo\": \"<dateTime>\"\n        },\n        {\n          \"endBpnl\": \"<string>\",\n          \"startBpnl\": \"<string>\",\n          \"type\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"CX_LEGAL_PREDECESSOR_OF\"\n          },\n          \"validFrom\": \"<dateTime>\",\n          \"validTo\": \"<dateTime>\"\n        }\n      ],\n      \"states\": [\n        {\n          \"type\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"ACTIVE\"\n          },\n          \"validFrom\": \"<dateTime>\",\n          \"validTo\": \"<dateTime>\"\n        },\n        {\n          \"type\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"INACTIVE\"\n          },\n          \"validFrom\": \"<dateTime>\",\n          \"validTo\": \"<dateTime>\"\n        }\n      ],\n      \"updatedAt\": \"<dateTime>\",\n      \"legalShortName\": \"<string>\",\n      \"legalForm\": {\n        \"name\": \"<string>\",\n        \"technicalKey\": \"<string>\",\n        \"abbreviation\": \"<string>\"\n      }\n    },\n    {\n      \"bpnl\": \"<string>\",\n      \"confidenceCriteria\": {\n        \"checkedByExternalDataSource\": \"<boolean>\",\n        \"confidenceLevel\": \"<integer>\",\n        \"lastConfidenceCheckAt\": \"<dateTime>\",\n        \"nextConfidenceCheckAt\": \"<dateTime>\",\n        \"numberOfSharingMembers\": \"<integer>\",\n        \"sharedByOwner\": \"<boolean>\"\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"currentness\": \"<dateTime>\",\n      \"identifiers\": [\n        {\n          \"type\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"<string>\"\n          },\n          \"value\": \"<string>\",\n          \"issuingBody\": \"<string>\"\n        },\n        {\n          \"type\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"<string>\"\n          },\n          \"value\": \"<string>\",\n          \"issuingBody\": \"<string>\"\n        }\n      ],\n      \"isCatenaXMemberData\": \"<boolean>\",\n      \"legalAddress\": {\n        \"bpna\": \"<string>\",\n        \"confidenceCriteria\": {\n          \"checkedByExternalDataSource\": \"<boolean>\",\n          \"confidenceLevel\": \"<integer>\",\n          \"lastConfidenceCheckAt\": \"<dateTime>\",\n          \"nextConfidenceCheckAt\": \"<dateTime>\",\n          \"numberOfSharingMembers\": \"<integer>\",\n          \"sharedByOwner\": \"<boolean>\"\n        },\n        \"createdAt\": \"<dateTime>\",\n        \"identifiers\": [\n          {\n            \"type\": {\n              \"name\": \"<string>\",\n              \"technicalKey\": \"<string>\"\n            },\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": {\n              \"name\": \"<string>\",\n              \"technicalKey\": \"<string>\"\n            },\n            \"value\": \"<string>\"\n          }\n        ],\n        \"isCatenaXMemberData\": \"<boolean>\",\n        \"physicalPostalAddress\": {\n          \"city\": \"<string>\",\n          \"country\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"UM\"\n          },\n          \"geographicCoordinates\": {\n            \"latitude\": \"<float>\",\n            \"longitude\": \"<float>\",\n            \"altitude\": \"<float>\"\n          },\n          \"administrativeAreaLevel1\": {\n            \"countryCode\": \"JE\",\n            \"regionCode\": \"<string>\",\n            \"regionName\": \"<string>\"\n          },\n          \"administrativeAreaLevel2\": \"<string>\",\n          \"administrativeAreaLevel3\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"district\": \"<string>\",\n          \"street\": {\n            \"name\": \"<string>\",\n            \"houseNumber\": \"<string>\",\n            \"houseNumberSupplement\": \"<string>\",\n            \"milestone\": \"<string>\",\n            \"direction\": \"<string>\",\n            \"namePrefix\": \"<string>\",\n            \"additionalNamePrefix\": \"<string>\",\n            \"nameSuffix\": \"<string>\",\n            \"additionalNameSuffix\": \"<string>\"\n          },\n          \"companyPostalCode\": \"<string>\",\n          \"industrialZone\": \"<string>\",\n          \"building\": \"<string>\",\n          \"floor\": \"<string>\",\n          \"door\": \"<string>\"\n        },\n        \"states\": [\n          {\n            \"type\": {\n              \"name\": \"<string>\",\n              \"technicalKey\": \"ACTIVE\"\n            },\n            \"validFrom\": \"<dateTime>\",\n            \"validTo\": \"<dateTime>\"\n          },\n          {\n            \"type\": {\n              \"name\": \"<string>\",\n              \"technicalKey\": \"ACTIVE\"\n            },\n            \"validFrom\": \"<dateTime>\",\n            \"validTo\": \"<dateTime>\"\n          }\n        ],\n        \"updatedAt\": \"<dateTime>\",\n        \"name\": \"<string>\",\n        \"alternativePostalAddress\": {\n          \"city\": \"<string>\",\n          \"country\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"GP\"\n          },\n          \"deliveryServiceNumber\": \"<string>\",\n          \"deliveryServiceType\": \"PO_BOX\",\n          \"geographicCoordinates\": {\n            \"latitude\": \"<float>\",\n            \"longitude\": \"<float>\",\n            \"altitude\": \"<float>\"\n          },\n          \"administrativeAreaLevel1\": {\n            \"countryCode\": \"PT\",\n            \"regionCode\": \"<string>\",\n            \"regionName\": \"<string>\"\n          },\n          \"postalCode\": \"<string>\",\n          \"deliveryServiceQualifier\": \"<string>\"\n        },\n        \"bpnLegalEntity\": \"<string>\",\n        \"bpnSite\": \"<string>\",\n        \"addressType\": \"LegalAndSiteMainAddress\"\n      },\n      \"legalName\": \"<string>\",\n      \"relations\": [\n        {\n          \"endBpnl\": \"<string>\",\n          \"startBpnl\": \"<string>\",\n          \"type\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"CX_LEGAL_SUCCESSOR_OF\"\n          },\n          \"validFrom\": \"<dateTime>\",\n          \"validTo\": \"<dateTime>\"\n        },\n        {\n          \"endBpnl\": \"<string>\",\n          \"startBpnl\": \"<string>\",\n          \"type\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"CX_LEGAL_PREDECESSOR_OF\"\n          },\n          \"validFrom\": \"<dateTime>\",\n          \"validTo\": \"<dateTime>\"\n        }\n      ],\n      \"states\": [\n        {\n          \"type\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"INACTIVE\"\n          },\n          \"validFrom\": \"<dateTime>\",\n          \"validTo\": \"<dateTime>\"\n        },\n        {\n          \"type\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"ACTIVE\"\n          },\n          \"validFrom\": \"<dateTime>\",\n          \"validTo\": \"<dateTime>\"\n        }\n      ],\n      \"updatedAt\": \"<dateTime>\",\n      \"legalShortName\": \"<string>\",\n      \"legalForm\": {\n        \"name\": \"<string>\",\n        \"technicalKey\": \"<string>\",\n        \"abbreviation\": \"<string>\"\n      }\n    }\n  ],\n  \"contentSize\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"totalElements\": \"<long>\",\n  \"totalPages\": \"<integer>\"\n}"
+												}
+											]
+										},
+										{
+											"name": "/members/sites/search Copy",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"legalEntityBpns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"siteBpns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/members/sites/search?page=0&size=10",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"members",
+														"sites",
+														"search"
+													],
+													"query": [
+														{
+															"key": "page",
+															"value": "0",
+															"description": "Number of page to get results from"
+														},
+														{
+															"key": "size",
+															"value": "10",
+															"description": "Size of each page"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"legalEntityBpns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"siteBpns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/members/sites/search?page=0&size=10",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"members",
+																"sites",
+																"search"
+															],
+															"query": [
+																{
+																	"key": "page",
+																	"value": "0",
+																	"description": "Number of page to get results from"
+																},
+																{
+																	"key": "size",
+																	"value": "10",
+																	"description": "Size of each page"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"content\": [\n    {\n      \"bpnLegalEntity\": \"<string>\",\n      \"bpns\": \"<string>\",\n      \"confidenceCriteria\": {\n        \"checkedByExternalDataSource\": \"<boolean>\",\n        \"confidenceLevel\": \"<integer>\",\n        \"lastConfidenceCheckAt\": \"<dateTime>\",\n        \"nextConfidenceCheckAt\": \"<dateTime>\",\n        \"numberOfSharingMembers\": \"<integer>\",\n        \"sharedByOwner\": \"<boolean>\"\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"isCatenaXMemberData\": \"<boolean>\",\n      \"mainAddress\": {\n        \"bpna\": \"<string>\",\n        \"confidenceCriteria\": {\n          \"checkedByExternalDataSource\": \"<boolean>\",\n          \"confidenceLevel\": \"<integer>\",\n          \"lastConfidenceCheckAt\": \"<dateTime>\",\n          \"nextConfidenceCheckAt\": \"<dateTime>\",\n          \"numberOfSharingMembers\": \"<integer>\",\n          \"sharedByOwner\": \"<boolean>\"\n        },\n        \"createdAt\": \"<dateTime>\",\n        \"identifiers\": [\n          {\n            \"type\": {\n              \"name\": \"<string>\",\n              \"technicalKey\": \"<string>\"\n            },\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": {\n              \"name\": \"<string>\",\n              \"technicalKey\": \"<string>\"\n            },\n            \"value\": \"<string>\"\n          }\n        ],\n        \"isCatenaXMemberData\": \"<boolean>\",\n        \"physicalPostalAddress\": {\n          \"city\": \"<string>\",\n          \"country\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"KY\"\n          },\n          \"geographicCoordinates\": {\n            \"latitude\": \"<float>\",\n            \"longitude\": \"<float>\",\n            \"altitude\": \"<float>\"\n          },\n          \"administrativeAreaLevel1\": {\n            \"countryCode\": \"IL\",\n            \"regionCode\": \"<string>\",\n            \"regionName\": \"<string>\"\n          },\n          \"administrativeAreaLevel2\": \"<string>\",\n          \"administrativeAreaLevel3\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"district\": \"<string>\",\n          \"street\": {\n            \"name\": \"<string>\",\n            \"houseNumber\": \"<string>\",\n            \"houseNumberSupplement\": \"<string>\",\n            \"milestone\": \"<string>\",\n            \"direction\": \"<string>\",\n            \"namePrefix\": \"<string>\",\n            \"additionalNamePrefix\": \"<string>\",\n            \"nameSuffix\": \"<string>\",\n            \"additionalNameSuffix\": \"<string>\"\n          },\n          \"companyPostalCode\": \"<string>\",\n          \"industrialZone\": \"<string>\",\n          \"building\": \"<string>\",\n          \"floor\": \"<string>\",\n          \"door\": \"<string>\"\n        },\n        \"states\": [\n          {\n            \"type\": {\n              \"name\": \"<string>\",\n              \"technicalKey\": \"INACTIVE\"\n            },\n            \"validFrom\": \"<dateTime>\",\n            \"validTo\": \"<dateTime>\"\n          },\n          {\n            \"type\": {\n              \"name\": \"<string>\",\n              \"technicalKey\": \"INACTIVE\"\n            },\n            \"validFrom\": \"<dateTime>\",\n            \"validTo\": \"<dateTime>\"\n          }\n        ],\n        \"updatedAt\": \"<dateTime>\",\n        \"name\": \"<string>\",\n        \"alternativePostalAddress\": {\n          \"city\": \"<string>\",\n          \"country\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"AI\"\n          },\n          \"deliveryServiceNumber\": \"<string>\",\n          \"deliveryServiceType\": \"PRIVATE_BAG\",\n          \"geographicCoordinates\": {\n            \"latitude\": \"<float>\",\n            \"longitude\": \"<float>\",\n            \"altitude\": \"<float>\"\n          },\n          \"administrativeAreaLevel1\": {\n            \"countryCode\": \"XU\",\n            \"regionCode\": \"<string>\",\n            \"regionName\": \"<string>\"\n          },\n          \"postalCode\": \"<string>\",\n          \"deliveryServiceQualifier\": \"<string>\"\n        },\n        \"bpnLegalEntity\": \"<string>\",\n        \"bpnSite\": \"<string>\",\n        \"addressType\": \"LegalAndSiteMainAddress\"\n      },\n      \"name\": \"<string>\",\n      \"states\": [\n        {\n          \"type\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"ACTIVE\"\n          },\n          \"validFrom\": \"<dateTime>\",\n          \"validTo\": \"<dateTime>\"\n        },\n        {\n          \"type\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"INACTIVE\"\n          },\n          \"validFrom\": \"<dateTime>\",\n          \"validTo\": \"<dateTime>\"\n        }\n      ],\n      \"updatedAt\": \"<dateTime>\"\n    },\n    {\n      \"bpnLegalEntity\": \"<string>\",\n      \"bpns\": \"<string>\",\n      \"confidenceCriteria\": {\n        \"checkedByExternalDataSource\": \"<boolean>\",\n        \"confidenceLevel\": \"<integer>\",\n        \"lastConfidenceCheckAt\": \"<dateTime>\",\n        \"nextConfidenceCheckAt\": \"<dateTime>\",\n        \"numberOfSharingMembers\": \"<integer>\",\n        \"sharedByOwner\": \"<boolean>\"\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"isCatenaXMemberData\": \"<boolean>\",\n      \"mainAddress\": {\n        \"bpna\": \"<string>\",\n        \"confidenceCriteria\": {\n          \"checkedByExternalDataSource\": \"<boolean>\",\n          \"confidenceLevel\": \"<integer>\",\n          \"lastConfidenceCheckAt\": \"<dateTime>\",\n          \"nextConfidenceCheckAt\": \"<dateTime>\",\n          \"numberOfSharingMembers\": \"<integer>\",\n          \"sharedByOwner\": \"<boolean>\"\n        },\n        \"createdAt\": \"<dateTime>\",\n        \"identifiers\": [\n          {\n            \"type\": {\n              \"name\": \"<string>\",\n              \"technicalKey\": \"<string>\"\n            },\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": {\n              \"name\": \"<string>\",\n              \"technicalKey\": \"<string>\"\n            },\n            \"value\": \"<string>\"\n          }\n        ],\n        \"isCatenaXMemberData\": \"<boolean>\",\n        \"physicalPostalAddress\": {\n          \"city\": \"<string>\",\n          \"country\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"LB\"\n          },\n          \"geographicCoordinates\": {\n            \"latitude\": \"<float>\",\n            \"longitude\": \"<float>\",\n            \"altitude\": \"<float>\"\n          },\n          \"administrativeAreaLevel1\": {\n            \"countryCode\": \"PH\",\n            \"regionCode\": \"<string>\",\n            \"regionName\": \"<string>\"\n          },\n          \"administrativeAreaLevel2\": \"<string>\",\n          \"administrativeAreaLevel3\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"district\": \"<string>\",\n          \"street\": {\n            \"name\": \"<string>\",\n            \"houseNumber\": \"<string>\",\n            \"houseNumberSupplement\": \"<string>\",\n            \"milestone\": \"<string>\",\n            \"direction\": \"<string>\",\n            \"namePrefix\": \"<string>\",\n            \"additionalNamePrefix\": \"<string>\",\n            \"nameSuffix\": \"<string>\",\n            \"additionalNameSuffix\": \"<string>\"\n          },\n          \"companyPostalCode\": \"<string>\",\n          \"industrialZone\": \"<string>\",\n          \"building\": \"<string>\",\n          \"floor\": \"<string>\",\n          \"door\": \"<string>\"\n        },\n        \"states\": [\n          {\n            \"type\": {\n              \"name\": \"<string>\",\n              \"technicalKey\": \"ACTIVE\"\n            },\n            \"validFrom\": \"<dateTime>\",\n            \"validTo\": \"<dateTime>\"\n          },\n          {\n            \"type\": {\n              \"name\": \"<string>\",\n              \"technicalKey\": \"INACTIVE\"\n            },\n            \"validFrom\": \"<dateTime>\",\n            \"validTo\": \"<dateTime>\"\n          }\n        ],\n        \"updatedAt\": \"<dateTime>\",\n        \"name\": \"<string>\",\n        \"alternativePostalAddress\": {\n          \"city\": \"<string>\",\n          \"country\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"PS\"\n          },\n          \"deliveryServiceNumber\": \"<string>\",\n          \"deliveryServiceType\": \"PO_BOX\",\n          \"geographicCoordinates\": {\n            \"latitude\": \"<float>\",\n            \"longitude\": \"<float>\",\n            \"altitude\": \"<float>\"\n          },\n          \"administrativeAreaLevel1\": {\n            \"countryCode\": \"AT\",\n            \"regionCode\": \"<string>\",\n            \"regionName\": \"<string>\"\n          },\n          \"postalCode\": \"<string>\",\n          \"deliveryServiceQualifier\": \"<string>\"\n        },\n        \"bpnLegalEntity\": \"<string>\",\n        \"bpnSite\": \"<string>\",\n        \"addressType\": \"LegalAddress\"\n      },\n      \"name\": \"<string>\",\n      \"states\": [\n        {\n          \"type\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"INACTIVE\"\n          },\n          \"validFrom\": \"<dateTime>\",\n          \"validTo\": \"<dateTime>\"\n        },\n        {\n          \"type\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"ACTIVE\"\n          },\n          \"validFrom\": \"<dateTime>\",\n          \"validTo\": \"<dateTime>\"\n        }\n      ],\n      \"updatedAt\": \"<dateTime>\"\n    }\n  ],\n  \"contentSize\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"totalElements\": \"<long>\",\n  \"totalPages\": \"<integer>\"\n}"
+												}
+											]
+										},
+										{
+											"name": "/members/addresses/search Copy",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"addressBpns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"legalEntityBpns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"siteBpns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/members/addresses/search?page=0&size=10",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"members",
+														"addresses",
+														"search"
+													],
+													"query": [
+														{
+															"key": "page",
+															"value": "0",
+															"description": "Number of page to get results from"
+														},
+														{
+															"key": "size",
+															"value": "10",
+															"description": "Size of each page"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"addressBpns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"legalEntityBpns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"siteBpns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/members/addresses/search?page=0&size=10",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"members",
+																"addresses",
+																"search"
+															],
+															"query": [
+																{
+																	"key": "page",
+																	"value": "0",
+																	"description": "Number of page to get results from"
+																},
+																{
+																	"key": "size",
+																	"value": "10",
+																	"description": "Size of each page"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"content\": [\n    {\n      \"bpna\": \"<string>\",\n      \"confidenceCriteria\": {\n        \"checkedByExternalDataSource\": \"<boolean>\",\n        \"confidenceLevel\": \"<integer>\",\n        \"lastConfidenceCheckAt\": \"<dateTime>\",\n        \"nextConfidenceCheckAt\": \"<dateTime>\",\n        \"numberOfSharingMembers\": \"<integer>\",\n        \"sharedByOwner\": \"<boolean>\"\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"identifiers\": [\n        {\n          \"type\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"<string>\"\n          },\n          \"value\": \"<string>\"\n        },\n        {\n          \"type\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"<string>\"\n          },\n          \"value\": \"<string>\"\n        }\n      ],\n      \"isCatenaXMemberData\": \"<boolean>\",\n      \"physicalPostalAddress\": {\n        \"city\": \"<string>\",\n        \"country\": {\n          \"name\": \"<string>\",\n          \"technicalKey\": \"RE\"\n        },\n        \"geographicCoordinates\": {\n          \"latitude\": \"<float>\",\n          \"longitude\": \"<float>\",\n          \"altitude\": \"<float>\"\n        },\n        \"administrativeAreaLevel1\": {\n          \"countryCode\": \"VG\",\n          \"regionCode\": \"<string>\",\n          \"regionName\": \"<string>\"\n        },\n        \"administrativeAreaLevel2\": \"<string>\",\n        \"administrativeAreaLevel3\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"district\": \"<string>\",\n        \"street\": {\n          \"name\": \"<string>\",\n          \"houseNumber\": \"<string>\",\n          \"houseNumberSupplement\": \"<string>\",\n          \"milestone\": \"<string>\",\n          \"direction\": \"<string>\",\n          \"namePrefix\": \"<string>\",\n          \"additionalNamePrefix\": \"<string>\",\n          \"nameSuffix\": \"<string>\",\n          \"additionalNameSuffix\": \"<string>\"\n        },\n        \"companyPostalCode\": \"<string>\",\n        \"industrialZone\": \"<string>\",\n        \"building\": \"<string>\",\n        \"floor\": \"<string>\",\n        \"door\": \"<string>\"\n      },\n      \"states\": [\n        {\n          \"type\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"INACTIVE\"\n          },\n          \"validFrom\": \"<dateTime>\",\n          \"validTo\": \"<dateTime>\"\n        },\n        {\n          \"type\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"INACTIVE\"\n          },\n          \"validFrom\": \"<dateTime>\",\n          \"validTo\": \"<dateTime>\"\n        }\n      ],\n      \"updatedAt\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"alternativePostalAddress\": {\n        \"city\": \"<string>\",\n        \"country\": {\n          \"name\": \"<string>\",\n          \"technicalKey\": \"YT\"\n        },\n        \"deliveryServiceNumber\": \"<string>\",\n        \"deliveryServiceType\": \"PO_BOX\",\n        \"geographicCoordinates\": {\n          \"latitude\": \"<float>\",\n          \"longitude\": \"<float>\",\n          \"altitude\": \"<float>\"\n        },\n        \"administrativeAreaLevel1\": {\n          \"countryCode\": \"SK\",\n          \"regionCode\": \"<string>\",\n          \"regionName\": \"<string>\"\n        },\n        \"postalCode\": \"<string>\",\n        \"deliveryServiceQualifier\": \"<string>\"\n      },\n      \"bpnLegalEntity\": \"<string>\",\n      \"bpnSite\": \"<string>\",\n      \"addressType\": \"LegalAndSiteMainAddress\"\n    },\n    {\n      \"bpna\": \"<string>\",\n      \"confidenceCriteria\": {\n        \"checkedByExternalDataSource\": \"<boolean>\",\n        \"confidenceLevel\": \"<integer>\",\n        \"lastConfidenceCheckAt\": \"<dateTime>\",\n        \"nextConfidenceCheckAt\": \"<dateTime>\",\n        \"numberOfSharingMembers\": \"<integer>\",\n        \"sharedByOwner\": \"<boolean>\"\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"identifiers\": [\n        {\n          \"type\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"<string>\"\n          },\n          \"value\": \"<string>\"\n        },\n        {\n          \"type\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"<string>\"\n          },\n          \"value\": \"<string>\"\n        }\n      ],\n      \"isCatenaXMemberData\": \"<boolean>\",\n      \"physicalPostalAddress\": {\n        \"city\": \"<string>\",\n        \"country\": {\n          \"name\": \"<string>\",\n          \"technicalKey\": \"ZR\"\n        },\n        \"geographicCoordinates\": {\n          \"latitude\": \"<float>\",\n          \"longitude\": \"<float>\",\n          \"altitude\": \"<float>\"\n        },\n        \"administrativeAreaLevel1\": {\n          \"countryCode\": \"CH\",\n          \"regionCode\": \"<string>\",\n          \"regionName\": \"<string>\"\n        },\n        \"administrativeAreaLevel2\": \"<string>\",\n        \"administrativeAreaLevel3\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"district\": \"<string>\",\n        \"street\": {\n          \"name\": \"<string>\",\n          \"houseNumber\": \"<string>\",\n          \"houseNumberSupplement\": \"<string>\",\n          \"milestone\": \"<string>\",\n          \"direction\": \"<string>\",\n          \"namePrefix\": \"<string>\",\n          \"additionalNamePrefix\": \"<string>\",\n          \"nameSuffix\": \"<string>\",\n          \"additionalNameSuffix\": \"<string>\"\n        },\n        \"companyPostalCode\": \"<string>\",\n        \"industrialZone\": \"<string>\",\n        \"building\": \"<string>\",\n        \"floor\": \"<string>\",\n        \"door\": \"<string>\"\n      },\n      \"states\": [\n        {\n          \"type\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"ACTIVE\"\n          },\n          \"validFrom\": \"<dateTime>\",\n          \"validTo\": \"<dateTime>\"\n        },\n        {\n          \"type\": {\n            \"name\": \"<string>\",\n            \"technicalKey\": \"ACTIVE\"\n          },\n          \"validFrom\": \"<dateTime>\",\n          \"validTo\": \"<dateTime>\"\n        }\n      ],\n      \"updatedAt\": \"<dateTime>\",\n      \"name\": \"<string>\",\n      \"alternativePostalAddress\": {\n        \"city\": \"<string>\",\n        \"country\": {\n          \"name\": \"<string>\",\n          \"technicalKey\": \"SR\"\n        },\n        \"deliveryServiceNumber\": \"<string>\",\n        \"deliveryServiceType\": \"PO_BOX\",\n        \"geographicCoordinates\": {\n          \"latitude\": \"<float>\",\n          \"longitude\": \"<float>\",\n          \"altitude\": \"<float>\"\n        },\n        \"administrativeAreaLevel1\": {\n          \"countryCode\": \"SO\",\n          \"regionCode\": \"<string>\",\n          \"regionName\": \"<string>\"\n        },\n        \"postalCode\": \"<string>\",\n        \"deliveryServiceQualifier\": \"<string>\"\n      },\n      \"bpnLegalEntity\": \"<string>\",\n      \"bpnSite\": \"<string>\",\n      \"addressType\": \"LegalAddress\"\n    }\n  ],\n  \"contentSize\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"totalElements\": \"<long>\",\n  \"totalPages\": \"<integer>\"\n}"
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "PROVIDER_URL",
+			"value": "https://edc-country-risk-provider-hostname/api/public",
+			"type": "string"
+		},
+		{
+			"key": "ASSET_COUNTRY_RISK_SHARING_APIS",
+			"value": "GET_COUNTRY_RISK_SHARING_APIS",
+			"type": "string"
+		},
+		{
+			"key": "COUNTRY_RISK_BACKEND_URL",
+			"value": "https://country-risk-backend-hostname/api/public",
+			"type": "string"
+		},
+		{
+			"key": "COMPANY_ID",
+			"value": "BPNL0000000XXXX1",
+			"type": "string"
+		},
+		{
+			"key": "ASSET_TOKEN_URL",
+			"value": "https://auth-url-hostname:8080/auth/realms/CX-Central/protocol/openid-connect/token",
+			"type": "string"
+		},
+		{
+			"key": "ASSET_CLIENT_ID",
+			"value": "client_id",
+			"type": "string"
+		},
+		{
+			"key": "ASSET_CLIENT_SECRET",
+			"value": "vault/path/to/asset-client-secret",
+			"type": "string"
+		},
+		{
+			"key": "X-API-KEY",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "POLICY_ID",
+			"value": "COUNTRY_RISK_POLICY",
+			"type": "string"
+		},
+		{
+			"key": "BPNL_SHARING_MEMBER",
+			"value": "BPNL0000000XXXX2",
+			"type": "string"
+		},
+		{
+			"key": "PROVIDER_URL_DSP",
+			"value": "https://edc-country-risk-provider-hostname/api/public",
+			"type": "string"
+		},
+		{
+			"key": "PROVIDER_ID",
+			"value": "BPNL0000000XXXX1",
+			"type": "string"
+		},
+		{
+			"key": "CONTRACT_ID",
+			"value": "COUNTRY_RISK_CONTRACT"
+		},
+		{
+			"key": "EDC_NAMESPACE",
+			"value": "https://w3id.org/edc/v0.0.1/ns/",
+			"type": "string"
+		},
+		{
+			"key": "CONSUMER_URL",
+			"value": "https://edc-country-risk-consumer-hostname/api/public",
+			"type": "string"
+		},
+		{
+			"key": "COUNTRY_RISK_SHARING_PATH",
+			"value": "/api/sharing",
+			"type": "string"
+		},
+		{
+			"key": "negotiationId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "contractAgreementId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "lastNegotiatedTransferProcessId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "COUNTRY_RISK_PUBLIC_URL",
+			"value": "https://edc-country-risk-provider-hostname/api/public",
+			"type": "string"
+		},
+		{
+			"key": "AUTH_CODE",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "OFFER_ID_COUNTRY_RISK_SHARING_APIS",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "transferProcessId",
+			"value": ""
+		},
+		{
+			"key": "BPDM_PROVIDER_URL_DSP",
+			"value": "https://edc-bpdm-provider-hostname/api/v1/dsp",
+			"type": "string"
+		},
+		{
+			"key": "BPDM_PROVIDER_URL",
+			"value": "https://edc-bpdm-provider-hostname",
+			"type": "string"
+		},
+		{
+			"key": "TRANSFERPROCESS",
+			"value": ""
+		},
+		{
+			"key": "PROVIDER_EDC_DATASPACE_API",
+			"value": "https://edc-hostname/api/public",
+			"type": "string"
+		},
+		{
+			"key": "OFFER",
+			"value": ""
+		},
+		{
+			"key": "SELECTED_ASSET",
+			"value": ""
+		},
+		{
+			"key": "SELECTED_PURPOSE",
+			"value": ""
+		},
+		{
+			"key": "TRANSFER_TOKEN",
+			"value": ""
+		},
+		{
+			"key": "BPDM_PROVIDER_URL_PUBLIC",
+			"value": "https://edc-hostname/api/public",
+			"type": "string"
+		}
+	]
+}

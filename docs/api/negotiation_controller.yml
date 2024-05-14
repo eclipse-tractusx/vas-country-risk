@@ -1,0 +1,196 @@
+openapi: 3.0.1
+info:
+  title: VAS API - Negotiation
+  description: Swagger documentation for the Negotiation APIs
+  version: '1.0'
+servers:
+  - url: /
+security:
+  - open_id_scheme:
+      - read
+      - write
+paths:
+  /api/negotiation/triggerNegotiation:
+    post:
+      tags:
+        - Negotiation Controller
+      summary: Triggers negotiation with selected items
+      operationId: triggerNegotiation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/NegotiationRequestDTO'
+        required: true
+      responses:
+        '200':
+          description: Negotiation initiated successfully
+          content:
+            text/plain: {}
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NegotiationResponseDTO'
+        '401':
+          description: Authentication Required
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NegotiationResponseDTO'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NegotiationResponseDTO'
+      security:
+        - bearerAuth: []
+        - open_id_scheme: []
+  /api/negotiation/queryCatalog:
+    get:
+      tags:
+        - Negotiation Controller
+      summary: Retrieves catalog items available for negotiation
+      operationId: queryCatalog
+      responses:
+        '200':
+          description: Successfully retrieved catalog items
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogItemDTO'
+        '401':
+          description: Authentication Required
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CatalogItemDTO'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CatalogItemDTO'
+      security:
+        - bearerAuth: []
+        - open_id_scheme: []
+components:
+  schemas:
+    CompanyUserDTO:
+      required:
+        - companyName
+        - email
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+          example: John
+        email:
+          type: string
+          example: John@email.com
+        companyName:
+          type: string
+          example: TestCompany
+    NegotiationRequestDTO:
+      required:
+        - id
+        - offerId
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the catalog item
+          example: '1'
+        offerId:
+          type: string
+          description: Identifier of the offer associated with the catalog item
+          example: offer123
+        usagePurpose:
+          type: string
+          description: Specific usage purpose or partner category
+          example: cx.bpdm.pool:1
+      description: Data Transfer Object for initiating a negotiation request
+    NegotiationResponseDTO:
+      required:
+        - id
+        - offerId
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the catalog item
+          example: '1'
+        offerId:
+          type: string
+          description: Identifier of the offer associated with the catalog item
+          example: offer123
+        provider:
+          type: string
+          description: Provider of the catalog item
+          example: Provider A
+        status:
+          type: string
+          description: Status of negotiation of the catalog item
+          example: Negotiated
+      description: Data Transfer Object with negotiation status
+    CatalogItemDTO:
+      required:
+        - id
+        - offerId
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the catalog item
+          example: '1'
+        offerId:
+          type: string
+          description: Identifier of the offer associated with the catalog item
+          example: offer123
+        provider:
+          type: string
+          description: Provider of the catalog item
+          example: Provider A
+        subject:
+          type: string
+          description: Subject of the catalog item
+          example: cx-taxo:ReadAccessPoolForCatenaXMember
+        description:
+          type: string
+          description: Description of the catalog item
+          example: Grants the Catena-X Member read access to the Pool API...
+        usagePurpose:
+          type: string
+          description: Specific usage purpose or partner category
+          example: cx.bpdm.pool:1
+      description: Represents a catalog item available for negotiation
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+    open_id_scheme:
+      flows:
+        authorizationCode:
+          authorizationUrl: https://centralidp.dev.demo.catena-x.net/auth/realms/CX-Central/protocol/openid-connect/auth
+          scopes:
+            admin: Grants access to admin operations
+            read: Grants read access
+            write: Grants write access
+          tokenUrl: https://centralidp.dev.demo.catena-x.net/auth/realms/CX-Central/protocol/openid-connect/token
+      type: oauth2

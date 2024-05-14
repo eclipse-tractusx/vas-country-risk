@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
-  description: Swagger documentation for the Value Added Services APIs
-  title: VAS API
+  title: VAS API - Sharing
+  description: Swagger documentation for the Sharing APIs
   version: '1.0'
 servers:
   - url: /
