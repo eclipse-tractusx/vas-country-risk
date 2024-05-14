@@ -14,8 +14,7 @@ This work is licensed under the [Apache-2.0](https://www.apache.org/licenses/LIC
 
 In this Section we are describing how you can gain Access to the Dashboard
 1.	First you need to create an account for the Catena-X Environment
-2.	Your Company needs to setup everything for the Connection with our Application: This can be found with the BPDM 'Create a Gate'  
-      And needs to be subscribed to the service
+2.	Your Company needs to setup everything for the Connection with our Application: This can be found with the BPDM 'Create a Gate' and needs to be subscribed to the service
 
 ![Portal](../docs/User-Guide-Images/add_app.png)
 
@@ -34,7 +33,7 @@ After the Previous steps are finished the way to the Dashboard is very simple:
 
 ![Login](../docs/User-Guide-Images/image2023-1-16_11-0-2.png)
 
-Choose the Login Option you want and its setup.
+Choose the Login Option you want and its setup
 
 ![Input](../docs/User-Guide-Images/login_board.png)
 
@@ -42,12 +41,22 @@ Choose the Login Option you want and its setup.
 
 ![Dashboard](../docs/User-Guide-Images/Dashboard.png)
 
+6. You can only see all data available if data negotiation as been done if not you should go to the Catalog Page to do the Negotiation (if you have permissions)
+
+![userinfo](../docs/Images/userInfo.png)
+
+7. If you have the right permissions you can see the Negotiation Option and you should open the Catalog Page
+
+![catalog](../docs/Images/catalog-page.png)
+
+8. You must select the data offers and click to trigger negotiation
+
 
 ## Country Rating Component
 
 ![Rating](../docs/User-Guide-Images/RatingList.png)
 
-This Component includes multiple smaller Functionalities
+This Component includes multiple smaller Functionalities:
 
 - Year Selection
 - Gate Selection
@@ -66,7 +75,7 @@ Currently all Globally available Ratings are Open Source. We do not create Score
 
 ![RatingTable](../docs/User-Guide-Images/RatingSelection.png)
 
-Next to the Year Selection you will find the Gate selection. This selection will be done for you atuomatically on the first start-up of the Dashbaord.
+Next to the Year Selection you will find the Gate selection. This selection will be done for you automatically on the first start-up of the Dashbaord.
 
 ![Gateselect](../docs/User-Guide-Images/GateSelection.png)
 
@@ -75,16 +84,16 @@ Thereafter you can select one or multiple Ratings in the Table.
 
 ![Ratingselected](../docs/User-Guide-Images/RatingSelected.png)
 
-If you want to select more Ratings at once you can Open a Pop-Up with the 'Show Ratings' Button  
+If you want to select more Ratings at once, you can open a Pop-Up with the 'Show Ratings' Button.  
 In this Table you can manipulate the same way you can in the smaller Table.
 
 ![Popupselection](../docs/User-Guide-Images/RatingListPopUp.png)
 
 
-After selecting a Rating the World Map will change the Color of each individual Country.  
-How is this done. Each Rating has a score for most of the Countries. We have a Score Range of 0-100 for each Rating  
-For Example the CPI Rating has a Score of 45 for China and 29 for Russia.  
-Depending on your selection with the Ranges the Country is then colored.
+After selecting a Rating, the World Map will change the Color of each individual Country.  
+How is this done. Each Rating has a score for most of the Countries. We have a Score Range of 0-100 for each Rating.  
+For Example, the CPI Rating has a Score of 45 for China and 29 for Russia.  
+Depending on your selection with the Ranges, the Country is then colored.
 
 ![WorldMap](../docs/User-Guide-Images/WorldMapFiltered.png)
 
@@ -97,35 +106,34 @@ The Rules for the weighting are:
 ![weighting](../docs/User-Guide-Images/WeightingOverlap.png)
 
 2. automatic weighting overwrites upon selecting new Raings
-3. when changing you need to confirm value by pressing "enter"
-   Changing the Weighting changes the Scores given in the Table below. How the Scores are calculated is described there.
+3. If you change the rating, you must confirm it by pressing "Enter". If you change the weighting, the scores shown in the table below will change. How the scores are calculated is described there
 
 
-### How can i Upload my own Rating and what do i need to know.
+### How can i Upload my own Rating and what do i need to know
 
-The First step is to Download the Template. This is important since this is the Only Format the Application can progress the Upload.
+The First step is to Download the Template. This is important since this is the only Format the Application can progress the Upload.
 
 ![excelfile](../docs/User-Guide-Images/image2023-1-16_11-43-52.png)
 
 ![excellist](../docs/User-Guide-Images/image2023-1-16_11-44-50.png)
 
-After filling out the Column E please save the File. The name is not important since the Name is set when the Rating is Uploaded.  
-After creating your own Rating all you have to do is Upload the File, you can start with clicking on 'Upload Rating'
+After filling out the Column E please save the File. The name is not important since the Name is set when the Rating is uploaded.  
+After creating your own Rating all you have to do is Upload the File, you can start with clicking on 'Upload Rating'.
 
 Then this Pop-Up is shown:
 
 ![popupupload](../docs/User-Guide-Images/RatingUpload.png)
 
-You then have the Option to select who can see this Rating after Uploading.  
-You have the Option between 'Only For me' or 'For the Company'. The secon Option is grayed out if you dont have administration rights.  
+You then have the Option to select who can see this Rating after uploading.  
+You have the Option between 'Only For me' or 'For the Company'. The second Option is grayed out if you dont have administration rights.  
 After selecting the Target group you can select the year for which this Rating is relevant for.  
-Below the year selection you can Give a Name to the Rating. A Rating Name can only be given once.  
+Below the year selection, you can give a Name to the Rating. A Rating Name can only be given once.  
 This Name is then shown in the Rating table after finishing the Upload.
 
 
 ![savingrating](../docs/User-Guide-Images/RatingUploadFilled.png)
 
-Afterwards yoou will be asked to Upload the File you previously created. You can do thi s per darg and drop or by clicking on the cloud symbol to search your Explorer for the File.
+Afterwards you will be asked to Upload the File you previously created. You can do this per drag and drop or by clicking on the cloud symbol to search your Explorer for the File.
 
 ![popupsaved](../docs/User-Guide-Images/RatingUploadSuccess.png)
 
@@ -133,7 +141,7 @@ After closing the Pop-Up the Rating is directly available in the table without t
 
 ![refresh](../docs/User-Guide-Images/RatingUploaded.png)
 
-If you want to delete a Rating you have the Option to do so by clicking on the 'Trash' Icon to the right of the Rating.
+If you want to delete a Rating, you have the Option to do so by clicking on the 'Trash' Icon to the right of the Rating.
 
 ![deleterating](../docs/User-Guide-Images/image2023-1-16_11-58-21.png)
 
@@ -143,7 +151,7 @@ and then finish by confirming it.
 
 ## World Map
 
-The Map shows an interactive Map of the World for the User
+The Map shows an interactive Map of the World for the User:
 
 - The User can zoom into the Map
 - After the first Zoom step the country Codes are shown with the ISO 3166-1 alpha-2 Codes
@@ -151,22 +159,22 @@ The Map shows an interactive Map of the World for the User
 
 ![hovercountry](../docs/User-Guide-Images/WorldMap.png)
 
-- Upon zooming in the User can see Markers in countries.
-  Those markers show the Location of the available Business Partners
+- When zooming in, the user can see the markings in the countries.
+  Those markers show the Location of the available Business Partners.
   Hovering over the Marker reveals the Company Name in that Location
 
 ![hoveringmarker](../docs/User-Guide-Images/WorldMapMarker.png)
 
-- The User has the Option to Expand the Map with the Help of the Icon in the top right corner
-  After Expanding the World Map the User can find a Legend in the bottom left corner which represents the Ranges
+- The User has the Option to Expand the Map with the Help of the Icon in the top right corner.
+  After Expanding the World Map the User can find a Legend in the bottom left corner which represents the Ranges.
   The functionalities remain in the expanded Mode
 
 ![expandbutton](../docs/User-Guide-Images/WorldMapExpand.png)
 
 ![popupMap](../docs/User-Guide-Images/WorldMapExpanded.png)
 
-- After Expanding the World Map the User can see the Option to Export the Image.
-  Upon clicking on the Button a PNG is created and downloaded. The File is named "worldMap.png"
+- After Expanding the World Map, the User can see the Option to Export the Image.
+  Upon clicking on the Button a PNG/PDF is created and downloaded. The File is named "worldMap.png"
 
 ![exportImage](../docs/User-Guide-Images/WorldMapExport.png)
 
@@ -184,14 +192,14 @@ The User can also hover over one Country at a time.
 
 ![hovercountrymap](../docs/User-Guide-Images/CompanyViewHover.png)
 
-In the Company view we not only show the Name of the Country we also show how many Business Partners which are available to you are located in this country.  
+In the company view, we not only show the name of the country, but also how many business partners available to you are based in that country.  
 We also show the Score in the Hover since the Countries are not being colored when a Rating is selected.
 
-New in this View is the Option to Filter for a country
+New in this View is the Option to Filter for a country.
 
 ![searchcountry](../docs/User-Guide-Images/CompanyViewFiltered.png)
 
-After selecting a country the Map zooms to the country and shows the Markers for each Business Partner in this Country.  
+After selecting a country, the Map zooms to the country and shows the Markers for each Business Partner in this Country.  
 Also the Table below is filtered for the selected country.
 
 ![tablesearched](../docs/User-Guide-Images/TableFiltered.png)
@@ -203,7 +211,7 @@ The functionalities remain in the expanded Mode.
 
 ![expandedcountrymap](../docs/User-Guide-Images/ComapnyViewExpanded.png)
 
-After Expanding the Map the User can see the Option to Export the Image.  
+After Expanding the Map, the User can see the Option to Export the Image.  
 Upon clicking on the Button a PNG is created and downloaded. The File is named "BusinessPartnerMap.png"
 
 
@@ -244,7 +252,7 @@ We then display all Business Partners in the table and the World Map.
 
 ### Pagination
 
-On each Page we show 15 Business partners. If the User wants to see the next 15 business Partners he has the Option to switch to the next Page by clicking in the bottom right corner on the arrows
+On each Page we show 15 Business partners. If the User wants to see the next 15 business Partners he has the Option to switch to the next Page by clicking in the bottom right corner on the arrows.
 
 ![pagination](../docs/User-Guide-Images/TablePagination.png)
 
@@ -255,15 +263,15 @@ We show the number of filtered Business Partners next to the Export Option:
 
 ### The Score
 
-If the User selects a Rating we create a Score depending on his selection in the Rating Table and Color the background according to the Ranges set.
+If the User selects a Rating, we create a Score depending on his selection in the Rating Table and Color the background according to the Ranges set.
 
 The Score in the Column "Score" is calculated as follows.
 
 Situation 1:  
-You choose 1 Rating. The Score is taken from the database and shown. If there is none the field will be left empty. The Colore is chosen depending on the Ranges
+You choose 1 Rating. The Score is taken from the database and shown. If there is none the field will be left empty. The Colour is chosen depending on the Ranges.
 
 Situation 2:  
-You choose more than 1 Rating. The Formula: (Rating1 * Weighting1) + (Rating2 + Weighting2) + ... as many Ratings as you chose.
+You choose more than 1 Rating. The Formula: (Rating1 * Weighting1) + (Rating2 * Weighting2) + ... as many Ratings as you chose.
 
 Situation 3:  
 You choose more than 1 rating but there is only one Score.  
@@ -289,7 +297,7 @@ The User has the option to Export the Table and its content.
 
 ![exportbutton](../docs/User-Guide-Images/TableExport.png)
 
-3. After that a CSV File is created, which you can then Download.
+3. After that a CSV File is created, which you can then Download
 
 ![exportedfile](../docs/User-Guide-Images/image2023-1-16_13-7-35.png)
 
@@ -300,7 +308,7 @@ The User has the option to Export the Table and its content.
 
 Functionalities:
 
-- Creating A Report
+- Creating a Report
 - Showing a Report
 - Changing a Report
 - Delete a Report
@@ -314,27 +322,27 @@ To create a Report the User can set multiple Filters:
 - Weighting set
 - Country Filtered in the Company View
 - Table Filter
-- Ranges Set
+- Ranges set
 
 
-When the User has set a view of the Dashboard he wants to acces regularly without the need to recreate it everytime he can save a report:
+When the User has set a view of the Dashboard he wants to acces regularly without the need to recreate it everytime, he can save a report:
 
 1. Click on 'Save Report'
 
 ![savereport](../docs/User-Guide-Images/ReportSave.png)
 
-2. Fill out the Pop-Up
-   The User can choose between Uploading a Report for himself or for the Company if he has the status of an admin
+2. Fill out the Pop-Up.
+   The User can choose between Uploading a Report for himself or for the Company, if he has the status of an admin
 
 ![savereportpopup](../docs/User-Guide-Images/ReportCreated.png)
 
-After setting a Name and clicking on Save the Report is then available in the Report Table
+After setting a Name and clicking on Save, the Report is then available in the Report Table
 
 ![definitionreport](../docs/User-Guide-Images/ReportAdded.png)
 
 
 ### How to change a Saved report
-The process of changing a saved Report is eay.
+The process of changing a saved Report is easy.
 
 1. Select the Report
 
@@ -353,16 +361,16 @@ The process of changing a saved Report is eay.
 ![confirmation](../docs/User-Guide-Images/ReportChanged.png)
 
 
-### How to Share a Report with a colleague
+### How to Share a Report with a Colleague
 
-To Share a Report with a Colleague, the Perosn needs to be known to our application.
+To Share a Report with a Colleague, the Person needs to be known to our application.
 Meaning he has to have created a Report or a Rating for himself.
 
-ToShare a Report you then select the Report you want to share and continue by clicking on the Share Icon to the most right of the Row.
+To Share a Report, you then select the Report you want to share and continue by clicking on the Share Icon to the most right of the Row.
 
 ![shareicon](../docs/User-Guide-Images/ReportShareIcon.png)
 
-In the Dropdown you select the Person you want to share the Report with and click on 'share'
+In the Dropdown you select the Person you want to share the Report with and click on 'share'.
 
 ![selectusers](../docs/User-Guide-Images/ReportShareSelection.png)
 
@@ -371,11 +379,11 @@ You can only share Reports with Users in the Same Company as you.
 
 ### How to delete a Report
 
-You can delete a Report by clicking on the 'trash' icon between the Save and Share functionality
+You can delete a Report by clicking on the 'trash' icon between the Save and Share functionality.
 
 ![deleteicon](../docs/User-Guide-Images/ReportDeleteIcon.png)
 
-Afterwards you confirm that you want to delete the Report by clicking on 'yes'
+Afterwards you confirm that you want to delete the Report by clicking on 'yes'.
 
 ![confirm](../docs/User-Guide-Images/ReportDeleteConfirmation.png)
 
@@ -414,4 +422,4 @@ To save the Ranges the User can click on 'Save Ranges' they are then automatical
 
 ![informationof saving](../docs/User-Guide-Images/rangessaved.png)
 
-When the User Returns at a later date the Saved Ranges are automatically set.
+When the User Returns at a later date, the Saved Ranges are automatically set.

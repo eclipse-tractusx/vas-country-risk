@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
-  title: VAS API
-  description: Swagger documentation for the Value Added Services APIs
+  title: VAS API - Dashboard
+  description: Swagger documentation for the Dashboard APIs
   version: '1.0'
 servers:
   - url: /
@@ -14,7 +14,7 @@ paths:
     put:
       tags:
         - Dashboard Controller
-      summary: Update Reports that
+      summary: Update Reports
       operationId: updateReports
       parameters:
         - name: companyUserDTO
