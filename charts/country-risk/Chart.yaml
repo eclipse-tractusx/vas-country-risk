@@ -20,8 +20,8 @@
 apiVersion: v2
 name: country-risk
 type: application
-version: 4.0.1
-appVersion: "2.0.0-alpha"
+version: 4.0.2
+appVersion: "2.0.0"
 description: A Helm chart for deploying the Country Risk service
 home: https://github.com/eclipse-tractusx/vas-country-risk-frontend
 sources:
